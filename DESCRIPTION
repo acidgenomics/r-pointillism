@@ -1,0 +1,52 @@
+Package: pointillism
+Title: Single-Cell Clustering Visualization
+Description: Toolkit for single-cell RNA-seq clustering analysis.
+Version: 0.1.0
+Authors@R: c(
+    person(
+        given = "Michael",
+        family = "Steinbaugh",
+        email = "mike@steinbaugh.com",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-2403-2221")
+    ),
+    person(
+        given = "Rory",
+        family = "Kirchner",
+        email = "roryk@alum.mit.edu",
+        role = "ctb",
+        comment = c(ORCID = "0000-0003-4814-5885")
+    ))
+URL:
+    http://bioinformatics.sph.harvard.edu/bcbioSingleCell,
+    https://github.com/hbc/bcbioSingleCell
+BugReports: https://github.com/hbc/bcbioSingleCell/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: TRUE
+Depends:
+    R (>= 3.4),
+    SingleCellExperiment,
+    basejump (>= 0.6.3)
+Imports:
+    Seurat (>= 2.3)
+Suggests:
+    BiocStyle,
+    DropletUtils,
+    googlesheets,
+    MAST,
+    roxygen2,
+    splatter,
+    testthat (>= 2.0)
+Remotes:
+    steinbaugh/basejump
+biocViews:
+    DataRepresentation,
+    GeneExpression,
+    QualityControl,
+    RNASeq,
+    SingleCell,
+    Transcription,
+    Visualization
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.0
