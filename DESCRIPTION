@@ -29,15 +29,18 @@ Depends:
     SingleCellExperiment,
     basejump (>= 0.6.3)
 Imports:
+    DESeq2,
+    edgeR,
+    reticulate,
     Seurat (>= 2.3)
 Suggests:
     BiocStyle,
-    DropletUtils,
     googlesheets,
     MAST,
     roxygen2,
     splatter,
-    testthat (>= 2.0)
+    testthat (>= 2.0),
+    zinbwave
 Remotes:
     steinbaugh/basejump
 biocViews:
