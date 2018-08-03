@@ -38,7 +38,6 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
-# SingleCellExperiment ====
 per_cluster <- cellTypesPerCluster(known_markers_small)
 glimpse(per_cluster)
 

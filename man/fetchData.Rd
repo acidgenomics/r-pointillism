@@ -66,7 +66,6 @@ For t-SNE, UMAP, and PCA, the reduced dimensions must be defined in the
 \code{\link[=reducedDims]{reducedDims()}} slot.
 }
 \examples{
-# SingleCellExperiment ====
 object <- indrops_small
 genes <- head(rownames(object))
 glimpse(genes)

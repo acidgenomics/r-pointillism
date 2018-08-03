@@ -27,6 +27,5 @@ interesting groups. Must be formatted in camel case and intersect with
 Cell Counts per Cluster
 }
 \examples{
-# SingleCellExperiment ====
 cellCountsPerCluster(indrops_small)
 }

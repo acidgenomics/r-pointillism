@@ -41,7 +41,6 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \examples{
-# seurat ====
 plotPCElbow(seurat_small)
 }
 \seealso{
