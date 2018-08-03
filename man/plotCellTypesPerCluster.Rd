@@ -38,13 +38,13 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
-per_cluster <- cellTypesPerCluster(known_markers_small)
-glimpse(per_cluster)
+markers <- cellTypesPerCluster(known_markers_small)
+glimpse(markers)
 
 # Let's plot the first row, as an example
 plotCellTypesPerCluster(
-    object = sce_small,
-    markers = head(per_cluster, n = 2L)
+    object = seurat_small,
+    markers = head(markers, n = 2L)
 )
 }
 \seealso{
