@@ -605,6 +605,8 @@ setMethod(
 
 
 
+# Note that there may be a names issue when handling GRanges with NA values
+# in either the geneID or geneName columns
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowRanges
 #' @export
