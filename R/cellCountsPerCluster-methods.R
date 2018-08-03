@@ -22,7 +22,7 @@ setMethod(
     function(object, interestingGroups) {
         validObject(object)
         .assertHasIdent(object)
-        interestingGroups <- .prepareInterestingGroups(
+        interestingGroups <- .returnInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
         )

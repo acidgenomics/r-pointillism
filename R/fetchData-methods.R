@@ -100,7 +100,7 @@ setMethod(
         assert_is_a_string(reducedDim)
         assertIsImplicitInteger(dimsUse)
         assert_is_of_length(dimsUse, 2L)
-        interestingGroups <- .prepareInterestingGroups(
+        interestingGroups <- .returnInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
         )
