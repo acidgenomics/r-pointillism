@@ -43,7 +43,7 @@ glimpse(per_cluster)
 
 # Let's plot the first row, as an example
 plotCellTypesPerCluster(
-    object = cellranger_small,
+    object = sce_small,
     markers = head(per_cluster, n = 2L)
 )
 }

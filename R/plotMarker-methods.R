@@ -27,15 +27,15 @@
 #' @examples
 #' # MHC class II genes
 #' title <- "MHC class II"
-#' genes <- rownames(cellranger_small)[which(grepl(
+#' genes <- rownames(sce_small)[which(grepl(
 #'     pattern = "^major histocompatibility complex, class II",
-#'     x = rowData(cellranger_small)$description
+#'     x = rowData(sce_small)$description
 #' ))]
 #' print(genes)
 #'
-#' plotMarker(cellranger_small, genes = genes)
+#' plotMarker(sce_small, genes = genes)
 #' plotMarker(
-#'     object = cellranger_small,
+#'     object = sce_small,
 #'     genes = genes,
 #'     expression = "sum",
 #'     pointsAsNumbers = TRUE,

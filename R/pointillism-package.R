@@ -37,10 +37,10 @@
 #'   assignAndSaveData camel convertGenesToSymbols convertSymbolsToGenes
 #'   convertUCSCBuildToEnsembl detectOrganism emptyRanges gene2symbol
 #'   hasRownames initializeDirectory makeGRangesFromEnsembl makeGRangesFromGFF
-#'   makeNames makeTx2geneFromGFF markdownHeader markdownPlotlist printString
-#'   readFileByExtension readYAML sanitizeSampleData stripTranscriptVersions
-#'   theme_midnight theme_paperwhite tx2geneFromGFF uniteInterestingGroups
-#'   .returnInterestingGroups
+#'   makeNames makeTx2geneFromGFF markdownHeader markdownPlotlist
+#'   matchInterestingGroups printString readFileByExtension readYAML
+#'   sanitizeSampleData stripTranscriptVersions theme_midnight theme_paperwhite
+#'   tx2geneFromGFF uniteInterestingGroups
 #' @importFrom bcbioBase bcbio_geom_abline bcbio_geom_label
 #'   bcbio_geom_label_average bcbio_geom_label_repel flatFiles minimalSampleData
 #'   prepareSummarizedExperiment readDataVersions readLog readProgramVersions
