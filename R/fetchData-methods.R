@@ -27,24 +27,12 @@
 #' x <- fetchGeneData(object, genes = genes)
 #' glimpse(x)
 #'
-#' # t-SNE
-#' x <- fetchTSNEData(object)
-#' glimpse(x)
-#'
-#' # PCA
-#' x <- fetchPCAData(object)
-#' glimpse(x)
-#'
-#' # UMAP
-#' x <- fetchUMAPData(object)
-#' glimpse(x)
-#'
-#' # t-SNE gene expression
-#' x <- fetchTSNEExpressionData(object, genes = genes)
-#' glimpse(x)
-#'
-#' # UMAP gene expession
-#' x <- fetchUMAPExpressionData(object, genes = genes)
+#' # Reduced dim coordinates
+#' x <- fetchReducedDimExpressionData(
+#'     object = object,
+#'     genes = genes,
+#'     reducedDim = "TSNE"
+#' )
 #' glimpse(x)
 NULL
 
