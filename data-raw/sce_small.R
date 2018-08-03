@@ -46,7 +46,6 @@ sce <- metrics(sce, recalculate = TRUE)
 
 # seurat_small =================================================================
 seurat_small <- as(sce, "seurat") %>%
-    convertGenesToSymbols() %>%
     NormalizeData() %>%
     FindVariableGenes(do.plot = FALSE) %>%
     ScaleData() %>%
@@ -62,9 +61,7 @@ stopifnot("sampleName" %in% colnames(colData(seurat_small)))
 
 # sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID)
-seurat_sce <- seurat_small %>%
-    as("SingleCellExperiment") %>%
-    convertSymbolsToGenes()
+seurat_sce <- as(seurat_small, "SingleCellExperiment")
 stopifnot("ident" %in% colnames(colData(seurat_sce)))
 # Ensure that dimensional reduction data is slotted correctly
 stopifnot(identical(
@@ -80,8 +77,12 @@ sce_small <- sce
 
 
 # all_markers_small ============================================================
-all_markers_small <- FindAllMarkers(seurat_small) %>%
-    sanitizeSeuratMarkers(rowRanges = rowRanges(seurat_small))
+all_markers <- FindAllMarkers(seurat_small)
+all_markers <- sanitizeSeuratMarkers(
+    data = all_markers,
+    rowRanges = rowRanges(seurat_small)
+)
+all_markers_small <- all_markers
 
 
 
