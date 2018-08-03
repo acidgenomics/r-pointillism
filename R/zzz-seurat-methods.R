@@ -61,7 +61,8 @@ setMethod(
 
 
 
-#' @rdname barcodeRanksPerSample
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell barcodeRanksPerSample
 #' @export
 setMethod(
     "barcodeRanksPerSample",
@@ -82,7 +83,7 @@ setMethod(
 
 
 
-#' @rdname cellCountsPerCluster
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "cellCountsPerCluster",
@@ -92,7 +93,7 @@ setMethod(
 
 
 
-#' @rdname clusterCellCountsPerSample
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "clusterCellCountsPerSample",
@@ -185,7 +186,7 @@ setMethod(
 
 
 
-#' @rdname diffExp
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "diffExp",
@@ -195,7 +196,7 @@ setMethod(
 
 
 
-#' @rdname fetchData
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "fetchGeneData",
@@ -205,7 +206,7 @@ setMethod(
 
 
 
-#' @rdname fetchData
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "fetchReducedDimData",
@@ -215,7 +216,7 @@ setMethod(
 
 
 
-#' @rdname fetchData
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "fetchReducedDimExpressionData",
@@ -308,7 +309,7 @@ setMethod(
 
 
 
-#' @rdname metrics
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "metrics",
@@ -320,7 +321,7 @@ setMethod(
 
 
 
-#' @rdname metricsPerSample
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "metricsPerSample",
@@ -330,7 +331,7 @@ setMethod(
 
 
 
-#' @rdname plotBarcodeRanks
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotBarcodeRanks",
@@ -350,7 +351,7 @@ setMethod(
 
 
 
-#' @rdname plotCellTypesPerCluster
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotCellTypesPerCluster",
@@ -360,7 +361,7 @@ setMethod(
 
 
 
-#' @rdname plotDot
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotDot",
@@ -370,7 +371,7 @@ setMethod(
 
 
 
-#' @rdname plotFeature
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotFeature",
@@ -380,7 +381,7 @@ setMethod(
 
 
 
-#' @rdname plotGene
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotGene",
@@ -390,7 +391,7 @@ setMethod(
 
 
 
-#' @rdname plotGenesPerCell
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotGenesPerCell",
@@ -400,7 +401,7 @@ setMethod(
 
 
 
-#' @rdname plotMarker
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotKnownMarkersDetected",
@@ -410,7 +411,7 @@ setMethod(
 
 
 
-#' @rdname plotMarker
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotMarker",
@@ -420,7 +421,7 @@ setMethod(
 
 
 
-#' @rdname plotMitoRatio
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotMitoRatio",
@@ -430,7 +431,7 @@ setMethod(
 
 
 
-#' @rdname plotMitoVsCoding
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotMitoVsCoding",
@@ -440,7 +441,7 @@ setMethod(
 
 
 
-#' @rdname plotNovelty
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotNovelty",
@@ -450,7 +451,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotPCA",
@@ -460,7 +461,7 @@ setMethod(
 
 
 
-#' @rdname plotQC
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotQC",
@@ -470,7 +471,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotReducedDim",
@@ -480,7 +481,7 @@ setMethod(
 
 
 
-#' @rdname plotMarker
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotTopMarkers",
@@ -490,7 +491,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotTSNE",
@@ -500,7 +501,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotUMAP",
@@ -510,7 +511,7 @@ setMethod(
 
 
 
-#' @rdname plotUMIsPerCell
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotUMIsPerCell",
@@ -520,7 +521,7 @@ setMethod(
 
 
 
-#' @rdname plotUMIsVsGenes
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotUMIsVsGenes",
@@ -530,7 +531,7 @@ setMethod(
 
 
 
-#' @rdname plotViolin
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotViolin",
@@ -540,7 +541,7 @@ setMethod(
 
 
 
-#' @rdname plotZerosVsDepth
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "plotZerosVsDepth",
@@ -627,7 +628,7 @@ setMethod(
 
 
 
-#' @rdname sampleData
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "sampleData",
@@ -637,7 +638,7 @@ setMethod(
 
 
 
-#' @rdname sampleData
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "sampleData<-",
@@ -667,7 +668,7 @@ setMethod(
 
 
 
-#' @rdname topBarcodes
+#' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
     "topBarcodes",
