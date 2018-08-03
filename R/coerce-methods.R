@@ -52,7 +52,7 @@ setAs(
         # Create the seurat object
         to <- CreateSeuratObject(
             raw.data = counts(from),
-            project = "bcbioSingleCell",
+            project = "pointillism",
             # Already applied filtering cutoffs for cells and genes
             min.cells = 0L,
             min.genes = 0L,
