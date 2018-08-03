@@ -613,8 +613,8 @@ setMethod(
 setMethod(
     "rowRanges",
     signature("seurat"),
-    function(x, ...) {
-        gr <- rowRanges(.as.SingleCellExperiment.seurat(x), ...)
+    function(x) {
+        gr <- rowRanges(.as.SingleCellExperiment.seurat(x))
 
         # Attempt to use stashed rowRanges, if present
         stash <- slot(x, "misc")[["bcbio"]][["rowRanges"]]
@@ -622,15 +622,14 @@ setMethod(
             assert_is_subset(c("geneID", "geneName"), colnames(mcols(stash)))
             # Check to see if we're using IDs or symbols
             if (any(names(gr) %in% mcols(stash)[["geneID"]])) {
-                col <- "geneID"
+                namesCol <- "geneID"
             } else if (any(names(gr) %in% mcols(stash)[["geneName"]])) {
-                col <- "geneName"
+                namesCol <- "geneName"
             } else {
                 stop("Failed to match identifiers to rownames")
             }
-            names(stash) <- make.unique(as.character(mcols(stash)[[col]]))
-            assert_is_subset(names(gr), names(stash))
-            stash <- stash[names(gr)]
+            names(stash) <- make.unique(as.character(mcols(stash)[[namesCol]]))
+            assert_are_identical(names(gr), names(stash))
             assert_are_disjoint_sets(
                 x = colnames(mcols(gr)),
                 y = colnames(mcols(stash))
