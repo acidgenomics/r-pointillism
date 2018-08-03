@@ -13,7 +13,7 @@
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' object <- indrops_small
+#' object <- sce_small
 #' features <- c("nUMI", "nGene", "mitoRatio")
 #' plotFeature(object, features = features)
 NULL
