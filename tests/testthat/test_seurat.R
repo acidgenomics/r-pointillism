@@ -90,9 +90,9 @@ test_that("interestingGroups : seurat", {
 })
 
 test_that("interestingGroups<- : seurat", {
-    interestingGroups(indrops_small) <- "sampleName"
+    interestingGroups(sce_small) <- "sampleName"
     expect_identical(
-        interestingGroups(indrops_small),
+        interestingGroups(sce_small),
         "sampleName"
     )
     interestingGroups(seurat_small) <- "sampleName"
