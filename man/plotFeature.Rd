@@ -21,7 +21,7 @@ scores, number of genes detected).}
 Plot Feature
 }
 \examples{
-object <- indrops_small
+object <- sce_small
 features <- c("nUMI", "nGene", "mitoRatio")
 plotFeature(object, features = features)
 }

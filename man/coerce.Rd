@@ -32,7 +32,7 @@ a \code{seurat} class object and coercing to a \code{SingleCellExperiment}.
 
 \examples{
 # SingleCellExperiment to seurat ====
-x <- as(indrops_small, "seurat")
+x <- as(sce_small, "seurat")
 class(x)
 print(x)
 # seurat to SingleCellExperiment ====
