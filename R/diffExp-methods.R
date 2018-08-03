@@ -63,7 +63,7 @@
 #'
 #' @examples
 #' # SingleCellExperiment ====
-#' object <- indrops_small
+#' object <- sce_small
 #' numerator <- head(colnames(object), n = 100L)
 #' glimpse(numerator)
 #' denominator <- tail(colnames(object), n = 100L)

@@ -42,7 +42,7 @@ NULL
 #'
 #' @examples
 #' # SingleCellExperiment to seurat ====
-#' x <- as(indrops_small, "seurat")
+#' x <- as(sce_small, "seurat")
 #' class(x)
 #' print(x)
 setAs(

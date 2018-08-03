@@ -7,7 +7,7 @@
 #' @return `tibble` grouped by "`ident`" column, arranged by abundance.
 #'
 #' @examples
-#' cellCountsPerCluster(indrops_small)
+#' cellCountsPerCluster(sce_small)
 NULL
 
 

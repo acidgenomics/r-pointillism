@@ -21,7 +21,7 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' object <- indrops_small
+#' object <- sce_small
 #' genes <- head(rownames(object))
 #' glimpse(genes)
 #'
