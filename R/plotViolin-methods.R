@@ -14,7 +14,6 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' object <- cellranger_small
 #' genes <- head(rownames(object), n = 4L)
 #' glimpse(genes)

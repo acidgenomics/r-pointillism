@@ -20,7 +20,6 @@
 #' @export
 #'
 #' @examples
-#' # seurat ====
 #' object <- seurat_small
 #'
 #' # `FindAllMarkers()` return

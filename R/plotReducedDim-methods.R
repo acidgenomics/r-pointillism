@@ -23,7 +23,6 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' object <- cellranger_small
 #'
 #' # t-SNE
@@ -68,7 +67,6 @@ setMethod(
         assertIsImplicitInteger(dimsUse)
         assert_is_of_length(dimsUse, 2L)
         assert_is_a_string(interestingGroups)
-        assert_is_subset(interestingGroups, colnames(data))
         assertIsColorScaleDiscreteOrNULL(color)
         assert_is_a_number(pointSize)
         assert_is_a_number(pointAlpha)
