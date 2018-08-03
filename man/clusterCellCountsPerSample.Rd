@@ -23,5 +23,5 @@ clusterCellCountsPerSample(object, ...)
 Cluster Cell Counts per Sample
 }
 \examples{
-clusterCellCountsPerSample(indrops_small)
+clusterCellCountsPerSample(sce_small)
 }

@@ -46,7 +46,7 @@ To set the discrete color palette globally, use
 Plot Dot
 }
 \examples{
-object <- indrops_small
+object <- sce_small
 genes <- head(rownames(object))
 glimpse(genes)
 plotDot(object, genes = genes)
