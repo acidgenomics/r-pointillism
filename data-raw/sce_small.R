@@ -1,11 +1,10 @@
 # SingleCellExperiment Example Data
 # Using splatter to generate simulated counts
-# 2018-08-02
+# 2018-08-03
 
 library(devtools)
 library(tidyverse)
 library(splatter)
-library(bcbioSingleCell)
 library(Seurat)
 library(Matrix)
 load_all()
@@ -20,6 +19,15 @@ params <- setParam(params, "de.facScale", .25)
 params <- setParam(params, "dropout.type", "experiment")
 params <- setParam(params, "dropout.mid", 3)
 sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
+# Modify colData
+colData(sce) <- camel(colData(sce), rownames = TRUE, colnames = TRUE)
+sce$cell <- NULL
+# Add sampleID and sampleName columns
+sce$batch <- as.factor(sce$batch)
+sce$group <- as.factor(sce$group)
+sce$sampleID <- sce$group
+sce$sampleName <- sce$sampleID
+stopifnot("sampleName" %in% colnames(colData(sce)))
 
 # dropout rate
 plot(
@@ -48,6 +56,7 @@ seurat_small <- as(sce, "seurat") %>%
     # Requires Python `umap-learn` package
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
+stopifnot("sampleName" %in% colnames(colData(seurat_small)))
 
 
 
