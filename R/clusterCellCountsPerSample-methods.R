@@ -7,7 +7,6 @@
 #' @return `tibble` grouped by "`sampleName" column, arranged by abundance.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' clusterCellCountsPerSample(indrops_small)
 NULL
 
