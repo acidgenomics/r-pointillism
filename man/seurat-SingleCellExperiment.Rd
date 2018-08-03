@@ -220,7 +220,7 @@
 
 \S4method{rownames}{seurat}(x)
 
-\S4method{rowRanges}{seurat}(x, ...)
+\S4method{rowRanges}{seurat}(x)
 
 \S4method{sampleData}{seurat}(object, interestingGroups)
 
