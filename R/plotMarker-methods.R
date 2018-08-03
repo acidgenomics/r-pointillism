@@ -130,10 +130,13 @@ setMethod(
 
         if (isTRUE(.useGene2symbol(object))) {
             g2s <- gene2symbol(object)
-            if (length(g2s)) {
-                g2s <- g2s[genes, , drop = FALSE]
-                genes <- make.unique(g2s[["geneName"]])
-            }
+            symbols <- g2s[
+                match(genes, g2s[["geneID"]]),
+                "geneName",
+                drop = TRUE
+            ]
+            stopifnot(!any(is.na(symbols)))
+            genes <- make.unique(symbols)
         }
         genes <- sort(unique(genes))
 
@@ -365,7 +368,7 @@ setMethod(
         list <- pblapply(cellTypes, function(cellType) {
             genes <- markers %>%
                 filter(cellType == !!cellType) %>%
-                pull("geneName") %>%
+                pull("geneID") %>%
                 as.character() %>%
                 na.omit() %>%
                 unique()
