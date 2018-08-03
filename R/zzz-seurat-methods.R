@@ -310,6 +310,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase metrics
 #' @export
 setMethod(
     "metrics",
@@ -322,6 +323,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell metricsPerSample
 #' @export
 setMethod(
     "metricsPerSample",
@@ -332,6 +334,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotBarcodeRanks
 #' @export
 setMethod(
     "plotBarcodeRanks",
@@ -342,6 +345,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotCellCounts
 #' @export
 setMethod(
     "plotCellCounts",
@@ -362,6 +366,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotDot
 #' @export
 setMethod(
     "plotDot",
@@ -382,6 +387,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotGene
 #' @export
 setMethod(
     "plotGene",
@@ -392,6 +398,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotGenesPerCell
 #' @export
 setMethod(
     "plotGenesPerCell",
@@ -422,6 +429,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotMitoRatio
 #' @export
 setMethod(
     "plotMitoRatio",
@@ -432,6 +440,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotMitoVsCoding
 #' @export
 setMethod(
     "plotMitoVsCoding",
@@ -442,6 +451,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotNovelty
 #' @export
 setMethod(
     "plotNovelty",
@@ -462,6 +472,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotQC
 #' @export
 setMethod(
     "plotQC",
@@ -512,6 +523,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotUMIsPerCell
 #' @export
 setMethod(
     "plotUMIsPerCell",
@@ -522,6 +534,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotUMIsVsGenes
 #' @export
 setMethod(
     "plotUMIsVsGenes",
@@ -532,6 +545,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotViolin
 #' @export
 setMethod(
     "plotViolin",
@@ -542,6 +556,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotZerosVsDepth
 #' @export
 setMethod(
     "plotZerosVsDepth",
@@ -629,6 +644,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump sampleData
 #' @export
 setMethod(
     "sampleData",
@@ -639,6 +655,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump sampleData<-
 #' @export
 setMethod(
     "sampleData<-",
@@ -669,6 +686,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell topBarcodes
 #' @export
 setMethod(
     "topBarcodes",
