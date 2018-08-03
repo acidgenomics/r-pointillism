@@ -61,34 +61,20 @@
 #' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink()` if
 #'   shrunken results are desired.
 #'
+#' @seealso [Seurat::WhichCells()].
+#'
 #' @examples
-#' # SingleCellExperiment ====
 #' object <- sce_small
-#' numerator <- head(colnames(object), n = 100L)
+#' numerator <- colnames(object)[object$group == "group2"]
 #' glimpse(numerator)
-#' denominator <- tail(colnames(object), n = 100L)
+#' denominator <- colnames(object)[object$group == "group1"]
 #' glimpse(denominator)
 #' x <- diffExp(
 #'     object = object,
 #'     numerator = numerator,
 #'     denominator = denominator
 #' )
-#'
-#' # seurat ====
-#' # We recommend using SingleCellExperiment instead of seurat for DE
-#' # Expression in cluster 3 relative to cluster 2
-#' object <- seurat_small
-#' numerator <- Seurat::WhichCells(object, ident = 3L)
-#' glimpse(numerator)
-#' denominator <- Seurat::WhichCells(object, ident = 2L)
-#' glimpse(denominator)
-#' x <- diffExp(
-#'     object = object,
-#'     numerator = numerator,
-#'     denominator = denominator,
-#'     minCellsPerGene = 1L,
-#'     minCountsPerCell = 1L
-#' )
+#' class(x)
 NULL
 
 
