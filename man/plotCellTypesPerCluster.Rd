@@ -10,7 +10,7 @@
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  reduction = c("TSNE", "UMAP"), expression = c("mean", "median",
+  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
   "sum"), headerLevel = 2L, ...)
 }
 \arguments{
@@ -20,6 +20,9 @@ plotCellTypesPerCluster(object, ...)
 
 \item{markers}{\code{grouped_df}. Cell types per cluster data. This must be the
 return from \code{\link[=cellTypesPerCluster]{cellTypesPerCluster()}}.}
+
+\item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
+\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
 \item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
 defaults to the first argument in the \code{character} vector.}

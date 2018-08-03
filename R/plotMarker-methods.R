@@ -294,7 +294,7 @@ setMethod(
         n = 10L,
         direction = c("positive", "negative", "both"),
         coding = FALSE,
-        reduction = c("TSNE", "UMAP"),
+        reducedDim = c("TSNE", "UMAP"),
         headerLevel = 2L,
         ...
     ) {
@@ -308,7 +308,7 @@ setMethod(
             direction = direction,
             coding = coding
         )
-        reduction <- match.arg(reduction)
+        reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
         assert_is_subset("cluster", colnames(markers))
@@ -338,10 +338,10 @@ setMethod(
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
-                p <- .plotMarkerReduction(
+                p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reduction = reduction,
+                    reducedDim = reducedDim,
                     ...
                 )
                 show(p)
@@ -363,7 +363,7 @@ setMethod(
     function(
         object,
         markers,
-        reduction = c("TSNE", "UMAP"),
+        reducedDim = c("TSNE", "UMAP"),
         headerLevel = 2L,
         ...
     ) {
@@ -371,7 +371,7 @@ setMethod(
         stopifnot(is(markers, "grouped_df"))
         assert_has_rows(markers)
         assert_is_subset("cellType", colnames(markers))
-        reduction <- match.arg(reduction)
+        reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
         cellTypes <- markers %>%
@@ -403,10 +403,10 @@ setMethod(
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
-                p <- .plotMarkerReduction(
+                p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reduction = reduction,
+                    reducedDim = reducedDim,
                     ...
                 )
                 show(p)

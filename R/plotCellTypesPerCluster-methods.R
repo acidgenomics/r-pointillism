@@ -38,7 +38,7 @@ setMethod(
     function(
         object,
         markers,
-        reduction = c("TSNE", "UMAP"),
+        reducedDim = c("TSNE", "UMAP"),
         expression = c("mean", "median", "sum"),
         headerLevel = 2L,
         ...
@@ -59,7 +59,7 @@ setMethod(
             y = "cluster"
         )
         assert_is_subset("cellType", colnames(markers))
-        reduction <- match.arg(reduction)
+        reducedDim <- match.arg(reducedDim)
         expression <- match.arg(expression)
         assertIsAHeaderLevel(headerLevel)
 
@@ -102,10 +102,10 @@ setMethod(
                 )
                 # Modify the title by adding the cluster number (for the plot)
                 title <- paste(paste0("Cluster ", cluster, ":"), title)
-                p <- .plotMarkerReduction(
+                p <- plotMarker(
                     object = object,
                     genes = genes,
-                    reduction = reduction,
+                    reducedDim = reducedDim,
                     expression,
                     ...
                 )
