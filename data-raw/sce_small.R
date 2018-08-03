@@ -1,6 +1,42 @@
+# SingleCellExperiment Example Data
+# Using splatter to generate simulated counts
+# 2018-08-02
+
+library(devtools)
+library(tidyverse)
+library(splatter)
+library(bcbioSingleCell)
+library(Seurat)
+library(Matrix)
+load_all()
+
+
+
+# splatter =====================================================================
+# note: these DE params are natural log scale
+params <- newSplatParams()
+params <- setParam(params, "de.facLoc", 1)
+params <- setParam(params, "de.facScale", .25)
+params <- setParam(params, "dropout.type", "experiment")
+params <- setParam(params, "dropout.mid", 3)
+sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
+
+# dropout rate
+plot(
+    log10(rowMeans(assays(sce)[["TrueCounts"]])),
+    rowMeans(assays(sce)[["Dropout"]])
+)
+
+assays(sce) <- assays(sce)["counts"]
+gr <- makeGRangesFromEnsembl("Homo sapiens", release = 92)
+rowRanges(sce) <- gr[seq_len(nrow(sce))]
+colData(sce) <- camel(colData(sce))
+metadata(sce) <- list()
+sce <- metrics(sce, recalculate = TRUE)
+
+
+
 # seurat_small =================================================================
-# Let's handoff to seurat to perform dimensionality reduction and clustering,
-# then slot the DR data in our bcbioRNASeq object
 seurat_small <- as(sce, "seurat") %>%
     convertGenesToSymbols() %>%
     NormalizeData() %>%
@@ -8,7 +44,7 @@ seurat_small <- as(sce, "seurat") %>%
     ScaleData() %>%
     RunPCA(do.print = FALSE) %>%
     FindClusters(resolution = seq(from = 0.4, to = 1.2, by = 0.4)) %>%
-    RunTSNE() %>%
+    RunTSNE(check_duplicates = FALSE) %>%
     # Requires Python `umap-learn` package
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
@@ -16,9 +52,7 @@ seurat_small <- as(sce, "seurat") %>%
 
 
 # all_markers_small ============================================================
-all_markers_small <- seurat_small %>%
-    FindAllMarkers() %>%
-    # Sanitize, including more robust gene annotation information
+all_markers_small <- FindAllMarkers(seurat_small) %>%
     sanitizeSeuratMarkers(rowRanges = rowRanges(seurat_small))
 
 
@@ -31,7 +65,7 @@ known_markers_small <- knownMarkersDetected(
 
 
 
-# cellranger_small =============================================================
+# sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID)
 seurat_sce <- seurat_small %>%
     as("SingleCellExperiment") %>%
@@ -42,15 +76,14 @@ stopifnot(identical(
     c("PCA", "TSNE", "UMAP")
 ))
 stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
+# Ensure `ident` is defined
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
-cellranger_small <- sce
-
-
+sce_small <- sce
 
 # Save =========================================================================
 use_data(
-    cellranger_small,
+    sce_small,
     seurat_small,
     all_markers_small,
     known_markers_small,
