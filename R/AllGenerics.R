@@ -1,3 +1,29 @@
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell barcodeRanksPerSample
+#' @export
+setGeneric(
+    "barcodeRanksPerSample",
+    getGeneric(
+        "barcodeRanksPerSample",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell cell2sample
+#' @export
+setGeneric(
+    "cell2sample",
+    getGeneric(
+        "cell2sample",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
 #' @rdname cellCountsPerCluster
 #' @export
 setGeneric(
@@ -27,6 +53,19 @@ setGeneric(
     function(object, ...) {
         standardGeneric("clusterCellCountsPerSample")
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump convertGenesToSymbols
+#' @export
+setGeneric(
+    "convertGenesToSymbols",
+    getGeneric(
+        "convertGenesToSymbols",
+        package = "basejump"
+    )
 )
 
 
@@ -71,6 +110,84 @@ setGeneric(
     function(object, ...) {
         standardGeneric("fetchReducedDimExpressionData")
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump gene2symbol
+#' @export
+setGeneric(
+    "gene2symbol",
+    getGeneric(
+        "gene2symbol",
+        package = "basejump"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump interestingGroups
+#' @export
+setGeneric(
+    "interestingGroups",
+    getGeneric(
+        "interestingGroups",
+        package = "basejump"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump interestingGroups<-
+#' @export
+setGeneric(
+    "interestingGroups<-",
+    getGeneric(
+        "interestingGroups<-",
+        package = "basejump"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase metrics
+#' @export
+setGeneric(
+    "metrics",
+    getGeneric(
+        "metrics",
+        package = "bcbioBase"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell metricsPerSample
+#' @export
+setGeneric(
+    "metricsPerSample",
+    getGeneric(
+        "metricsPerSample",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotBarcodeRanks
+#' @export
+setGeneric(
+    "plotBarcodeRanks",
+    getGeneric(
+        "plotBarcodeRanks",
+        package = "bcbioSingleCell"
+    )
 )
 
 

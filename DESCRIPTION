@@ -26,12 +26,13 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
-    SingleCellExperiment,
-    bcbioSingleCell (>= 0.2)
+    SingleCellExperiment
 Imports:
     basejump (>= 0.6.4),
+    bcbioSingleCell (>= 0.2),
     DESeq2,
     edgeR,
+    ggplot2,
     reticulate,
     Seurat (>= 2.3)
 Suggests:

@@ -62,23 +62,30 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell barcodeRanksPerSample
 #' @export
 setMethod(
     "barcodeRanksPerSample",
     signature("seurat"),
-    getMethod("barcodeRanksPerSample", "SingleCellExperiment")
+    getMethod(
+        "barcodeRanksPerSample",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
+
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell cell2sample
 #' @export
 setMethod(
     "cell2sample",
     signature("seurat"),
-    getMethod("cell2sample", "SingleCellExperiment")
+    getMethod(
+        "cell2sample",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -148,7 +155,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump convertGenesToSymbols
 #' @export
 setMethod(
     "convertGenesToSymbols",
@@ -227,29 +233,34 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump gene2symbol
 #' @export
 setMethod(
     "gene2symbol",
     signature("seurat"),
-    getMethod("gene2symbol", "SummarizedExperiment")
+    getMethod(
+        "gene2symbol",
+        "SummarizedExperiment",
+        asNamespace("basejump")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump interestingGroups
 #' @export
 setMethod(
     "interestingGroups",
     signature("seurat"),
-    getMethod("interestingGroups", "SummarizedExperiment")
+    getMethod(
+        "interestingGroups",
+        "SummarizedExperiment",
+        asNamespace("basejump")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump interestingGroups<-
 #' @export
 setMethod(
     "interestingGroups<-",
@@ -262,7 +273,8 @@ setMethod(
         signature(
             object = "SummarizedExperiment",
             value = "character"
-        )
+        ),
+        asNamespace("basejump")
     )
 )
 
@@ -310,7 +322,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase metrics
 #' @export
 setMethod(
     "metrics",
@@ -323,23 +334,29 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell metricsPerSample
 #' @export
 setMethod(
     "metricsPerSample",
     signature("seurat"),
-    getMethod("metricsPerSample", "SingleCellExperiment")
+    getMethod(
+        "metricsPerSample",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotBarcodeRanks
 #' @export
 setMethod(
     "plotBarcodeRanks",
     signature("seurat"),
-    getMethod("plotBarcodeRanks", "SingleCellExperiment")
+    getMethod(
+        "plotBarcodeRanks",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
