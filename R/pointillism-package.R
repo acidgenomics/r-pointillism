@@ -60,7 +60,7 @@
 #'   geom_hline geom_line geom_point geom_smooth geom_step geom_text geom_violin
 #'   geom_vline ggplot ggtitle guide_colorbar guide_legend guides labs qplot
 #'   scale_radius scale_x_continuous scale_y_continuous stat_ecdf theme xlab
-#'   xlim ylab
+#'   xlim ylab    scale_color_viridis_c scale_color_gradient
 #' @importFrom ggridges geom_density_ridges
 #' @importFrom graphics hist
 #' @importFrom grid arrow unit
