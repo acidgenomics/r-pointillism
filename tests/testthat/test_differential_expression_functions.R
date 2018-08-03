@@ -4,9 +4,9 @@ context("Differential Expression Functions")
 
 # diffExp ======================================================================
 # Expression in cluster 3 relative to cluster 2
-object <- seurat_small
-numerator <- Seurat::WhichCells(object, ident = 3L)
-denominator <- Seurat::WhichCells(object, ident = 2L)
+object <- sce_small
+numerator <- colnames(object)[object$group == "group2"]
+denominator <- colnames(object)[object$group == "group1"]
 
 test_that("diffExp : zinbwave-edgeR", {
     x <- diffExp(

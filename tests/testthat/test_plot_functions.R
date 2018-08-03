@@ -20,13 +20,8 @@ test_that("plotCellTypesPerCluster : seurat", {
 
 
 # plotFeature ==================================================================
-test_that("plotFeatureTSNE : seurat", {
-    p <- plotFeatureTSNE(sce_small, features = c("PC1", "PC2"))
-    expect_is(p, "ggplot")
-})
-
-test_that("plotFeatureUMAP : seurat", {
-    p <- plotFeatureUMAP(sce_small, features = c("PC1", "PC2"))
+test_that("plotFeature : seurat", {
+    p <- plotFeature(sce_small, features = c("PC1", "PC2"))
     expect_is(p, "ggplot")
 })
 

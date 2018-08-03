@@ -2,105 +2,82 @@ context("Data Functions")
 
 
 
-# fetchPCAData =================================================================
-test_that("fetchPCAData", {
-    x <- fetchPCAData(seurat_small)
-    expect_is(x, "data.frame")
-    expect_identical(
-        lapply(x, class) %>%
-            .[sort(names(.))],
-        list(
-            centerX = "numeric",
-            centerY = "numeric",
-            description = "factor",
-            ident = "factor",
-            index = "factor",
-            log10GenesPerUMI = "numeric",
-            mitoRatio = "numeric",
-            nCoding = "integer",
-            nGene = "integer",
-            nMito = "integer",
-            nUMI = "integer",
-            orig.ident = "factor",
-            PC1 = "numeric",
-            PC2 = "numeric",
-            res.0.4 = "character",
-            res.0.8 = "character",
-            res.1.2 = "character",
-            sampleID = "factor",
-            sampleName = "factor"
-        )
-    )
-})
-
-
-
-# fetchTSNEData ================================================================
-test_that("fetchTSNEData", {
-    x <- fetchTSNEData(seurat_small)
-    expect_is(x, "data.frame")
-    expect_identical(
-        lapply(x, class) %>%
-            .[sort(names(.))],
-        list(
-            centerX = "numeric",
-            centerY = "numeric",
-            description = "factor",
-            ident = "factor",
-            index = "factor",
-            log10GenesPerUMI = "numeric",
-            mitoRatio = "numeric",
-            nCoding = "integer",
-            nGene = "integer",
-            nMito = "integer",
-            nUMI = "integer",
-            orig.ident = "factor",
-            res.0.4 = "character",
-            res.0.8 = "character",
-            res.1.2 = "character",
-            sampleID = "factor",
-            sampleName = "factor",
-            tSNE_1 = "numeric",
-            tSNE_2 = "numeric"
-        )
-    )
-})
-
-
-
-# fetchTSNEExpressionData ======================================================
-test_that("fetchTSNEExpressionData", {
-    x <- fetchTSNEExpressionData(
+# fetchReducedDimData ==========================================================
+test_that("fetchReducedDimData", {
+    x <- fetchReducedDimData(
         object = seurat_small,
-        genes = head(rownames(seurat_small))
+        reducedDim = "TSNE"
     )
     expect_is(x, "data.frame")
     expect_identical(
-        lapply(x, class) %>%
-            .[sort(names(.))],
-        list(
-            centerX = "numeric",
-            centerY = "numeric",
-            description = "factor",
-            ident = "factor",
-            index = "factor",
-            log10GenesPerUMI = "numeric",
-            mean = "numeric",
-            median = "numeric",
-            mitoRatio = "numeric",
-            nCoding = "integer",
-            nGene = "integer",
-            nMito = "integer",
-            nUMI = "integer",
-            orig.ident = "factor",
-            res.0.4 = "character",
-            res.0.8 = "character",
-            res.1.2 = "character",
-            sampleID = "factor",
-            sampleName = "factor",
-            sum = "numeric",
-            tSNE_1 = "numeric",
-            tSNE_2 = "numeric"
+        sort(colnames(x)),
+        c(
+            "batch",
+            "centerX",
+            "centerY",
+            "expLibSize",
+            "group",
+            "ident",
+            "interestingGroups",
+            "log10GenesPerUMI",
+            "mitoRatio",
+            "nCoding",
+            "nGene",
+            "nMito",
+            "nUMI",
+            "orig.ident",
+            "res.0.4",
+            "res.0.8",
+            "res.1.2",
+            "sampleID",
+            "sampleName",
+            "tSNE_1",
+            "tSNE_2",
+            "x",
+            "y"
+        )
+    )
+})
+
+
+
+# fetchReducedDimExpressionData ================================================
+test_that("fetchReducedDimExpressionData", {
+    x <- fetchReducedDimExpressionData(
+        object = seurat_small,
+        genes = head(rownames(seurat_small)),
+        reducedDim = "TSNE"
+    )
+    expect_is(x, "data.frame")
+    expect_identical(
+        sort(colnames(x)),
+        c(
+            "batch",
+            "centerX",
+            "centerY",
+            "expLibSize",
+            "group",
+            "ident",
+            "interestingGroups",
+            "log10GenesPerUMI",
+            "mean",
+            "median",
+            "mitoRatio",
+            "nCoding",
+            "nGene",
+            "nMito",
+            "nUMI",
+            "orig.ident",
+            "res.0.4",
+            "res.0.8",
+            "res.1.2",
+            "sampleID",
+            "sampleName",
+            "sum",
+            "tSNE_1",
+            "tSNE_2",
+            "x",
+            "y"
         )
     )
 })
