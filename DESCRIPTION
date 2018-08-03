@@ -27,9 +27,9 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SingleCellExperiment,
-    basejump (>= 0.6.3)
+    bcbioSingleCell (>= 0.2)
 Imports:
-    bcbioSingleCell,
+    basejump (>= 0.6.4),
     DESeq2,
     edgeR,
     reticulate,
@@ -43,7 +43,7 @@ Suggests:
     testthat (>= 2.0),
     zinbwave
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews:
     DataRepresentation,
     GeneExpression,
