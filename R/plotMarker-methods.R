@@ -25,21 +25,17 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' # SingleCellExperiment ====
-#' object <- cellranger_small
-#'
 #' # MHC class II genes
 #' title <- "MHC class II"
-#' genes <- rownames(object)[which(grepl(
+#' genes <- rownames(cellranger_small)[which(grepl(
 #'     pattern = "^major histocompatibility complex, class II",
-#'     x = rowData(object)$description
+#'     x = rowData(cellranger_small)$description
 #' ))]
 #' print(genes)
 #'
-#' # t-SNE
-#' plotMarkerTSNE(object, genes)
-#' plotMarkerTSNE(
-#'     object = object,
+#' plotMarker(cellranger_small, genes = genes)
+#' plotMarker(
+#'     object = cellranger_small,
 #'     genes = genes,
 #'     expression = "sum",
 #'     pointsAsNumbers = TRUE,
@@ -48,30 +44,15 @@
 #'     title = title
 #' )
 #'
-#' # UMAP
-#' plotMarkerUMAP(object, genes)
-#' plotMarkerTSNE(
-#'     object = object,
-#'     genes = genes,
-#'     expression = "mean",
-#'     pointsAsNumbers = TRUE,
-#'     dark = TRUE,
-#'     label = FALSE,
-#'     title = title
-#' )
-#'
-#' # seurat ====
-#' object <- seurat_small
-#'
 #' # Top markers
 #' markers <- topMarkers(all_markers_small, n = 1)
 #' glimpse(markers)
-#' plotTopMarkers(object, markers = tail(markers, 1))
+#' plotTopMarkers(seurat_small, markers = tail(markers, 1))
 #'
 #' # Known markers detected
 #' markers <- head(known_markers_small, n = 1)
 #' glimpse(markers)
-#' plotKnownMarkersDetected(object, markers = head(markers, 1))
+#' plotKnownMarkersDetected(seurat_small, markers = head(markers, 1))
 NULL
 
 
