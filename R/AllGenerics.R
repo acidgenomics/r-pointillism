@@ -86,17 +86,6 @@ setGeneric(
 
 
 
-#' @rdname plotDot
-#' @export
-setGeneric(
-    "plotDot",
-    function(object, ...) {
-        standardGeneric("plotDot")
-    }
-)
-
-
-
 #' @rdname plotFeature
 #' @export
 setGeneric(
