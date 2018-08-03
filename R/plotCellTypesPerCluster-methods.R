@@ -16,13 +16,13 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' per_cluster <- cellTypesPerCluster(known_markers_small)
-#' glimpse(per_cluster)
+#' markers <- cellTypesPerCluster(known_markers_small)
+#' glimpse(markers)
 #'
 #' # Let's plot the first row, as an example
 #' plotCellTypesPerCluster(
-#'     object = sce_small,
-#'     markers = head(per_cluster, n = 2L)
+#'     object = seurat_small,
+#'     markers = head(markers, n = 2L)
 #' )
 NULL
 
@@ -57,17 +57,10 @@ setMethod(
             x = group_vars(markers),
             y = "cluster"
         )
-        assert_is_subset("cellType", colnames(markers))
+        assert_is_subset(c("cellType", "rowname"), colnames(markers))
         reducedDim <- match.arg(reducedDim)
         expression <- match.arg(expression)
         assertIsAHeaderLevel(headerLevel)
-
-        # Determine whether we need to use `geneID` or `geneName`
-        if (isTRUE(.useGene2symbol(object))) {
-            idCol <- "geneName"
-        } else {
-            idCol <- "geneID"
-        }
 
         markers <- markers %>%
             ungroup() %>%
@@ -89,7 +82,7 @@ setMethod(
             assert_has_rows(subset)
             lapply(seq_len(nrow(subset)), function(x) {
                 cellType <- subset[x, , drop = FALSE]
-                genes <- pull(cellType, idCol) %>%
+                genes <- pull(cellType, rowname) %>%
                     as.character() %>%
                     strsplit(", ") %>%
                     .[[1L]]

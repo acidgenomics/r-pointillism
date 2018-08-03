@@ -55,7 +55,8 @@ setMethod(
                 n = n(),
                 # Genes are arranged by P value
                 geneID = toString(!!sym("geneID")),
-                geneName = toString(!!sym("geneName"))
+                geneName = toString(!!sym("geneName")),
+                rowname = toString(!!sym("rowname"))
             ) %>%
             group_by(!!sym("cluster")) %>%
             arrange(desc(!!sym("n")), .by_group = TRUE)
