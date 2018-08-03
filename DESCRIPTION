@@ -43,6 +43,7 @@ Suggests:
     testthat (>= 2.0),
     zinbwave
 Remotes:
+    hbc/bcbioSingleCell@develop,
     steinbaugh/basejump@develop
 biocViews:
     DataRepresentation,
