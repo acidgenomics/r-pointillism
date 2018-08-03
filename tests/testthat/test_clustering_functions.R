@@ -14,7 +14,8 @@ test_that("cellTypesPerCluster", {
             cellType = "factor",
             n = "integer",
             geneID = "character",
-            geneName = "character"
+            geneName = "character",
+            rowname = "character"
         )
     )
 })
@@ -34,23 +35,23 @@ test_that("knownMarkersDetected", {
             .[sort(names(.))],
         list(
             avgLogFC = "numeric",
-            broadClass = "factor",
+            broadClass = "character",
             cellType = "factor",
             cluster = "factor",
-            description = "factor",
+            description = "character",
             end = "integer",
-            geneBiotype = "factor",
+            geneBiotype = "character",
             geneID = "character",
-            geneName = "factor",
+            geneName = "character",
             padj = "numeric",
             pct1 = "numeric",
             pct2 = "numeric",
             pvalue = "numeric",
             rowname = "character",
-            seqCoordSystem = "factor",
-            seqnames = "factor",
+            seqCoordSystem = "character",
+            seqnames = "character",
             start = "integer",
-            strand = "factor",
+            strand = "character",
             width = "integer"
         )
     )
@@ -81,14 +82,14 @@ test_that("sanitizeSeuratMarkers", {
 
     # FindMarkers
     invisible(capture.output(
-        ident3 <- Seurat::FindMarkers(
+        ident1 <- Seurat::FindMarkers(
             seurat_small,
-            ident.1 = "3",
+            ident.1 = "1",
             ident.2 = NULL
         )
     ))
     x <- sanitizeSeuratMarkers(
-        data = ident3,
+        data = ident1,
         rowRanges = rowRanges(seurat_small)
     )
     expect_is(x, "data.frame")
