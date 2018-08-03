@@ -23,8 +23,8 @@ sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
 colData(sce) <- camel(colData(sce), rownames = TRUE, colnames = TRUE)
 sce$cell <- NULL
 # Add sampleID and sampleName columns
-sce$batch <- as.factor(sce$batch)
-sce$group <- as.factor(sce$group)
+sce$batch <- as.factor(camel(sce$batch))
+sce$group <- as.factor(camel(sce$group))
 sce$sampleID <- sce$group
 sce$sampleName <- sce$sampleID
 stopifnot("sampleName" %in% colnames(colData(sce)))
