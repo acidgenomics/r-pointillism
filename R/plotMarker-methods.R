@@ -128,7 +128,7 @@ setMethod(
         )
         axes <- colnames(data)[seq_len(2L)]
 
-        if (!isTRUE(.useGene2symbol(object))) {
+        if (isTRUE(.useGene2symbol(object))) {
             g2s <- gene2symbol(object)
             if (length(g2s)) {
                 g2s <- g2s[genes, , drop = FALSE]
