@@ -72,8 +72,6 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         all <- FALSE
         data <- rownames_to_column(data)
     }
-
-    stopifnot(all(data$rowname %in% rownames(seurat)))
     stopifnot(all(data$rowname %in% names(rowRanges)))
 
     # Now ready to coerce
