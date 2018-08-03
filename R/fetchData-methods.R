@@ -18,7 +18,6 @@
 #' - Other functions: `data.frame`, containing metrics.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' object <- indrops_small
 #' genes <- head(rownames(object))
 #' glimpse(genes)

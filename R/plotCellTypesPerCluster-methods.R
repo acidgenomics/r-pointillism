@@ -16,7 +16,6 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' per_cluster <- cellTypesPerCluster(known_markers_small)
 #' glimpse(per_cluster)
 #'

@@ -22,7 +22,6 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' # SingleCellExperiment ====
 #' object <- indrops_small
 #' genes <- head(rownames(object))
 #' glimpse(genes)

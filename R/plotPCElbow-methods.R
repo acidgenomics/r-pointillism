@@ -24,7 +24,6 @@
 #' - [Seurat::PCElbowPlot()].
 #'
 #' @examples
-#' # seurat ====
 #' plotPCElbow(seurat_small)
 NULL
 
