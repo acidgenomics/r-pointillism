@@ -115,9 +115,7 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         FUN.VALUE = logical(1L)
     )
     rowData <- rowData[, cols, drop = FALSE]
-    rowData[["rowname"]] <- rowData[["geneName"]] %>%
-        as.character() %>%
-        make.unique()
+    rowData[["rowname"]] <- rownames(rowData)
 
     # Now safe to join the rowData
     data <- left_join(
