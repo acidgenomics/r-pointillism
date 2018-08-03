@@ -9,7 +9,7 @@ test_that("plotCellTypesPerCluster : seurat", {
         head(2L)
     invisible(capture.output(
         p <- plotCellTypesPerCluster(
-            object = seurat_small,
+            object = sce_small,
             cellTypesPerCluster = cellTypesPerCluster
         )
     ))
@@ -21,19 +21,19 @@ test_that("plotCellTypesPerCluster : seurat", {
 
 # plotFeature ==================================================================
 test_that("plotFeatureTSNE : seurat", {
-    p <- plotFeatureTSNE(seurat_small, features = c("PC1", "PC2"))
+    p <- plotFeatureTSNE(sce_small, features = c("PC1", "PC2"))
     expect_is(p, "ggplot")
 })
 
 test_that("plotFeatureUMAP : seurat", {
-    p <- plotFeatureUMAP(seurat_small, features = c("PC1", "PC2"))
+    p <- plotFeatureUMAP(sce_small, features = c("PC1", "PC2"))
     expect_is(p, "ggplot")
 })
 
 
 
 # plotMarker ===================================================================
-object <- seurat_small
+object <- sce_small
 genes <- head(rownames(object))
 
 test_that("plotMarkerTSNE : seurat", {
@@ -61,7 +61,7 @@ test_that("plotMarkerUMAP : seurat", {
 test_that("plotKnownMarkersDetected : seurat", {
     invisible(capture.output(
         p <- plotKnownMarkersDetected(
-            object = seurat_small,
+            object = sce_small,
             markers = head(known_markers_small, 2L)
         )
     ))
@@ -74,7 +74,7 @@ test_that("plotTopMarkers : seurat", {
         head(2L)
     invisible(capture.output(
         x <- plotTopMarkers(
-            object = seurat_small,
+            object = sce_small,
             markers = markers
         )
     ))
@@ -86,7 +86,7 @@ test_that("plotTopMarkers : seurat", {
 
 # plotPCA ======================================================================
 test_that("plotPCA : seurat", {
-    p <- plotPCA(seurat_small)
+    p <- plotPCA(sce_small)
     expect_is(p, "ggplot")
 })
 
@@ -94,10 +94,7 @@ test_that("plotPCA : seurat", {
 
 # plotPCElbow ==================================================================
 test_that("plotPCElbow : seurat", {
-    x <- plotPCElbow(seurat_small)
-    expect_identical(x, seq_len(10L))
-
-    x <- plotPCElbow(Seurat::pbmc_small)
+    x <- plotPCElbow(pbmc_small)
     expect_identical(x, seq_len(11L))
 })
 
@@ -105,7 +102,7 @@ test_that("plotPCElbow : seurat", {
 
 # plotTSNE =====================================================================
 test_that("plotTSNE : seurat", {
-    p <- plotTSNE(seurat_small)
+    p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
 
@@ -113,6 +110,6 @@ test_that("plotTSNE : seurat", {
 
 # plotUMAP =====================================================================
 test_that("plotUMAP : seurat", {
-    p <- plotTSNE(seurat_small)
+    p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
