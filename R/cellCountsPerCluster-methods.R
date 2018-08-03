@@ -21,7 +21,7 @@ setMethod(
     function(object, interestingGroups) {
         validObject(object)
         .assertHasIdent(object)
-        interestingGroups <- .returnInterestingGroups(
+        interestingGroups <- matchInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
         )

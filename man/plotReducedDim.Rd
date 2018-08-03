@@ -95,7 +95,7 @@ dots (\code{FALSE}).}
 installing this with conda: \code{conda install -c conda-forge umap-learn}.
 }
 \examples{
-object <- cellranger_small
+object <- sce_small
 
 # t-SNE
 plotTSNE(object)

@@ -10,17 +10,6 @@
 
 
 
-#' Cell Ranger Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
-#' show(cellranger_small)
-"cellranger_small"
-
-
-
 #' Cell-Type Markers
 #'
 #' @aliases cellTypeMarkers
@@ -45,14 +34,14 @@
 
 
 
-#' Cell Ranger Example
+#' SingleCellExperiment Example
 #'
 #' @family Minimal Example Data
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' show(cellranger_small)
-"cellranger_small"
+#' show(sce_small)
+"sce_small"
 
 
 

@@ -14,7 +14,7 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' object <- cellranger_small
+#' object <- sce_small
 #' genes <- head(rownames(object), n = 4L)
 #' glimpse(genes)
 #' plotViolin(object, genes = genes)

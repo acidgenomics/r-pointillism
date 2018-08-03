@@ -23,7 +23,7 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' object <- cellranger_small
+#' object <- sce_small
 #'
 #' # t-SNE
 #' plotTSNE(object)
