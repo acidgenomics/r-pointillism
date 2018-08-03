@@ -99,6 +99,7 @@ setAs(
         to <- .as.SingleCellExperiment.seurat(from)
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
+        to <- convertSymbolsToGenes(to)
         to
     }
 )
