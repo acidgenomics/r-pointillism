@@ -72,6 +72,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell cell2sample
 #' @export
 setMethod(
     "cell2sample",

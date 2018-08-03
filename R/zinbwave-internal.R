@@ -1,3 +1,11 @@
+# Check assays for zinbwave weights
+.hasZinbwave <- function(object) {
+    stopifnot(is(object, "SingleCellExperiment"))
+    all(c("normalizedValues", "weights") %in% assayNames(object))
+}
+
+
+
 # zinbwave will calculate normalizedValues and weights matrices
 # @seealso [zinbwave::zinbwave()].
 .runZinbwave <- function(
@@ -40,14 +48,6 @@
     assays(object)[["weights"]] <-
         assays(zinb)[["weights"]]
     object
-}
-
-
-
-# Check assays for zinbwave weights
-.hasZinbwave <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    all(c("normalizedValues", "weights") %in% assayNames(object))
 }
 
 

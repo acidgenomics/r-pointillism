@@ -115,7 +115,6 @@ NULL
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
     stopifnot(packageVersion("DESeq2") >= 1.2)
-    stopifnot(.hasZinbwave(object))
     .assertHasDesignFormula(object)
     # DESeq2 ===================================================================
     message("Running DESeq2...")
@@ -139,7 +138,6 @@ NULL
 
 .zinbwave.edgeR <- function(object) {  # nolint
     stopifnot(packageVersion("edgeR") >= 3.22)
-    stopifnot(.hasZinbwave(object))
     .assertHasDesignFormula(object)
     # edgeR ====================================================================
     message("Running edgeR...")
