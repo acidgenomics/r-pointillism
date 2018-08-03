@@ -51,6 +51,25 @@ seurat_small <- as(sce, "seurat") %>%
 
 
 
+# sce_small ====================================================================
+# Convert rows (geneName) back to Ensembl IDs (geneID)
+seurat_sce <- seurat_small %>%
+    as("SingleCellExperiment") %>%
+    convertSymbolsToGenes()
+stopifnot("ident" %in% colnames(colData(seurat_sce)))
+# Ensure that dimensional reduction data is slotted correctly
+stopifnot(identical(
+    names(reducedDims(seurat_sce)),
+    c("PCA", "TSNE", "UMAP")
+))
+stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
+# Ensure `ident` is defined
+colData(sce) <- colData(seurat_sce)
+reducedDims(sce) <- reducedDims(seurat_sce)
+sce_small <- sce
+
+
+
 # all_markers_small ============================================================
 all_markers_small <- FindAllMarkers(seurat_small) %>%
     sanitizeSeuratMarkers(rowRanges = rowRanges(seurat_small))
@@ -64,22 +83,6 @@ known_markers_small <- knownMarkersDetected(
 )
 
 
-
-# sce_small ====================================================================
-# Convert rows (geneName) back to Ensembl IDs (geneID)
-seurat_sce <- seurat_small %>%
-    as("SingleCellExperiment") %>%
-    convertSymbolsToGenes()
-# Ensure that dimensional reduction data is slotted correctly
-stopifnot(identical(
-    names(reducedDims(seurat_sce)),
-    c("PCA", "TSNE", "UMAP")
-))
-stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
-# Ensure `ident` is defined
-colData(sce) <- colData(seurat_sce)
-reducedDims(sce) <- reducedDims(seurat_sce)
-sce_small <- sce
 
 # Save =========================================================================
 use_data(
