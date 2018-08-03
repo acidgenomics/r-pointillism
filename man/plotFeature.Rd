@@ -21,15 +21,9 @@ scores, number of genes detected).}
 Plot Feature
 }
 \examples{
-# SingleCellExperiment ====
 object <- indrops_small
 features <- c("nUMI", "nGene", "mitoRatio")
-
-# t-SNE
-plotFeatureTSNE(object, features)
-
-# UMAP
-plotFeatureUMAP(object, features)
+plotFeature(object, features = features)
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.

@@ -114,7 +114,7 @@
   fill = getOption("bcbio.discrete.fill", NULL), title = "cell counts")
 
 \S4method{plotCellTypesPerCluster}{seurat}(object, markers,
-  reduction = c("TSNE", "UMAP"), expression = c("mean", "median",
+  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
   "sum"), headerLevel = 2L, ...)
 
 \S4method{plotDot}{seurat}(object, genes, colMin = -2.5, colMax = 2.5,
@@ -142,7 +142,7 @@
   title = "genes per cell")
 
 \S4method{plotKnownMarkersDetected}{seurat}(object, markers,
-  reduction = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
   "UMAP"), expression = c("mean", "median", "sum"),
@@ -189,7 +189,7 @@
 
 \S4method{plotTopMarkers}{seurat}(object, markers, n = 10L,
   direction = c("positive", "negative", "both"), coding = FALSE,
-  reduction = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 
 \S4method{plotTSNE}{seurat}(object, ...)
 

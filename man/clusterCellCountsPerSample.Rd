@@ -23,6 +23,5 @@ clusterCellCountsPerSample(object, ...)
 Cluster Cell Counts per Sample
 }
 \examples{
-# SingleCellExperiment ====
 clusterCellCountsPerSample(indrops_small)
 }
