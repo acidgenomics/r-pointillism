@@ -44,7 +44,7 @@ Suggests:
     zinbwave
 Remotes:
     hbc/bcbioSingleCell@develop,
-    steinbaugh/basejump@develop
+    steinbaugh/basejump
 biocViews:
     DataRepresentation,
     GeneExpression,
