@@ -53,5 +53,5 @@
             gene2symbol(object)[["geneName"]]
         )
     )
-    any(geneName %in% rownames(object))
+    !any(geneName %in% rownames(object))
 }
