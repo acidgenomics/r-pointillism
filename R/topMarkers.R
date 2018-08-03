@@ -19,7 +19,6 @@
 #' @export
 #'
 #' @examples
-#' # grouped_df ====
 #' x <- topMarkers(
 #'     data = all_markers_small,
 #'     n = 2L,
