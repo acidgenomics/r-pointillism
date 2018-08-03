@@ -6,7 +6,7 @@ context("Read Functions")
 test_that("readCellTypeMarkers : Mus musculus", {
     file <- system.file(
         "extdata/cell_type_markers.csv",
-        package = "bcbioSingleCell"
+        package = "pointillism"
     )
     gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
     x <- readCellTypeMarkers(

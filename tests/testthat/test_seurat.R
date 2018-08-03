@@ -66,6 +66,9 @@ test_that("SingleCellExperiment", {
     # rowRanges
     expect_s4_class(rowRanges(object), "CompressedGRangesList")
 
+    # sampleData
+    expect_null(sampleData(object))
+
     # sampleNames
     expect_identical(sampleNames(object), character())
 })
@@ -75,18 +78,10 @@ test_that("SingleCellExperiment", {
 test_that("gene2symbol : seurat", {
     x <- gene2symbol(seurat_small)
     expect_is(x, "data.frame")
-    expect_identical(colnames(x), colnames)
 })
 
 test_that("interestingGroups : seurat", {
-    expect_identical(
-        interestingGroups(seurat_small),
-        "sampleName"
-    )
-    expect_identical(
-        interestingGroups(seurat_small),
-        "sampleName"
-    )
+    expect_null(interestingGroups(seurat_small))
 })
 
 test_that("interestingGroups<- : seurat", {
@@ -108,28 +103,26 @@ test_that("interestingGroups<- : seurat", {
 
 # metrics ======================================================================
 test_that("metrics : seurat", {
-    # Check that metrics accessor data matches meta.data slot
-    x <- metrics(seurat_small)
-    y <- seurat_small@meta.data
-    x <- x[, colnames(y)]
-    expect_identical(x, y)
-})
-
-
-
-test_that("sampleData : seurat", {
-    # Return all columns
-    x <- sampleData(seurat_small)
     expect_identical(
-        lapply(x, class),
-        list(
-            sampleName = "factor",
-            description = "factor",
-            index = "factor",
-            interestingGroups = "factor"
+        sort(colnames(metrics(seurat_small))),
+        c(
+            "batch",
+            "expLibSize",
+            "group",
+            "ident",
+            "interestingGroups",
+            "log10GenesPerUMI",
+            "mitoRatio",
+            "nCoding",
+            "nGene",
+            "nMito",
+            "nUMI",
+            "orig.ident",
+            "res.0.4",
+            "res.0.8",
+            "res.1.2",
+            "sampleID",
+            "sampleName"
         )
     )
-
-    # Return NULL for other seurat objects
-    expect_identical(sampleData(Seurat::pbmc_small), NULL)
 })
