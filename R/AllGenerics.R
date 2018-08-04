@@ -216,15 +216,13 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotDot
+#' @rdname plotDot
 #' @export
 setGeneric(
     "plotDot",
-    getGeneric(
-        "plotDot",
-        package = "bcbioBase"
-    )
+    function(object, ...) {
+        standardGeneric("plotDot")
+    }
 )
 
 

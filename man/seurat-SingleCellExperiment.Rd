@@ -12,7 +12,6 @@
 \alias{metricsPerSample}
 \alias{plotBarcodeRanks}
 \alias{plotCellCounts}
-\alias{plotDot}
 \alias{plotGene}
 \alias{plotGenesPerCell}
 \alias{plotMitoRatio}
@@ -99,8 +98,6 @@ metricsPerSample(object, ...)
 plotBarcodeRanks(object, ...)
 
 plotCellCounts(object, ...)
-
-plotDot(object, ...)
 
 plotGene(object, ...)
 
