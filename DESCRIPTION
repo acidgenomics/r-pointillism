@@ -26,9 +26,9 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
-    SingleCellExperiment
+    SingleCellExperiment,
+    basejump (>= 0.6.4)
 Imports:
-    basejump (>= 0.6.4),
     bcbioSingleCell (>= 0.2),
     DESeq2,
     edgeR,

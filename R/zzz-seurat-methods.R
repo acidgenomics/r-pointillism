@@ -362,12 +362,15 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotCellCounts
 #' @export
 setMethod(
     "plotCellCounts",
     signature("seurat"),
-    getMethod("plotCellCounts", "SingleCellExperiment")
+    getMethod(
+        "plotCellCounts",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -383,7 +386,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotDot
 #' @export
 setMethod(
     "plotDot",
@@ -404,7 +406,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotGene
 #' @export
 setMethod(
     "plotGene",
@@ -415,12 +416,15 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotGenesPerCell
 #' @export
 setMethod(
     "plotGenesPerCell",
     signature("seurat"),
-    getMethod("plotGenesPerCell", "SingleCellExperiment")
+    getMethod(
+        "plotGenesPerCell",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -446,34 +450,43 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotMitoRatio
 #' @export
 setMethod(
     "plotMitoRatio",
     signature("seurat"),
-    getMethod("plotMitoRatio", "SingleCellExperiment")
+    getMethod(
+        "plotMitoRatio",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotMitoVsCoding
 #' @export
 setMethod(
     "plotMitoVsCoding",
     signature("seurat"),
-    getMethod("plotMitoVsCoding", "SingleCellExperiment")
+    getMethod(
+        "plotMitoVsCoding",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotNovelty
 #' @export
 setMethod(
     "plotNovelty",
     signature("seurat"),
-    getMethod("plotNovelty", "SingleCellExperiment")
+    getMethod(
+        "plotNovelty",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -489,12 +502,15 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotQC
 #' @export
 setMethod(
     "plotQC",
     signature("seurat"),
-    getMethod("plotQC", "SingleCellExperiment")
+    getMethod(
+        "plotQC",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -540,29 +556,34 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotUMIsPerCell
 #' @export
 setMethod(
     "plotUMIsPerCell",
     signature("seurat"),
-    getMethod("plotUMIsPerCell", "SingleCellExperiment")
+    getMethod(
+        "plotUMIsPerCell",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotUMIsVsGenes
 #' @export
 setMethod(
     "plotUMIsVsGenes",
     signature("seurat"),
-    getMethod("plotUMIsVsGenes", "SingleCellExperiment")
+    getMethod(
+        "plotUMIsVsGenes",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotViolin
 #' @export
 setMethod(
     "plotViolin",
@@ -573,12 +594,15 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotZerosVsDepth
 #' @export
 setMethod(
     "plotZerosVsDepth",
     signature("seurat"),
-    getMethod("plotZerosVsDepth", "SingleCellExperiment")
+    getMethod(
+        "plotZerosVsDepth",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -704,10 +728,13 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell topBarcodes
 #' @export
 setMethod(
     "topBarcodes",
     signature("seurat"),
-    getMethod("topBarcodes", "SingleCellExperiment")
+    getMethod(
+        "topBarcodes",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )

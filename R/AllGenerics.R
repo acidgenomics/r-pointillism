@@ -192,6 +192,19 @@ setGeneric(
 
 
 
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotCellCounts
+#' @export
+setGeneric(
+    "plotCellCounts",
+    getGeneric(
+        "plotCellCounts",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(
@@ -203,6 +216,19 @@ setGeneric(
 
 
 
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotDot
+#' @export
+setGeneric(
+    "plotDot",
+    getGeneric(
+        "plotDot",
+        package = "bcbioBase"
+    )
+)
+
+
+
 #' @rdname plotFeature
 #' @export
 setGeneric(
@@ -210,6 +236,32 @@ setGeneric(
     function(object, ...) {
         standardGeneric("plotFeature")
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotGene
+#' @export
+setGeneric(
+    "plotGene",
+    getGeneric(
+        "plotGene",
+        package = "bcbioBase"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotGenesPerCell
+#' @export
+setGeneric(
+    "plotGenesPerCell",
+    getGeneric(
+        "plotGenesPerCell",
+        package = "bcbioSingleCell"
+    )
 )
 
 
@@ -236,6 +288,45 @@ setGeneric(
 
 
 
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotMitoRatio
+#' @export
+setGeneric(
+    "plotMitoRatio",
+    getGeneric(
+        "plotMitoRatio",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotMitoVsCoding
+#' @export
+setGeneric(
+    "plotMitoVsCoding",
+    getGeneric(
+        "plotMitoVsCoding",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotNovelty
+#' @export
+setGeneric(
+    "plotNovelty",
+    getGeneric(
+        "plotNovelty",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
 #' @rdname plotPCElbow
 #' @export
 setGeneric(
@@ -243,6 +334,19 @@ setGeneric(
     function(object, ...) {
         standardGeneric("plotPCElbow")
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotQC
+#' @export
+setGeneric(
+    "plotQC",
+    getGeneric(
+        "plotQC",
+        package = "bcbioBase"
+    )
 )
 
 
@@ -287,4 +391,69 @@ setGeneric(
     function(object, ...) {
         standardGeneric("plotUMAP")
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotUMIsPerCell
+#' @export
+setGeneric(
+    "plotUMIsPerCell",
+    getGeneric(
+        "plotUMIsPerCell",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotUMIsVsGenes
+#' @export
+setGeneric(
+    "plotUMIsVsGenes",
+    getGeneric(
+        "plotUMIsVsGenes",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioBase plotViolin
+#' @export
+setGeneric(
+    "plotViolin",
+    getGeneric(
+        "plotViolin",
+        package = "bcbioBase"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell plotZerosVsDepth
+#' @export
+setGeneric(
+    "plotZerosVsDepth",
+    getGeneric(
+        "plotZerosVsDepth",
+        package = "bcbioSingleCell"
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell topBarcodes
+#' @export
+setGeneric(
+    "topBarcodes",
+    getGeneric(
+        "topBarcodes",
+        package = "bcbioSingleCell"
+    )
 )
