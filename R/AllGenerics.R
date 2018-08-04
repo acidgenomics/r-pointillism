@@ -419,15 +419,13 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotViolin
+#' @rdname plotViolin
 #' @export
 setGeneric(
     "plotViolin",
-    getGeneric(
-        "plotViolin",
-        package = "bcbioBase"
-    )
+    function(object, ...) {
+        standardGeneric("plotViolin")
+    }
 )
 
 

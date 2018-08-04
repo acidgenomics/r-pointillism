@@ -20,7 +20,6 @@
 \alias{plotQC}
 \alias{plotUMIsPerCell}
 \alias{plotUMIsVsGenes}
-\alias{plotViolin}
 \alias{plotZerosVsDepth}
 \alias{topBarcodes}
 \alias{seurat-SingleCellExperiment}
@@ -114,8 +113,6 @@ plotQC(object, ...)
 plotUMIsPerCell(object, ...)
 
 plotUMIsVsGenes(object, ...)
-
-plotViolin(object, ...)
 
 plotZerosVsDepth(object, ...)
 
