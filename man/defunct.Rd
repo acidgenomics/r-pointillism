@@ -2,23 +2,7 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\alias{plotKnownMarkers}
-\alias{plotTSNEExpressionData}
-\alias{readMarkers}
-\alias{readMarkersFile}
 \title{Defunct Functions}
-\usage{
-plotKnownMarkers(...)
-
-plotTSNEExpressionData(...)
-
-readMarkers(...)
-
-readMarkersFile(...)
-}
-\arguments{
-\item{...}{Additional arguments.}
-}
 \value{
 \code{\link[=.Defunct]{.Defunct()}}.
 }

@@ -2,46 +2,7 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{fetchPCAData}
-\alias{fetchTSNEData}
-\alias{fetchTSNEExpressionData}
-\alias{fetchUMAPData}
-\alias{fetchUMAPExpressionData}
-\alias{plotFeatureTSNE}
-\alias{plotFeatureUMAP}
-\alias{plotMarkerTSNE}
-\alias{plotMarkerUMAP}
-\alias{readCellTypeMarkersFile}
-\alias{sanitizeMarkers}
 \title{Deprecated Functions}
-\usage{
-fetchPCAData(object, ...)
-
-fetchTSNEData(object, ...)
-
-fetchTSNEExpressionData(object, ...)
-
-fetchUMAPData(object, ...)
-
-fetchUMAPExpressionData(object, ...)
-
-plotFeatureTSNE(object, ...)
-
-plotFeatureUMAP(object, ...)
-
-plotMarkerTSNE(object, ...)
-
-plotMarkerUMAP(object, ...)
-
-readCellTypeMarkersFile(...)
-
-sanitizeMarkers(...)
-}
-\arguments{
-\item{object}{Object.}
-
-\item{...}{Additional arguments.}
-}
 \value{
 \code{\link[=.Deprecated]{.Deprecated()}}.
 }
