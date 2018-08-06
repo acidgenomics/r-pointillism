@@ -44,7 +44,7 @@ print(x)
 \item \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}}.
 \item \code{\link[Seurat:Convert]{Seurat::Convert()}}.
 \item \code{\link[methods:as]{methods::as()}}.
-\item \code{\link[methods:coerce]{methods::coerce()}}.
+\item \code{\link[methods:setAs]{methods::setAs()}}.
 }
 }
 \author{

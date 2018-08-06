@@ -6,7 +6,7 @@
 #' @family Gene Expression Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom bcbioBase plotGene
+#' @importFrom basejump plotGene
 #' @export
 #'
 #' @inheritParams general

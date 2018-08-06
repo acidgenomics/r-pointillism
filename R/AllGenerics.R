@@ -154,13 +154,13 @@ setGeneric(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase metrics
+#' @importFrom basejump metrics
 #' @export
 setGeneric(
     "metrics",
     getGeneric(
         "metrics",
-        package = "bcbioBase"
+        package = "basejump"
     )
 )
 
@@ -239,13 +239,13 @@ setGeneric(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotGene
+#' @importFrom basejump plotGene
 #' @export
 setGeneric(
     "plotGene",
     getGeneric(
         "plotGene",
-        package = "bcbioBase"
+        package = "basejump"
     )
 )
 
@@ -337,13 +337,13 @@ setGeneric(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioBase plotQC
+#' @importFrom basejump plotQC
 #' @export
 setGeneric(
     "plotQC",
     getGeneric(
         "plotQC",
-        package = "bcbioBase"
+        package = "basejump"
     )
 )
 
