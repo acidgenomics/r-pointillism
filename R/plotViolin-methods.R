@@ -4,8 +4,6 @@
 #' @family Gene Expression Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom bcbioBase plotViolin
-#'
 #' @inheritParams general
 #' @inheritParams ggplot2::geom_violin
 #'

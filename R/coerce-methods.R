@@ -8,13 +8,13 @@
 #' @family S4 Object
 #' @author Michael Steinbaugh
 #'
-#' @inherit bcbioBase::coerce
+#' @return Object of new class.
 #'
 #' @seealso
 #' - [Seurat::CreateSeuratObject()].
 #' - [Seurat::Convert()].
 #' - [methods::as()].
-#' - [methods::coerce()].
+#' - [methods::setAs()].
 NULL
 
 

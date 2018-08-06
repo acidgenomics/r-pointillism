@@ -41,10 +41,6 @@
 #'   matchInterestingGroups printString readFileByExtension readYAML
 #'   sanitizeSampleData stripTranscriptVersions theme_midnight theme_paperwhite
 #'   tx2geneFromGFF uniteInterestingGroups
-#' @importFrom bcbioBase bcbio_geom_abline bcbio_geom_label
-#'   bcbio_geom_label_average bcbio_geom_label_repel flatFiles minimalSampleData
-#'   prepareSummarizedExperiment readDataVersions readLog readProgramVersions
-#'   readSampleData readTx2gene readYAMLSampleData sampleDirs
 #' @importFrom Biobase rowMedians sampleNames
 #' @importFrom BiocGenerics cbind counts counts<- do.call rbind
 #' @importFrom BiocParallel SerialParam
