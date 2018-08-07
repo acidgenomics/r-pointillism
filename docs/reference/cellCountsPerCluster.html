@@ -141,7 +141,13 @@ interesting groups. Must be formatted in camel case and intersect with
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>cellCountsPerCluster</span>(<span class='no'>indrops_small</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .assertHasIdent(object): is_subset : The element 'ident' in "ident" is not in colnames(colData(object)).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>sce_small</span>)
+<span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 2
+#&gt; Variables: 4
+#&gt; $ ident      &lt;fct&gt; 0, 1
+#&gt; $ sampleName &lt;fct&gt; group2, group1
+#&gt; $ n          &lt;int&gt; 52, 48
+#&gt; $ ratio      &lt;dbl&gt; 1, 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

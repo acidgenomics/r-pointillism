@@ -137,19 +137,19 @@ scores, number of genes detected).</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/FeaturePlot'>Seurat::FeaturePlot()</a></code>.</p>
-<p>Other Clustering Functions: <code>cellTypesPerCluster</code>,
-  <code>knownMarkersDetected</code>,
-  <code>plotCellTypesPerCluster</code>,
-  <code>plotKnownMarkersDetected</code>,
-  <code>plotPCElbow</code>, <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code>,
-  <code>topMarkers</code></p></div>
+<p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
+  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
+  <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
+  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
+  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>indrops_small</span>
+    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
 <span class='no'>features</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"nUMI"</span>, <span class='st'>"nGene"</span>, <span class='st'>"mitoRatio"</span>)
-<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='kw'>features</span> <span class='kw'>=</span> <span class='no'>features</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .assertHasIdent(object): is_subset : The element 'ident' in "ident" is not in colnames(colData(object)).</span></div></pre>
+<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='kw'>features</span> <span class='kw'>=</span> <span class='no'>features</span>)</div><div class='img'><img src='plotFeature-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

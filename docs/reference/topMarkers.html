@@ -119,7 +119,7 @@
     <tr>
       <th>data</th>
       <td><p><code>grouped_df</code>. <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return, sanitized with
-our <code>sanitizeSeuratMarkers()</code> function.</p></td>
+our <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -146,13 +146,13 @@ our <code>sanitizeSeuratMarkers()</code> function.</p></td>
 <li><p><code><a href='http://dplyr.tidyverse.org/reference/slice.html'>dplyr::slice()</a></code>.</p></li>
 <li><p><code><a href='http://dplyr.tidyverse.org/reference/top_n.html'>dplyr::top_n()</a></code>.</p></li>
 </ul></div>
-    <div class='dont-index'><p>Other Clustering Functions: <code>cellTypesPerCluster</code>,
-  <code>knownMarkersDetected</code>,
-  <code>plotCellTypesPerCluster</code>,
-  <code>plotFeature</code>,
-  <code>plotKnownMarkersDetected</code>,
-  <code>plotPCElbow</code>, <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code></p></div>
+    <div class='dont-index'><p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
+  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
+  <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>,
+  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -161,17 +161,26 @@ our <code>sanitizeSeuratMarkers()</code> function.</p></td>
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
     <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"positive"</span>
 )
-<span class='fu'>head</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 18
-#&gt; # Groups:   cluster [2]
-#&gt;   cluster avgLogFC  pct1  pct2 rowname   pvalue     padj seqnames  start    end
-#&gt;   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;  &lt;int&gt;
-#&gt; 1 0           1.28 0.962 0.938 SGCE    1.64e-15 1.64e-11 7        9.45e7 9.47e7
-#&gt; 2 0           1.20 0.942 0.708 HM13    7.40e-15 7.40e-11 20       3.15e7 3.16e7
-#&gt; 3 1           1.09 0.979 0.865 IRAK3   1.29e-16 1.29e-12 12       6.62e7 6.63e7
-#&gt; 4 1           1.27 0.958 0.769 SMIM8   1.43e-15 1.43e-11 6        8.73e7 8.74e7
-#&gt; # ... with 8 more variables: width &lt;int&gt;, strand &lt;fct&gt;, broadClass &lt;fct&gt;,
-#&gt; #   description &lt;fct&gt;, geneBiotype &lt;fct&gt;, geneID &lt;chr&gt;, geneName &lt;fct&gt;,
-#&gt; #   seqCoordSystem &lt;fct&gt;</div></pre>
+<span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 18
+#&gt; $ cluster        &lt;fct&gt; 0, 0, 1, 1
+#&gt; $ avgLogFC       &lt;dbl&gt; 1.284217, 1.202616, 1.087316, 1.268699
+#&gt; $ pct1           &lt;dbl&gt; 0.962, 0.942, 0.979, 0.958
+#&gt; $ pct2           &lt;dbl&gt; 0.938, 0.708, 0.865, 0.769
+#&gt; $ rowname        &lt;chr&gt; "ENSG00000127990", "ENSG00000101294", "ENSG000000903...
+#&gt; $ pvalue         &lt;dbl&gt; 1.642010e-15, 7.404554e-15, 1.291082e-16, 1.427094e-15
+#&gt; $ padj           &lt;dbl&gt; 1.642010e-11, 7.404554e-11, 1.291082e-12, 1.427094e-11
+#&gt; $ seqnames       &lt;fct&gt; 7, 20, 12, 6
+#&gt; $ start          &lt;int&gt; 94524204, 31514428, 66188879, 87322583
+#&gt; $ end            &lt;int&gt; 94656572, 31577923, 66254622, 87399749
+#&gt; $ width          &lt;int&gt; 132369, 63496, 65744, 77167
+#&gt; $ strand         &lt;fct&gt; -, +, +, +
+#&gt; $ broadClass     &lt;fct&gt; coding, coding, coding, coding
+#&gt; $ description    &lt;fct&gt; sarcoglycan epsilon [Source:HGNC Symbol;Acc:HGNC:108...
+#&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding, protein_coding, prot...
+#&gt; $ geneID         &lt;chr&gt; "ENSG00000127990", "ENSG00000101294", "ENSG000000903...
+#&gt; $ geneName       &lt;fct&gt; SGCE, HM13, IRAK3, SMIM8
+#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome, chromosome, chromosome</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -127,8 +127,8 @@ gene identifiers.</p></td>
     <tr>
       <th>known</th>
       <td><p><code>grouped_df</code>, grouped by <code>cellType</code> column. Known markers
-<code>data.frame</code> imported by <code>readCellTypeMarkers()</code> or pulled from internal
-cell_cycle_markers data.</p></td>
+<code>data.frame</code> imported by <code><a href='readCellTypeMarkers.html'>readCellTypeMarkers()</a></code> or pulled from internal
+<a href='cell_cycle_markers.html'>cell_cycle_markers</a> data.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -164,13 +164,13 @@ easily.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Clustering Functions: <code>cellTypesPerCluster</code>,
-  <code>plotCellTypesPerCluster</code>,
-  <code>plotFeature</code>,
-  <code>plotKnownMarkersDetected</code>,
-  <code>plotPCElbow</code>, <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code>,
-  <code>topMarkers</code></p></div>
+    <div class='dont-index'><p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
+  <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>,
+  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
+  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -183,8 +183,8 @@ easily.</p>
 #&gt; # Groups:   cellType [1]
 #&gt;   cellType cluster geneID geneName avgLogFC  pct1  pct2 rowname  pvalue   padj
 #&gt;   &lt;fct&gt;    &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1 Gut Epi… 0       ENSG0… CLDN18     -0.945 0.442 0.688 CLDN18  3.28e-6 0.0328
-#&gt; 2 Gut Epi… 1       ENSG0… CLDN18      0.945 0.688 0.442 CLDN18  3.28e-6 0.0328
+#&gt; 1 Gut Epi… 0       ENSG0… CLDN18     -0.945 0.442 0.688 ENSG00… 3.28e-6 0.0328
+#&gt; 2 Gut Epi… 1       ENSG0… CLDN18      0.945 0.688 0.442 ENSG00… 3.28e-6 0.0328
 #&gt; # ... with 9 more variables: seqnames &lt;chr&gt;, start &lt;int&gt;, end &lt;int&gt;,
 #&gt; #   width &lt;int&gt;, strand &lt;chr&gt;, broadClass &lt;chr&gt;, description &lt;chr&gt;,
 #&gt; #   geneBiotype &lt;chr&gt;, seqCoordSystem &lt;chr&gt;</div></pre>

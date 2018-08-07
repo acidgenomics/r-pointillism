@@ -100,7 +100,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Violin</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/plotViolin-methods.R'><code>R/plotViolin-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/plotViolin-methods.R'><code>R/plotViolin-methods.R</code></a></small>
     <div class="hidden name"><code>plotViolin.Rd</code></div>
     </div>
 
@@ -110,7 +110,9 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
+    <pre class="usage"><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
   <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.fill"</span>, <span class='kw'>NULL</span>),
@@ -122,6 +124,10 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>genes</th>
@@ -156,8 +162,8 @@ To set the discrete fill palette globally, use
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/VlnPlot'>Seurat::VlnPlot()</a></code>.</p>
-<p>Other Gene Expression Functions: <code>plotDot</code>,
-  <code>plotGene</code></p></div>
+<p>Other Gene Expression Functions: <code><a href='plotDot.html'>plotDot</a></code>,
+  <code><a href='plotGene.html'>plotGene</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
