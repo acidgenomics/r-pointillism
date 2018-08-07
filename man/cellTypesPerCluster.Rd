@@ -35,7 +35,9 @@ Other Clustering Functions: \code{\link{knownMarkersDetected}},
   \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotFeature}},
   \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}},
   \code{\link{sanitizeSeuratMarkers}},
   \code{\link{topMarkers}}
 }

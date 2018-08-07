@@ -113,7 +113,7 @@
   reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
-  "UMAP"), expression = c("mean", "median", "sum"),
+  "UMAP", "PCA"), expression = c("mean", "median", "sum"),
   color = getOption("bcbio.discrete.color", NULL),
   pointSize = getOption("bcbio.pointSize", 0.75),
   pointAlpha = getOption("bcbio.pointAlpha", 0.8),

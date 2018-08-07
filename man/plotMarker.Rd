@@ -6,8 +6,6 @@
 \alias{plotMarker}
 \alias{plotTopMarkers}
 \alias{plotMarker,SingleCellExperiment-method}
-\alias{plotTopMarkers,SingleCellExperiment-method}
-\alias{plotKnownMarkersDetected,SingleCellExperiment-method}
 \title{Plot Cell-Type-Specific Gene Markers}
 \usage{
 plotKnownMarkersDetected(object, ...)
@@ -17,8 +15,8 @@ plotMarker(object, ...)
 plotTopMarkers(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
-  "sum"), color = getOption("bcbio.discrete.color", NULL),
+  reducedDim = c("TSNE", "UMAP", "PCA"), expression = c("mean",
+  "median", "sum"), color = getOption("bcbio.discrete.color", NULL),
   pointSize = getOption("bcbio.pointSize", 0.75),
   pointAlpha = getOption("bcbio.pointAlpha", 0.8),
   pointsAsNumbers = FALSE, label = getOption("bcbio.label", TRUE),
@@ -26,13 +24,6 @@ plotTopMarkers(object, ...)
   dark = getOption("bcbio.dark", FALSE), grid = getOption("bcbio.grid",
   FALSE), legend = getOption("bcbio.legend", TRUE),
   aspectRatio = getOption("bcbio.aspectRatio", 1L), title = TRUE)
-
-\S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 10L,
-  direction = c("positive", "negative", "both"), coding = FALSE,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
-
-\S4method{plotKnownMarkersDetected}{SingleCellExperiment}(object, markers,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -77,34 +68,13 @@ dots (\code{FALSE}).}
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
-
-\item{markers}{\code{grouped_df}. Marker genes data.
-\itemize{
-\item \code{\link[=plotTopMarkers]{plotTopMarkers()}}: must be grouped by "\code{cluster}".
-\item \code{\link[=plotKnownMarkersDetected]{plotKnownMarkersDetected()}}: must be grouped by "\code{cellType}".
-}}
-
-\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot} \code{list}.
 }
 \description{
-Plot gene expression per cell in multiple formats:
-\enumerate{
-\item \code{\link[=plotMarker]{plotMarker()}}: Reduced dimension (e.g. t-SNE, UMAP) gene expression plot.
-\item \code{\link[=plotDot]{plotDot()}}: Dot plot.
-\item \code{\link[=plotViolin]{plotViolin()}}: Violin plot.
+Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
-}
-\section{Plot top markers}{
-
-The number of markers to plot is determined by the output of the
-\code{\link[=topMarkers]{topMarkers()}} function. If you want to reduce the number of genes to plot,
-simply reassign first using that function. If necessary, we can add support
-for the number of genes to plot here in a future update.
-}
-
 \examples{
 # MHC class II genes
 title <- "MHC class II"
@@ -124,23 +94,15 @@ plotMarker(
     label = FALSE,
     title = title
 )
-
-# Top markers
-markers <- topMarkers(all_markers_small, n = 1)
-glimpse(markers)
-plotTopMarkers(seurat_small, markers = tail(markers, 1))
-
-# Known markers detected
-markers <- head(known_markers_small, n = 1)
-glimpse(markers)
-plotKnownMarkersDetected(seurat_small, markers = head(markers, 1))
 }
 \seealso{
 Other Clustering Functions: \code{\link{cellTypesPerCluster}},
   \code{\link{knownMarkersDetected}},
   \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
+  \code{\link{plotFeature}},
+  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}},
   \code{\link{sanitizeSeuratMarkers}},
   \code{\link{topMarkers}}
 }

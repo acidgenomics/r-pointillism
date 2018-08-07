@@ -53,7 +53,9 @@ Other Clustering Functions: \code{\link{cellTypesPerCluster}},
   \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotFeature}},
   \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}},
   \code{\link{sanitizeSeuratMarkers}},
   \code{\link{topMarkers}}
 }
