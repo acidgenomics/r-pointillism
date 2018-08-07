@@ -92,7 +92,7 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 \description{
 Plot gene expression per cell in multiple formats:
 \enumerate{
-\item \code{\link[=plotMarkerTSNE]{plotMarkerTSNE()}}: t-SNE gene expression plot.
+\item \code{\link[=plotMarker]{plotMarker()}}: Reduced dimension (e.g. t-SNE, UMAP) gene expression plot.
 \item \code{\link[=plotDot]{plotDot()}}: Dot plot.
 \item \code{\link[=plotViolin]{plotViolin()}}: Violin plot.
 }

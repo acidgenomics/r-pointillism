@@ -16,7 +16,7 @@ plotCellTypesPerCluster(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[=plotMarkerTSNE]{plotMarkerTSNE()}} or \code{\link[=plotMarkerUMAP]{plotMarkerUMAP()}}.}
+\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
 \item{markers}{\code{grouped_df}. Cell types per cluster data. This must be the
 return from \code{\link[=cellTypesPerCluster]{cellTypesPerCluster()}}.}

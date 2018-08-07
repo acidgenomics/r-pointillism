@@ -3,7 +3,7 @@
 #' @description
 #' Plot gene expression per cell in multiple formats:
 #'
-#' 1. [plotMarkerTSNE()]: t-SNE gene expression plot.
+#' 1. [plotMarker()]: Reduced dimension (e.g. t-SNE, UMAP) gene expression plot.
 #' 2. [plotDot()]: Dot plot.
 #' 3. [plotViolin()]: Violin plot.
 #'
