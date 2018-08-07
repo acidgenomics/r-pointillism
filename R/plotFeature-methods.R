@@ -21,6 +21,8 @@ NULL
 
 
 # Methods ======================================================================
+#' @rdname plotFeature
+#' @export
 setMethod(
     "plotFeature",
     signature("SingleCellExperiment"),
