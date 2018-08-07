@@ -1,9 +1,8 @@
-#' bcbioSingleCell
+#' pointillism
 #'
-#' Import and analyze [bcbio](http://bcbio-nextgen.readthedocs.io) single-cell
-#' RNA-seq data.
+#' R package for for single-cell RNA-seq clustering analysis.
 #'
-#' @name bcbioSingleCell-package
+#' @name pointillism-package
 #' @docType package
 #'
 #' @importClassesFrom Seurat seurat
