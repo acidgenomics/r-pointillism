@@ -24,7 +24,7 @@
 #'     n = 2L,
 #'     direction = "positive"
 #' )
-#' head(x)
+#' glimpse(x)
 topMarkers <- function(
     data,
     n = 10L,
