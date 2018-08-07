@@ -41,7 +41,6 @@
 # Stash zinbwave calculations into assays slot
 .slotZinbwaveIntoAssays <- function(object, ...) {
     stopifnot(is(object, "SingleCellExperiment"))
-    stopifnot(.isFiltered(object))
     zinb <- .runZinbwave(object, ...)
     assays(object)[["normalizedValues"]] <-
         assays(zinb)[["normalizedValues"]]
