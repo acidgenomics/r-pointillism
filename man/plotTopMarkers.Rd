@@ -11,7 +11,23 @@
   reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 }
 \arguments{
+\item{object}{Object.}
+
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cluster}".}
+
+\item{n}{\code{scalar integer}. Number of genes per cluster.}
+
+\item{direction}{\code{string}. Whether to include "\code{positive}", "\code{negative}", or
+"\code{both}" directions of association per cluster.}
+
+\item{coding}{\code{boolean}. Include only protein coding genes.}
+
+\item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
+\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
+
+\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot} \code{list}.
