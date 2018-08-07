@@ -1,29 +1,3 @@
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell barcodeRanksPerSample
-#' @export
-setGeneric(
-    "barcodeRanksPerSample",
-    getGeneric(
-        "barcodeRanksPerSample",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell cell2sample
-#' @export
-setGeneric(
-    "cell2sample",
-    getGeneric(
-        "cell2sample",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
 #' @rdname cellCountsPerCluster
 #' @export
 setGeneric(
@@ -53,19 +27,6 @@ setGeneric(
     function(object, ...) {
         standardGeneric("clusterCellCountsPerSample")
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump convertGenesToSymbols
-#' @export
-setGeneric(
-    "convertGenesToSymbols",
-    getGeneric(
-        "convertGenesToSymbols",
-        package = "basejump"
-    )
 )
 
 
@@ -114,97 +75,6 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump gene2symbol
-#' @export
-setGeneric(
-    "gene2symbol",
-    getGeneric(
-        "gene2symbol",
-        package = "basejump"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump interestingGroups
-#' @export
-setGeneric(
-    "interestingGroups",
-    getGeneric(
-        "interestingGroups",
-        package = "basejump"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump interestingGroups<-
-#' @export
-setGeneric(
-    "interestingGroups<-",
-    getGeneric(
-        "interestingGroups<-",
-        package = "basejump"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump metrics
-#' @export
-setGeneric(
-    "metrics",
-    getGeneric(
-        "metrics",
-        package = "basejump"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell metricsPerSample
-#' @export
-setGeneric(
-    "metricsPerSample",
-    getGeneric(
-        "metricsPerSample",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotBarcodeRanks
-#' @export
-setGeneric(
-    "plotBarcodeRanks",
-    getGeneric(
-        "plotBarcodeRanks",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotCellCounts
-#' @export
-setGeneric(
-    "plotCellCounts",
-    getGeneric(
-        "plotCellCounts",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(
@@ -238,32 +108,6 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump plotGene
-#' @export
-setGeneric(
-    "plotGene",
-    getGeneric(
-        "plotGene",
-        package = "basejump"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotGenesPerCell
-#' @export
-setGeneric(
-    "plotGenesPerCell",
-    getGeneric(
-        "plotGenesPerCell",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
 #' @rdname plotMarker
 #' @export
 setGeneric(
@@ -286,45 +130,6 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotMitoRatio
-#' @export
-setGeneric(
-    "plotMitoRatio",
-    getGeneric(
-        "plotMitoRatio",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotMitoVsCoding
-#' @export
-setGeneric(
-    "plotMitoVsCoding",
-    getGeneric(
-        "plotMitoVsCoding",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotNovelty
-#' @export
-setGeneric(
-    "plotNovelty",
-    getGeneric(
-        "plotNovelty",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
 #' @rdname plotPCElbow
 #' @export
 setGeneric(
@@ -332,19 +137,6 @@ setGeneric(
     function(object, ...) {
         standardGeneric("plotPCElbow")
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump plotQC
-#' @export
-setGeneric(
-    "plotQC",
-    getGeneric(
-        "plotQC",
-        package = "basejump"
-    )
 )
 
 
@@ -393,32 +185,6 @@ setGeneric(
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotUMIsPerCell
-#' @export
-setGeneric(
-    "plotUMIsPerCell",
-    getGeneric(
-        "plotUMIsPerCell",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotUMIsVsGenes
-#' @export
-setGeneric(
-    "plotUMIsVsGenes",
-    getGeneric(
-        "plotUMIsVsGenes",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
 #' @rdname plotViolin
 #' @export
 setGeneric(
@@ -426,30 +192,4 @@ setGeneric(
     function(object, ...) {
         standardGeneric("plotViolin")
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell plotZerosVsDepth
-#' @export
-setGeneric(
-    "plotZerosVsDepth",
-    getGeneric(
-        "plotZerosVsDepth",
-        package = "bcbioSingleCell"
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell topBarcodes
-#' @export
-setGeneric(
-    "topBarcodes",
-    getGeneric(
-        "topBarcodes",
-        package = "bcbioSingleCell"
-    )
 )
