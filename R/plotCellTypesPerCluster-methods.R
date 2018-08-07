@@ -11,7 +11,7 @@
 #' @inheritParams general
 #' @param markers `grouped_df`. Cell types per cluster data. This must be the
 #'   return from [cellTypesPerCluster()].
-#' @param ... Passthrough arguments to [plotMarkerTSNE()] or [plotMarkerUMAP()].
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
 #'
