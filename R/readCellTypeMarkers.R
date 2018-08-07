@@ -14,7 +14,7 @@
 #' # Homo sapiens
 #' file <- system.file(
 #'     file.path("extdata", "cell_type_markers.csv"),
-#'     package = "bcbioSingleCell"
+#'     package = "pointillism"
 #' )
 #' gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
 #' readCellTypeMarkers(file, gene2symbol = gene2symbol)
