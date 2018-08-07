@@ -42,7 +42,7 @@ glimpse(all_sanitized)
 invisible(capture.output(
     ident_3_markers <- Seurat::FindMarkers(
         object = object,
-        ident.1 = "3",
+        ident.1 = "1",
         ident.2 = NULL
     )
 ))

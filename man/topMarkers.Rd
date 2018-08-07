@@ -30,7 +30,7 @@ x <- topMarkers(
     n = 2L,
     direction = "positive"
 )
-head(x)
+glimpse(x)
 }
 \seealso{
 \itemize{
