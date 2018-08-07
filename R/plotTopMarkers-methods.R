@@ -9,6 +9,8 @@
 #' @family Clustering Functions
 #' @author Michael Steinbaugh
 #'
+#' @inheritParams general
+#' @inheritParams topMarkers
 #' @param markers `grouped_df`. Marker genes, grouped by "`cluster`".
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
