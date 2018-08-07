@@ -4,7 +4,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return `tibble` grouped by "`sampleName" column, arranged by abundance.
+#' @return `tibble` grouped by "`sampleName`" column, arranged by abundance.
 #'
 #' @examples
 #' clusterCellCountsPerSample(sce_small)
