@@ -1,8 +1,5 @@
 #' Methods for Coercing an Object to a Class
 #'
-#' @note Use [convertGenesToSymbols()] to convert gene IDs to names (symbols).
-#'   This step is no longer automatic, as of v0.1.18.
-#'
 #' @name coerce
 #' @aliases as
 #' @family S4 Object
@@ -38,7 +35,8 @@ NULL
 #' Interally [Seurat::CreateSeuratObject()] is called without applying any
 #' additional filtering cutoffs, since we have already defined them during our
 #' quality control analysis. Here we are passing the raw gene-level counts of
-#' the filtered cells into a new `seurat` class object.
+#' the filtered cells into a new `seurat` class object. Use
+#' [convertGenesToSymbols()] to convert gene IDs to names (symbols).
 #'
 #' @examples
 #' # SingleCellExperiment to seurat ====

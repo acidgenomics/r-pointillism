@@ -17,7 +17,7 @@ clusterCellCountsPerSample(object, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tibble} grouped by "`sampleName" column, arranged by abundance.
+\code{tibble} grouped by "\code{sampleName}" column, arranged by abundance.
 }
 \description{
 Cluster Cell Counts per Sample

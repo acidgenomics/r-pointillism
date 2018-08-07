@@ -12,16 +12,13 @@ Object of new class.
 \description{
 Methods for Coercing an Object to a Class
 }
-\note{
-Use \code{\link[=convertGenesToSymbols]{convertGenesToSymbols()}} to convert gene IDs to names (symbols).
-This step is no longer automatic, as of v0.1.18.
-}
 \section{\code{SingleCellExperiment} to \code{seurat}}{
 
 Interally \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}} is called without applying any
 additional filtering cutoffs, since we have already defined them during our
 quality control analysis. Here we are passing the raw gene-level counts of
-the filtered cells into a new \code{seurat} class object.
+the filtered cells into a new \code{seurat} class object. Use
+\code{\link[=convertGenesToSymbols]{convertGenesToSymbols()}} to convert gene IDs to names (symbols).
 }
 
 \section{\code{seurat} to \code{SingleCellExperiment}}{

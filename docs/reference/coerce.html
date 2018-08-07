@@ -115,18 +115,14 @@
 
     <p>Object of new class.</p>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Use <code>convertGenesToSymbols()</code> to convert gene IDs to names (symbols).
-This step is no longer automatic, as of v0.1.18.</p>
-    
     <h2 class="hasAnchor" id="singlecellexperiment-to-seurat"><a class="anchor" href="#singlecellexperiment-to-seurat"></a><code>SingleCellExperiment</code> to <code>seurat</code></h2>
 
     
     <p>Interally <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/CreateSeuratObject'>Seurat::CreateSeuratObject()</a></code> is called without applying any
 additional filtering cutoffs, since we have already defined them during our
 quality control analysis. Here we are passing the raw gene-level counts of
-the filtered cells into a new <code>seurat</code> class object.</p>
+the filtered cells into a new <code>seurat</code> class object. Use
+<code>convertGenesToSymbols()</code> to convert gene IDs to names (symbols).</p>
     
     <h2 class="hasAnchor" id="seurat-to-singlecellexperiment"><a class="anchor" href="#seurat-to-singlecellexperiment"></a><code>seurat</code> to <code>SingleCellExperiment</code></h2>
 
@@ -170,8 +166,6 @@ a <code>seurat</code> class object and coercing to a <code>SingleCellExperiment<
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
 
       <li><a href="#singlecellexperiment-to-seurat"><code>SingleCellExperiment</code> to <code>seurat</code></a></li>
 
