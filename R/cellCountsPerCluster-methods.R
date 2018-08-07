@@ -7,7 +7,8 @@
 #' @return `tibble` grouped by "`ident`" column, arranged by abundance.
 #'
 #' @examples
-#' cellCountsPerCluster(sce_small)
+#' x <- cellCountsPerCluster(sce_small)
+#' glimpse(x)
 NULL
 
 
