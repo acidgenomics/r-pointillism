@@ -510,7 +510,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump sampleData
+#' @importFrom bcbioSingleCell sampleData
 #' @export
 setMethod(
     "sampleData",
