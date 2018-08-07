@@ -12,7 +12,7 @@ sce_small
 SingleCellExperiment Example
 }
 \examples{
-show(sce_small)
+sce_small
 }
 \seealso{
 Other Minimal Example Data: \code{\link{all_markers_small}},
