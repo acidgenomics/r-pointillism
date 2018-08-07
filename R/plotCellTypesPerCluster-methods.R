@@ -82,7 +82,7 @@ setMethod(
             assert_has_rows(subset)
             lapply(seq_len(nrow(subset)), function(x) {
                 cellType <- subset[x, , drop = FALSE]
-                genes <- pull(cellType, rowname) %>%
+                genes <- pull(cellType, "rowname") %>%
                     as.character() %>%
                     strsplit(", ") %>%
                     .[[1L]]
