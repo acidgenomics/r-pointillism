@@ -58,8 +58,9 @@ Other Clustering Functions: \code{\link{cellTypesPerCluster}},
   \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotFeature}},
   \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{topMarkers}}
+  \code{\link{plotTopMarkers}}, \code{\link{topMarkers}}
 }
 \author{
 Michael Steinbaugh

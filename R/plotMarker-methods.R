@@ -1,26 +1,12 @@
 #' Plot Cell-Type-Specific Gene Markers
 #'
-#' @description
-#' Plot gene expression per cell in multiple formats:
-#'
-#' 1. [plotMarker()]: Reduced dimension (e.g. t-SNE, UMAP) gene expression plot.
-#' 2. [plotDot()]: Dot plot.
-#' 3. [plotViolin()]: Violin plot.
-#'
-#' @section Plot top markers:
-#' The number of markers to plot is determined by the output of the
-#' [topMarkers()] function. If you want to reduce the number of genes to plot,
-#' simply reassign first using that function. If necessary, we can add support
-#' for the number of genes to plot here in a future update.
+#' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 #'
 #' @name plotMarker
 #' @family Clustering Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @inheritParams general
-#' @param markers `grouped_df`. Marker genes data.
-#'   - [plotTopMarkers()]: must be grouped by "`cluster`".
-#'   - [plotKnownMarkersDetected()]: must be grouped by "`cellType`".
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
@@ -43,16 +29,6 @@
 #'     label = FALSE,
 #'     title = title
 #' )
-#'
-#' # Top markers
-#' markers <- topMarkers(all_markers_small, n = 1)
-#' glimpse(markers)
-#' plotTopMarkers(seurat_small, markers = tail(markers, 1))
-#'
-#' # Known markers detected
-#' markers <- head(known_markers_small, n = 1)
-#' glimpse(markers)
-#' plotKnownMarkersDetected(seurat_small, markers = head(markers, 1))
 NULL
 
 
@@ -84,7 +60,7 @@ setMethod(
     function(
         object,
         genes,
-        reducedDim = c("TSNE", "UMAP"),
+        reducedDim = c("TSNE", "UMAP", "PCA"),
         expression = c("mean", "median", "sum"),
         color = getOption("bcbio.discrete.color", NULL),
         pointSize = getOption("bcbio.pointSize", 0.75),
@@ -262,137 +238,5 @@ setMethod(
         }
 
         p
-    }
-)
-
-
-
-#' @rdname plotMarker
-#' @export
-setMethod(
-    "plotTopMarkers",
-    signature("SingleCellExperiment"),
-    function(
-        object,
-        markers,
-        n = 10L,
-        direction = c("positive", "negative", "both"),
-        coding = FALSE,
-        reducedDim = c("TSNE", "UMAP"),
-        headerLevel = 2L,
-        ...
-    ) {
-        # Passthrough: n, direction, coding
-        validObject(object)
-        stopifnot(is(markers, "grouped_df"))
-        stopifnot(.isSanitizedMarkers(markers))
-        markers <- topMarkers(
-            data = markers,
-            n = n,
-            direction = direction,
-            coding = coding
-        )
-        reducedDim <- match.arg(reducedDim)
-        assertIsAHeaderLevel(headerLevel)
-
-        assert_is_subset("cluster", colnames(markers))
-        clusters <- levels(markers[["cluster"]])
-
-        list <- pblapply(clusters, function(cluster) {
-            genes <- markers %>%
-                filter(cluster == !!cluster) %>%
-                pull("rowname")
-            if (!length(genes)) {
-                return(invisible())
-            }
-            if (length(genes) > 10L) {
-                warning("Maximum of 10 genes per cluster is recommended")
-            }
-
-            markdownHeader(
-                text = paste("Cluster", cluster),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                markdownHeader(
-                    text = gene,
-                    level = headerLevel + 1L,
-                    asis = TRUE
-                )
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reducedDim = reducedDim,
-                    ...
-                )
-                show(p)
-                invisible(p)
-            })
-        })
-
-        invisible(list)
-    }
-)
-
-
-
-#' @rdname plotMarker
-#' @export
-setMethod(
-    "plotKnownMarkersDetected",
-    signature("SingleCellExperiment"),
-    function(
-        object,
-        markers,
-        reducedDim = c("TSNE", "UMAP"),
-        headerLevel = 2L,
-        ...
-    ) {
-        assert_has_rows(markers)
-        stopifnot(is(markers, "grouped_df"))
-        assert_has_rows(markers)
-        assert_is_subset("cellType", colnames(markers))
-        reducedDim <- match.arg(reducedDim)
-        assertIsAHeaderLevel(headerLevel)
-
-        cellTypes <- markers %>%
-            pull("cellType") %>%
-            as.character() %>%
-            na.omit() %>%
-            unique()
-        assert_is_non_empty(cellTypes)
-
-        list <- pblapply(cellTypes, function(cellType) {
-            genes <- markers %>%
-                filter(cellType == !!cellType) %>%
-                pull("geneID") %>%
-                as.character() %>%
-                na.omit() %>%
-                unique()
-            assert_is_non_empty(genes)
-
-            markdownHeader(
-                text = cellType,
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reducedDim = reducedDim,
-                    ...
-                )
-                show(p)
-                invisible(p)
-            })
-        })
-
-        invisible(list)
     }
 )
