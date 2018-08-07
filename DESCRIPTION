@@ -29,6 +29,11 @@ Depends:
     SingleCellExperiment,
     basejump (>= 0.7)
 Imports:
+    assertive.base,
+    assertive.numbers,
+    assertive.properties,
+    assertive.sets,
+    assertive.types,
     bcbioSingleCell (>= 0.2),
     DESeq2,
     edgeR,

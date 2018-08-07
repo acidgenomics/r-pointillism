@@ -10,37 +10,22 @@
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
 #' @importFrom assertive.base assert_are_identical
-#' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
-#' @importFrom assertive.numbers assert_all_are_greater_than_or_equal_to
-#'   assert_all_are_in_left_open_range assert_all_are_in_range
-#'   assert_all_are_in_right_open_range assert_all_are_non_negative
+#' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_positive
-#' @importFrom assertive.properties assert_are_same_length assert_has_dimnames
-#'   assert_has_names assert_has_no_duplicates assert_has_rows
-#'   assert_is_non_empty assert_is_of_length has_dims has_names
+#' @importFrom assertive.properties assert_has_no_duplicates assert_has_rows
+#'   assert_is_non_empty assert_is_of_length
 #' @importFrom assertive.sets assert_are_disjoint_sets
-#'   assert_are_intersecting_sets assert_are_set_equal assert_is_subset
-#' @importFrom assertive.strings assert_all_are_matching_regex
-#'   assert_all_are_non_missing_nor_empty_character
-#'   assert_any_are_matching_regex
+#'   assert_are_intersecting_sets assert_is_subset
 #' @importFrom assertive.types assert_is_a_bool assert_is_a_number
-#'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
-#'   assert_is_character assert_is_data.frame assert_is_environment
-#'   assert_is_factor assert_is_function assert_is_integer assert_is_list
-#'   assert_is_matrix assert_is_numeric assert_is_tbl_df is_a_string
-#'   is_character
-#' @importFrom basejump assertFormalInterestingGroups assertHasRownames
-#'   assertIsAHeaderLevel assertIsAStringOrNULL assertIsAnImplicitInteger
-#'   assertIsAnImplicitIntegerOrNULL assertIsANumberOrNULL
+#'   assert_is_a_string assert_is_all_of assert_is_any_of assert_is_character
+#'   assert_is_data.frame assert_is_factor assert_is_matrix assert_is_numeric
+#'   assert_is_tbl_df is_a_string
+#' @importFrom basejump assertHasRownames assertIsAHeaderLevel
+#'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsFillScaleDiscreteOrNULL assertIsGene2symbol assertIsTx2gene
-#'   assignAndSaveData camel convertGenesToSymbols convertSymbolsToGenes
-#'   convertUCSCBuildToEnsembl detectOrganism emptyRanges gene2symbol
-#'   hasRownames initializeDirectory makeGRangesFromEnsembl makeGRangesFromGFF
-#'   makeNames makeTx2geneFromGFF markdownHeader markdownPlotlist
-#'   matchInterestingGroups printString readFileByExtension readYAML
-#'   sanitizeSampleData stripTranscriptVersions theme_midnight theme_paperwhite
-#'   tx2geneFromGFF uniteInterestingGroups
+#'   assertIsGene2symbol camel convertGenesToSymbols gene2symbol markdownHeader
+#'   matchInterestingGroups printString readFileByExtension theme_midnight
+#'   theme_paperwhite
 #' @importFrom Biobase rowMedians sampleNames
 #' @importFrom BiocGenerics cbind counts counts<- do.call rbind
 #' @importFrom BiocParallel SerialParam
