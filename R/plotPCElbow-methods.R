@@ -95,7 +95,7 @@ setMethod(
             ) +
             geom_line() +
             geom_point() +
-            bcbio_geom_abline(xintercept = cutoff) +
+            geom_vline(xintercept = cutoff) +
             labs(
                 x = "pc",
                 y = "std dev"
@@ -118,7 +118,7 @@ setMethod(
             ) +
             geom_line() +
             geom_point() +
-            bcbio_geom_abline(xintercept = cutoff) +
+            geom_vline(xintercept = cutoff) +
             labs(
                 x = "pc",
                 y = "% std dev"
@@ -141,7 +141,7 @@ setMethod(
             ) +
             geom_line() +
             geom_point() +
-            bcbio_geom_abline(xintercept = cutoff) +
+            geom_vline(xintercept = cutoff) +
             labs(
                 x = "pc",
                 y = "cum % std dev"
