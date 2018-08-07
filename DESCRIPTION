@@ -58,7 +58,6 @@ Imports:
 Suggests:
     BiocStyle,
     googlesheets,
-    MAST,
     roxygen2,
     splatter,
     testthat (>= 2.0)
