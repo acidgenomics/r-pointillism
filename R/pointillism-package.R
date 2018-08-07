@@ -23,9 +23,9 @@
 #' @importFrom basejump assertHasRownames assertIsAHeaderLevel
 #'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsGene2symbol camel convertGenesToSymbols gene2symbol markdownHeader
-#'   matchInterestingGroups printString readFileByExtension theme_midnight
-#'   theme_paperwhite
+#'   assertIsGene2symbol assertIsImplicitInteger camel convertGenesToSymbols
+#'   gene2symbol markdownHeader matchInterestingGroups printString
+#'   readFileByExtension theme_midnight theme_paperwhite
 #' @importFrom Biobase rowMedians
 #' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel SerialParam
