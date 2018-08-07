@@ -515,7 +515,11 @@ setMethod(
 setMethod(
     "sampleData",
     signature("seurat"),
-    getMethod("sampleData", "SingleCellExperiment")
+    getMethod(
+        "sampleData",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
 )
 
 
@@ -534,7 +538,8 @@ setMethod(
         signature(
             object = "SingleCellExperiment",
             value = "DataFrame"
-        )
+        ),
+        asNamespace("bcbioSingleCell")
     )
 )
 

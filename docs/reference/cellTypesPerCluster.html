@@ -143,24 +143,25 @@ significant known makers per cell type.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Clustering Functions: <code>knownMarkersDetected</code>,
-  <code>plotCellTypesPerCluster</code>,
-  <code>plotFeature</code>,
-  <code>plotKnownMarkersDetected</code>,
-  <code>plotPCElbow</code>, <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code>,
-  <code>topMarkers</code></p></div>
+    <div class='dont-index'><p>Other Clustering Functions: <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
+  <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>,
+  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
+  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>known_markers_small</span>)
 <span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 5
+#&gt; Variables: 6
 #&gt; $ cluster  &lt;fct&gt; 0, 1
 #&gt; $ cellType &lt;fct&gt; Gut Epithelial Cell, Gut Epithelial Cell
 #&gt; $ n        &lt;int&gt; 1, 1
 #&gt; $ geneID   &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"
-#&gt; $ geneName &lt;chr&gt; "CLDN18", "CLDN18"</div></pre>
+#&gt; $ geneName &lt;chr&gt; "CLDN18", "CLDN18"
+#&gt; $ rowname  &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

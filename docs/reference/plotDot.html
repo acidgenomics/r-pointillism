@@ -100,7 +100,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Dot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/plotDot-methods.R'><code>R/plotDot-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/plotDot-methods.R'><code>R/plotDot-methods.R</code></a></small>
     <div class="hidden name"><code>plotDot.Rd</code></div>
     </div>
 
@@ -110,7 +110,9 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
+    <pre class="usage"><span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>,
   <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
@@ -122,6 +124,10 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>genes</th>
@@ -171,14 +177,14 @@ To set the discrete color palette globally, use
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Modified version of <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/DotPlot'>Seurat::DotPlot()</a></code>.</p>
-<p>Other Gene Expression Functions: <code>plotGene</code>,
-  <code>plotViolin</code></p></div>
+<p>Other Gene Expression Functions: <code><a href='plotGene.html'>plotGene</a></code>,
+  <code><a href='plotViolin.html'>plotViolin</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>indrops_small</span>
+    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
 <span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='fu'>rownames</span>(<span class='no'>object</span>))
-<span class='fu'>glimpse</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:6] "ENSG00000000457" "ENSG00000002586" "ENSG00000004939" ...</div><div class='input'><span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .assertHasIdent(object): is_subset : The element 'ident' in "ident" is not in colnames(colData(object)).</span></div></pre>
+<span class='fu'>glimpse</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:6] "ENSG00000000003" "ENSG00000000005" "ENSG00000000419" ...</div><div class='input'><span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>)</div><div class='img'><img src='plotDot-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

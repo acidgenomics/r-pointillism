@@ -135,7 +135,7 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
     <tr>
       <th>markers</th>
       <td><p><code>grouped_df</code>. Cell types per cluster data. This must be the
-return from <code>cellTypesPerCluster()</code>.</p></td>
+return from <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster()</a></code>.</p></td>
     </tr>
     <tr>
       <th>reducedDim</th>
@@ -159,28 +159,29 @@ defaults to the first argument in the <code>character</code> vector.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Clustering Functions: <code>cellTypesPerCluster</code>,
-  <code>knownMarkersDetected</code>,
-  <code>plotFeature</code>,
-  <code>plotKnownMarkersDetected</code>,
-  <code>plotPCElbow</code>, <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code>,
-  <code>topMarkers</code></p></div>
+    <div class='dont-index'><p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
+  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>,
+  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
+  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>per_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>known_markers_small</span>)
-<span class='fu'>glimpse</span>(<span class='no'>per_cluster</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 5
+    <pre class="examples"><div class='input'><span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></span>(<span class='no'>known_markers_small</span>)
+<span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 2
+#&gt; Variables: 6
 #&gt; $ cluster  &lt;fct&gt; 0, 1
 #&gt; $ cellType &lt;fct&gt; Gut Epithelial Cell, Gut Epithelial Cell
 #&gt; $ n        &lt;int&gt; 1, 1
 #&gt; $ geneID   &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"
-#&gt; $ geneName &lt;chr&gt; "CLDN18", "CLDN18"</div><div class='input'>
+#&gt; $ geneName &lt;chr&gt; "CLDN18", "CLDN18"
+#&gt; $ rowname  &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"</div><div class='input'>
 <span class='co'># Let's plot the first row, as an example</span>
 <span class='fu'>plotCellTypesPerCluster</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>sce_small</span>,
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>head</span>(<span class='no'>per_cluster</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat_small</span>,
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>head</span>(<span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)
 )</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 0 {.tabset}
@@ -188,7 +189,14 @@ defaults to the first argument in the <code>character</code> vector.</p></td>
 #&gt; 
 #&gt; 
 #&gt; ### Gut Epithelial Cell
-#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in .local(object, ...): is_subset : The element 'CLDN18' in genes is not in rownames(object).</span></div></pre>
+#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## Cluster 1 {.tabset}
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ### Gut Epithelial Cell
+#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

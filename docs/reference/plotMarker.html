@@ -112,8 +112,8 @@ plotViolin(): Violin plot.
     
     <p>Plot gene expression per cell in multiple formats:</p><ol>
 <li><p><code>plotMarkerTSNE()</code>: t-SNE gene expression plot.</p></li>
-<li><p><code>plotDot()</code>: Dot plot.</p></li>
-<li><p><code>plotViolin()</code>: Violin plot.</p></li>
+<li><p><code><a href='plotDot.html'>plotDot()</a></code>: Dot plot.</p></li>
+<li><p><code><a href='plotViolin.html'>plotViolin()</a></code>: Violin plot.</p></li>
 </ol>
     
     </div>
@@ -244,19 +244,19 @@ dots (<code>FALSE</code>).</p></td>
 
     
     <p>The number of markers to plot is determined by the output of the
-<code>topMarkers()</code> function. If you want to reduce the number of genes to plot,
+<code><a href='topMarkers.html'>topMarkers()</a></code> function. If you want to reduce the number of genes to plot,
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Clustering Functions: <code>cellTypesPerCluster</code>,
-  <code>knownMarkersDetected</code>,
-  <code>plotCellTypesPerCluster</code>,
-  <code>plotFeature</code>, <code>plotPCElbow</code>,
-  <code>plotReducedDim</code>,
-  <code>sanitizeSeuratMarkers</code>,
-  <code>topMarkers</code></p></div>
+    <div class='dont-index'><p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
+  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
+  <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
+  <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
+  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -267,7 +267,7 @@ for the number of genes to plot here in a future update.</p>
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rowData</span>(<span class='no'>sce_small</span>)$<span class='no'>description</span>
 ))]
 <span class='fu'>print</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt; character(0)</div><div class='input'>
-<span class='fu'>plotMarker</span>(<span class='no'>sce_small</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>)</div><div class='output co'>#&gt; <span class='error'>Error in assertFormalInterestingGroups(object, value): The interesting groups "sampleName" are not defined as columns in `sampleData()`</span></div><div class='input'><span class='fu'>plotMarker</span>(
+<span class='fu'>plotMarker</span>(<span class='no'>sce_small</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>)</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotMarker</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>sce_small</span>,
     <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>,
     <span class='kw'>expression</span> <span class='kw'>=</span> <span class='st'>"sum"</span>,
@@ -275,16 +275,16 @@ for the number of genes to plot here in a future update.</p>
     <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>title</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in assertFormalInterestingGroups(object, value): The interesting groups "sampleName" are not defined as columns in `sampleData()`</span></div><div class='input'>
+)</div><div class='img'><img src='plotMarker-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Top markers</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='topMarkers.html'>topMarkers</a></span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 2
 #&gt; Variables: 18
 #&gt; $ cluster        &lt;fct&gt; 0, 1
 #&gt; $ avgLogFC       &lt;dbl&gt; 1.284217, 1.087316
 #&gt; $ pct1           &lt;dbl&gt; 0.962, 0.979
 #&gt; $ pct2           &lt;dbl&gt; 0.938, 0.865
-#&gt; $ rowname        &lt;chr&gt; "SGCE", "IRAK3"
+#&gt; $ rowname        &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
 #&gt; $ pvalue         &lt;dbl&gt; 1.642010e-15, 1.291082e-16
 #&gt; $ padj           &lt;dbl&gt; 1.642010e-11, 1.291082e-12
 #&gt; $ seqnames       &lt;fct&gt; 7, 12
@@ -303,8 +303,8 @@ for the number of genes to plot here in a future update.</p>
 #&gt; 
 #&gt; 
 #&gt; 
-#&gt; ### IRAK3
-#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in assertFormalInterestingGroups(object, value): The interesting groups "sampleName" are not defined as columns in `sampleData()`</span></div><div class='input'>
+#&gt; ### ENSG00000090376
+#&gt; </div><div class='img'><img src='plotMarker-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Known markers detected</span>
 <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='no'>known_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 1
@@ -316,7 +316,7 @@ for the number of genes to plot here in a future update.</p>
 #&gt; $ avgLogFC       &lt;dbl&gt; -0.9446141
 #&gt; $ pct1           &lt;dbl&gt; 0.442
 #&gt; $ pct2           &lt;dbl&gt; 0.688
-#&gt; $ rowname        &lt;chr&gt; "CLDN18"
+#&gt; $ rowname        &lt;chr&gt; "ENSG00000066405"
 #&gt; $ pvalue         &lt;dbl&gt; 3.27838e-06
 #&gt; $ padj           &lt;dbl&gt; 0.0327838
 #&gt; $ seqnames       &lt;chr&gt; "3"
@@ -330,11 +330,7 @@ for the number of genes to plot here in a future update.</p>
 #&gt; $ seqCoordSystem &lt;chr&gt; "chromosome"</div><div class='input'><span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>head</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Gut Epithelial Cell {.tabset}
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### CLDN18
-#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in assertFormalInterestingGroups(object, value): The interesting groups "sampleName" are not defined as columns in `sampleData()`</span></div></pre>
+#&gt; </div><div class='img'><img src='plotMarker-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
