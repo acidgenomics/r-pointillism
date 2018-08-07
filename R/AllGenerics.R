@@ -108,7 +108,7 @@ setGeneric(
 
 
 
-#' @rdname plotMarker
+#' @rdname plotKnownMarkersDetected
 #' @export
 setGeneric(
     "plotKnownMarkersDetected",
@@ -152,7 +152,7 @@ setGeneric(
 
 
 
-#' @rdname plotMarker
+#' @rdname plotTopMarkers
 #' @export
 setGeneric(
     "plotTopMarkers",

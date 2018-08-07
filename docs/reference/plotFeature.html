@@ -110,7 +110,19 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>features</span>,
+  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
+  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
+  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
+  <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,6 +140,54 @@
       <td><p><code>character</code>. Features to plot (e.g. gene expression, PC
 scores, number of genes detected).</p></td>
     </tr>
+    <tr>
+      <th>reducedDim</th>
+      <td><p><code>string</code>. Name of reduced dimension matrix slotted in
+<code>reducedDims()</code>. Includes TNSE, UMAP, PCA, for example.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
+scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
+color palette will be used. If manual color definitions are desired, we
+recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
+To set the discrete color palette globally, use
+<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
+    </tr>
+    <tr>
+      <th>pointSize</th>
+      <td><p><code>scalar numeric</code>. Cell point size.</p></td>
+    </tr>
+    <tr>
+      <th>pointAlpha</th>
+      <td><p><code>scalar numeric</code> (<code>0</code>-<code>1</code>). Alpha transparency level.
+Useful when there many cells in the dataset, and some cells can be masked.</p></td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td><p><code>boolean</code>. Overlay a cluster identitiy label on the plot.</p></td>
+    </tr>
+    <tr>
+      <th>labelSize</th>
+      <td><p><code>scalar integer</code>. Size of the text label.</p></td>
+    </tr>
+    <tr>
+      <th>dark</th>
+      <td><p><code>boolean</code>. Plot against a dark background using
+<code><a href='http://www.rdocumentation.org/packages/basejump/topics/themes'>basejump::theme_midnight()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>grid</th>
+      <td><p><code>boolean</code>. Show major grid lines but hide axis lines.</p></td>
+    </tr>
+    <tr>
+      <th>legend</th>
+      <td><p><code>boolean</code>. Include plot legend.</p></td>
+    </tr>
+    <tr>
+      <th>aspectRatio</th>
+      <td><p><code>scalar integer</code>. Aspect ratio.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -140,8 +200,10 @@ scores, number of genes detected).</p></td>
 <p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
   <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
   <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
-  <code><a href='plotMarker.html'>plotKnownMarkersDetected</a></code>,
-  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code>plotKnownMarkersDetected</code>,
+  <code><a href='plotMarker.html'>plotMarker</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
+  <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code>plotTopMarkers</code>,
   <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
   <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     

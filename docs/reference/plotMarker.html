@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Cell-Type-Specific Gene Markers — plotKnownMarkersDetected • pointillism</title>
+<title>Plot Cell-Type-Specific Gene Markers — plotMarker • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,13 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot Cell-Type-Specific Gene Markers — plotKnownMarkersDetected" />
+<meta property="og:title" content="Plot Cell-Type-Specific Gene Markers — plotMarker" />
 
-<meta property="og:description" content="Plot gene expression per cell in multiple formats:
-plotMarkerTSNE(): t-SNE gene expression plot.
-plotDot(): Dot plot.
-plotViolin(): Violin plot.
-" />
+<meta property="og:description" content="Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,40 +106,23 @@ plotViolin(): Violin plot.
 
     <div class="ref-description">
     
-    <p>Plot gene expression per cell in multiple formats:</p><ol>
-<li><p><code>plotMarkerTSNE()</code>: t-SNE gene expression plot.</p></li>
-<li><p><code><a href='plotDot.html'>plotDot()</a></code>: Dot plot.</p></li>
-<li><p><code><a href='plotViolin.html'>plotViolin()</a></code>: Violin plot.</p></li>
-</ol>
+    <p>Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>,
-  <span class='st'>"sum"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>, <span class='st'>"PCA"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>,
+  <span class='st'>"median"</span>, <span class='st'>"sum"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
   <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
   <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.8</span>),
   <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
   <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
   <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
   <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -223,38 +202,21 @@ dots (<code>FALSE</code>).</p></td>
       <th>title</th>
       <td><p><code>string</code> or <code>NULL</code>. Plot title.</p></td>
     </tr>
-    <tr>
-      <th>markers</th>
-      <td><p><code>grouped_df</code>. Marker genes data.</p><ul>
-<li><p><code>plotTopMarkers()</code>: must be grouped by "<code>cluster</code>".</p></li>
-<li><p><code>plotKnownMarkersDetected()</code>: must be grouped by "<code>cellType</code>".</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code>scalar integer</code> (<code>1</code>-<code>7</code>). R Markdown header level.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Show graphical output. Invisibly return <code>ggplot</code> <code>list</code>.</p>
     
-    <h2 class="hasAnchor" id="plot-top-markers"><a class="anchor" href="#plot-top-markers"></a>Plot top markers</h2>
-
-    
-    <p>The number of markers to plot is determined by the output of the
-<code><a href='topMarkers.html'>topMarkers()</a></code> function. If you want to reduce the number of genes to plot,
-simply reassign first using that function. If necessary, we can add support
-for the number of genes to plot here in a future update.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other Clustering Functions: <code><a href='cellTypesPerCluster.html'>cellTypesPerCluster</a></code>,
   <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
   <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
-  <code><a href='plotFeature.html'>plotFeature</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
-  <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code><a href='plotFeature.html'>plotFeature</a></code>,
+  <code>plotKnownMarkersDetected</code>,
+  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
+  <code>plotTopMarkers</code>,
   <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
   <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
     
@@ -275,62 +237,7 @@ for the number of genes to plot here in a future update.</p>
     <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>title</span>
-)</div><div class='img'><img src='plotMarker-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Top markers</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='topMarkers.html'>topMarkers</a></span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 18
-#&gt; $ cluster        &lt;fct&gt; 0, 1
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.284217, 1.087316
-#&gt; $ pct1           &lt;dbl&gt; 0.962, 0.979
-#&gt; $ pct2           &lt;dbl&gt; 0.938, 0.865
-#&gt; $ rowname        &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
-#&gt; $ pvalue         &lt;dbl&gt; 1.642010e-15, 1.291082e-16
-#&gt; $ padj           &lt;dbl&gt; 1.642010e-11, 1.291082e-12
-#&gt; $ seqnames       &lt;fct&gt; 7, 12
-#&gt; $ start          &lt;int&gt; 94524204, 66188879
-#&gt; $ end            &lt;int&gt; 94656572, 66254622
-#&gt; $ width          &lt;int&gt; 132369, 65744
-#&gt; $ strand         &lt;fct&gt; -, +
-#&gt; $ broadClass     &lt;fct&gt; coding, coding
-#&gt; $ description    &lt;fct&gt; sarcoglycan epsilon [Source:HGNC Symbol;Acc:HGNC:108...
-#&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
-#&gt; $ geneName       &lt;fct&gt; SGCE, IRAK3
-#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome</div><div class='input'><span class='fu'>plotTopMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>tail</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ## Cluster 1 {.tabset}
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### ENSG00000090376
-#&gt; </div><div class='img'><img src='plotMarker-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Known markers detected</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='no'>known_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 1
-#&gt; Variables: 19
-#&gt; $ cellType       &lt;fct&gt; Gut Epithelial Cell
-#&gt; $ cluster        &lt;fct&gt; 0
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000066405"
-#&gt; $ geneName       &lt;chr&gt; "CLDN18"
-#&gt; $ avgLogFC       &lt;dbl&gt; -0.9446141
-#&gt; $ pct1           &lt;dbl&gt; 0.442
-#&gt; $ pct2           &lt;dbl&gt; 0.688
-#&gt; $ rowname        &lt;chr&gt; "ENSG00000066405"
-#&gt; $ pvalue         &lt;dbl&gt; 3.27838e-06
-#&gt; $ padj           &lt;dbl&gt; 0.0327838
-#&gt; $ seqnames       &lt;chr&gt; "3"
-#&gt; $ start          &lt;int&gt; 137998735
-#&gt; $ end            &lt;int&gt; 138033655
-#&gt; $ width          &lt;int&gt; 34921
-#&gt; $ strand         &lt;chr&gt; "+"
-#&gt; $ broadClass     &lt;chr&gt; "coding"
-#&gt; $ description    &lt;chr&gt; "claudin 18 [Source:HGNC Symbol;Acc:HGNC:2039]"
-#&gt; $ geneBiotype    &lt;chr&gt; "protein_coding"
-#&gt; $ seqCoordSystem &lt;chr&gt; "chromosome"</div><div class='input'><span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>head</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ## Gut Epithelial Cell {.tabset}
-#&gt; </div><div class='img'><img src='plotMarker-4.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='img'><img src='plotMarker-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -338,8 +245,6 @@ for the number of genes to plot here in a future update.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#plot-top-markers">Plot top markers</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

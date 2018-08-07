@@ -24,14 +24,14 @@ object.}
 \item{colMin}{\code{scalar numeric}. Minimum scaled average expression threshold.
 Everything smaller will be set to this.}
 
-\item{colMax}{\code{scalar numeric}.Maximum scaled average expression threshold.
+\item{colMax}{\code{scalar numeric}. Maximum scaled average expression threshold.
 Everything larger will be set to this.}
 
-\item{dotMin}{\code{scalar numeric}.The fraction of cells at which to draw the
+\item{dotMin}{\code{scalar numeric}. The fraction of cells at which to draw the
 smallest dot. All cell groups with less than this expressing the given gene
 will have no dot drawn.}
 
-\item{dotScale}{\code{scalar numeric}.Scale the size of the points, similar to
+\item{dotScale}{\code{scalar numeric}. Scale the size of the points, similar to
 \code{cex}.}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
