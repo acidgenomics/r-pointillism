@@ -43,8 +43,8 @@ Other Clustering Functions: \code{\link{cellTypesPerCluster}},
   \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotFeature}},
   \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
+  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
+  \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}},
   \code{\link{sanitizeSeuratMarkers}}
 }

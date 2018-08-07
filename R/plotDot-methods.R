@@ -7,12 +7,12 @@
 #' @inheritParams general
 #' @param colMin `scalar numeric`. Minimum scaled average expression threshold.
 #'   Everything smaller will be set to this.
-#' @param colMax `scalar numeric`.Maximum scaled average expression threshold.
+#' @param colMax `scalar numeric`. Maximum scaled average expression threshold.
 #'   Everything larger will be set to this.
-#' @param dotMin `scalar numeric`.The fraction of cells at which to draw the
+#' @param dotMin `scalar numeric`. The fraction of cells at which to draw the
 #'   smallest dot. All cell groups with less than this expressing the given gene
 #'   will have no dot drawn.
-#' @param dotScale `scalar numeric`.Scale the size of the points, similar to
+#' @param dotScale `scalar numeric`. Scale the size of the points, similar to
 #'   `cex`.
 #'
 #' @seealso Modified version of [Seurat::DotPlot()].
