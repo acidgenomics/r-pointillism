@@ -13,6 +13,7 @@ NULL
 
 
 
+# Constructors =================================================================
 # Assert check to see if we're modifying a freshly created seurat object
 .assertIsNewSeurat <- function(object) {
     assert_are_identical(object@raw.data, object@data)
@@ -22,6 +23,7 @@ NULL
 
 
 
+# Methods ======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
@@ -57,35 +59,6 @@ setMethod(
     function(x, ...) {
         assays(.as.SingleCellExperiment.seurat(x), ...)
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "barcodeRanksPerSample",
-    signature("seurat"),
-    getMethod(
-        "barcodeRanksPerSample",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "cell2sample",
-    signature("seurat"),
-    getMethod(
-        "cell2sample",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
 )
 
 
@@ -155,6 +128,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump convertGenesToSymbols
 #' @export
 setMethod(
     "convertGenesToSymbols",
@@ -233,6 +207,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump gene2symbol
 #' @export
 setMethod(
     "gene2symbol",
@@ -247,6 +222,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump interestingGroups
 #' @export
 setMethod(
     "interestingGroups",
@@ -261,6 +237,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump interestingGroups<-
 #' @export
 setMethod(
     "interestingGroups<-",
@@ -322,6 +299,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump metrics
 #' @export
 setMethod(
     "metrics",
@@ -329,48 +307,6 @@ setMethod(
     function(object, ...) {
         metrics(as(object, "SingleCellExperiment"))
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "metricsPerSample",
-    signature("seurat"),
-    getMethod(
-        "metricsPerSample",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotBarcodeRanks",
-    signature("seurat"),
-    getMethod(
-        "plotBarcodeRanks",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotCellCounts",
-    signature("seurat"),
-    getMethod(
-        "plotCellCounts",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
 )
 
 
@@ -418,20 +354,6 @@ setMethod(
 #' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
-    "plotGenesPerCell",
-    signature("seurat"),
-    getMethod(
-        "plotGenesPerCell",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
     "plotKnownMarkersDetected",
     signature("seurat"),
     getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
@@ -452,65 +374,9 @@ setMethod(
 #' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
-    "plotMitoRatio",
-    signature("seurat"),
-    getMethod(
-        "plotMitoRatio",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotMitoVsCoding",
-    signature("seurat"),
-    getMethod(
-        "plotMitoVsCoding",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotNovelty",
-    signature("seurat"),
-    getMethod(
-        "plotNovelty",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
     "plotPCA",
     signature("seurat"),
     getMethod("plotPCA", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotQC",
-    signature("seurat"),
-    getMethod(
-        "plotQC",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
 )
 
 
@@ -558,51 +424,9 @@ setMethod(
 #' @rdname seurat-SingleCellExperiment
 #' @export
 setMethod(
-    "plotUMIsPerCell",
-    signature("seurat"),
-    getMethod(
-        "plotUMIsPerCell",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotUMIsVsGenes",
-    signature("seurat"),
-    getMethod(
-        "plotUMIsVsGenes",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
     "plotViolin",
     signature("seurat"),
     getMethod("plotViolin", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotZerosVsDepth",
-    signature("seurat"),
-    getMethod(
-        "plotZerosVsDepth",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
 )
 
 
@@ -723,18 +547,4 @@ setMethod(
     "sampleNames",
     signature("seurat"),
     getMethod("sampleNames", "SummarizedExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "topBarcodes",
-    signature("seurat"),
-    getMethod(
-        "topBarcodes",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
 )
