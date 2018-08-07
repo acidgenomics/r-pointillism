@@ -26,50 +26,32 @@
 #'   assertIsGene2symbol camel convertGenesToSymbols gene2symbol markdownHeader
 #'   matchInterestingGroups printString readFileByExtension theme_midnight
 #'   theme_paperwhite
-#' @importFrom Biobase rowMedians sampleNames
-#' @importFrom BiocGenerics cbind counts counts<- do.call rbind
+#' @importFrom Biobase rowMedians
+#' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel SerialParam
-#' @importFrom cowplot draw_plot ggdraw plot_grid
-#' @importFrom dplyr arrange bind_rows desc everything filter group_by
-#'   group_vars left_join matches mutate mutate_all mutate_at mutate_if n pull
-#'   rename select select_if slice summarize summarize_all ungroup
+#' @importFrom cowplot plot_grid
+#' @importFrom dplyr arrange desc everything filter group_by
+#'   group_vars left_join mutate mutate_at mutate_if n pull
+#'   select slice summarize ungroup
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom edgeR calcNormFactors DGEList estimateDisp glmFit
-#' @importFrom GenomicFeatures genes makeTxDbFromGFF transcripts
-#' @importFrom ggplot2 aes coord_flip element_blank element_line element_rect
-#'   element_text expand_limits facet_wrap geom_bar geom_boxplot geom_histogram
-#'   geom_hline geom_line geom_point geom_smooth geom_step geom_text geom_violin
-#'   geom_vline ggplot ggtitle guide_colorbar guide_legend guides labs qplot
-#'   scale_radius scale_x_continuous scale_y_continuous stat_ecdf theme xlab
-#'   xlim ylab    scale_color_viridis_c scale_color_gradient
-#' @importFrom ggridges geom_density_ridges
-#' @importFrom graphics hist
-#' @importFrom grid arrow unit
-#' @importFrom jsonlite read_json
-#' @importFrom magrittr %>% set_colnames set_names set_rownames
-#' @importFrom Matrix colSums readMM rowMeans rowSums sparseMatrix
-#' @importFrom Matrix.utils aggregate.Matrix
-#' @importFrom methods .hasSlot as as<- getMethod is new show slot slot<-
-#'   validObject
-#' @importFrom parallel mclapply mcmapply
+#' @importFrom ggplot2 aes element_blank element_rect expand_limits facet_wrap
+#'   geom_hline geom_line geom_point geom_text geom_violin ggplot guide_colorbar
+#'   guides labs scale_color_gradient scale_color_viridis_c scale_radius
+#'   scale_x_continuous scale_y_continuous theme
+#' @importFrom magrittr %>% set_names
+#' @importFrom Matrix rowMeans rowSums
+#' @importFrom methods as getMethod is show slot slot<- validObject
 #' @importFrom pbapply pblapply
-#' @importFrom purrr map
-#' @importFrom readr read_lines read_tsv
-#' @importFrom reticulate py_module_available
-#' @importFrom rhdf5 h5dump h5read
-#' @importFrom rlang !! !!! sym syms UQ
-#' @importFrom S4Vectors DataFrame aggregate as.data.frame as.matrix
-#'   complete.cases mcols mcols<- merge metadata metadata<- na.omit
+#' @importFrom rlang !! !!! sym syms
+#' @importFrom S4Vectors as.data.frame as.matrix
+#'   complete.cases mcols mcols<- metadata metadata<- na.omit
 #' @importFrom scales percent pretty_breaks
 #' @importFrom Seurat as.SingleCellExperiment CreateSeuratObject
-#' @importFrom SingleCellExperiment SingleCellExperiment isSpike isSpike<-
-#'   spikeNames
-#' @importFrom stats ecdf fitted median model.matrix predict relevel reorder
-#'   smooth.spline
-#' @importFrom stringr str_extract str_match str_pad str_split
+#' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom tibble as_tibble column_to_rownames has_rownames remove_rownames
+#' @importFrom tibble as_tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion

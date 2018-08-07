@@ -40,7 +40,7 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' show(sce_small)
+#' sce_small
 "sce_small"
 
 
@@ -62,5 +62,5 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' show(seurat_small)
+#' seurat_small
 "seurat_small"
