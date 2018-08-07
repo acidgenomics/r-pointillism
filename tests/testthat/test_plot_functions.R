@@ -4,13 +4,13 @@ context("Plot Functions")
 
 # plotCellTypesPerCluster ======================================================
 test_that("plotCellTypesPerCluster : seurat", {
-    cellTypesPerCluster <- cellTypesPerCluster(known_markers_small) %>%
+    markers <- cellTypesPerCluster(known_markers_small) %>%
         # Subset for speed
         head(2L)
     invisible(capture.output(
         p <- plotCellTypesPerCluster(
             object = sce_small,
-            cellTypesPerCluster = cellTypesPerCluster
+            markers = markers
         )
     ))
     expect_is(p, "list")
@@ -31,24 +31,13 @@ test_that("plotFeature : seurat", {
 object <- sce_small
 genes <- head(rownames(object))
 
-test_that("plotMarkerTSNE : seurat", {
-    args <- methodFormals("plotMarkerTSNE", "seurat") %>%
+test_that("plotMarker : seurat", {
+    expression <- methodFormals("plotMarker", "seurat") %>%
         .[["expression"]] %>%
         as.character() %>%
         .[-1L]
-    invisible(lapply(args, function(arg) {
-        p <- plotMarkerTSNE(object, genes = genes, expression = arg)
-        expect_is(p, "ggplot")
-    }))
-})
-
-test_that("plotMarkerUMAP : seurat", {
-    args <- methodFormals("plotMarkerUMAP", "seurat") %>%
-        .[["expression"]] %>%
-        as.character() %>%
-        .[-1L]
-    invisible(lapply(args, function(arg) {
-        p <- plotMarkerUMAP(object, genes = genes, expression = arg)
+    invisible(lapply(expression, function(expression) {
+        p <- plotMarker(object, genes = genes, expression = expression)
         expect_is(p, "ggplot")
     }))
 })
@@ -89,8 +78,8 @@ test_that("plotPCA : seurat", {
 
 # plotPCElbow ==================================================================
 test_that("plotPCElbow : seurat", {
-    x <- plotPCElbow(pbmc_small)
-    expect_identical(x, seq_len(11L))
+    x <- plotPCElbow(seurat_small)
+    expect_identical(x, seq_len(17L))
 })
 
 
