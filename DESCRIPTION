@@ -61,8 +61,7 @@ Suggests:
     MAST,
     roxygen2,
     splatter,
-    testthat (>= 2.0),
-    zinbwave
+    testthat (>= 2.0)
 Remotes:
     hbc/bcbioSingleCell@develop,
     steinbaugh/basejump@develop
