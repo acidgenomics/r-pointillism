@@ -14,9 +14,6 @@
 \alias{convertGenesToSymbols,seurat-method}
 \alias{counts,seurat-method}
 \alias{diffExp,seurat-method}
-\alias{fetchGeneData,seurat-method}
-\alias{fetchReducedDimData,seurat-method}
-\alias{fetchReducedDimExpressionData,seurat-method}
 \alias{gene2symbol,seurat-method}
 \alias{interestingGroups,seurat-method}
 \alias{interestingGroups<-,seurat,character-method}
@@ -65,13 +62,6 @@
 \S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
   minCountsPerCell = 5L)
-
-\S4method{fetchGeneData}{seurat}(object, genes, gene2symbol = FALSE)
-
-\S4method{fetchReducedDimData}{seurat}(object, reducedDim,
-  dimsUse = c(1L, 2L), interestingGroups)
-
-\S4method{fetchReducedDimExpressionData}{seurat}(object, genes, reducedDim)
 
 \S4method{gene2symbol}{seurat}(object)
 
@@ -169,23 +159,16 @@ interesting groups. Must be formatted in camel case and intersect with
 
 \item{value}{Object to assign.}
 
-\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
-object.}
-
-\item{gene2symbol}{\code{data.frame}. Gene-to-symbol mappings. Columns must
-contain \code{geneID} and \code{geneName}.}
-
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
-
-\item{dimsUse}{\code{integer}. Vector of length 2 that denotes the columns from
-the reduced dimension matrix to use for \code{centerX} and \code{centerY} column
-calculations. Defaults the first and second dimensions.}
 
 \item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
 defaults to the first argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+
+\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
+object.}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
@@ -219,6 +202,10 @@ argument in the \code{character} vector.}
 dots (\code{FALSE}).}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
+
+\item{dimsUse}{\code{integer}. Vector of length 2 that denotes the columns from
+the reduced dimension matrix to use for \code{centerX} and \code{centerY} column
+calculations. Defaults the first and second dimensions.}
 
 \item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
 Must supply discrete values. When set to \code{NULL}, the default ggplot2 color

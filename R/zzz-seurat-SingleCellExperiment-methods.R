@@ -177,36 +177,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "fetchGeneData",
-    signature("seurat"),
-    getMethod("fetchGeneData", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "fetchReducedDimData",
-    signature("seurat"),
-    getMethod("fetchReducedDimData", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "fetchReducedDimExpressionData",
-    signature("seurat"),
-    getMethod("fetchReducedDimExpressionData", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump gene2symbol
 #' @export
 setMethod(
