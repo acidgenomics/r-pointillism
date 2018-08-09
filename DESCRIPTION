@@ -34,7 +34,6 @@ Imports:
     assertive.properties,
     assertive.sets,
     assertive.types,
-    bcbioSingleCell (>= 0.2),
     Biobase,
     BiocGenerics,
     BiocParallel,
@@ -62,7 +61,6 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    hbc/bcbioSingleCell,
     steinbaugh/basejump
 biocViews:
     DataRepresentation,

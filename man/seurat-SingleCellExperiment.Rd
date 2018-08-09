@@ -39,8 +39,6 @@
 \alias{rowData,seurat-method}
 \alias{rownames,seurat-method}
 \alias{rowRanges,seurat-method}
-\alias{sampleData,seurat-method}
-\alias{sampleData<-,seurat,DataFrame-method}
 \alias{sampleNames,seurat-method}
 \title{Extend S4 Methods for \code{seurat} Class}
 \usage{
@@ -155,10 +153,6 @@
 \S4method{rownames}{seurat}(x)
 
 \S4method{rowRanges}{seurat}(x)
-
-\S4method{sampleData}{seurat}(object, interestingGroups)
-
-\S4method{sampleData}{seurat,DataFrame}(object) <- value
 
 \S4method{sampleNames}{seurat}(object)
 }
