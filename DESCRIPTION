@@ -18,9 +18,9 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ))
 URL:
-    http://bioinformatics.sph.harvard.edu/bcbioSingleCell,
-    https://github.com/hbc/bcbioSingleCell
-BugReports: https://github.com/hbc/bcbioSingleCell/issues
+    https://steinbaugh.com/pointillism,
+    https://github.com/steinbaugh.com/pointillism
+BugReports: https://github.com/steinbaugh.com/pointillism/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
