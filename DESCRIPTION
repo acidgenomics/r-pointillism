@@ -62,8 +62,8 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    hbc/bcbioSingleCell@develop,
-    steinbaugh/basejump@develop
+    hbc/bcbioSingleCell,
+    steinbaugh/basejump
 biocViews:
     DataRepresentation,
     GeneExpression,
