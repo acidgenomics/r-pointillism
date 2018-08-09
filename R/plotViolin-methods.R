@@ -42,7 +42,7 @@ setMethod(
         ident <- colData(object)[["ident"]]
         assert_is_non_empty(ident)
 
-        data <- fetchGeneData(
+        data <- .fetchGeneData(
             object = object,
             genes = genes,
             gene2symbol = TRUE

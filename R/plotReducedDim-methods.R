@@ -77,7 +77,7 @@ setMethod(
         assert_is_a_bool(legend)
         assertIsAStringOrNULL(title)
 
-        data <- fetchReducedDimData(
+        data <- .fetchReducedDimData(
             object = object,
             reducedDim = reducedDim,
             dimsUse = dimsUse,

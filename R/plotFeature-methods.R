@@ -55,7 +55,7 @@ setMethod(
             fill <- "white"
         }
 
-        data <- fetchReducedDimData(object, reducedDim = reducedDim)
+        data <- .fetchReducedDimData(object, reducedDim = reducedDim)
         axes <- colnames(data)[seq_len(2L)]
 
         # If the features are not defined, attempt to merge all reduced dims

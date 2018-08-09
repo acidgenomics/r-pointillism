@@ -97,7 +97,7 @@ setMethod(
         }
 
         # Fetch reduced dimension data
-        data <- fetchReducedDimExpressionData(
+        data <- .fetchReducedDimExpressionData(
             object = object,
             genes = genes,
             reducedDim = reducedDim

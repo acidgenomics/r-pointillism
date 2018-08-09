@@ -84,7 +84,7 @@
     assert_is_subset(genes, rownames(object))
 
     # Gene data
-    geneData <- fetchGeneData(object = object, genes = genes)
+    geneData <- .fetchGeneData(object = object, genes = genes)
 
     # Expression columns
     mean <- rowMeans(geneData)
@@ -92,7 +92,7 @@
     sum <- rowSums(geneData)
 
     # Reduced dim data
-    reducedDimData <- fetchReducedDimData(
+    reducedDimData <- .fetchReducedDimData(
         object = object,
         reducedDim = reducedDim
     )
