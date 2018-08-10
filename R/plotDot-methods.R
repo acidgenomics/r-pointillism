@@ -81,6 +81,7 @@ setMethod(
         data <- .fetchGeneData(
             object = object,
             genes = genes,
+            assay = "logcounts",
             gene2symbol = TRUE
         ) %>%
             as.data.frame() %>%
@@ -100,13 +101,13 @@ setMethod(
         data <- data %>%
             gather(
                 key = "gene",
-                value = "expression",
+                value = "logcounts",
                 !!genes
             ) %>%
             group_by(!!!syms(c("ident", "gene"))) %>%
             summarize(
-                avgExp = mean(expm1(!!sym("expression"))),
-                pctExp = .percentAbove(!!sym("expression"), threshold = 0L)
+                avgExp = mean(expm1(!!sym("logcounts"))),
+                pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
             ) %>%
             ungroup() %>%
             mutate(gene = factor(!!sym("gene"), levels = genes)) %>%

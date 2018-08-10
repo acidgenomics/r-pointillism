@@ -45,6 +45,7 @@ setMethod(
         data <- .fetchGeneData(
             object = object,
             genes = genes,
+            assay = "logcounts",
             gene2symbol = TRUE
         ) %>%
             as.data.frame() %>%
@@ -64,7 +65,7 @@ setMethod(
         data <- data %>%
             gather(
                 key = "gene",
-                value = "expression",
+                value = "logcounts",
                 !!genes
             ) %>%
             group_by(!!sym("gene"))
@@ -86,7 +87,7 @@ setMethod(
             data,
             mapping = aes(
                 x = !!sym("ident"),
-                y = !!sym("expression")
+                y = !!sym("logcounts")
             )
         ) +
             violin +

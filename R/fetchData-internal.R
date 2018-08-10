@@ -1,18 +1,19 @@
-# FIXME Use the logcounts for marker plots
-
-
 .fetchGeneData <- function(
     object,
     genes,
+    assay = "logcounts",
     gene2symbol = FALSE
 ) {
     assert_is_character(genes)
     assert_has_no_duplicates(genes)
+    assert_is_a_string(assay)
+    assert_is_subset(assay, assayNames(object))
     assert_is_a_bool(gene2symbol)
 
-    counts <- counts(object)
+    counts <- assays(object)[[assay]]
     assert_is_subset(genes, rownames(object))
     counts <- counts[genes, , drop = FALSE]
+    counts <- as.matrix(counts)
 
     # Convert gene IDs to gene names (symbols)
     if (isTRUE(gene2symbol) && isTRUE(.useGene2symbol(object))) {
@@ -23,7 +24,7 @@
         rownames(counts) <- make.unique(g2s[["geneName"]])
     }
 
-    t(as.matrix(counts))
+    t(counts)
 }
 
 
@@ -31,18 +32,13 @@
 .fetchReducedDimData <- function(
     object,
     reducedDim,
-    dimsUse = c(1L, 2L),
-    interestingGroups
+    dimsUse = c(1L, 2L)
 ) {
     object <- as(object, "SingleCellExperiment")
     .assertHasIdent(object)
     assert_is_a_string(reducedDim)
     assertIsImplicitInteger(dimsUse)
     assert_is_of_length(dimsUse, 2L)
-    interestingGroups <- matchInterestingGroups(
-        object = object,
-        interestingGroups = interestingGroups
-    )
 
     data <- slot(object, "reducedDims")[[reducedDim]]
     if (!is.matrix(data)) {
@@ -53,7 +49,7 @@
     }
     data <- as.data.frame(data)
 
-    metrics <- metrics(object, interestingGroups = interestingGroups)
+    metrics <- metrics(object)
     assert_are_identical(rownames(data), rownames(metrics))
 
     dimCols <- colnames(data)[dimsUse]
@@ -83,8 +79,12 @@
 ) {
     assert_is_subset(genes, rownames(object))
 
-    # Gene data
-    geneData <- .fetchGeneData(object = object, genes = genes)
+    # Log counts
+    geneData <- .fetchGeneData(
+        object = object,
+        genes = genes,
+        assay = "logcounts"
+    )
 
     # Expression columns
     mean <- rowMeans(geneData)
