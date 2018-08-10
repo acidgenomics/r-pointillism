@@ -166,9 +166,12 @@ setMethod(
         # Customize legend
         if (isTRUE(legend)) {
             if (is_a_string(genes)) {
-                guideTitle <- "expression"
+                guideTitle <- "logcounts"
             } else {
-                guideTitle <- expression
+                guideTitle <- paste0(
+                    "logcounts", "\n",
+                    "(", expression, ")"
+                )
             }
             p <- p + guides(color = guide_colorbar(title = guideTitle))
         } else {
