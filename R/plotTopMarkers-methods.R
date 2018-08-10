@@ -74,11 +74,6 @@ setMethod(
             )
 
             lapply(genes, function(gene) {
-                markdownHeader(
-                    text = gene,
-                    level = headerLevel + 1L,
-                    asis = TRUE
-                )
                 p <- plotMarker(
                     object = object,
                     genes = gene,
