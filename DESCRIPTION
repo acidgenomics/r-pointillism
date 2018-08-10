@@ -27,13 +27,14 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SingleCellExperiment,
-    basejump (>= 0.7)
+    bcbioSingleCell (>= 0.2)
 Imports:
     assertive.base,
     assertive.numbers,
     assertive.properties,
     assertive.sets,
     assertive.types,
+    basejump (>= 0.7),
     Biobase,
     BiocGenerics,
     BiocParallel,

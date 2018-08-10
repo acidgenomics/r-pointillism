@@ -480,6 +480,42 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
+#' @importFrom bcbioSingleCell sampleData
+#' @export
+setMethod(
+    "sampleData",
+    signature("seurat"),
+    getMethod(
+        "sampleData",
+        "SingleCellExperiment",
+        asNamespace("bcbioSingleCell")
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump sampleData<-
+#' @export
+setMethod(
+    "sampleData<-",
+    signature(
+        object = "seurat",
+        value = "DataFrame"
+    ),
+    getMethod(
+        "sampleData<-",
+        signature(
+            object = "SingleCellExperiment",
+            value = "DataFrame"
+        ),
+        asNamespace("bcbioSingleCell")
+    )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump sampleNames
 #' @export
 setMethod(
