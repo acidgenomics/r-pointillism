@@ -1,9 +1,10 @@
 # SingleCellExperiment Example Data
 # Using splatter to generate simulated counts
-# 2018-08-03
+# 2018-08-10
 
 library(devtools)
 library(tidyverse)
+library(bcbioSingleCell)
 library(splatter)
 library(Seurat)
 library(Matrix)
@@ -28,16 +29,12 @@ sce$group <- as.factor(camel(sce$group))
 sce$sampleID <- sce$group
 sce$sampleName <- sce$sampleID
 stopifnot("sampleName" %in% colnames(colData(sce)))
-
-# dropout rate
-plot(
-    log10(rowMeans(assays(sce)[["TrueCounts"]])),
-    rowMeans(assays(sce)[["Dropout"]])
-)
-
+# Just keep raw counts
 assays(sce) <- assays(sce)["counts"]
+# Prepare rowRanges
 gr <- makeGRangesFromEnsembl("Homo sapiens", release = 92)
 rowRanges(sce) <- gr[seq_len(nrow(sce))]
+# Sanitize to camel case
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
@@ -69,7 +66,7 @@ stopifnot(identical(
     c("PCA", "TSNE", "UMAP")
 ))
 stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
-# Ensure `ident` is defined
+assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
 sce_small <- sce

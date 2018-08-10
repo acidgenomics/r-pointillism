@@ -67,6 +67,7 @@ setMethod(
         assertIsImplicitInteger(dimsUse)
         assert_is_of_length(dimsUse, 2L)
         assert_is_a_string(interestingGroups)
+        interestingGroups(object) <- interestingGroups
         assertIsColorScaleDiscreteOrNULL(color)
         assert_is_a_number(pointSize)
         assert_is_a_number(pointAlpha)
@@ -77,11 +78,10 @@ setMethod(
         assert_is_a_bool(legend)
         assertIsAStringOrNULL(title)
 
-        data <- fetchReducedDimData(
+        data <- .fetchReducedDimData(
             object = object,
             reducedDim = reducedDim,
-            dimsUse = dimsUse,
-            interestingGroups = interestingGroups
+            dimsUse = dimsUse
         )
         assert_is_data.frame(data)
         assert_is_subset(

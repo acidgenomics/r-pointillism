@@ -81,11 +81,14 @@ for the number of genes to plot here in a future update." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hbc/bcbioSingleCell">
+  <a href="https://github.com/steinbaugh.com/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +106,7 @@ for the number of genes to plot here in a future update." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Top Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/plotTopMarkers-methods.R'><code>R/plotTopMarkers-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/plotTopMarkers-methods.R'><code>R/plotTopMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>plotTopMarkers.Rd</code></div>
     </div>
 
@@ -172,7 +175,7 @@ for the number of genes to plot here in a future update.</p>
   <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
   <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
   <code><a href='plotFeature.html'>plotFeature</a></code>,
-  <code>plotKnownMarkersDetected</code>,
+  <code><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></code>,
   <code><a href='plotMarker.html'>plotMarker</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
   <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
   <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
@@ -200,14 +203,10 @@ for the number of genes to plot here in a future update.</p>
 #&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding
 #&gt; $ geneID         &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
 #&gt; $ geneName       &lt;fct&gt; SGCE, IRAK3
-#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome</div><div class='input'><span class='fu'>plotTopMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>tail</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt;    |                                                  | 0 % ~calculating     |+++++++++++++++++++++++++                         | 50% ~00s          
+#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome</div><div class='input'><span class='fu'>plotTopMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>tail</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 1 {.tabset}
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### ENSG00000090376
-#&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;    |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed = 02s</div></pre>
+#&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

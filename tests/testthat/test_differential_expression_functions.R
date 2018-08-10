@@ -5,8 +5,8 @@ context("Differential Expression Functions")
 # diffExp ======================================================================
 # Expression in cluster 3 relative to cluster 2
 object <- sce_small
-numerator <- colnames(object)[object$group == "group2"]
-denominator <- colnames(object)[object$group == "group1"]
+numerator <- colnames(object)[object[["group"]] == "group2"]
+denominator <- colnames(object)[object[["group"]] == "group1"]
 
 test_that("diffExp : zinbwave-edgeR", {
     x <- diffExp(
