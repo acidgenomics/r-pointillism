@@ -11,19 +11,18 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' # MHC class II genes
-#' title <- "MHC class II"
-#' genes <- rownames(sce_small)[which(grepl(
-#'     pattern = "^major histocompatibility complex, class II",
-#'     x = rowData(sce_small)$description
-#' ))]
-#' print(genes)
-#'
-#' plotMarker(sce_small, genes = genes)
+#' title <- "most abundant genes"
+#' genes <- counts(sce_small) %>%
+#'     Matrix::rowSums(.) %>%
+#'     sort(decreasing = TRUE) %>%
+#'     head(n = 4L) %>%
+#'     names()
+#' glimpse(genes)
+#' plotMarker(sce_small, genes = genes[[1L]])
 #' plotMarker(
 #'     object = sce_small,
 #'     genes = genes,
-#'     expression = "sum",
+#'     expression = "mean",
 #'     pointsAsNumbers = TRUE,
 #'     dark = TRUE,
 #'     label = FALSE,
@@ -97,7 +96,7 @@ setMethod(
         }
 
         # Fetch reduced dimension data
-        data <- fetchReducedDimExpressionData(
+        data <- .fetchReducedDimExpressionData(
             object = object,
             genes = genes,
             reducedDim = reducedDim
@@ -166,9 +165,12 @@ setMethod(
         # Customize legend
         if (isTRUE(legend)) {
             if (is_a_string(genes)) {
-                guideTitle <- "expression"
+                guideTitle <- "logcounts"
             } else {
-                guideTitle <- expression
+                guideTitle <- paste0(
+                    "logcounts", "\n",
+                    "(", expression, ")"
+                )
             }
             p <- p + guides(color = guide_colorbar(title = guideTitle))
         } else {

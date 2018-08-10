@@ -42,39 +42,6 @@ setGeneric(
 
 
 
-#' @rdname fetchData
-#' @export
-setGeneric(
-    "fetchGeneData",
-    function(object, ...) {
-        standardGeneric("fetchGeneData")
-    }
-)
-
-
-
-#' @rdname fetchData
-#' @export
-setGeneric(
-    "fetchReducedDimData",
-    function(object, ...) {
-        standardGeneric("fetchReducedDimData")
-    }
-)
-
-
-
-#' @rdname fetchData
-#' @export
-setGeneric(
-    "fetchReducedDimExpressionData",
-    function(object, ...) {
-        standardGeneric("fetchReducedDimExpressionData")
-    }
-)
-
-
-
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(

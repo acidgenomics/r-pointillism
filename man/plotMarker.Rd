@@ -70,19 +70,18 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \examples{
-# MHC class II genes
-title <- "MHC class II"
-genes <- rownames(sce_small)[which(grepl(
-    pattern = "^major histocompatibility complex, class II",
-    x = rowData(sce_small)$description
-))]
-print(genes)
-
-plotMarker(sce_small, genes = genes)
+title <- "most abundant genes"
+genes <- counts(sce_small) \%>\%
+    Matrix::rowSums(.) \%>\%
+    sort(decreasing = TRUE) \%>\%
+    head(n = 4L) \%>\%
+    names()
+glimpse(genes)
+plotMarker(sce_small, genes = genes[[1L]])
 plotMarker(
     object = sce_small,
     genes = genes,
-    expression = "sum",
+    expression = "mean",
     pointsAsNumbers = TRUE,
     dark = TRUE,
     label = FALSE,

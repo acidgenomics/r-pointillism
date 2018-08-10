@@ -1,3 +1,34 @@
 authors:
   Michael Steinbaugh:
     href: /
+
+reference:
+  - title: Package Information
+    contents:
+    - ends_with("-package")
+  - title: Coercion Methods
+    contents:
+    - coerce
+  - title: Differential Expression
+    contents:
+    - diffExp
+  - title: Cluster Statistics
+    contents:
+    - cellCountsPerCluster
+    - cellTypesPerCluster
+    - clusterCellCountsPerSample
+  - title: Marker Functions
+    contents:
+    - knownMarkersDetected
+    - readCellTypeMarkers
+    - sanitizeSeuratMarkers
+    - topMarkers
+  - title: Plot Functions
+    contents:
+    - starts_with("plot")
+  - title: Markers Data
+    contents:
+    - ends_with("_markers")
+  - title: Example Data
+    contents:
+    - ends_with("_small")

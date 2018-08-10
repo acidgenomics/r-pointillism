@@ -78,11 +78,14 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hbc/bcbioSingleCell">
+  <a href="https://github.com/steinbaugh.com/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -100,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extend S4 Methods for <code>seurat</code> Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioSingleCell/blob/master/R/zzz-seurat-SingleCellExperiment-methods.R'><code>R/zzz-seurat-SingleCellExperiment-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/zzz-seurat-SingleCellExperiment-methods.R'><code>R/zzz-seurat-SingleCellExperiment-methods.R</code></a></small>
     <div class="hidden name"><code>seurat-SingleCellExperiment.Rd</code></div>
     </div>
 
@@ -144,16 +147,6 @@
 <span class='fu'><a href='diffExp.html'>diffExp</a></span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>25L</span>,
   <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>5L</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='fetchData.html'>fetchGeneData</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='fetchData.html'>fetchReducedDimData</a></span>(<span class='no'>object</span>, <span class='no'>reducedDim</span>,
-  <span class='kw'>dimsUse</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>), <span class='no'>interestingGroups</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='fetchData.html'>fetchReducedDimExpressionData</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='no'>reducedDim</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>gene2symbol</span>(<span class='no'>object</span>)
@@ -200,7 +193,7 @@
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>))
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
+<span class='fu'><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></span>(<span class='no'>object</span>, <span class='no'>markers</span>,
   <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
@@ -231,7 +224,7 @@
   <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+<span class='fu'><a href='plotTopMarkers.html'>plotTopMarkers</a></span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
 
@@ -293,25 +286,9 @@ interesting groups. Must be formatted in camel case and intersect with
       <td><p>Object to assign.</p></td>
     </tr>
     <tr>
-      <th>genes</th>
-      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
-object.</p></td>
-    </tr>
-    <tr>
-      <th>gene2symbol</th>
-      <td><p><code>data.frame</code>. Gene-to-symbol mappings. Columns must
-contain <code>geneID</code> and <code>geneName</code>.</p></td>
-    </tr>
-    <tr>
       <th>reducedDim</th>
       <td><p><code>string</code>. Name of reduced dimension matrix slotted in
 <code>reducedDims()</code>. Includes TNSE, UMAP, PCA, for example.</p></td>
-    </tr>
-    <tr>
-      <th>dimsUse</th>
-      <td><p><code>integer</code>. Vector of length 2 that denotes the columns from
-the reduced dimension matrix to use for <code>centerX</code> and <code>centerY</code> column
-calculations. Defaults the first and second dimensions.</p></td>
     </tr>
     <tr>
       <th>expression</th>
@@ -321,6 +298,11 @@ defaults to the first argument in the <code>character</code> vector.</p></td>
     <tr>
       <th>headerLevel</th>
       <td><p><code>scalar integer</code> (<code>1</code>-<code>7</code>). R Markdown header level.</p></td>
+    </tr>
+    <tr>
+      <th>genes</th>
+      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
+object.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -378,6 +360,12 @@ dots (<code>FALSE</code>).</p></td>
     <tr>
       <th>title</th>
       <td><p><code>string</code> or <code>NULL</code>. Plot title.</p></td>
+    </tr>
+    <tr>
+      <th>dimsUse</th>
+      <td><p><code>integer</code>. Vector of length 2 that denotes the columns from
+the reduced dimension matrix to use for <code>centerX</code> and <code>centerY</code> column
+calculations. Defaults the first and second dimensions.</p></td>
     </tr>
     <tr>
       <th>fill</th>
