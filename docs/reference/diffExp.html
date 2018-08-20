@@ -65,7 +65,7 @@ datasets." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
       </span>
     </div>
 
@@ -220,19 +220,85 @@ additional information.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>bcbioSingleCell</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>[<span class='fu'>seq_len</span>(<span class='fl'>100L</span>), <span class='fu'>seq_len</span>(<span class='fl'>100L</span>)]
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/bcbioSingleCell/topics/filterCells'>filterCells</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Parameters:</span>
+#&gt; <span class='message'>  - &gt;= 0 UMIs per cell</span>
+#&gt; <span class='message'>  - &lt;= Inf UMIs per cell</span>
+#&gt; <span class='message'>  - &gt;= 0 genes per cell</span>
+#&gt; <span class='message'>  - &lt;= Inf genes per cell</span>
+#&gt; <span class='message'>  - &gt;= 0 novelty score</span>
+#&gt; <span class='message'>  - &lt;= 1 mitochondrial abundance</span>
+#&gt; <span class='message'>  - == Inf cells per sample</span>
+#&gt; <span class='message'>  - &gt;= 1 cells per gene</span>
+#&gt; <span class='message'>================================================================================</span>
+#&gt; <span class='message'>Cells:</span>
+#&gt; <span class='message'>     100 cells | prefilter</span>
+#&gt; <span class='message'>     100 cells | minUMIs &gt;= 0</span>
+#&gt; <span class='message'>     100 cells | maxUMIs &lt;= Inf</span>
+#&gt; <span class='message'>     100 cells | minGenes &gt;= 0</span>
+#&gt; <span class='message'>     100 cells | maxGenes &lt;= Inf</span>
+#&gt; <span class='message'>     100 cells | minNovelty &lt;= 0</span>
+#&gt; <span class='message'>     100 cells | maxMitoRatio &lt;= 1</span>
+#&gt; <span class='message'>     100 cells | nCells == Inf</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>group1 group2 </span>
+#&gt; <span class='message'>    48     52 </span>
+#&gt; <span class='message'>================================================================================</span>
+#&gt; <span class='message'>Genes:</span>
+#&gt; <span class='message'>     100 genes | prefilter</span>
+#&gt; <span class='message'>      82 genes | minCellsPerGene &gt;= 1</span>
+#&gt; <span class='message'>================================================================================</span>
+#&gt; <span class='message'>Summary:</span>
+#&gt; <span class='message'>  - 100 of 100 cells passed filtering (100%)</span>
+#&gt; <span class='message'>  - 82 of 100 genes passed filtering (82.0%)</span></div><div class='input'>
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='no'>object</span>)[<span class='no'>object</span>$<span class='no'>group</span> <span class='kw'>==</span> <span class='st'>"group2"</span>]
-<span class='fu'>glimpse</span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;  chr [1:52] "cell1" "cell2" "cell3" "cell4" "cell5" "cell7" "cell9" ...</div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='no'>object</span>)[<span class='no'>object</span>$<span class='no'>group</span> <span class='kw'>==</span> <span class='st'>"group1"</span>]
-<span class='fu'>glimpse</span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;  chr [1:48] "cell6" "cell8" "cell11" "cell15" "cell16" "cell18" "cell20" ...</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
+<span class='fu'>glimpse</span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;  chr [1:52] "cell1" "cell10" "cell12" "cell13" "cell14" "cell17" "cell19" ...</div><div class='input'>
+<span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='no'>object</span>)[<span class='no'>object</span>$<span class='no'>group</span> <span class='kw'>==</span> <span class='st'>"group1"</span>]
+<span class='fu'>glimpse</span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;  chr [1:48] "cell100" "cell11" "cell15" "cell16" "cell18" "cell20" "cell22" ...</div><div class='input'>
+<span class='co'># edgeR</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
     <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='no'>numerator</span>,
-    <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>
+    <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
+    <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
 #&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'> 15.616   1.351  17.506 </span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.306   0.106   1.898 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>  0.788   0.017   0.818 </span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.130   0.005   0.144 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
-#&gt; [1] "edgeR"</div></pre>
+#&gt; [1] "edgeR"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
+#&gt; coefficients           14    -none-           numeric  
+#&gt; fitted.values         700    -none-           numeric  
+#&gt; deviance                7    -none-           numeric  
+#&gt; method                  1    -none-           character
+#&gt; unshrunk.coefficients  14    -none-           numeric  
+#&gt; df.residual             7    -none-           numeric  
+#&gt; design                200    -none-           numeric  
+#&gt; offset                100    CompressedMatrix numeric  
+#&gt; dispersion              7    -none-           numeric  
+#&gt; weights               700    -none-           numeric  
+#&gt; prior.count             1    -none-           numeric  
+#&gt; samples                 3    data.frame       list     
+#&gt; prior.df                1    -none-           numeric  
+#&gt; AveLogCPM               7    -none-           numeric  
+#&gt; df.total                7    -none-           numeric  
+#&gt; table                   4    data.frame       list     
+#&gt; comparison              1    -none-           character
+#&gt; df.test                 7    -none-           numeric  </div><div class='input'>
+<span class='co'># DESeq2</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
+    <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='no'>numerator</span>,
+    <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
+    <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"DESeq2"</span>
+)</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-DESeq2</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
+#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.908   0.022   0.979 </span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2...</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  1.082   0.014   1.108 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
+#&gt; attr(,"package")
+#&gt; [1] "DESeq2"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
+#&gt;            6 DESeqResults           S4 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
