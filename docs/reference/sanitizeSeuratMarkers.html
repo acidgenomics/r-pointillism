@@ -34,7 +34,9 @@
   
 <meta property="og:title" content="Sanitize Seurat Markers — sanitizeSeuratMarkers" />
 
-<meta property="og:description" content="Currently only Seurat markers are supported." />
+<meta property="og:description" content="Currently only Seurat markers are supported. The function should properly
+sanitize seurat objects using either gene IDs or gene symbols in the
+rownames automatically." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +111,9 @@
 
     <div class="ref-description">
     
-    <p>Currently only Seurat markers are supported.</p>
+    <p>Currently only Seurat markers are supported. The function should properly
+sanitize <code>seurat</code> objects using either gene IDs or gene symbols in the
+rownames automatically.</p>
     
     </div>
 
@@ -163,7 +167,7 @@ the rownames of the returned marker <code>data.frame</code>.</p>
 <span class='no'>all_sanitized</span> <span class='kw'>&lt;-</span> <span class='fu'>sanitizeSeuratMarkers</span>(
     <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>all_markers</span>,
     <span class='kw'>rowRanges</span> <span class='kw'>=</span> <span class='fu'>rowRanges</span>(<span class='no'>object</span>)
-)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindAllMarkers()` return detected</span></div><div class='output co'>#&gt; <span class='message'>Sanitized to contain `geneID` and `geneName` columns from GRanges</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>all_sanitized</span>)</div><div class='output co'>#&gt; Observations: 754
+)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindAllMarkers()` return detected</span></div><div class='output co'>#&gt; <span class='message'>Row names match `geneID` metadata</span></div><div class='output co'>#&gt; <span class='message'>Sanitized to contain `geneID` and `geneName` columns from GRanges</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>all_sanitized</span>)</div><div class='output co'>#&gt; Observations: 754
 #&gt; Variables: 18
 #&gt; $ cluster        &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 #&gt; $ avgLogFC       &lt;dbl&gt; -1.0873159, -1.2686987, 1.2842170, 1.2026157, -1.093...
@@ -194,7 +198,7 @@ the rownames of the returned marker <code>data.frame</code>.</p>
 <span class='no'>ident_3_sanitized</span> <span class='kw'>&lt;-</span> <span class='fu'>sanitizeSeuratMarkers</span>(
     <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ident_3_markers</span>,
     <span class='kw'>rowRanges</span> <span class='kw'>=</span> <span class='fu'>rowRanges</span>(<span class='no'>object</span>)
-)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindMarkers()` return detected</span></div><div class='output co'>#&gt; <span class='message'>Sanitized to contain `geneID` and `geneName` columns from GRanges</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>ident_3_sanitized</span>)</div><div class='output co'>#&gt; Observations: 663
+)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindMarkers()` return detected</span></div><div class='output co'>#&gt; <span class='message'>Row names match `geneID` metadata</span></div><div class='output co'>#&gt; <span class='message'>Sanitized to contain `geneID` and `geneName` columns from GRanges</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>ident_3_sanitized</span>)</div><div class='output co'>#&gt; Observations: 663
 #&gt; Variables: 16
 #&gt; $ avgLogFC       &lt;dbl&gt; 1.0873159, 1.2686987, -1.2842170, -1.2026157, 1.0934...
 #&gt; $ pct1           &lt;dbl&gt; 0.979, 0.958, 0.938, 0.708, 0.938, 0.938, 0.917, 0.9...
