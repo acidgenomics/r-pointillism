@@ -91,17 +91,35 @@ additional information.
 }
 
 \examples{
-object <- sce_small
+library(bcbioSingleCell)
+object <- sce_small[seq_len(100L), seq_len(100L)]
+object <- filterCells(object)
+
 numerator <- colnames(object)[object$group == "group2"]
 glimpse(numerator)
+
 denominator <- colnames(object)[object$group == "group1"]
 glimpse(denominator)
+
+# edgeR
 x <- diffExp(
     object = object,
     numerator = numerator,
-    denominator = denominator
+    denominator = denominator,
+    caller = "edgeR"
 )
 class(x)
+summary(x)
+
+# DESeq2
+x <- diffExp(
+    object = object,
+    numerator = numerator,
+    denominator = denominator,
+    caller = "DESeq2"
+)
+class(x)
+summary(x)
 }
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.

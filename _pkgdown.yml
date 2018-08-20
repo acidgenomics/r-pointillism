@@ -9,6 +9,10 @@ reference:
   - title: Coercion Methods
     contents:
     - coerce
+  - title: Zero Count Inflation
+    contents:
+    - hasZinbwave
+    - runZinbwave
   - title: Differential Expression
     contents:
     - diffExp
