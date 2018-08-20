@@ -64,17 +64,35 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' object <- sce_small
+#' library(bcbioSingleCell)
+#' object <- sce_small[seq_len(100L), seq_len(100L)]
+#' object <- filterCells(object)
+#'
 #' numerator <- colnames(object)[object$group == "group2"]
 #' glimpse(numerator)
+#'
 #' denominator <- colnames(object)[object$group == "group1"]
 #' glimpse(denominator)
+#'
+#' # edgeR
 #' x <- diffExp(
 #'     object = object,
 #'     numerator = numerator,
-#'     denominator = denominator
+#'     denominator = denominator,
+#'     caller = "edgeR"
 #' )
 #' class(x)
+#' summary(x)
+#'
+#' # DESeq2
+#' x <- diffExp(
+#'     object = object,
+#'     numerator = numerator,
+#'     denominator = denominator,
+#'     caller = "DESeq2"
+#' )
+#' class(x)
+#' summary(x)
 NULL
 
 
@@ -102,7 +120,7 @@ NULL
 .zinbwave.DESeq2 <- function(object) {  # nolint
     stopifnot(packageVersion("DESeq2") >= 1.2)
     .assertHasDesignFormula(object)
-    # DESeq2 ===================================================================
+    # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2...")
     message(printString(system.time({
         dds <- DESeqDataSet(se = object, design = .designFormula)
@@ -125,7 +143,7 @@ NULL
 .zinbwave.edgeR <- function(object) {  # nolint
     stopifnot(packageVersion("edgeR") >= 3.22)
     .assertHasDesignFormula(object)
-    # edgeR ====================================================================
+    # edgeR --------------------------------------------------------------------
     message("Running edgeR...")
     counts <- as.matrix(counts(object))
     weights <- assay(object, "weights")
@@ -231,11 +249,14 @@ setMethod(
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
 
-        # Calculate the weights (e.g. `.zinbwave`)
-        weightsFunction <- get(paste("", zeroWeights, sep = "."))
+        # Calculate the weights (e.g. `runZinbwave`)
+        weightsFunction <- get(paste0("run", upperCamel(zeroWeights)))
         object <- weightsFunction(object)
 
-        # Run differential expression (e.g. `.zinbwave.edgeR`)
+        # Ensure raw counts matrix is dense
+        counts(object) <- as.matrix(counts(object))
+
+        # Perform differential expression (e.g. `.zinbwave.edgeR`)
         callerFunction <- get(paste("", zeroWeights, caller, sep = "."))
         object <- callerFunction(object)
 
