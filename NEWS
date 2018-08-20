@@ -1,3 +1,16 @@
+## pointillism 0.1.1 (2018-08-20)
+
+### New functions
+
+- Now exporting `runZinbwave()` and `hasZinbwave()`, which were previously
+  internal functions called by `diffExp()`.
+
+### Minor changes
+
+- Improved internal handling of `assays()` for objects that have zinbwave
+  calculations applied. Now it doesn't attempt to keep only the `counts` assay.
+
+
 ## pointillism 0.1.0 (2018-08-10)
 
 - Initial release.
