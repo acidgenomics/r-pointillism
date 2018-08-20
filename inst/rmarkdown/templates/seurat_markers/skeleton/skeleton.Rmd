@@ -14,7 +14,7 @@ params:
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-# Last modified 2018-08-15
+# Last modified 2018-08-20
 
 # Highly recommended to run this template on an HPC cluster
 # stopifnot(detectHPC())
