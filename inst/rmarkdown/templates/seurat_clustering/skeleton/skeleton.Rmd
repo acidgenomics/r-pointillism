@@ -23,7 +23,6 @@ params:
 
 bcbioSingleCell::prepareSingleCellTemplate()
 source("_setup.R")
-
 library(pointillism)
 library(Seurat)
 
