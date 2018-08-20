@@ -24,7 +24,7 @@
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
 #'   assertIsGene2symbol assertIsImplicitInteger camel convertGenesToSymbols
 #'   gene2symbol markdownHeader matchInterestingGroups printString
-#'   readFileByExtension theme_midnight theme_paperwhite
+#'   readFileByExtension theme_midnight theme_paperwhite upperCamel
 #' @importFrom Biobase rowMedians
 #' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel SerialParam
