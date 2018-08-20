@@ -18,7 +18,9 @@ the markers \code{data.frame}.}
 \code{data.frame}, arranged by adjusted P value.
 }
 \description{
-Currently only Seurat markers are supported.
+Currently only Seurat markers are supported. The function should properly
+sanitize \code{seurat} objects using either gene IDs or gene symbols in the
+rownames automatically.
 }
 \note{
 \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} maps the counts matrix rownames correctly in

@@ -1,6 +1,8 @@
 #' Sanitize Seurat Markers
 #'
-#' Currently only Seurat markers are supported.
+#' Currently only Seurat markers are supported. The function should properly
+#' sanitize `seurat` objects using either gene IDs or gene symbols in the
+#' rownames automatically.
 #'
 #' @note [Seurat::FindAllMarkers()] maps the counts matrix rownames correctly in
 #'   the `gene` column, whereas [Seurat::FindMarkers()] maps them correctly in
@@ -72,6 +74,24 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         all <- FALSE
         data <- rownames_to_column(data)
     }
+
+    # Determine whether user is using gene IDs or symbols with Seurat
+    if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneID"]])) {
+        idCol <- "geneID"
+    } else if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneName"]])) {
+        message("Use `geneID` instead of `geneName` for row names")
+        idCol <- "geneName"
+    } else {
+        stop(paste(
+            "Failed to match marker rownames to gene identifiers in rowRanges.",
+            "Ensure that rowRanges contain `geneID` and `geneName` mcols."
+        ))
+    }
+    message(paste0("Row names match `", idCol, "` metadata"))
+    names(rowRanges) <- mcols(rowRanges)[[idCol]] %>%
+        as.character() %>%
+        make.unique()
+    # Now require that all of the rownames are defined in rowRanges
     stopifnot(all(data[["rowname"]] %in% names(rowRanges)))
 
     # Now ready to coerce
