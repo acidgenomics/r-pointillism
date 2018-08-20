@@ -61,7 +61,7 @@ For more information on this issue, consult `help("dyn.load")` in the [R][] docu
 
 ## References
 
-The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/C8EMxl) on [Paperpile][].
+The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/app/shared/5PLRi1) on [Paperpile][].
 
 [Bioconductor]: https://bioconductor.org
 [BiocManager]: https://cran.r-project.org/package=BiocManager
