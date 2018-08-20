@@ -21,7 +21,7 @@ params:
 # Highly recommended to run this template on an HPC cluster
 # stopifnot(detectHPC())
 
-pointillism::prepareSingleCellTemplate()
+bcbioSingleCell::prepareSingleCellTemplate()
 source("_setup.R")
 
 library(pointillism)
