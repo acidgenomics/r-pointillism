@@ -27,7 +27,8 @@
 #'   readFileByExtension theme_midnight theme_paperwhite upperCamel
 #' @importFrom Biobase rowMedians
 #' @importFrom BiocGenerics cbind counts counts<- do.call
-#' @importFrom BiocParallel SerialParam
+#' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
+#'   SerialParam
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by
 #'   group_vars left_join mutate mutate_at mutate_if n pull
@@ -54,5 +55,5 @@
 #'   rownames_to_column tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
-#' @importFrom zinbwave glmWeightedF zinbwave
+#' @importFrom zinbwave glmWeightedF zinbFit zinbwave
 NULL

@@ -4,6 +4,9 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @inheritParams zinbwave::zinbModel
+#' @inheritParams zinbwave::zinbFit
+#' @inheritParams zinbwave::zinbwave
 #'
 #' @return `logical`.
 #' @export
@@ -26,72 +29,151 @@ hasZinbwave <- function(object) {
 #' zinbwave will calculate `normalizedValues` and `weights` matrices, which will
 #' be defined in the [assays()] slot.
 #'
+#' @note zinbwave defaults to using [BiocParallel::bpparam()] to register the
+#'   number of cores to use (`BPPARAM` argument), but we've found that this
+#'   works inconsistently across installations. Currently, we recommend using
+#'   [BiocParallel::SerialParam()] by default, which will run in serial, using a
+#'   single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should
+#'   work to run with multiple cores.
+#'
 #' @family Zero Count Inflation Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @inheritParams zinbwave::zinbwave
 #' @param recalculate `logical`. Force recalculation of weights.
+#' @param verbose `logical`. Run zinbwave in verbose model (for debugging).
 #' @param ... Passthrough arguments to [zinbwave::zinbwave()].
 #'
-#' @return `SingleCellExperiment`.
+#' @return Modified object (S4 class must extend `SingleCellExperiment`), with
+#'   weights added to [assays()].
 #' @export
 #'
 #' @seealso [zinbwave::zinbwave()].
 #'
 #' @examples
-#' library(bcbioSingleCell)
-#' object <- sce_small[seq_len(100L), seq_len(100L)]
-#' object <- filterCells(object)
-#' zinb <- runZinbwave(object)
+#' Y <- sce_small
+#' Y <- bcbioSingleCell::filterCells(Y)
+#' # Test using 200 non-zero genes
+#' Y <- Y[seq_len(200L), ]
+#'
+#' # Serial
+#' zinb <- runZinbwave(
+#'     Y = Y,
+#'     BPPARAM = BiocParallel::SerialParam()
+#' )
+#' print(zinb)
+#' assayNames(zinb)
+#'
+#' # Multicore
+#' zinb <- runZinbwave(
+#'     Y = Y,
+#'     BPPARAM = BiocParallel::MulticoreParam(),
+#'     verbose = TRUE
+#' )
 #' print(zinb)
 #' assayNames(zinb)
 runZinbwave <- function(
-    object,
-    BPPARAM = BiocParallel::SerialParam(),  # nolint
+    Y,  # nolint
+    K = 0L,  # nolint
     epsilon = 1e12,
+    # Use serial by default, for cross-platform compatibility.
+    BPPARAM = BiocParallel::SerialParam(),  # nolint
     recalculate = FALSE,
+    verbose = FALSE,
     ...
 ) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    # Add an assert check for "Param" class object
-    assert_is_a_number(epsilon)
-    assert_is_a_bool(recalculate)
-
-    # Early return if weights are already calculated
+    stopifnot(is(Y, "SingleCellExperiment"))
+    # Early return if weights are already calculated.
     if (
-        hasZinbwave(object) &&
+        hasZinbwave(Y) &&
         !isTRUE(recalculate)
     ) {
-        message("Object already has zinbwave weights in assays")
-        return(object)
+        message("Y already has zinbwave weights in assays")
+        return(Y)
     }
 
-    # Ensure S4 object is coerced to SingleCellExperiment class
-    message("Running zinbwave...")
-    Y <- as(object, "SingleCellExperiment")  # nolint
+    # Assert checks ------------------------------------------------------------
+    assert_is_a_number(K)
+    assert_is_a_number(epsilon)
+    # Require valid BiocParallel bpparam.
+    stopifnot(identical(
+        attributes(class(BPPARAM))[["package"]],
+        "BiocParallel"
+    ))
+    stopifnot(grepl("Param$", class(BPPARAM)))
+    assert_is_a_bool(recalculate)
+    assert_is_a_bool(verbose)
+
+    # BiocParallel -------------------------------------------------------------
+    # Use a progress bar (only applies to multicore).
+    bpprogressbar(BPPARAM) <- TRUE
+
+    # Inform the user whether running in parallel or serial.
+    bpparamInfo <- capture.output(BPPARAM)
+    message(paste(
+        "BiocParallel param registered:",
+        paste(bpparamInfo, collapse = "\n"),
+        sep = "\n"
+    ))
+
+    # Prepare Y object for zinbwave --------------------------------------------
+    # We're returnining original object class, with modified assays.
+    # Note that `zinbwave()` otherwise returns `SingleCellExperiment`.
+    object <- Y
+
+    # Coerce to SingleCellExperiment, for consistency.
+    Y <- as(Y, "SingleCellExperiment")
 
     # zinbFit doesn't currently support sparse counts.
     # Ensure they are coerced to a dense matrix.
-    # Keep an original copy in case they're sparse, and reslot.
-    counts <- counts(Y)
+    # Keep an original copy in case they're sparse, and reslot before return.
     counts(Y) <- as.matrix(counts(Y))
 
-    # This step can take a long time for large datasets (i.e. hours)
-    message(printString(system.time({
-        zinb <- zinbwave(
-            Y = Y,
-            K = 0L,
-            BPPARAM = BPPARAM,
-            epsilon = epsilon,
-            ...
-        )
-    })))
+    # Fit a ZINB regression model ----------------------------------------------
+    message("Fitting a ZINB regression model...")
+    message(paste(
+        "CPU time used:",
+        printString(system.time({
+            fittedModel <- zinbFit(
+                Y = Y,
+                K = K,
+                epsilon = epsilon,
+                BPPARAM = BPPARAM,
+                verbose = verbose
+            )
+        })),
+        sep = "\n"
+    ))
+    message(paste(
+        capture.output(print(fittedModel)),
+        collapse = "\n"
+    ))
+
+    # zinbwave -----------------------------------------------------------------
+    message("Running zinbwave...")
+    message(paste(
+        "CPU time used:",
+        printString(system.time({
+            zinb <- zinbwave(
+                Y = Y,
+                fitted_model = fittedModel,
+                K = K,
+                epsilon = epsilon,
+                BPPARAM = BPPARAM,
+                verbose = verbose,
+                ...
+            )
+        })),
+        sep = "\n"
+    ))
     stopifnot(hasZinbwave(zinb))
 
-    # Re-slot original sparse counts
+    # Return -------------------------------------------------------------------
+    # Re-slot original raw counts, in case they are sparse.
+    counts <- counts(object)
     assert_are_identical(dimnames(zinb), dimnames(counts))
-    counts(zinb) <- counts
-
-    zinb
+    assays(object) <- assays(zinb)
+    counts(object) <- counts
+    object
 }
