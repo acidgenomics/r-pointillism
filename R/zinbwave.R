@@ -37,9 +37,9 @@ hasZinbwave <- function(object) {
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @inheritParams zinbwave::zinbModel
-#' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbwave
+#' @inheritParams zinbwave::zinbFit
+#' @inheritParams zinbwave::zinbModel
 #' @param recalculate `logical`. Force recalculation of weights.
 #' @param verbose `logical`. Run zinbwave in verbose model (for debugging).
 #' @param ... Passthrough arguments to [zinbwave::zinbwave()].
