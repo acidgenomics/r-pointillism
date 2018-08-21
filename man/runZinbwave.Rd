@@ -45,9 +45,9 @@ single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocPar
 work to run with multiple cores.
 }
 \examples{
+# Example using 200 non-zero genes
 Y <- sce_small
 Y <- bcbioSingleCell::filterCells(Y)
-# Test using 200 non-zero genes
 Y <- Y[seq_len(200L), ]
 
 # Serial

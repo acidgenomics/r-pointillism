@@ -51,9 +51,9 @@ hasZinbwave <- function(object) {
 #' @seealso [zinbwave::zinbwave()].
 #'
 #' @examples
+#' # Example using 200 non-zero genes
 #' Y <- sce_small
 #' Y <- bcbioSingleCell::filterCells(Y)
-#' # Test using 200 non-zero genes
 #' Y <- Y[seq_len(200L), ]
 #'
 #' # Serial
