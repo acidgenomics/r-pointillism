@@ -4,11 +4,13 @@
 \alias{runZinbwave}
 \title{Calculate ZINB-WaVE Weights}
 \usage{
-runZinbwave(object, BPPARAM = BiocParallel::SerialParam(),
-  epsilon = 1e+12, recalculate = FALSE, ...)
+runZinbwave(Y, K = 0L, epsilon = 1e+12,
+  BPPARAM = BiocParallel::SerialParam(), recalculate = FALSE,
+  verbose = FALSE, ...)
 }
 \arguments{
-\item{object}{Object.}
+\item{Y}{The data (genes in rows, samples in columns). Currently implemented
+only for \code{SummarizedExperiment}.}
 
 \item{BPPARAM}{object of class \code{bpparamClass} that specifies the
 back-end to be used for computations. See
@@ -16,10 +18,13 @@ back-end to be used for computations. See
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
+\item{verbose}{\code{logical}. Run zinbwave in verbose model (for debugging).}
+
 \item{...}{Passthrough arguments to \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.}
 }
 \value{
-\code{SingleCellExperiment}.
+Modified object (S4 class must extend \code{SingleCellExperiment}), with
+weights added to \code{\link[=assays]{assays()}}.
 }
 \description{
 Attempt to return stashed zinbwave calcs, or recalculate.
@@ -28,11 +33,34 @@ Attempt to return stashed zinbwave calcs, or recalculate.
 zinbwave will calculate \code{normalizedValues} and \code{weights} matrices, which will
 be defined in the \code{\link[=assays]{assays()}} slot.
 }
+\note{
+zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the
+number of cores to use (\code{BPPARAM} argument), but we've found that this
+works inconsistently across installations. Currently, we recommend using
+\code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}} by default, which will run in serial, using a
+single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}} should
+work to run with multiple cores.
+}
 \examples{
-library(bcbioSingleCell)
-object <- sce_small[seq_len(100L), seq_len(100L)]
-object <- filterCells(object)
-zinb <- runZinbwave(object)
+Y <- sce_small
+Y <- bcbioSingleCell::filterCells(Y)
+# Test using 200 non-zero genes
+Y <- Y[seq_len(200L), ]
+
+# Serial
+zinb <- runZinbwave(
+    Y = Y,
+    BPPARAM = BiocParallel::SerialParam()
+)
+print(zinb)
+assayNames(zinb)
+
+# Multicore
+zinb <- runZinbwave(
+    Y = Y,
+    BPPARAM = BiocParallel::MulticoreParam(),
+    verbose = TRUE
+)
 print(zinb)
 assayNames(zinb)
 }
