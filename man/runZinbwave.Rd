@@ -9,8 +9,11 @@ runZinbwave(Y, K = 0L, epsilon = 1e+12,
   verbose = FALSE, ...)
 }
 \arguments{
-\item{Y}{The data (genes in rows, samples in columns). Currently implemented
-only for \code{SummarizedExperiment}.}
+\item{Y}{The data (genes in rows, samples in columns).}
+
+\item{K}{integer. Number of latent factors.}
+
+\item{epsilon}{nonnegative scalar. Regularization parameter.}
 
 \item{BPPARAM}{object of class \code{bpparamClass} that specifies the
 back-end to be used for computations. See
@@ -27,11 +30,10 @@ Modified object (S4 class must extend \code{SingleCellExperiment}), with
 weights added to \code{\link[=assays]{assays()}}.
 }
 \description{
-Attempt to return stashed zinbwave calcs, or recalculate.
-}
-\details{
 zinbwave will calculate \code{normalizedValues} and \code{weights} matrices, which will
-be defined in the \code{\link[=assays]{assays()}} slot.
+be defined in the \code{\link[=assays]{assays()}} slot. If these values have already been
+calculated, the object will be returned unmodified, unless
+\code{recalculate = TRUE}.
 }
 \note{
 zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the
