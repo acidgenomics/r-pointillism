@@ -122,7 +122,7 @@ runZinbwave <- function(
     object <- Y
 
     # Coerce to SingleCellExperiment, for consistency.
-    Y <- as(Y, "SingleCellExperiment")
+    Y <- as(Y, "SingleCellExperiment")  # nolint
 
     # zinbFit doesn't currently support sparse counts.
     # Ensure they are coerced to a dense matrix.
