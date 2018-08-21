@@ -9,7 +9,8 @@ runZinbwave(Y, K = 0L, epsilon = 1e+12,
   verbose = FALSE, ...)
 }
 \arguments{
-\item{Y}{The data (genes in rows, samples in columns).}
+\item{Y}{The data (genes in rows, samples in columns). Currently implemented
+only for \code{SummarizedExperiment}.}
 
 \item{K}{integer. Number of latent factors.}
 
