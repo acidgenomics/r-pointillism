@@ -4,9 +4,6 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @inheritParams zinbwave::zinbModel
-#' @inheritParams zinbwave::zinbFit
-#' @inheritParams zinbwave::zinbwave
 #'
 #' @return `logical`.
 #' @export
@@ -24,10 +21,10 @@ hasZinbwave <- function(object) {
 
 #' Calculate ZINB-WaVE Weights
 #'
-#' Attempt to return stashed zinbwave calcs, or recalculate.
-#'
 #' zinbwave will calculate `normalizedValues` and `weights` matrices, which will
-#' be defined in the [assays()] slot.
+#' be defined in the [assays()] slot. If these values have already been
+#' calculated, the object will be returned unmodified, unless
+#' `recalculate = TRUE`.
 #'
 #' @note zinbwave defaults to using [BiocParallel::bpparam()] to register the
 #'   number of cores to use (`BPPARAM` argument), but we've found that this
@@ -40,6 +37,8 @@ hasZinbwave <- function(object) {
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @inheritParams zinbwave::zinbModel
+#' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbwave
 #' @param recalculate `logical`. Force recalculation of weights.
 #' @param verbose `logical`. Run zinbwave in verbose model (for debugging).
