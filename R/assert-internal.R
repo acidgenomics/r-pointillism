@@ -31,6 +31,7 @@
     # Require a tibble.
     assert_is_tbl_df(object)
     # Require grouping by `cellType` column.
+    # Can use `attr()` instead of `group_vars()` here.
     assert_are_identical(group_vars(object), "cellType")
     # Require that there are genes.
     assert_has_rows(object)
@@ -40,16 +41,21 @@
 
 .assertIsKnownMarkersDetected <- function(object) {
     .assertIsKnownMarkers(object)
-    assert_is_subset(
-        x = c("avgLogFC", "cluster", "padj"),
-        y = colnames(object)
+    requiredCols <- c(
+        "cellType",  # bcbio
+        "cluster",   # Seurat
+        "geneID",    # bcbio
+        "geneName",  # bcbio
+        "avgLogFC",  # Seurat v2.1
+        "padj"       # Seurat v2.1
     )
+    assert_is_subset(requiredCols, colnames(object))
 }
 
 
 
 .assertIsSanitizedMarkers <- function(object) {
-    stopifnot(.isSanitizedMarkers(data))
+    stopifnot(.isSanitizedMarkers(object))
 }
 
 
