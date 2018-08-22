@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -103,19 +103,44 @@
       <small>Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="pointillism-0-1-1-2018-08-20" class="section level2">
+    <div id="pointillism-0-1-2-2018-08-22" class="section level2">
 <h2 class="hasAnchor">
-<a href="#pointillism-0-1-1-2018-08-20" class="anchor"></a>pointillism 0.1.1 (2018-08-20)</h2>
+<a href="#pointillism-0-1-2-2018-08-22" class="anchor"></a>pointillism 0.1.2 (2018-08-22)</h2>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h3>
 <ul>
-<li>Now exporting <code><a href="../reference/runZinbwave.html">runZinbwave()</a></code> and <code><a href="../reference/hasZinbwave.html">hasZinbwave()</a></code>, which were previously internal functions called by <code><a href="../reference/diffExp.html">diffExp()</a></code>.</li>
+<li>
+<code><a href="../reference/clusterID.html">clusterID()</a></code>: S4 generic that returns the cell cluster identity mappings as a <code>factor</code> for all cells.</li>
+<li>
+<code><a href="../reference/findMarkers.html">findMarkers()</a></code>: Utility function that wraps <code><a href="../reference/diffExp.html">diffExp()</a></code> to identify cluster- specific genes across all clusters.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Converted <code><a href="../reference/runZinbwave.html">runZinbwave()</a></code> to an S4 method that works on <code>SingleCellExperiment</code>. For <code>seurat</code> objects, coerce to <code>SingleCellExperiment</code> before calculating weights.</li>
+<li>
+<code><a href="../reference/plotDot.html">plotDot()</a></code> now uses default [ggplot2][] color scale, unless specified.</li>
+<li>
+<code><a href="../reference/plotReducedDim.html">plotReducedDim()</a></code>, <code><a href="../reference/plotMarker.html">plotMarker()</a></code>: <code>theme_paperwhite()</code> is no longer used by default. Removed <code>grid</code> and <code>aspectRatio</code> arguments to simplify [ggplot2][] code handling.</li>
+</ul>
+</div>
+</div>
+    <div id="pointillism-0-1-1-2018-08-20" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-1-1-2018-08-20" class="anchor"></a>pointillism 0.1.1 (2018-08-20)</h2>
+<div id="new-functions-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<ul>
+<li>Now exporting <code><a href="../reference/runZinbwave.html">runZinbwave()</a></code> and <code>hasZinbwave()</code>, which were previously internal functions called by <code><a href="../reference/diffExp.html">diffExp()</a></code>.</li>
+</ul>
+</div>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved internal handling of <code>assays()</code> for objects that have zinbwave calculations applied. Now it doesn’t attempt to keep only the <code>counts</code> assay.</li>
 </ul>
@@ -134,6 +159,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pointillism-0-1-2-2018-08-22">0.1.2</a></li>
         <li><a href="#pointillism-0-1-1-2018-08-20">0.1.1</a></li>
         <li><a href="#pointillism-0-1-0-2018-08-10">0.1.0</a></li>
       </ul>

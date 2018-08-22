@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Does Object Contain ZINB-WaVE Weights — hasZinbwave • pointillism</title>
+<title>Cluster Identity — clusterID • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Does Object Contain ZINB-WaVE Weights — hasZinbwave" />
+<meta property="og:title" content="Cluster Identity — clusterID" />
 
-<meta property="og:description" content="Does Object Contain ZINB-WaVE Weights" />
+<meta property="og:description" content="Cluster Identity" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -102,18 +102,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Does Object Contain ZINB-WaVE Weights</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/zinbwave.R'><code>R/zinbwave.R</code></a></small>
-    <div class="hidden name"><code>hasZinbwave.Rd</code></div>
+    <h1>Cluster Identity</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/clusterID-methods.R'><code>R/clusterID-methods.R</code></a></small>
+    <div class="hidden name"><code>clusterID.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Does Object Contain ZINB-WaVE Weights</p>
+    <p>Cluster Identity</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hasZinbwave</span>(<span class='no'>object</span>)</pre>
+    <pre class="usage"><span class='fu'>clusterID</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>clusterID</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>clusterID</span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,19 +128,22 @@
       <th>object</th>
       <td><p>Object.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>logical</code>.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Zero Count Inflation Functions: <code><a href='runZinbwave.html'>runZinbwave</a></code></p></div>
+    <p><code>factor</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hasZinbwave</span>(<span class='no'>sce_small</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>clusterID</span>(<span class='no'>sce_small</span>)</div><div class='output co'>#&gt;   [1] 1 0 0 0 0 0 1 0 0 1 0 0 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0
+#&gt;  [38] 1 0 1 0 0 0 0 1 0 0 1 0 0 0 1 1 1 1 0 1 1 0 0 1 1 0 0 1 1 1 0 0 0 0 0 1 0
+#&gt;  [75] 1 1 0 1 0 1 0 0 0 0 0 0 1 0 0 1 0 1 1 0 1 1 0 0 0 1
+#&gt; Levels: 0 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -142,8 +151,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
