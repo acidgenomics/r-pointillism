@@ -7,6 +7,9 @@
 cellTypesPerCluster(data, min = 1L, max = Inf)
 }
 \arguments{
+\item{data}{\code{data.frame} grouped by \code{cellType}. \code{\link[=knownMarkersDetected]{knownMarkersDetected()}}
+return.}
+
 \item{min}{\code{scalar integer}. Minimum number of marker genes per cluster.}
 
 \item{max}{\code{scalar integer}. Maximum number of marker genes per cluster.}
@@ -19,7 +22,7 @@ significant known makers per cell type.
 Cell Types per Cluster
 }
 \examples{
-x <- cellTypesPerCluster(known_markers_small)
+x <- cellTypesPerCluster(known_markers_detected_small)
 glimpse(x)
 }
 \seealso{
