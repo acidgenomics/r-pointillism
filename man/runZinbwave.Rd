@@ -80,7 +80,7 @@ assayNames(zinb)
 \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.
 
 Other Differential Expression Functions: \code{\link{diffExp}},
-  \code{\link{findAllMarkers}}
+  \code{\link{findMarkers}}
 }
 \author{
 Michael Steinbaugh
