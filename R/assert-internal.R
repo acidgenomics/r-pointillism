@@ -40,15 +40,16 @@
 
 .assertIsKnownMarkersDetected <- function(object) {
     .assertIsKnownMarkers(object)
-    .assertIsSanitizedMarkers(object)
+    assert_is_subset(
+        x = c("avgLogFC", "cluster", "padj"),
+        y = colnames(object)
+    )
 }
 
 
 
 .assertIsSanitizedMarkers <- function(object) {
     stopifnot(.isSanitizedMarkers(data))
-    # Require average log fold change and adjusted P values.
-    assert_is_subset(c("avgLogFC", "padj"), colnames(object))
 }
 
 

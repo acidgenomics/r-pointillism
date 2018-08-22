@@ -35,7 +35,10 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Plot Known Markers Detected
 }
 \examples{
-plotKnownMarkersDetected(sce_small, markers = known_markers_small)
+plotKnownMarkersDetected(
+    object = sce_small,
+    markers = known_markers_detected_small
+)
 }
 \seealso{
 Other Clustering Functions: \code{\link{cellTypesPerCluster}},

@@ -12,7 +12,7 @@
 #' @examples
 #' plotKnownMarkersDetected(
 #'     object = sce_small,
-#'     markers = known_markers_small
+#'     markers = known_markers_detected_small
 #' )
 NULL
 
