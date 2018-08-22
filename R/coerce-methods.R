@@ -16,7 +16,6 @@ NULL
 
 
 
-# Constructors =================================================================
 .as.SingleCellExperiment.seurat <- function(object) {  # nolint
     validObject(object)
     # Sanitize legacy seurat objects that contain Ensembl IDs in names
@@ -27,7 +26,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname coerce
 #' @name coerce-SingleCellExperiment-seurat
 #'
