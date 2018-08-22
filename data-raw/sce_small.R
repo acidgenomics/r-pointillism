@@ -1,6 +1,6 @@
 # SingleCellExperiment Example Data
 # Using splatter to generate simulated counts
-# 2018-08-10
+# 2018-08-21
 
 library(devtools)
 library(tidyverse)
@@ -38,11 +38,14 @@ rowRanges(sce) <- gr[seq_len(nrow(sce))]
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
+# Remove genes with all zero counts
+sce <- filterCells(sce)
 
 
 
 # seurat_small =================================================================
 seurat_small <- as(sce, "seurat") %>%
+    convertGenesToSymbols() %>%
     NormalizeData() %>%
     FindVariableGenes(do.plot = FALSE) %>%
     ScaleData() %>%
@@ -58,7 +61,9 @@ stopifnot("sampleName" %in% colnames(colData(seurat_small)))
 
 # sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID)
-seurat_sce <- as(seurat_small, "SingleCellExperiment")
+seurat_sce <- seurat_small %>%
+    as("SingleCellExperiment") %>%
+    convertSymbolsToGenes()
 stopifnot("ident" %in% colnames(colData(seurat_sce)))
 # Ensure that dimensional reduction data is slotted correctly
 stopifnot(identical(
@@ -69,6 +74,8 @@ stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
+# Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit)
+sce <- runZinbwave(sce)
 sce_small <- sce
 
 
@@ -84,9 +91,13 @@ all_markers_small <- all_markers
 
 
 # known_markers_small ==========================================================
+known <- tibble(
+    cellType = c("cell_type_1", "cell_type_2"),
+    geneID = pull(all_markers, "geneID")[seq_len(2L)]
+)
 known_markers_small <- knownMarkersDetected(
     all = all_markers_small,
-    known = cell_type_markers[["homoSapiens"]]
+    known = known
 )
 
 
