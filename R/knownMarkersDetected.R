@@ -28,14 +28,9 @@
 #' @export
 #'
 #' @examples
-#' all <- all_markers_small
-#' known <- tibble(
-#'     cellType = c("cell_type_1", "cell_type_2"),
-#'     geneID = pull(all_markers_small, "geneID")[seq_len(2)]
-#' )
 #' x <- knownMarkersDetected(
-#'     all = all,
-#'     known = known
+#'     all = all_markers_small,
+#'     known = known_markers_small
 #' )
 #' head(x)
 knownMarkersDetected <- function(

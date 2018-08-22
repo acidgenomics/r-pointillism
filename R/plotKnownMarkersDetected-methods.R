@@ -10,7 +10,10 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' plotKnownMarkersDetected(sce_small, markers = known_markers_small)
+#' plotKnownMarkersDetected(
+#'     object = sce_small,
+#'     markers = known_markers_small
+#' )
 NULL
 
 
@@ -27,10 +30,7 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        assert_has_rows(markers)
-        stopifnot(is(markers, "grouped_df"))
-        assert_has_rows(markers)
-        assert_is_subset("cellType", colnames(markers))
+        .assertHasKnownMarkers(markers)
         reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
