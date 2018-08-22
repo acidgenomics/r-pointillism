@@ -9,11 +9,20 @@
 #' @return Object of new class.
 #'
 #' @seealso
+#' - [methods::as()].
 #' - [Seurat::CreateSeuratObject()].
 #' - [Seurat::Convert()].
-#' - [methods::as()].
-#' - [methods::setAs()].
 NULL
+
+
+
+.as.SingleCellExperiment.seurat <- function(object) {  # nolint
+    validObject(object)
+    # Sanitize legacy seurat objects that contain Ensembl IDs in names
+    names(rownames(object@raw.data)) <- NULL
+    names(rownames(object@data)) <- NULL
+    as.SingleCellExperiment(object)
+}
 
 
 
@@ -82,10 +91,7 @@ setAs(
     from = "seurat",
     to = "SingleCellExperiment",
     function(from) {
-        validObject(from)
-        names(rownames(from@raw.data)) <- NULL
-        names(rownames(from@data)) <- NULL
-        to <- as.SingleCellExperiment(from)
+        to <- .as.SingleCellExperiment.seurat(from)
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
         to
