@@ -42,6 +42,28 @@ setGeneric(
 
 
 
+#' @rdname findAllMarkers
+#' @export
+setGeneric(
+    "findAllMarkers",
+    function(object, ...) {
+        standardGeneric("findAllMarkers")
+    }
+)
+
+
+
+#' @rdname ident
+#' @export
+setGeneric(
+    "ident",
+    function(object, ...) {
+        standardGeneric("ident")
+    }
+)
+
+
+
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(
@@ -158,5 +180,16 @@ setGeneric(
     "plotViolin",
     function(object, ...) {
         standardGeneric("plotViolin")
+    }
+)
+
+
+
+#' @rdname runZinbwave
+#' @export
+setGeneric(
+    "runZinbwave",
+    function(Y, ...) {
+        standardGeneric("runZinbwave")
     }
 )
