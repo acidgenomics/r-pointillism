@@ -1,8 +1,13 @@
 #' Differential Expression
 #'
-#' We are currently recommending the ZINB-WaVE method over zingeR, since it is
-#' faster, and has been show to be more sensitive for most single-cell RNA-seq
-#' datasets.
+#' Perform pairwise differential expression across groups of cells by fitting
+#' to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
+#' Currently supports edgeR and DESeq2 as DE callers.
+#'
+#' This step will run a lot faster if you pre-calculate the ZINB weights using
+#' the [runZinbwave()] function, which will stash the weights into the
+#' [assays()] slot of the object. Running zinbwave across the entire set of
+#' filtered cells also has greater sensitivity for weight calculations.
 #'
 #' @section zinbwave:
 #' We are currently using an epsilon setting of `1e12`, as recommended by the
@@ -36,6 +41,10 @@
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::DiffExpTest()] for
 #' additional information.
+#'
+#' @note We are currently recommending the ZINB-WaVE method over zingeR, since
+#'   it is faster, and has been show to be more sensitive for most single-cell
+#'   RNA-seq datasets.
 #'
 #' @name diffExp
 #' @family Differential Expression Functions
