@@ -87,11 +87,19 @@ all_markers_small <- sanitizeSeuratMarkers(
     data = all_markers_small,
     rowRanges = rowRanges(seurat_small)
 )
+
 known_markers_small <- tibble(
     cellType = c("cell_type_1", "cell_type_2"),
     geneID = pull(all_markers_small, "geneID")[seq_len(2L)]
 ) %>%
     group_by(cellType)
+# Write out an example CSV that we can use to test `readCellTypeMarkers()`.
+dir.create("inst/extdata", recursive = TRUE, showWarnings = FALSE)
+write_csv(
+    x = known_markers_small,
+    path = file.path("inst", "extdata", "cell_type_markers.csv")
+)
+
 known_markers_detected_small <- knownMarkersDetected(
     all = all_markers_small,
     known = known_markers_small
