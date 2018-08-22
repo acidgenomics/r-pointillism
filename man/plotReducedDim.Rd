@@ -114,8 +114,7 @@ object <- sce_small
 
 # t-SNE
 plotTSNE(object)
-plotTSNE(object, pointsAsNumbers = TRUE)
-plotTSNE(object, dark = TRUE)
+plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 
 # UMAP
 plotUMAP(object)
