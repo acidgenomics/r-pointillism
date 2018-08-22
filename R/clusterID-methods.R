@@ -35,11 +35,3 @@ setMethod(
         slot(object, "ident")
     }
 )
-
-
-
-#' @rdname clusterID
-#' @export
-ident <- function(...) {
-    clusterID(...)
-}
