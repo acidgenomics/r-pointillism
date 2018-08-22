@@ -13,9 +13,7 @@
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' object <- sce_small
-#' features <- c("nUMI", "nGene", "mitoRatio")
-#' plotFeature(object, features = features)
+#' plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
 NULL
 
 
@@ -35,9 +33,7 @@ setMethod(
         label = getOption("pointillism.label", TRUE),
         labelSize = getOption("pointillism.labelSize", 6L),
         dark = getOption("pointillism.dark", FALSE),
-        grid = getOption("pointillism.grid", FALSE),
-        legend = getOption("pointillism.legend", FALSE),
-        aspectRatio = getOption("pointillism.aspectRatio", 1L)
+        legend = getOption("pointillism.legend", TRUE)
     ) {
         assert_is_character(features)
         # Legacy support for `color = "auto"`
@@ -110,21 +106,11 @@ setMethod(
             }
 
             if (isTRUE(dark)) {
-                theme <- theme_midnight
+                p <- p + theme_midnight()
                 if (is.null(color)) {
                     color <- darkMarkerColors
                 }
-            } else {
-                theme <- theme_paperwhite
-                if (is.null(color)) {
-                    color <- lightMarkerColors
-                }
             }
-            p <- p +
-                theme(
-                    aspect_ratio = aspectRatio,
-                    grid = grid
-                )
 
             if (is(color, "ScaleContinuous")) {
                 p <- p + color
