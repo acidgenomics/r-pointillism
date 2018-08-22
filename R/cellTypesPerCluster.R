@@ -4,6 +4,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @param data `data.frame` grouped by `cellType`. [knownMarkersDetected()]
+#'   return.
 #' @param min `scalar integer`. Minimum number of marker genes per cluster.
 #' @param max `scalar integer`. Maximum number of marker genes per cluster.
 #'
@@ -12,24 +14,16 @@
 #' @export
 #'
 #' @examples
-#' x <- cellTypesPerCluster(known_markers_small)
+#' x <- cellTypesPerCluster(known_markers_detected_small)
 #' glimpse(x)
 cellTypesPerCluster <- function(
     data,
     min = 1L,
     max = Inf
 ) {
-    stopifnot(is(data, "grouped_df"))
-    assert_are_identical(attr(data, "vars"), "cellType")
-    requiredCols <- c(
-        "cellType",  # bcbio
-        "cluster",   # Seurat
-        "geneID",    # bcbio
-        "geneName",  # bcbio
-        "avgLogFC",  # Seurat v2.1
-        "padj"       # Seurat v2.1
-    )
-    assert_is_subset(requiredCols, colnames(data))
+    .assertIsKnownMarkersDetected(data)
+    assert_is_a_number(min)
+    assert_is_a_number(max)
 
     # Note that the order is important here
     groupCols <- c("cluster", "cellType")
@@ -40,7 +34,9 @@ cellTypesPerCluster <- function(
         mutate_at(groupCols, as.factor) %>%
         group_by(!!!syms(groupCols)) %>%
         arrange(!!sym("padj"), .by_group = TRUE) %>%
-        # Use `toString()` instead of `aggregate()` for R Markdown tables
+        # Only positive markers are informative and should be used.
+        filter(!!sym("avgLogFC") > 0L) %>%
+        # Use `toString()` instead of `aggregate()` for R Markdown tables.
         summarize(
             n = n(),
             # Genes are arranged by P value
@@ -51,7 +47,7 @@ cellTypesPerCluster <- function(
         group_by(!!sym("cluster")) %>%
         arrange(desc(!!sym("n")), .by_group = TRUE)
 
-    # Apply minimum and maximum gene cutoffs
+    # Apply minimum and maximum gene cutoffs.
     if (is.numeric(min) && min > 1L) {
         data <- filter(data, !!sym("n") >= !!min)
     }
