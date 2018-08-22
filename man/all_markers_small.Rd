@@ -15,7 +15,8 @@ Sanitized Markers Example
 glimpse(all_markers_small)
 }
 \seealso{
-Other Minimal Example Data: \code{\link{known_markers_small}},
+Other Minimal Example Data: \code{\link{known_markers_detected_small}},
+  \code{\link{known_markers_small}},
   \code{\link{sce_small}}, \code{\link{seurat_small}}
 }
 \author{
