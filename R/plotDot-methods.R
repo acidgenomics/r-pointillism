@@ -139,8 +139,6 @@ setMethod(
 
         if (is(color, "ScaleContinuous")) {
             p <- p + color
-        } else {
-            p <- p + lightMarkerColors
         }
 
         p
