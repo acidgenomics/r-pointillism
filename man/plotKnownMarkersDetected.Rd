@@ -35,9 +35,7 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Plot Known Markers Detected
 }
 \examples{
-markers <- head(known_markers_small, n = 1)
-glimpse(markers)
-plotKnownMarkersDetected(seurat_small, markers = head(markers, 1))
+plotKnownMarkersDetected(sce_small, markers = known_markers_small)
 }
 \seealso{
 Other Clustering Functions: \code{\link{cellTypesPerCluster}},
