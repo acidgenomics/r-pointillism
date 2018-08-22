@@ -12,7 +12,7 @@ reference:
   - title: Differential Expression Functions
     contents:
     - diffExp
-    - findAllMarkers
+    - findMarkers
     - runZinbwave
   - title: Cluster Statistics Functions
     contents:
@@ -21,7 +21,7 @@ reference:
     - clusterCellCountsPerSample
   - title: Marker Functions
     contents:
-    - ident
+    - clusterID
     - knownMarkersDetected
     - readCellTypeMarkers
     - sanitizeSeuratMarkers
