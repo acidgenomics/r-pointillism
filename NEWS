@@ -1,3 +1,23 @@
+## pointillism 0.1.2 (2018-08-22)
+
+### New functions
+
+- `clusterID()`: S4 generic that returns the cell cluster identity mappings as a
+  `factor` for all cells.
+- `findMarkers()`: Utility function that wraps `diffExp()` to identify cluster-
+  specific genes across all clusters.
+
+### Minor changes
+
+- Converted `runZinbwave()` to an S4 method that works on
+  `SingleCellExperiment`. For `seurat` objects, coerce to `SingleCellExperiment`
+  before calculating weights.
+- `plotDot()` now uses default [ggplot2][] color scale, unless specified.
+- `plotReducedDim()`, `plotMarker()`: `theme_paperwhite()` is no longer used by
+  default. Removed `grid` and `aspectRatio` arguments to simplify [ggplot2][]
+  code handling.
+
+
 ## pointillism 0.1.1 (2018-08-20)
 
 ### New functions
