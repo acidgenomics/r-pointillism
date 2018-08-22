@@ -4,12 +4,13 @@ context("Plot Functions")
 
 # plotCellTypesPerCluster ======================================================
 test_that("plotCellTypesPerCluster", {
-    markers <- cellTypesPerCluster(known_markers_small) %>%
+    markers <- known_markers_detected_small %>%
+        cellTypesPerCluster() %>%
         # Subset for speed
         head(2L)
     invisible(capture.output(
         p <- plotCellTypesPerCluster(
-            object = sce_small,
+            object = seurat_small,
             markers = markers
         )
     ))
@@ -46,7 +47,7 @@ test_that("plotKnownMarkersDetected", {
     invisible(capture.output(
         p <- plotKnownMarkersDetected(
             object = sce_small,
-            markers = head(known_markers_small, 2L)
+            markers = head(known_markers_detected_small, 2L)
         )
     ))
     expect_is(p, "list")
@@ -58,7 +59,7 @@ test_that("plotTopMarkers", {
         head(2L)
     invisible(capture.output(
         x <- plotTopMarkers(
-            object = sce_small,
+            object = seurat_small,
             markers = markers
         )
     ))
