@@ -101,14 +101,6 @@ NULL
 
 
 
-.assertHasDesignFormula <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    assert_is_factor(object[["group"]])
-    assert_is_matrix(metadata(object)[["design"]])
-}
-
-
-
 # Van De Berge and Perraudeau and others have shown the LRT may perform better
 # for null hypothesis testing, so we use the LRT. In order to use the Wald test,
 # it is recommended to set `useT = TRUE`.
@@ -118,12 +110,15 @@ NULL
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    stopifnot(packageVersion("DESeq2") >= 1.2)
+    .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2...")
     message(printString(system.time({
-        dds <- DESeqDataSet(se = object, design = .designFormula)
+        dds <- DESeqDataSet(
+            se = object,
+            design = .designFormula
+        )
         dds <- DESeq(
             object = dds,
             test = "LRT",
@@ -141,7 +136,7 @@ NULL
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    stopifnot(packageVersion("edgeR") >= 3.22)
+    .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR...")
@@ -170,7 +165,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname diffExp
 #' @export
 setMethod(
@@ -262,4 +256,14 @@ setMethod(
 
         object
     }
+)
+
+
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    "diffExp",
+    signature("seurat"),
+    getMethod("diffExp", "SingleCellExperiment")
 )
