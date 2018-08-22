@@ -3,8 +3,8 @@
 \name{coerce}
 \alias{coerce}
 \alias{as}
-\alias{coerce-SingleCellExperiment-seurat}
-\alias{coerce-seurat-SingleCellExperiment}
+\alias{coerce,SingleCellExperiment,seurat-method}
+\alias{coerce,seurat,SingleCellExperiment-method}
 \title{Methods for Coercing an Object to a Class}
 \value{
 Object of new class.

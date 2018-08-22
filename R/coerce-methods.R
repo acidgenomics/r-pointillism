@@ -4,6 +4,7 @@
 #' @aliases as
 #' @family S4 Object
 #' @author Michael Steinbaugh
+#' @exportMethod coerce
 #'
 #' @return Object of new class.
 #'
@@ -16,18 +17,8 @@ NULL
 
 
 
-.as.SingleCellExperiment.seurat <- function(object) {  # nolint
-    validObject(object)
-    # Sanitize legacy seurat objects that contain Ensembl IDs in names
-    names(rownames(object@raw.data)) <- NULL
-    names(rownames(object@data)) <- NULL
-    as.SingleCellExperiment(object)
-}
-
-
-
 #' @rdname coerce
-#' @name coerce-SingleCellExperiment-seurat
+#' @name coerce,SingleCellExperiment,seurat-method
 #'
 #' @section `SingleCellExperiment` to `seurat`:
 #' Interally [Seurat::CreateSeuratObject()] is called without applying any
@@ -77,7 +68,7 @@ setAs(
 
 
 #' @rdname coerce
-#' @name coerce-seurat-SingleCellExperiment
+#' @name coerce,seurat,SingleCellExperiment-method
 #'
 #' @section `seurat` to `SingleCellExperiment`:
 #' Super basic S4 coercion support for taking the raw counts matrix from
@@ -92,7 +83,9 @@ setAs(
     to = "SingleCellExperiment",
     function(from) {
         validObject(from)
-        to <- .as.SingleCellExperiment.seurat(from)
+        names(rownames(from@raw.data)) <- NULL
+        names(rownames(from@data)) <- NULL
+        to <- as.SingleCellExperiment(from)
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
         to
