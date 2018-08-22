@@ -245,7 +245,7 @@ setMethod(
 
         # Calculate the weights (e.g. `runZinbwave`)
         weightsFunction <- get(paste0("run", upperCamel(zeroWeights)))
-        object <- weightsFunction(object)
+        object <- weightsFunction(Y = object, BPPARAM = SerialParam())
 
         # Ensure raw counts matrix is dense
         counts(object) <- as.matrix(counts(object))
