@@ -3,7 +3,7 @@ context("Plot Functions")
 
 
 # plotCellTypesPerCluster ======================================================
-test_that("plotCellTypesPerCluster : seurat", {
+test_that("plotCellTypesPerCluster", {
     markers <- cellTypesPerCluster(known_markers_small) %>%
         # Subset for speed
         head(2L)
@@ -20,7 +20,7 @@ test_that("plotCellTypesPerCluster : seurat", {
 
 
 # plotFeature ==================================================================
-test_that("plotFeature : seurat", {
+test_that("plotFeature", {
     p <- plotFeature(sce_small, features = c("PC1", "PC2"))
     expect_is(p, "ggplot")
 })
@@ -31,7 +31,7 @@ test_that("plotFeature : seurat", {
 object <- sce_small
 genes <- head(rownames(object))
 
-test_that("plotMarker : seurat", {
+test_that("plotMarker", {
     expression <- methodFormals("plotMarker", "seurat") %>%
         .[["expression"]] %>%
         as.character() %>%
@@ -42,7 +42,7 @@ test_that("plotMarker : seurat", {
     }))
 })
 
-test_that("plotKnownMarkersDetected : seurat", {
+test_that("plotKnownMarkersDetected", {
     invisible(capture.output(
         p <- plotKnownMarkersDetected(
             object = sce_small,
@@ -52,7 +52,7 @@ test_that("plotKnownMarkersDetected : seurat", {
     expect_is(p, "list")
 })
 
-test_that("plotTopMarkers : seurat", {
+test_that("plotTopMarkers", {
     markers <- topMarkers(all_markers_small, n = 1L) %>%
         # Subset for speed
         head(2L)
@@ -69,7 +69,7 @@ test_that("plotTopMarkers : seurat", {
 
 
 # plotPCA ======================================================================
-test_that("plotPCA : seurat", {
+test_that("plotPCA", {
     p <- plotPCA(sce_small)
     expect_is(p, "ggplot")
 })
@@ -77,15 +77,15 @@ test_that("plotPCA : seurat", {
 
 
 # plotPCElbow ==================================================================
-test_that("plotPCElbow : seurat", {
-    x <- plotPCElbow(seurat_small)
-    expect_identical(x, seq_len(17L))
+test_that("plotPCElbow", {
+    x <- plotPCElbow(Seurat::pbmc_small)
+    expect_identical(x, seq_len(11L))
 })
 
 
 
 # plotTSNE =====================================================================
-test_that("plotTSNE : seurat", {
+test_that("plotTSNE", {
     p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
@@ -93,7 +93,7 @@ test_that("plotTSNE : seurat", {
 
 
 # plotUMAP =====================================================================
-test_that("plotUMAP : seurat", {
+test_that("plotUMAP", {
     p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
