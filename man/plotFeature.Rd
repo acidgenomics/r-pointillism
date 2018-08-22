@@ -17,9 +17,7 @@ plotFeature(object, ...)
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
-  grid = getOption("pointillism.grid", FALSE),
-  legend = getOption("pointillism.legend", FALSE),
-  aspectRatio = getOption("pointillism.aspectRatio", 1L))
+  legend = getOption("pointillism.legend", TRUE))
 
 \S4method{plotFeature}{seurat}(object, features, reducedDim = c("TSNE",
   "UMAP"), color = getOption("pointillism.discrete.color", NULL),
@@ -28,9 +26,7 @@ plotFeature(object, ...)
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
-  grid = getOption("pointillism.grid", FALSE),
-  legend = getOption("pointillism.legend", FALSE),
-  aspectRatio = getOption("pointillism.aspectRatio", 1L))
+  legend = getOption("pointillism.legend", TRUE))
 }
 \arguments{
 \item{object}{Object.}
@@ -62,11 +58,7 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 \item{dark}{\code{boolean}. Plot against a dark background using
 \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
 
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
-
 \item{legend}{\code{boolean}. Include plot legend.}
-
-\item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 }
 \value{
 \code{ggplot} or \code{list}.
@@ -75,9 +67,7 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 Plot Feature
 }
 \examples{
-object <- sce_small
-features <- c("nUMI", "nGene", "mitoRatio")
-plotFeature(object, features = features)
+plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
