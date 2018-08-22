@@ -5,11 +5,16 @@
 \name{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster,SingleCellExperiment-method}
+\alias{plotCellTypesPerCluster,seurat-method}
 \title{Plot Cell Types per Cluster}
 \usage{
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
+  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
+  "sum"), headerLevel = 2L, ...)
+
+\S4method{plotCellTypesPerCluster}{seurat}(object, markers,
   reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
   "sum"), headerLevel = 2L, ...)
 }

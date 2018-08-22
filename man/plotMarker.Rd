@@ -4,20 +4,34 @@
 \name{plotMarker}
 \alias{plotMarker}
 \alias{plotMarker,SingleCellExperiment-method}
+\alias{plotMarker,seurat-method}
 \title{Plot Cell-Type-Specific Gene Markers}
 \usage{
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
   reducedDim = c("TSNE", "UMAP", "PCA"), expression = c("mean",
-  "median", "sum"), color = getOption("bcbio.discrete.color", NULL),
-  pointSize = getOption("bcbio.pointSize", 0.75),
-  pointAlpha = getOption("bcbio.pointAlpha", 0.8),
-  pointsAsNumbers = FALSE, label = getOption("bcbio.label", TRUE),
-  labelSize = getOption("bcbio.labelSize", 6L),
-  dark = getOption("bcbio.dark", FALSE), grid = getOption("bcbio.grid",
-  FALSE), legend = getOption("bcbio.legend", TRUE),
-  aspectRatio = getOption("bcbio.aspectRatio", 1L), title = TRUE)
+  "median", "sum"), color = getOption("pointillism.discrete.color",
+  NULL), pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
+  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  grid = getOption("pointillism.grid", FALSE),
+  legend = getOption("pointillism.legend", TRUE),
+  aspectRatio = getOption("pointillism.aspectRatio", 1L), title = TRUE)
+
+\S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
+  "UMAP", "PCA"), expression = c("mean", "median", "sum"),
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
+  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  grid = getOption("pointillism.grid", FALSE),
+  legend = getOption("pointillism.legend", TRUE),
+  aspectRatio = getOption("pointillism.aspectRatio", 1L), title = TRUE)
 }
 \arguments{
 \item{object}{Object.}

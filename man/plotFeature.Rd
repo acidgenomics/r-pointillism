@@ -4,20 +4,33 @@
 \name{plotFeature}
 \alias{plotFeature}
 \alias{plotFeature,SingleCellExperiment-method}
+\alias{plotFeature,seurat-method}
 \title{Plot Feature}
 \usage{
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
   reducedDim = c("TSNE", "UMAP"),
-  color = getOption("bcbio.discrete.color", NULL),
-  pointSize = getOption("bcbio.pointSize", 0.75),
-  pointAlpha = getOption("bcbio.pointAlpha", 0.75),
-  label = getOption("bcbio.label", TRUE),
-  labelSize = getOption("bcbio.labelSize", 6L),
-  dark = getOption("bcbio.dark", FALSE), grid = getOption("bcbio.grid",
-  FALSE), legend = getOption("bcbio.legend", FALSE),
-  aspectRatio = getOption("bcbio.aspectRatio", 1L))
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  grid = getOption("pointillism.grid", FALSE),
+  legend = getOption("pointillism.legend", FALSE),
+  aspectRatio = getOption("pointillism.aspectRatio", 1L))
+
+\S4method{plotFeature}{seurat}(object, features, reducedDim = c("TSNE",
+  "UMAP"), color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  grid = getOption("pointillism.grid", FALSE),
+  legend = getOption("pointillism.legend", FALSE),
+  aspectRatio = getOption("pointillism.aspectRatio", 1L))
 }
 \arguments{
 \item{object}{Object.}
