@@ -20,6 +20,17 @@ setGeneric(
 
 
 
+#' @rdname clusterID
+#' @export
+setGeneric(
+    "clusterID",
+    function(object, ...) {
+        standardGeneric("clusterID")
+    }
+)
+
+
+
 #' @rdname diffExp
 #' @export
 setGeneric(
@@ -37,17 +48,6 @@ setGeneric(
     "findMarkers",
     function(object, ...) {
         standardGeneric("findMarkers")
-    }
-)
-
-
-
-#' @rdname ident
-#' @export
-setGeneric(
-    "ident",
-    function(object, ...) {
-        standardGeneric("ident")
     }
 )
 
