@@ -39,7 +39,8 @@
 #' # Serial
 #' zinb <- runZinbwave(
 #'     Y = Y,
-#'     BPPARAM = BiocParallel::SerialParam()
+#'     BPPARAM = BiocParallel::SerialParam(),
+#'     recalculate = TRUE
 #' )
 #' print(zinb)
 #' assayNames(zinb)
@@ -48,6 +49,7 @@
 #' zinb <- runZinbwave(
 #'     Y = Y,
 #'     BPPARAM = BiocParallel::MulticoreParam(),
+#'     recalculate = TRUE,
 #'     verbose = TRUE
 #' )
 #' print(zinb)
