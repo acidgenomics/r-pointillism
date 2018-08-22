@@ -3,6 +3,7 @@
 \docType{methods}
 \name{findMarkers}
 \alias{findMarkers}
+\alias{findMarkers,SingleCellExperiment-method}
 \title{Find Cluster-Specific Marker Genes}
 \usage{
 findMarkers(object, ...)
