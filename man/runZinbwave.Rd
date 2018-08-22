@@ -57,19 +57,10 @@ Y <- sce_small
 Y <- bcbioSingleCell::filterCells(Y)
 Y <- Y[seq_len(200L), ]
 
-# Serial
+# Serial (recommended default)
 zinb <- runZinbwave(
     Y = Y,
     BPPARAM = BiocParallel::SerialParam(),
-    recalculate = TRUE
-)
-print(zinb)
-assayNames(zinb)
-
-# Multicore
-zinb <- runZinbwave(
-    Y = Y,
-    BPPARAM = BiocParallel::MulticoreParam(),
     recalculate = TRUE,
     verbose = TRUE
 )
