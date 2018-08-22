@@ -6,6 +6,18 @@
 
 
 
+.assertHasKnownMarkers <- function(object) {
+    assert_is_tbl_df(object)
+    # Requiring grouping by `cellType` column.
+    assert_are_identical(group_vars(object), "cellType")
+    # Require adjusted P values.
+    assert_is_subset("padj", colnames(object))
+    # Require that there are genes.
+    assert_has_rows(object)
+}
+
+
+
 .assertHasIdent <- function(object) {
     assert_is_subset("ident", colnames(colData(object)))
 }
