@@ -22,9 +22,12 @@ only for \code{SummarizedExperiment}.}
 
 \item{epsilon}{nonnegative scalar. Regularization parameter.}
 
-\item{BPPARAM}{object of class \code{bpparamClass} that specifies the
-back-end to be used for computations. See
-\code{\link[BiocParallel]{bpparam}} for details.}
+\item{BPPARAM}{BiocParallel param. We recommend one of the following:
+\itemize{
+\item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
+\item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
+\item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
+}}
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
@@ -57,7 +60,8 @@ Y <- Y[seq_len(200L), ]
 # Serial
 zinb <- runZinbwave(
     Y = Y,
-    BPPARAM = BiocParallel::SerialParam()
+    BPPARAM = BiocParallel::SerialParam(),
+    recalculate = TRUE
 )
 print(zinb)
 assayNames(zinb)
@@ -66,6 +70,7 @@ assayNames(zinb)
 zinb <- runZinbwave(
     Y = Y,
     BPPARAM = BiocParallel::MulticoreParam(),
+    recalculate = TRUE,
     verbose = TRUE
 )
 print(zinb)
