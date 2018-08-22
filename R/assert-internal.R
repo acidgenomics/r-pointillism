@@ -6,18 +6,6 @@
 
 
 
-.assertHasKnownMarkers <- function(object) {
-    assert_is_tbl_df(object)
-    # Requiring grouping by `cellType` column.
-    assert_are_identical(group_vars(object), "cellType")
-    # Require adjusted P values.
-    assert_is_subset("padj", colnames(object))
-    # Require that there are genes.
-    assert_has_rows(object)
-}
-
-
-
 .assertHasIdent <- function(object) {
     assert_is_subset("ident", colnames(colData(object)))
 }
@@ -35,6 +23,32 @@
     assert_are_identical(object@raw.data, object@data)
     stopifnot(is.null(object@scale.data))
     stopifnot(!length(object@var.genes))
+}
+
+
+
+.assertIsKnownMarkers <- function(object) {
+    # Require a tibble.
+    assert_is_tbl_df(object)
+    # Require grouping by `cellType` column.
+    assert_are_identical(group_vars(object), "cellType")
+    # Require that there are genes.
+    assert_has_rows(object)
+}
+
+
+
+.assertIsKnownMarkersDetected <- function(object) {
+    .assertIsKnownMarkers(object)
+    .assertIsSanitizedMarkers(object)
+}
+
+
+
+.assertIsSanitizedMarkers <- function(object) {
+    stopifnot(.isSanitizedMarkers(data))
+    # Require average log fold change and adjusted P values.
+    assert_is_subset(c("avgLogFC", "padj"), colnames(object))
 }
 
 
