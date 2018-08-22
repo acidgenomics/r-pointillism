@@ -90,7 +90,8 @@ all_markers_small <- sanitizeSeuratMarkers(
 known_markers_small <- tibble(
     cellType = c("cell_type_1", "cell_type_2"),
     geneID = pull(all_markers_small, "geneID")[seq_len(2L)]
-)
+) %>%
+    group_by(cellType)
 known_markers_detected_small <- knownMarkersDetected(
     all = all_markers_small,
     known = known_markers_small
