@@ -28,7 +28,6 @@ NULL
 
 
 
-# Constructors =================================================================
 #' Min Max
 #' @seealso [Seurat:::MinMax()].
 #' @noRd
@@ -50,7 +49,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotDot
 #' @export
 setMethod(
@@ -63,8 +61,8 @@ setMethod(
         colMax = 2.5,
         dotMin = 0L,
         dotScale = 6L,
-        color = getOption("bcbio.discrete.color", NULL),
-        legend = getOption("bcbio.legend", TRUE)
+        color = getOption("pointillism.discrete.color", NULL),
+        legend = getOption("pointillism.legend", TRUE)
     ) {
         .assertHasIdent(object)
         assert_is_character(genes)
@@ -147,4 +145,14 @@ setMethod(
 
         p
     }
+)
+
+
+
+#' @rdname plotDot
+#' @export
+setMethod(
+    "plotDot",
+    signature("seurat"),
+    getMethod("plotDot", "SingleCellExperiment")
 )

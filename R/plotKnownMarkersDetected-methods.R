@@ -17,7 +17,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotKnownMarkersDetected
 #' @export
 setMethod(
@@ -74,4 +73,14 @@ setMethod(
 
         invisible(list)
     }
+)
+
+
+
+#' @rdname plotKnownMarkersDetected
+#' @export
+setMethod(
+    "plotKnownMarkersDetected",
+    signature("seurat"),
+    getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
 )

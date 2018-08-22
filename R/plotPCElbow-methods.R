@@ -29,7 +29,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotPCElbow
 #' @export
 setMethod(
@@ -80,7 +79,7 @@ setMethod(
         # Pick the smallest value of the cutoffs
         cutoff <- min(minSDCutoff, minPctCutoff, maxCumPctCutoff)
 
-        # Standard deviation ===================================================
+        # Standard deviation ---------------------------------------------------
         ggsd <- ggplot(
             data = data,
             mapping = aes(
@@ -103,7 +102,7 @@ setMethod(
             expand_limits(y = 0L) +
             scale_y_continuous(trans = trans)
 
-        # Percent standard deviation ===========================================
+        # Percent standard deviation -------------------------------------------
         ggpct <- ggplot(
             data = data,
             mapping = aes(
@@ -126,7 +125,7 @@ setMethod(
             expand_limits(y = 0L) +
             scale_y_continuous(labels = percent, trans = trans)
 
-        # Cumulative percent standard deviation ================================
+        # Cumulative percent standard deviation --------------------------------
         ggcumsum <- ggplot(
             data = data,
             mapping = aes(

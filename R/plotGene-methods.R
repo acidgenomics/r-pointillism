@@ -34,7 +34,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotGene
 #' @export
 setMethod(
@@ -44,7 +43,7 @@ setMethod(
         object,
         genes,
         geom = c("dot", "violin"),
-        legend = getOption("bcbio.legend", TRUE)
+        legend = getOption("pointillism.legend", TRUE)
     ) {
         geom <- match.arg(geom)
         if (geom == "dot") {
@@ -58,4 +57,14 @@ setMethod(
             legend = legend
         )
     }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @export
+setMethod(
+    "plotGene",
+    signature("seurat"),
+    getMethod("plotGene", "SingleCellExperiment")
 )
