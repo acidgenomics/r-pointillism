@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment • pointillism</title>
+<title>Extend S4 Methods for <code>seurat</code> Class — plotGene,seurat-method • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment" />
+<meta property="og:title" content="Extend S4 Methods for <code>seurat</code> Class — plotGene,seurat-method" />
 
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extend S4 Methods for <code>seurat</code> Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/zzz-seurat-SingleCellExperiment-methods.R'><code>R/zzz-seurat-SingleCellExperiment-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/plotGene-methods.R'><code>R/plotGene-methods.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/seurat-SingleCellExperiment-methods.R'><code>R/seurat-SingleCellExperiment-methods.R</code></a></small>
     <div class="hidden name"><code>seurat-SingleCellExperiment.Rd</code></div>
     </div>
 
@@ -113,7 +113,11 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for seurat,ANY</span>
+    <pre class="usage"><span class='co'># S4 method for seurat</span>
+<span class='fu'><a href='plotGene.html'>plotGene</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>))
+
+<span class='co'># S4 method for seurat,ANY</span>
 <span class='fu'>assay</span>(<span class='no'>x</span>, <span class='no'>i</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
@@ -121,12 +125,6 @@
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>assays</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='cellCountsPerCluster.html'>cellCountsPerCluster</a></span>(<span class='no'>object</span>, <span class='no'>interestingGroups</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='clusterCellCountsPerSample.html'>clusterCellCountsPerSample</a></span>(<span class='no'>object</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>colData</span>(<span class='no'>x</span>, <span class='no'>...</span>)
@@ -142,11 +140,6 @@
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>counts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='diffExp.html'>diffExp</a></span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
-  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>25L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>5L</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>gene2symbol</span>(<span class='no'>object</span>)
@@ -165,79 +158,6 @@
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>,
-  <span class='st'>"sum"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotDot.html'>plotDot</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>))
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotFeature.html'>plotFeature</a></span>(<span class='no'>object</span>, <span class='no'>features</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>,
-  <span class='st'>"UMAP"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
-  <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>FALSE</span>),
-  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>))
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotGene.html'>plotGene</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>))
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotMarker.html'>plotMarker</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>,
-  <span class='st'>"UMAP"</span>, <span class='st'>"PCA"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"sum"</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.8</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
-  <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'>plotPCA</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotReducedDim.html'>plotReducedDim</a></span>(<span class='no'>object</span>, <span class='no'>reducedDim</span>, <span class='kw'>dimsUse</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>,
-  <span class='fl'>2L</span>), <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"ident"</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
-  <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotTopMarkers.html'>plotTopMarkers</a></span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotReducedDim.html'>plotTSNE</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotReducedDim.html'>plotUMAP</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotViolin.html'>plotViolin</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>,
-  <span class='st'>"area"</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.fill"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>))
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>reducedDims</span>(<span class='no'>x</span>)
@@ -264,6 +184,24 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>genes</th>
+      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
+object.</p></td>
+    </tr>
+    <tr>
+      <th>geom</th>
+      <td><p><code>string</code>. Plot type. Uses <code>match.arg()</code> and defaults to the first
+argument in the <code>character</code> vector.</p></td>
+    </tr>
+    <tr>
+      <th>legend</th>
+      <td><p><code>boolean</code>. Include plot legend.</p></td>
+    </tr>
+    <tr>
       <th>x</th>
       <td><p>Primary object.</p></td>
     </tr>
@@ -272,109 +210,14 @@
       <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>value</th>
+      <td><p>Object to assign.</p></td>
     </tr>
     <tr>
       <th>interestingGroups</th>
       <td><p><code>character</code> or <code>NULL</code>. Character vector of
 interesting groups. Must be formatted in camel case and intersect with
 <code>sampleData()</code> colnames.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>Object to assign.</p></td>
-    </tr>
-    <tr>
-      <th>reducedDim</th>
-      <td><p><code>string</code>. Name of reduced dimension matrix slotted in
-<code>reducedDims()</code>. Includes TNSE, UMAP, PCA, for example.</p></td>
-    </tr>
-    <tr>
-      <th>expression</th>
-      <td><p><code>string</code>. Calculation to apply. Uses <code>match.arg()</code> and
-defaults to the first argument in the <code>character</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code>scalar integer</code> (<code>1</code>-<code>7</code>). R Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>genes</th>
-      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
-object.</p></td>
-    </tr>
-    <tr>
-      <th>color</th>
-      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
-scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
-color palette will be used. If manual color definitions are desired, we
-recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
-To set the discrete color palette globally, use
-<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
-    </tr>
-    <tr>
-      <th>legend</th>
-      <td><p><code>boolean</code>. Include plot legend.</p></td>
-    </tr>
-    <tr>
-      <th>pointSize</th>
-      <td><p><code>scalar numeric</code>. Cell point size.</p></td>
-    </tr>
-    <tr>
-      <th>pointAlpha</th>
-      <td><p><code>scalar numeric</code> (<code>0</code>-<code>1</code>). Alpha transparency level.
-Useful when there many cells in the dataset, and some cells can be masked.</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p><code>boolean</code>. Overlay a cluster identitiy label on the plot.</p></td>
-    </tr>
-    <tr>
-      <th>labelSize</th>
-      <td><p><code>scalar integer</code>. Size of the text label.</p></td>
-    </tr>
-    <tr>
-      <th>dark</th>
-      <td><p><code>boolean</code>. Plot against a dark background using
-<code><a href='http://www.rdocumentation.org/packages/basejump/topics/themes'>basejump::theme_midnight()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>grid</th>
-      <td><p><code>boolean</code>. Show major grid lines but hide axis lines.</p></td>
-    </tr>
-    <tr>
-      <th>aspectRatio</th>
-      <td><p><code>scalar integer</code>. Aspect ratio.</p></td>
-    </tr>
-    <tr>
-      <th>geom</th>
-      <td><p><code>string</code>. Plot type. Uses <code>match.arg()</code> and defaults to the first
-argument in the <code>character</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>pointsAsNumbers</th>
-      <td><p><code>boolean</code>. Plot the points as numbers (<code>TRUE</code>) or
-dots (<code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p><code>string</code> or <code>NULL</code>. Plot title.</p></td>
-    </tr>
-    <tr>
-      <th>dimsUse</th>
-      <td><p><code>integer</code>. Vector of length 2 that denotes the columns from
-the reduced dimension matrix to use for <code>centerX</code> and <code>centerY</code> column
-calculations. Defaults the first and second dimensions.</p></td>
-    </tr>
-    <tr>
-      <th>fill</th>
-      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 fill scale.
-Must supply discrete values. When set to <code>NULL</code>, the default ggplot2 color
-palette will be used. If manual color definitions are desired, we recommend
-using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_fill_manual()</a></code>.
-To set the discrete fill palette globally, use
-<code>options(bcbio.discrete.fill = scale_fill_viridis_d())</code>.</p></td>
     </tr>
     </table>
     

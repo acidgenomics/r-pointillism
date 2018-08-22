@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -179,19 +179,20 @@ easily.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># grouped_df ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>knownMarkersDetected</span>(
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>knownMarkersDetected</span>(
     <span class='kw'>all</span> <span class='kw'>=</span> <span class='no'>all_markers_small</span>,
-    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>cell_type_markers</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
+    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>known_markers_small</span>
 )
-<span class='fu'>head</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 19
-#&gt; # Groups:   cellType [1]
-#&gt;   cellType cluster geneID geneName avgLogFC  pct1  pct2 rowname  pvalue   padj
-#&gt;   &lt;fct&gt;    &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1 Gut Epi… 0       ENSG0… CLDN18     -0.945 0.442 0.688 ENSG00… 3.28e-6 0.0328
-#&gt; 2 Gut Epi… 1       ENSG0… CLDN18      0.945 0.688 0.442 ENSG00… 3.28e-6 0.0328
-#&gt; # ... with 9 more variables: seqnames &lt;chr&gt;, start &lt;int&gt;, end &lt;int&gt;,
-#&gt; #   width &lt;int&gt;, strand &lt;chr&gt;, broadClass &lt;chr&gt;, description &lt;chr&gt;,
+<span class='fu'>head</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 19
+#&gt; # Groups:   cellType [2]
+#&gt;   cellType cluster geneID geneName avgLogFC  pct1  pct2 rowname   pvalue
+#&gt;   &lt;fct&gt;    &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+#&gt; 1 cell_ty… 0       ENSG0… PRDM12       1.16 1     0.878 PRDM12  7.12e-18
+#&gt; 2 cell_ty… 1       ENSG0… PRDM12      -1.16 0.878 1     PRDM12  7.12e-18
+#&gt; 3 cell_ty… 0       ENSG0… PMP22        1.57 0.98  0.816 PMP22   9.62e-17
+#&gt; 4 cell_ty… 1       ENSG0… PMP22       -1.57 0.816 0.98  PMP22   9.62e-17
+#&gt; # ... with 10 more variables: padj &lt;dbl&gt;, seqnames &lt;chr&gt;, start &lt;int&gt;,
+#&gt; #   end &lt;int&gt;, width &lt;int&gt;, strand &lt;chr&gt;, broadClass &lt;chr&gt;, description &lt;chr&gt;,
 #&gt; #   geneBiotype &lt;chr&gt;, seqCoordSystem &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

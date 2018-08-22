@@ -34,7 +34,10 @@
   
 <meta property="og:title" content="Calculate ZINB-WaVE Weights — runZinbwave" />
 
-<meta property="og:description" content="Attempt to return stashed zinbwave calcs, or recalculate." />
+<meta property="og:description" content="zinbwave will calculate normalizedValues and weights matrices, which will
+be defined in the assays() slot. If these values have already been
+calculated, the object will be returned unmodified, unless
+recalculate = TRUE." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -103,61 +106,89 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate ZINB-WaVE Weights</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/zinbwave.R'><code>R/zinbwave.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/runZinbwave-methods.R'><code>R/runZinbwave-methods.R</code></a></small>
     <div class="hidden name"><code>runZinbwave.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Attempt to return stashed zinbwave calcs, or recalculate.</p>
+    <p>zinbwave will calculate <code>normalizedValues</code> and <code>weights</code> matrices, which will
+be defined in the <code>assays()</code> slot. If these values have already been
+calculated, the object will be returned unmodified, unless
+<code>recalculate = TRUE</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>runZinbwave</span>(<span class='no'>object</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>(),
-  <span class='kw'>epsilon</span> <span class='kw'>=</span> <span class='fl'>1e+12</span>, <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>runZinbwave</span>(<span class='no'>Y</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>runZinbwave</span>(<span class='no'>Y</span>, <span class='kw'>K</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
+  <span class='kw'>epsilon</span> <span class='kw'>=</span> <span class='fl'>1e+12</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>(),
+  <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>Y</th>
+      <td><p>The data (genes in rows, samples in columns). Currently implemented
+only for <code>SummarizedExperiment</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Passthrough arguments to <code><a href='http://www.rdocumentation.org/packages/zinbwave/topics/zinbwave'>zinbwave::zinbwave()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>K</th>
+      <td><p>integer. Number of latent factors.</p></td>
+    </tr>
+    <tr>
+      <th>epsilon</th>
+      <td><p>nonnegative scalar. Regularization parameter.</p></td>
     </tr>
     <tr>
       <th>BPPARAM</th>
-      <td><p>object of class <code>bpparamClass</code> that specifies the
-back-end to be used for computations. See
-<code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></code> for details.</p></td>
+      <td><p>BiocParallel param. We recommend one of the following:</p><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>BiocParallel::SerialParam()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>recalculate</th>
       <td><p><code>logical</code>. Force recalculation of weights.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='http://www.rdocumentation.org/packages/zinbwave/topics/zinbwave'>zinbwave::zinbwave()</a></code>.</p></td>
+      <th>verbose</th>
+      <td><p><code>logical</code>. Run zinbwave in verbose model (for debugging).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>SingleCellExperiment</code>.</p>
+    <p>Modified object (S4 class must extend <code>SingleCellExperiment</code>), with
+weights added to <code>assays()</code>.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>zinbwave will calculate <code>normalizedValues</code> and <code>weights</code> matrices, which will
-be defined in the <code>assays()</code> slot.</p>
+    <p>zinbwave defaults to using <code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code> to register the
+number of cores to use (<code>BPPARAM</code> argument), but we've found that this
+works inconsistently across installations. Currently, we recommend using
+<code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>BiocParallel::SerialParam()</a></code> by default, which will run in serial, using a
+single core. On Linux or macOS, <code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code> should
+work to run with multiple cores.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/zinbwave/topics/zinbwave'>zinbwave::zinbwave()</a></code>.</p>
-<p>Other Zero Count Inflation Functions: <code><a href='hasZinbwave.html'>hasZinbwave</a></code></p></div>
+<p>Other Differential Expression Functions: <code><a href='diffExp.html'>diffExp</a></code>,
+  <code><a href='findMarkers.html'>findMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>bcbioSingleCell</span>)
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>[<span class='fu'>seq_len</span>(<span class='fl'>100L</span>), <span class='fu'>seq_len</span>(<span class='fl'>100L</span>)]
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/bcbioSingleCell/topics/filterCells'>filterCells</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Parameters:</span>
+    <pre class="examples"><div class='input'><span class='co'># Example using 200 non-zero genes</span>
+<span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
+<span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>bcbioSingleCell</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/bcbioSingleCell/topics/filterCells'>filterCells</a></span>(<span class='no'>Y</span>)</div><div class='output co'>#&gt; <span class='message'>Parameters:</span>
 #&gt; <span class='message'>  - &gt;= 0 UMIs per cell</span>
 #&gt; <span class='message'>  - &lt;= Inf UMIs per cell</span>
 #&gt; <span class='message'>  - &gt;= 0 genes per cell</span>
@@ -178,21 +209,47 @@ be defined in the <code>assays()</code> slot.</p>
 #&gt; <span class='message'>     100 cells | nCells == Inf</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>group1 group2 </span>
-#&gt; <span class='message'>    48     52 </span>
+#&gt; <span class='message'>    49     51 </span>
 #&gt; <span class='message'>================================================================================</span>
 #&gt; <span class='message'>Genes:</span>
-#&gt; <span class='message'>     100 genes | prefilter</span>
-#&gt; <span class='message'>      82 genes | minCellsPerGene &gt;= 1</span>
+#&gt; <span class='message'>    1201 genes | prefilter</span>
+#&gt; <span class='message'>    1201 genes | minCellsPerGene &gt;= 1</span>
 #&gt; <span class='message'>================================================================================</span>
 #&gt; <span class='message'>Summary:</span>
 #&gt; <span class='message'>  - 100 of 100 cells passed filtering (100%)</span>
-#&gt; <span class='message'>  - 82 of 100 genes passed filtering (82.0%)</span></div><div class='input'><span class='no'>zinb</span> <span class='kw'>&lt;-</span> <span class='fu'>runZinbwave</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  2.697   0.233   2.980 </span></div><div class='input'><span class='fu'>print</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
-#&gt; dim: 82 100 
+#&gt; <span class='message'>  - 1201 of 1201 genes passed filtering (100%)</span></div><div class='input'><span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='no'>Y</span>[<span class='fu'>seq_len</span>(<span class='fl'>200L</span>), ]
+
+<span class='co'># Serial (recommended default)</span>
+<span class='no'>zinb</span> <span class='kw'>&lt;-</span> <span class='fu'>runZinbwave</span>(
+    <span class='kw'>Y</span> <span class='kw'>=</span> <span class='no'>Y</span>,
+    <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>(),
+    <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span class='message'>BiocParallel param registered:</span>
+#&gt; <span class='message'>class: SerialParam</span>
+#&gt; <span class='message'>  bpisup: TRUE; bpnworkers: 1; bptasks: 0; bpjobname: BPJOB</span>
+#&gt; <span class='message'>  bplog: FALSE; bpthreshold: INFO; bpstopOnError: TRUE</span>
+#&gt; <span class='message'>  bptimeout: 2592000; bpprogressbar: TRUE</span>
+#&gt; <span class='message'>  bplogdir: NA</span></div><div class='output co'>#&gt; <span class='message'>Fitting a ZINB regression model...</span></div><div class='output co'>#&gt; <span class='message'>Create model:</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>Initialize parameters:</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>Optimize parameters:</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.904   0.006   0.911 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.595   0.001   0.597 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53772.0332063023</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.749   0.005   0.754 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.451   0.001   0.452 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53758.9324345557</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.438   0.003   0.441 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.166   0.001   0.167 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985076318</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53758.9311024462</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
+#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  4.694   0.027   4.722 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel.</span>
+#&gt; <span class='message'>100 samples; 200 genes.</span>
+#&gt; <span class='message'>1 sample-level covariate(s) (mu); 1 sample-level covariate(s) (pi);</span>
+#&gt; <span class='message'>1 gene-level covariate(s) (mu); 1 gene-level covariate(s) (pi);</span>
+#&gt; <span class='message'>0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
+#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.050   0.000   0.051 </span></div><div class='input'><span class='fu'>print</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
+#&gt; dim: 200 100 
 #&gt; metadata(4): filterCells filterGenes filterParams filterSummary
 #&gt; assays(4): counts logcounts normalizedValues weights
-#&gt; rownames(82): ENSG00000000003 ENSG00000000005 ... ENSG00000005469
-#&gt;   ENSG00000005471
+#&gt; rownames(200): ENSG00000000938 ENSG00000001460 ... ENSG00000080845
+#&gt;   ENSG00000080910
 #&gt; rowData names(7): broadClass description ... geneName seqCoordSystem
 #&gt; colnames(100): cell1 cell10 ... cell98 cell99
 #&gt; colData names(16): nGene nUMI ... res.1.2 ident
@@ -206,7 +263,7 @@ be defined in the <code>assays()</code> slot.</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

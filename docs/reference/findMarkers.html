@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cell-Cycle Markers — cell_cycle_markers • pointillism</title>
+<title>Find Cluster-Specific Marker Genes — findMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Cell-Cycle Markers — cell_cycle_markers" />
+<meta property="og:title" content="Find Cluster-Specific Marker Genes — findMarkers" />
 
-<meta property="og:description" content="Cell-Cycle Markers" />
+<meta property="og:description" content="Find Cluster-Specific Marker Genes" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,36 +102,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cell-Cycle Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>cell_cycle_markers.Rd</code></div>
+    <h1>Find Cluster-Specific Marker Genes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/findMarkers-methods.R'><code>R/findMarkers-methods.R</code></a></small>
+    <div class="hidden name"><code>findMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Cell-Cycle Markers</p>
+    <p>Find Cluster-Specific Marker Genes</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>cell_cycle_markers</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-    <p>An object of class <code>list</code> of length 3.</p>
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>list</code> containing:</p><ul>
+<li><p><code>caller = "edgeR"</code>: <code>DGELRT</code>.</p></li>
+<li><p><code>caller = "DESeq2"</code>: <code>DESeqResults</code>.</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Marker Data: <code><a href='cell_type_markers.html'>cell_type_markers</a></code></p></div>
+    <div class='dont-index'><p>Other Differential Expression Functions: <code><a href='diffExp.html'>diffExp</a></code>,
+  <code><a href='runZinbwave.html'>runZinbwave</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>names</span>(<span class='no'>cell_cycle_markers</span>)</div><div class='output co'>#&gt; [1] "homoSapiens"            "musMusculus"            "drosophilaMelanogaster"</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
+
+<span class='co'># edgeR</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ident(object): could not find function "ident"</span></div><div class='input'>
+<span class='co'># DESeq2</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"DESeq2"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ident(object): could not find function "ident"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
+      <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

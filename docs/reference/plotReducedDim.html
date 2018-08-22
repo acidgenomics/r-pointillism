@@ -67,7 +67,7 @@ UMAP: Uniform Manifold Approximation and Projection.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -130,22 +130,41 @@ UMAP: Uniform Manifold Approximation and Projection.
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotReducedDim</span>(<span class='no'>object</span>, <span class='no'>reducedDim</span>,
   <span class='kw'>dimsUse</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>), <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"ident"</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.pointAlpha"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.label"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.labelSize"</span>, <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.dark"</span>, <span class='fl'>FALSE</span>), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.grid"</span>,
-  <span class='fl'>FALSE</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.legend"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>aspectRatio</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"bcbio.aspectRatio"</span>, <span class='fl'>1L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>,
+  <span class='fl'>TRUE</span>), <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
+  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.dark"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotReducedDim</span>(<span class='no'>object</span>, <span class='no'>reducedDim</span>, <span class='kw'>dimsUse</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>,
+  <span class='fl'>2L</span>), <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"ident"</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>,
+  <span class='fl'>TRUE</span>), <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
+  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.dark"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotPCA</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for seurat</span>
 <span class='fu'>plotPCA</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
 <span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotUMAP</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for seurat</span>
 <span class='fu'>plotUMAP</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -213,16 +232,8 @@ dots (<code>FALSE</code>).</p></td>
 <code><a href='http://www.rdocumentation.org/packages/basejump/topics/themes'>basejump::theme_midnight()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>grid</th>
-      <td><p><code>boolean</code>. Show major grid lines but hide axis lines.</p></td>
-    </tr>
-    <tr>
       <th>legend</th>
       <td><p><code>boolean</code>. Include plot legend.</p></td>
-    </tr>
-    <tr>
-      <th>aspectRatio</th>
-      <td><p><code>scalar integer</code>. Aspect ratio.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -261,11 +272,11 @@ installing this with conda: <code>conda install -c conda-forge umap-learn</code>
     <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
 
 <span class='co'># t-SNE</span>
-<span class='fu'>plotTSNE</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotReducedDim-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotReducedDim-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotTSNE</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotReducedDim-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .local(object, ...): object 'p' not found</span></div><div class='input'>
 <span class='co'># UMAP</span>
-<span class='fu'>plotUMAP</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotUMAP</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># PCA</span>
-<span class='fu'>plotPCA</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-5.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotPCA</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotReducedDim-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
