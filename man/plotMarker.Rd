@@ -17,9 +17,7 @@ plotMarker(object, ...)
   pointsAsNumbers = FALSE, label = getOption("pointillism.label",
   TRUE), labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
-  grid = getOption("pointillism.grid", FALSE),
-  legend = getOption("pointillism.legend", TRUE),
-  aspectRatio = getOption("pointillism.aspectRatio", 1L), title = TRUE)
+  legend = getOption("pointillism.legend", TRUE), title = TRUE)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
   "UMAP", "PCA"), expression = c("mean", "median", "sum"),
@@ -29,9 +27,7 @@ plotMarker(object, ...)
   pointsAsNumbers = FALSE, label = getOption("pointillism.label",
   TRUE), labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
-  grid = getOption("pointillism.grid", FALSE),
-  legend = getOption("pointillism.legend", TRUE),
-  aspectRatio = getOption("pointillism.aspectRatio", 1L), title = TRUE)
+  legend = getOption("pointillism.legend", TRUE), title = TRUE)
 }
 \arguments{
 \item{object}{Object.}
@@ -69,11 +65,7 @@ dots (\code{FALSE}).}
 \item{dark}{\code{boolean}. Plot against a dark background using
 \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
 
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
-
 \item{legend}{\code{boolean}. Include plot legend.}
-
-\item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
 }
