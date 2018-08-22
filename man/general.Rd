@@ -6,6 +6,13 @@
 \arguments{
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
+\item{BPPARAM}{BiocParallel param. We recommend one of the following:
+\itemize{
+\item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
+\item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
+\item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
+}}
+
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
