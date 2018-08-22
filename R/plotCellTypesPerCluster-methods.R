@@ -28,7 +28,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
@@ -42,13 +41,13 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        # Legacy arguments =====================================================
+        # Legacy arguments -----------------------------------------------------
         call <- match.call()
         if ("cellTypesPerCluster" %in% names(call)) {
             stop("Use `markers` instead of `cellTypesPerCluster`")
         }
 
-        # Assert checks ========================================================
+        # Assert checks --------------------------------------------------------
         # Passthrough: color, dark
         validObject(object)
         stopifnot(is(markers, "grouped_df"))
@@ -108,4 +107,14 @@ setMethod(
 
         invisible(return)
     }
+)
+
+
+
+#' @rdname plotCellTypesPerCluster
+#' @export
+setMethod(
+    "plotCellTypesPerCluster",
+    signature("seurat"),
+    getMethod("plotCellTypesPerCluster", "SingleCellExperiment")
 )
