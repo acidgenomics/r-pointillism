@@ -5,11 +5,15 @@
 \name{plotKnownMarkersDetected}
 \alias{plotKnownMarkersDetected}
 \alias{plotKnownMarkersDetected,SingleCellExperiment-method}
+\alias{plotKnownMarkersDetected,seurat-method}
 \title{Plot Known Markers Detected}
 \usage{
 plotKnownMarkersDetected(object, ...)
 
 \S4method{plotKnownMarkersDetected}{SingleCellExperiment}(object, markers,
+  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+
+\S4method{plotKnownMarkersDetected}{seurat}(object, markers,
   reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 }
 \arguments{

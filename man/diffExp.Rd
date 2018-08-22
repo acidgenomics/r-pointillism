@@ -4,11 +4,16 @@
 \name{diffExp}
 \alias{diffExp}
 \alias{diffExp,SingleCellExperiment-method}
+\alias{diffExp,seurat-method}
 \title{Differential Expression}
 \usage{
 diffExp(object, ...)
 
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
+  caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
+  minCountsPerCell = 5L)
+
+\S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
   minCountsPerCell = 5L)
 }
@@ -123,6 +128,9 @@ summary(x)
 }
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
+
+Other Differential Expression Functions: \code{\link{findAllMarkers}},
+  \code{\link{runZinbwave}}
 }
 \author{
 Michael Steinbaugh
