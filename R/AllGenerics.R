@@ -31,12 +31,12 @@ setGeneric(
 
 
 
-#' @rdname findAllMarkers
+#' @rdname findMarkers
 #' @export
 setGeneric(
-    "findAllMarkers",
+    "findMarkers",
     function(object, ...) {
-        standardGeneric("findAllMarkers")
+        standardGeneric("findMarkers")
     }
 )
 

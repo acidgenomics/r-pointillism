@@ -129,7 +129,7 @@ summary(x)
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 
-Other Differential Expression Functions: \code{\link{findAllMarkers}},
+Other Differential Expression Functions: \code{\link{findMarkers}},
   \code{\link{runZinbwave}}
 }
 \author{

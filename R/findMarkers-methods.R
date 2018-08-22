@@ -1,18 +1,14 @@
-# Consider adding multi-core support here using BiocParallel
-
-
-
-#' Find All Cluster-Specific Markers
+#' Find Cluster-Specific Marker Genes
 #'
-#' @rdname findAllMarkers
-#' @name findAllMarkers
+#' @rdname findMarkers
+#' @name findMarkers
 #' @family Differential Expression Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param ... Passthrough arguments to [diffExp()].
 #'
-#' @return `list`
+#' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
@@ -20,12 +16,12 @@
 #' object <- sce_small
 #'
 #' # edgeR
-#' x <- findAllMarkers(object, caller = "edgeR")
+#' x <- findMarkers(object, caller = "edgeR")
 #'
 #' # DESeq2
-#' x <- findAllMarkers(object, caller = "DESeq2")
+#' x <- findMarkers(object, caller = "DESeq2")
 setMethod(
-    "findAllMarkers",
+    "findMarkers",
     signature("SingleCellExperiment"),
     function(object, ...) {
         .assertHasZinbwave(object)
