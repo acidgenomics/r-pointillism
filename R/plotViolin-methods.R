@@ -20,7 +20,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotViolin
 #' @export
 setMethod(
@@ -30,8 +29,8 @@ setMethod(
         object,
         genes,
         scale = c("count", "width", "area"),
-        fill = getOption("bcbio.discrete.fill", NULL),
-        legend = getOption("bcbio.legend", TRUE)
+        fill = getOption("pointillism.discrete.fill", NULL),
+        legend = getOption("pointillism.legend", TRUE)
     ) {
         scale <- match.arg(scale)
         assert_is_any_of(fill, c("ScaleDiscrete", "character", "NULL"))
@@ -100,4 +99,14 @@ setMethod(
 
         p
     }
+)
+
+
+
+#' @rdname plotViolin
+#' @export
+setMethod(
+    "plotViolin",
+    signature("seurat"),
+    getMethod("plotViolin", "SingleCellExperiment")
 )

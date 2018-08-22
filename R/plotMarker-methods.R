@@ -32,8 +32,7 @@ NULL
 
 
 
-# Constructors =================================================================
-# Strip everything except the x-axis text labels
+# Strip everything except the x-axis text labels.
 .minimalAxis <- function() {
     theme(
         axis.line = element_blank(),
@@ -50,7 +49,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotMarker
 #' @export
 setMethod(
@@ -61,16 +59,16 @@ setMethod(
         genes,
         reducedDim = c("TSNE", "UMAP", "PCA"),
         expression = c("mean", "median", "sum"),
-        color = getOption("bcbio.discrete.color", NULL),
-        pointSize = getOption("bcbio.pointSize", 0.75),
-        pointAlpha = getOption("bcbio.pointAlpha", 0.8),
+        color = getOption("pointillism.discrete.color", NULL),
+        pointSize = getOption("pointillism.pointSize", 0.75),
+        pointAlpha = getOption("pointillism.pointAlpha", 0.8),
         pointsAsNumbers = FALSE,
-        label = getOption("bcbio.label", TRUE),
-        labelSize = getOption("bcbio.labelSize", 6L),
-        dark = getOption("bcbio.dark", FALSE),
-        grid = getOption("bcbio.grid", FALSE),
-        legend = getOption("bcbio.legend", TRUE),
-        aspectRatio = getOption("bcbio.aspectRatio", 1L),
+        label = getOption("pointillism.label", TRUE),
+        labelSize = getOption("pointillism.labelSize", 6L),
+        dark = getOption("pointillism.dark", FALSE),
+        grid = getOption("pointillism.grid", FALSE),
+        legend = getOption("pointillism.legend", TRUE),
+        aspectRatio = getOption("pointillism.aspectRatio", 1L),
         title = TRUE
     ) {
         assert_is_character(genes)
@@ -241,4 +239,14 @@ setMethod(
 
         p
     }
+)
+
+
+
+#' @rdname plotMarker
+#' @export
+setMethod(
+    "plotMarker",
+    signature("seurat"),
+    getMethod("plotMarker", "SingleCellExperiment")
 )
