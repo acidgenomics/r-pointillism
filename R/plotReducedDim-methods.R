@@ -91,11 +91,6 @@ setMethod(
         assert_is_character(axes)
         assert_is_subset(axes, colnames(data))
 
-        # Dark mode
-        if (isTRUE(dark)) {
-            p <- p + theme_midnight()
-        }
-
         p <- ggplot(
             data = data,
             mapping = aes(
@@ -150,6 +145,11 @@ setMethod(
                     size = labelSize,
                     fontface = "bold"
                 )
+        }
+
+        # Dark mode
+        if (isTRUE(dark)) {
+            p <- p + theme_midnight()
         }
 
         if (is(color, "ScaleDiscrete")) {
