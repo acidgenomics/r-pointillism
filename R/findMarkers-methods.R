@@ -1,6 +1,5 @@
 #' Find Cluster-Specific Marker Genes
 #'
-#' @rdname findMarkers
 #' @name findMarkers
 #' @family Differential Expression Functions
 #' @author Michael Steinbaugh
@@ -20,12 +19,18 @@
 #'
 #' # DESeq2
 #' x <- findMarkers(object, caller = "DESeq2")
+NULL
+
+
+
+#' @rdname findMarkers
+#' @export
 setMethod(
     "findMarkers",
     signature("SingleCellExperiment"),
     function(object, ...) {
         .assertHasZinbwave(object)
-        ident <- ident(object)
+        ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
         stopifnot(length(clusters) >= 2L)
