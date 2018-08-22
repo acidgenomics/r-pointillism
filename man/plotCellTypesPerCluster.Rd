@@ -44,12 +44,14 @@ many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
 markers <- cellTypesPerCluster(known_markers_detected_small)
+# Subset for speed.
+markers <- head(markers, n = 2L)
 glimpse(markers)
 
-# Let's plot the first row, as an example
+# Let's plot the first row, as an example.
 plotCellTypesPerCluster(
     object = seurat_small,
-    markers = head(markers, n = 2L)
+    markers = markers
 )
 }
 \seealso{
