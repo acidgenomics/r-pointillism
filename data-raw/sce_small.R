@@ -38,8 +38,7 @@ rowRanges(sce) <- gr[seq_len(nrow(sce))]
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
-# Remove genes with all zero counts
-sce <- filterCells(sce)
+sce <- filterCells(sce, minCellsPerGene = 25)
 
 
 
@@ -64,16 +63,18 @@ stopifnot("sampleName" %in% colnames(colData(seurat_small)))
 seurat_sce <- seurat_small %>%
     as("SingleCellExperiment") %>%
     convertSymbolsToGenes()
+stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 stopifnot("ident" %in% colnames(colData(seurat_sce)))
 # Ensure that dimensional reduction data is slotted correctly
 stopifnot(identical(
     names(reducedDims(seurat_sce)),
     c("PCA", "TSNE", "UMAP")
 ))
-stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
+# Remove genes with all zero counts prior to zinbwave
+sce <- filterCells(sce)
 # Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit)
 sce <- runZinbwave(sce)
 sce_small <- sce
