@@ -16,7 +16,7 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' markers <- cellTypesPerCluster(known_markers_small)
+#' markers <- cellTypesPerCluster(known_markers_detected_small)
 #' glimpse(markers)
 #'
 #' # Let's plot the first row, as an example
