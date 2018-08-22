@@ -9,17 +9,6 @@ setGeneric(
 
 
 
-#' @rdname cellTypesPerCluster
-#' @export
-setGeneric(
-    "cellTypesPerCluster",
-    function(object, ...) {
-        standardGeneric("cellTypesPerCluster")
-    }
-)
-
-
-
 #' @rdname clusterCellCountsPerSample
 #' @export
 setGeneric(
