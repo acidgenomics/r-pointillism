@@ -4,7 +4,7 @@ context("Clustering Functions")
 
 # cellTypesPerCluster ==========================================================
 test_that("cellTypesPerCluster", {
-    x <- cellTypesPerCluster(known_markers_small)
+    x <- cellTypesPerCluster(known_markers_detected_small)
     expect_is(x, "grouped_df")
     expect_identical(dplyr::group_vars(x), "cluster")
     expect_identical(

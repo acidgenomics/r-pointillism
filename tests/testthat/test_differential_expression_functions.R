@@ -18,7 +18,7 @@ test_that("diffExp : zinbwave-edgeR", {
     expect_s4_class(x, "DGELRT")
 })
 
-# DESeq2 is still relatively slow
+# DESeq2 is still relatively slow for large datasets
 test_that("diffExp : zinbwave-DESeq2", {
     x <- diffExp(
         object = object,
