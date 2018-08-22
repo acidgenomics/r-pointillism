@@ -9,20 +9,19 @@ reference:
   - title: Coercion Methods
     contents:
     - coerce
-  - title: Zero Count Inflation
-    contents:
-    - hasZinbwave
-    - runZinbwave
-  - title: Differential Expression
+  - title: Differential Expression Functions
     contents:
     - diffExp
-  - title: Cluster Statistics
+    - findAllMarkers
+    - runZinbwave
+  - title: Cluster Statistics Functions
     contents:
     - cellCountsPerCluster
     - cellTypesPerCluster
     - clusterCellCountsPerSample
   - title: Marker Functions
     contents:
+    - ident
     - knownMarkersDetected
     - readCellTypeMarkers
     - sanitizeSeuratMarkers
