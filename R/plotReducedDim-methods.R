@@ -56,9 +56,7 @@ setMethod(
         label = getOption("pointillism.label", TRUE),
         labelSize = getOption("pointillism.labelSize", 6L),
         dark = getOption("pointillism.dark", FALSE),
-        grid = getOption("pointillism.grid", FALSE),
         legend = getOption("pointillism.legend", TRUE),
-        aspectRatio = getOption("pointillism.aspectRatio", 1L),
         title = NULL
     ) {
         .assertHasIdent(object)
@@ -93,10 +91,9 @@ setMethod(
         assert_is_character(axes)
         assert_is_subset(axes, colnames(data))
 
+        # Dark mode
         if (isTRUE(dark)) {
-            theme <- theme_midnight
-        } else {
-            theme <- theme_paperwhite
+            p <- p + theme_midnight()
         }
 
         p <- ggplot(
@@ -111,10 +108,6 @@ setMethod(
                 x = axes[[1L]],
                 y = axes[[2L]],
                 color = paste(interestingGroups, collapse = ":\n")
-            ) +
-            theme(
-                aspect_ratio = aspectRatio,
-                grid = grid
             )
 
         if (isTRUE(pointsAsNumbers)) {

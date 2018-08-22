@@ -66,9 +66,7 @@ setMethod(
         label = getOption("pointillism.label", TRUE),
         labelSize = getOption("pointillism.labelSize", 6L),
         dark = getOption("pointillism.dark", FALSE),
-        grid = getOption("pointillism.grid", FALSE),
         legend = getOption("pointillism.legend", TRUE),
-        aspectRatio = getOption("pointillism.aspectRatio", 1L),
         title = TRUE
     ) {
         assert_is_character(genes)
@@ -215,23 +213,13 @@ setMethod(
                 )
         }
 
-        # Color palette
+        # Dark mode
         if (isTRUE(dark)) {
-            theme <- theme_midnight
+            p <- p + theme_midnight()
             if (is.null(color)) {
                 color <- darkMarkerColors
             }
-        } else {
-            theme <- theme_paperwhite
-            if (is.null(color)) {
-                color <- lightMarkerColors
-            }
         }
-        p <- p +
-            theme(
-                aspect_ratio = aspectRatio,
-                grid = grid
-            )
 
         if (is(color, "ScaleContinuous")) {
             p <- p + color
