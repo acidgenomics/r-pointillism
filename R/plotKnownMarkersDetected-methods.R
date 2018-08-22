@@ -30,7 +30,7 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        .assertHasKnownMarkers(markers)
+        .assertIsKnownMarkersDetected(markers)
         reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
