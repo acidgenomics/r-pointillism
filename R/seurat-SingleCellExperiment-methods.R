@@ -13,6 +13,21 @@ NULL
 
 
 
+.getSeuratStash <- function(object, name) {
+    stopifnot(is(object, "seurat"))
+    assert_is_a_string(name)
+    # We're stashing into object@misc slot.
+    stash <- slot(object, "misc")
+    # Handle legacy `bcbio` list inside `object@misc`.
+    # As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(stash)) {
+        stash <- stash[["bcbio"]]
+    }
+    stash[[name]]
+}
+
+
+
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
@@ -193,7 +208,7 @@ setMethod(
     "metadata",
     signature("seurat"),
     function(x, ...) {
-        stash <- slot(x, "misc")[["bcbio"]][["metadata"]]
+        stash <- .getSeuratStash(x, "metadata")
         if (!is.null(stash)) {
             return(stash)
         }
@@ -214,13 +229,11 @@ setMethod(
         value = "ANY"
     ),
     function(x, value) {
-        if (!is.list(value)) {
-            stop("replacement 'metadata' value must be a list")
-        }
+        assert_is_list(value)
         if (!length(value)) {
             names(value) <- NULL
         }
-        slot(x, "misc")[["bcbio"]][["metadata"]] <- value
+        slot(x, "misc")[["metadata"]] <- value
         x
     }
 )
@@ -289,9 +302,8 @@ setMethod(
     signature("seurat"),
     function(x) {
         gr <- rowRanges(.as.SingleCellExperiment.seurat(x))
-
-        # Attempt to use stashed rowRanges, if present
-        stash <- slot(x, "misc")[["bcbio"]][["rowRanges"]]
+        # Attempt to use stashed rowRanges, if defined.
+        stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {
             assert_is_subset(c("geneID", "geneName"), colnames(mcols(stash)))
             # Check to see if we're using IDs or symbols
@@ -311,7 +323,6 @@ setMethod(
             mcols(stash) <- cbind(mcols(stash), mcols(gr))
             gr <- stash
         }
-
         gr
     }
 )

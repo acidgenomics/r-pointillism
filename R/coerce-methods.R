@@ -18,9 +18,10 @@ NULL
 
 
 
+# Fast internal method, that ensures dimnames are sanitized.
 .as.SingleCellExperiment.seurat <- function(object) {  # nolint
     validObject(object)
-    # Sanitize legacy seurat objects that contain Ensembl IDs in names
+    # Sanitize legacy seurat objects that contain Ensembl IDs in names.
     names(rownames(object@raw.data)) <- NULL
     names(rownames(object@data)) <- NULL
     as.SingleCellExperiment(object)
@@ -51,26 +52,23 @@ setAs(
         to <- CreateSeuratObject(
             raw.data = counts(from),
             project = "pointillism",
-            # Already applied filtering cutoffs for cells and genes
+            # Already applied filtering cutoffs for cells and genes.
             min.cells = 0L,
             min.genes = 0L,
-            # Default for UMI datasets
+            # Using the default for UMI datasets.
             is.expr = 0L,
             meta.data = as.data.frame(colData(from))
         )
 
-        # Check that the dimensions match exactly
+        # Check that the dimensions match exactly.
         assert_are_identical(
             x = dim(from),
             y = dim(slot(to, "raw.data"))
         )
 
-        # Stash metadata and rowRanges into `misc` slot
-        bcbio <- list(
-            rowRanges = rowRanges(from),
-            metadata = metadata(from)
-        )
-        slot(to, "misc")[["bcbio"]] <- bcbio
+        # Stash metadata and rowRanges into `misc` slot.
+        slot(to, "misc")[["rowRanges"]] <- rowRanges(from)
+        slot(to, "misc")[["metadata"]] <- metadata(from)
 
         to
     }
@@ -94,6 +92,7 @@ setAs(
     to = "SingleCellExperiment",
     function(from) {
         to <- .as.SingleCellExperiment.seurat(from)
+        # FIXME Slot scaleData, if defined
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
         to
