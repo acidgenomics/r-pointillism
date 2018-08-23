@@ -41,7 +41,7 @@
 #'   scale_radius scale_x_continuous scale_y_continuous theme
 #' @importFrom magrittr %>% set_names
 #' @importFrom Matrix rowMeans rowSums
-#' @importFrom methods as getMethod is show slot slot<- validObject
+#' @importFrom methods as getMethod is setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! sym syms
 #' @importFrom S4Vectors as.data.frame as.matrix
