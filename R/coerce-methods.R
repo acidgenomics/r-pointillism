@@ -10,6 +10,7 @@
 #'
 #' @seealso
 #' - [methods::as()].
+#' - [methods::canCoerce()].
 #' - [Seurat::CreateSeuratObject()].
 #' - [Seurat::Convert()].
 NULL
