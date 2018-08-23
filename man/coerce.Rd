@@ -3,8 +3,8 @@
 \name{coerce}
 \alias{coerce}
 \alias{as}
-\alias{coerce-SingleCellExperiment-seurat}
-\alias{coerce-seurat-SingleCellExperiment}
+\alias{coerce,SingleCellExperiment,seurat-method}
+\alias{coerce,seurat,SingleCellExperiment-method}
 \title{Methods for Coercing an Object to a Class}
 \value{
 Object of new class.
@@ -38,10 +38,10 @@ print(x)
 }
 \seealso{
 \itemize{
+\item \code{\link[methods:as]{methods::as()}}.
+\item \code{\link[methods:canCoerce]{methods::canCoerce()}}.
 \item \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}}.
 \item \code{\link[Seurat:Convert]{Seurat::Convert()}}.
-\item \code{\link[methods:as]{methods::as()}}.
-\item \code{\link[methods:setAs]{methods::setAs()}}.
 }
 }
 \author{

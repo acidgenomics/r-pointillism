@@ -4,14 +4,20 @@
 \name{plotDot}
 \alias{plotDot}
 \alias{plotDot,SingleCellExperiment-method}
+\alias{plotDot,seurat-method}
 \title{Plot Dot}
 \usage{
 plotDot(object, ...)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, colMin = -2.5,
   colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("bcbio.discrete.color", NULL),
-  legend = getOption("bcbio.legend", TRUE))
+  color = getOption("pointillism.discrete.color", NULL),
+  legend = getOption("pointillism.legend", TRUE))
+
+\S4method{plotDot}{seurat}(object, genes, colMin = -2.5, colMax = 2.5,
+  dotMin = 0L, dotScale = 6L,
+  color = getOption("pointillism.discrete.color", NULL),
+  legend = getOption("pointillism.legend", TRUE))
 }
 \arguments{
 \item{object}{Object.}

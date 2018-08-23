@@ -1,6 +1,6 @@
 # SingleCellExperiment Example Data
 # Using splatter to generate simulated counts
-# 2018-08-10
+# 2018-08-21
 
 library(devtools)
 library(tidyverse)
@@ -38,11 +38,13 @@ rowRanges(sce) <- gr[seq_len(nrow(sce))]
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
+sce <- filterCells(sce, minCellsPerGene = 25)
 
 
 
 # seurat_small =================================================================
 seurat_small <- as(sce, "seurat") %>%
+    convertGenesToSymbols() %>%
     NormalizeData() %>%
     FindVariableGenes(do.plot = FALSE) %>%
     ScaleData() %>%
@@ -58,35 +60,49 @@ stopifnot("sampleName" %in% colnames(colData(seurat_small)))
 
 # sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID)
-seurat_sce <- as(seurat_small, "SingleCellExperiment")
+seurat_sce <- seurat_small %>%
+    as("SingleCellExperiment") %>%
+    convertSymbolsToGenes()
+stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 stopifnot("ident" %in% colnames(colData(seurat_sce)))
 # Ensure that dimensional reduction data is slotted correctly
 stopifnot(identical(
     names(reducedDims(seurat_sce)),
     c("PCA", "TSNE", "UMAP")
 ))
-stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
+# Remove genes with all zero counts prior to zinbwave
+sce <- filterCells(sce)
+# Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit)
+sce <- runZinbwave(sce)
 sce_small <- sce
 
 
 
-# all_markers_small ============================================================
-all_markers <- FindAllMarkers(seurat_small)
-all_markers <- sanitizeSeuratMarkers(
-    data = all_markers,
+# marker data frames ===========================================================
+all_markers_small <- FindAllMarkers(seurat_small)
+all_markers_small <- sanitizeSeuratMarkers(
+    data = all_markers_small,
     rowRanges = rowRanges(seurat_small)
 )
-all_markers_small <- all_markers
 
+known_markers_small <- tibble(
+    cellType = c("cell_type_1", "cell_type_2"),
+    geneID = pull(all_markers_small, "geneID")[seq_len(2L)]
+) %>%
+    group_by(cellType)
+# Write out an example CSV that we can use to test `readCellTypeMarkers()`.
+dir.create("inst/extdata", recursive = TRUE, showWarnings = FALSE)
+write_csv(
+    x = known_markers_small,
+    path = file.path("inst", "extdata", "cell_type_markers.csv")
+)
 
-
-# known_markers_small ==========================================================
-known_markers_small <- knownMarkersDetected(
+known_markers_detected_small <- knownMarkersDetected(
     all = all_markers_small,
-    known = cell_type_markers[["homoSapiens"]]
+    known = known_markers_small
 )
 
 
@@ -97,6 +113,7 @@ use_data(
     seurat_small,
     all_markers_small,
     known_markers_small,
+    known_markers_detected_small,
     compress = "xz",
     overwrite = TRUE
 )

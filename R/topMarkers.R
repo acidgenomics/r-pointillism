@@ -31,8 +31,7 @@ topMarkers <- function(
     direction = c("positive", "negative", "both"),
     coding = FALSE
 ) {
-    stopifnot(.isSanitizedMarkers(data))
-    assert_is_subset(c("avgLogFC", "padj"), colnames(data))
+    .assertIsSanitizedMarkers(data)
     assertIsAnImplicitInteger(n)
     direction <- match.arg(direction)
     assert_is_a_bool(coding)

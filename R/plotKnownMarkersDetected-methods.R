@@ -10,14 +10,14 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' markers <- head(known_markers_small, n = 1)
-#' glimpse(markers)
-#' plotKnownMarkersDetected(seurat_small, markers = head(markers, 1))
+#' plotKnownMarkersDetected(
+#'     object = sce_small,
+#'     markers = known_markers_detected_small
+#' )
 NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotKnownMarkersDetected
 #' @export
 setMethod(
@@ -30,10 +30,7 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        assert_has_rows(markers)
-        stopifnot(is(markers, "grouped_df"))
-        assert_has_rows(markers)
-        assert_is_subset("cellType", colnames(markers))
+        .assertIsKnownMarkersDetected(markers)
         reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
@@ -74,4 +71,14 @@ setMethod(
 
         invisible(list)
     }
+)
+
+
+
+#' @rdname plotKnownMarkersDetected
+#' @export
+setMethod(
+    "plotKnownMarkersDetected",
+    signature("seurat"),
+    getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
 )

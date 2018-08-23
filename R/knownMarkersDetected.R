@@ -28,10 +28,9 @@
 #' @export
 #'
 #' @examples
-#' # grouped_df ====
 #' x <- knownMarkersDetected(
 #'     all = all_markers_small,
-#'     known = cell_type_markers[["homoSapiens"]]
+#'     known = known_markers_small
 #' )
 #' head(x)
 knownMarkersDetected <- function(
@@ -42,13 +41,13 @@ knownMarkersDetected <- function(
     promiscuousCutoff = 5L,
     ...
 ) {
-    # Legacy arguments =========================================================
+    # Legacy arguments ---------------------------------------------------------
     call <- match.call()
     if ("object" %in% names(call)) {
         stop("Use `all` instead of `object` for all markers data.frame")
     }
 
-    # Assert checks ============================================================
+    # Assert checks ------------------------------------------------------------
     stopifnot(.isSanitizedMarkers(all))
     assert_is_tbl_df(all)
     assert_is_tbl_df(known)

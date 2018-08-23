@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -136,10 +136,10 @@ a <code>seurat</code> class object and coercing to a <code>SingleCellExperiment<
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/methods/topics/as'>methods::as()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/methods/topics/canCoerce'>methods::canCoerce()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/CreateSeuratObject'>Seurat::CreateSeuratObject()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/Convert'>Seurat::Convert()</a></code>.</p></li>
-<li><p><code><a href='http://www.rdocumentation.org/packages/methods/topics/as'>methods::as()</a></code>.</p></li>
-<li><p><code><a href='http://www.rdocumentation.org/packages/methods/topics/setAs'>methods::setAs()</a></code>.</p></li>
 </ul></div>
     
 
@@ -149,17 +149,16 @@ a <code>seurat</code> class object and coercing to a <code>SingleCellExperiment<
 <span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "seurat"
 #&gt; attr(,"package")
 #&gt; [1] "Seurat"</div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; An object of class seurat in project pointillism 
-#&gt;  10000 genes across 100 samples.</div><div class='input'><span class='co'># seurat to SingleCellExperiment ====</span>
+#&gt;  1201 genes across 100 samples.</div><div class='input'><span class='co'># seurat to SingleCellExperiment ====</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>seurat_small</span>, <span class='st'>"SingleCellExperiment"</span>)
 <span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
-#&gt; dim: 10000 100 
-#&gt; metadata(0):
+#&gt; dim: 1201 100 
+#&gt; metadata(4): filterCells filterGenes filterParams filterSummary
 #&gt; assays(2): counts logcounts
-#&gt; rownames(10000): ENSG00000000003 ENSG00000000005 ... ENSG00000156453
-#&gt;   ENSG00000156463
+#&gt; rownames(1201): FGR STPG1 ... ALX3 CCT8
 #&gt; rowData names(11): broadClass description ... gene.dispersion
 #&gt;   gene.dispersion.scaled
-#&gt; colnames(100): cell1 cell2 ... cell99 cell100
+#&gt; colnames(100): cell1 cell10 ... cell98 cell99
 #&gt; colData names(16): nGene nUMI ... res.1.2 ident
 #&gt; reducedDimNames(3): PCA TSNE UMAP
 #&gt; spikeNames(0):</div></pre>

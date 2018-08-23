@@ -4,11 +4,16 @@
 \name{diffExp}
 \alias{diffExp}
 \alias{diffExp,SingleCellExperiment-method}
+\alias{diffExp,seurat-method}
 \title{Differential Expression}
 \usage{
 diffExp(object, ...)
 
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
+  caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
+  minCountsPerCell = 5L)
+
+\S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
   minCountsPerCell = 5L)
 }
@@ -44,9 +49,20 @@ shrunken results are desired.
 }
 }
 \description{
-We are currently recommending the ZINB-WaVE method over zingeR, since it is
-faster, and has been show to be more sensitive for most single-cell RNA-seq
-datasets.
+Perform pairwise differential expression across groups of cells by fitting
+to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
+Currently supports edgeR and DESeq2 as DE callers.
+}
+\details{
+This step will run a lot faster if you pre-calculate the ZINB weights using
+the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
+\code{\link[=assays]{assays()}} slot of the object. Running zinbwave across the entire set of
+filtered cells also has greater sensitivity for weight calculations.
+}
+\note{
+We are currently recommending the ZINB-WaVE method over zingeR, since
+it is faster, and has been show to be more sensitive for most single-cell
+RNA-seq datasets.
 }
 \section{zinbwave}{
 
@@ -123,6 +139,9 @@ summary(x)
 }
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
+
+Other Differential Expression Functions: \code{\link{findMarkers}},
+  \code{\link{runZinbwave}}
 }
 \author{
 Michael Steinbaugh

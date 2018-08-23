@@ -16,19 +16,20 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' markers <- cellTypesPerCluster(known_markers_small)
+#' markers <- cellTypesPerCluster(known_markers_detected_small)
+#' # Subset for speed.
+#' markers <- head(markers, n = 2L)
 #' glimpse(markers)
 #'
-#' # Let's plot the first row, as an example
+#' # Let's plot the first row, as an example.
 #' plotCellTypesPerCluster(
 #'     object = seurat_small,
-#'     markers = head(markers, n = 2L)
+#'     markers = markers
 #' )
 NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
@@ -42,13 +43,13 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        # Legacy arguments =====================================================
+        # Legacy arguments -----------------------------------------------------
         call <- match.call()
         if ("cellTypesPerCluster" %in% names(call)) {
             stop("Use `markers` instead of `cellTypesPerCluster`")
         }
 
-        # Assert checks ========================================================
+        # Assert checks --------------------------------------------------------
         # Passthrough: color, dark
         validObject(object)
         stopifnot(is(markers, "grouped_df"))
@@ -108,4 +109,14 @@ setMethod(
 
         invisible(return)
     }
+)
+
+
+
+#' @rdname plotCellTypesPerCluster
+#' @export
+setMethod(
+    "plotCellTypesPerCluster",
+    signature("seurat"),
+    getMethod("plotCellTypesPerCluster", "SingleCellExperiment")
 )

@@ -7,7 +7,7 @@
 \title{Plot Gene}
 \usage{
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
-  "violin"), legend = getOption("bcbio.legend", TRUE))
+  "violin"), legend = getOption("pointillism.legend", TRUE))
 }
 \arguments{
 \item{object}{Object.}

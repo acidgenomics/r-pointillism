@@ -13,17 +13,6 @@ NULL
 
 
 
-# Constructors =================================================================
-# Assert check to see if we're modifying a freshly created seurat object
-.assertIsNewSeurat <- function(object) {
-    assert_are_identical(object@raw.data, object@data)
-    stopifnot(is.null(object@scale.data))
-    stopifnot(!length(object@var.genes))
-}
-
-
-
-# Methods ======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
@@ -59,26 +48,6 @@ setMethod(
     function(x, ...) {
         assays(.as.SingleCellExperiment.seurat(x), ...)
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "cellCountsPerCluster",
-    signature("seurat"),
-    getMethod("cellCountsPerCluster", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "clusterCellCountsPerSample",
-    signature("seurat"),
-    getMethod("clusterCellCountsPerSample", "SingleCellExperiment")
 )
 
 
@@ -162,16 +131,6 @@ setMethod(
     function(object, ...) {
         counts(.as.SingleCellExperiment.seurat(object), ...)
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "diffExp",
-    signature("seurat"),
-    getMethod("diffExp", "SingleCellExperiment")
 )
 
 
@@ -277,126 +236,6 @@ setMethod(
     function(object, ...) {
         metrics(as(object, "SingleCellExperiment"))
     }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotCellTypesPerCluster",
-    signature("seurat"),
-    getMethod("plotCellTypesPerCluster", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotDot",
-    signature("seurat"),
-    getMethod("plotDot", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotFeature",
-    signature("seurat"),
-    getMethod("plotFeature", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotGene",
-    signature("seurat"),
-    getMethod("plotGene", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotKnownMarkersDetected",
-    signature("seurat"),
-    getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotMarker",
-    signature("seurat"),
-    getMethod("plotMarker", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotPCA",
-    signature("seurat"),
-    getMethod("plotPCA", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotReducedDim",
-    signature("seurat"),
-    getMethod("plotReducedDim", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotTopMarkers",
-    signature("seurat"),
-    getMethod("plotTopMarkers", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotTSNE",
-    signature("seurat"),
-    getMethod("plotTSNE", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotUMAP",
-    signature("seurat"),
-    getMethod("plotUMAP", "SingleCellExperiment")
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
-#' @export
-setMethod(
-    "plotViolin",
-    signature("seurat"),
-    getMethod("plotViolin", "SingleCellExperiment")
 )
 
 

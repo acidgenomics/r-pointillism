@@ -4,20 +4,29 @@
 \name{plotFeature}
 \alias{plotFeature}
 \alias{plotFeature,SingleCellExperiment-method}
+\alias{plotFeature,seurat-method}
 \title{Plot Feature}
 \usage{
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
   reducedDim = c("TSNE", "UMAP"),
-  color = getOption("bcbio.discrete.color", NULL),
-  pointSize = getOption("bcbio.pointSize", 0.75),
-  pointAlpha = getOption("bcbio.pointAlpha", 0.75),
-  label = getOption("bcbio.label", TRUE),
-  labelSize = getOption("bcbio.labelSize", 6L),
-  dark = getOption("bcbio.dark", FALSE), grid = getOption("bcbio.grid",
-  FALSE), legend = getOption("bcbio.legend", FALSE),
-  aspectRatio = getOption("bcbio.aspectRatio", 1L))
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE))
+
+\S4method{plotFeature}{seurat}(object, features, reducedDim = c("TSNE",
+  "UMAP"), color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE))
 }
 \arguments{
 \item{object}{Object.}
@@ -49,11 +58,7 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 \item{dark}{\code{boolean}. Plot against a dark background using
 \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
 
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
-
 \item{legend}{\code{boolean}. Include plot legend.}
-
-\item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 }
 \value{
 \code{ggplot} or \code{list}.
@@ -62,9 +67,7 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 Plot Feature
 }
 \examples{
-object <- sce_small
-features <- c("nUMI", "nGene", "mitoRatio")
-plotFeature(object, features = features)
+plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.

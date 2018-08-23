@@ -42,10 +42,9 @@ based on the gene names, since these change often and can mismatch
 easily.
 }
 \examples{
-# grouped_df ====
 x <- knownMarkersDetected(
     all = all_markers_small,
-    known = cell_type_markers[["homoSapiens"]]
+    known = known_markers_small
 )
 head(x)
 }
