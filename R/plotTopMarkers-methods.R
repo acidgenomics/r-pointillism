@@ -23,7 +23,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotTopMarkers
 #' @export
 setMethod(
@@ -87,4 +86,14 @@ setMethod(
 
         invisible(list)
     }
+)
+
+
+
+#' @rdname plotTopMarkers
+#' @export
+setMethod(
+    "plotTopMarkers",
+    signature("seurat"),
+    getMethod("plotTopMarkers", "SingleCellExperiment")
 )

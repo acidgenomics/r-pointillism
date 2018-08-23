@@ -9,17 +9,6 @@ setGeneric(
 
 
 
-#' @rdname cellTypesPerCluster
-#' @export
-setGeneric(
-    "cellTypesPerCluster",
-    function(object, ...) {
-        standardGeneric("cellTypesPerCluster")
-    }
-)
-
-
-
 #' @rdname clusterCellCountsPerSample
 #' @export
 setGeneric(
@@ -31,12 +20,34 @@ setGeneric(
 
 
 
+#' @rdname clusterID
+#' @export
+setGeneric(
+    "clusterID",
+    function(object, ...) {
+        standardGeneric("clusterID")
+    }
+)
+
+
+
 #' @rdname diffExp
 #' @export
 setGeneric(
     "diffExp",
     function(object, ...) {
         standardGeneric("diffExp")
+    }
+)
+
+
+
+#' @rdname findMarkers
+#' @export
+setGeneric(
+    "findMarkers",
+    function(object, ...) {
+        standardGeneric("findMarkers")
     }
 )
 
@@ -158,5 +169,16 @@ setGeneric(
     "plotViolin",
     function(object, ...) {
         standardGeneric("plotViolin")
+    }
+)
+
+
+
+#' @rdname runZinbwave
+#' @export
+setGeneric(
+    "runZinbwave",
+    function(Y, ...) {  # nolint
+        standardGeneric("runZinbwave")
     }
 )

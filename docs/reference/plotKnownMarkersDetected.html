@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -117,6 +117,10 @@
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
+  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
   <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -162,31 +166,16 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='no'>known_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 1
-#&gt; Variables: 19
-#&gt; $ cellType       &lt;fct&gt; Gut Epithelial Cell
-#&gt; $ cluster        &lt;fct&gt; 0
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000066405"
-#&gt; $ geneName       &lt;chr&gt; "CLDN18"
-#&gt; $ avgLogFC       &lt;dbl&gt; -0.9446141
-#&gt; $ pct1           &lt;dbl&gt; 0.442
-#&gt; $ pct2           &lt;dbl&gt; 0.688
-#&gt; $ rowname        &lt;chr&gt; "ENSG00000066405"
-#&gt; $ pvalue         &lt;dbl&gt; 3.27838e-06
-#&gt; $ padj           &lt;dbl&gt; 0.0327838
-#&gt; $ seqnames       &lt;chr&gt; "3"
-#&gt; $ start          &lt;int&gt; 137998735
-#&gt; $ end            &lt;int&gt; 138033655
-#&gt; $ width          &lt;int&gt; 34921
-#&gt; $ strand         &lt;chr&gt; "+"
-#&gt; $ broadClass     &lt;chr&gt; "coding"
-#&gt; $ description    &lt;chr&gt; "claudin 18 [Source:HGNC Symbol;Acc:HGNC:2039]"
-#&gt; $ geneBiotype    &lt;chr&gt; "protein_coding"
-#&gt; $ seqCoordSystem &lt;chr&gt; "chromosome"</div><div class='input'><span class='fu'>plotKnownMarkersDetected</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>head</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>plotKnownMarkersDetected</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>sce_small</span>,
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>known_markers_detected_small</span>
+)</div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; ## Gut Epithelial Cell {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkersDetected-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; ## cell_type_1 {.tabset}
+#&gt; </div><div class='img'><img src='plotKnownMarkersDetected-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## cell_type_2 {.tabset}
+#&gt; </div><div class='img'><img src='plotKnownMarkersDetected-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

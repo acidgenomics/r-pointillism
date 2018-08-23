@@ -1,8 +1,13 @@
 #' Differential Expression
 #'
-#' We are currently recommending the ZINB-WaVE method over zingeR, since it is
-#' faster, and has been show to be more sensitive for most single-cell RNA-seq
-#' datasets.
+#' Perform pairwise differential expression across groups of cells by fitting
+#' to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
+#' Currently supports edgeR and DESeq2 as DE callers.
+#'
+#' This step will run a lot faster if you pre-calculate the ZINB weights using
+#' the [runZinbwave()] function, which will stash the weights into the
+#' [assays()] slot of the object. Running zinbwave across the entire set of
+#' filtered cells also has greater sensitivity for weight calculations.
 #'
 #' @section zinbwave:
 #' We are currently using an epsilon setting of `1e12`, as recommended by the
@@ -36,6 +41,10 @@
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::DiffExpTest()] for
 #' additional information.
+#'
+#' @note We are currently recommending the ZINB-WaVE method over zingeR, since
+#'   it is faster, and has been show to be more sensitive for most single-cell
+#'   RNA-seq datasets.
 #'
 #' @name diffExp
 #' @family Differential Expression Functions
@@ -101,14 +110,6 @@ NULL
 
 
 
-.assertHasDesignFormula <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    assert_is_factor(object[["group"]])
-    assert_is_matrix(metadata(object)[["design"]])
-}
-
-
-
 # Van De Berge and Perraudeau and others have shown the LRT may perform better
 # for null hypothesis testing, so we use the LRT. In order to use the Wald test,
 # it is recommended to set `useT = TRUE`.
@@ -118,12 +119,15 @@ NULL
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    stopifnot(packageVersion("DESeq2") >= 1.2)
+    .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2...")
     message(printString(system.time({
-        dds <- DESeqDataSet(se = object, design = .designFormula)
+        dds <- DESeqDataSet(
+            se = object,
+            design = .designFormula
+        )
         dds <- DESeq(
             object = dds,
             test = "LRT",
@@ -141,7 +145,7 @@ NULL
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    stopifnot(packageVersion("edgeR") >= 3.22)
+    .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR...")
@@ -170,7 +174,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname diffExp
 #' @export
 setMethod(
@@ -251,7 +254,7 @@ setMethod(
 
         # Calculate the weights (e.g. `runZinbwave`)
         weightsFunction <- get(paste0("run", upperCamel(zeroWeights)))
-        object <- weightsFunction(object)
+        object <- weightsFunction(Y = object, BPPARAM = SerialParam())
 
         # Ensure raw counts matrix is dense
         counts(object) <- as.matrix(counts(object))
@@ -262,4 +265,14 @@ setMethod(
 
         object
     }
+)
+
+
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    "diffExp",
+    signature("seurat"),
+    getMethod("diffExp", "SingleCellExperiment")
 )

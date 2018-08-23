@@ -66,7 +66,7 @@ for the number of genes to plot here in a future update." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -122,6 +122,11 @@ for the number of genes to plot here in a future update.</p>
     <pre class="usage"><span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for seurat</span>
 <span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)</pre>
@@ -187,22 +192,22 @@ for the number of genes to plot here in a future update.</p>
 <span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 2
 #&gt; Variables: 18
 #&gt; $ cluster        &lt;fct&gt; 0, 1
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.284217, 1.087316
-#&gt; $ pct1           &lt;dbl&gt; 0.962, 0.979
-#&gt; $ pct2           &lt;dbl&gt; 0.938, 0.865
-#&gt; $ rowname        &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
-#&gt; $ pvalue         &lt;dbl&gt; 1.642010e-15, 1.291082e-16
-#&gt; $ padj           &lt;dbl&gt; 1.642010e-11, 1.291082e-12
-#&gt; $ seqnames       &lt;fct&gt; 7, 12
-#&gt; $ start          &lt;int&gt; 94524204, 66188879
-#&gt; $ end            &lt;int&gt; 94656572, 66254622
-#&gt; $ width          &lt;int&gt; 132369, 65744
-#&gt; $ strand         &lt;fct&gt; -, +
+#&gt; $ avgLogFC       &lt;dbl&gt; 1.1586621, 0.9477752
+#&gt; $ pct1           &lt;dbl&gt; 1.00, 0.98
+#&gt; $ pct2           &lt;dbl&gt; 0.878, 0.863
+#&gt; $ rowname        &lt;chr&gt; "PRDM12", "GNPNAT1"
+#&gt; $ pvalue         &lt;dbl&gt; 7.116805e-18, 1.467963e-16
+#&gt; $ padj           &lt;dbl&gt; 8.547283e-15, 1.763023e-13
+#&gt; $ seqnames       &lt;fct&gt; 9, 14
+#&gt; $ start          &lt;int&gt; 130664594, 52775194
+#&gt; $ end            &lt;int&gt; 130682981, 52791668
+#&gt; $ width          &lt;int&gt; 18388, 16475
+#&gt; $ strand         &lt;fct&gt; +, -
 #&gt; $ broadClass     &lt;fct&gt; coding, coding
-#&gt; $ description    &lt;fct&gt; sarcoglycan epsilon [Source:HGNC Symbol;Acc:HGNC:108...
+#&gt; $ description    &lt;fct&gt; PR/SET domain 12 [Source:HGNC Symbol;Acc:HGNC:13997]...
 #&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000127990", "ENSG00000090376"
-#&gt; $ geneName       &lt;fct&gt; SGCE, IRAK3
+#&gt; $ geneID         &lt;chr&gt; "ENSG00000130711", "ENSG00000100522"
+#&gt; $ geneName       &lt;fct&gt; PRDM12, GNPNAT1
 #&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome</div><div class='input'><span class='fu'>plotTopMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>tail</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 1 {.tabset}

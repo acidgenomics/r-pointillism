@@ -13,7 +13,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname cellCountsPerCluster
 #' @export
 setMethod(
@@ -38,4 +37,14 @@ setMethod(
             group_by(!!sym("ident")) %>%
             mutate(ratio = !!sym("n") / sum(!!sym("n")))
     }
+)
+
+
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    "cellCountsPerCluster",
+    signature("seurat"),
+    getMethod("cellCountsPerCluster", "SingleCellExperiment")
 )

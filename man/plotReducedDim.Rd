@@ -6,9 +6,13 @@
 \alias{plotTSNE}
 \alias{plotUMAP}
 \alias{plotReducedDim,SingleCellExperiment-method}
+\alias{plotReducedDim,seurat-method}
 \alias{plotPCA,SingleCellExperiment-method}
+\alias{plotPCA,seurat-method}
 \alias{plotTSNE,SingleCellExperiment-method}
+\alias{plotTSNE,seurat-method}
 \alias{plotUMAP,SingleCellExperiment-method}
+\alias{plotUMAP,seurat-method}
 \title{Plot Reduced Dimensions}
 \usage{
 plotReducedDim(object, ...)
@@ -19,20 +23,35 @@ plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
   dimsUse = c(1L, 2L), interestingGroups = "ident",
-  color = getOption("bcbio.discrete.color", NULL),
-  pointSize = getOption("bcbio.pointSize", 0.75),
-  pointAlpha = getOption("bcbio.pointAlpha", 0.75),
-  pointsAsNumbers = FALSE, label = getOption("bcbio.label", TRUE),
-  labelSize = getOption("bcbio.labelSize", 6L),
-  dark = getOption("bcbio.dark", FALSE), grid = getOption("bcbio.grid",
-  FALSE), legend = getOption("bcbio.legend", TRUE),
-  aspectRatio = getOption("bcbio.aspectRatio", 1L), title = NULL)
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
+  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
+
+\S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
+  2L), interestingGroups = "ident",
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
+  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotPCA}{SingleCellExperiment}(object, ...)
 
+\S4method{plotPCA}{seurat}(object, ...)
+
 \S4method{plotTSNE}{SingleCellExperiment}(object, ...)
 
+\S4method{plotTSNE}{seurat}(object, ...)
+
 \S4method{plotUMAP}{SingleCellExperiment}(object, ...)
+
+\S4method{plotUMAP}{seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -72,11 +91,7 @@ dots (\code{FALSE}).}
 \item{dark}{\code{boolean}. Plot against a dark background using
 \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
 
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
-
 \item{legend}{\code{boolean}. Include plot legend.}
-
-\item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
 }
@@ -99,8 +114,7 @@ object <- sce_small
 
 # t-SNE
 plotTSNE(object)
-plotTSNE(object, pointsAsNumbers = TRUE)
-plotTSNE(object, dark = TRUE)
+plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 
 # UMAP
 plotUMAP(object)

@@ -24,10 +24,11 @@
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
 #'   assertIsGene2symbol assertIsImplicitInteger camel convertGenesToSymbols
 #'   gene2symbol markdownHeader matchInterestingGroups printString
-#'   readFileByExtension theme_midnight theme_paperwhite upperCamel
+#'   readFileByExtension theme_midnight upperCamel
 #' @importFrom Biobase rowMedians
 #' @importFrom BiocGenerics cbind counts counts<- do.call
-#' @importFrom BiocParallel SerialParam
+#' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
+#'   SerialParam
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by
 #'   group_vars left_join mutate mutate_at mutate_if n pull
@@ -40,7 +41,7 @@
 #'   scale_radius scale_x_continuous scale_y_continuous theme
 #' @importFrom magrittr %>% set_names
 #' @importFrom Matrix rowMeans rowSums
-#' @importFrom methods as getMethod is show slot slot<- validObject
+#' @importFrom methods as getMethod is setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! sym syms
 #' @importFrom S4Vectors as.data.frame as.matrix
@@ -54,5 +55,5 @@
 #'   rownames_to_column tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
-#' @importFrom zinbwave glmWeightedF zinbwave
+#' @importFrom zinbwave glmWeightedF zinbFit zinbwave
 NULL

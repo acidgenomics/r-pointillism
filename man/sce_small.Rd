@@ -4,7 +4,7 @@
 \name{sce_small}
 \alias{sce_small}
 \title{SingleCellExperiment Example}
-\format{An object of class \code{SingleCellExperiment} with 10000 rows and 100 columns.}
+\format{An object of class \code{SingleCellExperiment} with 1201 rows and 100 columns.}
 \usage{
 sce_small
 }
@@ -16,6 +16,7 @@ sce_small
 }
 \seealso{
 Other Minimal Example Data: \code{\link{all_markers_small}},
+  \code{\link{known_markers_detected_small}},
   \code{\link{known_markers_small}},
   \code{\link{seurat_small}}
 }

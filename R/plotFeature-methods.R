@@ -13,14 +13,11 @@
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' object <- sce_small
-#' features <- c("nUMI", "nGene", "mitoRatio")
-#' plotFeature(object, features = features)
+#' plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
 NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotFeature
 #' @export
 setMethod(
@@ -30,15 +27,13 @@ setMethod(
         object,
         features,
         reducedDim = c("TSNE", "UMAP"),
-        color = getOption("bcbio.discrete.color", NULL),
-        pointSize = getOption("bcbio.pointSize", 0.75),
-        pointAlpha = getOption("bcbio.pointAlpha", 0.75),
-        label = getOption("bcbio.label", TRUE),
-        labelSize = getOption("bcbio.labelSize", 6L),
-        dark = getOption("bcbio.dark", FALSE),
-        grid = getOption("bcbio.grid", FALSE),
-        legend = getOption("bcbio.legend", FALSE),
-        aspectRatio = getOption("bcbio.aspectRatio", 1L)
+        color = getOption("pointillism.discrete.color", NULL),
+        pointSize = getOption("pointillism.pointSize", 0.75),
+        pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+        label = getOption("pointillism.label", TRUE),
+        labelSize = getOption("pointillism.labelSize", 6L),
+        dark = getOption("pointillism.dark", FALSE),
+        legend = getOption("pointillism.legend", TRUE)
     ) {
         assert_is_character(features)
         # Legacy support for `color = "auto"`
@@ -111,21 +106,11 @@ setMethod(
             }
 
             if (isTRUE(dark)) {
-                theme <- theme_midnight
+                p <- p + theme_midnight()
                 if (is.null(color)) {
                     color <- darkMarkerColors
                 }
-            } else {
-                theme <- theme_paperwhite
-                if (is.null(color)) {
-                    color <- lightMarkerColors
-                }
             }
-            p <- p +
-                theme(
-                    aspect_ratio = aspectRatio,
-                    grid = grid
-                )
 
             if (is(color, "ScaleContinuous")) {
                 p <- p + color
@@ -138,7 +123,7 @@ setMethod(
             p
         })
 
-        # Return ===============================================================
+        # Return ---------------------------------------------------------------
         if (length(features) > 1L) {
             plot_grid(plotlist = plotlist) +
                 theme(
@@ -151,4 +136,14 @@ setMethod(
             plotlist[[1L]]
         }
     }
+)
+
+
+
+#' @rdname plotFeature
+#' @export
+setMethod(
+    "plotFeature",
+    signature("seurat"),
+    getMethod("plotFeature", "SingleCellExperiment")
 )

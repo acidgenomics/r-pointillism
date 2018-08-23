@@ -27,8 +27,7 @@
 #'
 #' # t-SNE
 #' plotTSNE(object)
-#' plotTSNE(object, pointsAsNumbers = TRUE)
-#' plotTSNE(object, dark = TRUE)
+#' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 #'
 #' # UMAP
 #' plotUMAP(object)
@@ -39,7 +38,6 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
@@ -50,16 +48,14 @@ setMethod(
         reducedDim,
         dimsUse = c(1L, 2L),
         interestingGroups = "ident",
-        color = getOption("bcbio.discrete.color", NULL),
-        pointSize = getOption("bcbio.pointSize", 0.75),
-        pointAlpha = getOption("bcbio.pointAlpha", 0.75),
+        color = getOption("pointillism.discrete.color", NULL),
+        pointSize = getOption("pointillism.pointSize", 0.75),
+        pointAlpha = getOption("pointillism.pointAlpha", 0.75),
         pointsAsNumbers = FALSE,
-        label = getOption("bcbio.label", TRUE),
-        labelSize = getOption("bcbio.labelSize", 6L),
-        dark = getOption("bcbio.dark", FALSE),
-        grid = getOption("bcbio.grid", FALSE),
-        legend = getOption("bcbio.legend", TRUE),
-        aspectRatio = getOption("bcbio.aspectRatio", 1L),
+        label = getOption("pointillism.label", TRUE),
+        labelSize = getOption("pointillism.labelSize", 6L),
+        dark = getOption("pointillism.dark", FALSE),
+        legend = getOption("pointillism.legend", TRUE),
         title = NULL
     ) {
         .assertHasIdent(object)
@@ -94,12 +90,6 @@ setMethod(
         assert_is_character(axes)
         assert_is_subset(axes, colnames(data))
 
-        if (isTRUE(dark)) {
-            theme <- theme_midnight
-        } else {
-            theme <- theme_paperwhite
-        }
-
         p <- ggplot(
             data = data,
             mapping = aes(
@@ -112,10 +102,6 @@ setMethod(
                 x = axes[[1L]],
                 y = axes[[2L]],
                 color = paste(interestingGroups, collapse = ":\n")
-            ) +
-            theme(
-                aspect_ratio = aspectRatio,
-                grid = grid
             )
 
         if (isTRUE(pointsAsNumbers)) {
@@ -160,6 +146,11 @@ setMethod(
                 )
         }
 
+        # Dark mode
+        if (isTRUE(dark)) {
+            p <- p + theme_midnight()
+        }
+
         if (is(color, "ScaleDiscrete")) {
             p <- p + color
         }
@@ -171,6 +162,16 @@ setMethod(
 
         p
     }
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    "plotReducedDim",
+    signature("seurat"),
+    getMethod("plotReducedDim", "SingleCellExperiment")
 )
 
 
@@ -194,6 +195,16 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
+    "plotPCA",
+    signature("seurat"),
+    getMethod("plotPCA", "SingleCellExperiment")
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
     "plotTSNE",
     signature("SingleCellExperiment"),
     function(object, ...) {
@@ -210,6 +221,16 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
+    "plotTSNE",
+    signature("seurat"),
+    getMethod("plotTSNE", "SingleCellExperiment")
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
     "plotUMAP",
     signature("SingleCellExperiment"),
     function(object, ...) {
@@ -219,4 +240,14 @@ setMethod(
             ...
         )
     }
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    "plotUMAP",
+    signature("seurat"),
+    getMethod("plotUMAP", "SingleCellExperiment")
 )

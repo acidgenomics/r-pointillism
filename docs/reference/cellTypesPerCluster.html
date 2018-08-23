@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Cell Types per Cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/cellTypesPerCluster-methods.R'><code>R/cellTypesPerCluster-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/cellTypesPerCluster.R'><code>R/cellTypesPerCluster.R</code></a></small>
     <div class="hidden name"><code>cellTypesPerCluster.Rd</code></div>
     </div>
 
@@ -113,21 +113,15 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cellTypesPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for grouped_df</span>
-<span class='fu'>cellTypesPerCluster</span>(<span class='no'>object</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)</pre>
+    <pre class="usage"><span class='fu'>cellTypesPerCluster</span>(<span class='no'>data</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>data</th>
+      <td><p><code>data.frame</code> grouped by <code>cellType</code>. <code><a href='knownMarkersDetected.html'>knownMarkersDetected()</a></code>
+return.</p></td>
     </tr>
     <tr>
       <th>min</th>
@@ -158,15 +152,15 @@ significant known makers per cell type.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>known_markers_small</span>)
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>known_markers_detected_small</span>)
 <span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 2
 #&gt; Variables: 6
-#&gt; $ cluster  &lt;fct&gt; 0, 1
-#&gt; $ cellType &lt;fct&gt; Gut Epithelial Cell, Gut Epithelial Cell
+#&gt; $ cluster  &lt;fct&gt; 0, 0
+#&gt; $ cellType &lt;fct&gt; cell_type_1, cell_type_2
 #&gt; $ n        &lt;int&gt; 1, 1
-#&gt; $ geneID   &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"
-#&gt; $ geneName &lt;chr&gt; "CLDN18", "CLDN18"
-#&gt; $ rowname  &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"</div></pre>
+#&gt; $ geneID   &lt;chr&gt; "ENSG00000130711", "ENSG00000109099"
+#&gt; $ geneName &lt;chr&gt; "PRDM12", "PMP22"
+#&gt; $ rowname  &lt;chr&gt; "PRDM12", "PMP22"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

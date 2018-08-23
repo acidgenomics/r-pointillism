@@ -5,11 +5,16 @@
 \name{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster,SingleCellExperiment-method}
+\alias{plotCellTypesPerCluster,seurat-method}
 \title{Plot Cell Types per Cluster}
 \usage{
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
+  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
+  "sum"), headerLevel = 2L, ...)
+
+\S4method{plotCellTypesPerCluster}{seurat}(object, markers,
   reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
   "sum"), headerLevel = 2L, ...)
 }
@@ -38,13 +43,15 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
-markers <- cellTypesPerCluster(known_markers_small)
+markers <- cellTypesPerCluster(known_markers_detected_small)
+# Subset for speed.
+markers <- head(markers, n = 2L)
 glimpse(markers)
 
-# Let's plot the first row, as an example
+# Let's plot the first row, as an example.
 plotCellTypesPerCluster(
     object = seurat_small,
-    markers = head(markers, n = 2L)
+    markers = markers
 )
 }
 \seealso{

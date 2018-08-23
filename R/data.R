@@ -1,3 +1,14 @@
+#' Sanitized Markers Example
+#'
+#' @family Minimal Example Data
+#' @author Michael Steinbaugh
+#'
+#' @examples
+#' glimpse(all_markers_small)
+"all_markers_small"
+
+
+
 #' Cell-Cycle Markers
 #'
 #' @aliases cellCycleMarkers
@@ -22,15 +33,25 @@
 
 
 
-# Minimal Examples =============================================================
-#' Sanitized Markers Example
+#' Known Markers Example
 #'
 #' @family Minimal Example Data
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' glimpse(all_markers_small)
-"all_markers_small"
+#' glimpse(known_markers_small)
+"known_markers_small"
+
+
+
+#' Known Markers Detected Example
+#'
+#' @family Minimal Example Data
+#' @author Michael Steinbaugh
+#'
+#' @examples
+#' glimpse(known_markers_detected_small)
+"known_markers_detected_small"
 
 
 
@@ -42,17 +63,6 @@
 #' @examples
 #' sce_small
 "sce_small"
-
-
-
-#' Known Markers Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
-#' glimpse(known_markers_small)
-"known_markers_small"
 
 
 

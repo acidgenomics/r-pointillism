@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -117,36 +117,20 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>grouped_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 2 rows and 19 columns.</p>
+    <p>An object of class <code>grouped_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 2 rows and 2 columns.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other Minimal Example Data: <code><a href='all_markers_small.html'>all_markers_small</a></code>,
+  <code><a href='known_markers_detected_small.html'>known_markers_detected_small</a></code>,
   <code><a href='sce_small.html'>sce_small</a></code>, <code><a href='seurat_small.html'>seurat_small</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>glimpse</span>(<span class='no'>known_markers_small</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 19
-#&gt; $ cellType       &lt;fct&gt; Gut Epithelial Cell, Gut Epithelial Cell
-#&gt; $ cluster        &lt;fct&gt; 0, 1
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"
-#&gt; $ geneName       &lt;chr&gt; "CLDN18", "CLDN18"
-#&gt; $ avgLogFC       &lt;dbl&gt; -0.9446141, 0.9446141
-#&gt; $ pct1           &lt;dbl&gt; 0.442, 0.688
-#&gt; $ pct2           &lt;dbl&gt; 0.688, 0.442
-#&gt; $ rowname        &lt;chr&gt; "ENSG00000066405", "ENSG00000066405"
-#&gt; $ pvalue         &lt;dbl&gt; 3.27838e-06, 3.27838e-06
-#&gt; $ padj           &lt;dbl&gt; 0.0327838, 0.0327838
-#&gt; $ seqnames       &lt;chr&gt; "3", "3"
-#&gt; $ start          &lt;int&gt; 137998735, 137998735
-#&gt; $ end            &lt;int&gt; 138033655, 138033655
-#&gt; $ width          &lt;int&gt; 34921, 34921
-#&gt; $ strand         &lt;chr&gt; "+", "+"
-#&gt; $ broadClass     &lt;chr&gt; "coding", "coding"
-#&gt; $ description    &lt;chr&gt; "claudin 18 [Source:HGNC Symbol;Acc:HGNC:2039]", "cl...
-#&gt; $ geneBiotype    &lt;chr&gt; "protein_coding", "protein_coding"
-#&gt; $ seqCoordSystem &lt;chr&gt; "chromosome", "chromosome"</div></pre>
+#&gt; Variables: 2
+#&gt; $ cellType &lt;chr&gt; "cell_type_1", "cell_type_2"
+#&gt; $ geneID   &lt;chr&gt; "ENSG00000130711", "ENSG00000109099"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

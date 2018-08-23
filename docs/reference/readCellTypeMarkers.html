@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -144,16 +144,12 @@ contain <code>geneID</code> and <code>geneName</code>.</p></td>
 #&gt; <span class='message'>organism: "Homo sapiens"</span>
 #&gt; <span class='message'>build: "GRCh38"</span>
 #&gt; <span class='message'>release: "92"</span>
-#&gt; <span class='message'>format: "genes"</span></div><div class='output co'>#&gt; <span class='message'>Standardizing the metadata columns</span></div><div class='output co'>#&gt; <span class='message'>Defining broad class using: geneName, geneBiotype, seqnames</span></div><div class='output co'>#&gt; <span class='message'>Sorting ranges by geneID</span></div><div class='input'><span class='fu'>readCellTypeMarkers</span>(<span class='no'>file</span>, <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>gene2symbol</span>)</div><div class='output co'>#&gt; <span class='message'>Reading cell_type_markers.csv</span></div><div class='output co'>#&gt; # A tibble: 6 x 3
-#&gt; # Groups:   cellType [1]
-#&gt;   cellType geneID          geneName
-#&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;   
-#&gt; 1 B Cell   ENSG00000177455 CD19    
-#&gt; 2 B Cell   ENSG00000211592 IGKC    
-#&gt; 3 B Cell   ENSG00000211675 IGLC1   
-#&gt; 4 B Cell   ENSG00000211677 IGLC2   
-#&gt; 5 B Cell   ENSG00000211679 IGLC3   
-#&gt; 6 B Cell   ENSG00000211685 IGLC7   </div></pre>
+#&gt; <span class='message'>format: "genes"</span></div><div class='output co'>#&gt; <span class='message'>Standardizing the metadata columns</span></div><div class='output co'>#&gt; <span class='message'>Defining broad class using: geneName, geneBiotype, seqnames</span></div><div class='output co'>#&gt; <span class='message'>Sorting ranges by geneID</span></div><div class='input'><span class='fu'>readCellTypeMarkers</span>(<span class='no'>file</span>, <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>gene2symbol</span>)</div><div class='output co'>#&gt; <span class='message'>Reading cell_type_markers.csv</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt; # Groups:   cellType [2]
+#&gt;   cellType    geneID          geneName
+#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   
+#&gt; 1 cell_type_1 ENSG00000130711 PRDM12  
+#&gt; 2 cell_type_2 ENSG00000109099 PMP22   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

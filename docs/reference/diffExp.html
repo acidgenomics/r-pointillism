@@ -34,9 +34,9 @@
   
 <meta property="og:title" content="Differential Expression — diffExp" />
 
-<meta property="og:description" content="We are currently recommending the ZINB-WaVE method over zingeR, since it is
-faster, and has been show to be more sensitive for most single-cell RNA-seq
-datasets." />
+<meta property="og:description" content="Perform pairwise differential expression across groups of cells by fitting
+to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
+Currently supports edgeR and DESeq2 as DE callers." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@ datasets." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
       </span>
     </div>
 
@@ -111,15 +111,20 @@ datasets." />
 
     <div class="ref-description">
     
-    <p>We are currently recommending the ZINB-WaVE method over zingeR, since it is
-faster, and has been show to be more sensitive for most single-cell RNA-seq
-datasets.</p>
+    <p>Perform pairwise differential expression across groups of cells by fitting
+to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
+Currently supports edgeR and DESeq2 as DE callers.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
+  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>25L</span>,
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>5L</span>)
+
+<span class='co'># S4 method for seurat</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>25L</span>,
   <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>5L</span>)</pre>
@@ -174,6 +179,19 @@ shrunken results are desired.</p></li>
 </ul>
 
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This step will run a lot faster if you pre-calculate the ZINB weights using
+the <code><a href='runZinbwave.html'>runZinbwave()</a></code> function, which will stash the weights into the
+<code>assays()</code> slot of the object. Running zinbwave across the entire set of
+filtered cells also has greater sensitivity for weight calculations.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>We are currently recommending the ZINB-WaVE method over zingeR, since
+it is faster, and has been show to be more sensitive for most single-cell
+RNA-seq datasets.</p>
+    
     <h2 class="hasAnchor" id="zinbwave"><a class="anchor" href="#zinbwave"></a>zinbwave</h2>
 
     
@@ -216,7 +234,9 @@ additional information.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/WhichCells'>Seurat::WhichCells()</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/WhichCells'>Seurat::WhichCells()</a></code>.</p>
+<p>Other Differential Expression Functions: <code><a href='findMarkers.html'>findMarkers</a></code>,
+  <code><a href='runZinbwave.html'>runZinbwave</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -243,19 +263,19 @@ additional information.</p>
 #&gt; <span class='message'>     100 cells | nCells == Inf</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>group1 group2 </span>
-#&gt; <span class='message'>    48     52 </span>
+#&gt; <span class='message'>    49     51 </span>
 #&gt; <span class='message'>================================================================================</span>
 #&gt; <span class='message'>Genes:</span>
 #&gt; <span class='message'>     100 genes | prefilter</span>
-#&gt; <span class='message'>      82 genes | minCellsPerGene &gt;= 1</span>
+#&gt; <span class='message'>     100 genes | minCellsPerGene &gt;= 1</span>
 #&gt; <span class='message'>================================================================================</span>
 #&gt; <span class='message'>Summary:</span>
 #&gt; <span class='message'>  - 100 of 100 cells passed filtering (100%)</span>
-#&gt; <span class='message'>  - 82 of 100 genes passed filtering (82.0%)</span></div><div class='input'>
+#&gt; <span class='message'>  - 100 of 100 genes passed filtering (100%)</span></div><div class='input'>
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='no'>object</span>)[<span class='no'>object</span>$<span class='no'>group</span> <span class='kw'>==</span> <span class='st'>"group2"</span>]
-<span class='fu'>glimpse</span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;  chr [1:52] "cell1" "cell10" "cell12" "cell13" "cell14" "cell17" "cell19" ...</div><div class='input'>
+<span class='fu'>glimpse</span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;  chr [1:51] "cell10" "cell100" "cell11" "cell12" "cell13" "cell15" "cell16" ...</div><div class='input'>
 <span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='no'>object</span>)[<span class='no'>object</span>$<span class='no'>group</span> <span class='kw'>==</span> <span class='st'>"group1"</span>]
-<span class='fu'>glimpse</span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;  chr [1:48] "cell100" "cell11" "cell15" "cell16" "cell18" "cell20" "cell22" ...</div><div class='input'>
+<span class='fu'>glimpse</span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;  chr [1:49] "cell1" "cell14" "cell17" "cell2" "cell20" "cell21" "cell22" ...</div><div class='input'>
 <span class='co'># edgeR</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
@@ -263,29 +283,28 @@ additional information.</p>
     <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
     <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.788   0.017   0.818 </span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.130   0.005   0.144 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.230   0.009   0.244 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
 #&gt; [1] "edgeR"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
-#&gt; coefficients           14    -none-           numeric  
-#&gt; fitted.values         700    -none-           numeric  
-#&gt; deviance                7    -none-           numeric  
-#&gt; method                  1    -none-           character
-#&gt; unshrunk.coefficients  14    -none-           numeric  
-#&gt; df.residual             7    -none-           numeric  
-#&gt; design                200    -none-           numeric  
-#&gt; offset                100    CompressedMatrix numeric  
-#&gt; dispersion              7    -none-           numeric  
-#&gt; weights               700    -none-           numeric  
-#&gt; prior.count             1    -none-           numeric  
-#&gt; samples                 3    data.frame       list     
-#&gt; prior.df                1    -none-           numeric  
-#&gt; AveLogCPM               7    -none-           numeric  
-#&gt; df.total                7    -none-           numeric  
-#&gt; table                   4    data.frame       list     
-#&gt; comparison              1    -none-           character
-#&gt; df.test                 7    -none-           numeric  </div><div class='input'>
+#&gt; coefficients           160   -none-           numeric  
+#&gt; fitted.values         8000   -none-           numeric  
+#&gt; deviance                80   -none-           numeric  
+#&gt; method                   1   -none-           character
+#&gt; unshrunk.coefficients  160   -none-           numeric  
+#&gt; df.residual             80   -none-           numeric  
+#&gt; design                 200   -none-           numeric  
+#&gt; offset                 100   CompressedMatrix numeric  
+#&gt; dispersion              80   -none-           numeric  
+#&gt; weights               8000   -none-           numeric  
+#&gt; prior.count              1   -none-           numeric  
+#&gt; samples                  3   data.frame       list     
+#&gt; prior.df                 1   -none-           numeric  
+#&gt; AveLogCPM               80   -none-           numeric  
+#&gt; df.total                80   -none-           numeric  
+#&gt; table                    4   data.frame       list     
+#&gt; comparison               1   -none-           character
+#&gt; df.test                 80   -none-           numeric  </div><div class='input'>
 <span class='co'># DESeq2</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
@@ -293,9 +312,8 @@ additional information.</p>
     <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
     <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"DESeq2"</span>
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-DESeq2</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.908   0.022   0.979 </span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2...</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.082   0.014   1.108 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
+#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2...</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  2.625   0.030   2.913 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
 #&gt; attr(,"package")
 #&gt; [1] "DESeq2"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
 #&gt;            6 DESeqResults           S4 </div></pre>
@@ -306,6 +324,10 @@ additional information.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#zinbwave">zinbwave</a></li>
 
