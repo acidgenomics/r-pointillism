@@ -178,7 +178,7 @@ setGeneric(
 #' @export
 setGeneric(
     "runZinbwave",
-    function(Y, ...) {
+    function(Y, ...) {  # nolint
         standardGeneric("runZinbwave")
     }
 )
