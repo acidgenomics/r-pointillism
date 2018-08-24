@@ -42,10 +42,12 @@ knownMarkersDetected <- function(
     ...
 ) {
     # Legacy arguments ---------------------------------------------------------
+    # nocov start
     call <- match.call()
     if ("object" %in% names(call)) {
         stop("Use `all` instead of `object` for all markers data.frame")
     }
+    # nocov end
 
     # Assert checks ------------------------------------------------------------
     stopifnot(.isSanitizedMarkers(all))
