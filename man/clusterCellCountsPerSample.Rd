@@ -26,7 +26,8 @@ clusterCellCountsPerSample(object, ...)
 Cluster Cell Counts per Sample
 }
 \examples{
-clusterCellCountsPerSample(sce_small)
+x <- clusterCellCountsPerSample(sce_small)
+glimpse(x)
 }
 \seealso{
 Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},
