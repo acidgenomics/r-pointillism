@@ -37,7 +37,7 @@ invisible(validObject(sce))
 has_umap <- reticulate::py_module_available(module = "umap")
 
 # Vector to use for dimensional reduction plot looping
-dim_red_groups <- unique(c(
+reduced_dim_groups <- unique(c(
     "ident", "sampleName", interestingGroups(sce), "Phase"
 ))
 
@@ -330,7 +330,7 @@ PrintTSNEParams(seurat)
 
 ```{r plot_tsne, results="asis"}
 invisible(lapply(
-    X = dim_red_groups,
+    X = reduced_dim_groups,
     FUN = function(group) {
         markdownHeader(group, level = 3, asis = TRUE, tabset = TRUE)
         lapply(
@@ -371,7 +371,7 @@ seurat <- RunUMAP(seurat)
 
 ```{r plot_umap, include=has_umap, eval=has_umap, results="asis"}
 invisible(lapply(
-    X = dim_red_groups,
+    X = reduced_dim_groups,
     FUN = function(group) {
         markdownHeader(group, level = 3, asis = TRUE, tabset = TRUE)
         lapply(
@@ -397,7 +397,7 @@ Note that t-SNE/UMAP is not PCA! The measurement of distance in a t-SNE plot is 
 
 ```{r plot_pca, results="asis"}
 invisible(lapply(
-    X = dim_red_groups,
+    X = reduced_dim_groups,
     FUN = function(group) {
         markdownHeader(group, level = 3, asis = TRUE, tabset = TRUE)
         lapply(
@@ -456,26 +456,28 @@ plotFeatureUMAP(
 
 Let's plot the feature specificity of the top principal components.
 
-```{r dim_features}
+```{r plot_feature_pcs}
 # Limit to 9 PCs
-dim_features <- paste0("PC", head(dims_use, 9))
+feature_pcs <- paste0("PC", head(dims_use, 9))
 ```
 
-```{r plot_feature_tsne_dims}
+```{r plot_feature_pcs_tsne}
 plotFeatureTSNE(
     object = seurat,
-    features = dim_features,
+    features = feature_pcs,
     dark = params$dark
 )
 ```
 
-```{r plot_feature_umap_dims, eval=params$umap}
+```{r plot_feature_pcs_umap, eval=params$umap}
 plotFeatureUMAP(
     object = seurat,
-    features = dim_features,
+    features = feature_pcs,
     dark = params$dark
 )
 ```
+
+# Save data
 
 ```{r save}
 assignAndSaveData(
