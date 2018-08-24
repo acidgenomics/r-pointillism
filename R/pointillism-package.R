@@ -35,10 +35,10 @@
 #'   select slice summarize ungroup
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom edgeR calcNormFactors DGEList estimateDisp glmFit
-#' @importFrom ggplot2 aes element_rect expand_limits facet_wrap
-#'   geom_hline geom_line geom_point geom_text geom_violin geom_vline ggplot
-#'   guide_colorbar guides labs scale_color_gradient scale_color_viridis_c
-#'   scale_radius scale_x_continuous scale_y_continuous theme
+#' @importFrom ggplot2 aes element_rect expand_limits facet_wrap geom_hline
+#'   geom_line geom_point geom_text geom_violin geom_vline ggplot guide_colorbar
+#'   guides labs scale_color_gradient scale_color_viridis_c scale_radius
+#'   scale_x_continuous scale_y_continuous theme
 #' @importFrom magrittr %>% set_names
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is setAs show slot slot<- validObject
