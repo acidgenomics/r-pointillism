@@ -13,6 +13,8 @@ NULL
 
 
 
+# FIXME This isn't working with assignment correctly.
+# e.g. interestingGroups
 .getSeuratStash <- function(object, name) {
     stopifnot(is(object, "seurat"))
     assert_is_a_string(name)
