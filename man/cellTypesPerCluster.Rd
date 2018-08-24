@@ -26,17 +26,10 @@ x <- cellTypesPerCluster(known_markers_detected_small)
 glimpse(x)
 }
 \seealso{
-Other Clustering Functions: \code{\link{knownMarkersDetected}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
-  \code{\link{sanitizeSeuratMarkers}},
-  \code{\link{topMarkers}}
+Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},
+  \code{\link{clusterCellCountsPerSample}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Cluster Statistics Functions}

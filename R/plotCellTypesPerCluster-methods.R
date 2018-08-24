@@ -5,7 +5,7 @@
 #' many (`max` cutoff) marker genes will be skipped.
 #'
 #' @name plotCellTypesPerCluster
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

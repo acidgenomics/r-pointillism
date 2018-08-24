@@ -49,17 +49,12 @@ x <- knownMarkersDetected(
 head(x)
 }
 \seealso{
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
+Other Marker Functions: \code{\link{clusterID}},
+  \code{\link{readCellTypeMarkers}},
   \code{\link{sanitizeSeuratMarkers}},
   \code{\link{topMarkers}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Marker Functions}

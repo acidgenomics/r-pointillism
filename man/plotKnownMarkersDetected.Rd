@@ -41,16 +41,13 @@ plotKnownMarkersDetected(
 )
 }
 \seealso{
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
-  \code{\link{knownMarkersDetected}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}}, \code{\link{plotMarker}},
+Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
+  \code{\link{plotDot}}, \code{\link{plotFeature}},
+  \code{\link{plotGene}}, \code{\link{plotMarker}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
-  \code{\link{sanitizeSeuratMarkers}},
-  \code{\link{topMarkers}}
+  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Plot Functions}

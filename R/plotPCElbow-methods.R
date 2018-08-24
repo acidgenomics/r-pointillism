@@ -6,7 +6,7 @@
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
 #' @name plotPCElbow
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

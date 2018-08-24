@@ -54,10 +54,15 @@ plotViolin(object, genes = genes)
 \seealso{
 \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
 
-Other Gene Expression Functions: \code{\link{plotDot}},
-  \code{\link{plotGene}}
+Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
+  \code{\link{plotDot}}, \code{\link{plotFeature}},
+  \code{\link{plotGene}},
+  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
+  \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Gene Expression Functions}
+\concept{Plot Functions}

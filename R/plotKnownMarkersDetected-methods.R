@@ -1,7 +1,7 @@
 #' Plot Known Markers Detected
 #'
 #' @name plotKnownMarkersDetected
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

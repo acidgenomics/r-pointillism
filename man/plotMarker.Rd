@@ -95,17 +95,14 @@ plotMarker(
 )
 }
 \seealso{
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
-  \code{\link{knownMarkersDetected}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
+Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
+  \code{\link{plotDot}}, \code{\link{plotFeature}},
+  \code{\link{plotGene}},
   \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
-  \code{\link{sanitizeSeuratMarkers}},
-  \code{\link{topMarkers}}
+  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
 }
-\concept{Clustering Functions}
+\concept{Plot Functions}

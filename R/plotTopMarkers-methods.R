@@ -6,7 +6,7 @@
 #' for the number of genes to plot here in a future update.
 #'
 #' @name plotTopMarkers
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
