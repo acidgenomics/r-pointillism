@@ -28,3 +28,22 @@ test_that("diffExp : zinbwave-DESeq2", {
     )
     expect_s4_class(x, "DESeqResults")
 })
+
+
+
+# runZinbwave ==================================================================
+test_that("runZinbwave", {
+    # edgeR
+    x <- runZinbwave(
+        Y = sce_small,
+        caller = "edgeR",
+        recalculate = TRUE
+    )
+
+    # DESeq2
+    x <- runZinbwave(
+        Y = sce_small,
+        caller = "DESeq2",
+        recalculate = TRUE
+    )
+})
