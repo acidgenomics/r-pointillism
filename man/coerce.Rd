@@ -24,7 +24,9 @@ the filtered cells into a new \code{seurat} class object. Use
 \section{\code{seurat} to \code{SingleCellExperiment}}{
 
 Super basic S4 coercion support for taking the raw counts matrix from
-a \code{seurat} class object and coercing to a \code{SingleCellExperiment}.
+a \code{seurat} class object and coercing to a \code{SingleCellExperiment}. The
+\href{https://satijalab.org/seurat/faq}{Seurat FAQ page} explains the \code{seurat} S4
+class structure in detail.
 }
 
 \examples{
