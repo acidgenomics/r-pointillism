@@ -55,16 +55,12 @@ ident_3_sanitized <- sanitizeSeuratMarkers(
 glimpse(ident_3_sanitized)
 }
 \seealso{
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
+Other Marker Functions: \code{\link{clusterID}},
   \code{\link{knownMarkersDetected}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}, \code{\link{topMarkers}}
+  \code{\link{readCellTypeMarkers}},
+  \code{\link{topMarkers}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Marker Functions}

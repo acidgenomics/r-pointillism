@@ -28,3 +28,11 @@ Cluster Cell Counts per Sample
 \examples{
 clusterCellCountsPerSample(sce_small)
 }
+\seealso{
+Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},
+  \code{\link{cellTypesPerCluster}}
+}
+\author{
+Michael Steinbaugh
+}
+\concept{Cluster Statistics Functions}

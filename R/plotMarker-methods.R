@@ -3,7 +3,7 @@
 #' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 #'
 #' @name plotMarker
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @inheritParams general

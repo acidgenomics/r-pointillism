@@ -5,7 +5,7 @@
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
 #'
-#' @family Clustering Functions
+#' @family Marker Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

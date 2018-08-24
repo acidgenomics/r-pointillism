@@ -8,7 +8,7 @@
 #'   the `gene` column, whereas [Seurat::FindMarkers()] maps them correctly in
 #'   the rownames of the returned marker `data.frame`.
 #'
-#' @family Clustering Functions
+#' @family Marker Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

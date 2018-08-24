@@ -27,7 +27,13 @@ file <- system.file(
 gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
 readCellTypeMarkers(file, gene2symbol = gene2symbol)
 }
+\seealso{
+Other Marker Functions: \code{\link{clusterID}},
+  \code{\link{knownMarkersDetected}},
+  \code{\link{sanitizeSeuratMarkers}},
+  \code{\link{topMarkers}}
+}
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}
+\concept{Marker Functions}

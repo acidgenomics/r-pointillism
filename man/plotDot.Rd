@@ -64,10 +64,14 @@ plotDot(object, genes = genes)
 \seealso{
 Modified version of \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
 
-Other Gene Expression Functions: \code{\link{plotGene}},
-  \code{\link{plotViolin}}
+Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
+  \code{\link{plotFeature}}, \code{\link{plotGene}},
+  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
+  \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Gene Expression Functions}
+\concept{Plot Functions}

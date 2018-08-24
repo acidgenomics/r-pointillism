@@ -1,7 +1,7 @@
 #' Plot Dot
 #'
 #' @name plotDot
-#' @family Gene Expression Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

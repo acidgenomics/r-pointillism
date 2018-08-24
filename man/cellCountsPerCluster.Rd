@@ -33,3 +33,11 @@ Cell Counts per Cluster
 x <- cellCountsPerCluster(sce_small)
 glimpse(x)
 }
+\seealso{
+Other Cluster Statistics Functions: \code{\link{cellTypesPerCluster}},
+  \code{\link{clusterCellCountsPerSample}}
+}
+\author{
+Michael Steinbaugh
+}
+\concept{Cluster Statistics Functions}

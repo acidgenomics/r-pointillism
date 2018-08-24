@@ -1,6 +1,6 @@
 #' Cell Types per Cluster
 #'
-#' @family Clustering Functions
+#' @family Cluster Statistics Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

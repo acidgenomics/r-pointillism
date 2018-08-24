@@ -27,6 +27,12 @@ Cluster Identity
 \examples{
 clusterID(sce_small)
 }
+\seealso{
+Other Marker Functions: \code{\link{knownMarkersDetected}},
+  \code{\link{readCellTypeMarkers}},
+  \code{\link{sanitizeSeuratMarkers}},
+  \code{\link{topMarkers}}
+}
 \author{
 Michael Steinbaugh
 }

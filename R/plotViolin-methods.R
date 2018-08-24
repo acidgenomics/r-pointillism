@@ -1,7 +1,7 @@
 #' Plot Violin
 #'
 #' @name plotViolin
-#' @family Gene Expression Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

@@ -38,17 +38,12 @@ glimpse(x)
 \item \code{\link[dplyr:top_n]{dplyr::top_n()}}.
 }
 
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
+Other Marker Functions: \code{\link{clusterID}},
   \code{\link{knownMarkersDetected}},
-  \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
+  \code{\link{readCellTypeMarkers}},
   \code{\link{sanitizeSeuratMarkers}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Marker Functions}

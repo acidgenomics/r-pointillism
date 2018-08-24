@@ -1,6 +1,8 @@
 #' Cell Counts per Cluster
 #'
 #' @name cellCountsPerCluster
+#' @family Cluster Statistics Functions
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

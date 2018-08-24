@@ -55,17 +55,14 @@ plotCellTypesPerCluster(
 )
 }
 \seealso{
-Other Clustering Functions: \code{\link{cellTypesPerCluster}},
-  \code{\link{knownMarkersDetected}},
-  \code{\link{plotFeature}},
+Other Plot Functions: \code{\link{plotDot}},
+  \code{\link{plotFeature}}, \code{\link{plotGene}},
   \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
   \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}},
-  \code{\link{sanitizeSeuratMarkers}},
-  \code{\link{topMarkers}}
+  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Clustering Functions}
+\concept{Plot Functions}

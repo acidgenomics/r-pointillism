@@ -1,7 +1,7 @@
 #' Plot Feature
 #'
 #' @name plotFeature
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

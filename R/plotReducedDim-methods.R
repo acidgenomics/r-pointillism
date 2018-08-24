@@ -5,7 +5,7 @@
 #' - UMAP: **U**niform **M**anifold **A**pproximation and **P**rojection.
 #'
 #' @name plotReducedDim
-#' @family Clustering Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @importFrom BiocGenerics plotPCA

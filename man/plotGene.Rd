@@ -44,10 +44,14 @@ plotGene(object, genes = genes, geom = "violin")
 \item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
 }
 
-Other Gene Expression Functions: \code{\link{plotDot}},
-  \code{\link{plotViolin}}
+Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
+  \code{\link{plotDot}}, \code{\link{plotFeature}},
+  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
+  \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Gene Expression Functions}
+\concept{Plot Functions}

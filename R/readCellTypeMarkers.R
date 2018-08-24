@@ -1,7 +1,7 @@
 #' Read Cell Type Markers File
 #'
 #' @name readCellTypeMarkers
-#' @family Read Functions
+#' @family Marker Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

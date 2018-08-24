@@ -3,7 +3,7 @@
 #' Visualize genes on a dot or violin plot.
 #'
 #' @name plotGene
-#' @family Gene Expression Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @importFrom basejump plotGene
