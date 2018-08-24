@@ -81,7 +81,9 @@ setAs(
 #'
 #' @section `seurat` to `SingleCellExperiment`:
 #' Super basic S4 coercion support for taking the raw counts matrix from
-#' a `seurat` class object and coercing to a `SingleCellExperiment`.
+#' a `seurat` class object and coercing to a `SingleCellExperiment`. The
+#' [Seurat FAQ page](https://satijalab.org/seurat/faq) explains the `seurat` S4
+#' class structure in detail.
 #'
 #' @examples
 #' # seurat to SingleCellExperiment ====
@@ -92,7 +94,13 @@ setAs(
     to = "SingleCellExperiment",
     function(from) {
         to <- .as.SingleCellExperiment.seurat(from)
-        # FIXME Slot scaleData, if defined
+        # Slot scaleData, if defined. Note that we're making the dimensions
+        # match the other count matrices here.
+        scaleData <- slot(from, "scale.data")
+        if (!is.null(scaleData)) {
+            scaleData <- scaleData[rownames(to), colnames(to)]
+            assays(to)[["scaleData"]] <- scaleData
+        }
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
         to
