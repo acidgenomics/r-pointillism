@@ -20,6 +20,14 @@ test_that("plotCellTypesPerCluster", {
 
 
 
+# plotDot ======================================================================
+test_that("plotDot", {
+    p <- plotDot(sce_small)
+    expect_is(p, "ggplot")
+})
+
+
+
 # plotFeature ==================================================================
 test_that("plotFeature", {
     p <- plotFeature(sce_small, features = c("PC1", "PC2"))
