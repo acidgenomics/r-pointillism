@@ -29,6 +29,39 @@ test_that("diffExp : zinbwave-DESeq2", {
     expect_s4_class(x, "DESeqResults")
 })
 
+rm(object)
+
+
+
+# findMarkers ==================================================================
+test_that("findMarkers", {
+    # edgeR
+    x <- findMarkers(
+        object = sce_small,
+        caller = "edgeR"
+    )
+    expect_is(x, "list")
+    invisible(lapply(
+        X = x,
+        FUN = function(x) {
+            expect_is(x, "DGELRT")
+        }
+    ))
+
+    # DESeq2
+    x <- findMarkers(
+        object = sce_small,
+        caller = "DESeq2"
+    )
+    expect_is(x, "list")
+    invisible(lapply(
+        X = x,
+        FUN = function(x) {
+            expect_is(x, "DESeqResults")
+        }
+    ))
+})
+
 
 
 # runZinbwave ==================================================================
