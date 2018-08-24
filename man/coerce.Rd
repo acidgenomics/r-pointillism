@@ -23,10 +23,13 @@ the filtered cells into a new \code{seurat} class object. Use
 
 \section{\code{seurat} to \code{SingleCellExperiment}}{
 
-Super basic S4 coercion support for taking the raw counts matrix from
-a \code{seurat} class object and coercing to a \code{SingleCellExperiment}. The
-\href{https://satijalab.org/seurat/faq}{Seurat FAQ page} explains the \code{seurat} S4
-class structure in detail.
+S4 coercion support for creating a \code{SingleCellExperiment} from a \code{seurat}
+class object. The \href{https://satijalab.org/seurat/faq}{Seurat FAQ page}
+explains the \code{seurat} S4 class structure in detail. Internally, this method
+improves the basic \code{Seurat::as.SingleCellExperiment()} S3 coercion method,
+including the \code{object@scale.data} matrix, and will keep track of stashed
+\code{rowRanges} and \code{metadata} if the \code{seurat} object was originally created
+from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 }
 
 \examples{

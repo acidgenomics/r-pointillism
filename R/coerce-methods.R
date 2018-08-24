@@ -80,10 +80,13 @@ setAs(
 #' @name coerce,seurat,SingleCellExperiment-method
 #'
 #' @section `seurat` to `SingleCellExperiment`:
-#' Super basic S4 coercion support for taking the raw counts matrix from
-#' a `seurat` class object and coercing to a `SingleCellExperiment`. The
-#' [Seurat FAQ page](https://satijalab.org/seurat/faq) explains the `seurat` S4
-#' class structure in detail.
+#' S4 coercion support for creating a `SingleCellExperiment` from a `seurat`
+#' class object. The [Seurat FAQ page](https://satijalab.org/seurat/faq)
+#' explains the `seurat` S4 class structure in detail. Internally, this method
+#' improves the basic `Seurat::as.SingleCellExperiment()` S3 coercion method,
+#' including the `object@scale.data` matrix, and will keep track of stashed
+#' `rowRanges` and `metadata` if the `seurat` object was originally created
+#' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
 #'
 #' @examples
 #' # seurat to SingleCellExperiment ====
