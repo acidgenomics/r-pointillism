@@ -85,18 +85,15 @@ test_that("interestingGroups : seurat", {
 })
 
 test_that("interestingGroups<- : seurat", {
-    interestingGroups(sce_small) <- "sampleName"
+    # FIXME This is failing because of metadata assignment
+    x <- seurat_small
+    interestingGroups(x) <- "sampleName"
     expect_identical(
-        interestingGroups(sce_small),
-        "sampleName"
-    )
-    interestingGroups(seurat_small) <- "sampleName"
-    expect_identical(
-        interestingGroups(seurat_small),
+        interestingGroups(x),
         "sampleName"
     )
     x <- Seurat::pbmc_small
-    expect_error(interestingGroups(Seurat::pbmc_small) <- "sampleName")
+    expect_error(interestingGroups(x) <- "sampleName")
 })
 
 

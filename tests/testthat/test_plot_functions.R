@@ -22,7 +22,10 @@ test_that("plotCellTypesPerCluster", {
 
 # plotDot ======================================================================
 test_that("plotDot", {
-    p <- plotDot(sce_small)
+    object <- sce_small
+    genes <- head(rownames(object))
+
+    p <- plotDot(object, genes = genes)
     expect_is(p, "ggplot")
 })
 
@@ -31,6 +34,30 @@ test_that("plotDot", {
 # plotFeature ==================================================================
 test_that("plotFeature", {
     p <- plotFeature(sce_small, features = c("PC1", "PC2"))
+    expect_is(p, "ggplot")
+})
+
+
+
+# plotGene =====================================================================
+test_that("plotGene", {
+    object <- sce_small
+    genes <- head(rownames(object))
+
+    # Dot
+    p <- plotGene(
+        object = object,
+        genes = genes,
+        geom = "dot"
+    )
+    expect_is(p, "ggplot")
+
+    # Violin
+    p <- plotGene(
+        object = object,
+        genes = genes,
+        geom = "violin"
+    )
     expect_is(p, "ggplot")
 })
 
@@ -77,14 +104,6 @@ test_that("plotTopMarkers", {
 
 
 
-# plotPCA ======================================================================
-test_that("plotPCA", {
-    p <- plotPCA(sce_small)
-    expect_is(p, "ggplot")
-})
-
-
-
 # plotPCElbow ==================================================================
 test_that("plotPCElbow", {
     x <- plotPCElbow(Seurat::pbmc_small)
@@ -93,15 +112,30 @@ test_that("plotPCElbow", {
 
 
 
-# plotTSNE =====================================================================
+# plotReducedDim ===============================================================
+test_that("plotReduceDim", {
+    p <- plotReducedDim(
+        object = sce_small,
+        reducedDim = "TSNE",
+        pointsAsNumbers = TRUE,
+        dark = TRUE,
+        label = FALSE
+    )
+})
+
+# PCA
+test_that("plotPCA", {
+    p <- plotPCA(sce_small)
+    expect_is(p, "ggplot")
+})
+
+# t-SNE
 test_that("plotTSNE", {
     p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
 
-
-
-# plotUMAP =====================================================================
+# UMAP
 test_that("plotUMAP", {
     p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
@@ -111,6 +145,9 @@ test_that("plotUMAP", {
 
 # plotViolin ===================================================================
 test_that("plotViolin", {
-    p <- plotViolin(sce_small)
+    object <- sce_small
+    genes <- head(rownames(object))
+
+    p <- plotViolin(object, genes = genes)
     expect_is(p, "ggplot")
 })
