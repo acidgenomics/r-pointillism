@@ -9,7 +9,8 @@
 #' @return `tibble` grouped by "`sampleName`" column, arranged by abundance.
 #'
 #' @examples
-#' clusterCellCountsPerSample(sce_small)
+#' x <- clusterCellCountsPerSample(sce_small)
+#' glimpse(x)
 NULL
 
 
