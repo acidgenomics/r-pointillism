@@ -106,3 +106,11 @@ test_that("plotUMAP", {
     p <- plotTSNE(sce_small)
     expect_is(p, "ggplot")
 })
+
+
+
+# plotViolin ===================================================================
+test_that("plotViolin", {
+    p <- plotViolin(sce_small)
+    expect_is(p, "ggplot")
+})
