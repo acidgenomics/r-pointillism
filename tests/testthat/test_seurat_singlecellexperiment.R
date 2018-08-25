@@ -1,105 +1,110 @@
-context("Seurat")
+context("Seurat as SingleCellExperiment")
+
+pbmc_small <- Seurat::pbmc_small
 
 
 
-test_that("SingleCellExperiment", {
-    object <- Seurat::pbmc_small
+test_that("assay", {
+    expect_s4_class(assay(pbmc_small), "dgCMatrix")
+})
 
-    # assay
-    expect_s4_class(assay(object), "dgCMatrix")
 
-    # assayNames
+
+test_that("assayNames", {
     expect_identical(
-        assayNames(object),
+        assayNames(pbmc_small),
         c("counts", "logcounts")
     )
+})
 
-    # assays
-    expect_s4_class(assays(object), "SimpleList")
 
-    # colData
-    expect_s4_class(colData(object), "DataFrame")
 
-    # colData assignment
-    x <- object
+test_that("assays", {
+    expect_s4_class(assays(pbmc_small), "SimpleList")
+})
+
+
+
+test_that("colData", {
+    expect_s4_class(colData(pbmc_small), "DataFrame")
+})
+
+
+
+test_that("colData<-", {
+    x <- pbmc_small
     colData(x)[["testthat"]] <- factor("XXX")
     expect_identical(
         levels(colData(x)[["testthat"]]),
         "XXX"
     )
-
-    # colnames
-    expect_is(colnames(object), "character")
-
-    # counts
-    expect_identical(counts(object), assay(object))
-
-    # gene2symbol
-    expect_warning(gene2symbol(object))
-    expect_null(suppressWarnings(gene2symbol(object)))
-
-    # interestingGroups
-    expect_null(interestingGroups(object))
-
-    # metadata
-    expect_is(metadata(object), "list")
-
-    # metadata assignment
-    x <- object
-    metadata(x)[["testthat"]] <- "XXX"
-    expect_identical(
-        metadata(x),
-        list(testthat = "XXX")
-    )
-
-    # reducedDims
-    x <- reducedDims(object)
-    expect_s4_class(x, "SimpleList")
-    expect_identical(names(x), c("PCA", "TSNE"))
-
-    # rowData
-    expect_s4_class(rowData(object), "DataFrame")
-
-    # rownames
-    expect_is(rownames(object), "character")
-
-    # rowRanges
-    expect_s4_class(rowRanges(object), "CompressedGRangesList")
-
-    # sampleData
-    expect_null(sampleData(object))
-
-    # sampleNames
-    expect_identical(sampleNames(object), character())
 })
 
 
 
-test_that("gene2symbol : seurat", {
+test_that("colnames", {
+    expect_is(colnames(pbmc_small), "character")
+})
+
+
+
+test_that("counts", {
+    expect_identical(counts(pbmc_small), assay(pbmc_small))
+})
+
+
+
+test_that("gene2symbol", {
+    expect_warning(gene2symbol(pbmc_small))
+    expect_null(suppressWarnings(gene2symbol(pbmc_small)))
+
     x <- gene2symbol(seurat_small)
     expect_is(x, "data.frame")
 })
 
-test_that("interestingGroups : seurat", {
-    expect_null(interestingGroups(seurat_small))
+
+
+test_that("interestingGroups", {
+    expect_null(interestingGroups(pbmc_small))
 })
 
-test_that("interestingGroups<- : seurat", {
-    # FIXME This is failing because of metadata assignment
+
+
+test_that("interestingGroups<-", {
+    # FIXME Need to improve `sampleData()` accessor to always work
+    x <- pbmc_small
+    expect_error(interestingGroups(x) <- "sampleName")
+    interestingGroups(x) <- "orig.ident"
+    expect_identical(
+        interestingGroups(x),
+        "sampleName"
+    )
+
     x <- seurat_small
     interestingGroups(x) <- "sampleName"
     expect_identical(
         interestingGroups(x),
         "sampleName"
     )
-    x <- Seurat::pbmc_small
-    expect_error(interestingGroups(x) <- "sampleName")
 })
 
 
 
-# metrics ======================================================================
-test_that("metrics : seurat", {
+test_that("metadata", {
+    expect_is(metadata(pbmc_small), "list")
+
+    # metadata assignment
+    x <- pbmc_small
+    metadata(x)[["testthat"]] <- "XXX"
+    expect_identical(
+        metadata(x),
+        list(testthat = "XXX")
+    )
+})
+
+
+
+test_that("metrics", {
     expect_identical(
         sort(colnames(metrics(seurat_small))),
         c(
@@ -122,4 +127,42 @@ test_that("metrics : seurat", {
             "sampleName"
         )
     )
+})
+
+
+
+test_that("reducedDims", {
+    x <- reducedDims(pbmc_small)
+    expect_s4_class(x, "SimpleList")
+    expect_identical(names(x), c("PCA", "TSNE"))
+})
+
+
+
+test_that("rowData", {
+    expect_s4_class(rowData(pbmc_small), "DataFrame")
+})
+
+
+
+test_that("rownames", {
+    expect_is(rownames(pbmc_small), "character")
+})
+
+
+
+test_that("rowRanges", {
+    expect_s4_class(rowRanges(pbmc_small), "CompressedGRangesList")
+})
+
+
+
+test_that("sampleData", {
+    expect_null(sampleData(pbmc_small))
+})
+
+
+
+test_that("sampleNames", {
+    expect_identical(sampleNames(pbmc_small), character())
 })
