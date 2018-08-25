@@ -18,15 +18,6 @@
 
 
 
-# Check to see if we're modifying a freshly created seurat object.
-.assertIsNewSeurat <- function(object) {
-    assert_are_identical(object@raw.data, object@data)
-    stopifnot(is.null(object@scale.data))
-    stopifnot(!length(object@var.genes))
-}
-
-
-
 .assertIsKnownMarkers <- function(object) {
     # Require a tibble.
     assert_is_tbl_df(object)

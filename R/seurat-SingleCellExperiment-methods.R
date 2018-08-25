@@ -130,32 +130,6 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump convertGenesToSymbols
-#' @export
-setMethod(
-    "convertGenesToSymbols",
-    signature("seurat"),
-    function(object) {
-        validObject(object)
-        .assertIsNewSeurat(object)
-        gene2symbol <- gene2symbol(object)
-        if (is.null(gene2symbol)) {
-            warning("Object doesn't contain gene-to-symbol mappings")
-            return(object)
-        }
-        symbols <- gene2symbol %>%
-            .[, "geneName", drop = TRUE] %>%
-            as.character() %>%
-            make.unique()
-        rownames(object@raw.data) <- symbols
-        object@data <- object@raw.data
-        object
-    }
-)
-
-
-
-#' @rdname seurat-SingleCellExperiment
 #' @importFrom BiocGenerics counts
 #' @export
 setMethod(
