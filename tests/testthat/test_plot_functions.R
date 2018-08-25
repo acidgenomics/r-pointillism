@@ -113,7 +113,7 @@ test_that("plotPCElbow", {
 
 
 # plotReducedDim ===============================================================
-test_that("plotReduceDim", {
+test_that("plotReducedDim", {
     p <- plotReducedDim(
         object = sce_small,
         reducedDim = "TSNE",
@@ -121,6 +121,7 @@ test_that("plotReduceDim", {
         dark = TRUE,
         label = FALSE
     )
+    expect_is(p, "ggplot")
 })
 
 # PCA
