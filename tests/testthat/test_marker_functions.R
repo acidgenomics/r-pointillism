@@ -132,4 +132,24 @@ test_that("topMarkers : grouped_df", {
             width = "integer"
         )
     )
+
+    # Coding
+    x <- topMarkers(all_markers_small, coding = TRUE)
+    expect_is(x, "data.frame")
+
+    # Direction
+    direction <- formals(topMarkers) %>%
+        .[["direction"]] %>%
+        as.character() %>%
+        .[-1L]
+    invisible(lapply(
+        X = direction,
+        FUN = function(direction) {
+            x <- topMarkers(
+                data = all_markers_small,
+                direction = direction
+            )
+            expect_is(x, "data.frame")
+        }
+    ))
 })
