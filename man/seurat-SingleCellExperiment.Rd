@@ -11,7 +11,6 @@
 \alias{colData,seurat-method}
 \alias{colData<-,seurat,DataFrame-method}
 \alias{colnames,seurat-method}
-\alias{convertGenesToSymbols,seurat-method}
 \alias{counts,seurat-method}
 \alias{gene2symbol,seurat-method}
 \alias{interestingGroups,seurat-method}
@@ -42,8 +41,6 @@
 \S4method{colData}{seurat,DataFrame}(x) <- value
 
 \S4method{colnames}{seurat}(x)
-
-\S4method{convertGenesToSymbols}{seurat}(object)
 
 \S4method{counts}{seurat}(object, ...)
 
