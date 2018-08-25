@@ -43,8 +43,9 @@ sce <- filterCells(sce, minCellsPerGene = 25)
 
 
 # seurat_small =================================================================
-seurat_small <- as(sce, "seurat") %>%
+seurat_small <- sce %>%
     convertGenesToSymbols() %>%
+    as(sce, "seurat") %>%
     NormalizeData() %>%
     FindVariableGenes(do.plot = FALSE) %>%
     ScaleData() %>%
