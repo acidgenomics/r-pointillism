@@ -18,14 +18,30 @@ NULL
 .getSeuratStash <- function(object, name) {
     stopifnot(is(object, "seurat"))
     assert_is_a_string(name)
-    # We're stashing into object@misc slot.
-    stash <- slot(object, "misc")
-    # Handle legacy `bcbio` list inside `object@misc`.
-    # As of v0.1.3, stashing directly into `object@misc`.
-    if ("bcbio" %in% names(stash)) {
-        stash <- stash[["bcbio"]]
+
+    misc <- slot(object, "misc")
+
+    # Early return if the `misc` slot is `NULL`.
+    if (is.null(misc)) {
+        return(NULL)
     }
-    stash[[name]]
+
+    # Look first directly in `object@misc` slot.
+    x <- misc[[name]]
+    if (!is.null(x)) {
+        return(x)
+    }
+
+    # Next, handle legacy `bcbio` stash list inside `object@misc`.
+    # As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(misc)) {
+        x <- misc[["bcbio"]][[name]]
+        if (!is.null(x)) {
+            return(x)
+        }
+    }
+
+    NULL
 }
 
 
