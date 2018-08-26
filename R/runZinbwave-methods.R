@@ -35,14 +35,11 @@
 #' Y <- sce_small
 #' Y <- bcbioSingleCell::filterCells(Y)
 #' Y <- Y[seq_len(200L), ]
-#'
-#' # Serial (recommended default)
-#' zinb <- runZinbwave(
+#' zinb <- suppressMessages(runZinbwave(
 #'     Y = Y,
 #'     BPPARAM = BiocParallel::SerialParam(),
-#'     recalculate = TRUE,
-#'     verbose = TRUE
-#' )
+#'     recalculate = TRUE
+#' ))
 #' print(zinb)
 #' assayNames(zinb)
 NULL

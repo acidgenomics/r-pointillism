@@ -9,7 +9,9 @@
 #' @return `factor`.
 #'
 #' @examples
-#' clusterID(sce_small)
+#' x <- clusterID(sce_small)
+#' table(x)
+#' head(x)
 NULL
 
 

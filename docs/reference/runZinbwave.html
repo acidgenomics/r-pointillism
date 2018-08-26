@@ -66,7 +66,7 @@ recalculate = TRUE." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ recalculate = TRUE." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh.com/pointillism">
+  <a href="https://github.com/steinbaugh/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -106,7 +106,7 @@ recalculate = TRUE." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate ZINB-WaVE Weights</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/runZinbwave-methods.R'><code>R/runZinbwave-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/runZinbwave-methods.R'><code>R/runZinbwave-methods.R</code></a></small>
     <div class="hidden name"><code>runZinbwave.Rd</code></div>
     </div>
 
@@ -218,43 +218,23 @@ work to run with multiple cores.</p>
 #&gt; <span class='message'>Summary:</span>
 #&gt; <span class='message'>  - 100 of 100 cells passed filtering (100%)</span>
 #&gt; <span class='message'>  - 1201 of 1201 genes passed filtering (100%)</span></div><div class='input'><span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='no'>Y</span>[<span class='fu'>seq_len</span>(<span class='fl'>200L</span>), ]
-
-<span class='co'># Serial (recommended default)</span>
-<span class='no'>zinb</span> <span class='kw'>&lt;-</span> <span class='fu'>runZinbwave</span>(
+<span class='no'>zinb</span> <span class='kw'>&lt;-</span> <span class='fu'>suppressMessages</span>(<span class='fu'>runZinbwave</span>(
     <span class='kw'>Y</span> <span class='kw'>=</span> <span class='no'>Y</span>,
     <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>(),
-    <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>BiocParallel param registered:</span>
-#&gt; <span class='message'>class: SerialParam</span>
-#&gt; <span class='message'>  bpisup: TRUE; bpnworkers: 1; bptasks: 0; bpjobname: BPJOB</span>
-#&gt; <span class='message'>  bplog: FALSE; bpthreshold: INFO; bpstopOnError: TRUE</span>
-#&gt; <span class='message'>  bptimeout: 2592000; bpprogressbar: TRUE</span>
-#&gt; <span class='message'>  bplogdir: NA</span></div><div class='output co'>#&gt; <span class='message'>Fitting a ZINB regression model...</span></div><div class='output co'>#&gt; <span class='message'>Create model:</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>Initialize parameters:</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>Optimize parameters:</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.626   0.038   0.666 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.392   0.028   0.422 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53772.0332048431</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.525   0.028   0.556 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.284   0.016   0.307 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53758.9324313116</span></div><div class='output co'>#&gt; <span class='message'>After dispersion optimization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.312   0.008   0.326 </div><div class='output co'>#&gt; <span class='message'>After right optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.128   0.011   0.146 </div><div class='output co'>#&gt; <span class='message'>After left optimization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>After orthogonalization = -59573.1985061649</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4</span></div><div class='output co'>#&gt; <span class='message'>penalized log-likelihood = -53758.9311061821</span></div><div class='output co'>#&gt; <span class='message'>ok</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
-#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  3.276   0.240   3.550 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel.</span>
-#&gt; <span class='message'>100 samples; 200 genes.</span>
-#&gt; <span class='message'>1 sample-level covariate(s) (mu); 1 sample-level covariate(s) (pi);</span>
-#&gt; <span class='message'>1 gene-level covariate(s) (mu); 1 gene-level covariate(s) (pi);</span>
-#&gt; <span class='message'>0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>Running zinbwave...</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
-#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.040   0.003   0.043 </span></div><div class='input'><span class='fu'>print</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
+    <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+))
+<span class='fu'>print</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 200 100 
 #&gt; metadata(4): filterCells filterGenes filterParams filterSummary
-#&gt; assays(4): counts logcounts normalizedValues weights
+#&gt; assays(5): counts logcounts scaleData normalizedValues weights
 #&gt; rownames(200): ENSG00000000938 ENSG00000001460 ... ENSG00000080845
 #&gt;   ENSG00000080910
 #&gt; rowData names(7): broadClass description ... geneName seqCoordSystem
 #&gt; colnames(100): cell1 cell10 ... cell98 cell99
-#&gt; colData names(16): nGene nUMI ... res.1.2 ident
+#&gt; colData names(16): nGene nUMI ... res1.2 ident
 #&gt; reducedDimNames(3): PCA TSNE UMAP
-#&gt; spikeNames(0):</div><div class='input'><span class='fu'>assayNames</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; [1] "counts"           "logcounts"        "normalizedValues" "weights"         </div></pre>
+#&gt; spikeNames(0):</div><div class='input'><span class='fu'>assayNames</span>(<span class='no'>zinb</span>)</div><div class='output co'>#&gt; [1] "counts"           "logcounts"        "scaleData"        "normalizedValues"
+#&gt; [5] "weights"         </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
