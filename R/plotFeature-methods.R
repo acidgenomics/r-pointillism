@@ -36,6 +36,8 @@ setMethod(
         legend = getOption("pointillism.legend", TRUE)
     ) {
         assert_is_character(features)
+        # Sanitize input to camel case.
+        features <- camel(features)
         # Legacy support for `color = "auto"`
         if (identical(color, "auto")) {
             warning("Use `NULL` instead of `\"auto\"` for `color`")
