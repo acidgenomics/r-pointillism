@@ -12,13 +12,11 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' object <- sce_small
-#'
-#' # edgeR
-#' x <- findMarkers(object, caller = "edgeR")
-#'
-#' # DESeq2
-#' x <- findMarkers(object, caller = "DESeq2")
+#' x <- suppressMessages(
+#'     findMarkers(sce_small, caller = "edgeR")
+#' )
+#' class(x)
+#' lapply(x, class)
 NULL
 
 

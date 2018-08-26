@@ -118,22 +118,22 @@ denominator <- colnames(object)[object$group == "group1"]
 glimpse(denominator)
 
 # edgeR
-x <- diffExp(
+x <- suppressMessages(diffExp(
     object = object,
     numerator = numerator,
     denominator = denominator,
     caller = "edgeR"
-)
+))
 class(x)
 summary(x)
 
 # DESeq2
-x <- diffExp(
+x <- suppressMessages(diffExp(
     object = object,
     numerator = numerator,
     denominator = denominator,
     caller = "DESeq2"
-)
+))
 class(x)
 summary(x)
 }

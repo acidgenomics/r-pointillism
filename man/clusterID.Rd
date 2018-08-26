@@ -25,7 +25,9 @@ clusterID(object, ...)
 Cluster Identity
 }
 \examples{
-clusterID(sce_small)
+x <- clusterID(sce_small)
+table(x)
+head(x)
 }
 \seealso{
 Other Marker Functions: \code{\link{knownMarkersDetected}},

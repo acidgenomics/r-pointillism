@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh.com/pointillism">
+  <a href="https://github.com/steinbaugh/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Methods for Coercing an Object to a Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/coerce-methods.R'><code>R/coerce-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/coerce-methods.R'><code>R/coerce-methods.R</code></a></small>
     <div class="hidden name"><code>coerce.Rd</code></div>
     </div>
 
@@ -130,8 +130,13 @@ the filtered cells into a new <code>seurat</code> class object. Use
     <h2 class="hasAnchor" id="seurat-to-singlecellexperiment"><a class="anchor" href="#seurat-to-singlecellexperiment"></a><code>seurat</code> to <code>SingleCellExperiment</code></h2>
 
     
-    <p>Super basic S4 coercion support for taking the raw counts matrix from
-a <code>seurat</code> class object and coercing to a <code>SingleCellExperiment</code>.</p>
+    <p>S4 coercion support for creating a <code>SingleCellExperiment</code> from a <code>seurat</code>
+class object. The <a href='https://satijalab.org/seurat/faq'>Seurat FAQ page</a>
+explains the <code>seurat</code> S4 class structure in detail. Internally, this method
+improves the basic <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/Convert'>Seurat::as.SingleCellExperiment()</a></code> S3 coercion method,
+including the <code>object@scale.data</code> matrix, and will keep track of stashed
+<code>rowRanges</code> and <code>metadata</code> if the <code>seurat</code> object was originally created
+from a <code>SingleCellExperiment</code> (i.e. from the bcbioSingleCell package).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -153,13 +158,14 @@ a <code>seurat</code> class object and coercing to a <code>SingleCellExperiment<
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>seurat_small</span>, <span class='st'>"SingleCellExperiment"</span>)
 <span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 1201 100 
-#&gt; metadata(4): filterCells filterGenes filterParams filterSummary
-#&gt; assays(2): counts logcounts
+#&gt; metadata(5): filterCells filterGenes filterParams filterSummary
+#&gt;   varGenes
+#&gt; assays(3): counts logcounts scaleData
 #&gt; rownames(1201): FGR STPG1 ... ALX3 CCT8
-#&gt; rowData names(11): broadClass description ... gene.dispersion
-#&gt;   gene.dispersion.scaled
+#&gt; rowData names(11): broadClass description ... geneDispersion
+#&gt;   geneDispersionScaled
 #&gt; colnames(100): cell1 cell10 ... cell98 cell99
-#&gt; colData names(16): nGene nUMI ... res.1.2 ident
+#&gt; colData names(16): nGene nUMI ... res1.2 ident
 #&gt; reducedDimNames(3): PCA TSNE UMAP
 #&gt; spikeNames(0):</div></pre>
   </div>

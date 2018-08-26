@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh.com/pointillism">
+  <a href="https://github.com/steinbaugh/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Find Cluster-Specific Marker Genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh.com/pointillism/blob/master/R/findMarkers-methods.R'><code>R/findMarkers-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/findMarkers-methods.R'><code>R/findMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>findMarkers.Rd</code></div>
     </div>
 
@@ -146,20 +146,19 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
-
-<span class='co'># edgeR</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>)</div><div class='output co'>#&gt; <span class='message'>Cluster 0 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.285   0.100   1.735 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 1 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR...</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.286   0.096   1.587 </span></div><div class='input'>
-<span class='co'># DESeq2</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>object</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"DESeq2"</span>)</div><div class='output co'>#&gt; <span class='message'>Cluster 0 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-DESeq2</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2...</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'> 18.586   0.412  21.681 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 1 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-DESeq2</span></div><div class='output co'>#&gt; <span class='message'>Applying low gene count filter</span>
-#&gt; <span class='message'>Requiring at least 25 cells with counts of 5 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2...</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'> 15.788   0.412  19.529 </span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>suppressMessages</span>(
+    <span class='fu'>findMarkers</span>(<span class='no'>sce_small</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>)
+)
+<span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'>lapply</span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; $`0`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`1`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
