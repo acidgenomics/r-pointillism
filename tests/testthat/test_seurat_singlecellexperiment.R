@@ -71,13 +71,16 @@ test_that("interestingGroups", {
 
 
 test_that("interestingGroups<-", {
-    # FIXME Need to improve `sampleData()` accessor to always work
+    # We're requiring `sampleData()` return here, which requires `sampleID`
+    # and `sampleName` columns in `colData()`.
     x <- pbmc_small
-    expect_error(interestingGroups(x) <- "sampleName")
-    interestingGroups(x) <- "orig.ident"
-    expect_identical(
-        interestingGroups(x),
-        "sampleName"
+    expect_error(
+        interestingGroups(x) <- "sampleName",
+        "colData"
+    )
+    expect_error(
+        interestingGroups(x) <- "orig.ident",
+        "sampleData"
     )
 
     x <- seurat_small
@@ -85,6 +88,10 @@ test_that("interestingGroups<-", {
     expect_identical(
         interestingGroups(x),
         "sampleName"
+    )
+    expect_error(
+        interestingGroups(x) <- "XXX",
+        "colData"
     )
 })
 
@@ -105,6 +112,7 @@ test_that("metadata", {
 
 
 test_that("metrics", {
+    # Check for camel case sanitization in `as()` coercion method.
     expect_identical(
         sort(colnames(metrics(seurat_small))),
         c(
@@ -119,10 +127,10 @@ test_that("metrics", {
             "nGene",
             "nMito",
             "nUMI",
-            "orig.ident",
-            "res.0.4",
-            "res.0.8",
-            "res.1.2",
+            "origIdent",
+            "res0.4",
+            "res0.8",
+            "res1.2",
             "sampleID",
             "sampleName"
         )
@@ -158,7 +166,23 @@ test_that("rowRanges", {
 
 
 test_that("sampleData", {
-    expect_null(sampleData(pbmc_small))
+    expect_error(sampleData(pbmc_small), "sampleData")
+
+    x <- sampleData(sce_small)
+    expect_identical(
+        rownames(x),
+        c("group1", "group2")
+    )
+    expect_identical(
+        colnames(x),
+        c(
+            "batch",
+            "group",
+            "sampleID",
+            "sampleName",
+            "interestingGroups"
+        )
+    )
 })
 
 
