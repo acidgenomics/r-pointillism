@@ -1,6 +1,6 @@
 # SingleCellExperiment Example Data
 # Using splatter to generate simulated counts
-# 2018-08-21
+# 2018-08-26
 
 library(devtools)
 library(tidyverse)
@@ -13,28 +13,28 @@ load_all()
 
 
 # splatter =====================================================================
-# note: these DE params are natural log scale
+# Note: these DE params are natural log scale.
 params <- newSplatParams()
 params <- setParam(params, "de.facLoc", 1)
 params <- setParam(params, "de.facScale", .25)
 params <- setParam(params, "dropout.type", "experiment")
 params <- setParam(params, "dropout.mid", 3)
 sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
-# Modify colData
+# Prepare column data.
 colData(sce) <- camel(colData(sce), rownames = TRUE, colnames = TRUE)
 sce$cell <- NULL
-# Add sampleID and sampleName columns
+# Add sampleID and sampleName columns.
 sce$batch <- as.factor(camel(sce$batch))
 sce$group <- as.factor(camel(sce$group))
 sce$sampleID <- sce$group
 sce$sampleName <- sce$sampleID
 stopifnot("sampleName" %in% colnames(colData(sce)))
-# Just keep raw counts
+# Just keep raw counts.
 assays(sce) <- assays(sce)["counts"]
-# Prepare rowRanges
+# Prepare row data.
 gr <- makeGRangesFromEnsembl("Homo sapiens", release = 92)
 rowRanges(sce) <- gr[seq_len(nrow(sce))]
-# Sanitize to camel case
+# Sanitize to camel case.
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
@@ -45,7 +45,7 @@ sce <- filterCells(sce, minCellsPerGene = 25)
 # seurat_small =================================================================
 seurat_small <- sce %>%
     convertGenesToSymbols() %>%
-    as(sce, "seurat") %>%
+    as("seurat") %>%
     NormalizeData() %>%
     FindVariableGenes(do.plot = FALSE) %>%
     ScaleData() %>%
@@ -55,7 +55,7 @@ seurat_small <- sce %>%
     # Requires Python `umap-learn` package
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
-stopifnot("sampleName" %in% colnames(colData(seurat_small)))
+stopifnot(is.character(sampleNames(seurat_small)))
 
 
 
@@ -65,7 +65,7 @@ seurat_sce <- seurat_small %>%
     as("SingleCellExperiment") %>%
     convertSymbolsToGenes()
 stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
-stopifnot("ident" %in% colnames(colData(seurat_sce)))
+stopifnot(all(c("ident", "origIdent") %in% colnames(colData(seurat_sce))))
 # Ensure that dimensional reduction data is slotted correctly
 stopifnot(identical(
     names(reducedDims(seurat_sce)),
@@ -83,17 +83,17 @@ sce_small <- sce
 
 
 # marker data frames ===========================================================
-all_markers_small <- FindAllMarkers(seurat_small)
-all_markers_small <- sanitizeSeuratMarkers(
-    data = all_markers_small,
-    rowRanges = rowRanges(seurat_small)
-)
+rowRanges <- rowRanges(seurat_small)
+all_markers_small <- seurat_small %>%
+    FindAllMarkers() %>%
+    sanitizeSeuratMarkers(rowRanges = rowRanges)
 
 known_markers_small <- tibble(
     cellType = c("cell_type_1", "cell_type_2"),
     geneID = pull(all_markers_small, "geneID")[seq_len(2L)]
 ) %>%
     group_by(cellType)
+
 # Write out an example CSV that we can use to test `readCellTypeMarkers()`.
 dir.create("inst/extdata", recursive = TRUE, showWarnings = FALSE)
 write_csv(
