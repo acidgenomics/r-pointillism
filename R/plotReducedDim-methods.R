@@ -85,9 +85,12 @@ setMethod(
             colnames(data)
         )
 
-        # Get the x- and y-axis labels (e.g. tSNE_1, tSNE_2)
-        axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-        assert_is_character(axes)
+        # Set the x- and y-axis labels (e.g. tSNE1, tSNE2)
+        axes <- reducedDims(object) %>%
+            .[[reducedDim]] %>%
+            colnames() %>%
+            .[dimsUse] %>%
+            camel()
         assert_is_subset(axes, colnames(data))
 
         p <- ggplot(

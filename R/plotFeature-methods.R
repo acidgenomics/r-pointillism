@@ -63,9 +63,10 @@ setMethod(
                 args = reducedDims(object)
             )
             stopifnot(identical(rownames(data), rownames(reducedDimsData)))
-            data <- cbind(data, reducedDimsData) %>%
-                # Ensure columns are unique
-                .[, unique(colnames(.))]
+            reducedDimsData <- camel(reducedDimsData)
+            data <- data %>%
+                .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%
+                cbind(reducedDimsData)
         }
         assert_is_subset(features, colnames(data))
 
