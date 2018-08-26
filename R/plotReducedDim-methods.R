@@ -81,16 +81,12 @@ setMethod(
         )
         assert_is_data.frame(data)
         assert_is_subset(
-            c("x", "y", "centerX", "centerY"),
-            colnames(data)
+            x = c("x", "y", "centerX", "centerY"),
+            y = colnames(data)
         )
 
         # Set the x- and y-axis labels (e.g. tSNE1, tSNE2)
-        axes <- reducedDims(object) %>%
-            .[[reducedDim]] %>%
-            colnames() %>%
-            .[dimsUse] %>%
-            camel()
+        axes <- camel(colnames(reducedDims(object)[[reducedDim]])[dimsUse])
         assert_is_subset(axes, colnames(data))
 
         p <- ggplot(
