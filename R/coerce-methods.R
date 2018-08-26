@@ -104,8 +104,13 @@ setAs(
             scaleData <- scaleData[rownames(to), colnames(to)]
             assays(to)[["scaleData"]] <- scaleData
         }
-        rowRanges(to) <- rowRanges(from)
+        # Sanitize row and column data colnames using camel case.
+        rowRanges(to) <- camel(rowRanges(from))
+        colData(to) <- camel(colData(to))
         metadata(to) <- metadata(from)
+        # Slot variable genes, if calculated.
+        varGenes <- slot(from, "var.genes")
+        metadata(to)[["varGenes"]] <- varGenes
         to
     }
 )
