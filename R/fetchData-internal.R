@@ -49,8 +49,7 @@
     }
     data <- as.data.frame(data)
 
-    # Ensure all columns are camel case, for consistency.
-    metrics <- camel(metrics(object))
+    metrics <- metrics(object)
     assert_are_identical(rownames(data), rownames(metrics))
 
     dimCols <- colnames(data)[dimsUse]
@@ -68,6 +67,8 @@
         ) %>%
         ungroup() %>%
         as.data.frame() %>%
+        # Ensure all columns are camel case, for consistency.
+        camel() %>%
         column_to_rownames()
 }
 
