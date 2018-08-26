@@ -40,22 +40,33 @@
     assertIsImplicitInteger(dimsUse)
     assert_is_of_length(dimsUse, 2L)
 
-    data <- slot(object, "reducedDims")[[reducedDim]]
-    if (!is.matrix(data)) {
+    # Reduced dimension coordinates.
+    reducedDimData <- slot(object, "reducedDims")[[reducedDim]]
+    if (!is.matrix(reducedDimData)) {
         stop(
             paste(reducedDim, "reduced dimension not calculated"),
             call. = FALSE
         )
     }
-    data <- as.data.frame(data)
+    reducedDimData <- camel(as.data.frame(reducedDimData))
 
-    metrics <- metrics(object)
-    assert_are_identical(rownames(data), rownames(metrics))
+    # Cellular barcode metrics.
+    metrics <- camel(metrics(object))
 
-    dimCols <- colnames(data)[dimsUse]
+    # Assert checks to make sure the cbind operation works.
+    assert_are_identical(
+        x = rownames(reducedDimData),
+        y = rownames(metrics)
+    )
+    assert_are_disjoint_sets(
+        x = colnames(reducedDimData),
+        y = colnames(metrics)
+    )
+
+    dimCols <- colnames(reducedDimData)[dimsUse]
     assert_is_character(dimCols)
 
-    cbind(data, metrics) %>%
+    cbind(reducedDimData, metrics) %>%
         rownames_to_column() %>%
         # Group by ident here for center calculations
         group_by(!!sym("ident")) %>%
