@@ -71,16 +71,17 @@ test_that("interestingGroups", {
 
 
 test_that("interestingGroups<-", {
+    x <- pbmc_small
     # We're requiring `sampleData()` return here, which requires `sampleID`
     # and `sampleName` columns in `colData()`.
-    x <- pbmc_small
     expect_error(
         interestingGroups(x) <- "sampleName",
         "colData"
     )
-    expect_error(
-        interestingGroups(x) <- "orig.ident",
-        "sampleData"
+    interestingGroups(x) <- "orig.ident"
+    expect_identical(
+        interestingGroups(x),
+        "orig.ident"
     )
 
     x <- seurat_small
@@ -188,5 +189,15 @@ test_that("sampleData", {
 
 
 test_that("sampleNames", {
-    expect_identical(sampleNames(pbmc_small), character())
+    expect_error(
+        sampleNames(pbmc_small),
+        "sampleData"
+    )
+    expect_identical(
+        sampleNames(seurat_small),
+        c(
+            group1 = "group1",
+            group2 = "group2"
+        )
+    )
 })
