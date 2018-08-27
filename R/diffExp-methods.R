@@ -222,9 +222,9 @@ setMethod(
         # Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
         message(paste(
+            paste("Total:", length(cells), "cells"),
             paste("Numerator:", length(numerator), "cells"),
             paste("Denominator:", length(denominator), "cells"),
-            paste("Total:", length(cells), "cells"),
             sep = "\n"
         ))
         object <- object[, cells]
