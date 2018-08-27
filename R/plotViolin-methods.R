@@ -28,70 +28,83 @@ setMethod(
     function(
         object,
         genes,
+        interestingGroups,
         scale = c("count", "width", "area"),
         fill = getOption("pointillism.discrete.fill", NULL),
         legend = getOption("pointillism.legend", TRUE)
     ) {
+        validObject(object)
+        assert_is_a_string(genes)
+        assert_is_subset(genes, rownames(object))
+        interestingGroups <- matchInterestingGroups(
+            object = object,
+            interestingGroups = interestingGroups
+        )
         scale <- match.arg(scale)
         assert_is_any_of(fill, c("ScaleDiscrete", "character", "NULL"))
         if (is.character(fill)) {
             assert_is_a_string(fill)
         }
 
-        ident <- colData(object)[["ident"]]
-        assert_is_non_empty(ident)
-
+        # Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
             assay = "logcounts",
-            gene2symbol = TRUE
-        ) %>%
-            as.data.frame() %>%
-            cbind(ident) %>%
-            rownames_to_column("cell") %>%
-            as_tibble()
+            gene2symbol = TRUE,
+            interestingGroups = interestingGroups
+        )
 
+        # Ensure genes match the data return
         if (isTRUE(.useGene2symbol(object))) {
             g2s <- gene2symbol(object)
             if (length(g2s)) {
                 g2s <- g2s[genes, , drop = FALSE]
                 genes <- make.unique(g2s[["geneName"]])
-                stopifnot(all(genes %in% colnames(data)))
+                stopifnot(all(genes %in% data[["gene"]]))
             }
         }
 
-        data <- data %>%
-            gather(
-                key = "gene",
-                value = "logcounts",
-                !!genes
-            ) %>%
-            group_by(!!sym("gene"))
-
-        violin <- geom_violin(
-            mapping = aes(fill = !!sym("ident")),
-            # never include a color border
-            color = "black",
-            scale = scale,
-            adjust = 1L,
-            show.legend = legend,
-            trim = TRUE
-        )
-        if (is_a_string(fill)) {
-            violin[["aes_params"]][["fill"]] <- fill
+        if (
+            is.null(interestingGroups) ||
+            interestingGroups == "ident"
+        ) {
+            x <- "ident"
+        } else {
+            x <- "sampleName"
         }
 
         p <- ggplot(
-            data,
+            data = data,
             mapping = aes(
-                x = !!sym("ident"),
-                y = !!sym("logcounts")
+                x = !!sym(x),
+                y = !!sym("logcounts"),
+                fill = !!sym("interestingGroups")
             )
         ) +
-            violin +
-            # Note that `scales = free_y` will hide the x-axis for some plots
-            facet_wrap(facets = sym("gene"), scales = "free_y")
+            geom_violin(
+                # Never include a color border.
+                color = "black",
+                scale = scale,
+                adjust = 1L,
+                show.legend = legend,
+                trim = TRUE
+            ) +
+            # Note that `scales = free_y` will hide the x-axis for some plots.
+            labs(
+                fill = paste(interestingGroups, collapse = ":\n")
+            )
+
+        if (!(
+            is.null(interestingGroups) ||
+            interestingGroups == "ident"
+        )) {
+            p <- p +
+                facet_wrap(
+                    facets = sym("ident"),
+                    scales = "free_y"
+                )
+        }
 
         if (is(fill, "ScaleDiscrete")) {
             p <- p + fill
