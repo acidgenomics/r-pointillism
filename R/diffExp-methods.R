@@ -111,7 +111,7 @@ NULL
 .warnBadContrast <- function() {
     warning(paste(
         "Skipping DE...",
-        "Imbalanced contrast detected",
+        "Underpowered contrast detected",
         "(not enough cells)."
     ), call. = FALSE)
 }
