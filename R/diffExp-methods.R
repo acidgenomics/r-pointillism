@@ -111,7 +111,8 @@ NULL
 .warnBadContrast <- function() {
     warning(paste(
         "Skipping DE...",
-        "Imbalanced contrast, with too few cells detected."
+        "Imbalanced contrast detected",
+        "(not enough cells)."
     ), call. = FALSE)
 }
 
@@ -195,12 +196,16 @@ setMethod(
         minCellsPerGene = 25L,
         minCountsPerCell = 5L
     ) {
+        minCells <- 10L
         # Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
         assert_is_character(numerator)
-        assert_is_non_empty(numerator)
         assert_is_character(denominator)
-        assert_is_non_empty(denominator)
+        # Early return `NULL` on an imbalanced contrast.
+        if (length(numerator) < minCells || length(denominator) < minCells) {
+            .warnBadContrast()
+            return(NULL)
+        }
         assert_are_disjoint_sets(numerator, denominator)
         caller <- match.arg(caller)
         # Consider adding zingeR support back once it's on Bioconductor.
@@ -261,11 +266,7 @@ setMethod(
         # Early return `NULL` if there are less than n cells in either.
         numerator <- intersect(numerator, colnames(object))
         denominator <- intersect(denominator, colnames(object))
-        minCells <- 10L
-        if (
-            length(numerator) < minCells ||
-            length(denominator) < minCells
-        ) {
+        if (length(numerator) < minCells || length(denominator) < minCells) {
             .warnBadContrast()
             return(NULL)
         }

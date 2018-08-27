@@ -75,13 +75,6 @@ setMethod(
                 groupings <- droplevels(colData(subset)[[group]])
                 numerator <- colnames(subset)[which(groupings == numerator)]
                 denominator <- colnames(subset)[which(groupings == denominator)]
-                if (
-                    length(numerator) == 0L ||
-                    length(denominator) == 0L
-                ) {
-                    .warnBadContrast()
-                    return(NULL)
-                }
                 diffExp(
                     object = object,
                     numerator = numerator,
