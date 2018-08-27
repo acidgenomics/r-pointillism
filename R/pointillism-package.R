@@ -11,8 +11,8 @@
 #' @importFrom assertive.base assert_are_identical
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_positive
-#' @importFrom assertive.properties assert_has_no_duplicates assert_has_rows
-#'   assert_is_non_empty assert_is_of_length
+#' @importFrom assertive.properties assert_has_no_duplicates assert_has_names
+#'   assert_has_rows assert_is_non_empty assert_is_of_length
 #' @importFrom assertive.sets assert_are_disjoint_sets
 #'   assert_are_intersecting_sets assert_is_subset
 #' @importFrom assertive.types assert_is_a_bool assert_is_a_number
