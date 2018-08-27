@@ -34,7 +34,6 @@ setMethod(
         legend = getOption("pointillism.legend", TRUE)
     ) {
         validObject(object)
-        assert_is_a_string(genes)
         assert_is_subset(genes, rownames(object))
         interestingGroups <- matchInterestingGroups(
             object = object,
@@ -54,6 +53,11 @@ setMethod(
             gene2symbol = TRUE,
             interestingGroups = interestingGroups
         )
+        assert_is_subset(
+            x = c("gene", "ident", "sampleName"),
+            y = colnames(data)
+        )
+        multiSample <- unique(length(data[["sampleName"]])) > 1L
 
         # Ensure genes match the data return
         if (isTRUE(.useGene2symbol(object))) {
@@ -65,13 +69,10 @@ setMethod(
             }
         }
 
-        if (
-            is.null(interestingGroups) ||
-            interestingGroups == "ident"
-        ) {
-            x <- "ident"
-        } else {
+        if (isTRUE(multiSample)) {
             x <- "sampleName"
+        } else {
+            x <- "ident"
         }
 
         p <- ggplot(
@@ -92,19 +93,14 @@ setMethod(
             ) +
             # Note that `scales = free_y` will hide the x-axis for some plots.
             labs(
+                title = toString(genes),
                 fill = paste(interestingGroups, collapse = ":\n")
+            ) +
+            facet_grid(
+                rows = vars(!!sym("ident")),
+                cols = vars(!!sym("gene")),
+                scales = "free_y"
             )
-
-        if (!(
-            is.null(interestingGroups) ||
-            interestingGroups == "ident"
-        )) {
-            p <- p +
-                facet_wrap(
-                    facets = sym("ident"),
-                    scales = "free_y"
-                )
-        }
 
         if (is(fill, "ScaleDiscrete")) {
             p <- p + fill
