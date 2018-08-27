@@ -42,6 +42,17 @@ setGeneric(
 
 
 
+#' @rdname diffExpPerCluster
+#' @export
+setGeneric(
+    "diffExpPerCluster",
+    function(object, ...) {
+        standardGeneric("diffExpPerCluster")
+    }
+)
+
+
+
 #' @rdname findMarkers
 #' @export
 setGeneric(
