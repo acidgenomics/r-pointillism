@@ -25,6 +25,10 @@ findMarkers(object, ...)
 \description{
 Find Cluster-Specific Marker Genes
 }
+\note{
+Cluster identity (\code{ident}) must be defined in \code{colData()} for this
+function to work.
+}
 \examples{
 x <- suppressMessages(
     findMarkers(sce_small, caller = "edgeR")
@@ -33,8 +37,8 @@ class(x)
 lapply(x, class)
 }
 \seealso{
-Other Differential Expression Functions: \code{\link{diffExp}},
-  \code{\link{runZinbwave}}
+Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
+  \code{\link{diffExp}}, \code{\link{runZinbwave}}
 }
 \author{
 Michael Steinbaugh
