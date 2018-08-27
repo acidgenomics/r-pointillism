@@ -1,5 +1,8 @@
 #' Find Cluster-Specific Marker Genes
 #'
+#' @note Cluster identity (`ident`) must be defined in `colData()` for this
+#'   function to work.
+#'
 #' @name findMarkers
 #' @family Differential Expression Functions
 #' @author Michael Steinbaugh
@@ -27,11 +30,16 @@ setMethod(
     "findMarkers",
     signature("SingleCellExperiment"),
     function(object, ...) {
+        # Object must contain pre-calculate ZINB weights.
         .assertHasZinbwave(object)
+        # Get the cluster identities.
         ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
         stopifnot(length(clusters) >= 2L)
+        message(paste(length(clusters), "clusters detected"))
+        # Loop across the clusters and calculate gene enrichment relative to
+        # all of the other clusters combined.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
