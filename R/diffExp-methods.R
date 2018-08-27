@@ -73,13 +73,11 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' library(bcbioSingleCell)
 #' object <- sce_small[seq_len(100L), seq_len(100L)]
-#' object <- filterCells(object)
-#'
+#' # Ensure genes with all zero counts are filtered.
+#' object <- bcbioSingleCell::filterCells(object)
 #' numerator <- colnames(object)[object$group == "group2"]
 #' glimpse(numerator)
-#'
 #' denominator <- colnames(object)[object$group == "group1"]
 #' glimpse(denominator)
 #'
@@ -136,7 +134,7 @@ NULL
             minmu = 1e-6,
             minReplicatesForReplace = Inf
         )
-        # We already performed low count filtering
+        # We already performed low count filtering.
         res <- results(dds, independentFiltering = FALSE)
     })))
     res
@@ -149,6 +147,7 @@ NULL
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR...")
+    # Coerce to dense matrix.
     counts <- as.matrix(counts(object))
     weights <- assay(object, "weights")
     assert_is_matrix(weights)
@@ -162,7 +161,7 @@ NULL
         dge[["weights"]] <- weights
         dge <- estimateDisp(dge, design = design)
         fit <- glmFit(dge, design = design)
-        # We already performed low count filtering
+        # We already performed low count filtering.
         lrt <- glmWeightedF(
             glmfit = fit,
             coef = 2L,
@@ -187,12 +186,15 @@ setMethod(
         minCellsPerGene = 25L,
         minCountsPerCell = 5L
     ) {
+        # Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
         assert_is_character(numerator)
+        assert_is_non_empty(numerator)
         assert_is_character(denominator)
+        assert_is_non_empty(denominator)
         assert_are_disjoint_sets(numerator, denominator)
         caller <- match.arg(caller)
-        # Consider adding zingeR support back once it's on Bioconductor
+        # Consider adding zingeR support back once it's on Bioconductor.
         zeroWeights <- "zinbwave"
         assertIsAnImplicitInteger(minCountsPerCell)
         assertIsAnImplicitInteger(minCellsPerGene)
@@ -203,30 +205,66 @@ setMethod(
             paste(zeroWeights, caller, sep = "-")
         ))
 
-        # Subset the SCE object to contain the desired cells
+        # Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
         object <- object[, cells]
+        # Ensure we're using a sparse matrix to calculate the logical matrix.
+        counts <- as(counts(object), "dgCMatrix")
 
+        # Gene filter ----------------------------------------------------------
+        message("Applying gene expression low pass filter...")
         message(paste(
-            "Applying low gene count filter",
-            paste(
-                "Requiring at least",
-                minCellsPerGene,
-                "cells with counts of",
-                minCountsPerCell,
-                "or more per gene"
-            ),
-            sep = "\n"
+            "Requiring at least",
+            minCellsPerGene,
+            "cells with counts of",
+            minCountsPerCell,
+            "or more per gene"
         ))
-        genes <- rowSums(counts(object) >= minCountsPerCell) >= minCellsPerGene
-        # Early return NULL if no genes pass
-        if (!any(genes)) {
+
+        # Filter the genes based on our expression threshold criteria.
+        # Note that this step generates a logical matrix, and will calculate
+        # a lot faster when using a sparse matrix (see above).
+        genes <- rowSums(counts >= minCountsPerCell) >= minCellsPerGene
+        genes <- names(genes[genes])
+        message(paste(length(genes), "of", nrow(object), "genes passed filter"))
+
+        # Early return NULL if no genes pass.
+        if (!length(genes)) {
             warning("No genes passed the low count filter")
             return(NULL)
         }
+
+        # Now subset the object by applying our low pass expression filter.
         object <- object[genes, ]
 
-        # Create a cell factor to define the group for `DGEList()`
+        # Cell filter ----------------------------------------------------------
+        # Re-apply default recommended low-stringency filtering, which can drop
+        # low quality cells from the DE analysis.
+        message("Re-applying default cell quality filters...")
+        object <- filterCells(object)
+        # Inform the user if any cells have been removed.
+        setdiff <- setdiff(cells, colnames(object))
+        if (length(setdiff)) {
+            message(paste("Removed", length(setdiff), "low quality cells"))
+        }
+
+        # Resize the numerator and denominator after our QC filters.
+        # Early return `NULL` if there are less than n cells in either.
+        numerator <- intersect(numerator, colnames(object))
+        denominator <- intersect(denominator, colnames(object))
+        minCells <- 10L
+        if (
+            length(numerator) < minCells ||
+            length(denominator) < minCells
+        ) {
+            warning(paste(
+                "Skipping DE...",
+                "Imbalanced contrast with too few cells detected."
+            ))
+            return(NULL)
+        }
+
+        # Create a cell factor to define the group.
         numeratorFactor <- replicate(
             n = length(numerator),
             expr = "numerator"
@@ -244,26 +282,26 @@ setMethod(
             as.character(denominatorFactor)
         ))
         names(group) <- c(names(numeratorFactor), names(denominatorFactor))
-        # Ensure denominator is set as reference
+        # Ensure denominator is set as reference.
         group <- relevel(group, ref = "denominator")
         object[["group"]] <- group
 
-        # Set up the design matrix
+        # Set up the design matrix.
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
 
-        # Calculate the weights (e.g. `runZinbwave`)
+        # Calculate the weights.
         weightsFunction <- get(paste0("run", upperCamel(zeroWeights)))
         object <- weightsFunction(Y = object, BPPARAM = SerialParam())
 
-        # Ensure raw counts matrix is dense
+        # Ensure raw counts matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))
 
-        # Perform differential expression (e.g. `.zinbwave.edgeR`)
+        # Perform differential expression (e.g. `.zinbwave.edgeR`).
         callerFunction <- get(paste("", zeroWeights, caller, sep = "."))
-        object <- callerFunction(object)
+        data <- callerFunction(object)
 
-        object
+        data
     }
 )
 
