@@ -108,7 +108,7 @@ NULL
 
 
 
-.warnBadContrast <- function() {
+.underpoweredContrast <- function() {
     warning(paste(
         "Skipping DE...",
         "Underpowered contrast detected",
@@ -203,7 +203,7 @@ setMethod(
         assert_is_character(denominator)
         # Early return `NULL` on an imbalanced contrast.
         if (length(numerator) < minCells || length(denominator) < minCells) {
-            .warnBadContrast()
+            .underpoweredContrast()
             return(NULL)
         }
         assert_are_disjoint_sets(numerator, denominator)
@@ -267,7 +267,7 @@ setMethod(
         numerator <- intersect(numerator, colnames(object))
         denominator <- intersect(denominator, colnames(object))
         if (length(numerator) < minCells || length(denominator) < minCells) {
-            .warnBadContrast()
+            .underpoweredContrast()
             return(NULL)
         }
 
