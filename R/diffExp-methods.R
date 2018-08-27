@@ -221,7 +221,14 @@ setMethod(
 
         # Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
+        message(paste(
+            paste("Numerator:", length(numerator), "cells"),
+            paste("Denominator:", length(denominator), "cells"),
+            paste("Total:", length(cells), "cells"),
+            sep = "\n"
+        ))
         object <- object[, cells]
+
         # Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- as(counts(object), "dgCMatrix")
 
