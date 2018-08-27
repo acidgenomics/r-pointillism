@@ -107,13 +107,11 @@ additional information.
 }
 
 \examples{
-library(bcbioSingleCell)
 object <- sce_small[seq_len(100L), seq_len(100L)]
-object <- filterCells(object)
-
+# Ensure genes with all zero counts are filtered.
+object <- bcbioSingleCell::filterCells(object)
 numerator <- colnames(object)[object$group == "group2"]
 glimpse(numerator)
-
 denominator <- colnames(object)[object$group == "group1"]
 glimpse(denominator)
 
@@ -140,8 +138,8 @@ summary(x)
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 
-Other Differential Expression Functions: \code{\link{findMarkers}},
-  \code{\link{runZinbwave}}
+Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
+  \code{\link{findMarkers}}, \code{\link{runZinbwave}}
 }
 \author{
 Michael Steinbaugh
