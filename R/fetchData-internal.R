@@ -2,13 +2,15 @@
     object,
     genes,
     assay = "logcounts",
-    gene2symbol = FALSE
+    gene2symbol = FALSE,
+    interestingGroups = "ident"
 ) {
     assert_is_character(genes)
     assert_has_no_duplicates(genes)
     assert_is_a_string(assay)
     assert_is_subset(assay, assayNames(object))
     assert_is_a_bool(gene2symbol)
+    assertFormalInterestingGroups(object, interestingGroups)
 
     counts <- assays(object)[[assay]]
     assert_is_subset(genes, rownames(object))
@@ -20,11 +22,38 @@
         g2s <- gene2symbol(object)
         assertIsGene2symbol(g2s)
         g2s <- g2s[genes, , drop = FALSE]
+        genes <- make.unique(g2s[["geneName"]])
         assert_are_identical(rownames(counts), g2s[["geneID"]])
         rownames(counts) <- make.unique(g2s[["geneName"]])
     }
 
-    t(counts)
+    data <- t(counts)
+
+    if (is.character(interestingGroups)) {
+        # Always include "ident" and "sampleName" at this step.
+        intgroup <- unique(c("ident", "sampleName", interestingGroups))
+        intgroupData <- colData(object) %>%
+            .[, intgroup, drop = FALSE] %>%
+            as.data.frame()
+        assert_are_identical(
+            x = rownames(data),
+            y = rownames(intgroupData)
+        )
+        data <- data %>%
+            as.data.frame() %>%
+            cbind(intgroupData) %>%
+            as_tibble() %>%
+            rownames_to_column() %>%
+            uniteInterestingGroups(interestingGroups) %>%
+            gather(
+                key = "gene",
+                value = !!sym(assay),
+                !!genes
+            ) %>%
+            group_by(!!sym("gene"))
+    }
+
+    data
 }
 
 

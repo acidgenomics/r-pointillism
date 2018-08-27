@@ -10,12 +10,13 @@
 plotViolin(object, ...)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
-  scale = c("count", "width", "area"),
+  interestingGroups, scale = c("count", "width", "area"),
   fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE))
 
-\S4method{plotViolin}{seurat}(object, genes, scale = c("count", "width",
-  "area"), fill = getOption("pointillism.discrete.fill", NULL),
+\S4method{plotViolin}{seurat}(object, genes, interestingGroups,
+  scale = c("count", "width", "area"),
+  fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE))
 }
 \arguments{
@@ -25,6 +26,10 @@ plotViolin(object, ...)
 
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
+
+\item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
+interesting groups. Must be formatted in camel case and intersect with
+\code{\link[=sampleData]{sampleData()}} colnames.}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of
