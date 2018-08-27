@@ -108,6 +108,15 @@ NULL
 
 
 
+.warnBadContrast <- function() {
+    warning(paste(
+        "Skipping DE...",
+        "Imbalanced contrast, with too few cells detected."
+    ), call. = FALSE)
+}
+
+
+
 # Van De Berge and Perraudeau and others have shown the LRT may perform better
 # for null hypothesis testing, so we use the LRT. In order to use the Wald test,
 # it is recommended to set `useT = TRUE`.
@@ -257,10 +266,7 @@ setMethod(
             length(numerator) < minCells ||
             length(denominator) < minCells
         ) {
-            warning(paste(
-                "Skipping DE...",
-                "Imbalanced contrast with too few cells detected."
-            ))
+            .warnBadContrast()
             return(NULL)
         }
 
