@@ -32,13 +32,13 @@
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by
 #'   group_vars left_join mutate mutate_at mutate_if n pull
-#'   select slice summarize ungroup
+#'   select slice summarize ungroup vars
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom edgeR calcNormFactors DGEList estimateDisp glmFit
-#' @importFrom ggplot2 aes element_rect expand_limits facet_wrap geom_hline
-#'   geom_line geom_point geom_text geom_violin geom_vline ggplot guide_colorbar
-#'   guides labs scale_color_gradient scale_color_viridis_c scale_radius
-#'   scale_x_continuous scale_y_continuous theme
+#' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
+#'   geom_hline geom_line geom_point geom_text geom_violin geom_vline ggplot
+#'   guide_colorbar guides labs scale_color_gradient scale_color_viridis_c
+#'   scale_radius scale_x_continuous scale_y_continuous theme
 #' @importFrom magrittr %>% set_names
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is setAs show slot slot<- validObject
