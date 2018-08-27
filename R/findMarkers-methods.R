@@ -35,6 +35,7 @@ setMethod(
         # Get the cluster identities.
         ident <- clusterID(object)
         assert_is_factor(ident)
+        assert_has_names(ident)
         clusters <- levels(ident)
         stopifnot(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
@@ -44,8 +45,14 @@ setMethod(
             X = clusters,
             FUN = function(cluster) {
                 message(paste("Cluster", cluster, "===="))
-                numerator <- colnames(object)[which(ident == cluster)]
-                denominator <- colnames(object)[which(ident != cluster)]
+                # Numerator: cells in the current cluster.
+                numerator <- ident[which(ident == cluster)]
+                stopifnot(all(numerator == cluster))
+                numerator <- sort(names(numerator))
+                assert_is_non_empty(numerator)
+                # Denominator: cells in all other clusters.
+                denominator <- sort(setdiff(colnames(object), numerator))
+                assert_is_non_empty(denominator)
                 diffExp(
                     object = object,
                     numerator = numerator,
