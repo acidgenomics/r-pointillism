@@ -31,7 +31,8 @@ setMethod(
         interestingGroups,
         scale = c("count", "width", "area"),
         fill = getOption("pointillism.discrete.fill", NULL),
-        legend = getOption("pointillism.legend", TRUE)
+        legend = getOption("pointillism.legend", TRUE),
+        title = NULL
     ) {
         validObject(object)
         assert_is_subset(genes, rownames(object))
@@ -44,6 +45,8 @@ setMethod(
         if (is.character(fill)) {
             assert_is_a_string(fill)
         }
+        assert_is_a_bool(legend)
+        assertIsAStringOrNULL(title)
 
         # Fetch the gene expression data.
         data <- .fetchGeneData(
@@ -93,7 +96,7 @@ setMethod(
             ) +
             # Note that `scales = free_y` will hide the x-axis for some plots.
             labs(
-                title = toString(genes),
+                title = title,
                 fill = paste(interestingGroups, collapse = ":\n")
             ) +
             facet_grid(
