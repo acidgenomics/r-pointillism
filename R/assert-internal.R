@@ -99,15 +99,3 @@
         }
     }
 }
-
-
-
-# Determine whether we should use stashed gene-to-symbol mappings.
-.useGene2symbol <- function(object) {
-    geneName <- as.character(
-        suppressWarnings(
-            gene2symbol(object)[["geneName"]]
-        )
-    )
-    !any(geneName %in% rownames(object))
-}
