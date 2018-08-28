@@ -114,3 +114,49 @@ setAs(
         to
     }
 )
+
+
+
+#' @rdname coerce
+#' @name coerce,seurat,RangedSummarizedExperiment-method
+#'
+#' @section `seurat` to `RangedSummarizedExperiment`:
+#' S4 coercion support for creating a `RangedSummarizedExperiment` from a
+#' `seurat` class object.
+#'
+#' @examples
+#' # seurat to RangedSummarizedExperiment ====
+#' x <- as(seurat_small, "RangedSummarizedExperiment")
+#' print(x)
+setAs(
+    from = "seurat",
+    to = "RangedSummarizedExperiment",
+    function(from) {
+        sce <- as(from, "SingleCellExperiment")
+        rse <- as(sce, "RangedSummarizedExperiment")
+        rse
+    }
+)
+
+
+
+#' @rdname coerce
+#' @name coerce,seurat,SummarizedExperiment-method
+#'
+#' @section `seurat` to `SummarizedExperiment`:
+#' S4 coercion support for creating a `SummarizedExperiment` from a `seurat`
+#' class object.
+#'
+#' @examples
+#' # seurat to SummarizedExperiment ====
+#' x <- as(seurat_small, "SummarizedExperiment")
+#' print(x)
+setAs(
+    from = "seurat",
+    to = "SummarizedExperiment",
+    function(from) {
+        rse <- as(from, "RangedSummarizedExperiment")
+        se <- as(rse, "SummarizedExperiment")
+        se
+    }
+)

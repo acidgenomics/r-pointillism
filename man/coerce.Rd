@@ -5,6 +5,8 @@
 \alias{as}
 \alias{coerce,SingleCellExperiment,seurat-method}
 \alias{coerce,seurat,SingleCellExperiment-method}
+\alias{coerce,seurat,RangedSummarizedExperiment-method}
+\alias{coerce,seurat,SummarizedExperiment-method}
 \title{Methods for Coercing an Object to a Class}
 \value{
 Object of new class.
@@ -32,6 +34,18 @@ including the \code{object@scale.data} matrix, and will keep track of stashed
 from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 }
 
+\section{\code{seurat} to \code{RangedSummarizedExperiment}}{
+
+S4 coercion support for creating a \code{RangedSummarizedExperiment} from a
+\code{seurat} class object.
+}
+
+\section{\code{seurat} to \code{SummarizedExperiment}}{
+
+S4 coercion support for creating a \code{SummarizedExperiment} from a \code{seurat}
+class object.
+}
+
 \examples{
 # SingleCellExperiment to seurat ====
 x <- as(sce_small, "seurat")
@@ -39,6 +53,12 @@ class(x)
 print(x)
 # seurat to SingleCellExperiment ====
 x <- as(seurat_small, "SingleCellExperiment")
+print(x)
+# seurat to RangedSummarizedExperiment ====
+x <- as(seurat_small, "RangedSummarizedExperiment")
+print(x)
+# seurat to SummarizedExperiment ====
+x <- as(seurat_small, "SummarizedExperiment")
 print(x)
 }
 \seealso{
