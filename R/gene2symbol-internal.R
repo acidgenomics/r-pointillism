@@ -10,6 +10,7 @@
             stopifnot(all(genes %in% data[["gene"]]))
         }
     }
+    genes
 }
 
 
