@@ -13,7 +13,9 @@
 #'
 #' @examples
 #' object <- sce_small
-#' genes <- head(rownames(object), n = 4L)
+#' # Plotting with either gene IDs or gene names (symbols) works.
+#' geneIDs <- head(rownames(object), n = 4L)
+#' geneNames <- head(rowRanges(object)[["geneName"]])
 #' glimpse(genes)
 #' plotViolin(object, genes = genes)
 NULL
@@ -35,7 +37,6 @@ setMethod(
         title = NULL
     ) {
         validObject(object)
-        assert_is_subset(genes, rownames(object))
         interestingGroups <- matchInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
@@ -60,17 +61,12 @@ setMethod(
             x = c("gene", "ident", "sampleName"),
             y = colnames(data)
         )
-        multiSample <- unique(length(data[["sampleName"]])) > 1L
 
-        # Ensure genes match the data return
-        if (isTRUE(.useGene2symbol(object))) {
-            g2s <- gene2symbol(object)
-            if (length(g2s)) {
-                g2s <- g2s[genes, , drop = FALSE]
-                genes <- make.unique(g2s[["geneName"]])
-                stopifnot(all(genes %in% data[["gene"]]))
-            }
-        }
+        # Ensure genes match the data return.
+        genes <- .mapGenes(object = object, genes = genes)
+
+        # Do we need to visualize multiple samples? (logical)
+        multiSample <- unique(length(data[["sampleName"]])) > 1L
 
         if (isTRUE(multiSample)) {
             x <- "sampleName"

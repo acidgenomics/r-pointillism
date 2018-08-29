@@ -12,12 +12,12 @@ plotDot(object, ...)
 \S4method{plotDot}{SingleCellExperiment}(object, genes, colMin = -2.5,
   colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE))
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, colMin = -2.5, colMax = 2.5,
   dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE))
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -48,6 +48,8 @@ To set the discrete color palette globally, use
 \code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
 
 \item{legend}{\code{boolean}. Include plot legend.}
+
+\item{title}{\code{string} or \code{NULL}. Plot title.}
 }
 \value{
 \code{ggplot}.

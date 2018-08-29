@@ -5,6 +5,10 @@
     gene2symbol = FALSE,
     interestingGroups = "ident"
 ) {
+    # Allow factor input, but coerce.
+    if (is.factor(genes)) {
+        genes <- as.character(genes)
+    }
     assert_is_character(genes)
     assert_has_no_duplicates(genes)
     assert_is_a_string(assay)
