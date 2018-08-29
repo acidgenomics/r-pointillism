@@ -1,19 +1,15 @@
 # SingleCellExperiment Example Data
-# Using splatter to generate simulated counts
-# 2018-08-26
+# 2018-08-28
 
-library(devtools)
 library(tidyverse)
 library(bcbioSingleCell)
 library(splatter)
 library(Seurat)
 library(Matrix)
-load_all()
-
-
 
 # splatter =====================================================================
-# Note: these DE params are natural log scale.
+# Use splatter to generate an example dataset with simulated counts.
+# Note: These DE params are natural log scale.
 params <- newSplatParams()
 params <- setParam(params, "de.facLoc", 1)
 params <- setParam(params, "de.facScale", .25)
@@ -40,8 +36,6 @@ metadata(sce) <- list()
 sce <- metrics(sce, recalculate = TRUE)
 sce <- filterCells(sce, minCellsPerGene = 25)
 
-
-
 # seurat_small =================================================================
 seurat_small <- sce %>%
     convertGenesToSymbols() %>%
@@ -57,13 +51,12 @@ seurat_small <- sce %>%
     SetAllIdent(id = "res.0.4")
 stopifnot(is.character(sampleNames(seurat_small)))
 
-
-
 # sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID)
 seurat_sce <- seurat_small %>%
     as("SingleCellExperiment") %>%
     convertSymbolsToGenes()
+# Check that the conversion worked as expected.
 stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 stopifnot(all(c("ident", "origIdent") %in% colnames(colData(seurat_sce))))
 # Ensure that dimensional reduction data is slotted correctly
@@ -71,6 +64,7 @@ stopifnot(identical(
     names(reducedDims(seurat_sce)),
     c("PCA", "TSNE", "UMAP")
 ))
+# Overwrite the slots with the seurat data.
 assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
@@ -80,9 +74,7 @@ sce <- filterCells(sce)
 sce <- runZinbwave(sce)
 sce_small <- sce
 
-
-
-# marker data frames ===========================================================
+# Marker data frames ===========================================================
 rowRanges <- rowRanges(seurat_small)
 all_markers_small <- seurat_small %>%
     FindAllMarkers() %>%
@@ -106,10 +98,8 @@ known_markers_detected_small <- knownMarkersDetected(
     known = known_markers_small
 )
 
-
-
 # Save =========================================================================
-use_data(
+devtools::use_data(
     sce_small,
     seurat_small,
     all_markers_small,

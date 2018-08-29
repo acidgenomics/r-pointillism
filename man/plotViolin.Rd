@@ -12,12 +12,12 @@ plotViolin(object, ...)
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   interestingGroups, scale = c("count", "width", "area"),
   fill = getOption("pointillism.discrete.fill", NULL),
-  legend = getOption("pointillism.legend", TRUE))
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotViolin}{seurat}(object, genes, interestingGroups,
   scale = c("count", "width", "area"),
   fill = getOption("pointillism.discrete.fill", NULL),
-  legend = getOption("pointillism.legend", TRUE))
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -43,6 +43,8 @@ To set the discrete fill palette globally, use
 \code{options(bcbio.discrete.fill = scale_fill_viridis_d())}.}
 
 \item{legend}{\code{boolean}. Include plot legend.}
+
+\item{title}{\code{string} or \code{NULL}. Plot title.}
 }
 \value{
 \code{ggplot}.
