@@ -54,7 +54,9 @@ Plot Violin
 }
 \examples{
 object <- sce_small
-genes <- head(rownames(object), n = 4L)
+# Plotting with either gene IDs or gene names (symbols) works.
+geneIDs <- head(rownames(object), n = 4L)
+geneNames <- head(rowRanges(object)[["geneName"]])
 glimpse(genes)
 plotViolin(object, genes = genes)
 }

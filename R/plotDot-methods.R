@@ -62,7 +62,8 @@ setMethod(
         dotMin = 0L,
         dotScale = 6L,
         color = getOption("pointillism.discrete.color", NULL),
-        legend = getOption("pointillism.legend", TRUE)
+        legend = getOption("pointillism.legend", TRUE),
+        title = NULL
     ) {
         .assertHasIdent(object)
         assert_is_character(genes)
@@ -72,29 +73,26 @@ setMethod(
         assert_is_a_number(dotScale)
         assertIsColorScaleContinuousOrNULL(color)
         assert_is_a_bool(legend)
+        assertIsAStringOrNULL(title)
 
-        ident <- colData(object)[["ident"]]
-        assert_is_non_empty(ident)
-
+        # Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
             assay = "logcounts",
-            gene2symbol = TRUE
-        ) %>%
-            as.data.frame() %>%
-            cbind(ident) %>%
-            rownames_to_column("cell") %>%
-            as_tibble()
+            gene2symbol = TRUE,
+            interestingGroups = interestingGroups
+        )
+        assert_is_subset(
+            x = c("gene", "ident", "sampleName"),
+            y = colnames(data)
+        )
 
-        if (isTRUE(.useGene2symbol(object))) {
-            g2s <- gene2symbol(object)
-            if (length(g2s)) {
-                g2s <- g2s[genes, , drop = FALSE]
-                genes <- make.unique(g2s[["geneName"]])
-                stopifnot(all(genes %in% colnames(data)))
-            }
-        }
+        # Do we need to visualize multiple samples? (logical)
+        multiSample <- unique(length(data[["sampleName"]])) > 1L
+
+        # Ensure genes match the data return.
+        genes <- .mapGenes(object = object, genes = genes)
 
         data <- data %>%
             gather(
