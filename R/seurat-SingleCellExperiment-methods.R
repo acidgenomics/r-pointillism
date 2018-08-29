@@ -146,11 +146,9 @@ setMethod(
 setMethod(
     "gene2symbol",
     signature("seurat"),
-    getMethod(
-        "gene2symbol",
-        "SummarizedExperiment",
-        asNamespace("basejump")
-    )
+    function(object) {
+        gene2symbol(as(object, "SummarizedExperiment"))
+    }
 )
 
 
@@ -161,11 +159,9 @@ setMethod(
 setMethod(
     "interestingGroups",
     signature("seurat"),
-    getMethod(
-        "interestingGroups",
-        "SummarizedExperiment",
-        asNamespace("basejump")
-    )
+    function(object) {
+        interestingGroups(as(object, "SummarizedExperiment"))
+    }
 )
 
 
@@ -325,11 +321,7 @@ setMethod(
 setMethod(
     "sampleData",
     signature("seurat"),
-    getMethod(
-        "sampleData",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
-    )
+    getMethod("sampleData", "SingleCellExperiment")
 )
 
 
@@ -361,5 +353,7 @@ setMethod(
 setMethod(
     "sampleNames",
     signature("seurat"),
-    getMethod("sampleNames", "SummarizedExperiment")
+    function(object) {
+        sampleNames(as(object, "SingleCellExperiment"))
+    }
 )
