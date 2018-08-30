@@ -63,6 +63,8 @@ interesting groups. Must be formatted in camel case and intersect with
 
 \item{object}{Object.}
 
+\item{perSample}{\code{boolean}. Visualize the distributions per sample?}
+
 \item{pointAlpha}{\code{scalar numeric} (\code{0}-\code{1}). Alpha transparency level.
 Useful when there many cells in the dataset, and some cells can be masked.}
 
