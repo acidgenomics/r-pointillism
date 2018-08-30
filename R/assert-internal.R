@@ -51,6 +51,12 @@
 
 
 
+.hasMultipleSamples <- function(object) {
+    length(sampleNames(object)) > 1L
+}
+
+
+
 .hasZinbwave <- function(object) {
     stopifnot(is(object, "SingleCellExperiment"))
     # Require `counts` to always be slotted.
