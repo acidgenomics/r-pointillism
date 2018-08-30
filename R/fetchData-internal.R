@@ -15,7 +15,10 @@
     counts <- counts[rownames, , drop = FALSE]
 
     # Transpose, putting the gene rownames into the columns.
-    data <- Matrix::t(counts)
+    if (identical(attr(class(counts), "package"), "Matrix")) {
+        t <- Matrix::t
+    }
+    data <- t(counts)
     # Ensure we're not accidentally coercing the matrix to a different class.
     assert_are_identical(class(counts), class(data))
 
