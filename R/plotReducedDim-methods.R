@@ -38,6 +38,7 @@ NULL
 
 
 
+# Constructors =================================================================
 .plotReducedDim <- function(
     object,
     reducedDim,
@@ -195,9 +196,10 @@ NULL
 
 
 
-# Set the formals.
+# Formals ======================================================================
+# Set the formals for the convenience functions.
 f <- formals(.plotReducedDim)
-f <- f[setdiff(names(f), "reducedDim")]
+f <- as.pairlist(f[setdiff(names(f), "reducedDim")])
 formals(.plotPCA) <- f
 formals(.plotTSNE) <- f
 formals(.plotUMAP) <- f
@@ -205,6 +207,7 @@ rm(f)
 
 
 
+# Methods ======================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
