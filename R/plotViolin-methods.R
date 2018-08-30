@@ -41,6 +41,9 @@ setMethod(
             object = object,
             interestingGroups = interestingGroups
         )
+        if (is.character(interestingGroups)) {
+            interestingGroups(object) <- interestingGroups
+        }
         scale <- match.arg(scale)
         assert_is_any_of(fill, c("ScaleDiscrete", "character", "NULL"))
         if (is.character(fill)) {
@@ -54,8 +57,7 @@ setMethod(
             object = object,
             genes = genes,
             assay = "logcounts",
-            gene2symbol = TRUE,
-            interestingGroups = interestingGroups
+            metadata = TRUE
         )
         assert_is_subset(
             x = c("gene", "ident", "sampleName"),
