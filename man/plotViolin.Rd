@@ -10,15 +10,13 @@
 plotViolin(object, ...)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
-  interestingGroups, scale = c("count", "width", "area"),
+  perSample = TRUE, scale = c("count", "width", "area"),
   color = getOption("pointillism.discrete.color", NULL),
-  fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotViolin}{seurat}(object, genes, interestingGroups,
+\S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("pointillism.discrete.color", NULL),
-  fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
 \arguments{
@@ -29,9 +27,7 @@ plotViolin(object, ...)
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
 
-\item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-\code{\link[=sampleData]{sampleData()}} colnames.}
+\item{perSample}{\code{boolean}. Visualize the distributions per sample?}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of
@@ -43,13 +39,6 @@ color palette will be used. If manual color definitions are desired, we
 recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
 To set the discrete color palette globally, use
 \code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
-
-\item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
-Must supply discrete values. When set to \code{NULL}, the default ggplot2 color
-palette will be used. If manual color definitions are desired, we recommend
-using \code{\link[ggplot2:scale_fill_manual]{ggplot2::scale_fill_manual()}}.
-To set the discrete fill palette globally, use
-\code{options(bcbio.discrete.fill = scale_fill_viridis_d())}.}
 
 \item{legend}{\code{boolean}. Include plot legend.}
 
@@ -63,11 +52,18 @@ Plot Violin
 }
 \examples{
 object <- sce_small
+
 # Plotting with either gene IDs or gene names (symbols) works.
 geneIDs <- head(rownames(object), n = 4L)
-geneNames <- head(rowRanges(object)[["geneName"]])
-glimpse(genes)
-plotViolin(object, genes = genes)
+print(geneIDs)
+geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
+print(geneNames)
+
+plotViolin(object, genes = geneIDs)
+plotViolin(object, genes = geneNames)
+
+# Per sample mode can be disabled.
+plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.

@@ -42,6 +42,7 @@
 #' @param min `scalar numeric`. Recommended minimum value cutoff.
 #' @param max `scalar numeric`. Recommended maximum value cutoff.
 #' @param object Object.
+#' @param perSample `boolean`. Visualize the distributions per sample?
 #' @param pointAlpha `scalar numeric` (`0`-`1`). Alpha transparency level.
 #'   Useful when there many cells in the dataset, and some cells can be masked.
 #' @param pointsAsNumbers `boolean`. Plot the points as numbers (`TRUE`) or
