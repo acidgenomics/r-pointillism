@@ -18,33 +18,32 @@ plotDot(object, ...)
 plotViolin(object, ...)
 
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
-  "violin"), perSample = TRUE,
-  color = getOption("pointillism.discrete.color", NULL),
+  "violin"), perSample = TRUE, color,
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotGene}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, color = getOption("pointillism.discrete.color",
-  NULL), legend = getOption("pointillism.legend", TRUE), title = NULL)
+  perSample = TRUE, color, legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
 
-\S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
+\S4method{plotDot}{SingleCellExperiment}(object, genes, perSample,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "orange", high = "purple")), legend,
+  title)
 
-\S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
-  colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+\S4method{plotDot}{seurat}(object, genes, perSample, colMin = -2.5,
+  colMax = 2.5, dotMin = 0L, dotScale = 6L,
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "orange", high = "purple")), legend,
+  title)
 
-\S4method{plotViolin}{SingleCellExperiment}(object, genes,
-  perSample = TRUE, scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
-
-\S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
+\S4method{plotViolin}{SingleCellExperiment}(object, genes, perSample,
   scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  color = getOption("pointillism.discrete.color", NULL), legend, title)
+
+\S4method{plotViolin}{seurat}(object, genes, perSample,
+  scale = c("count", "width", "area"),
+  color = getOption("pointillism.discrete.color", NULL), legend, title)
 }
 \arguments{
 \item{object}{Object.}
@@ -103,12 +102,10 @@ geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
 print(geneNames)
 
 # Per sample mode enabled.
-plotGene(object, genes = geneNames)
-plotViolin(object, genes = geneNames)
 plotDot(object, genes = geneNames)
+plotViolin(object, genes = geneNames)
 
 # Per sample mode disabled.
-plotGene(object, genes = geneIDs, perSample = FALSE)
 plotDot(object, genes = geneIDs, perSample = FALSE)
 plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
