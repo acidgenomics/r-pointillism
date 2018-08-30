@@ -13,11 +13,18 @@
 #'
 #' @examples
 #' object <- sce_small
+#'
 #' # Plotting with either gene IDs or gene names (symbols) works.
 #' geneIDs <- head(rownames(object), n = 4L)
-#' geneNames <- head(rowRanges(object)[["geneName"]])
-#' glimpse(genes)
-#' plotViolin(object, genes = genes)
+#' print(geneIDs)
+#' geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
+#' print(geneNames)
+#'
+#' plotViolin(object, genes = geneIDs)
+#' plotViolin(object, genes = geneNames)
+#'
+#' # Per sample mode can be disabled.
+#' plotViolin(object, genes = geneIDs, perSample = FALSE)
 NULL
 
 
@@ -30,7 +37,7 @@ setMethod(
     function(
         object,
         genes,
-        interestingGroups,
+        perSample = TRUE,
         scale = c("count", "width", "area"),
         color = getOption("pointillism.discrete.color", NULL),
         legend = getOption("pointillism.legend", TRUE),
@@ -38,13 +45,7 @@ setMethod(
     ) {
         validObject(object)
         assert_is_character(genes)
-        interestingGroups <- matchInterestingGroups(
-            object = object,
-            interestingGroups = interestingGroups
-        )
-        if (is.character(interestingGroups)) {
-            interestingGroups(object) <- interestingGroups
-        }
+        assert_is_a_bool(perSample)
         scale <- match.arg(scale)
         assertIsColorScaleDiscreteOrNULL(color)
         assert_is_a_bool(legend)
@@ -57,19 +58,26 @@ setMethod(
             assay = "logcounts",
             metadata = TRUE
         )
-        assert_is_all_of(data, "DataFrame")
-        assert_is_subset(
-            x = c("geneName", "ident", "sampleName"),
-            y = colnames(data)
-        )
 
-        # Do we need to visualize multiple samples? (logical)
-        multiSample <- unique(length(data[["sampleName"]])) > 1L
-
-        if (isTRUE(multiSample)) {
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            .hasMultipleSamples(object)
+        ) {
             x <- "sampleName"
+            interestingGroups <- interestingGroups(object)
+            if (
+                is.null(interestingGroups) ||
+                interestingGroups == "ident"
+            ) {
+                interestingGroups <- "sampleName"
+            }
+            colorMapping <- "interestingGroups"
+            colorLabs <- paste(interestingGroups, collapse = ":\n")
         } else {
             x <- "ident"
+            colorMapping <- x
+            colorLabs <- x
         }
 
         p <- ggplot(
@@ -77,7 +85,7 @@ setMethod(
             mapping = aes(
                 x = !!sym(x),
                 y = !!sym("logcounts"),
-                color = !!sym("interestingGroups")
+                color = !!sym(colorMapping)
             )
         ) +
             geom_jitter(
@@ -93,13 +101,27 @@ setMethod(
             # Note that `scales = free_y` will hide the x-axis for some plots.
             labs(
                 title = title,
-                color = paste(interestingGroups, collapse = ":\n")
-            ) +
-            facet_grid(
-                rows = vars(!!sym("ident")),
-                cols = vars(!!sym("geneName")),
-                scales = "free_y"
+                color = colorLabs
             )
+
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            .hasMultipleSamples(object)
+        ) {
+            p <- p +
+                facet_grid(
+                    rows = vars(!!sym("ident")),
+                    cols = vars(!!sym("geneName")),
+                    scales = "free_y"
+                )
+        } else {
+            p <- p +
+                facet_wrap(
+                    facets = vars(!!sym("geneName")),
+                    scales = "free_y"
+                )
+        }
 
         if (is(color, "ScaleDiscrete")) {
             p <- p + color
