@@ -11,11 +11,13 @@ plotViolin(object, ...)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   interestingGroups, scale = c("count", "width", "area"),
+  color = getOption("pointillism.discrete.color", NULL),
   fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotViolin}{seurat}(object, genes, interestingGroups,
   scale = c("count", "width", "area"),
+  color = getOption("pointillism.discrete.color", NULL),
   fill = getOption("pointillism.discrete.fill", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
@@ -34,6 +36,13 @@ interesting groups. Must be formatted in camel case and intersect with
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of
 observations. If "width", all violins have the same maximum width.}
+
+\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
+color palette will be used. If manual color definitions are desired, we
+recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
+To set the discrete color palette globally, use
+\code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
 
 \item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
 Must supply discrete values. When set to \code{NULL}, the default ggplot2 color

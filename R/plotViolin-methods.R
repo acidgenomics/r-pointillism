@@ -32,7 +32,7 @@ setMethod(
         genes,
         interestingGroups,
         scale = c("count", "width", "area"),
-        fill = getOption("pointillism.discrete.fill", NULL),
+        color = getOption("pointillism.discrete.color", NULL),
         legend = getOption("pointillism.legend", TRUE),
         title = NULL
     ) {
@@ -46,10 +46,7 @@ setMethod(
             interestingGroups(object) <- interestingGroups
         }
         scale <- match.arg(scale)
-        assert_is_any_of(fill, c("ScaleDiscrete", "character", "NULL"))
-        if (is.character(fill)) {
-            assert_is_a_string(fill)
-        }
+        assertIsColorScaleDiscreteOrNULL(color)
         assert_is_a_bool(legend)
         assertIsAStringOrNULL(title)
 
@@ -62,7 +59,7 @@ setMethod(
         )
         assert_is_all_of(data, "DataFrame")
         assert_is_subset(
-            x = c("gene", "ident", "sampleName"),
+            x = c("geneName", "ident", "sampleName"),
             y = colnames(data)
         )
 
@@ -76,16 +73,18 @@ setMethod(
         }
 
         p <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym(x),
                 y = !!sym("logcounts"),
-                fill = !!sym("interestingGroups")
+                color = !!sym("interestingGroups")
             )
         ) +
+            geom_jitter(
+                show.legend = legend
+            ) +
             geom_violin(
-                # Never include a color border.
-                color = "black",
+                fill = NA,
                 scale = scale,
                 adjust = 1L,
                 show.legend = legend,
@@ -94,16 +93,16 @@ setMethod(
             # Note that `scales = free_y` will hide the x-axis for some plots.
             labs(
                 title = title,
-                fill = paste(interestingGroups, collapse = ":\n")
+                color = paste(interestingGroups, collapse = ":\n")
             ) +
             facet_grid(
                 rows = vars(!!sym("ident")),
-                cols = vars(!!sym("gene")),
+                cols = vars(!!sym("geneName")),
                 scales = "free_y"
             )
 
-        if (is(fill, "ScaleDiscrete")) {
-            p <- p + fill
+        if (is(color, "ScaleDiscrete")) {
+            p <- p + color
         }
 
         p
