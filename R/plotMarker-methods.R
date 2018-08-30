@@ -66,7 +66,7 @@ setMethod(
 
         # Assert checks --------------------------------------------------------
         validObject(object)
-        rownames <- .mapGenesToRownames(object, genes)
+        assert_is_character(genes)
         reducedDim <- match.arg(reducedDim)
         expression <- match.arg(expression)
         assertIsColorScaleContinuousOrNULL(color)
@@ -85,7 +85,7 @@ setMethod(
         # Fetch reduced dimension data
         data <- .fetchReducedDimExpressionData(
             object = object,
-            genes = rownames,
+            genes = genes,
             reducedDim = reducedDim
         )
         assert_is_all_of(data, "DataFrame")
