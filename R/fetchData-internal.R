@@ -2,37 +2,28 @@
     object,
     genes,
     assay = "logcounts",
-    gene2symbol = FALSE,
-    interestingGroups = "ident"
+    metadata = FALSE
 ) {
-    # Allow factor input, but coerce.
-    if (is.factor(genes)) {
-        genes <- as.character(genes)
-    }
-    assert_is_character(genes)
-    assert_has_no_duplicates(genes)
+    validObject(object)
+    genes <- .mapGenesToRownames(object, genes)
     assert_is_a_string(assay)
     assert_is_subset(assay, assayNames(object))
-    assert_is_a_bool(gene2symbol)
-    assertFormalInterestingGroups(object, interestingGroups)
+    assert_is_a_bool(metadata)
 
     counts <- assays(object)[[assay]]
     assert_is_subset(genes, rownames(object))
     counts <- counts[genes, , drop = FALSE]
     counts <- as.matrix(counts)
 
-    # Convert gene IDs to gene names (symbols)
-    if (isTRUE(gene2symbol) && isTRUE(.useGene2symbol(object))) {
-        g2s <- gene2symbol(object)
-        assertIsGene2symbol(g2s)
-        g2s <- g2s[genes, , drop = FALSE]
-        genes <- make.unique(g2s[["geneName"]])
-        assert_are_identical(rownames(counts), g2s[["geneID"]])
-        rownames(counts) <- make.unique(g2s[["geneName"]])
+    # Transpose, putting the genes into the columns.
+    data <- t(counts)
+    # Early return the transposed matrix, if we don't want metadata.
+    # This return is used by `.fetchReducedDimExpressionData()`.
+    if (!isTRUE(metadata)) {
+        return(data)
     }
 
-    data <- t(counts)
-
+    # Metadata is used by the plotting functions.
     if (is.character(interestingGroups)) {
         # Always include "ident" and "sampleName" at this step.
         intgroup <- unique(c("ident", "sampleName", interestingGroups))
@@ -67,6 +58,7 @@
     reducedDim,
     dimsUse = c(1L, 2L)
 ) {
+    validObject(object)
     object <- as(object, "SingleCellExperiment")
     .assertHasIdent(object)
     assert_is_a_string(reducedDim)
@@ -75,12 +67,7 @@
 
     # Reduced dimension coordinates.
     reducedDimData <- slot(object, "reducedDims")[[reducedDim]]
-    if (!is.matrix(reducedDimData)) {
-        stop(
-            paste(reducedDim, "reduced dimension not calculated"),
-            call. = FALSE
-        )
-    }
+    assert_is_matrix(reducedDimData)
     reducedDimData <- camel(as.data.frame(reducedDimData))
 
     # Cellular barcode metrics.
@@ -101,7 +88,7 @@
 
     cbind(reducedDimData, metrics) %>%
         rownames_to_column() %>%
-        # Group by ident here for center calculations
+        # Group by ident here for center calculations.
         group_by(!!sym("ident")) %>%
         mutate(
             x = !!sym(dimCols[[1L]]),
@@ -113,7 +100,9 @@
         as.data.frame() %>%
         # Ensure all columns are camel case, for consistency.
         camel() %>%
-        column_to_rownames()
+        column_to_rownames() %>%
+        # Return with the columns sorted.
+        .[, sort(colnames(.))]
 }
 
 
@@ -123,19 +112,23 @@
     genes,
     reducedDim
 ) {
-    assert_is_subset(genes, rownames(object))
+    validObject(object)
+    genes <- .mapGenesToRownames(object, genes)
 
     # Log counts
-    geneData <- .fetchGeneData(
+    geneMatrix <- .fetchGeneData(
         object = object,
         genes = genes,
-        assay = "logcounts"
+        assay = "logcounts",
+        metadata = FALSE
     )
+    assert_is_matrix(geneMatrix)
+    assert_are_identical(colnames(geneMatrix), genes)
 
     # Expression columns
-    mean <- rowMeans(geneData)
-    median <- rowMedians(geneData)
-    sum <- rowSums(geneData)
+    mean <- rowMeans(geneMatrix)
+    median <- rowMedians(geneMatrix)
+    sum <- rowSums(geneMatrix)
 
     # Reduced dim data
     reducedDimData <- .fetchReducedDimData(
