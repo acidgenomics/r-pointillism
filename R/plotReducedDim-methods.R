@@ -38,181 +38,179 @@ NULL
 
 
 
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotReducedDim",
-    signature("SingleCellExperiment"),
-    function(
-        object,
-        reducedDim,
-        dimsUse = c(1L, 2L),
-        interestingGroups = "ident",
-        color = getOption("pointillism.discrete.color", NULL),
-        pointSize = getOption("pointillism.pointSize", 0.75),
-        pointAlpha = getOption("pointillism.pointAlpha", 0.75),
-        pointsAsNumbers = FALSE,
-        label = getOption("pointillism.label", TRUE),
-        labelSize = getOption("pointillism.labelSize", 6L),
-        dark = getOption("pointillism.dark", FALSE),
-        legend = getOption("pointillism.legend", TRUE),
-        title = NULL
-    ) {
-        .assertHasIdent(object)
-        assert_is_a_string(reducedDim)
-        assertIsImplicitInteger(dimsUse)
-        assert_is_of_length(dimsUse, 2L)
-        assert_is_a_string(interestingGroups)
-        interestingGroups(object) <- interestingGroups
-        assertIsColorScaleDiscreteOrNULL(color)
-        assert_is_a_number(pointSize)
-        assert_is_a_number(pointAlpha)
-        assert_is_a_bool(pointsAsNumbers)
-        assert_is_a_bool(label)
-        assert_is_a_number(labelSize)
-        assert_is_a_bool(dark)
-        assert_is_a_bool(legend)
-        assertIsAStringOrNULL(title)
+.plotReducedDim <- function(
+    object,
+    reducedDim,
+    dimsUse = c(1L, 2L),
+    interestingGroups = "ident",
+    color = getOption("pointillism.discrete.color", NULL),
+    pointSize = getOption("pointillism.pointSize", 0.75),
+    pointAlpha = getOption("pointillism.pointAlpha", 0.75),
+    pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
+    label = getOption("pointillism.label", TRUE),
+    labelSize = getOption("pointillism.labelSize", 6L),
+    dark = getOption("pointillism.dark", FALSE),
+    legend = getOption("pointillism.legend", TRUE),
+    title = NULL
+) {
+    .assertHasIdent(object)
+    assert_is_a_string(reducedDim)
+    assertIsImplicitInteger(dimsUse)
+    assert_is_of_length(dimsUse, 2L)
+    assert_is_a_string(interestingGroups)
+    interestingGroups(object) <- interestingGroups
+    assertIsColorScaleDiscreteOrNULL(color)
+    assert_is_a_number(pointSize)
+    assert_is_a_number(pointAlpha)
+    assert_is_a_bool(pointsAsNumbers)
+    assert_is_a_bool(label)
+    assert_is_a_number(labelSize)
+    assert_is_a_bool(dark)
+    assert_is_a_bool(legend)
+    assertIsAStringOrNULL(title)
 
-        data <- .fetchReducedDimData(
-            object = object,
-            reducedDim = reducedDim,
-            dimsUse = dimsUse
+    data <- .fetchReducedDimData(
+        object = object,
+        reducedDim = reducedDim,
+        dimsUse = dimsUse
+    )
+    assert_is_all_of(data, "DataFrame")
+
+    assert_is_subset(
+        x = c("x", "y", "centerX", "centerY"),
+        y = colnames(data)
+    )
+
+    # Set the x- and y-axis labels (e.g. tSNE1, tSNE2)
+    axes <- camel(colnames(reducedDims(object)[[reducedDim]])[dimsUse])
+    assert_is_subset(axes, colnames(data))
+
+    p <- ggplot(
+        data = as.data.frame(data),
+        mapping = aes(
+            x = !!sym("x"),
+            y = !!sym("y"),
+            color = !!sym("interestingGroups")
         )
-        assert_is_data.frame(data)
-        assert_is_subset(
-            x = c("x", "y", "centerX", "centerY"),
-            y = colnames(data)
+    ) +
+        labs(
+            x = axes[[1L]],
+            y = axes[[2L]],
+            color = paste(interestingGroups, collapse = ":\n")
         )
 
-        # Set the x- and y-axis labels (e.g. tSNE1, tSNE2)
-        axes <- camel(colnames(reducedDims(object)[[reducedDim]])[dimsUse])
-        assert_is_subset(axes, colnames(data))
-
-        p <- ggplot(
-            data = data,
-            mapping = aes(
-                x = !!sym("x"),
-                y = !!sym("y"),
-                color = !!sym("interestingGroups")
-            )
-        ) +
-            labs(
-                x = axes[[1L]],
-                y = axes[[2L]],
-                color = paste(interestingGroups, collapse = ":\n")
-            )
-
-        if (isTRUE(pointsAsNumbers)) {
-            if (pointSize < 4L) pointSize <- 4L
-            p <- p +
-                geom_text(
-                    mapping = aes(
-                        x = !!sym("x"),
-                        y = !!sym("y"),
-                        label = !!sym("ident"),
-                        color = !!sym("interestingGroups")
-                    ),
-                    alpha = pointAlpha,
-                    size = pointSize,
-                    show.legend = legend
-                )
-        } else {
-            p <- p +
-                geom_point(
-                    alpha = pointAlpha,
-                    size = pointSize,
-                    show.legend = legend
-                )
-        }
-
-        if (isTRUE(label)) {
-            if (isTRUE(dark)) {
-                labelColor <- "white"
-            } else {
-                labelColor <- "black"
-            }
-            p <- p +
-                geom_text(
-                    mapping = aes(
-                        x = !!sym("centerX"),
-                        y = !!sym("centerY"),
-                        label = !!sym("ident")
-                    ),
-                    color = labelColor,
-                    size = labelSize,
-                    fontface = "bold"
-                )
-        }
-
-        # Dark mode
-        if (isTRUE(dark)) {
-            p <- p + theme_midnight()
-        }
-
-        if (is(color, "ScaleDiscrete")) {
-            p <- p + color
-        }
-
-        # Improve the axis breaks
+    if (isTRUE(pointsAsNumbers)) {
+        if (pointSize < 4L) pointSize <- 4L
         p <- p +
-            scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
-            scale_y_continuous(breaks = pretty_breaks(n = 4L))
-
-        p
+            geom_text(
+                mapping = aes(
+                    x = !!sym("x"),
+                    y = !!sym("y"),
+                    label = !!sym("ident"),
+                    color = !!sym("interestingGroups")
+                ),
+                alpha = pointAlpha,
+                size = pointSize,
+                show.legend = legend
+            )
+    } else {
+        p <- p +
+            geom_point(
+                alpha = pointAlpha,
+                size = pointSize,
+                show.legend = legend
+            )
     }
-)
 
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotReducedDim",
-    signature("seurat"),
-    getMethod("plotReducedDim", "SingleCellExperiment")
-)
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotPCA",
-    signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "PCA",
-            ...
-        )
+    if (isTRUE(label)) {
+        if (isTRUE(dark)) {
+            labelColor <- "white"
+        } else {
+            labelColor <- "black"
+        }
+        p <- p +
+            geom_text(
+                mapping = aes(
+                    x = !!sym("centerX"),
+                    y = !!sym("centerY"),
+                    label = !!sym("ident")
+                ),
+                color = labelColor,
+                size = labelSize,
+                fontface = "bold"
+            )
     }
-)
 
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotPCA",
-    signature("seurat"),
-    getMethod("plotPCA", "SingleCellExperiment")
-)
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotTSNE",
-    signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "TSNE",
-            ...
-        )
+    # Dark mode
+    if (isTRUE(dark)) {
+        p <- p + theme_midnight()
     }
+
+    if (is(color, "ScaleDiscrete")) {
+        p <- p + color
+    }
+
+    # Improve the axis breaks
+    p <- p +
+        scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
+        scale_y_continuous(breaks = pretty_breaks(n = 4L))
+
+    p
+}
+
+
+
+.plotPCA <- function() {
+    args <- as.list(match.call())[-1L]
+    args[["reducedDim"]] <- "PCA"
+    do.call(
+        what = plotReducedDim,
+        args = args
+    )
+
+}
+
+
+
+
+.plotTSNE <- function() {
+    args <- as.list(match.call())[-1L]
+    args[["reducedDim"]] <- "UMAP"
+    do.call(
+        what = plotReducedDim,
+        args = args
+    )
+}
+
+
+
+.plotUMAP <- function() {
+    args <- as.list(match.call())[-1L]
+    args[["reducedDim"]] <- "UMAP"
+    do.call(
+        what = plotReducedDim,
+        args = args
+    )
+}
+
+
+
+# Set the formals.
+f <- formals(.plotReducedDim)
+f <- f[setdiff(names(f), "reducedDim")]
+formals(.plotPCA) <- f
+formals(.plotTSNE) <- f
+formals(.plotUMAP) <- f
+rm(f)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotReducedDim",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotReducedDim
 )
 
 
@@ -220,9 +218,29 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotTSNE",
-    signature("seurat"),
-    getMethod("plotTSNE", "SingleCellExperiment")
+    f = "plotReducedDim",
+    signature = signature("seurat"),
+    definition = getMethod("plotReducedDim", "SingleCellExperiment")
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotTSNE
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("seurat"),
+    definition = getMethod("plotTSNE", "SingleCellExperiment")
 )
 
 
@@ -232,13 +250,7 @@ setMethod(
 setMethod(
     "plotUMAP",
     signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "UMAP",
-            ...
-        )
-    }
+    .plotUMAP
 )
 
 
@@ -246,7 +258,27 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotUMAP",
-    signature("seurat"),
-    getMethod("plotUMAP", "SingleCellExperiment")
+    f = "plotUMAP",
+    signature = signature("seurat"),
+    definition = getMethod("plotUMAP", "SingleCellExperiment")
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotPCA
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("seurat"),
+    definition = getMethod("plotPCA", "SingleCellExperiment")
 )
