@@ -5,18 +5,20 @@
     metadata = FALSE
 ) {
     validObject(object)
-    genes <- .mapGenesToRownames(object, genes)
+    rownames <- .mapGenesToRownames(object, genes)
+    assert_is_subset(rownames, rownames(object))
     assert_is_a_string(assay)
     assert_is_subset(assay, assayNames(object))
     assert_is_a_bool(metadata)
 
     counts <- assays(object)[[assay]]
-    assert_is_subset(genes, rownames(object))
-    counts <- counts[genes, , drop = FALSE]
-    counts <- as.matrix(counts)
+    counts <- counts[rownames, , drop = FALSE]
 
-    # Transpose, putting the genes into the columns.
-    data <- t(counts)
+    # Transpose, putting the gene rownames into the columns.
+    data <- Matrix::t(counts)
+    # Ensure we're not accidentally coercing the matrix to a different class.
+    assert_are_identical(class(counts), class(data))
+
     # Early return the transposed matrix, if we don't want metadata.
     # This return is used by `.fetchReducedDimExpressionData()`.
     if (!isTRUE(metadata)) {
@@ -24,6 +26,7 @@
     }
 
     # Metadata is used by the plotting functions.
+    interestingGroups <- interestingGroups(object)
     if (is.character(interestingGroups)) {
         # Always include "ident" and "sampleName" at this step.
         intgroup <- unique(c("ident", "sampleName", interestingGroups))
