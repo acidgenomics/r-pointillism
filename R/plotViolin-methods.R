@@ -37,6 +37,7 @@ setMethod(
         title = NULL
     ) {
         validObject(object)
+        assert_is_character(genes)
         interestingGroups <- matchInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
@@ -59,13 +60,11 @@ setMethod(
             assay = "logcounts",
             metadata = TRUE
         )
+        assert_is_all_of(data, "DataFrame")
         assert_is_subset(
             x = c("gene", "ident", "sampleName"),
             y = colnames(data)
         )
-
-        # Ensure genes match the data return.
-        genes <- .mapGenes(object = object, genes = genes)
 
         # Do we need to visualize multiple samples? (logical)
         multiSample <- unique(length(data[["sampleName"]])) > 1L
