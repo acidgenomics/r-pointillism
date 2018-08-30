@@ -22,7 +22,7 @@
 #' @importFrom basejump assertHasRownames assertIsAHeaderLevel
 #'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsGene2symbol assertIsImplicitInteger camel convertGenesToSymbols
+#'   assertIsGene2symbol assertIsImplicitInteger camel coerce convertGenesToSymbols
 #'   gene2symbol markdownHeader matchInterestingGroups printString
 #'   readFileByExtension theme_midnight upperCamel
 #' @importFrom Biobase rowMedians
@@ -51,8 +51,7 @@
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom tibble as_tibble column_to_rownames remove_rownames
-#'   rownames_to_column tibble
+#' @importFrom tibble remove_rownames tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave
