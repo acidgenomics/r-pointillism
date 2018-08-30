@@ -158,5 +158,7 @@
         reducedDim = reducedDim
     )
 
-    cbind(reducedDimData, mean, sum)
+    data <- cbind(reducedDimData, mean, sum)
+    assert_is_all_of(data, "DataFrame")
+    data
 }
