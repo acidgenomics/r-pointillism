@@ -32,7 +32,6 @@
 #'   object.
 #' @param geom `string`. Plot type. Uses [match.arg()] and defaults to the first
 #'   argument in the `character` vector.
-#' @param grid `boolean`. Show major grid lines but hide axis lines.
 #' @param headerLevel `scalar integer` (`1`-`7`). R Markdown header level.
 #' @param interestingGroups `character` or `NULL`. Character vector of
 #'   interesting groups. Must be formatted in camel case and intersect with
@@ -43,8 +42,6 @@
 #' @param min `scalar numeric`. Recommended minimum value cutoff.
 #' @param max `scalar numeric`. Recommended maximum value cutoff.
 #' @param object Object.
-#' @param prefilter `boolean`. Apply prefiltering to remove zero count genes.
-#' @param pipeline `string`. Pipeline used to generate the samples.
 #' @param pointAlpha `scalar numeric` (`0`-`1`). Alpha transparency level.
 #'   Useful when there many cells in the dataset, and some cells can be masked.
 #' @param pointsAsNumbers `boolean`. Plot the points as numbers (`TRUE`) or
@@ -57,7 +54,6 @@
 #' @param title `string` or `NULL`. Plot title.
 #' @param trans `string`. Name of the axis scale transformation to apply. See
 #'   `help("scale_x_continuous", "ggplot2")` for more information.
-#' @param trendline `boolean`. Include trendline on plot.
 #' @param value Object to assign.
 #' @param x Primary object.
 #' @param y Secondary object.
