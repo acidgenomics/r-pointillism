@@ -58,7 +58,9 @@ NULL
     genes,
     geom = c("dot", "violin"),
     perSample = TRUE,
-    legend = getOption("pointillism.legend", TRUE)
+    color = getOption("pointillism.discrete.color", NULL),
+    legend = getOption("pointillism.legend", TRUE),
+    title = NULL
 ) {
     validObject(object)
     geom <- match.arg(geom)
@@ -99,14 +101,14 @@ NULL
 .plotDot <- function(
     object,
     genes,
-    perSample = TRUE,
+    perSample,
     colMin = -2.5,
     colMax = 2.5,
     dotMin = 0L,
     dotScale = 6L,
-    color = getOption("pointillism.discrete.color", NULL),
-    legend = getOption("pointillism.legend", TRUE),
-    title = NULL
+    color,
+    legend,
+    title
 ) {
     validObject(object)
     .assertHasIdent(object)
@@ -192,16 +194,26 @@ NULL
     p
 }
 
+# Set the formals.
+f <- formals(.plotDot)
+fshared <- formals(.plotGene)[
+    intersect(
+        formalArgs(.plotDot),
+        formalArgs(.plotGene)
+    )]
+f[names(fshared)] <- fshared
+formals(.plotDot) <- as.pairlist(f)
+
 
 
 .plotViolin <- function(
     object,
     genes,
-    perSample = TRUE,
+    perSample,
     scale = c("count", "width", "area"),
-    color = getOption("pointillism.discrete.color", NULL),
-    legend = getOption("pointillism.legend", TRUE),
-    title = NULL
+    color,
+    legend,
+    title
 ) {
     validObject(object)
     assert_is_character(genes)
@@ -289,6 +301,16 @@ NULL
 
     p
 }
+
+# Set the formals.
+f <- formals(.plotViolin)
+fshared <- formals(.plotGene)[
+    intersect(
+        formalArgs(.plotViolin),
+        formalArgs(.plotGene)
+    )]
+f[names(fshared)] <- fshared
+formals(.plotViolin) <- as.pairlist(f)
 
 
 
