@@ -1,3 +1,8 @@
+# FIXME Keep the original gene input, to use for the labels.
+# Need to remap an additional remapping function here I think.
+
+
+
 #' Plot Cell-Type-Specific Gene Markers
 #'
 #' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
@@ -41,26 +46,29 @@ setMethod(
         object,
         genes,
         reducedDim = c("TSNE", "UMAP", "PCA"),
-        expression = c("mean", "median", "sum"),
+        expression = c("mean", "sum"),
         color = getOption("pointillism.discrete.color", NULL),
         pointSize = getOption("pointillism.pointSize", 0.75),
         pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-        pointsAsNumbers = FALSE,
+        pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
         label = getOption("pointillism.label", TRUE),
         labelSize = getOption("pointillism.labelSize", 6L),
         dark = getOption("pointillism.dark", FALSE),
         legend = getOption("pointillism.legend", TRUE),
         title = TRUE
     ) {
-        assert_is_character(genes)
-        assert_has_no_duplicates(genes)
-        assert_is_subset(genes, rownames(object))
-        reducedDim <- match.arg(reducedDim)
-        expression <- match.arg(expression)
-        # Legacy support for `color = "auto"`
+        # Legacy arguments -----------------------------------------------------
+        # color
         if (identical(color, "auto")) {
+            message("Use `color = NULL` instead of `auto`")
             color <- NULL
         }
+
+        # Assert checks --------------------------------------------------------
+        validObject(object)
+        rownames <- .mapGenesToRownames(object, genes)
+        reducedDim <- match.arg(reducedDim)
+        expression <- match.arg(expression)
         assertIsColorScaleContinuousOrNULL(color)
         assert_is_a_number(pointSize)
         assert_is_a_number(pointAlpha)
@@ -77,44 +85,36 @@ setMethod(
         # Fetch reduced dimension data
         data <- .fetchReducedDimExpressionData(
             object = object,
-            genes = genes,
+            genes = rownames,
             reducedDim = reducedDim
         )
-        axes <- colnames(data)[seq_len(2L)]
+        assert_is_all_of(data, "DataFrame")
 
-        if (isTRUE(.useGene2symbol(object))) {
-            g2s <- gene2symbol(object)
-            symbols <- g2s[
-                match(genes, g2s[["geneID"]]),
-                "geneName",
-                drop = TRUE
-            ]
-            stopifnot(!any(is.na(symbols)))
-            genes <- make.unique(symbols)
-        }
-        genes <- sort(unique(genes))
+        # Get the axis labels.
+        axes <- colnames(data)[seq_len(2L)]
 
         requiredCols <- c(
             axes,
-            "x",
-            "y",
             "centerX",
             "centerY",
-            "mean",
-            "median",
             "ident",
-            "sum"
+            "mean",
+            "sum",
+            "x",
+            "y"
         )
         assert_is_subset(requiredCols, colnames(data))
 
         p <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("x"),
                 y = !!sym("y"),
                 color = !!sym(expression)
             )
         )
+
+        # FIXME Map the genes to symbols, if defined.
 
         # Titles
         subtitle <- NULL
@@ -141,7 +141,7 @@ setMethod(
                 subtitle = subtitle
             )
 
-        # Customize legend
+        # Customize legend.
         if (isTRUE(legend)) {
             if (is_a_string(genes)) {
                 guideTitle <- "logcounts"
@@ -196,7 +196,7 @@ setMethod(
                 )
         }
 
-        # Dark mode
+        # Dark mode.
         if (isTRUE(dark)) {
             p <- p + theme_midnight()
             if (is.null(color)) {
