@@ -8,7 +8,7 @@
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
-#' @importFrom assertive.base assert_are_identical
+#' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_positive
 #' @importFrom assertive.properties assert_has_no_duplicates assert_has_names
