@@ -43,9 +43,9 @@ plotKnownMarkersDetected(
 \seealso{
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotGene}}, \code{\link{plotMarker}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
+  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
+  \code{\link{plotReducedDim}},
+  \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh

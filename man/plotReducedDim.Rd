@@ -187,10 +187,9 @@ plotPCA(object)
 
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotGene}},
   \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
+  \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
