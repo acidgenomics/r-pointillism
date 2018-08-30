@@ -1,3 +1,7 @@
+# FIXME Consolidate this into plotGene.
+
+
+
 #' Plot Dot
 #'
 #' @name plotDot
@@ -21,9 +25,18 @@
 #'
 #' @examples
 #' object <- sce_small
-#' genes <- head(rownames(object))
-#' glimpse(genes)
-#' plotDot(object, genes = genes)
+#'
+#' # Plotting with either gene IDs or gene names (symbols) works.
+#' geneIDs <- head(rownames(object), n = 4L)
+#' print(geneIDs)
+#' geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
+#' print(geneNames)
+#'
+#' plotDot(object, genes = geneIDs)
+#' plotDot(object, genes = geneNames)
+#'
+#' # Per sample mode can be disabled.
+#' plotDot(object, genes = geneIDs, perSample = FALSE)
 NULL
 
 
@@ -57,6 +70,7 @@ setMethod(
     function(
         object,
         genes,
+        perSample = TRUE,
         colMin = -2.5,
         colMax = 2.5,
         dotMin = 0L,
@@ -65,8 +79,10 @@ setMethod(
         legend = getOption("pointillism.legend", TRUE),
         title = NULL
     ) {
+        validObject(object)
         .assertHasIdent(object)
         assert_is_character(genes)
+        assert_is_a_bool(perSample)
         assert_is_a_number(colMin)
         assert_is_a_number(colMax)
         assert_is_a_number(dotMin)
@@ -80,34 +96,22 @@ setMethod(
             object = object,
             genes = genes,
             assay = "logcounts",
-            gene2symbol = TRUE,
-            interestingGroups = interestingGroups
-        )
-        assert_is_subset(
-            x = c("gene", "ident", "sampleName"),
-            y = colnames(data)
+            metadata = TRUE
         )
 
-        # Do we need to visualize multiple samples? (logical)
-        multiSample <- unique(length(data[["sampleName"]])) > 1L
-
-        # Ensure genes match the data return.
-        genes <- .mapGenes(object = object, genes = genes)
-
+        # Prepare data for ggplot.
+        cols <- c("geneName", "sampleName", "ident")
         data <- data %>%
-            gather(
-                key = "gene",
-                value = "logcounts",
-                !!genes
-            ) %>%
-            group_by(!!!syms(c("ident", "gene"))) %>%
+            as("tbl_df") %>%
+            group_by(!!!syms(cols)) %>%
             summarize(
                 avgExp = mean(expm1(!!sym("logcounts"))),
+                # Consider making threshold user definable.
                 pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
             ) %>%
             ungroup() %>%
-            mutate(gene = factor(!!sym("gene"), levels = genes)) %>%
-            group_by(!!sym("gene")) %>%
+            mutate(geneName = as.factor(!!sym("geneName"))) %>%
+            group_by(!!sym("geneName")) %>%
             mutate(
                 avgExpScale = scale(!!sym("avgExp")),
                 avgExpScale = .minMax(
@@ -115,13 +119,16 @@ setMethod(
                     max = colMax,
                     min = colMin
                 )
-            )
+            ) %>%
+            arrange(!!!syms(cols), .by_group = TRUE)
+
+        # Apply our `dotMin` threshold.
         data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
 
         p <- ggplot(
             data = data,
             mapping = aes(
-                x = !!sym("gene"),
+                x = !!sym("geneName"),
                 y = !!sym("ident")
             )
         ) +
@@ -133,7 +140,21 @@ setMethod(
                 show.legend = legend
             ) +
             scale_radius(range = c(0L, dotScale)) +
-            labs(x = NULL, y = NULL)
+            labs(
+                x = NULL,
+                y = NULL
+            )
+
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            isTRUE(.hasMultipleSamples(object))
+        ) {
+            p <- p +
+                facet_wrap(
+                    facets = vars(!!sym("sampleName"))
+                )
+        }
 
         if (is(color, "ScaleContinuous")) {
             p <- p + color

@@ -9,13 +9,13 @@
 \usage{
 plotDot(object, ...)
 
-\S4method{plotDot}{SingleCellExperiment}(object, genes, colMin = -2.5,
-  colMax = 2.5, dotMin = 0L, dotScale = 6L,
+\S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
+  colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.discrete.color", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotDot}{seurat}(object, genes, colMin = -2.5, colMax = 2.5,
-  dotMin = 0L, dotScale = 6L,
+\S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
+  colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.discrete.color", NULL),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
@@ -26,6 +26,8 @@ plotDot(object, ...)
 
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
+
+\item{perSample}{\code{boolean}. Visualize the distributions per sample?}
 
 \item{colMin}{\code{scalar numeric}. Minimum scaled average expression threshold.
 Everything smaller will be set to this.}
@@ -59,9 +61,18 @@ Plot Dot
 }
 \examples{
 object <- sce_small
-genes <- head(rownames(object))
-glimpse(genes)
-plotDot(object, genes = genes)
+
+# Plotting with either gene IDs or gene names (symbols) works.
+geneIDs <- head(rownames(object), n = 4L)
+print(geneIDs)
+geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
+print(geneNames)
+
+plotDot(object, genes = geneIDs)
+plotDot(object, genes = geneNames)
+
+# Per sample mode can be disabled.
+plotDot(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 Modified version of \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
