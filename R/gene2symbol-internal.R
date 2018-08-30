@@ -103,11 +103,10 @@
         cleanGenes <- unique(as.character(cleanGenes))
         setdiff <- setdiff(genes, cleanGenes)
         if (length(setdiff)) {
-            stop(paste(
+            warning(paste(
                 "Ambiguous genes:", toString(setdiff)
             ))
         }
-        assert_is_subset(genes, cleanGenes)
         return(genes)
     }
 
