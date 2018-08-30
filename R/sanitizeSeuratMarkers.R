@@ -49,7 +49,7 @@
 #' glimpse(ident_3_sanitized)
 sanitizeSeuratMarkers <- function(data, rowRanges) {
     assert_is_data.frame(data)
-    # Early return on sanitized data
+    # Early return on sanitized data.
     if (.isSanitizedMarkers(data, package = "Seurat")) {
         message("Markers are already sanitized")
         return(data)
@@ -61,7 +61,7 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         y = colnames(mcols(rowRanges))
     )
 
-    # Map the Seurat matrix rownames to `rownames` column in tibble
+    # Map the Seurat matrix rownames to `rownames` column in tibble.
     if ("cluster" %in% colnames(data)) {
         message("`Seurat::FindAllMarkers()` return detected")
         all <- TRUE
@@ -72,10 +72,10 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
     } else {
         message("`Seurat::FindMarkers()` return detected")
         all <- FALSE
-        data <- rownames_to_column(data)
+        data <- as(data, "tbl_df")
     }
 
-    # Determine whether user is using gene IDs or symbols with Seurat
+    # Determine whether user is using gene IDs or symbols with Seurat.
     if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneID"]])) {
         idCol <- "geneID"
     } else if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneName"]])) {
@@ -91,16 +91,14 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
     names(rowRanges) <- mcols(rowRanges)[[idCol]] %>%
         as.character() %>%
         make.unique()
-    # Now require that all of the rownames are defined in rowRanges
-    stopifnot(all(data[["rowname"]] %in% names(rowRanges)))
+    # Now require that all of the rownames are defined in rowRanges.
+    assert_is_subset(data[["rowname"]], names(rowRanges))
 
-    # Now ready to coerce
-    data <- data %>%
-        as_tibble() %>%
-        # Sanitize column names into lowerCamelCase
-        camel()
+    # Now ready to coerce.
+    # Also sanitize column names into camel case.
+    data <- camel(as(data, "tbl_df"))
 
-    # Update legacy columns
+    # Update legacy columns.
     if ("avgDiff" %in% colnames(data)) {
         message(paste(
             "Renaming legacy `avgDiff` column to `avgLogFC`",
@@ -110,7 +108,7 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         data[["avgDiff"]] <- NULL
     }
 
-    # Rename P value columns to match DESeq2 conventions
+    # Rename P value columns to match DESeq2 conventions.
     if ("pVal" %in% colnames(data)) {
         data[["pvalue"]] <- data[["pVal"]]
         data[["pVal"]] <- NULL
@@ -120,13 +118,13 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         data[["pValAdj"]] <- NULL
     }
 
-    # Strip out unwanted seurat columns from rowRanges
+    # Strip out unwanted seurat columns from rowRanges.
     mcols(rowRanges) <- mcols(rowRanges) %>%
         .[!grepl("^gene($|\\.)", colnames(.))]
 
     # Row data from GRanges
     rowData <- as.data.frame(rowRanges)
-    # Ensure any nested list columns are dropped
+    # Ensure any nested list columns are dropped.
     cols <- vapply(
         X = rowData,
         FUN = function(x) {
@@ -137,31 +135,31 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
     rowData <- rowData[, cols, drop = FALSE]
     rowData[["rowname"]] <- rownames(rowData)
 
-    # Now safe to join the rowData
+    # Now safe to join the row data.
     data <- left_join(
         x = data,
         y = rowData,
         by = "rowname"
     )
 
-    # Check that all rows match a geneID
+    # Check that all rows match a geneID.
     stopifnot(!any(is.na(data[["geneID"]])))
 
-    # Ensure that required columns are present
+    # Ensure that required columns are present.
     requiredCols <- c(
         "rowname",
         "geneID",
         "geneName",
         "pct1",
         "pct2",
-        "avgLogFC",     # Seurat v2.1
+        "avgLogFC",     # Seurat v2.1.
         "padj",
-        "pvalue"        # Renamed from `p_val`
+        "pvalue"        # Renamed from `p_val`.
     )
     assert_is_subset(requiredCols, colnames(data))
 
     if (isTRUE(all)) {
-        # `cluster` is only present in `FindAllMarkers() return`
+        # `cluster` is only present in `FindAllMarkers() return`.
         data <- data %>%
             select(!!sym("cluster"), everything()) %>%
             group_by(!!sym("cluster")) %>%
