@@ -45,8 +45,6 @@ object.}
 \item{geom}{\code{string}. Plot type. Uses \code{\link[=match.arg]{match.arg()}} and defaults to the first
 argument in the \code{character} vector.}
 
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
-
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
 
 \item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
@@ -64,10 +62,6 @@ interesting groups. Must be formatted in camel case and intersect with
 \item{max}{\code{scalar numeric}. Recommended maximum value cutoff.}
 
 \item{object}{Object.}
-
-\item{prefilter}{\code{boolean}. Apply prefiltering to remove zero count genes.}
-
-\item{pipeline}{\code{string}. Pipeline used to generate the samples.}
 
 \item{pointAlpha}{\code{scalar numeric} (\code{0}-\code{1}). Alpha transparency level.
 Useful when there many cells in the dataset, and some cells can be masked.}
@@ -87,8 +81,6 @@ defaults to the first argument in the \code{character} vector.}
 
 \item{trans}{\code{string}. Name of the axis scale transformation to apply. See
 \code{help("scale_x_continuous", "ggplot2")} for more information.}
-
-\item{trendline}{\code{boolean}. Include trendline on plot.}
 
 \item{value}{Object to assign.}
 
