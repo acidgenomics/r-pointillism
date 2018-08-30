@@ -399,16 +399,6 @@ NULL
     }
 }
 
-# Set the formals.
-f <- formals(.plotFeature)
-fshared <- formals(.plotMarker)[
-    intersect(
-        formalArgs(.plotFeature),
-        formalArgs(.plotMarker)
-    )]
-f[names(fshared)] <- fshared
-formals(.plotFeature) <- as.pairlist(f)
-
 
 
 

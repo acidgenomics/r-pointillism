@@ -56,7 +56,7 @@ NULL
     genes,
     geom = c("dot", "violin"),
     perSample = TRUE,
-    color = getOption("pointillism.discrete.color", NULL),
+    color,
     legend = getOption("pointillism.legend", TRUE),
     title = NULL
 ) {
@@ -96,6 +96,8 @@ NULL
 
 
 
+# FIXME Need to fix the color scale argument here. It's continuous.
+# FIXME Share this default with `plotMarker`.
 .plotDot <- function(
     object,
     genes,
@@ -104,7 +106,13 @@ NULL
     colMax = 2.5,
     dotMin = 0L,
     dotScale = 6L,
-    color,
+    color = getOption(
+        "pointillism.continuous.color",
+        ggplot2::scale_color_gradient(
+            low = "orange",
+            high = "purple"
+        )
+    ),
     legend,
     title
 ) {
@@ -192,16 +200,6 @@ NULL
     p
 }
 
-# Set the formals.
-f <- formals(.plotDot)
-fshared <- formals(.plotGene)[
-    intersect(
-        formalArgs(.plotDot),
-        formalArgs(.plotGene)
-    )]
-f[names(fshared)] <- fshared
-formals(.plotDot) <- as.pairlist(f)
-
 
 
 .plotViolin <- function(
@@ -209,7 +207,7 @@ formals(.plotDot) <- as.pairlist(f)
     genes,
     perSample,
     scale = c("count", "width", "area"),
-    color,
+    color = getOption("pointillism.discrete.color", NULL),
     legend,
     title
 ) {
@@ -299,16 +297,6 @@ formals(.plotDot) <- as.pairlist(f)
 
     p
 }
-
-# Set the formals.
-f <- formals(.plotViolin)
-fshared <- formals(.plotGene)[
-    intersect(
-        formalArgs(.plotViolin),
-        formalArgs(.plotGene)
-    )]
-f[names(fshared)] <- fshared
-formals(.plotViolin) <- as.pairlist(f)
 
 
 
