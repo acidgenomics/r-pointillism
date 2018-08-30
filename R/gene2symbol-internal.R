@@ -3,14 +3,10 @@
 
 
 .mapGenesToRownames <- function(object, genes) {
-    error <- "Failed to map genes"
-
-    # Allow factor input, but coerce.
-    if (is.factor(genes)) {
-        genes <- as.character(genes)
-    }
+    validObject(object)
     assert_is_character(genes)
     assert_is_non_empty(genes)
+    error <- "Failed to map genes"
 
     # Return if the IDs match.
     if (all(genes %in% rownames(object))) {
@@ -31,7 +27,6 @@
     # Attempt to detect symbols in the `genes` input vector, and map to gene IDs
     # in the rows. If we detect this, make sure all of them match.
     if (any(genes %in% g2s[["geneName"]])) {
-        message("Remapping gene names (symbols) to identifiers")
         assert_is_subset(genes, g2s[["geneName"]])
         # Get the corresponding gene IDs and check against rownames.
         match <- match(x = genes, table = g2s[["geneName"]])
@@ -44,7 +39,6 @@
     # gene symbols as the rownames. This step isn't common but we'll support it
     # and warn the user.
     if (any(genes %in% g2s[["geneID"]])) {
-        message("Remapping gene identifiers to names (symbols)")
         assert_is_subset(genes, g2s[["geneID"]])
         # Get the corresponding gene names and check against rownames.
         match <- match(x = genes, table = g2s[["geneID"]])
@@ -59,14 +53,10 @@
 
 
 .mapGenesToSymbols <- function(object, genes) {
-    error <- "Failed to map genes"
-
-    # Allow factor input, but coerce.
-    if (is.factor(genes)) {
-        genes <- as.character(genes)
-    }
+    validObject(object)
     assert_is_character(genes)
     assert_is_non_empty(genes)
+    error <- "Failed to map genes"
 
     # Get the gene-to-symbol mappings.
     # Note that gene symbols must be unique here.
@@ -81,7 +71,6 @@
 
     # User passed in gene identifiers.
     if (any(genes %in% g2s[["geneID"]])) {
-        message("Remapping gene identifiers to names (symbols)")
         assert_is_subset(genes, g2s[["geneID"]])
         # Get the corresponding gene names and check against rownames.
         match <- match(x = genes, table = g2s[["geneID"]])
@@ -95,7 +84,6 @@
     # Attempt to detect pass in of non-unique/ambiguous symbols here, and warn
     # the user when this happens.
     if (any(genes %in% g2s[["geneName"]])) {
-        message("Checking to ensure symbols are non-ambiguous")
         assert_is_subset(genes, g2s[["geneName"]])
         # Check the original un-sanitized gene symbols, for setdiff.
         cleanGenes <- mcols(rowRanges(object))[["geneName"]]
