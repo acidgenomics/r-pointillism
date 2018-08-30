@@ -28,33 +28,41 @@
         return(data)
     }
 
-    # Metadata is used by the plotting functions.
+    # Metadata is required for the plotting functions.
     interestingGroups <- interestingGroups(object)
-    if (is.character(interestingGroups)) {
-        # Always include "ident" and "sampleName" at this step.
-        intgroup <- unique(c("ident", "sampleName", interestingGroups))
-        intgroupData <- colData(object) %>%
-            .[, intgroup, drop = FALSE] %>%
-            as.data.frame()
-        assert_are_identical(
-            x = rownames(data),
-            y = rownames(intgroupData)
-        )
-        data <- data %>%
-            as.data.frame() %>%
-            cbind(intgroupData) %>%
-            as_tibble() %>%
-            rownames_to_column() %>%
-            uniteInterestingGroups(interestingGroups) %>%
-            gather(
-                key = "gene",
-                value = !!sym(assay),
-                !!genes
-            ) %>%
-            group_by(!!sym("gene"))
-    }
+    assert_is_non_empty(interestingGroups)
 
-    data
+    # Otherwise, coerce the counts matrix to a DataFrame.
+    data <- as(as.matrix(data), "DataFrame")
+
+    # Always include "ident" and "sampleName" at this step.
+    intgroup <- unique(c("ident", "sampleName", interestingGroups))
+    intgroupData <- colData(object)[, intgroup, drop = FALSE]
+    assert_are_identical(rownames(data), rownames(intgroupData))
+
+    # Bind the counts and interesting groups columns.
+    data <- cbind(data, intgroupData)
+
+    # Gather into long format tibble.
+    # Here we're putting the genes into a "rowname" column.
+    data <- data %>%
+        as("tbl_df") %>%
+        uniteInterestingGroups(interestingGroups) %>%
+        gather(
+            key = "rowname",
+            value = !!sym(assay),
+            !!rownames
+        ) %>%
+        group_by(!!sym("rowname"))
+
+    # Join the geneID and geneName columns by the "rowname" column.
+    g2s <- gene2symbol(object)
+    assert_is_non_empty(g2s)
+    assertHasRownames(g2s)
+    g2s <- as(g2s, "tbl_df")
+    data <- left_join(data, g2s, by = "rowname")
+
+    as(data, "DataFrame")
 }
 
 
@@ -72,12 +80,12 @@
     assert_is_of_length(dimsUse, 2L)
 
     # Reduced dimension coordinates.
-    reducedDimData <- slot(object, "reducedDims")[[reducedDim]]
-    assert_is_matrix(reducedDimData)
-    reducedDimData <- camel(as.data.frame(reducedDimData))
+    reducedDimData <- reducedDims(object)[[reducedDim]]
+    assert_is_non_empty(reducedDimData)
+    reducedDimData <- camel(as(reducedDimData, "DataFrame"))
 
     # Cellular barcode metrics.
-    metrics <- camel(metrics(object))
+    metrics <- camel(as(metrics(object), "DataFrame"))
 
     # Assert checks to make sure the cbind operation works.
     assert_are_identical(
@@ -92,8 +100,14 @@
     dimCols <- colnames(reducedDimData)[dimsUse]
     assert_is_character(dimCols)
 
-    cbind(reducedDimData, metrics) %>%
-        rownames_to_column() %>%
+    # Bind the reduced dim coordinates and metrics.
+    data <- cbind(reducedDimData, metrics)
+    assert_is_all_of(data, "DataFrame")
+
+    # Coerce to long format tibble.
+    tbl <- data %>%
+        as("tbl_df") %>%
+        camel() %>%
         # Group by ident here for center calculations.
         group_by(!!sym("ident")) %>%
         mutate(
@@ -102,13 +116,10 @@
             centerX = median(!!sym(dimCols[[1L]])),
             centerY = median(!!sym(dimCols[[2L]]))
         ) %>%
-        ungroup() %>%
-        as.data.frame() %>%
-        # Ensure all columns are camel case, for consistency.
-        camel() %>%
-        column_to_rownames() %>%
-        # Return with the columns sorted.
+        # Sort the columns alphabetically.
         .[, sort(colnames(.))]
+
+    as(tbl, "DataFrame")
 }
 
 
