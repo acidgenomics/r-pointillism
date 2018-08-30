@@ -15,7 +15,7 @@
 
     # Get the gene-to-symbol mappings.
     # Note that gene symbols must be unique here.
-    g2s <- gene2symbol(object, unique = TRUE)
+    g2s <- gene2symbol(object)
     if (is.null(g2s)) {
         stop(error)
     }
@@ -60,7 +60,7 @@
 
     # Get the gene-to-symbol mappings.
     # Note that gene symbols must be unique here.
-    g2s <- gene2symbol(object, unique = TRUE)
+    g2s <- gene2symbol(object)
     if (is.null(g2s)) {
         stop(error)
     }
