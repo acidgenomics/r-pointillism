@@ -30,6 +30,9 @@
 
     # Metadata is required for the plotting functions.
     interestingGroups <- interestingGroups(object)
+    if (is.null(interestingGroups)) {
+        interestingGroups <- "sampleName"
+    }
     assert_is_non_empty(interestingGroups)
 
     # Otherwise, coerce the counts matrix to a DataFrame.
