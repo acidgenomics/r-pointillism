@@ -62,7 +62,7 @@ setMethod(
         # Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
-            .hasMultipleSamples(object)
+            isTRUE(.hasMultipleSamples(object))
         ) {
             x <- "sampleName"
             interestingGroups <- interestingGroups(object)
@@ -107,7 +107,7 @@ setMethod(
         # Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
-            .hasMultipleSamples(object)
+            isTRUE(.hasMultipleSamples(object))
         ) {
             p <- p +
                 facet_grid(
