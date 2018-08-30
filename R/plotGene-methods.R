@@ -40,12 +40,10 @@
 #' print(geneNames)
 #'
 #' # Per sample mode enabled.
-#' plotGene(object, genes = geneNames)
-#' plotViolin(object, genes = geneNames)
 #' plotDot(object, genes = geneNames)
+#' plotViolin(object, genes = geneNames)
 #'
 #' # Per sample mode disabled.
-#' plotGene(object, genes = geneIDs, perSample = FALSE)
 #' plotDot(object, genes = geneIDs, perSample = FALSE)
 #' plotViolin(object, genes = geneIDs, perSample = FALSE)
 NULL
