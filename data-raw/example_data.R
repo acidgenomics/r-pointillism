@@ -33,6 +33,8 @@ rowRanges(sce) <- gr[seq_len(nrow(sce))]
 # Sanitize to camel case.
 colData(sce) <- camel(colData(sce))
 metadata(sce) <- list()
+# Set the interesting groups to sample name.
+interestingGroups(sce) <- "sampleName"
 sce <- metrics(sce, recalculate = TRUE)
 sce <- filterCells(sce, minCellsPerGene = 25)
 
