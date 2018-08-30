@@ -98,10 +98,11 @@ NULL
 
 # FIXME Need to fix the color scale argument here. It's continuous.
 # FIXME Share this default with `plotMarker`.
+# FIXME Set shared formals.
 .plotDot <- function(
     object,
     genes,
-    perSample,
+    perSample = TRUE,
     colMin = -2.5,
     colMax = 2.5,
     dotMin = 0L,
@@ -113,8 +114,8 @@ NULL
             high = "purple"
         )
     ),
-    legend,
-    title
+    legend = getOption("pointillism.legend", TRUE),
+    title = NULL
 ) {
     validObject(object)
     .assertHasIdent(object)
@@ -202,14 +203,15 @@ NULL
 
 
 
+# FIXME Set shared formals
 .plotViolin <- function(
     object,
     genes,
-    perSample,
+    perSample = TRUE,
     scale = c("count", "width", "area"),
     color = getOption("pointillism.discrete.color", NULL),
-    legend,
-    title
+    legend = getOption("pointillism.legend", TRUE),
+    title = NULL
 ) {
     validObject(object)
     assert_is_character(genes)
