@@ -81,7 +81,7 @@ NULL
         y = colnames(data)
     )
 
-    # Set the x- and y-axis labels (e.g. tSNE1, tSNE2)
+    # Set the x- and y-axis labels (e.g. tSNE1, tSNE2).
     axes <- camel(colnames(reducedDims(object)[[reducedDim]])[dimsUse])
     assert_is_subset(axes, colnames(data))
 
@@ -141,7 +141,7 @@ NULL
             )
     }
 
-    # Dark mode
+    # Dark mode.
     if (isTRUE(dark)) {
         p <- p + theme_midnight()
     }
@@ -150,7 +150,7 @@ NULL
         p <- p + color
     }
 
-    # Improve the axis breaks
+    # Improve the axis breaks.
     p <- p +
         scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
         scale_y_continuous(breaks = pretty_breaks(n = 4L))
