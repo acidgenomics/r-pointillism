@@ -15,7 +15,7 @@
     counts <- counts[rownames, , drop = FALSE]
 
     # Transpose, putting the gene rownames into the columns.
-    if (identical(attr(class(counts), "package"), "Matrix")) {
+    if (.isSparseMatrix(counts)) {
         t <- Matrix::t
     }
     data <- t(counts)
@@ -130,22 +130,27 @@
     reducedDim
 ) {
     validObject(object)
-    genes <- .mapGenesToRownames(object, genes)
+    rownames <- .mapGenesToRownames(object, genes)
 
-    # Log counts
-    geneMatrix <- .fetchGeneData(
+    # Transposed log counts matrix, with genes in the columns.
+    geneCounts <- .fetchGeneData(
         object = object,
-        genes = genes,
+        genes = rownames,
         assay = "logcounts",
         metadata = FALSE
     )
-    assert_is_matrix(geneMatrix)
-    assert_are_identical(colnames(geneMatrix), genes)
+    assert_are_identical(colnames(geneCounts), rownames)
 
-    # Expression columns
-    mean <- rowMeans(geneMatrix)
-    median <- rowMedians(geneMatrix)
-    sum <- rowSums(geneMatrix)
+    # Keep the supported operations sparse.
+    if (.isSparseMatrix(geneCounts)) {
+        rowMeans <- Matrix::rowMeans
+        rowSums <- Matrix::rowSums
+    }
+
+    # Calculate the expression summary columns.
+    # Note that `rowMedians()` currently isn't supported for sparse data.
+    mean <- rowMeans(geneCounts)
+    sum <- rowSums(geneCounts)
 
     # Reduced dim data
     reducedDimData <- .fetchReducedDimData(
@@ -153,5 +158,5 @@
         reducedDim = reducedDim
     )
 
-    cbind(reducedDimData, mean, median, sum)
+    cbind(reducedDimData, mean, sum)
 }

@@ -99,3 +99,13 @@
         }
     }
 }
+
+
+
+# Consider adding this to the basejump package.
+.isSparseMatrix <- function(object) {
+    identical(
+        attributes(class(object))[["package"]],
+        "Matrix"
+    )
+}
