@@ -23,9 +23,9 @@
 #'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
 #'   assertIsFillScaleDiscreteOrNULL assertIsGene2symbol assertIsImplicitInteger
-#'   camel coerce convertGenesToSymbols gene2symbol markdownHeader
-#'   matchInterestingGroups printString readFileByExtension theme_midnight
-#'   upperCamel
+#'   camel coerce convertGenesToSymbols gene2symbol mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchInterestingGroups printString
+#'   readFileByExtension theme_midnight upperCamel
 #' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam

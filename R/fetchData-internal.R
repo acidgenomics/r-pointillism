@@ -5,7 +5,7 @@
     metadata = FALSE
 ) {
     validObject(object)
-    rownames <- .mapGenesToRownames(object, genes)
+    rownames <- mapGenesToRownames(object, genes)
     assert_is_subset(rownames, rownames(object))
     assert_is_a_string(assay)
     assert_is_subset(assay, assayNames(object))
@@ -133,7 +133,7 @@
     reducedDim
 ) {
     validObject(object)
-    rownames <- .mapGenesToRownames(object, genes)
+    rownames <- mapGenesToRownames(object, genes)
 
     # Transposed log counts matrix, with genes in the columns.
     geneCounts <- .fetchGeneData(
