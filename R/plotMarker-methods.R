@@ -69,7 +69,7 @@ NULL
     # Assert checks --------------------------------------------------------
     validObject(object)
     assert_is_character(genes)
-    geneNames <- .mapGenesToSymbols(object, genes)
+    geneNames <- mapGenesToSymbols(object, genes)
     reducedDim <- match.arg(reducedDim)
     expression <- match.arg(expression)
     assertIsColorScaleContinuousOrNULL(color)
