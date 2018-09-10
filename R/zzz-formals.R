@@ -6,7 +6,7 @@
 #         formalArgs(.plotGene)
 #     )]
 # f[names(fshared)] <- fshared
-# formals(.plotDot) <- as.pairlist(f)
+# formals(.plotDot) <- f
 
 
 
@@ -18,7 +18,7 @@
 #         formalArgs(.plotGene)
 #     )]
 # f[names(fshared)] <- fshared
-# formals(.plotViolin) <- as.pairlist(f)
+# formals(.plotViolin) <- f
 
 
 
@@ -30,4 +30,4 @@
 #         formalArgs(.plotMarker)
 #     )]
 # f[names(fshared)] <- fshared
-# formals(.plotFeature) <- as.pairlist(f)
+# formals(.plotFeature) <- f

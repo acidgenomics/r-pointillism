@@ -199,7 +199,7 @@ NULL
 # Formals ======================================================================
 # Set the formals for the convenience functions.
 f <- formals(.plotReducedDim)
-f <- as.pairlist(f[setdiff(names(f), "reducedDim")])
+f <- f[setdiff(names(f), "reducedDim")]
 formals(.plotPCA) <- f
 formals(.plotTSNE) <- f
 formals(.plotUMAP) <- f
