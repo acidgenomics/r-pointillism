@@ -18,13 +18,24 @@
 #'     package = "pointillism"
 #' )
 #' gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
-#' readCellTypeMarkers(file, gene2symbol = gene2symbol)
+#' x <- readCellTypeMarkers(file, gene2symbol = gene2symbol)
+#' print(x)
 readCellTypeMarkers <- function(file, gene2symbol) {
-    assertIsGene2symbol(gene2symbol)
-    data <- readFileByExtension(file) %>%
+    assert_is_a_string(file)
+    assert_is_all_of(gene2symbol, "gene2symbol")
+
+    # Read the markers file as a tibble.
+    data <- import(file) %>%
+        as("tbl_df") %>%
         camel() %>%
-        .[, c("cellType", "geneID")] %>%
+        select(!!!syms(c("cellType", "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
+
+    # Coerce to tibble.
+    gene2symbol <- gene2symbol %>%
+        as("DataFrame") %>%
+        set_rownames(NULL) %>%
+        as("tbl_df")
 
     # Warn user about markers that aren't present in the gene2symbol.
     # This is useful for informing about putative markers that aren't expressed.
@@ -37,11 +48,14 @@ readCellTypeMarkers <- function(file, gene2symbol) {
         ))
     }
 
-    intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
+    intersect <- intersect(
+        x = data[["geneID"]],
+        y = gene2symbol[["geneID"]]
+    )
     assert_is_non_empty(intersect)
 
     data %>%
-        .[.[["geneID"]] %in% intersect, , drop = FALSE] %>%
+        filter(!!sym("geneID") %in% !!intersect) %>%
         left_join(gene2symbol, by = "geneID") %>%
         unique() %>%
         group_by(!!sym("cellType")) %>%
