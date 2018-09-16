@@ -51,6 +51,12 @@
 
 
 
+.hasMultipleSamples <- function(object) {
+    length(sampleNames(object)) > 1L
+}
+
+
+
 .hasZinbwave <- function(object) {
     stopifnot(is(object, "SingleCellExperiment"))
     # Require `counts` to always be slotted.
@@ -98,4 +104,14 @@
             return(TRUE)
         }
     }
+}
+
+
+
+# Consider adding this to the basejump package.
+.isSparseMatrix <- function(object) {
+    identical(
+        attributes(class(object))[["package"]],
+        "Matrix"
+    )
 }

@@ -8,7 +8,7 @@
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
-#' @importFrom assertive.base assert_are_identical
+#' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_positive
 #' @importFrom assertive.properties assert_has_no_duplicates assert_has_names
@@ -22,10 +22,10 @@
 #' @importFrom basejump assertHasRownames assertIsAHeaderLevel
 #'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsGene2symbol assertIsImplicitInteger camel convertGenesToSymbols
-#'   gene2symbol markdownHeader matchInterestingGroups printString
+#'   assertIsFillScaleDiscreteOrNULL assertIsGene2symbol assertIsImplicitInteger
+#'   camel coerce convertGenesToSymbols gene2symbol mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchInterestingGroups printString
 #'   readFileByExtension theme_midnight upperCamel
-#' @importFrom Biobase rowMedians
 #' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
@@ -36,9 +36,10 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom edgeR calcNormFactors DGEList estimateDisp glmFit
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
-#'   geom_hline geom_line geom_point geom_text geom_violin geom_vline ggplot
-#'   guide_colorbar guides labs scale_color_gradient scale_color_viridis_c
-#'   scale_radius scale_x_continuous scale_y_continuous theme
+#'   geom_hline geom_jitter geom_line geom_point geom_text geom_violin
+#'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
+#'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
+#'   theme
 #' @importFrom magrittr %>% set_names
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is setAs show slot slot<- validObject
@@ -51,8 +52,7 @@
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom tibble as_tibble column_to_rownames remove_rownames
-#'   rownames_to_column tibble
+#' @importFrom tibble remove_rownames tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave

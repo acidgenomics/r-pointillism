@@ -20,16 +20,6 @@ recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_man
 To set the discrete color palette globally, use
 \code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
 
-\item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
-Must supply discrete values. When set to \code{NULL}, the default ggplot2 color
-palette will be used. If manual color definitions are desired, we recommend
-using \code{\link[ggplot2:scale_fill_manual]{ggplot2::scale_fill_manual()}}.
-To set the discrete fill palette globally, use
-\code{options(bcbio.discrete.fill = scale_fill_viridis_d())}.}
-
-\item{gene2symbol}{\code{data.frame}. Gene-to-symbol mappings. Columns must
-contain \code{geneID} and \code{geneName}.}
-
 \item{dark}{\code{boolean}. Plot against a dark background using
 \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
 
@@ -42,16 +32,18 @@ calculations. Defaults the first and second dimensions.}
 \item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
 defaults to the first argument in the \code{character} vector.}
 
-\item{gene2symbol}{\code{boolean}. Automatically interconvert gene identifiers
-and gene names in plots. Useful for marker plots.}
+\item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
+Must supply discrete values. When set to \code{NULL}, the default ggplot2 color
+palette will be used. If manual color definitions are desired, we recommend
+using \code{\link[ggplot2:scale_fill_manual]{ggplot2::scale_fill_manual()}}.
+To set the discrete fill palette globally, use
+\code{options(bcbio.discrete.fill = scale_fill_viridis_d())}.}
 
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
 
 \item{geom}{\code{string}. Plot type. Uses \code{\link[=match.arg]{match.arg()}} and defaults to the first
 argument in the \code{character} vector.}
-
-\item{grid}{\code{boolean}. Show major grid lines but hide axis lines.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
 
@@ -71,9 +63,7 @@ interesting groups. Must be formatted in camel case and intersect with
 
 \item{object}{Object.}
 
-\item{prefilter}{\code{boolean}. Apply prefiltering to remove zero count genes.}
-
-\item{pipeline}{\code{string}. Pipeline used to generate the samples.}
+\item{perSample}{\code{boolean}. Visualize the distributions per sample?}
 
 \item{pointAlpha}{\code{scalar numeric} (\code{0}-\code{1}). Alpha transparency level.
 Useful when there many cells in the dataset, and some cells can be masked.}
@@ -93,8 +83,6 @@ defaults to the first argument in the \code{character} vector.}
 
 \item{trans}{\code{string}. Name of the axis scale transformation to apply. See
 \code{help("scale_x_continuous", "ggplot2")} for more information.}
-
-\item{trendline}{\code{boolean}. Include trendline on plot.}
 
 \item{value}{Object to assign.}
 
