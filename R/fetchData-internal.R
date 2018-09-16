@@ -5,6 +5,7 @@
     gene2symbol = FALSE,
     interestingGroups = "ident"
 ) {
+    assert_is_all_of(object, "SingleCellExperiment")
     # Allow factor input, but coerce.
     if (is.factor(genes)) {
         genes <- as.character(genes)
