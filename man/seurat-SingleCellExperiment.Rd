@@ -59,7 +59,7 @@
 
 \S4method{rowRanges}{seurat}(x)
 
-\S4method{sampleData}{seurat}(object, interestingGroups)
+\S4method{sampleData}{seurat}(object, interestingGroups = NULL)
 
 \S4method{sampleData}{seurat,DataFrame}(object) <- value
 
