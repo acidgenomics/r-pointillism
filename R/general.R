@@ -14,14 +14,6 @@
 #'   recommend using [ggplot2::scale_color_manual()].
 #'   To set the discrete color palette globally, use
 #'   `options(bcbio.discrete.color = scale_color_viridis_d())`.
-#' @param fill `ggproto`/`ScaleDiscrete` or `NULL`. Desired ggplot2 fill scale.
-#'   Must supply discrete values. When set to `NULL`, the default ggplot2 color
-#'   palette will be used. If manual color definitions are desired, we recommend
-#'   using [ggplot2::scale_fill_manual()].
-#'   To set the discrete fill palette globally, use
-#'   `options(bcbio.discrete.fill = scale_fill_viridis_d())`.
-#' @param gene2symbol `data.frame`. Gene-to-symbol mappings. Columns must
-#'   contain `geneID` and `geneName`.
 #' @param dark `boolean`. Plot against a dark background using
 #'   [basejump::theme_midnight()].
 #' @param dimsUse `integer`. Vector of length 2 that denotes the columns from
@@ -30,13 +22,16 @@
 #' @param dir `string`. Output directory path.
 #' @param expression `string`. Calculation to apply. Uses [match.arg()] and
 #'   defaults to the first argument in the `character` vector.
-#' @param gene2symbol `boolean`. Automatically interconvert gene identifiers
-#'   and gene names in plots. Useful for marker plots.
+#' @param fill `ggproto`/`ScaleDiscrete` or `NULL`. Desired ggplot2 fill scale.
+#'   Must supply discrete values. When set to `NULL`, the default ggplot2 color
+#'   palette will be used. If manual color definitions are desired, we recommend
+#'   using [ggplot2::scale_fill_manual()].
+#'   To set the discrete fill palette globally, use
+#'   `options(bcbio.discrete.fill = scale_fill_viridis_d())`.
 #' @param genes `character`. Gene identifiers. Must match the rownames of the
 #'   object.
 #' @param geom `string`. Plot type. Uses [match.arg()] and defaults to the first
 #'   argument in the `character` vector.
-#' @param grid `boolean`. Show major grid lines but hide axis lines.
 #' @param headerLevel `scalar integer` (`1`-`7`). R Markdown header level.
 #' @param interestingGroups `character` or `NULL`. Character vector of
 #'   interesting groups. Must be formatted in camel case and intersect with
@@ -47,8 +42,7 @@
 #' @param min `scalar numeric`. Recommended minimum value cutoff.
 #' @param max `scalar numeric`. Recommended maximum value cutoff.
 #' @param object Object.
-#' @param prefilter `boolean`. Apply prefiltering to remove zero count genes.
-#' @param pipeline `string`. Pipeline used to generate the samples.
+#' @param perSample `boolean`. Visualize the distributions per sample?
 #' @param pointAlpha `scalar numeric` (`0`-`1`). Alpha transparency level.
 #'   Useful when there many cells in the dataset, and some cells can be masked.
 #' @param pointsAsNumbers `boolean`. Plot the points as numbers (`TRUE`) or
@@ -61,7 +55,6 @@
 #' @param title `string` or `NULL`. Plot title.
 #' @param trans `string`. Name of the axis scale transformation to apply. See
 #'   `help("scale_x_continuous", "ggplot2")` for more information.
-#' @param trendline `boolean`. Include trendline on plot.
 #' @param value Object to assign.
 #' @param x Primary object.
 #' @param y Secondary object.

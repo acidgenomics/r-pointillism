@@ -4,8 +4,9 @@
 #' @family Marker Functions
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams general
 #' @param file `string`. Gene markers file path (CSV or Excel).
+#' @param gene2symbol `data.frame`. Gene-to-symbol mappings. Columns must
+#'   contain `geneID` and `geneName`.
 #'
 #' @return `grouped_df`, grouped by "`cellType`" column.
 #' @export

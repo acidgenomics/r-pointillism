@@ -53,10 +53,9 @@ plotTopMarkers(seurat_small, markers = tail(markers, 1))
 \seealso{
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotGene}},
   \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}}, \code{\link{plotViolin}}
+  \code{\link{plotReducedDim}}
 }
 \author{
 Michael Steinbaugh

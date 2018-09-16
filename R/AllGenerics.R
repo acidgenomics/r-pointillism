@@ -75,7 +75,7 @@ setGeneric(
 
 
 
-#' @rdname plotDot
+#' @rdname plotGene
 #' @export
 setGeneric(
     "plotDot",
@@ -174,7 +174,7 @@ setGeneric(
 
 
 
-#' @rdname plotViolin
+#' @rdname plotGene
 #' @export
 setGeneric(
     "plotViolin",

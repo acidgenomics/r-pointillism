@@ -10,22 +10,26 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = c("TSNE", "UMAP", "PCA"), expression = c("mean",
-  "median", "sum"), color = getOption("pointillism.discrete.color",
-  NULL), pointSize = getOption("pointillism.pointSize", 0.75),
+  reducedDim = c("TSNE", "UMAP", "PCA"), expression = c("mean", "sum"),
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "orange", high = "purple")),
+  pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
-  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = TRUE)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
-  "UMAP", "PCA"), expression = c("mean", "median", "sum"),
-  color = getOption("pointillism.discrete.color", NULL),
+  "UMAP", "PCA"), expression = c("mean", "sum"),
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "orange", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-  pointsAsNumbers = FALSE, label = getOption("pointillism.label",
-  TRUE), labelSize = getOption("pointillism.labelSize", 6L),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = TRUE)
 }
@@ -97,10 +101,9 @@ plotMarker(
 \seealso{
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotGene}},
   \code{\link{plotKnownMarkersDetected}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}, \code{\link{plotViolin}}
+  \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
