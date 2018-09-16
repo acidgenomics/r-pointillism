@@ -18,7 +18,7 @@
 #'   that corresponds to the gene names in the `seurat` object used to generate
 #'   the markers `data.frame`.
 #'
-#' @return `data.frame`, arranged by adjusted P value.
+#' @return `grouped_df` or `DataFrame`, arranged by adjusted P value.
 #' @export
 #'
 #' @examples
@@ -167,8 +167,7 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
     } else {
         data <- data %>%
             arrange(!!sym("padj")) %>%
-            as.data.frame() %>%
-            column_to_rownames()
+            as("DataFrame")
     }
 
     message("Sanitized to contain `geneID` and `geneName` columns from GRanges")
