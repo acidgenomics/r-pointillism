@@ -25,7 +25,8 @@ file <- system.file(
     package = "pointillism"
 )
 gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
-readCellTypeMarkers(file, gene2symbol = gene2symbol)
+x <- readCellTypeMarkers(file, gene2symbol = gene2symbol)
+print(x)
 }
 \seealso{
 Other Marker Functions: \code{\link{clusterID}},
