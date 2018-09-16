@@ -15,7 +15,7 @@ that corresponds to the gene names in the \code{seurat} object used to generate
 the markers \code{data.frame}.}
 }
 \value{
-\code{data.frame}, arranged by adjusted P value.
+\code{grouped_df} or \code{DataFrame}, arranged by adjusted P value.
 }
 \description{
 Currently only Seurat markers are supported. The function should properly
