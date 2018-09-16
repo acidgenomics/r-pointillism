@@ -22,10 +22,10 @@
 #' @importFrom basejump assertHasRownames assertIsAHeaderLevel
 #'   assertIsAStringOrNULL assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsFillScaleDiscreteOrNULL assertIsGene2symbol assertIsImplicitInteger
-#'   camel coerce convertGenesToSymbols gene2symbol mapGenesToRownames
+#'   assertIsFillScaleDiscreteOrNULL assertIsImplicitInteger camel coerce
+#'   convertGenesToSymbols gene2symbol import mapGenesToRownames
 #'   mapGenesToSymbols markdownHeader matchInterestingGroups printString
-#'   readFileByExtension theme_midnight upperCamel
+#'   theme_midnight upperCamel
 #' @importFrom BiocGenerics cbind counts counts<- do.call
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
@@ -40,7 +40,7 @@
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme
-#' @importFrom magrittr %>% set_names
+#' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
