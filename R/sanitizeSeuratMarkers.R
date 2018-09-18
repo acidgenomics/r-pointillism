@@ -18,13 +18,13 @@
 #'   that corresponds to the gene names in the `seurat` object used to generate
 #'   the markers `data.frame`.
 #'
-#' @return `grouped_df` or `DataFrame`, arranged by adjusted P value.
+#' @return `SingleCellMarkers`. Results are arranged by adjusted P value.
 #' @export
 #'
 #' @examples
 #' object <- seurat_small
 #'
-#' # `FindAllMarkers()` return
+#' # `FindAllMarkers()` return.
 #' invisible(capture.output(
 #'     all_markers <- Seurat::FindAllMarkers(object)
 #' ))
@@ -34,7 +34,7 @@
 #' )
 #' glimpse(all_sanitized)
 #'
-#' # `FindMarkers()` return
+#' # `FindMarkers()` return.
 #' invisible(capture.output(
 #'     ident_3_markers <- Seurat::FindMarkers(
 #'         object = object,
@@ -49,11 +49,6 @@
 #' glimpse(ident_3_sanitized)
 sanitizeSeuratMarkers <- function(data, rowRanges) {
     assert_is_data.frame(data)
-    # Early return on sanitized data.
-    if (.isSanitizedMarkers(data, package = "Seurat")) {
-        message("Markers are already sanitized")
-        return(data)
-    }
     assertHasRownames(data)
     assert_is_all_of(rowRanges, "GRanges")
     assert_is_subset(
@@ -61,42 +56,25 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         y = colnames(mcols(rowRanges))
     )
 
+    # Sanitize Seurat markers data.frame =======================================
+    # Coerce to tibble.
+    data <- as(data, "tbl_df")
+    # Standardize with camel case.
+    data <- camel(data)
+
     # Map the Seurat matrix rownames to `rownames` column in tibble.
     if ("cluster" %in% colnames(data)) {
         message("`Seurat::FindAllMarkers()` return detected")
         all <- TRUE
         assert_is_subset("gene", colnames(data))
-        data <- remove_rownames(data)
-        data[["rowname"]] <- data[["gene"]]
-        data[["gene"]] <- NULL
+        data <- data %>%
+            mutate(rowname = NULL) %>%
+            rename(name = !!sym("gene"))
     } else {
         message("`Seurat::FindMarkers()` return detected")
         all <- FALSE
-        data <- as(data, "tbl_df")
+        data <- rename(data, name = !!sym("rowname"))
     }
-
-    # Determine whether user is using gene IDs or symbols with Seurat.
-    if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneID"]])) {
-        idCol <- "geneID"
-    } else if (any(data[["rowname"]] %in% mcols(rowRanges)[["geneName"]])) {
-        message("Use `geneID` instead of `geneName` for row names")
-        idCol <- "geneName"
-    } else {
-        stop(paste(
-            "Failed to match marker rownames to gene identifiers in rowRanges.",
-            "Ensure that rowRanges contain `geneID` and `geneName` mcols."
-        ))
-    }
-    message(paste0("Row names match `", idCol, "` metadata"))
-    names(rowRanges) <- mcols(rowRanges)[[idCol]] %>%
-        as.character() %>%
-        make.unique()
-    # Now require that all of the rownames are defined in rowRanges.
-    assert_is_subset(data[["rowname"]], names(rowRanges))
-
-    # Now ready to coerce.
-    # Also sanitize column names into camel case.
-    data <- camel(as(data, "tbl_df"))
 
     # Update legacy columns.
     if ("avgDiff" %in% colnames(data)) {
@@ -118,38 +96,9 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
         data[["pValAdj"]] <- NULL
     }
 
-    # Strip out unwanted seurat columns from rowRanges.
-    mcols(rowRanges) <- mcols(rowRanges) %>%
-        .[!grepl("^gene($|\\.)", colnames(.))]
-
-    # Row data from GRanges
-    rowData <- as.data.frame(rowRanges)
-    # Ensure any nested list columns are dropped.
-    cols <- vapply(
-        X = rowData,
-        FUN = function(x) {
-            !is.list(x)
-        },
-        FUN.VALUE = logical(1L)
-    )
-    rowData <- rowData[, cols, drop = FALSE]
-    rowData[["rowname"]] <- rownames(rowData)
-
-    # Now safe to join the row data.
-    data <- left_join(
-        x = data,
-        y = rowData,
-        by = "rowname"
-    )
-
-    # Check that all rows match a geneID.
-    stopifnot(!any(is.na(data[["geneID"]])))
-
     # Ensure that required columns are present.
     requiredCols <- c(
-        "rowname",
-        "geneID",
-        "geneName",
+        "name",
         "pct1",
         "pct2",
         "avgLogFC",     # Seurat v2.1.
@@ -161,15 +110,27 @@ sanitizeSeuratMarkers <- function(data, rowRanges) {
     if (isTRUE(all)) {
         # `cluster` is only present in `FindAllMarkers() return`.
         data <- data %>%
-            select(!!sym("cluster"), everything()) %>%
+            select(!!!syms(c("cluster", "name")), everything()) %>%
             group_by(!!sym("cluster")) %>%
             arrange(!!sym("padj"), .by_group = TRUE)
     } else {
         data <- data %>%
-            arrange(!!sym("padj")) %>%
-            as("DataFrame")
+            select(!!sym("name"), everything()) %>%
+            arrange(!!sym("padj"))
     }
 
-    message("Sanitized to contain `geneID` and `geneName` columns from GRanges")
-    data
+    markers <- unique(data[["name"]])
+
+    # rowRanges ================================================================
+    # Require that all of the rownames are defined in rowRanges.
+    assert_is_subset(markers, names(rowRanges))
+    # Subset and arrange the GRanges to match.
+    rowRanges <- rowRanges[markers]
+
+    # Return SingleCellMarkers =================================================
+    new(
+        Class = "SingleCellMarkers",
+        data = data,
+        rowRanges = rowRanges
+    )
 }
