@@ -11,12 +11,12 @@
 #' @export
 #'
 #' @inheritParams general
-#' @slot data `DataFrame`.
+#' @slot data `grouped_df`.
 #' @slot rowRanges `GRanges`.
 setClass(
     Class = "SingleCellMarkers",
     slots = c(
-        data = "DataFrame",
+        data = "tbl_df",
         rowRanges = "GRanges"
     ),
     prototype = list(
