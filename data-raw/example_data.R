@@ -1,5 +1,5 @@
 # SingleCellExperiment Example Data
-# 2018-08-28
+# 2018-09-18
 
 library(tidyverse)
 library(bcbioSingleCell)
@@ -48,20 +48,21 @@ seurat_small <- sce %>%
     RunPCA(do.print = FALSE) %>%
     FindClusters(resolution = seq(from = 0.4, to = 1.2, by = 0.4)) %>%
     RunTSNE(check_duplicates = FALSE) %>%
-    # Requires Python `umap-learn` package
+    # Requires Python `umap-learn` package.
+    # FIXME Need to fix the PATH on VM to detect umap-learn.
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
 stopifnot(is.character(sampleNames(seurat_small)))
 
 # sce_small ====================================================================
-# Convert rows (geneName) back to Ensembl IDs (geneID)
+# Convert rows (geneName) back to Ensembl IDs (geneID).
 seurat_sce <- seurat_small %>%
     as("SingleCellExperiment") %>%
     convertSymbolsToGenes()
 # Check that the conversion worked as expected.
 stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
 stopifnot(all(c("ident", "origIdent") %in% colnames(colData(seurat_sce))))
-# Ensure that dimensional reduction data is slotted correctly
+# Ensure that dimensional reduction data is slotted correctly.
 stopifnot(identical(
     names(reducedDims(seurat_sce)),
     c("PCA", "TSNE", "UMAP")
@@ -70,9 +71,9 @@ stopifnot(identical(
 assays(sce) <- assays(seurat_sce)
 colData(sce) <- colData(seurat_sce)
 reducedDims(sce) <- reducedDims(seurat_sce)
-# Remove genes with all zero counts prior to zinbwave
+# Remove genes with all zero counts prior to zinbwave.
 sce <- filterCells(sce)
-# Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit)
+# Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit).
 sce <- runZinbwave(sce)
 sce_small <- sce
 
