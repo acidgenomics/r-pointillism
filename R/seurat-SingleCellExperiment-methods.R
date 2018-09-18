@@ -1,3 +1,9 @@
+# FIXME
+# Error in (function (classes, fdef, mtable)  :
+# unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
+
+
+
 #' Extend S4 Methods for `seurat` Class
 #'
 #' Provide limited `SingleCellExperiment`-like method support.

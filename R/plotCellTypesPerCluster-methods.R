@@ -1,3 +1,9 @@
+# FIXME
+# Error in (function (classes, fdef, mtable)  :
+# unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
+
+
+
 #' Plot Cell Types per Cluster
 #'
 #' Plot the geometric mean of the significant marker genes for every known cell
