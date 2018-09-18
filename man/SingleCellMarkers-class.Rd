@@ -13,15 +13,14 @@ analysis with either Seurat, edgeR, or DESeq2. This class is essentially a
 \section{Slots}{
 
 \describe{
-\item{\code{names}}{\code{character}.}
-
 \item{\code{data}}{\code{grouped_df}.}
 
 \item{\code{rowRanges}}{\code{GRanges}.}
 }}
 
 \seealso{
-Other S4 Object: \code{\link{coerce}}
+Other S4 Object: \code{\link{CellCycleMarkers-class}},
+  \code{\link{CellTypeMarkers-class}}, \code{\link{coerce}}
 }
 \author{
 Michael Steinbaugh
