@@ -1,3 +1,29 @@
+# CellCycleMarkers =============================================================
+#' `CellCycleMarkers` Class
+#'
+#' @family S4 Object
+#' @author Michael Steinbaugh
+#' @export
+setClass(
+    Class = "CellCycleMarkers",
+    contains = "DataFrame"
+)
+
+
+
+# CellTypeMarkers ==============================================================
+#' `CellTypeMarkers` Class
+#'
+#' @family S4 Object
+#' @author Michael Steinbaugh
+#' @export
+setClass(
+    Class = "CellTypeMarkers",
+    contains = "DataFrame"
+)
+
+
+
 # SingleCellMarkers ============================================================
 #' `SingleCellMarkers` Class
 #'

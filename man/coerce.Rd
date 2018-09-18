@@ -69,7 +69,9 @@ print(x)
 \item \code{\link[Seurat:Convert]{Seurat::Convert()}}.
 }
 
-Other S4 Object: \code{\link{SingleCellMarkers-class}}
+Other S4 Object: \code{\link{CellCycleMarkers-class}},
+  \code{\link{CellTypeMarkers-class}},
+  \code{\link{SingleCellMarkers-class}}
 }
 \author{
 Michael Steinbaugh
