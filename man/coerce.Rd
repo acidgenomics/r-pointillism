@@ -68,6 +68,8 @@ print(x)
 \item \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}}.
 \item \code{\link[Seurat:Convert]{Seurat::Convert()}}.
 }
+
+Other S4 Object: \code{\link{SingleCellMarkers-class}}
 }
 \author{
 Michael Steinbaugh
