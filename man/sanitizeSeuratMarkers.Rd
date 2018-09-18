@@ -15,7 +15,7 @@ that corresponds to the gene names in the \code{seurat} object used to generate
 the markers \code{data.frame}.}
 }
 \value{
-\code{grouped_df} or \code{DataFrame}, arranged by adjusted P value.
+\code{SingleCellMarkers}. Results are arranged by adjusted P value.
 }
 \description{
 Currently only Seurat markers are supported. The function should properly
@@ -30,7 +30,7 @@ the rownames of the returned marker \code{data.frame}.
 \examples{
 object <- seurat_small
 
-# `FindAllMarkers()` return
+# `FindAllMarkers()` return.
 invisible(capture.output(
     all_markers <- Seurat::FindAllMarkers(object)
 ))
@@ -40,7 +40,7 @@ all_sanitized <- sanitizeSeuratMarkers(
 )
 glimpse(all_sanitized)
 
-# `FindMarkers()` return
+# `FindMarkers()` return.
 invisible(capture.output(
     ident_3_markers <- Seurat::FindMarkers(
         object = object,
