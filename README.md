@@ -2,7 +2,7 @@
 
 [![Travis CI](https://travis-ci.org/steinbaugh/pointillism.svg?branch=master)](https://travis-ci.org/steinbaugh/pointillism)
 [![Codecov](https://codecov.io/gh/steinbaugh/pointillism/branch/master/graph/badge.svg)](https://codecov.io/gh/steinbaugh/pointillism)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 [R][] package for for single-cell RNA-seq clustering analysis.
 
