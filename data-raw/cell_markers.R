@@ -49,12 +49,11 @@ cell_cycle_markers <- lapply(
             ) %>%
             group_by(phase) %>%
             arrange(geneID, .by_group = TRUE)
-        data <- .stashAttributes(
-            object = data,
+        CellCycleMarkers(
+            data = data,
             organism = gsub("_", " ", ws),
-            release = release
+            ensemblRelease = release
         )
-        new("CellCycleMarkers", data)
     }
 )
 names(cell_cycle_markers) <- camel(ws)
@@ -84,12 +83,11 @@ cell_type_markers <- lapply(
             ) %>%
             group_by(cellType) %>%
             arrange(geneID, .by_group = TRUE)
-        data <- .stashAttributes(
-            object = data,
+        CellTypeMarkers(
+            data = data,
             organism = gsub("_", " ", ws),
-            release = release
+            ensemblRelease = release
         )
-        new("CellTypeMarkers", data)
     }
 )
 names(cell_type_markers) <- camel(ws)
