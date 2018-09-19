@@ -6,8 +6,8 @@ setOldClass(Classes = class(packageVersion("base")))
 setOldClass(Classes = "session_info")
 
 # tibble
-setOldClass(Classes = class(tibble()))
-setOldClass(Classes = c("grouped_df", class(tibble())))
+setOldClass(Classes = "tbl_df")
+setOldClass(Classes = "grouped_df")
 
 
 
@@ -47,8 +47,12 @@ setClass(
     )
 )
 
+
+
 # FIXME Move `sanitizeSeuratMarkers()` here, rename, and deprecate.
 # Describe `FindAllMarkers()`/`FindMarkers()` to sanitizeSeuratMarkers`.
+
+
 
 setValidity(
     Class = "SeuratMarkers",
@@ -131,55 +135,48 @@ setValidity(
 # CellCycleMarkers =============================================================
 #' `CellCycleMarkers` Class
 #'
-#' Currently designed for internal use by the pointillism package.
+#' Data provenence information, including the organism and Ensembl release are
+#' defined in [attributes()].
 #'
 #' @family S4 Classes
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @slot organism `string`. Full Latin organism name.
-#' @slot ensemblRelease `scalar integer`. Ensembl release version.
-#' @slot version `package_version`.
-#' @slot date `Date`. Date the object was saved.
-#' @slot sessionInfo `session_info`. [sessioninfo::session_info()] return.
-#'
 #' @return `CellCycleMarkers`.
 setClass(
     Class = "CellCycleMarkers",
-    contains = "grouped_df",
-    slots = list(
-        organism = "character",
-        ensemblRelease = "integer",
-        version = "package_version",
-        date = "Date",
-        sessionInfo = "session_info"
-    ),
-    prototype = prototype(
-        version = packageVersion("pointillism"),
-        date = Sys.Date(),
-        sessionInfo = session_info()
-    )
+    contains = "grouped_df"
 )
 
+
+
 #' `CellCycleMarkers` Generator
+#'
+#' Currently designed for internal use by the pointillism package.
+#'
+#' @family S4 Generators
+#' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @param data `grouped_df`. Grouped by `phase` column.
 #'
-#' @export
+#' @return `CellCycleMarkers`.
 CellCycleMarkers <-  # nolint
     function(
         data,
         organism,
         ensemblRelease
     ) {
-        new(
-            Class = "CellCycleMarkers",
-            data,
+        data <- .stashAttributes(
+            object = data,
             organism = organism,
             ensemblRelease = ensemblRelease
         )
+        new("CellCycleMarkers", data)
     }
+
+
 
 setValidity(
     Class = "CellCycleMarkers",
@@ -204,53 +201,48 @@ setValidity(
 # CellTypeMarkers ==============================================================
 #' `CellTypeMarkers` Class
 #'
+#' Data provenence information, including the organism and Ensembl release are
+#' defined in [attributes()].
+#'
 #' @family S4 Classes
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @slot organism `string`. Full Latin organism name.
-#' @slot ensemblRelease `scalar integer`. Ensembl release version.
-#' @slot version `package_version`.
-#' @slot date `Date`. Date the object was saved.
-#' @slot sessionInfo `session_info`. [sessioninfo::session_info()] return.
-#'
 #' @return `CellTypeMarkers`.
 setClass(
     Class = "CellTypeMarkers",
-    contains = "grouped_df",
-    slots = list(
-        organism = "character",
-        ensemblRelease = "integer",
-        version = "package_version",
-        date = "Date",
-        sessionInfo = "session_info"
-    ),
-    prototype = prototype(
-        version = packageVersion("pointillism"),
-        date = Sys.Date(),
-        sessionInfo = session_info()
-    )
+    contains = "grouped_df"
 )
 
+
+
 #' `CellTypeMarkers` Generator
+#'
+#' Currently designed for internal use by the pointillism package.
+#'
+#' @family S4 Generators
+#' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @param data `grouped_df`. Grouped by `phase` column.
 #'
-#' @export
+#' @return `CellTypeMarkers`.
 CellTypeMarkers <-  # nolint
     function(
         data,
         organism,
         ensemblRelease
     ) {
-        new(
-            Class = "CellTypeMarkers",
-            data,
+        data <- .stashAttributes(
+            object = data,
             organism = organism,
             ensemblRelease = ensemblRelease
         )
+        new("CellTypeMarkers", data)
     }
+
+
 
 setValidity(
     Class = "CellTypeMarkers",
