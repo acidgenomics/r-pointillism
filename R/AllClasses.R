@@ -170,13 +170,6 @@ CellTypeMarkers <- function(
         data <- gs_read(ss = ss, ws = ws)
     }
 
-    # Coerce to tibble and sanitize.
-    data <- data %>%
-        as("tbl_df") %>%
-        camel() %>%
-        select(!!!syms(c("cellType", "geneID"))) %>%
-        .[complete.cases(.), , drop = FALSE]
-
     # Get gene-to-symbol mappings from Ensembl.
     if (is.null(gene2symbol)) {
         gene2symbol <- makeGene2symbolFromEnsembl(
@@ -190,6 +183,13 @@ CellTypeMarkers <- function(
         as("DataFrame") %>%
         set_rownames(NULL) %>%
         as("tbl_df")
+
+    # Coerce to tibble and sanitize.
+    data <- data %>%
+        as("tbl_df") %>%
+        camel() %>%
+        select(!!!syms(c("cellType", "geneID"))) %>%
+        .[complete.cases(.), , drop = FALSE]
 
     # Warn user about markers that aren't present in the gene2symbol.
     # This is useful for informing about putative markers that aren't expressed.
@@ -210,14 +210,15 @@ CellTypeMarkers <- function(
 
     data <- data %>%
         filter(!!sym("geneID") %in% !!intersect) %>%
-        left_join(gene2symbol, by = "geneID") %>%
+        mutate(cellType = as.factor(!!sym("cellType"))) %>%
         unique() %>%
+        left_join(gene2symbol, by = "geneID") %>%
         group_by(!!sym("cellType")) %>%
         arrange(!!sym("geneName"), .by_group = TRUE)
 
     new(
         Class = "CellTypeMarkers",
-        data,
+        as(data, "DataFrame"),
         metadata = list(
             version = packageVersion("pointillism"),
             date = Sys.Date(),
@@ -241,7 +242,7 @@ setValidity(
         assert_is_factor(object[["cellType"]])
         assert_is_subset(
             x = c("version", "organism", "ensemblRelease", "date"),
-            y = names(attributes(object))
+            y = names(metadata(object))
         )
         TRUE
     }
@@ -336,7 +337,7 @@ SeuratMarkers <- function(data, GRanges) {
         y = colnames(mcols(GRanges))
     )
 
-    # Sanitize Seurat return ---------------------------------------------------
+    # Sanitize Seurat markers --------------------------------------------------
     # Coerce to tibble.
     data <- as(data, "tbl_df")
     # Standardize with camel case.
