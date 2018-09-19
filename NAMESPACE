@@ -2,6 +2,7 @@
 
 export(CellCycleMarkers)
 export(CellTypeMarkers)
+export(SeuratMarkers)
 export(cellCountsPerCluster)
 export(cellTypesPerCluster)
 export(clusterCellCountsPerSample)
