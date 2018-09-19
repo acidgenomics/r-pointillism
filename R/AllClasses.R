@@ -116,6 +116,7 @@ setClass(
 #' @family Marker Functions
 #' @author Michael Steinbaugh
 #'
+#' @inheritParams general
 #' @inheritParams googlesheets::gs_read
 #' @param file `string` or `missing`. Gene markers file path (CSV or Excel).
 #' @param gs `string` or `missing`. Google Sheets `sheet_key` identifier, which
