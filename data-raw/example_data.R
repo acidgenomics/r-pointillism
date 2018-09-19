@@ -14,6 +14,9 @@ library(Matrix)
 # use_condaenv("steinbaugh")
 stopifnot(py_module_available(module = "umap"))
 
+organism <- "Homo sapiens"
+release <- 92L
+
 # splatter =====================================================================
 # Use splatter to generate an example dataset with simulated counts.
 # Note: These DE params are natural log scale.
@@ -35,7 +38,7 @@ stopifnot("sampleName" %in% colnames(colData(sce)))
 # Just keep raw counts.
 assays(sce) <- assays(sce)["counts"]
 # Prepare row data.
-gr <- makeGRangesFromEnsembl("Homo sapiens")
+gr <- makeGRangesFromEnsembl(organism = organism, release = release)
 rowRanges(sce) <- gr[seq_len(nrow(sce))]
 # Sanitize to camel case.
 colData(sce) <- camel(colData(sce))
@@ -82,30 +85,38 @@ sce <- filterCells(sce)
 sce <- runZinbwave(sce)
 sce_small <- sce
 
-# Marker data frames ===========================================================
-rowRanges <- rowRanges(seurat_small)
-all_markers_small <- seurat_small %>%
-    FindAllMarkers() %>%
-    sanitizeSeuratMarkers(rowRanges = rowRanges)
+# all_markers_small ============================================================
+all_markers_small <- SeuratMarkers(
+    data = FindAllMarkers(seurat_small),
+    GRanges = rowRanges(seurat_small)
+)
 
-# Create minimal example cell type markers that match the Seurat data.
-known_markers_small <- tibble(
-    cellType = c("cell_type_1", "cell_type_2"),
-    geneID = all_markers_small %>%
-        slot("rowRanges") %>%
-        mcols() %>%
-        .[["geneID"]] %>%
-        head(n = 2L)
+# known_markers_small ==========================================================
+g2s <- gene2symbol(seurat_small)
+data <- tibble(
+    cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
+    geneID = head(g2s[["geneID"]], n = 2L),
+    geneName = head(g2s[["geneName"]], n = 2L)
 ) %>%
-    group_by(cellType) %>%
-    new(Class = "CellTypeMarkers", .)
+    group_by(cellType)
+known_markers_small <- new(
+    Class = "CellTypeMarkers",
+    as(data, "DataFrame"),
+    metadata = list(
+        version = packageVersion("pointillism"),
+        organism = organism,
+        ensemblRelease = release,
+        date = Sys.Date()
+    )
+)
 
-# Write out an example CSV that we can use to test `readCellTypeMarkers()`.
+# Write out an example CSV that we can use to test `CellTypeMarkers()`.
 export(
     x = known_markers_small,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
+# known_markers_detected_small =================================================
 known_markers_detected_small <- knownMarkersDetected(
     all = all_markers_small,
     known = known_markers_small

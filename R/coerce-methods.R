@@ -67,7 +67,9 @@ setAs(
         )
 
         # Stash metadata and rowRanges into `misc` slot.
-        to@misc[["metadata"]] <- metadata(from)
+        metadata <- metadata(from)
+        metadata[["sessionInfo"]] <- session_info()
+        to@misc[["metadata"]] <- metadata
         to@misc[["rowRanges"]] <- rowRanges(from)
 
         to

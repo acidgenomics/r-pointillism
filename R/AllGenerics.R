@@ -64,6 +64,17 @@ setGeneric(
 
 
 
+#' @rdname knownMarkersDetected
+#' @export
+setGeneric(
+    "knownMarkersDetected",
+    function(all, known, ...) {
+        standardGeneric("knownMarkersDetected")
+    }
+)
+
+
+
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(
