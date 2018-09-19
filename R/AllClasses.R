@@ -15,6 +15,8 @@ setClass(
     contains = "grouped_df"
 )
 
+# FIXME Add validity
+
 
 
 # CellTypeMarkers ==============================================================
@@ -27,6 +29,8 @@ setClass(
     Class = "CellTypeMarkers",
     contains = "grouped_df"
 )
+
+# FIXME Add validity
 
 
 
