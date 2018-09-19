@@ -39,6 +39,7 @@ Imports:
     BiocGenerics,
     BiocParallel,
     cowplot,
+    crayon,
     DESeq2 (>= 1.20),
     dplyr,
     edgeR (>= 3.22),
@@ -53,7 +54,7 @@ Imports:
     sessioninfo,
     Seurat (>= 2.3),
     SummarizedExperiment,
-    tibble,
+    tibble (>= 1.4),
     tidyr,
     zinbwave
 Suggests:
