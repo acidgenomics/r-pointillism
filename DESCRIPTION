@@ -50,6 +50,7 @@ Imports:
     rlang,
     S4Vectors,
     scales,
+    sessioninfo,
     Seurat (>= 2.3),
     SummarizedExperiment,
     tibble,
