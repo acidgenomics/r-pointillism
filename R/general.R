@@ -3,6 +3,12 @@
 #' @name general
 #' @keywords internal
 #'
+#' @param object Object.
+#' @param value Object to assign.
+#' @param x Object.
+#' @param y Secondary object.
+#' @param ... Additional arguments.
+#'
 #' @param aspectRatio `scalar integer`. Aspect ratio.
 #' @param BPPARAM BiocParallel param. We recommend one of the following:
 #'   - [BiocParallel::bpparam()].
@@ -20,6 +26,7 @@
 #'   the reduced dimension matrix to use for `centerX` and `centerY` column
 #'   calculations. Defaults the first and second dimensions.
 #' @param dir `string`. Output directory path.
+#' @param ensemblRelease `scalar integer`. Ensembl release version (e.g. `90`).
 #' @param expression `string`. Calculation to apply. Uses [match.arg()] and
 #'   defaults to the first argument in the `character` vector.
 #' @param fill `ggproto`/`ScaleDiscrete` or `NULL`. Desired ggplot2 fill scale.
@@ -41,7 +48,7 @@
 #' @param legend `boolean`. Include plot legend.
 #' @param min `scalar numeric`. Recommended minimum value cutoff.
 #' @param max `scalar numeric`. Recommended maximum value cutoff.
-#' @param object Object.
+#' @param organism `string`. Full Latin organism name (e.g. `"Homo sapiens"`).
 #' @param perSample `boolean`. Visualize the distributions per sample?
 #' @param pointAlpha `scalar numeric` (`0`-`1`). Alpha transparency level.
 #'   Useful when there many cells in the dataset, and some cells can be masked.
@@ -55,10 +62,6 @@
 #' @param title `string` or `NULL`. Plot title.
 #' @param trans `string`. Name of the axis scale transformation to apply. See
 #'   `help("scale_x_continuous", "ggplot2")` for more information.
-#' @param value Object to assign.
-#' @param x Primary object.
-#' @param y Secondary object.
-#' @param ... Additional arguments.
 #'
 #' @return No value.
 NULL
