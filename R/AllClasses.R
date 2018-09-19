@@ -209,9 +209,10 @@ setClass(
 #'   [Seurat::FindMarkers()] return.
 #' @param GRanges `GRanges`. Gene annotations. Names must correspond to the
 #'   rownames defined in `seurat@data`. The function will automatically subset
-#'   and arrange this accordingly.
+#'   the ranges and arrange them alphabetically.
 #'
-#' @return `SeuratMarkers`. Results are arranged by adjusted P value.
+#' @return `SeuratMarkers`. Results are arranged by adjusted P value, and
+#'   grouped per cluster if applicable.
 #' @export
 #'
 #' @examples
