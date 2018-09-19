@@ -5,9 +5,10 @@ setOldClass(Classes = class(packageVersion("base")))
 # session_info
 setOldClass(Classes = "session_info")
 
-# grouped_df
-# Note that `tbl` class is giving S4 inheritance issues here.
-setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
+# tibble
+# Note that `tbl_df` is properly exported in v1.4.99.9000.
+# Including `tbl` class here is causing an S4 inheritance error.
+# setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
 
 
 
@@ -20,7 +21,7 @@ setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @slot data `grouped_df`. Sanitized Seurat markers data.
+#' @slot data `DataFrame`. Sanitized Seurat markers data.
 #' @slot rowRanges `GRanges`.
 #' @slot organism `string`. Full Latin organism name.
 #' @slot ensemblRelease `scalar integer`. Ensembl release version.
@@ -32,7 +33,7 @@ setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
 setClass(
     Class = "SeuratMarkers",
     slots = c(
-        data = "tbl_df",
+        data = "DataFrame",
         rowRanges = "GRanges",
         organism = "character",
         ensemblRelease = "integer",
@@ -77,7 +78,7 @@ setValidity(
         #     package <- match.arg(package)
         #
         #     # General checks -----------------------------------------------------------
-        #     if (!is(object, "grouped_df")) {
+        #     if (!is(object, "DataFrame")) {
         #         return(FALSE)
         #     } else if (
         #         is.null(attr(object, "vars")) ||
@@ -150,17 +151,7 @@ setValidity(
 #' @return `CellCycleMarkers`.
 setClass(
     Class = "CellCycleMarkers",
-    contains = "grouped_df",
-    slots = list(
-        organism = "character",
-        ensemblRelease = "integer",
-        version = "package_version",
-        date = "Date"
-    ),
-    prototype = prototype(
-        version = packageVersion("pointillism"),
-        date = Sys.Date()
-    )
+    contains = "DataFrame"
 )
 
 
@@ -174,7 +165,7 @@ setClass(
 #' @export
 #'
 #' @inheritParams general
-#' @param data `grouped_df`. Grouped by `phase` column.
+#' @param data `DataFrame`. Grouped by `phase` column.
 #'
 #' @return `CellCycleMarkers`.
 CellCycleMarkers <-  # nolint
@@ -187,12 +178,17 @@ CellCycleMarkers <-  # nolint
         assert_is_an_integer(ensemblRelease)
         new(
             Class = "CellCycleMarkers",
-            data,
-            organism = organism,
-            ensemblRelease = ensemblRelease
+            as(data, "DataFrame"),
+            metadata = list(
+                version = packageVersion("pointillism"),
+                date = Sys.Date(),
+                organism = organism,
+                ensemblRelease = ensemblRelease
+            )
         )
     }
 
+# FIXME Ensure phase is factor.
 
 
 setValidity(
@@ -225,26 +221,13 @@ setValidity(
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @slot organism `string`. Full Latin organism name.
-#' @slot ensemblRelease `scalar integer`. Ensembl release version.
-#' @slot version `package_version`.
-#' @slot date `Date`. Date the object was saved.
-#'
 #' @return `CellTypeMarkers`.
 setClass(
     Class = "CellTypeMarkers",
-    contains = "grouped_df",
-    slots = list(
-        organism = "character",
-        ensemblRelease = "integer",
-        version = "package_version",
-        date = "Date"
-    ),
-    prototype = prototype(
-        version = packageVersion("pointillism"),
-        date = Sys.Date()
-    )
+    contains = "DataFrame"
 )
+
+# FIXME Ensure cellType is factor.
 
 
 
@@ -257,7 +240,7 @@ setClass(
 #' @export
 #'
 #' @inheritParams general
-#' @param data `grouped_df`. Grouped by `phase` column.
+#' @param data `DataFrame`. Grouped by `phase` column.
 #'
 #' @return `CellTypeMarkers`.
 CellTypeMarkers <-  # nolint
@@ -270,9 +253,13 @@ CellTypeMarkers <-  # nolint
         assert_is_an_integer(ensemblRelease)
         new(
             Class = "CellTypeMarkers",
-            data,
-            organism = organism,
-            ensemblRelease = ensemblRelease
+            as(data, "DataFrame"),
+            metadata = list(
+                version = packageVersion("pointillism"),
+                date = Sys.Date(),
+                organism = organism,
+                ensemblRelease = ensemblRelease
+            )
         )
     }
 
@@ -281,7 +268,7 @@ CellTypeMarkers <-  # nolint
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
-        # assert_is_all_of(object, "grouped_df")
+        # assert_is_all_of(object, "DataFrame")
         # assert_has_rows(object)
         # assert_are_identical(
         #     x = colnames(object),
