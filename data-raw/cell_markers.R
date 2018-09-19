@@ -42,6 +42,7 @@ cell_cycle_markers <- lapply(
             gs_read(ws = ws) %>%
             select(phase, geneID) %>%
             mutate(
+                phase = as.factor(phase),
                 geneName = convertGenesToSymbols(
                     object = geneID,
                     organism = organism,
@@ -77,6 +78,7 @@ cell_type_markers <- lapply(
             gs_read(ws = ws) %>%
             select(cellType, geneID) %>%
             mutate(
+                cellType = as.factor(cellType),
                 geneName = convertGenesToSymbols(
                     object = geneID,
                     organism = organism,
