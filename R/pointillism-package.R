@@ -49,6 +49,7 @@
 #' @importFrom S4Vectors as.data.frame as.matrix
 #'   complete.cases mcols mcols<- metadata metadata<- na.omit
 #' @importFrom scales percent pretty_breaks
+#' @importFrom sessioninfo session_info
 #' @importFrom Seurat as.SingleCellExperiment CreateSeuratObject
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
