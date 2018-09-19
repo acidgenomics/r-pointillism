@@ -1,11 +1,18 @@
 # SingleCellExperiment Example Data
-# 2018-09-18
+# 2018-09-19
 
+library(reticulate)
 library(tidyverse)
 library(bcbioSingleCell)
 library(splatter)
 library(Seurat)
 library(Matrix)
+
+# Check and make sure Python umap-learn is accessible to run UMAP.
+# We're using this in the `Seurat::RunUMAP()` call below.
+# Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
+# use_condaenv("steinbaugh")
+stopifnot(py_module_available(module = "umap"))
 
 # splatter =====================================================================
 # Use splatter to generate an example dataset with simulated counts.
@@ -28,7 +35,7 @@ stopifnot("sampleName" %in% colnames(colData(sce)))
 # Just keep raw counts.
 assays(sce) <- assays(sce)["counts"]
 # Prepare row data.
-gr <- makeGRangesFromEnsembl("Homo sapiens", release = 92)
+gr <- makeGRangesFromEnsembl("Homo sapiens")
 rowRanges(sce) <- gr[seq_len(nrow(sce))]
 # Sanitize to camel case.
 colData(sce) <- camel(colData(sce))
@@ -48,8 +55,6 @@ seurat_small <- sce %>%
     RunPCA(do.print = FALSE) %>%
     FindClusters(resolution = seq(from = 0.4, to = 1.2, by = 0.4)) %>%
     RunTSNE(check_duplicates = FALSE) %>%
-    # Requires Python `umap-learn` package.
-    # FIXME Need to fix the PATH on VM to detect umap-learn.
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
 stopifnot(is.character(sampleNames(seurat_small)))
@@ -83,17 +88,22 @@ all_markers_small <- seurat_small %>%
     FindAllMarkers() %>%
     sanitizeSeuratMarkers(rowRanges = rowRanges)
 
+# Create minimal example cell type markers that match the Seurat data.
 known_markers_small <- tibble(
     cellType = c("cell_type_1", "cell_type_2"),
-    geneID = pull(all_markers_small, "geneID")[seq_len(2L)]
+    geneID = all_markers_small %>%
+        slot("rowRanges") %>%
+        mcols() %>%
+        .[["geneID"]] %>%
+        head(n = 2L)
 ) %>%
-    group_by(cellType)
+    group_by(cellType) %>%
+    new(Class = "CellTypeMarkers", .)
 
 # Write out an example CSV that we can use to test `readCellTypeMarkers()`.
-dir.create("inst/extdata", recursive = TRUE, showWarnings = FALSE)
-write_csv(
+export(
     x = known_markers_small,
-    path = file.path("inst", "extdata", "cell_type_markers.csv")
+    file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
 known_markers_detected_small <- knownMarkersDetected(
