@@ -5,9 +5,9 @@ setOldClass(Classes = class(packageVersion("base")))
 # session_info
 setOldClass(Classes = "session_info")
 
-# tibble
-setOldClass(Classes = "tbl_df")
-setOldClass(Classes = "grouped_df")
+# grouped_df
+# Note that `tbl` class is giving S4 inheritance issues here.
+setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
 
 
 
@@ -142,10 +142,25 @@ setValidity(
 #' @author Michael Steinbaugh
 #' @export
 #'
+#' @slot organism `string`. Full Latin organism name.
+#' @slot ensemblRelease `scalar integer`. Ensembl release version.
+#' @slot version `package_version`.
+#' @slot date `Date`. Date the object was saved.
+#'
 #' @return `CellCycleMarkers`.
 setClass(
     Class = "CellCycleMarkers",
-    contains = "grouped_df"
+    contains = "grouped_df",
+    slots = list(
+        organism = "character",
+        ensemblRelease = "integer",
+        version = "package_version",
+        date = "Date"
+    ),
+    prototype = prototype(
+        version = packageVersion("pointillism"),
+        date = Sys.Date()
+    )
 )
 
 
@@ -168,12 +183,14 @@ CellCycleMarkers <-  # nolint
         organism,
         ensemblRelease
     ) {
-        data <- .stashAttributes(
-            object = data,
+        assert_is_a_string(organism)
+        assert_is_an_integer(ensemblRelease)
+        new(
+            Class = "CellCycleMarkers",
+            data,
             organism = organism,
             ensemblRelease = ensemblRelease
         )
-        new("CellCycleMarkers", data)
     }
 
 
@@ -208,10 +225,25 @@ setValidity(
 #' @author Michael Steinbaugh
 #' @export
 #'
+#' @slot organism `string`. Full Latin organism name.
+#' @slot ensemblRelease `scalar integer`. Ensembl release version.
+#' @slot version `package_version`.
+#' @slot date `Date`. Date the object was saved.
+#'
 #' @return `CellTypeMarkers`.
 setClass(
     Class = "CellTypeMarkers",
-    contains = "grouped_df"
+    contains = "grouped_df",
+    slots = list(
+        organism = "character",
+        ensemblRelease = "integer",
+        version = "package_version",
+        date = "Date"
+    ),
+    prototype = prototype(
+        version = packageVersion("pointillism"),
+        date = Sys.Date()
+    )
 )
 
 
@@ -234,12 +266,14 @@ CellTypeMarkers <-  # nolint
         organism,
         ensemblRelease
     ) {
-        data <- .stashAttributes(
-            object = data,
+        assert_is_a_string(organism)
+        assert_is_an_integer(ensemblRelease)
+        new(
+            Class = "CellTypeMarkers",
+            data,
             organism = organism,
             ensemblRelease = ensemblRelease
         )
-        new("CellTypeMarkers", data)
     }
 
 
