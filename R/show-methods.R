@@ -87,6 +87,26 @@ NULL
 
 
 
+# FIXME Need to define this.
+.show.SeuratMarkers <-  # nolint
+    function(object) {
+        validObject(object)
+
+        data <- slot(object, name = "data")
+        assert_is_all_of(data, "DataFrame")
+
+        # `FindAllMarkers()`
+        if ("cluster" %in% colnames(data)) {
+            clusters <- levels(data[["cluster"]])
+            split <- split(x = data, f = data[["cluster"]])
+            stopifnot(is(split, "SplitDataFrameList"))
+            assert_are_identical(names(split), clusters)
+        }
+
+        stop("Not added yet.")
+    }
+
+
 #' @rdname show
 #' @export
 setMethod(

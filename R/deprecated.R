@@ -26,7 +26,16 @@ NULL
 
 
 
-# v0.2.0
+# v0.2.0 =======================================================================
+#' @rdname deprecated
+#' @export
+readCellTypeMarkers <- function(...) {
+    .Deprecated("CellTypeMarkers")
+    CellTypeMarkers(...)
+}
+
+
+
 #' @rdname deprecated
 #' @export
 sanitizeSeuratMarkers <- function(...) {
