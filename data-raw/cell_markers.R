@@ -1,7 +1,3 @@
-# FIXME Resave as `CellCycleMarkers` and `CellTypeMarkers` class.
-
-
-
 # Cell Cycle and Cell Type Markers
 # 2018-09-19
 # This code is derived from:
@@ -51,12 +47,7 @@ cell_cycle_markers <- lapply(ws, function(ws) {
         ) %>%
         group_by(phase) %>%
         arrange(geneID, .by_group = TRUE)
-    # Stash the pointillism version.
-    attr(data, "version") <- packageVersion("pointillism")
-    # Ensure we're stashing the Ensembl release.
-    attr(data, "ensemblRelease") <- release
-    # Stash the date.
-    attr(data, "date") <- Sys.Date()
+    data <- .stashAttributes(data, release = release)
     new("CellCycleMarkers", data)
 })
 names(cell_cycle_markers) <- camel(ws)
@@ -72,7 +63,7 @@ ws <- gs_ws_ls(gs) %>%
 print(ws)
 
 cell_type_markers <- lapply(ws, function(ws) {
-    gs %>%
+    data <- gs %>%
         gs_read(ws = ws) %>%
         select(cellType, geneID) %>%
         mutate(
@@ -84,6 +75,8 @@ cell_type_markers <- lapply(ws, function(ws) {
         ) %>%
         group_by(cellType) %>%
         arrange(geneID, .by_group = TRUE)
+    data <- .stashAttributes(data, release = release)
+    new("CellTypeMarkers", data)
 })
 names(cell_type_markers) <- camel(ws)
 
