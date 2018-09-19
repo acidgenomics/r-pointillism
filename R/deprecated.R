@@ -26,4 +26,14 @@ NULL
 
 
 
+# v0.2.0
+#' @rdname deprecated
+#' @export
+sanitizeSeuratMarkers <- function(...) {
+    .Deprecated("SeuratMarkers")
+    SeuratMarkers(...)
+}
+
+
+
 # nocov end
