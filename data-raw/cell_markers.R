@@ -24,11 +24,12 @@ release <- 92L
 # You'll get a code that you have to paste back into an R prompt.
 
 # Allow tidyverse to access Google Sheets.
-gs_ls()
+# gs_ls()
 
 # Cell cycle markers ===========================================================
 # Download the Google sheet (gs).
-gs <- gs_key("1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw")
+sheet_key <- "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw"
+gs <- gs_key(sheet_key)
 
 # Get a list of the worksheets (ws).
 ws <- gs_ws_ls(gs)
@@ -37,23 +38,10 @@ print(ws)
 cell_cycle_markers <- lapply(
     X = ws,
     FUN = function(ws) {
-        organism <- gsub("_", " ", ws)
-        data <- gs %>%
-            gs_read(ws = ws) %>%
-            select(phase, geneID) %>%
-            mutate(
-                phase = as.factor(phase),
-                geneName = convertGenesToSymbols(
-                    object = geneID,
-                    organism = organism,
-                    release = release
-                )
-            ) %>%
-            group_by(phase) %>%
-            arrange(geneID, .by_group = TRUE)
         CellCycleMarkers(
-            data = data,
-            organism = organism,
+            gs = sheet_key,
+            ws = ws,
+            organism = gsub("_", " ", ws),
             ensemblRelease = release
         )
     }
@@ -62,34 +50,22 @@ names(cell_cycle_markers) <- camel(ws)
 
 # Cell type markers ============================================================
 # Download the Google sheet (gs).
-gs <- gs_key("1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0")
+sheet_key <- "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0"
+gs <- gs_key(sheet_key)
 
 # Get a list of the worksheets (ws).
-ws <- gs_ws_ls(gs) %>%
-    # Remove internal worksheets prefixed with "_".
-    .[!str_detect(., "^_")]
+ws <- gs_ws_ls(gs)
+# Remove internal worksheets prefixed with "_".
+ws <- ws[!str_detect(ws, "^_")]
 print(ws)
 
 cell_type_markers <- lapply(
     X = ws,
     FUN = function(ws) {
-        organism <- gsub("_", " ", ws)
-        data <- gs %>%
-            gs_read(ws = ws) %>%
-            select(cellType, geneID) %>%
-            mutate(
-                cellType = as.factor(cellType),
-                geneName = convertGenesToSymbols(
-                    object = geneID,
-                    organism = organism,
-                    release = release
-                )
-            ) %>%
-            group_by(cellType) %>%
-            arrange(geneID, .by_group = TRUE)
         CellTypeMarkers(
-            data = data,
-            organism = organism,
+            gs = sheet_key,
+            ws = ws,
+            organism = gsub("_", " ", ws),
             ensemblRelease = release
         )
     }

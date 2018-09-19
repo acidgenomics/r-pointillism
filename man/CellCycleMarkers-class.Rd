@@ -4,15 +4,30 @@
 \name{CellCycleMarkers-class}
 \alias{CellCycleMarkers-class}
 \title{\code{CellCycleMarkers} Class}
-\description{
-\code{CellCycleMarkers} Class
+\value{
+\code{CellCycleMarkers}.
 }
+\description{
+Data provenence information, including the organism and Ensembl release are
+defined in \code{\link[=attributes]{attributes()}}.
+}
+\section{Slots}{
+
+\describe{
+\item{\code{organism}}{\code{string}. Full Latin organism name.}
+
+\item{\code{ensemblRelease}}{\code{scalar integer}. Ensembl release version.}
+
+\item{\code{version}}{\code{package_version}.}
+
+\item{\code{date}}{\code{Date}. Date the object was saved.}
+}}
+
 \seealso{
-Other S4 Object: \code{\link{CellTypeMarkers-class}},
-  \code{\link{SingleCellMarkers-class}},
-  \code{\link{coerce}}
+Other S4 Classes: \code{\link{CellTypeMarkers-class}},
+  \code{\link{SeuratMarkers-class}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{S4 Object}
+\concept{S4 Classes}
