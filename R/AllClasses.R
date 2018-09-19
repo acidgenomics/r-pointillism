@@ -12,6 +12,172 @@ setOldClass(Classes = "session_info")
 
 
 
+# CellCycleMarkers =============================================================
+#' `CellCycleMarkers` Class
+#'
+#' Data provenence information, including the organism and Ensembl release are
+#' defined in [attributes()].
+#'
+#' @family S4 Classes
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @slot organism `string`. Full Latin organism name.
+#' @slot ensemblRelease `scalar integer`. Ensembl release version.
+#' @slot version `package_version`.
+#' @slot date `Date`. Date the object was saved.
+#'
+#' @return `CellCycleMarkers`.
+setClass(
+    Class = "CellCycleMarkers",
+    contains = "DataFrame"
+)
+
+
+
+#' `CellCycleMarkers` Generator
+#'
+#' Currently designed for internal use by the pointillism package.
+#'
+#' @family S4 Generators
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#' @param data `DataFrame`. Grouped by `phase` column.
+#'
+#' @return `CellCycleMarkers`.
+CellCycleMarkers <-  # nolint
+    function(
+        data,
+        organism,
+        ensemblRelease
+    ) {
+        assert_is_a_string(organism)
+        assert_is_an_integer(ensemblRelease)
+        new(
+            Class = "CellCycleMarkers",
+            as(data, "DataFrame"),
+            metadata = list(
+                version = packageVersion("pointillism"),
+                date = Sys.Date(),
+                organism = organism,
+                ensemblRelease = ensemblRelease
+            )
+        )
+    }
+
+# FIXME Ensure phase is factor.
+
+
+setValidity(
+    Class = "CellCycleMarkers",
+    method = function(object) {
+        # assert_is_all_of(object, "grouped_df")
+        # assert_has_rows(object)
+        # assert_are_identical(
+        #     x = colnames(object),
+        #     y = c("phase", "geneID", "geneName")
+        # )
+        # assert_are_identical(group_vars(object), "phase")
+        # assert_is_subset(
+        #     x = c("version", "organism", "ensemblRelease", "date"),
+        #     y = names(attributes(object))
+        # )
+        TRUE
+    }
+)
+
+
+
+# CellTypeMarkers ==============================================================
+#' `CellTypeMarkers` Class
+#'
+#' Data provenence information, including the organism and Ensembl release are
+#' defined in [attributes()].
+#'
+#' @family S4 Classes
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @return `CellTypeMarkers`.
+setClass(
+    Class = "CellTypeMarkers",
+    contains = "DataFrame"
+)
+
+# FIXME Ensure cellType is factor.
+
+
+
+#' `CellTypeMarkers` Generator
+#'
+#' Currently designed for internal use by the pointillism package.
+#'
+#' @family S4 Generators
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#' @param data `DataFrame`. Grouped by `phase` column.
+#'
+#' @return `CellTypeMarkers`.
+CellTypeMarkers <-  # nolint
+    function(
+        data,
+        organism,
+        ensemblRelease
+    ) {
+        assert_is_a_string(organism)
+        assert_is_an_integer(ensemblRelease)
+        new(
+            Class = "CellTypeMarkers",
+            as(data, "DataFrame"),
+            metadata = list(
+                version = packageVersion("pointillism"),
+                date = Sys.Date(),
+                organism = organism,
+                ensemblRelease = ensemblRelease
+            )
+        )
+    }
+
+
+
+setValidity(
+    Class = "CellTypeMarkers",
+    method = function(object) {
+        # assert_is_all_of(object, "DataFrame")
+        # assert_has_rows(object)
+        # assert_are_identical(
+        #     x = colnames(object),
+        #     y = c("cellType", "geneID", "geneName")
+        # )
+        # assert_are_identical(group_vars(object), "cellType")
+        # assert_is_subset(
+        #     x = c("version", "organism", "ensemblRelease", "date"),
+        #     y = names(attributes(object))
+        # )
+        TRUE
+    }
+)
+
+
+
+# SCDE =========================================================================
+# `SCDE` Class
+#
+# Single cell differential expression results.
+#
+# TODO Add this class, which is returned from `diffExp()`.
+# TODO Keep track of zinb weights, etc.
+# Data provenance!!!
+# #' @slot zeroWeights `string`. Package name and version used to perform
+# #' @slot generator `string`. Package name and version used to generate the
+# #'   markers.
+
+
+
 # SeuratMarkers ================================================================
 #' `SeuratMarkers` Class
 #'
@@ -177,10 +343,10 @@ SeuratMarkers <- function(data, rowRanges) {
     # Subset and arrange the GRanges to match.
     rowRanges <- rowRanges[markers]
 
-    # Return SingleCellMarkers =================================================
+    # Return ===================================================================
     new(
-        Class = "SingleCellMarkers",
-        data = data,
+        Class = "SeuratMarkers",
+        data = as(data, "DataFrame"),
         rowRanges = rowRanges
     )
 }
@@ -245,172 +411,6 @@ setValidity(
         #
         #
         #
-        TRUE
-    }
-)
-
-
-
-# SCDE =========================================================================
-# `SCDE` Class
-#
-# Single cell differential expression results.
-#
-# TODO Add this class, which is returned from `diffExp()`.
-# TODO Keep track of zinb weights, etc.
-# Data provenance!!!
-# #' @slot zeroWeights `string`. Package name and version used to perform
-# #' @slot generator `string`. Package name and version used to generate the
-# #'   markers.
-
-
-
-# CellCycleMarkers =============================================================
-#' `CellCycleMarkers` Class
-#'
-#' Data provenence information, including the organism and Ensembl release are
-#' defined in [attributes()].
-#'
-#' @family S4 Classes
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @slot organism `string`. Full Latin organism name.
-#' @slot ensemblRelease `scalar integer`. Ensembl release version.
-#' @slot version `package_version`.
-#' @slot date `Date`. Date the object was saved.
-#'
-#' @return `CellCycleMarkers`.
-setClass(
-    Class = "CellCycleMarkers",
-    contains = "DataFrame"
-)
-
-
-
-#' `CellCycleMarkers` Generator
-#'
-#' Currently designed for internal use by the pointillism package.
-#'
-#' @family S4 Generators
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams general
-#' @param data `DataFrame`. Grouped by `phase` column.
-#'
-#' @return `CellCycleMarkers`.
-CellCycleMarkers <-  # nolint
-    function(
-        data,
-        organism,
-        ensemblRelease
-    ) {
-        assert_is_a_string(organism)
-        assert_is_an_integer(ensemblRelease)
-        new(
-            Class = "CellCycleMarkers",
-            as(data, "DataFrame"),
-            metadata = list(
-                version = packageVersion("pointillism"),
-                date = Sys.Date(),
-                organism = organism,
-                ensemblRelease = ensemblRelease
-            )
-        )
-    }
-
-# FIXME Ensure phase is factor.
-
-
-setValidity(
-    Class = "CellCycleMarkers",
-    method = function(object) {
-        # assert_is_all_of(object, "grouped_df")
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = colnames(object),
-        #     y = c("phase", "geneID", "geneName")
-        # )
-        # assert_are_identical(group_vars(object), "phase")
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(attributes(object))
-        # )
-        TRUE
-    }
-)
-
-
-
-# CellTypeMarkers ==============================================================
-#' `CellTypeMarkers` Class
-#'
-#' Data provenence information, including the organism and Ensembl release are
-#' defined in [attributes()].
-#'
-#' @family S4 Classes
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @return `CellTypeMarkers`.
-setClass(
-    Class = "CellTypeMarkers",
-    contains = "DataFrame"
-)
-
-# FIXME Ensure cellType is factor.
-
-
-
-#' `CellTypeMarkers` Generator
-#'
-#' Currently designed for internal use by the pointillism package.
-#'
-#' @family S4 Generators
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams general
-#' @param data `DataFrame`. Grouped by `phase` column.
-#'
-#' @return `CellTypeMarkers`.
-CellTypeMarkers <-  # nolint
-    function(
-        data,
-        organism,
-        ensemblRelease
-    ) {
-        assert_is_a_string(organism)
-        assert_is_an_integer(ensemblRelease)
-        new(
-            Class = "CellTypeMarkers",
-            as(data, "DataFrame"),
-            metadata = list(
-                version = packageVersion("pointillism"),
-                date = Sys.Date(),
-                organism = organism,
-                ensemblRelease = ensemblRelease
-            )
-        )
-    }
-
-
-
-setValidity(
-    Class = "CellTypeMarkers",
-    method = function(object) {
-        # assert_is_all_of(object, "DataFrame")
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = colnames(object),
-        #     y = c("cellType", "geneID", "geneName")
-        # )
-        # assert_are_identical(group_vars(object), "cellType")
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(attributes(object))
-        # )
         TRUE
     }
 )
