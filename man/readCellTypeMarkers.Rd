@@ -13,7 +13,7 @@ readCellTypeMarkers(file, gene2symbol)
 contain \code{geneID} and \code{geneName}.}
 }
 \value{
-\code{grouped_df}, grouped by "\code{cellType}" column.
+\code{CellTypeMarkers}.
 }
 \description{
 Read Cell Type Markers File

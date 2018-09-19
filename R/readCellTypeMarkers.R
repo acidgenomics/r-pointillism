@@ -1,3 +1,7 @@
+# TODO Consider renaming to simple `CellTypeMarkers()` generator.
+
+
+
 #' Read Cell Type Markers File
 #'
 #' @name readCellTypeMarkers
@@ -8,7 +12,7 @@
 #' @param gene2symbol `data.frame`. Gene-to-symbol mappings. Columns must
 #'   contain `geneID` and `geneName`.
 #'
-#' @return `grouped_df`, grouped by "`cellType`" column.
+#' @return `CellTypeMarkers`.
 #' @export
 #'
 #' @examples
@@ -54,10 +58,12 @@ readCellTypeMarkers <- function(file, gene2symbol) {
     )
     assert_is_non_empty(intersect)
 
-    data %>%
+    data <- data %>%
         filter(!!sym("geneID") %in% !!intersect) %>%
         left_join(gene2symbol, by = "geneID") %>%
         unique() %>%
         group_by(!!sym("cellType")) %>%
         arrange(!!sym("geneName"), .by_group = TRUE)
+
+    new("CellTypeMarkers", data)
 }
