@@ -4,6 +4,16 @@
 \alias{general}
 \title{General Arguments}
 \arguments{
+\item{object}{Object.}
+
+\item{value}{Object to assign.}
+
+\item{x}{Object.}
+
+\item{y}{Secondary object.}
+
+\item{...}{Additional arguments.}
+
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
 \item{BPPARAM}{BiocParallel param. We recommend one of the following:
@@ -28,6 +38,8 @@ the reduced dimension matrix to use for \code{centerX} and \code{centerY} column
 calculations. Defaults the first and second dimensions.}
 
 \item{dir}{\code{string}. Output directory path.}
+
+\item{ensemblRelease}{\code{scalar integer}. Ensembl release version (e.g. \code{90}).}
 
 \item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
 defaults to the first argument in the \code{character} vector.}
@@ -61,7 +73,7 @@ interesting groups. Must be formatted in camel case and intersect with
 
 \item{max}{\code{scalar numeric}. Recommended maximum value cutoff.}
 
-\item{object}{Object.}
+\item{organism}{\code{string}. Full Latin organism name (e.g. \code{"Homo sapiens"}).}
 
 \item{perSample}{\code{boolean}. Visualize the distributions per sample?}
 
@@ -83,14 +95,6 @@ defaults to the first argument in the \code{character} vector.}
 
 \item{trans}{\code{string}. Name of the axis scale transformation to apply. See
 \code{help("scale_x_continuous", "ggplot2")} for more information.}
-
-\item{value}{Object to assign.}
-
-\item{x}{Primary object.}
-
-\item{y}{Secondary object.}
-
-\item{...}{Additional arguments.}
 }
 \value{
 No value.

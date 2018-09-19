@@ -66,7 +66,7 @@
 \S4method{sampleNames}{seurat}(object)
 }
 \arguments{
-\item{x}{Primary object.}
+\item{x}{Object.}
 
 \item{...}{Additional arguments.}
 

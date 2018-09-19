@@ -38,10 +38,9 @@ glimpse(x)
 \item \code{\link[dplyr:top_n]{dplyr::top_n()}}.
 }
 
-Other Marker Functions: \code{\link{clusterID}},
-  \code{\link{knownMarkersDetected}},
-  \code{\link{readCellTypeMarkers}},
-  \code{\link{sanitizeSeuratMarkers}}
+Other Marker Functions: \code{\link{CellTypeMarkers}},
+  \code{\link{SeuratMarkers}}, \code{\link{clusterID}},
+  \code{\link{knownMarkersDetected}}
 }
 \author{
 Michael Steinbaugh

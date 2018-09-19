@@ -30,9 +30,9 @@ table(x)
 head(x)
 }
 \seealso{
-Other Marker Functions: \code{\link{knownMarkersDetected}},
-  \code{\link{readCellTypeMarkers}},
-  \code{\link{sanitizeSeuratMarkers}},
+Other Marker Functions: \code{\link{CellTypeMarkers}},
+  \code{\link{SeuratMarkers}},
+  \code{\link{knownMarkersDetected}},
   \code{\link{topMarkers}}
 }
 \author{

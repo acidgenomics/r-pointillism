@@ -2,7 +2,17 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{readCellTypeMarkers}
+\alias{sanitizeSeuratMarkers}
 \title{Deprecated Functions}
+\usage{
+readCellTypeMarkers(...)
+
+sanitizeSeuratMarkers(...)
+}
+\arguments{
+\item{...}{Additional arguments.}
+}
 \value{
 \code{\link[=.Deprecated]{.Deprecated()}}.
 }
