@@ -105,41 +105,126 @@ setClass(
     contains = "DataFrame"
 )
 
-# FIXME Ensure cellType is factor.
 
 
-
-#' `CellTypeMarkers` Generator
+#' Cell Type Markers
 #'
-#' Currently designed for internal use by the pointillism package.
+#' Local spreadsheets (CSV, Excel) and Google Sheets are currently supported.
 #'
-#' @family S4 Generators
+#' Must contain `phase` and `geneID` columns.
+#'
+#' @family Marker Functions
 #' @author Michael Steinbaugh
-#' @export
 #'
-#' @inheritParams general
-#' @param data `DataFrame`. Grouped by `phase` column.
+#' @inheritParams googlesheets::gs_read
+#' @param file `string` or `missing`. Gene markers file path (CSV or Excel).
+#' @param gs `string` or `missing`. Google Sheets `sheet_key` identifier, which
+#'   can be located with the [googlesheets::gs_ls()] function.
+#' @param gene2symbol `gene2symbol`. Use the stashed gene-to-symbol mappings
+#'   from a `SingleCellExperiment` or `seurat` object.
+#'
+#' @seealso
+#' - [googlesheets::gs_key()].
+#' - [googlesheets::gs_read()].
 #'
 #' @return `CellTypeMarkers`.
-CellTypeMarkers <-  # nolint
-    function(
-        data,
-        organism,
-        ensemblRelease
+#' @export
+#'
+#' @examples
+#' # Homo sapiens
+#' file <- system.file(
+#'     file.path("extdata", "cell_type_markers.csv"),
+#'     package = "pointillism"
+#' )
+#' gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
+#' x <- readCellTypeMarkers(file, gene2symbol = gene2symbol)
+#' print(x)
+CellTypeMarkers <- function(
+    file,
+    gs,
+    ws = 1L,
+    organism,
+    ensemblRelease,
+    gene2symbol = NULL
+) {
+    assert_is_a_string(organism)
+    assertIsAnImplicitInteger(ensemblRelease)
+    assert_is_any_of(gene2symbol, c("gene2symbol", "NULL"))
+
+    # Local markers from local file or Google Sheets.
+    if (
+        (!missing(file) && !missing(gs)) ||
+        (missing(file) && missing(gs))
     ) {
-        assert_is_a_string(organism)
-        assert_is_an_integer(ensemblRelease)
-        new(
-            Class = "CellTypeMarkers",
-            as(data, "DataFrame"),
-            metadata = list(
-                version = packageVersion("pointillism"),
-                date = Sys.Date(),
-                organism = organism,
-                ensemblRelease = ensemblRelease
-            )
+        stop("Specify either `file` or `gs` (googlesheet)")
+    } else if (!missing(file)) {
+        # CSV file mode.
+        assert_is_a_string(file)
+        data <- import(file)
+    } else if (!missing(gs)) {
+        # Google Sheet mode.
+        assert_is_a_string(gs)
+        assert_is_scalar(ws)
+        ss <- gs_key(gs)
+        data <- gs_read(ss = ss, ws = ws)
+    }
+
+    # Coerce to tibble and sanitize.
+    data <- data %>%
+        as("tbl_df") %>%
+        camel() %>%
+        select(!!!syms(c("cellType", "geneID"))) %>%
+        .[complete.cases(.), , drop = FALSE]
+
+    # Get gene-to-symbol mappings from Ensembl.
+    if (is.null(gene2symbol)) {
+        gene2symbol <- makeGene2symbolFromEnsembl(
+            organism = organism,
+            release = ensemblRelease
         )
     }
+    assert_is_all_of(gene2symbol, "gene2symbol")
+    # We're coercing to tibble here to join back to the markers data.
+    gene2symbol <- gene2symbol %>%
+        as("DataFrame") %>%
+        set_rownames(NULL) %>%
+        as("tbl_df")
+
+    # Warn user about markers that aren't present in the gene2symbol.
+    # This is useful for informing about putative markers that aren't expressed.
+    setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
+    if (length(setdiff)) {
+        warning(paste(
+            "Markers missing from gene2symbol (not expressed):",
+            printString(setdiff),
+            sep = "\n"
+        ))
+    }
+
+    intersect <- intersect(
+        x = data[["geneID"]],
+        y = gene2symbol[["geneID"]]
+    )
+    assert_is_non_empty(intersect)
+
+    data <- data %>%
+        filter(!!sym("geneID") %in% !!intersect) %>%
+        left_join(gene2symbol, by = "geneID") %>%
+        unique() %>%
+        group_by(!!sym("cellType")) %>%
+        arrange(!!sym("geneName"), .by_group = TRUE)
+
+    new(
+        Class = "CellTypeMarkers",
+        data,
+        metadata = list(
+            version = packageVersion("pointillism"),
+            date = Sys.Date(),
+            organism = organism,
+            ensemblRelease = ensemblRelease
+        )
+    )
+}
 
 
 
@@ -337,6 +422,19 @@ SeuratMarkers <- function(data, GRanges) {
 setValidity(
     Class = "SeuratMarkers",
     method = function(object) {
+        data <- slot(object, name = "data")
+        # `FindAllMarkers()`
+        if ("cluster" %in% colnames(data)) {
+            clusters <- data[["cluster"]]
+            assert_is_factor(clusters)
+            clusters <- levels(clusters)
+            # Ensure that we haven't already defined `ident`.
+            assert_are_identical(
+                x = clusters,
+                y = as.character(seq(from = 0L, to = length(clusters) - 1L))
+            )
+        }
+
         # .assertIsKnownMarkers(object)
         # requiredCols <- c(
         #     "cellType",  # bcbio
@@ -392,6 +490,7 @@ setValidity(
         #
         #
         #
+
         TRUE
     }
 )
