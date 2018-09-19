@@ -44,6 +44,7 @@ Imports:
     dplyr,
     edgeR (>= 3.22),
     ggplot2,
+    googlesheets,
     magrittr,
     Matrix,
     methods,
