@@ -15,7 +15,7 @@
     counts <- counts[rownames, , drop = FALSE]
 
     # Transpose, putting the gene rownames into the columns.
-    if (.isSparseMatrix(counts)) {
+    if (is(counts, "sparseMatrix")) {
         t <- Matrix::t
     }
     data <- t(counts)
@@ -145,7 +145,7 @@
     assert_are_identical(colnames(geneCounts), rownames)
 
     # Keep the supported operations sparse.
-    if (.isSparseMatrix(geneCounts)) {
+    if (is(geneCounts, "sparseMatrix")) {
         rowMeans <- Matrix::rowMeans
         rowSums <- Matrix::rowSums
     }

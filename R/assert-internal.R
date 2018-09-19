@@ -16,6 +16,13 @@
     stopifnot(.hasZinbwave(object))
 }
 
+.hasZinbwave <- function(object) {
+    stopifnot(is(object, "SingleCellExperiment"))
+    # Require `counts` to always be slotted.
+    stopifnot("counts" %in% assayNames(object))
+    all(c("normalizedValues", "weights") %in% assayNames(object))
+}
+
 
 
 .assertIsKnownMarkers <- function(object) {
@@ -57,12 +64,7 @@
 
 
 
-.hasZinbwave <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    # Require `counts` to always be slotted.
-    stopifnot("counts" %in% assayNames(object))
-    all(c("normalizedValues", "weights") %in% assayNames(object))
-}
+
 
 
 
@@ -104,14 +106,4 @@
             return(TRUE)
         }
     }
-}
-
-
-
-# Consider adding this to the basejump package.
-.isSparseMatrix <- function(object) {
-    identical(
-        attributes(class(object))[["package"]],
-        "Matrix"
-    )
 }
