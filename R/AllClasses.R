@@ -1,3 +1,9 @@
+# tibble =======================================================================
+setOldClass(Classes = class(tibble()))
+setOldClass(Classes = c("grouped_df", class(tibble())))
+
+
+
 # CellCycleMarkers =============================================================
 #' `CellCycleMarkers` Class
 #'
@@ -6,7 +12,7 @@
 #' @export
 setClass(
     Class = "CellCycleMarkers",
-    contains = "DataFrame"
+    contains = "grouped_df"
 )
 
 
@@ -19,7 +25,7 @@ setClass(
 #' @export
 setClass(
     Class = "CellTypeMarkers",
-    contains = "DataFrame"
+    contains = "grouped_df"
 )
 
 
