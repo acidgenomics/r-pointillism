@@ -4,9 +4,8 @@
 #' @family S4 Object
 #' @author Michael Steinbuagh
 #' @importFrom methods show
-#' @export
-#'
 #' @inherit methods::show
+#' @export
 #'
 #' @examples
 #' show(bcb_small)
