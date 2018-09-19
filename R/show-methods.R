@@ -37,11 +37,48 @@ NULL
 
         return <- c(
             bold(paste(class(object), metadata(object)[["version"]])),
+            bold(paste0(organism, " (Ensembl ", release, ")")),
             url,
             citation,
             separatorBar,
-            paste0(bold(organism), " (Ensembl ", release, ")"),
-            paste0(names(genes), "(", lengths, "): ", genes)
+            paste0(bold(names(genes)), " (", lengths, "): ", genes)
+        )
+
+        cat(return, sep = "\n")
+    }
+
+
+
+.show.CellTypeMarkers <-  # nolint
+    function(object) {
+        validObject(object)
+
+        # Include the organism information.
+        organism <- metadata(object)[["organism"]]
+        release <- metadata(object)[["ensemblRelease"]]
+
+        # Include the gene lengths per phase.
+        split <- split(x = object, f = object[["cellType"]])
+        stopifnot(is(split, "SplitDataFrameList"))
+        lengths <- nrow(split)
+        genes <- sapply(
+            X = split,
+            FUN = function(x) {
+                x <- x[["geneName"]]
+                x <- sort(x)
+                x <- c(head(x, n = 2L), "...", tail(x, n = 2L))
+                paste(x, collapse = " ")
+            },
+            USE.NAMES = TRUE
+        )
+
+        return <- c(
+            bold(paste(class(object), metadata(object)[["version"]])),
+            bold(paste0(organism, " (Ensembl ", release, ")")),
+            url,
+            citation,
+            separatorBar,
+            paste0(bold(names(genes)), " (", lengths, "): ", genes)
         )
 
         cat(return, sep = "\n")
