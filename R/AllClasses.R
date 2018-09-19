@@ -67,23 +67,22 @@ CellCycleMarkers <-  # nolint
         )
     }
 
-# FIXME Ensure phase is factor.
 
 
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
-        # assert_is_all_of(object, "grouped_df")
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = colnames(object),
-        #     y = c("phase", "geneID", "geneName")
-        # )
-        # assert_are_identical(group_vars(object), "phase")
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(attributes(object))
-        # )
+        assert_is_all_of(object, "DataFrame")
+        assert_has_rows(object)
+        assert_are_identical(
+            x = colnames(object),
+            y = c("phase", "geneID", "geneName")
+        )
+        assert_is_factor(object[["phase"]])
+        assert_is_subset(
+            x = c("version", "organism", "ensemblRelease", "date"),
+            y = names(metadata(object))
+        )
         TRUE
     }
 )
@@ -147,34 +146,20 @@ CellTypeMarkers <-  # nolint
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
-        # assert_is_all_of(object, "DataFrame")
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = colnames(object),
-        #     y = c("cellType", "geneID", "geneName")
-        # )
-        # assert_are_identical(group_vars(object), "cellType")
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(attributes(object))
-        # )
+        assert_is_all_of(object, "DataFrame")
+        assert_has_rows(object)
+        assert_are_identical(
+            x = colnames(object),
+            y = c("cellType", "geneID", "geneName")
+        )
+        assert_is_factor(object[["cellType"]])
+        assert_is_subset(
+            x = c("version", "organism", "ensemblRelease", "date"),
+            y = names(attributes(object))
+        )
         TRUE
     }
 )
-
-
-
-# SCDE =========================================================================
-# `SCDE` Class
-#
-# Single cell differential expression results.
-#
-# TODO Add this class, which is returned from `diffExp()`.
-# TODO Keep track of zinb weights, etc.
-# Data provenance!!!
-# #' @slot zeroWeights `string`. Package name and version used to perform
-# #' @slot generator `string`. Package name and version used to generate the
-# #'   markers.
 
 
 
@@ -188,7 +173,7 @@ setValidity(
 #' @export
 #'
 #' @slot data `DataFrame`. Sanitized Seurat markers data.
-#' @slot rowRanges `GRanges`.
+#' @slot GRanges `GRanges`.
 #' @slot organism `string`. Full Latin organism name.
 #' @slot ensemblRelease `scalar integer`. Ensembl release version.
 #' @slot version `package_version`.
@@ -200,23 +185,14 @@ setClass(
     Class = "SeuratMarkers",
     slots = c(
         data = "DataFrame",
-        rowRanges = "GRanges",
-        organism = "character",
-        ensemblRelease = "integer",
-        version = "package_version",
-        date = "Date",
-        sessionInfo = "session_info"
-    ),
-    prototype = prototype(
-        version = packageVersion("pointillism"),
-        date = Sys.Date(),
-        sessionInfo = session_info()
+        GRanges = "GRanges",
+        metadata = "list"
     )
 )
 
 
 
-#' Seurat Markers
+#' Sanitize Seurat Markers
 #'
 #' This generator function is designed to take the original return from a Seurat
 #' marker analysis and add corresponding gene annotations.
@@ -231,8 +207,9 @@ setClass(
 #' @inheritParams general
 #' @param data `data.frame`. Unmodified [Seurat::FindAllMarkers()] or
 #'   [Seurat::FindMarkers()] return.
-#' @param rowRanges `GRanges`. Gene annotations. Names must correspond to the
-#'   rownames defined in `seurat@data`.
+#' @param GRanges `GRanges`. Gene annotations. Names must correspond to the
+#'   rownames defined in `seurat@data`. The function will automatically subset
+#'   and arrange this accordingly.
 #'
 #' @return `SeuratMarkers`. Results are arranged by adjusted P value.
 #' @export
@@ -246,7 +223,7 @@ setClass(
 #' ))
 #' all_sanitized <- SeuratMarkers(
 #'     data = all_markers,
-#'     rowRanges = rowRanges(object)
+#'     GRanges = rowRanges(object)
 #' )
 #' glimpse(all_sanitized)
 #'
@@ -260,19 +237,19 @@ setClass(
 #' ))
 #' ident_3_sanitized <- SeuratMarkers(
 #'     data = ident_3_markers,
-#'     rowRanges = rowRanges(object)
+#'     GRanges = rowRanges(object)
 #' )
 #' glimpse(ident_3_sanitized)
-SeuratMarkers <- function(data, rowRanges) {
+SeuratMarkers <- function(data, GRanges) {
     assert_is_data.frame(data)
     assertHasRownames(data)
-    assert_is_all_of(rowRanges, "GRanges")
+    assert_is_all_of(GRanges, "GRanges")
     assert_is_subset(
         x = c("geneID", "geneName"),
-        y = colnames(mcols(rowRanges))
+        y = colnames(mcols(GRanges))
     )
 
-    # Sanitize Seurat markers data.frame =======================================
+    # Sanitize Seurat return ---------------------------------------------------
     # Coerce to tibble.
     data <- as(data, "tbl_df")
     # Standardize with camel case.
@@ -335,19 +312,22 @@ SeuratMarkers <- function(data, rowRanges) {
             arrange(!!sym("padj"))
     }
 
-    markers <- unique(data[["name"]])
+    # GRanges ----------------------------------------------------------------
+    # Require that all of the markers are defined in GRanges.
+    names <- sort(unique(data[["name"]]))
+    assert_is_subset(names, names(GRanges))
+    GRanges <- GRanges[names]
 
-    # rowRanges ================================================================
-    # Require that all of the rownames are defined in rowRanges.
-    assert_is_subset(markers, names(rowRanges))
-    # Subset and arrange the GRanges to match.
-    rowRanges <- rowRanges[markers]
-
-    # Return ===================================================================
+    # Return -------------------------------------------------------------------
     new(
         Class = "SeuratMarkers",
         data = as(data, "DataFrame"),
-        rowRanges = rowRanges
+        GRanges = GRanges,
+        metadata = list(
+            version = packageVersion("pointillism"),
+            date = Sys.Date(),
+            sessionInfo = session_info(include_base = TRUE)
+        )
     )
 }
 
