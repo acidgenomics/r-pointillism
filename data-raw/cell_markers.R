@@ -37,13 +37,14 @@ print(ws)
 cell_cycle_markers <- lapply(
     X = ws,
     FUN = function(ws) {
+        organism <- gsub("_", " ", ws)
         data <- gs %>%
             gs_read(ws = ws) %>%
             select(phase, geneID) %>%
             mutate(
                 geneName = convertGenesToSymbols(
-                    geneID,
-                    organism = ws,
+                    object = geneID,
+                    organism = organism,
                     release = release
                 )
             ) %>%
@@ -51,7 +52,7 @@ cell_cycle_markers <- lapply(
             arrange(geneID, .by_group = TRUE)
         CellCycleMarkers(
             data = data,
-            organism = gsub("_", " ", ws),
+            organism = organism,
             ensemblRelease = release
         )
     }
@@ -71,13 +72,14 @@ print(ws)
 cell_type_markers <- lapply(
     X = ws,
     FUN = function(ws) {
+        organism <- gsub("_", " ", ws)
         data <- gs %>%
             gs_read(ws = ws) %>%
             select(cellType, geneID) %>%
             mutate(
                 geneName = convertGenesToSymbols(
-                    geneID,
-                    organism = ws,
+                    object = geneID,
+                    organism = organism,
                     release = release
                 )
             ) %>%
@@ -85,7 +87,7 @@ cell_type_markers <- lapply(
             arrange(geneID, .by_group = TRUE)
         CellTypeMarkers(
             data = data,
-            organism = gsub("_", " ", ws),
+            organism = organism,
             ensemblRelease = release
         )
     }
