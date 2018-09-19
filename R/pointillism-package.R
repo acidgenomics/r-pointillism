@@ -31,9 +31,9 @@
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
 #' @importFrom cowplot plot_grid
-#' @importFrom dplyr arrange desc everything filter group_by
-#'   group_vars left_join mutate mutate_at mutate_if n pull
-#'   select slice summarize ungroup vars
+#' @importFrom dplyr arrange desc everything filter group_by group_vars
+#'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
+#'   ungroup vars
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom edgeR calcNormFactors DGEList estimateDisp glmFit
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
