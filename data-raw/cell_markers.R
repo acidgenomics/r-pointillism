@@ -2,39 +2,44 @@
 
 
 
-# Cell Markers
-# 2018-07-20
+# Cell Cycle and Cell Type Markers
+# 2018-09-19
 # This code is derived from:
 # - Tirosh et al, 2015
 # - http://satijalab.org/seurat/cell_cycle_vignette.html
 
-# Must be interactive, requiring Google Sheets authentication
-stopifnot(interactive())
-
 library(devtools)
 library(googlesheets)
 library(tidyverse)
-load_all()
 
-# Ensembl release version
+# Must be interactive, requiring Google Sheets authentication.
+stopifnot(interactive())
+
+# Ensembl release version.
 release <- 92L
 
 # Here we're matching the stored Ensembl identifiers (`geneID`) using
 # ensembldb to obtain the latest symbol names from Ensembl.
 
-# Allow tidyverse to access Google Sheets
+# Generate an OAuth token on an R server using httr.
+# https://support.rstudio.com/hc/en-us/articles/217952868-Generating-OAuth-tokens-for-a-server-using-httr
+# Otherwise you will run into a localhost port 1410 error.
+# Easiest way to fix this is to set `options(httr_oob_default = TRUE)`.
+# You'll get a code that you have to paste back into an R prompt.
+
+# Allow tidyverse to access Google Sheets.
 gs_ls()
 
 # Cell cycle markers ===========================================================
-# Download the Google sheet (gs)
+# Download the Google sheet (gs).
 gs <- gs_key("1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw")
 
-# Get a list of the worksheets (ws)
+# Get a list of the worksheets (ws).
 ws <- gs_ws_ls(gs)
 print(ws)
 
 cell_cycle_markers <- lapply(ws, function(ws) {
-    gs %>%
+    data <- gs %>%
         gs_read(ws = ws) %>%
         select(phase, geneID) %>%
         mutate(
@@ -46,16 +51,23 @@ cell_cycle_markers <- lapply(ws, function(ws) {
         ) %>%
         group_by(phase) %>%
         arrange(geneID, .by_group = TRUE)
+    # Stash the pointillism version.
+    attr(data, "version") <- packageVersion("pointillism")
+    # Ensure we're stashing the Ensembl release.
+    attr(data, "ensemblRelease") <- release
+    # Stash the date.
+    attr(data, "date") <- Sys.Date()
+    new("CellCycleMarkers", data)
 })
 names(cell_cycle_markers) <- camel(ws)
 
 # Cell type markers ============================================================
-# Download the Google sheet (gs)
+# Download the Google sheet (gs).
 gs <- gs_key("1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0")
 
-# Get a list of the worksheets (ws)
+# Get a list of the worksheets (ws).
 ws <- gs_ws_ls(gs) %>%
-    # Remove internal worksheets prefixed with "_"
+    # Remove internal worksheets prefixed with "_".
     .[!str_detect(., "^_")]
 print(ws)
 
@@ -76,7 +88,7 @@ cell_type_markers <- lapply(ws, function(ws) {
 names(cell_type_markers) <- camel(ws)
 
 # Save R data ==================================================================
-use_data(
+devtools::use_data(
     cell_cycle_markers,
     cell_type_markers,
     compress = "xz",
