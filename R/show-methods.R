@@ -3,6 +3,8 @@
 #' @name show
 #' @family S4 Object
 #' @author Michael Steinbuagh
+#' @importFrom methods show
+#' @export
 #'
 #' @inherit methods::show
 #'
@@ -92,4 +94,15 @@ setMethod(
     f = "show",
     signature = signature("CellCycleMarkers"),
     definition = .show.CellCycleMarkers
+)
+
+
+
+
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("CellTypeMarkers"),
+    definition = .show.CellTypeMarkers
 )
