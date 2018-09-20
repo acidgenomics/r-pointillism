@@ -3,7 +3,7 @@
 #' R package for for single-cell RNA-seq clustering analysis.
 #'
 #' @name pointillism-package
-#' @docType package
+#' @aliases NULL
 #'
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
@@ -62,7 +62,7 @@
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave
-NULL
+"_PACKAGE"
 
 # Note that `tbl_df` is properly exported in v1.4.99.9000.
 # #' @importClassesFrom tibble tbl_df
