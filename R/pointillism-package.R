@@ -2,14 +2,11 @@
 #'
 #' R package for for single-cell RNA-seq clustering analysis.
 #'
-#' @name pointillism-package
 #' @aliases NULL
 #'
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
-#'
 #' @importMethodsFrom basejump coerce
-#'
 #' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_positive
