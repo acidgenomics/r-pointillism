@@ -227,14 +227,21 @@ formals(CellTypeMarkers) <- f
 #'     GRanges = rowRanges(object)
 #' )
 #' glimpse(ident_3_sanitized)
-SeuratMarkers <- function(data, GRanges) {
+SeuratMarkers <- function(
+    data,
+    GRanges,
+    alpha = 0.05
+) {
     assert_is_data.frame(data)
+    assert_has_rows(data)
     assertHasRownames(data)
     assert_is_all_of(GRanges, "GRanges")
     assert_is_subset(
         x = c("geneID", "geneName"),
         y = colnames(mcols(GRanges))
     )
+    assert_is_a_number(alpha)
+    assert_all_are_in_open_range(alpha, lower = 0L, upper = 1L)
 
     # Sanitize Seurat markers --------------------------------------------------
     # Coerce to tibble.
@@ -308,9 +315,10 @@ SeuratMarkers <- function(data, GRanges) {
     # Return -------------------------------------------------------------------
     new(
         Class = "SeuratMarkers",
-        data = as(data, "DataFrame"),
-        GRanges = GRanges,
+        as(data, "DataFrame"),
         metadata = list(
+            alpha = alpha,
+            GRanges = GRanges,
             version = packageVersion("pointillism"),
             date = Sys.Date(),
             sessionInfo = session_info(include_base = TRUE)
