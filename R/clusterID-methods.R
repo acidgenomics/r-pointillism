@@ -16,11 +16,7 @@ NULL
 
 
 
-#' @rdname clusterID
-#' @export
-setMethod(
-    "clusterID",
-    signature("SingleCellExperiment"),
+.clusterID.SCE <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
@@ -28,6 +24,15 @@ setMethod(
         names(x) <- colnames(object)
         x
     }
+
+
+
+#' @rdname clusterID
+#' @export
+setMethod(
+    f = "clusterID",
+    signature = signature("SingleCellExperiment"),
+    definition = .clusterID.SCE
 )
 
 
@@ -35,7 +40,10 @@ setMethod(
 #' @rdname clusterID
 #' @export
 setMethod(
-    "clusterID",
-    signature("seurat"),
-    getMethod("clusterID", "SingleCellExperiment")
+    f = "clusterID",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "clusterID",
+        signature = signature("SingleCellExperiment")
+    )
 )
