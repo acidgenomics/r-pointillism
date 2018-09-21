@@ -3,6 +3,7 @@
 #' @name clusterID
 #' @family Marker Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
