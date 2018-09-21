@@ -191,9 +191,9 @@ formals(CellTypeMarkers) <- f
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param data `data.frame`. Unmodified [Seurat::FindAllMarkers()] or
+#' @param markers `data.frame`. Unmodified [Seurat::FindAllMarkers()] or
 #'   [Seurat::FindMarkers()] return.
-#' @param GRanges `GRanges`. Gene annotations. Names must correspond to the
+#' @param ranges `GRanges`. Gene annotations. Names must correspond to the
 #'   rownames defined in `seurat@data`. The function will automatically subset
 #'   the ranges and arrange them alphabetically.
 #'
@@ -209,8 +209,8 @@ formals(CellTypeMarkers) <- f
 #'     all_markers <- Seurat::FindAllMarkers(object)
 #' ))
 #' all_sanitized <- SeuratMarkers(
-#'     data = all_markers,
-#'     GRanges = rowRanges(object)
+#'     markers = all_markers,
+#'     ranges = rowRanges(object)
 #' )
 #' glimpse(all_sanitized)
 #'
@@ -223,29 +223,29 @@ formals(CellTypeMarkers) <- f
 #'     )
 #' ))
 #' ident_3_sanitized <- SeuratMarkers(
-#'     data = ident_3_markers,
-#'     GRanges = rowRanges(object)
+#'     markers = ident_3_markers,
+#'     ranges = rowRanges(object)
 #' )
 #' glimpse(ident_3_sanitized)
 SeuratMarkers <- function(
-    data,
-    GRanges,
+    markers,
+    ranges,
     alpha = 0.05
 ) {
-    assert_is_data.frame(data)
-    assert_has_rows(data)
-    assertHasRownames(data)
-    assert_is_all_of(GRanges, "GRanges")
+    assert_is_data.frame(markers)
+    assert_has_rows(markers)
+    assertHasRownames(markers)
+    assert_is_all_of(ranges, "GRanges")
     assert_is_subset(
         x = c("geneID", "geneName"),
-        y = colnames(mcols(GRanges))
+        y = colnames(mcols(ranges))
     )
     assert_is_a_number(alpha)
     assert_all_are_in_open_range(alpha, lower = 0L, upper = 1L)
 
     # Sanitize Seurat markers --------------------------------------------------
     # Coerce to tibble.
-    data <- as(data, "tbl_df")
+    data <- as(markers, "tbl_df")
     # Standardize with camel case.
     data <- camel(data)
 
@@ -306,19 +306,18 @@ SeuratMarkers <- function(
             arrange(!!sym("padj"))
     }
 
-    # GRanges ----------------------------------------------------------------
-    # Require that all of the markers are defined in GRanges.
-    names <- sort(unique(data[["name"]]))
-    assert_is_subset(names, names(GRanges))
-    GRanges <- GRanges[names]
+    # Bind ranges as column ---------------------------------------------------
+    data <- as(data, "DataFrame")
+    # Require that all of the markers are defined in ranges.
+    assert_is_subset(unique(data[["name"]]), names(ranges))
+    data[["ranges"]] <- ranges[data[["name"]]]
 
     # Return -------------------------------------------------------------------
     new(
         Class = "SeuratMarkers",
-        as(data, "DataFrame"),
+        data,
         metadata = list(
             alpha = alpha,
-            GRanges = GRanges,
             version = packageVersion("pointillism"),
             date = Sys.Date(),
             sessionInfo = session_info(include_base = TRUE)
