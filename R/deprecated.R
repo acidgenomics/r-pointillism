@@ -30,7 +30,16 @@ NULL
 #' @rdname defunct
 #' @export
 knownMarkersDetected <- function(...) {
-    .Defunct("KnownSeuratMarkers")
+    .Defunct()
+}
+
+
+
+#' @rdname deprecated
+#' @export
+plotKnownMarkersDetected <- function(...) {
+    .Defunct("plotKnownMarkers")
+    plotKnownMarkers(...)
 }
 
 
