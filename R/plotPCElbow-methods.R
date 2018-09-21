@@ -29,11 +29,7 @@ NULL
 
 
 
-#' @rdname plotPCElbow
-#' @export
-setMethod(
-    "plotPCElbow",
-    signature("seurat"),
+.plotPCElbow.seurat <-  # nolint
     function(
         object,
         minSD = 1L,
@@ -159,4 +155,13 @@ setMethod(
 
         invisible(seq_len(cutoff))
     }
+
+
+
+#' @rdname plotPCElbow
+#' @export
+setMethod(
+    f = "plotPCElbow",
+    signature = signature("seurat"),
+    definition = .plotPCElbow.seurat
 )
