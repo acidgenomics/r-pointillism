@@ -23,11 +23,11 @@
 #'
 #' @examples
 #' x <- topMarkers(
-#'     data = all_markers_small,
+#'     all_markers_small,
 #'     n = 2L,
 #'     direction = "positive"
 #' )
-#' glimpse(x)
+#' print(x)
 NULL
 
 
