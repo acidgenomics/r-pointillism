@@ -1,9 +1,20 @@
 #' @rdname cellCountsPerCluster
 #' @export
 setGeneric(
-    "cellCountsPerCluster",
-    function(object, ...) {
+    name = "cellCountsPerCluster",
+    def = function(object, ...) {
         standardGeneric("cellCountsPerCluster")
+    }
+)
+
+
+
+#' @rdname cellTypesPerCluster
+#' @export
+setGeneric(
+    name = "cellTypesPerCluster",
+    def = function(object, ...) {
+        standardGeneric("cellTypesPerCluster")
     }
 )
 
@@ -12,8 +23,8 @@ setGeneric(
 #' @rdname clusterCellCountsPerSample
 #' @export
 setGeneric(
-    "clusterCellCountsPerSample",
-    function(object, ...) {
+    name = "clusterCellCountsPerSample",
+    def = function(object, ...) {
         standardGeneric("clusterCellCountsPerSample")
     }
 )
@@ -23,8 +34,8 @@ setGeneric(
 #' @rdname clusterID
 #' @export
 setGeneric(
-    "clusterID",
-    function(object, ...) {
+    name = "clusterID",
+    def = function(object, ...) {
         standardGeneric("clusterID")
     }
 )
@@ -34,8 +45,8 @@ setGeneric(
 #' @rdname diffExp
 #' @export
 setGeneric(
-    "diffExp",
-    function(object, ...) {
+    name = "diffExp",
+    def = function(object, ...) {
         standardGeneric("diffExp")
     }
 )
@@ -45,8 +56,8 @@ setGeneric(
 #' @rdname diffExpPerCluster
 #' @export
 setGeneric(
-    "diffExpPerCluster",
-    function(object, ...) {
+    name = "diffExpPerCluster",
+    def = function(object, ...) {
         standardGeneric("diffExpPerCluster")
     }
 )
@@ -56,8 +67,8 @@ setGeneric(
 #' @rdname findMarkers
 #' @export
 setGeneric(
-    "findMarkers",
-    function(object, ...) {
+    name = "findMarkers",
+    def = function(object, ...) {
         standardGeneric("findMarkers")
     }
 )
@@ -67,8 +78,8 @@ setGeneric(
 #' @rdname knownMarkersDetected
 #' @export
 setGeneric(
-    "knownMarkersDetected",
-    function(all, known, ...) {
+    name = "knownMarkersDetected",
+    def = function(all, known, ...) {
         standardGeneric("knownMarkersDetected")
     }
 )
@@ -78,8 +89,8 @@ setGeneric(
 #' @rdname plotCellTypesPerCluster
 #' @export
 setGeneric(
-    "plotCellTypesPerCluster",
-    function(object, ...) {
+    name = "plotCellTypesPerCluster",
+    def = function(object, ...) {
         standardGeneric("plotCellTypesPerCluster")
     }
 )
@@ -89,8 +100,8 @@ setGeneric(
 #' @rdname plotGene
 #' @export
 setGeneric(
-    "plotDot",
-    function(object, ...) {
+    name = "plotDot",
+    def = function(object, ...) {
         standardGeneric("plotDot")
     }
 )
@@ -100,8 +111,8 @@ setGeneric(
 #' @rdname plotFeature
 #' @export
 setGeneric(
-    "plotFeature",
-    function(object, ...) {
+    name = "plotFeature",
+    def = function(object, ...) {
         standardGeneric("plotFeature")
     }
 )
@@ -111,8 +122,8 @@ setGeneric(
 #' @rdname plotKnownMarkersDetected
 #' @export
 setGeneric(
-    "plotKnownMarkersDetected",
-    function(object, ...) {
+    name = "plotKnownMarkersDetected",
+    def = function(object, ...) {
         standardGeneric("plotKnownMarkersDetected")
     }
 )
@@ -122,8 +133,8 @@ setGeneric(
 #' @rdname plotMarker
 #' @export
 setGeneric(
-    "plotMarker",
-    function(object, ...) {
+    name = "plotMarker",
+    def = function(object, ...) {
         standardGeneric("plotMarker")
     }
 )
@@ -133,8 +144,8 @@ setGeneric(
 #' @rdname plotPCElbow
 #' @export
 setGeneric(
-    "plotPCElbow",
-    function(object, ...) {
+    name = "plotPCElbow",
+    def = function(object, ...) {
         standardGeneric("plotPCElbow")
     }
 )
@@ -144,8 +155,8 @@ setGeneric(
 #' @rdname plotReducedDim
 #' @export
 setGeneric(
-    "plotReducedDim",
-    function(object, ...) {
+    name = "plotReducedDim",
+    def = function(object, ...) {
         standardGeneric("plotReducedDim")
     }
 )
@@ -155,8 +166,8 @@ setGeneric(
 #' @rdname plotTopMarkers
 #' @export
 setGeneric(
-    "plotTopMarkers",
-    function(object, ...) {
+    name = "plotTopMarkers",
+    def = function(object, ...) {
         standardGeneric("plotTopMarkers")
     }
 )
@@ -166,8 +177,8 @@ setGeneric(
 #' @rdname plotReducedDim
 #' @export
 setGeneric(
-    "plotTSNE",
-    function(object, ...) {
+    name = "plotTSNE",
+    def = function(object, ...) {
         standardGeneric("plotTSNE")
     }
 )
@@ -177,8 +188,8 @@ setGeneric(
 #' @rdname plotReducedDim
 #' @export
 setGeneric(
-    "plotUMAP",
-    function(object, ...) {
+    name = "plotUMAP",
+    def = function(object, ...) {
         standardGeneric("plotUMAP")
     }
 )
@@ -188,8 +199,8 @@ setGeneric(
 #' @rdname plotGene
 #' @export
 setGeneric(
-    "plotViolin",
-    function(object, ...) {
+    name = "plotViolin",
+    def = function(object, ...) {
         standardGeneric("plotViolin")
     }
 )
@@ -199,8 +210,19 @@ setGeneric(
 #' @rdname runZinbwave
 #' @export
 setGeneric(
-    "runZinbwave",
-    function(Y, ...) {  # nolint
+    name = "runZinbwave",
+    def = function(Y, ...) {  # nolint
         standardGeneric("runZinbwave")
+    }
+)
+
+
+
+#' @rdname topMarkers
+#' @export
+setGeneric(
+    name = "topMarkers",
+    def = function(object, ...) {
+        standardGeneric("topMarkers")
     }
 )
