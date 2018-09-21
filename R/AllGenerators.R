@@ -122,10 +122,7 @@ CellCycleMarkers <-  # nolint
     function() {
         do.call(
             what = .cellMarkers,
-            args = matchArgsToDoCall(
-                args = list(class = "CellCycleMarkers"),
-                verbose = TRUE
-            )
+            args = matchArgsToDoCall(args = list(class = "CellCycleMarkers"))
         )
     }
 f <- formals(.cellMarkers)
@@ -171,9 +168,7 @@ CellTypeMarkers <-  # nolint
     function() {
         do.call(
             what = .cellMarkers,
-            args = matchArgsToDoCall(
-                args = list(class = "CellTypeMarkers")
-            )
+            args = matchArgsToDoCall(args = list(class = "CellTypeMarkers"))
         )
     }
 f <- formals(.cellMarkers)
