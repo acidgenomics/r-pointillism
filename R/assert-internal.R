@@ -68,6 +68,7 @@
 
 
 
+# FIXME Deprecate this.
 .isSanitizedMarkers <- function(
     object,
     package = "Seurat"
