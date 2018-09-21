@@ -24,11 +24,7 @@ NULL
 
 
 
-#' @rdname findMarkers
-#' @export
-setMethod(
-    "findMarkers",
-    signature("SingleCellExperiment"),
+.findMarkers.SCE <-  # nolint
     function(object, ...) {
         # Object must contain pre-calculate ZINB weights.
         .assertHasZinbwave(object)
@@ -64,4 +60,13 @@ setMethod(
         names(list) <- clusters
         list
     }
+
+
+
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = .findMarkers.SCE
 )
