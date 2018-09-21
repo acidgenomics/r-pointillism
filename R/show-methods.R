@@ -87,24 +87,34 @@ NULL
 
 
 
-# FIXME Need to define this.
+# FIXME Need to finish this and add S4 method.
 .show.SeuratMarkers <-  # nolint
     function(object) {
         validObject(object)
+        data <- as(object, "DataFrame")
 
-        data <- slot(object, name = "data")
-        assert_is_all_of(data, "DataFrame")
+        version <- metadata(object)[["version"]]
+        date <- metadata(object)[["date"]]
 
-        # `FindAllMarkers()`
+        gr <- metadata(object)[["GRanges"]]
+        organism <- metadata(gr)[["organism"]]
+        build <- metadata(gr)[["build"]]
+        release <- metadata(gr)[["release"]]
+
         if ("cluster" %in% colnames(data)) {
+            f <- "FindAllMarkers"
             clusters <- levels(data[["cluster"]])
-            split <- split(x = data, f = data[["cluster"]])
+            split <- split(x = data, f = object[["cluster"]])
             stopifnot(is(split, "SplitDataFrameList"))
             assert_are_identical(names(split), clusters)
+
+        } else {
+            f <- "FindMarkers"
         }
 
         stop("Not added yet.")
     }
+
 
 
 #' @rdname show
