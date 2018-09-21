@@ -1,7 +1,13 @@
+# FIXME Need to switch to S4 method.
+
+
+
 #' Cell Types per Cluster
 #'
+#' @name cellTypesPerCluster
 #' @family Cluster Statistics Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @param data `data.frame` grouped by `cellType`. [knownMarkersDetected()]
@@ -16,7 +22,11 @@
 #' @examples
 #' x <- cellTypesPerCluster(known_markers_detected_small)
 #' glimpse(x)
-cellTypesPerCluster <- function(
+NULL
+
+
+
+.cellTypesPerCluster <- function(
     data,
     min = 1L,
     max = Inf
