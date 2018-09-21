@@ -1,6 +1,8 @@
 # SingleCellExperiment Example Data
 # 2018-09-21
 
+# FIXME Pad the rownames with zeros so it sorts correctly.
+
 library(reticulate)
 library(bcbioSingleCell)
 library(splatter)
@@ -86,8 +88,8 @@ sce_small <- sce
 
 # all_markers_small ============================================================
 all_markers_small <- SeuratMarkers(
-    data = FindAllMarkers(seurat_small),
-    GRanges = rowRanges(seurat_small)
+    markers = FindAllMarkers(seurat_small),
+    ranges = rowRanges(seurat_small)
 )
 
 # known_markers_small ==========================================================
