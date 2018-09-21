@@ -72,13 +72,13 @@
 
 .fetchReducedDimData <- function(
     object,
-    reducedDim,
+    reducedDim = 1L,
     dimsUse = c(1L, 2L)
 ) {
     validObject(object)
     object <- as(object, "SingleCellExperiment")
     .assertHasIdent(object)
-    assert_is_a_string(reducedDim)
+    assert_is_scalar(reducedDim)
     assertIsImplicitInteger(dimsUse)
     assert_is_of_length(dimsUse, 2L)
 
@@ -130,9 +130,12 @@
 .fetchReducedDimExpressionData <- function(
     object,
     genes,
-    reducedDim
+    reducedDim = 1L
 ) {
     validObject(object)
+    assert_is_character(genes)
+    assert_is_scalar(reducedDim)
+
     rownames <- mapGenesToRownames(object, genes)
 
     # Transposed log counts matrix, with genes in the columns.
