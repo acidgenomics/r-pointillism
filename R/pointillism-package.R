@@ -18,13 +18,13 @@
 #'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
 #'   assert_is_character assert_is_data.frame assert_is_factor assert_is_list
 #'   assert_is_matrix assert_is_numeric assert_is_tbl_df is_a_string
-#' @importFrom basejump assertHasRownames assertIsAHeaderLevel
-#'   assertIsAStringOrNULL assertIsAnImplicitInteger
-#'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
-#'   assertIsFillScaleDiscreteOrNULL assertIsImplicitInteger camel coerce
+#' @importFrom basejump assertHasRownames assertIsAStringOrNULL
+#'   assertIsAnImplicitInteger assertIsColorScaleContinuousOrNULL
+#'   assertIsColorScaleDiscreteOrNULL assertIsFillScaleDiscreteOrNULL
+#'   assertIsHeaderLevel assertIsImplicitInteger camel coerce
 #'   convertGenesToSymbols gene2symbol import mapGenesToRownames
-#'   mapGenesToSymbols markdownHeader matchInterestingGroups printString
-#'   theme_midnight uniteInterestingGroups upperCamel
+#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
+#'   printString theme_midnight uniteInterestingGroups upperCamel
 #' @importFrom bcbioSingleCell filterCells
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply sapply
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
@@ -60,6 +60,3 @@
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave
 "_PACKAGE"
-
-# Note that `tbl_df` is properly exported in v1.4.99.9000.
-# #' @importClassesFrom tibble tbl_df
