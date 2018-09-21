@@ -1,12 +1,12 @@
 # SingleCellExperiment Example Data
-# 2018-09-19
+# 2018-09-21
 
 library(reticulate)
-library(tidyverse)
 library(bcbioSingleCell)
 library(splatter)
 library(Seurat)
 library(Matrix)
+library(tidyverse)
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
@@ -60,7 +60,6 @@ seurat_small <- sce %>%
     RunTSNE(check_duplicates = FALSE) %>%
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
-stopifnot(is.character(sampleNames(seurat_small)))
 
 # sce_small ====================================================================
 # Convert rows (geneName) back to Ensembl IDs (geneID).
@@ -117,6 +116,7 @@ export(
 )
 
 # known_markers_detected_small =================================================
+# FIXME Need to update this function
 known_markers_detected_small <- knownMarkersDetected(
     all = all_markers_small,
     known = known_markers_small
