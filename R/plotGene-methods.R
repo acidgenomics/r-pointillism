@@ -306,9 +306,9 @@ NULL
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotGene",
-    signature("SingleCellExperiment"),
-    .plotGene
+    f = "plotGene",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotGene
 )
 
 
@@ -316,9 +316,12 @@ setMethod(
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotGene",
-    signature("seurat"),
-    getMethod("plotGene", "SingleCellExperiment")
+    f = "plotGene",
+    signature = signature("seurat"),
+    getMethod(
+        f ="plotGene",
+        signature = signature("SingleCellExperiment")
+    )
 )
 
 
@@ -326,9 +329,9 @@ setMethod(
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotDot",
-    signature("SingleCellExperiment"),
-    .plotDot
+    f = "plotDot",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotDot
 )
 
 
@@ -336,9 +339,12 @@ setMethod(
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotDot",
-    signature("seurat"),
-    getMethod("plotDot", "SingleCellExperiment")
+    f = "plotDot",
+    signature = signature("seurat"),
+    getMethod(
+        f = "plotDot",
+        signature("SingleCellExperiment")
+    )
 )
 
 
@@ -346,9 +352,9 @@ setMethod(
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotViolin",
-    signature("SingleCellExperiment"),
-    .plotViolin
+    f = "plotViolin",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotViolin
 )
 
 
@@ -356,7 +362,10 @@ setMethod(
 #' @rdname plotGene
 #' @export
 setMethod(
-    "plotViolin",
-    signature("seurat"),
-    getMethod("plotViolin", "SingleCellExperiment")
+    f = "plotViolin",
+    signature = signature("seurat"),
+    getMethod(
+        f = "plotViolin",
+        signature("SingleCellExperiment")
+    )
 )
