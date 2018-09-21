@@ -4,9 +4,6 @@
 \name{SeuratMarkers-class}
 \alias{SeuratMarkers-class}
 \title{\code{SeuratMarkers} Class}
-\value{
-\code{SeuratMarkers}.
-}
 \description{
 Class containing essential elements for Seurat marker analysis.
 }
@@ -17,15 +14,7 @@ Class containing essential elements for Seurat marker analysis.
 
 \item{\code{GRanges}}{\code{GRanges}.}
 
-\item{\code{organism}}{\code{string}. Full Latin organism name.}
-
-\item{\code{ensemblRelease}}{\code{scalar integer}. Ensembl release version.}
-
-\item{\code{version}}{\code{package_version}.}
-
-\item{\code{date}}{\code{Date}. Date the object was saved.}
-
-\item{\code{sessionInfo}}{\code{session_info}. \code{\link[sessioninfo:session_info]{sessioninfo::session_info()}} return.}
+\item{\code{metadata}}{\code{list}. Metadata describing how the analysis was performed.}
 }}
 
 \seealso{
