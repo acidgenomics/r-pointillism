@@ -1,3 +1,7 @@
+# TODO Add a corresponding `plot` function
+
+
+
 #' Cell Counts per Cluster
 #'
 #' @name cellCountsPerCluster
