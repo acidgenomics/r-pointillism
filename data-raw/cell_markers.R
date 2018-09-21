@@ -1,15 +1,14 @@
 # Cell Cycle and Cell Type Markers
-# 2018-09-19
+# 2018-09-21
 # This code is derived from:
 # - Tirosh et al, 2015
 # - http://satijalab.org/seurat/cell_cycle_vignette.html
 
-library(devtools)
-library(googlesheets)
-library(tidyverse)
-
 # Must be interactive, requiring Google Sheets authentication.
 stopifnot(interactive())
+
+library(googlesheets)
+library(tidyverse)
 
 # Ensembl release version.
 release <- 92L
@@ -38,10 +37,11 @@ print(ws)
 cell_cycle_markers <- lapply(
     X = ws,
     FUN = function(ws) {
+        organism <- gsub("_", " ", ws)
         CellCycleMarkers(
             gs = sheet_key,
             ws = ws,
-            organism = gsub("_", " ", ws),
+            organism = organism,
             ensemblRelease = release
         )
     }
@@ -62,10 +62,11 @@ print(ws)
 cell_type_markers <- lapply(
     X = ws,
     FUN = function(ws) {
+        organism <- gsub("_", " ", ws)
         CellTypeMarkers(
             gs = sheet_key,
             ws = ws,
-            organism = gsub("_", " ", ws),
+            organism = organism,
             ensemblRelease = release
         )
     }
