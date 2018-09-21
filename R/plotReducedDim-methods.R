@@ -39,9 +39,9 @@ NULL
 
 
 # Constructors =================================================================
-.plotReducedDim <- function(
+.plotReducedDim.SCE <- function(
     object,
-    reducedDim,
+    reducedDim = 1L,
     dimsUse = c(1L, 2L),
     interestingGroups = "ident",
     color = getOption("pointillism.discrete.color", NULL),
@@ -55,11 +55,10 @@ NULL
     title = NULL
 ) {
     .assertHasIdent(object)
-    assert_is_a_string(reducedDim)
+    assert_is_scalar(reducedDim)
     assertIsImplicitInteger(dimsUse)
     assert_is_of_length(dimsUse, 2L)
     assert_is_a_string(interestingGroups)
-    interestingGroups(object) <- interestingGroups
     assertIsColorScaleDiscreteOrNULL(color)
     assert_is_a_number(pointSize)
     assert_is_a_number(pointAlpha)
@@ -76,10 +75,13 @@ NULL
         dimsUse = dimsUse
     )
     assert_is_all_of(data, "DataFrame")
-
     assert_is_subset(
-        x = c("x", "y", "centerX", "centerY"),
+        x = c(interestingGroups, "x", "y", "centerX", "centerY"),
         y = colnames(data)
+    )
+    data <- uniteInterestingGroups(
+        object = data,
+        interestingGroups = interestingGroups
     )
 
     # Set the x- and y-axis labels (e.g. tSNE1, tSNE2).
@@ -87,7 +89,7 @@ NULL
     assert_is_subset(axes, colnames(data))
 
     p <- ggplot(
-        data = as.data.frame(data),
+        data = as(data, "tbl_df"),
         mapping = aes(
             x = !!sym("x"),
             y = !!sym("y"),
@@ -161,12 +163,11 @@ NULL
 
 
 
-.plotPCA <- function() {
-    args <- as.list(match.call())[-1L]
-    args[["reducedDim"]] <- "PCA"
+
+.plotPCA.SCE <- function() {
     do.call(
         what = plotReducedDim,
-        args = args
+        args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
     )
 
 }
@@ -174,23 +175,19 @@ NULL
 
 
 
-.plotTSNE <- function() {
-    args <- as.list(match.call())[-1L]
-    args[["reducedDim"]] <- "UMAP"
+.plotTSNE.SCE <- function() {
     do.call(
         what = plotReducedDim,
-        args = args
+        args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
     )
 }
 
 
 
-.plotUMAP <- function() {
-    args <- as.list(match.call())[-1L]
-    args[["reducedDim"]] <- "UMAP"
+.plotUMAP.SCE <- function() {
     do.call(
         what = plotReducedDim,
-        args = args
+        args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
     )
 }
 
@@ -198,11 +195,11 @@ NULL
 
 # Formals ======================================================================
 # Set the formals for the convenience functions.
-f <- formals(.plotReducedDim)
+f <- formals(.plotReducedDim.SCE)
 f <- f[setdiff(names(f), "reducedDim")]
-formals(.plotPCA) <- f
-formals(.plotTSNE) <- f
-formals(.plotUMAP) <- f
+formals(.plotPCA.SCE) <- f
+formals(.plotTSNE.SCE) <- f
+formals(.plotUMAP.SCE) <- f
 rm(f)
 
 
@@ -213,7 +210,7 @@ rm(f)
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = .plotReducedDim
+    definition = .plotReducedDim.SCE
 )
 
 
@@ -223,7 +220,10 @@ setMethod(
 setMethod(
     f = "plotReducedDim",
     signature = signature("seurat"),
-    definition = getMethod("plotReducedDim", "SingleCellExperiment")
+    definition = getMethod(
+        f = "plotReducedDim",
+        signature = signature("SingleCellExperiment")
+    )
 )
 
 
@@ -233,7 +233,7 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = .plotTSNE
+    definition = .plotTSNE.SCE
 )
 
 
@@ -243,7 +243,10 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("seurat"),
-    definition = getMethod("plotTSNE", "SingleCellExperiment")
+    definition = getMethod(
+        f = "plotTSNE",
+        signature = signature("SingleCellExperiment")
+    )
 )
 
 
@@ -253,7 +256,7 @@ setMethod(
 setMethod(
     "plotUMAP",
     signature("SingleCellExperiment"),
-    .plotUMAP
+    .plotUMAP.SCE
 )
 
 
@@ -263,7 +266,10 @@ setMethod(
 setMethod(
     f = "plotUMAP",
     signature = signature("seurat"),
-    definition = getMethod("plotUMAP", "SingleCellExperiment")
+    definition = getMethod(
+        f = "plotUMAP",
+        signature = signature("SingleCellExperiment")
+    )
 )
 
 
@@ -273,7 +279,7 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = .plotPCA
+    definition = .plotPCA.SCE
 )
 
 
@@ -283,5 +289,8 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("seurat"),
-    definition = getMethod("plotPCA", "SingleCellExperiment")
+    definition = getMethod(
+        f = "plotPCA",
+        signature = signature("SingleCellExperiment")
+    )
 )
