@@ -27,6 +27,14 @@ NULL
 
 
 # v0.2.0 =======================================================================
+#' @rdname defunct
+#' @export
+knownMarkersDetected <- function(...) {
+    .Defunct("KnownSeuratMarkers")
+}
+
+
+
 #' @rdname deprecated
 #' @export
 readCellTypeMarkers <- function(...) {
