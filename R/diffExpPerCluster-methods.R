@@ -28,11 +28,7 @@ NULL
 
 
 
-#' @rdname diffExpPerCluster
-#' @export
-setMethod(
-    "diffExpPerCluster",
-    signature("SingleCellExperiment"),
+.diffExpPerCluster.SCE <-  # nolint
     function(
         object,
         group,
@@ -86,4 +82,13 @@ setMethod(
         names(list) <- clusters
         list
     }
+
+
+
+#' @rdname diffExpPerCluster
+#' @export
+setMethod(
+    f = "diffExpPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = .diffExpPerCluster.SCE
 )
