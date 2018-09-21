@@ -5,11 +5,6 @@ setOldClass(Classes = class(packageVersion("base")))
 # session_info
 setOldClass(Classes = "session_info")
 
-# tibble
-# Note that `tbl_df` is properly exported in v1.4.99.9000.
-# Including `tbl` class here is causing an S4 inheritance error.
-# setOldClass(Classes = c("grouped_df", "tbl_df", "data.frame"))
-
 
 
 # Internal generator for either cell cycle or cell type markers.
