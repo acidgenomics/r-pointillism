@@ -1,7 +1,3 @@
-# FIXME Switch to SeuratMarkers
-
-
-
 #' Top Markers
 #'
 #' @name topMarkers
