@@ -6,31 +6,29 @@
 #'
 #' @inheritParams general
 #'
-#' @return `tibble` grouped by "`ident`" column, arranged by abundance.
+#' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
 #' x <- cellCountsPerCluster(sce_small)
-#' glimpse(x)
+#' print(x)
 NULL
 
 
 
-#' @rdname cellCountsPerCluster
-#' @export
-setMethod(
-    "cellCountsPerCluster",
-    signature("SingleCellExperiment"),
-    function(object, interestingGroups) {
+.cellCountsPerCluster.SCE <-  # nolint
+    function(object, interestingGroups = NULL) {
         validObject(object)
         .assertHasIdent(object)
         interestingGroups <- matchInterestingGroups(
             object = object,
             interestingGroups = interestingGroups
         )
-        metrics <- metrics(object, interestingGroups = interestingGroups)
+        interestingGroups(object) <- interestingGroups
+        data <- colData(object)
         cols <- unique(c("ident", interestingGroups))
-        assert_is_subset(cols, colnames(metrics))
-        metrics %>%
+        assert_is_subset(cols, colnames(data))
+        data %>%
+            as("tbl_df") %>%
             arrange(!!!syms(cols)) %>%
             group_by(!!!syms(cols)) %>%
             summarize(n = n()) %>%
@@ -39,6 +37,15 @@ setMethod(
             group_by(!!sym("ident")) %>%
             mutate(ratio = !!sym("n") / sum(!!sym("n")))
     }
+
+
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = .cellCountsPerCluster.SCE
 )
 
 
@@ -46,7 +53,10 @@ setMethod(
 #' @rdname cellCountsPerCluster
 #' @export
 setMethod(
-    "cellCountsPerCluster",
-    signature("seurat"),
-    getMethod("cellCountsPerCluster", "SingleCellExperiment")
+    f = "cellCountsPerCluster",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "cellCountsPerCluster",
+        signature = signature("SingleCellExperiment")
+    )
 )
