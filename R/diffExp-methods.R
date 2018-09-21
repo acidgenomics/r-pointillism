@@ -49,6 +49,7 @@
 #' @name diffExp
 #' @family Differential Expression Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @param numerator `character`. Cells to use in the numerator of the contrast
@@ -183,11 +184,7 @@ NULL
 
 
 
-#' @rdname diffExp
-#' @export
-setMethod(
-    "diffExp",
-    signature("SingleCellExperiment"),
+.diffExp.SCE <-  # nolint
     function(
         object,
         numerator,
@@ -317,6 +314,15 @@ setMethod(
 
         data
     }
+
+
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    f = "diffExp",
+    signature = signature("SingleCellExperiment"),
+    definition = .diffExp.SCE
 )
 
 
@@ -324,7 +330,10 @@ setMethod(
 #' @rdname diffExp
 #' @export
 setMethod(
-    "diffExp",
-    signature("seurat"),
-    getMethod("diffExp", "SingleCellExperiment")
+    f = "diffExp",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "diffExp",
+        signature = signature("SingleCellExperiment")
+    )
 )
