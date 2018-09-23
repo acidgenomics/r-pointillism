@@ -122,10 +122,7 @@ export(
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
-known_markers_small <- knownMarkers(
-    all = all,
-    known = known
-)
+known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
 devtools::use_data(
