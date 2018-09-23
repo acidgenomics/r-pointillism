@@ -1,6 +1,7 @@
-# FIXME
+# FIXME Fix the formals.
 # Error in (function (classes, fdef, mtable)  :
 # unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
+# FIXME Need to update to use SeuratMarkers class.
 
 
 
@@ -36,11 +37,7 @@ NULL
 
 
 
-#' @rdname plotCellTypesPerCluster
-#' @export
-setMethod(
-    "plotCellTypesPerCluster",
-    signature("SingleCellExperiment"),
+.plotCellTypesPerCluster.SCE <-  # nolint
     function(
         object,
         markers,
@@ -67,7 +64,7 @@ setMethod(
         assert_is_subset(c("cellType", "rowname"), colnames(markers))
         reducedDim <- match.arg(reducedDim)
         expression <- match.arg(expression)
-        assertIsAHeaderLevel(headerLevel)
+        assertIsHeaderLevel(headerLevel)
 
         markers <- markers %>%
             ungroup() %>%
@@ -115,6 +112,15 @@ setMethod(
 
         invisible(return)
     }
+
+
+
+#' @rdname plotCellTypesPerCluster
+#' @export
+setMethod(
+    f = "plotCellTypesPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotCellTypesPerCluster.SCE
 )
 
 
@@ -122,7 +128,10 @@ setMethod(
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
-    "plotCellTypesPerCluster",
-    signature("seurat"),
-    getMethod("plotCellTypesPerCluster", "SingleCellExperiment")
+    f = "plotCellTypesPerCluster",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "plotCellTypesPerCluster",
+        signature = signature("SingleCellExperiment")
+    )
 )
