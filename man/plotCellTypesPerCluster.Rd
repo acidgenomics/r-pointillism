@@ -57,9 +57,8 @@ plotCellTypesPerCluster(
 \seealso{
 Other Plot Functions: \code{\link{plotDot}},
   \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
+  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
+  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}}
 }
 \author{

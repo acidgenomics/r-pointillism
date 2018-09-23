@@ -10,9 +10,9 @@
 cellCountsPerCluster(object, ...)
 
 \S4method{cellCountsPerCluster}{SingleCellExperiment}(object,
-  interestingGroups)
+  interestingGroups = NULL)
 
-\S4method{cellCountsPerCluster}{seurat}(object, interestingGroups)
+\S4method{cellCountsPerCluster}{seurat}(object, interestingGroups = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -24,14 +24,14 @@ interesting groups. Must be formatted in camel case and intersect with
 \code{\link[=sampleData]{sampleData()}} colnames.}
 }
 \value{
-\code{tibble} grouped by "\code{ident}" column, arranged by abundance.
+\code{tbl_df}. Grouped by \code{ident} column and arranged by \code{n}.
 }
 \description{
 Cell Counts per Cluster
 }
 \examples{
 x <- cellCountsPerCluster(sce_small)
-glimpse(x)
+print(x)
 }
 \seealso{
 Other Cluster Statistics Functions: \code{\link{cellTypesPerCluster}},

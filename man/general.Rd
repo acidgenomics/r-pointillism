@@ -14,6 +14,9 @@
 
 \item{...}{Additional arguments.}
 
+\item{alpha}{\code{scalar numeric}. Alpha cutoff (adjusted P value; false
+discovery rate).}
+
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
 \item{BPPARAM}{BiocParallel param. We recommend one of the following:

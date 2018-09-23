@@ -2,7 +2,14 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
+\alias{knownMarkersDetected}
 \title{Defunct Functions}
+\usage{
+knownMarkersDetected(...)
+}
+\arguments{
+\item{...}{Additional arguments.}
+}
 \value{
 \code{\link[=.Defunct]{.Defunct()}}.
 }

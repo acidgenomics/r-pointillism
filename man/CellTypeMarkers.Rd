@@ -48,8 +48,7 @@ x <- CellTypeMarkers(
 }
 
 Other Marker Functions: \code{\link{SeuratMarkers}},
-  \code{\link{clusterID}},
-  \code{\link{knownMarkersDetected}},
+  \code{\link{clusterID}}, \code{\link{knownMarkers}},
   \code{\link{topMarkers}}
 }
 \author{

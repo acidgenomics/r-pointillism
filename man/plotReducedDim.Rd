@@ -21,7 +21,7 @@ plotTSNE(object, ...)
 
 plotUMAP(object, ...)
 
-\S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
+\S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim = 1L,
   dimsUse = c(1L, 2L), interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -32,8 +32,8 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
-  2L), interestingGroups = "ident",
+\S4method{plotReducedDim}{seurat}(object, reducedDim = 1L,
+  dimsUse = c(1L, 2L), interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.75),
@@ -187,9 +187,8 @@ plotPCA(object)
 
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotTopMarkers}}
+  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
+  \code{\link{plotPCElbow}}, \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner

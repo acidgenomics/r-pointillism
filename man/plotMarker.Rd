@@ -101,7 +101,7 @@ plotMarker(
 \seealso{
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotKnownMarkers}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}}
 }

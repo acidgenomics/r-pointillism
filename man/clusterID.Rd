@@ -31,8 +31,7 @@ head(x)
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},
-  \code{\link{SeuratMarkers}},
-  \code{\link{knownMarkersDetected}},
+  \code{\link{SeuratMarkers}}, \code{\link{knownMarkers}},
   \code{\link{topMarkers}}
 }
 \author{
