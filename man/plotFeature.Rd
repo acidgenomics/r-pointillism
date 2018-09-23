@@ -64,8 +64,7 @@ plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
 
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}},
-  \code{\link{plotKnownMarkersDetected}},
+  \code{\link{plotDot}}, \code{\link{plotKnownMarkers}},
   \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
   \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}}

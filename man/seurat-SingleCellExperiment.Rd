@@ -59,7 +59,7 @@
 
 \S4method{rowRanges}{seurat}(x)
 
-\S4method{sampleData}{seurat}(object, interestingGroups = NULL)
+\S4method{sampleData}{seurat}(object)
 
 \S4method{sampleData}{seurat,DataFrame}(object) <- value
 
@@ -73,10 +73,6 @@
 \item{value}{Object to assign.}
 
 \item{object}{Object.}
-
-\item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-\code{\link[=sampleData]{sampleData()}} colnames.}
 }
 \value{
 Match \code{SummarizedExperiment} method return.
