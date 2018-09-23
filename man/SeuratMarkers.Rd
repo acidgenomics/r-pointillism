@@ -4,13 +4,13 @@
 \alias{SeuratMarkers}
 \title{Sanitize Seurat Markers}
 \usage{
-SeuratMarkers(data, GRanges)
+SeuratMarkers(markers, ranges, alpha = 0.05)
 }
 \arguments{
-\item{data}{\code{data.frame}. Unmodified \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} or
+\item{markers}{\code{data.frame}. Unmodified \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} or
 \code{\link[Seurat:FindMarkers]{Seurat::FindMarkers()}} return.}
 
-\item{GRanges}{\code{GRanges}. Gene annotations. Names must correspond to the
+\item{ranges}{\code{GRanges}. Gene annotations. Names must correspond to the
 rownames defined in \code{seurat@data}. The function will automatically subset
 the ranges and arrange them alphabetically.}
 }
@@ -35,8 +35,8 @@ invisible(capture.output(
     all_markers <- Seurat::FindAllMarkers(object)
 ))
 all_sanitized <- SeuratMarkers(
-    data = all_markers,
-    GRanges = rowRanges(object)
+    markers = all_markers,
+    ranges = rowRanges(object)
 )
 glimpse(all_sanitized)
 
@@ -49,15 +49,14 @@ invisible(capture.output(
     )
 ))
 ident_3_sanitized <- SeuratMarkers(
-    data = ident_3_markers,
-    GRanges = rowRanges(object)
+    markers = ident_3_markers,
+    ranges = rowRanges(object)
 )
 glimpse(ident_3_sanitized)
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},
-  \code{\link{clusterID}},
-  \code{\link{knownMarkersDetected}},
+  \code{\link{clusterID}}, \code{\link{knownMarkers}},
   \code{\link{topMarkers}}
 }
 \author{

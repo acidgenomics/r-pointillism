@@ -7,16 +7,6 @@
 \description{
 Class containing essential elements for Seurat marker analysis.
 }
-\section{Slots}{
-
-\describe{
-\item{\code{data}}{\code{DataFrame}. Sanitized Seurat markers data.}
-
-\item{\code{GRanges}}{\code{GRanges}.}
-
-\item{\code{metadata}}{\code{list}. Metadata describing how the analysis was performed.}
-}}
-
 \seealso{
 Other S4 Classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}}

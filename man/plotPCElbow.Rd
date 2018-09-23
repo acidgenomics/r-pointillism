@@ -50,8 +50,8 @@ plotPCElbow(Seurat::pbmc_small)
 
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkersDetected}},
-  \code{\link{plotMarker}}, \code{\link{plotReducedDim}},
+  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
+  \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}}
 }
 \author{
