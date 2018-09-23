@@ -9,6 +9,8 @@
 #' @param y Secondary object.
 #' @param ... Additional arguments.
 #'
+#' @param alpha `scalar numeric`. Alpha cutoff (adjusted P value; false
+#'   discovery rate).
 #' @param aspectRatio `scalar integer`. Aspect ratio.
 #' @param BPPARAM BiocParallel param. We recommend one of the following:
 #'   - [BiocParallel::bpparam()].
