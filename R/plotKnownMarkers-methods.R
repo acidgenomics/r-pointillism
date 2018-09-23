@@ -1,6 +1,10 @@
-#' Plot Known Markers Detected
+# FIXME Fix the formals.
+
+
+
+#' Plot Known Markers
 #'
-#' @name plotKnownMarkersDetected
+#' @name plotKnownMarkers
 #' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
@@ -10,19 +14,16 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' plotKnownMarkersDetected(
+#' plotKnownMarkers(
 #'     object = sce_small,
-#'     markers = known_markers_detected_small
+#'     markers = known_markers_small
 #' )
 NULL
 
 
 
-#' @rdname plotKnownMarkersDetected
-#' @export
-setMethod(
-    "plotKnownMarkersDetected",
-    signature("SingleCellExperiment"),
+# FIXME Rethink how this works.
+.plotKnownMarkers.SCE <-  # nolint
     function(
         object,
         markers,
@@ -30,9 +31,9 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        .assertIsKnownMarkersDetected(markers)
+        assert_is_all_of(markers, "CellTypeMarkers")
         reducedDim <- match.arg(reducedDim)
-        assertIsAHeaderLevel(headerLevel)
+        assertIsHeaderLevel(headerLevel)
 
         cellTypes <- markers %>%
             pull("cellType") %>%
@@ -71,14 +72,26 @@ setMethod(
 
         invisible(list)
     }
+
+
+
+#' @rdname plotKnownMarkers
+#' @export
+setMethod(
+    f = "plotKnownMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotKnownMarkers.SCE
 )
 
 
 
-#' @rdname plotKnownMarkersDetected
+#' @rdname plotKnownMarkers
 #' @export
 setMethod(
-    "plotKnownMarkersDetected",
-    signature("seurat"),
-    getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
+    f = "plotKnownMarkers",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "plotKnownMarkers",
+        signature = signature("SingleCellExperiment")
+    )
 )
