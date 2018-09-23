@@ -1,6 +1,6 @@
-#' Plot Known Markers Detected
+#' Plot Known Markers
 #'
-#' @name plotKnownMarkersDetected
+#' @name plotKnownMarkers
 #' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
@@ -10,18 +10,18 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' plotKnownMarkersDetected(
+#' plotKnownMarkers(
 #'     object = sce_small,
-#'     markers = known_markers_detected_small
+#'     markers = known_markers_small
 #' )
 NULL
 
 
 
-#' @rdname plotKnownMarkersDetected
+#' @rdname plotKnownMarkers
 #' @export
 setMethod(
-    "plotKnownMarkersDetected",
+    "plotKnownMarkers",
     signature("SingleCellExperiment"),
     function(
         object,
@@ -30,7 +30,7 @@ setMethod(
         headerLevel = 2L,
         ...
     ) {
-        .assertIsKnownMarkersDetected(markers)
+        .assertIsKnownMarkers(markers)
         reducedDim <- match.arg(reducedDim)
         assertIsAHeaderLevel(headerLevel)
 
@@ -75,10 +75,10 @@ setMethod(
 
 
 
-#' @rdname plotKnownMarkersDetected
+#' @rdname plotKnownMarkers
 #' @export
 setMethod(
-    "plotKnownMarkersDetected",
+    "plotKnownMarkers",
     signature("seurat"),
-    getMethod("plotKnownMarkersDetected", "SingleCellExperiment")
+    getMethod("plotKnownMarkers", "SingleCellExperiment")
 )
