@@ -44,18 +44,18 @@ setValidity(
 setValidity(
     Class = "SeuratMarkers",
     method = function(object) {
-        data <- slot(object, name = "data")
-        # `FindAllMarkers()`
-        if ("cluster" %in% colnames(data)) {
-            clusters <- data[["cluster"]]
-            assert_is_factor(clusters)
-            clusters <- levels(clusters)
-            # Ensure that we haven't already defined `ident`.
-            assert_are_identical(
-                x = clusters,
-                y = as.character(seq(from = 0L, to = length(clusters) - 1L))
-            )
-        }
+        # data <- slot(object, name = "data")
+        # # `FindAllMarkers()`
+        # if ("cluster" %in% colnames(data)) {
+        #     clusters <- data[["cluster"]]
+        #     assert_is_factor(clusters)
+        #     clusters <- levels(clusters)
+        #     # Ensure that we haven't already defined `ident`.
+        #     assert_are_identical(
+        #         x = clusters,
+        #         y = as.character(seq(from = 0L, to = length(clusters) - 1L))
+        #     )
+        # }
 
         # .assertIsKnownMarkers(object)
         # requiredCols <- c(
