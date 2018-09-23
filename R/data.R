@@ -44,17 +44,6 @@
 
 
 
-#' Known Markers Detected Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
-#' glimpse(known_markers_detected_small)
-"known_markers_detected_small"
-
-
-
 #' SingleCellExperiment Example
 #'
 #' @family Minimal Example Data
