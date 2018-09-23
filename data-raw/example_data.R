@@ -1,7 +1,5 @@
 # SingleCellExperiment Example Data
-# 2018-09-21
-
-# FIXME Pad the rownames with zeros so it sorts correctly.
+# 2018-09-23
 
 library(reticulate)
 library(bcbioSingleCell)
@@ -28,6 +26,16 @@ params <- setParam(params, "de.facScale", .25)
 params <- setParam(params, "dropout.type", "experiment")
 params <- setParam(params, "dropout.mid", 3)
 sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
+sce <- camel(sce, rownames = TRUE, colnames = TRUE)
+# Pad the dimnames so they sort correctly.
+rownames(sce) <- rownames(sce) %>%
+    str_replace("gene", "") %>%
+    str_pad(width = 5, side = "left", pad = "0") %>%
+    paste0("gene", .)
+colnames(sce) <- colnames(sce) %>%
+    str_replace("cell", "") %>%
+    str_pad(width = 3, side = "left", pad = "0") %>%
+    paste0("cell", .)
 # Prepare column data.
 colData(sce) <- camel(colData(sce), rownames = TRUE, colnames = TRUE)
 sce$cell <- NULL
@@ -93,16 +101,14 @@ all_markers_small <- SeuratMarkers(
 )
 
 # known_markers_small ==========================================================
-g2s <- gene2symbol(seurat_small)
-data <- tibble(
-    cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
-    geneID = head(g2s[["geneID"]], n = 2L),
-    geneName = head(g2s[["geneName"]], n = 2L)
-) %>%
-    group_by(cellType)
-known_markers_small <- new(
+all <- all_markers_small
+known <- new(
     Class = "CellTypeMarkers",
-    as(data, "DataFrame"),
+    DataFrame(
+        cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
+        geneID = as.character(head(all$ranges$geneID, n = 2L)),
+        geneName = as.character(head(all$ranges$geneName, n = 2L))
+    ),
     metadata = list(
         version = packageVersion("pointillism"),
         organism = organism,
@@ -110,18 +116,15 @@ known_markers_small <- new(
         date = Sys.Date()
     )
 )
-
 # Write out an example CSV that we can use to test `CellTypeMarkers()`.
 export(
-    x = known_markers_small,
+    x = known,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
-# known_markers_detected_small =================================================
-# FIXME Need to update this function
-known_markers_detected_small <- knownMarkersDetected(
-    all = all_markers_small,
-    known = known_markers_small
+known_markers_small <- knownMarkers(
+    all = all,
+    known = known
 )
 
 # Save =========================================================================
@@ -130,7 +133,6 @@ devtools::use_data(
     seurat_small,
     all_markers_small,
     known_markers_small,
-    known_markers_detected_small,
     compress = "xz",
     overwrite = TRUE
 )
