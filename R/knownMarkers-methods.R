@@ -35,73 +35,80 @@ NULL
 
 
 
-.knownMarkers.SeuratMarkers <- function(
-    all,
-    known,
-    promiscuousThreshold = 5L
-) {
-    assert_is_all_of(all, "SeuratMarkers")
-    assert_is_all_of(known, "CellTypeMarkers")
-    assertIsAnImplicitInteger(promiscuousThreshold)
-    assert_all_are_non_negative(promiscuousThreshold)
-    promiscuousThreshold <- as.integer(promiscuousThreshold)
+.knownMarkers.SeuratMarkers <-  # nolint
+    function(
+        all,
+        known,
+        promiscuousThreshold = 5L
+    ) {
+        validObject(all)
+        validObject(known)
+        assertIsAnImplicitInteger(promiscuousThreshold)
+        assert_all_are_non_negative(promiscuousThreshold)
+        promiscuousThreshold <- as.integer(promiscuousThreshold)
 
-    alpha <- metadata(all)[["alpha"]]
-    assertIsAlpha(alpha)
+        alpha <- metadata(all)[["alpha"]]
+        assertIsAlpha(alpha)
 
-    # Determine where the known markers are located in the all markers data.
-    # Here we have slotted the gene IDs inside a "ranges" column.
-    allGenes <- all %>%
-        .[["ranges"]] %>%
-        mcols() %>%
-        .[["geneID"]]
-    knownGenes <- known[["geneID"]]
-    assert_are_intersecting_sets(knownGenes, allGenes)
-    keep <- allGenes %in% knownGenes
-    data <- all[keep, , drop = FALSE]
+        # Determine where the known markers are located in the all markers data.
+        # Here we have slotted the gene IDs inside a "ranges" column.
+        allGenes <- all %>%
+            .[["ranges"]] %>%
+            mcols() %>%
+            .[["geneID"]]
+        knownGenes <- known[["geneID"]]
+        assert_are_intersecting_sets(knownGenes, allGenes)
+        keep <- allGenes %in% knownGenes
+        data <- all[keep, , drop = FALSE]
 
-    # Apply our alpha level cutoff.
-    keep <- data[["padj"]] < alpha
-    data <- data[keep, , drop = FALSE]
+        # Apply our alpha level cutoff.
+        keep <- data[["padj"]] < alpha
+        data <- data[keep, , drop = FALSE]
 
-    # Now add the cell type column.
-    # How do we want to map and group the cell type?
-    # FIXME
-    stop("This is still in progress.")
+        # Add the `cellType` column.
+        map <- left_join(
+            x = DataFrame(
+                name = data[["name"]],
+                geneID = mcols(data[["ranges"]])[["geneID"]]
+            ),
+            y = known %>%
+                as("DataFrame") %>%
+                select(!!!syms(c("cellType", "geneID"))),
+            by = "geneID"
+        )
+        data[["cellType"]] <- map[["cellType"]]
 
-    x <- DataFrame(
-        order = seq_len(nrow(data)),
-        name = data[["name"]],
-        geneID = mcols(data[["ranges"]])[["geneID"]]
-    )
-    y <- as(known, "DataFrame")[, c("cellType", "geneID")]
-    map <- merge(
-        x = x,
-        y = y,
-        all.x = TRUE,
-        by = "geneID"
-    ) %>%
-        .[.[["order"]], , drop = FALSE]
-    data[["cellType"]] <- map[["cellType"]]
-
-    # FIXME
-    stop("Still a work in progress.")
-
-    if (isTRUE(filterPromiscuous)) {
         # Filter out promiscuous markers present in multiple clusters.
-        promiscuous <- data %>%
-            ungroup() %>%
-            group_by(!!!syms(c("cellType", "geneID", "geneName"))) %>%
-            summarize(n = n()) %>%
-            filter(!!sym("n") >= !!promiscuousThreshold) %>%
-            pull("geneID")
-        if (length(promiscuous)) {
-            message(paste(
-                "Promiscuous markers:", toString(promiscuous)
-            ))
-            data <- filter(data, !!sym("geneID") %in% !!!promiscuous)
+        if (promiscuousThreshold > 1L) {
+            cols <- c("cellType", "name")
+            promiscuous <- data[, cols] %>%
+                as("tbl_df") %>%
+                ungroup() %>%
+                group_by(!!!syms(cols)) %>%
+                summarize(n = n()) %>%
+                filter(!!sym("n") >= !!promiscuousThreshold) %>%
+                pull("name")
+            if (length(promiscuous)) {
+                message(paste(
+                    "Removing promiscuous markers:", toString(promiscuous)
+                ))
+                keep <- !data[["name"]] %in% promiscuous
+                data <- data[keep, , drop = FALSE]
+            }
         }
+
+        data
     }
 
-    data
-}
+
+
+#' @rdname knownMarkers
+#' @export
+setMethod(
+    f = "knownMarkers",
+    signature = signature(
+        all = "SeuratMarkers",
+        known = "CellTypeMarkers"
+    ),
+    definition = .knownMarkers.SeuratMarkers
+)
