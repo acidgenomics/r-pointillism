@@ -1,3 +1,4 @@
+# TODO Consolidate these defaults with `.plotReducedDim`.
 # FIXME Keep the original gene input, to use for the labels.
 # Need to remap an additional remapping function here I think.
 
@@ -37,7 +38,6 @@ NULL
 
 
 
-# TODO Consolidate these defaults with `.plotReducedDim`.
 .plotMarker <- function(
     object,
     genes,
