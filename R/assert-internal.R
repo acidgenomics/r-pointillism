@@ -1,3 +1,7 @@
+# FIXME Deprecate all of these if we can.
+
+
+
 .assertHasDesignFormula <- function(object) {
     stopifnot(is(object, "SingleCellExperiment"))
     assert_is_factor(object[["group"]])
@@ -25,6 +29,7 @@
 
 
 
+# FIXME Deprecate this.
 .assertIsKnownMarkers <- function(object) {
     # Require a tibble.
     assert_is_tbl_df(object)
