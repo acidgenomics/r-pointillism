@@ -5,10 +5,13 @@ setValidity(
         assert_is_all_of(object, "DataFrame")
         assert_has_rows(object)
         assert_are_identical(
-            x = colnames(object),
-            y = c("phase", "geneID", "geneName")
+            x = lapply(object, class),
+            y = list(
+                phase = "factor",
+                geneID = "character",
+                geneName = "character"
+            )
         )
-        assert_is_factor(object[["phase"]])
         assert_is_subset(
             x = c("version", "organism", "ensemblRelease", "date"),
             y = names(metadata(object))
@@ -26,10 +29,13 @@ setValidity(
         assert_is_all_of(object, "DataFrame")
         assert_has_rows(object)
         assert_are_identical(
-            x = colnames(object),
-            y = c("cellType", "geneID", "geneName")
+            x = lapply(object, class),
+            y = list(
+                cellType = "factor",
+                geneID = "character",
+                geneName = "character"
+            )
         )
-        assert_is_factor(object[["cellType"]])
         assert_is_subset(
             x = c("version", "organism", "ensemblRelease", "date"),
             y = names(metadata(object))
