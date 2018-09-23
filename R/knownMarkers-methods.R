@@ -1,7 +1,3 @@
-# FIXME Rethink how we're approaching this.
-
-
-
 #' Known Markers Detected
 #'
 #' @note Both the `all` and `known` objects must contain Ensembl gene
@@ -23,7 +19,7 @@
 #'   required to consider a gene marker promiscuous. Set to `0` to disable
 #'   promiscuous marker filtering.
 #'
-#' @return `SeuratMarkers`.
+#' @return `KnownSeuratMarkers`.
 #'
 #' @examples
 #' x <- knownMarkers(
@@ -97,7 +93,12 @@ NULL
             }
         }
 
-        data
+        metadata(data) <- list(
+            alpha = alpha,
+            version = packageVersion("pointillism"),
+            date = Sys.Date()
+        )
+        new(Class = "KnownSeuratMarkers", data)
     }
 
 
