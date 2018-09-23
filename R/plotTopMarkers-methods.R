@@ -1,3 +1,7 @@
+# FIXME Improve the formals.
+
+
+
 #' Plot Top Markers
 #'
 #' The number of markers to plot is determined by the output of the
@@ -23,11 +27,7 @@ NULL
 
 
 
-#' @rdname plotTopMarkers
-#' @export
-setMethod(
-    "plotTopMarkers",
-    signature("SingleCellExperiment"),
+.plotTopMarkers.SCE <-  # nolint
     function(
         object,
         markers,
@@ -49,7 +49,7 @@ setMethod(
             coding = coding
         )
         reducedDim <- match.arg(reducedDim)
-        assertIsAHeaderLevel(headerLevel)
+        assertIsHeaderLevel(headerLevel)
 
         assert_is_subset("cluster", colnames(markers))
         clusters <- levels(markers[["cluster"]])
@@ -86,6 +86,15 @@ setMethod(
 
         invisible(list)
     }
+
+
+
+#' @rdname plotTopMarkers
+#' @export
+setMethod(
+    f = "plotTopMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotTopMarkers.SCE
 )
 
 
@@ -93,7 +102,10 @@ setMethod(
 #' @rdname plotTopMarkers
 #' @export
 setMethod(
-    "plotTopMarkers",
-    signature("seurat"),
-    getMethod("plotTopMarkers", "SingleCellExperiment")
+    f = "plotTopMarkers",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "plotTopMarkers",
+        signature = signature("SingleCellExperiment")
+    )
 )
