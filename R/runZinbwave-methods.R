@@ -46,11 +46,7 @@ NULL
 
 
 
-#' @rdname runZinbwave
-#' @export
-setMethod(
-    "runZinbwave",
-    signature(Y = "SingleCellExperiment"),
+.runZinbwave.SCE <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
@@ -154,4 +150,13 @@ setMethod(
         counts(object) <- counts
         object
     }
+
+
+
+#' @rdname runZinbwave
+#' @export
+setMethod(
+    f = "runZinbwave",
+    signature = signature(Y = "SingleCellExperiment"),
+    definition = .runZinbwave.SCE
 )
