@@ -1,7 +1,3 @@
-# FIXME Need to switch to S4 method.
-
-
-
 #' Cell Types per Cluster
 #'
 #' @name cellTypesPerCluster
@@ -10,35 +6,39 @@
 #' @export
 #'
 #' @inheritParams general
-#' @param data `data.frame` grouped by `cellType`. [knownMarkersDetected()]
-#'   return.
 #' @param min `scalar integer`. Minimum number of marker genes per cluster.
 #' @param max `scalar integer`. Maximum number of marker genes per cluster.
 #'
-#' @return `grouped_df` grouped by "`cluster`", containing the count (`n`) of
-#'   significant known makers per cell type.
-#' @export
+#' @return `grouped_df`. Grouped by `cluster` column, containing the count (`n`)
+#'   of significant known makers per cell type.
 #'
 #' @examples
-#' x <- cellTypesPerCluster(known_markers_detected_small)
-#' glimpse(x)
+#' x <- cellTypesPerCluster(known_markers_small)
+#' print(x)
 NULL
 
 
 
-.cellTypesPerCluster <- function(
-    data,
+.cellTypesPerCluster.KnownSeuratMarkers <- function(
+    object,
     min = 1L,
     max = Inf
 ) {
-    .assertIsKnownMarkersDetected(data)
+    validObject(object)
     assert_is_a_number(min)
     assert_is_a_number(max)
+    assert_all_are_positive(c(min, max))
 
-    # Note that the order is important here
+    # Note that the order is important here.
     groupCols <- c("cluster", "cellType")
 
+    data <- as(object, "DataFrame")
+    data[["geneID"]] <- mcols(data[["ranges"]])[["geneID"]]
+    data[["geneName"]] <- mcols(data[["ranges"]])[["geneName"]]
+    data[["ranges"]] <- NULL
+
     data <- data %>%
+        as("tbl_df") %>%
         ungroup() %>%
         select(!!!syms(groupCols), everything()) %>%
         mutate_at(groupCols, as.factor) %>%
@@ -47,12 +47,12 @@ NULL
         # Only positive markers are informative and should be used.
         filter(!!sym("avgLogFC") > 0L) %>%
         # Use `toString()` instead of `aggregate()` for R Markdown tables.
+        # Genes are arranged by P value.
         summarize(
             n = n(),
-            # Genes are arranged by P value
+            name = toString(!!sym("name")),
             geneID = toString(!!sym("geneID")),
-            geneName = toString(!!sym("geneName")),
-            rowname = toString(!!sym("rowname"))
+            geneName = toString(!!sym("geneName"))
         ) %>%
         group_by(!!sym("cluster")) %>%
         arrange(desc(!!sym("n")), .by_group = TRUE)
@@ -68,3 +68,13 @@ NULL
 
     data
 }
+
+
+
+#' @rdname cellTypesPerCluster
+#' @export
+setMethod(
+    f = "cellTypesPerCluster",
+    signature = signature("KnownSeuratMarkers"),
+    definition = .cellTypesPerCluster.KnownSeuratMarkers
+)
