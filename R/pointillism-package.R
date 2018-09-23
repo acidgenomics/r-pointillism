@@ -9,7 +9,7 @@
 #' @importMethodsFrom basejump coerce
 #' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
-#'   assert_all_are_positive
+#'   assert_all_are_non_negative assert_all_are_positive
 #' @importFrom assertive.properties assert_has_no_duplicates assert_has_names
 #'   assert_has_rows assert_is_non_empty assert_is_of_length assert_is_scalar
 #' @importFrom assertive.sets assert_are_disjoint_sets
@@ -18,7 +18,7 @@
 #'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
 #'   assert_is_character assert_is_data.frame assert_is_factor assert_is_list
 #'   assert_is_matrix assert_is_numeric assert_is_tbl_df is_a_string
-#' @importFrom basejump assertHasRownames assertIsAStringOrNULL
+#' @importFrom basejump assertHasRownames assertIsAlpha assertIsAStringOrNULL
 #'   assertIsAnImplicitInteger assertIsColorScaleContinuousOrNULL
 #'   assertIsColorScaleDiscreteOrNULL assertIsFillScaleDiscreteOrNULL
 #'   assertIsHeaderLevel assertIsImplicitInteger camel coerce
