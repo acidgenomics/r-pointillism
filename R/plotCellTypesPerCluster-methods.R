@@ -16,22 +16,15 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param markers `grouped_df`. Cell types per cluster data. This must be the
-#'   return from [cellTypesPerCluster()].
+#' @param markers `KnownSeuratMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' markers <- cellTypesPerCluster(known_markers_detected_small)
-#' # Subset for speed.
-#' markers <- head(markers, n = 2L)
-#' glimpse(markers)
-#'
-#' # Let's plot the first row, as an example.
 #' plotCellTypesPerCluster(
 #'     object = seurat_small,
-#'     markers = markers
+#'     markers = known_markers_small
 #' )
 NULL
 
@@ -41,34 +34,22 @@ NULL
     function(
         object,
         markers,
-        reducedDim = c("TSNE", "UMAP"),
+        # FIXME Set these automatically.
+        min = 1L,
+        max = Inf,
+        reducedDim = 1L,
         expression = c("mean", "median", "sum"),
-        headerLevel = 2L,
-        ...
+        headerLevel = 2L
     ) {
-        # Legacy arguments -----------------------------------------------------
-        call <- match.call()
-        if ("cellTypesPerCluster" %in% names(call)) {
-            stop("Use `markers` instead of `cellTypesPerCluster`")
-        }
-
-        # Assert checks --------------------------------------------------------
-        # Passthrough: color, dark
+        # Passthrough: color, dark.
         validObject(object)
-        stopifnot(is(markers, "grouped_df"))
-        assert_has_rows(markers)
-        assert_are_identical(
-            x = group_vars(markers),
-            y = "cluster"
-        )
-        assert_is_subset(c("cellType", "rowname"), colnames(markers))
-        reducedDim <- match.arg(reducedDim)
+        validObject(markers)
+        assert_is_scalar(reducedDim)
         expression <- match.arg(expression)
         assertIsHeaderLevel(headerLevel)
 
-        markers <- markers %>%
-            ungroup() %>%
-            mutate_if(is.factor, droplevels)
+        markers <- cellTypesPerCluster(object = markers, min = min, max = max)
+        assert_is_all_of(markers, "grouped_df")
 
         # Output Markdown headers per cluster
         clusters <- levels(markers[["cluster"]])
@@ -81,33 +62,39 @@ NULL
                 tabset = TRUE,
                 asis = TRUE
             )
-            subset <- markers %>%
-                .[.[["cluster"]] == cluster, , drop = FALSE]
-            assert_has_rows(subset)
-            lapply(seq_len(nrow(subset)), function(x) {
-                cellType <- subset[x, , drop = FALSE]
-                genes <- pull(cellType, "rowname") %>%
-                    as.character() %>%
-                    strsplit(", ") %>%
-                    .[[1L]]
-                title <- as.character(pull(cellType, "cellType"))
-                markdownHeader(
-                    text = title,
-                    level = headerLevel + 1L,
-                    asis = TRUE
-                )
-                # Modify the title by adding the cluster number (for the plot)
-                title <- paste(paste0("Cluster ", cluster, ":"), title)
-                p <- plotMarker(
-                    object = object,
-                    genes = genes,
-                    reducedDim = reducedDim,
-                    expression,
-                    ...
-                )
-                show(p)
-                invisible(p)
-            })
+            clusterData <- filter(markers, !!sym("cluster") == !!cluster)
+            assert_has_rows(clusterData)
+            cellTypes <- clusterData[["cellType"]]
+            assert_is_factor(cellTypes)
+            lapply(
+                X = cellTypes,
+                FUN = function(cellType) {
+                    cellData <- clusterData %>%
+                        filter(!!sym("cellType") == !!cellType)
+                    stopifnot(nrow(cellData) == 1L)
+                    genes <- cellData %>%
+                        pull("name") %>%
+                        as.character() %>%
+                        strsplit(", ") %>%
+                        .[[1L]]
+                    title <- as.character(cellType)
+                    markdownHeader(
+                        text = title,
+                        level = headerLevel + 1L,
+                        asis = TRUE
+                    )
+                    # Modify the title by adding the cluster number.
+                    title <- paste(paste0("Cluster ", cluster, ":"), title)
+                    p <- plotMarker(
+                        object = object,
+                        genes = genes,
+                        reducedDim = reducedDim,
+                        expression
+                    )
+                    show(p)
+                    invisible(p)
+                }
+            )
         })
 
         invisible(return)
