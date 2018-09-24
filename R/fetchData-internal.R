@@ -118,9 +118,7 @@
             y = !!sym(dimCols[[2L]]),
             centerX = median(!!sym(dimCols[[1L]])),
             centerY = median(!!sym(dimCols[[2L]]))
-        ) %>%
-        # Sort the columns alphabetically.
-        .[, sort(colnames(.))]
+        )
 
     as(tbl, "DataFrame")
 }
@@ -136,7 +134,7 @@
     assert_is_character(genes)
     assert_is_scalar(reducedDim)
 
-    rownames <- mapGenesToRownames(object, genes)
+    rownames <- mapGenesToRownames(object, genes = genes)
 
     # Transposed log counts matrix, with genes in the columns.
     geneCounts <- .fetchGeneData(
@@ -145,7 +143,10 @@
         assay = "logcounts",
         metadata = FALSE
     )
-    assert_are_identical(colnames(geneCounts), rownames)
+    assert_are_identical(
+        x = colnames(geneCounts),
+        y = as.character(rownames)
+    )
 
     # Keep the supported operations sparse.
     if (is(geneCounts, "sparseMatrix")) {
@@ -158,7 +159,7 @@
     mean <- rowMeans(geneCounts)
     sum <- rowSums(geneCounts)
 
-    # Reduced dim data
+    # Fetch reduced dim data.
     reducedDimData <- .fetchReducedDimData(
         object = object,
         reducedDim = reducedDim
