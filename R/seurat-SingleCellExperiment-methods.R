@@ -1,9 +1,3 @@
-# FIXME
-# Error in (function (classes, fdef, mtable)  :
-# unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
-
-
-
 #' Extend S4 Methods for `seurat` Class
 #'
 #' Provide limited `SingleCellExperiment`-like method support.
@@ -189,6 +183,57 @@ setMethod(
         ),
         where = asNamespace("basejump")
     )
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToIDs
+#' @export
+setMethod(
+    f = "mapGenesToIDs",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToIDs(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToRownames
+#' @export
+setMethod(
+    f = "mapGenesToRownames",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToRownames(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToSymbols
+#' @export
+setMethod(
+    f = "mapGenesToSymbols",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToSymbols(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
 )
 
 
