@@ -123,7 +123,7 @@ setGeneric(
 #' @export
 setGeneric(
     name = "plotKnownMarkers",
-    def = function(object, ...) {
+    def = function(object, markers, ...) {
         standardGeneric("plotKnownMarkers")
     }
 )
