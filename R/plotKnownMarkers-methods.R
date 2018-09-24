@@ -1,4 +1,5 @@
 # FIXME Fix the formals.
+# FIXME Rethink how this works.
 
 
 
@@ -15,28 +16,36 @@
 #'
 #' @examples
 #' plotKnownMarkers(
-#'     object = sce_small,
+#'     object = seurat_small,
 #'     markers = known_markers_small
 #' )
 NULL
 
 
 
-# FIXME Rethink how this works.
 .plotKnownMarkers.SCE <-  # nolint
     function(
         object,
         markers,
-        reducedDim = c("TSNE", "UMAP"),
+        reducedDim = 1L,
         headerLevel = 2L,
         ...
     ) {
-        assert_is_all_of(markers, "CellTypeMarkers")
-        reducedDim <- match.arg(reducedDim)
+        validObject(object)
+        validObject(markers)
+        assert_is_subset(
+            x = unique(markers[["name"]]),
+            y = rownames(object)
+        )
+        assert_is_scalar(reducedDim)
         assertIsHeaderLevel(headerLevel)
 
+        # Safe to remove our nested ranges.
+        markers <- as(markers, "DataFrame")
+        markers[["ranges"]] <- NULL
+
         cellTypes <- markers %>%
-            pull("cellType") %>%
+            .[["cellType"]] %>%
             as.character() %>%
             na.omit() %>%
             unique()
@@ -44,15 +53,16 @@ NULL
 
         list <- pblapply(cellTypes, function(cellType) {
             genes <- markers %>%
+                as("tbl_df") %>%
                 filter(cellType == !!cellType) %>%
-                pull("geneID") %>%
+                pull("name") %>%
                 as.character() %>%
                 na.omit() %>%
                 unique()
             assert_is_non_empty(genes)
 
             markdownHeader(
-                text = cellType,
+                text = as.character(cellType),
                 level = headerLevel,
                 tabset = TRUE,
                 asis = TRUE
@@ -62,8 +72,7 @@ NULL
                 p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reducedDim = reducedDim,
-                    ...
+                    reducedDim = reducedDim
                 )
                 show(p)
                 invisible(p)
@@ -79,7 +88,10 @@ NULL
 #' @export
 setMethod(
     f = "plotKnownMarkers",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(
+        object = "SingleCellExperiment",
+        markers = "KnownSeuratMarkers"
+    ),
     definition = .plotKnownMarkers.SCE
 )
 
@@ -89,9 +101,15 @@ setMethod(
 #' @export
 setMethod(
     f = "plotKnownMarkers",
-    signature = signature("seurat"),
+    signature = signature(
+        object = "seurat",
+        markers = "KnownSeuratMarkers"
+    ),
     definition = getMethod(
         f = "plotKnownMarkers",
-        signature = signature("SingleCellExperiment")
+        signature = signature(
+            object = "SingleCellExperiment",
+            markers = "KnownSeuratMarkers"
+        )
     )
 )
