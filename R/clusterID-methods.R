@@ -11,8 +11,8 @@
 #'
 #' @examples
 #' x <- clusterID(sce_small)
-#' table(x)
 #' head(x)
+#' table(x)
 NULL
 
 
