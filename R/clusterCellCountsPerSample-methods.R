@@ -6,20 +6,16 @@
 #'
 #' @inheritParams general
 #'
-#' @return `tibble` grouped by "`sampleName`" column, arranged by abundance.
+#' @return `grouped_df`. Grouped by `sampleName` column, arranged by abundance.
 #'
 #' @examples
 #' x <- clusterCellCountsPerSample(sce_small)
-#' glimpse(x)
+#' print(x)
 NULL
 
 
 
-#' @rdname clusterCellCountsPerSample
-#' @export
-setMethod(
-    "clusterCellCountsPerSample",
-    signature("SingleCellExperiment"),
+.clusterCellCountsPerSample.SCE <-  # nolint
     function(object) {
         .assertHasIdent(object)
         metrics <- metrics(object)
@@ -34,6 +30,15 @@ setMethod(
             group_by(!!sym("sampleName")) %>%
             mutate(ratio = !!sym("n") / sum(!!sym("n")))
     }
+
+
+
+#' @rdname clusterCellCountsPerSample
+#' @export
+setMethod(
+    f = "clusterCellCountsPerSample",
+    signature = signature("SingleCellExperiment"),
+    definition = .clusterCellCountsPerSample.SCE
 )
 
 
@@ -41,7 +46,10 @@ setMethod(
 #' @rdname clusterCellCountsPerSample
 #' @export
 setMethod(
-    "clusterCellCountsPerSample",
-    signature("seurat"),
-    getMethod("clusterCellCountsPerSample", "SingleCellExperiment")
+    f = "clusterCellCountsPerSample",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "clusterCellCountsPerSample",
+        signature = signature("SingleCellExperiment")
+    )
 )
