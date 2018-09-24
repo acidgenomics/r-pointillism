@@ -20,14 +20,14 @@ clusterCellCountsPerSample(object, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tibble} grouped by "\code{sampleName}" column, arranged by abundance.
+\code{grouped_df}. Grouped by \code{sampleName} column, arranged by abundance.
 }
 \description{
 Cluster Cell Counts per Sample
 }
 \examples{
 x <- clusterCellCountsPerSample(sce_small)
-glimpse(x)
+print(x)
 }
 \seealso{
 Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},

@@ -11,20 +11,23 @@
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
-  "sum"), headerLevel = 2L, ...)
+  min = 1L, max = Inf, reducedDim = 1L, expression = c("mean",
+  "median", "sum"), headerLevel = 2L)
 
-\S4method{plotCellTypesPerCluster}{seurat}(object, markers,
-  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "median",
-  "sum"), headerLevel = 2L, ...)
+\S4method{plotCellTypesPerCluster}{seurat}(object, markers, min = 1L,
+  max = Inf, reducedDim = 1L, expression = c("mean", "median",
+  "sum"), headerLevel = 2L)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
-\item{markers}{\code{grouped_df}. Cell types per cluster data. This must be the
-return from \code{\link[=cellTypesPerCluster]{cellTypesPerCluster()}}.}
+\item{markers}{\code{KnownSeuratMarkers}.}
+
+\item{min}{\code{scalar numeric}. Recommended minimum value cutoff.}
+
+\item{max}{\code{scalar numeric}. Recommended maximum value cutoff.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
@@ -43,15 +46,9 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
-markers <- cellTypesPerCluster(known_markers_detected_small)
-# Subset for speed.
-markers <- head(markers, n = 2L)
-glimpse(markers)
-
-# Let's plot the first row, as an example.
 plotCellTypesPerCluster(
     object = seurat_small,
-    markers = markers
+    markers = known_markers_small
 )
 }
 \seealso{

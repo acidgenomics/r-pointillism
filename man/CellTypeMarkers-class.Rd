@@ -4,15 +4,15 @@
 \name{CellTypeMarkers-class}
 \alias{CellTypeMarkers-class}
 \title{\code{CellTypeMarkers} Class}
-\value{
-\code{CellTypeMarkers}.
-}
 \description{
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[=metadata]{metadata()}}.
 }
 \seealso{
+\code{\link[=CellTypeMarkers]{CellTypeMarkers()}}.
+
 Other S4 Classes: \code{\link{CellCycleMarkers-class}},
+  \code{\link{KnownSeuratMarkers-class}},
   \code{\link{SeuratMarkers-class}}
 }
 \author{
