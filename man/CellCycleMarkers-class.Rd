@@ -9,7 +9,10 @@ Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[=metadata]{metadata()}}.
 }
 \seealso{
+\code{\link[=CellCycleMarkers]{CellCycleMarkers()}}.
+
 Other S4 Classes: \code{\link{CellTypeMarkers-class}},
+  \code{\link{KnownSeuratMarkers-class}},
   \code{\link{SeuratMarkers-class}}
 }
 \author{

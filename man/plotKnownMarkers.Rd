@@ -3,24 +3,25 @@
 \docType{methods}
 \name{plotKnownMarkers}
 \alias{plotKnownMarkers}
-\alias{plotKnownMarkers,SingleCellExperiment-method}
-\alias{plotKnownMarkers,seurat-method}
+\alias{plotKnownMarkers,SingleCellExperiment,KnownSeuratMarkers-method}
+\alias{plotKnownMarkers,seurat,KnownSeuratMarkers-method}
 \title{Plot Known Markers}
 \usage{
-plotKnownMarkers(object, ...)
+plotKnownMarkers(object, markers, ...)
 
-\S4method{plotKnownMarkers}{SingleCellExperiment}(object, markers,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
 
-\S4method{plotKnownMarkers}{seurat}(object, markers,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+  \S4method{plotKnownMarkers}{SingleCellExperiment,KnownSeuratMarkers}(object,
+  markers, reducedDim = 1L, headerLevel = 2L, ...)
+
+\S4method{plotKnownMarkers}{seurat,KnownSeuratMarkers}(object, markers,
+  reducedDim = 1L, headerLevel = 2L, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
-
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cellType}".}
+
+\item{...}{Additional arguments.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
@@ -35,7 +36,7 @@ Plot Known Markers
 }
 \examples{
 plotKnownMarkers(
-    object = sce_small,
+    object = seurat_small,
     markers = known_markers_small
 )
 }

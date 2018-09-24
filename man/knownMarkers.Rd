@@ -25,7 +25,7 @@ required to consider a gene marker promiscuous. Set to \code{0} to disable
 promiscuous marker filtering.}
 }
 \value{
-\code{SeuratMarkers}.
+\code{KnownSeuratMarkers}.
 }
 \description{
 Known Markers Detected
@@ -37,11 +37,14 @@ based on the gene names, since these change often and can mismatch
 easily.
 }
 \examples{
+# FIXME Need to update this.
+\dontrun{
 x <- knownMarkers(
     all = all_markers_small,
     known = known_markers_small
 )
 head(x)
+}
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},

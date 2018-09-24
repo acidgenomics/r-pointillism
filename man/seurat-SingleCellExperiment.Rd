@@ -13,6 +13,9 @@
 \alias{gene2symbol,seurat-method}
 \alias{interestingGroups,seurat-method}
 \alias{interestingGroups<-,seurat,character-method}
+\alias{mapGenesToIDs,seurat-method}
+\alias{mapGenesToRownames,seurat-method}
+\alias{mapGenesToSymbols,seurat-method}
 \alias{metadata,seurat-method}
 \alias{metadata<-,seurat-method}
 \alias{metrics,seurat-method}
@@ -45,6 +48,12 @@
 
 \S4method{interestingGroups}{seurat,character}(object) <- value
 
+\S4method{mapGenesToIDs}{seurat}(object, genes, strict = TRUE)
+
+\S4method{mapGenesToRownames}{seurat}(object, genes, strict = TRUE)
+
+\S4method{mapGenesToSymbols}{seurat}(object, genes, strict = TRUE)
+
 \S4method{metadata}{seurat}(x, ...)
 
 \S4method{metadata}{seurat}(x) <- value
@@ -73,6 +82,9 @@
 \item{value}{Object to assign.}
 
 \item{object}{Object.}
+
+\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
+object.}
 
 \item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
 interesting groups. Must be formatted in camel case and intersect with

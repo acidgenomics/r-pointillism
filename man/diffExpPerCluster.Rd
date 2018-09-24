@@ -31,13 +31,15 @@ Cluster identity (\code{ident}) must be defined in \code{colData()} for this
 function to work.
 }
 \examples{
-x <- suppressMessages(diffExpPerCluster(
-    object = sce_small,
-    group = "group",
-    numerator = "group2",
-    denominator = "group1",
-    caller = "edgeR"
-))
+x <- suppressMessages(
+    diffExpPerCluster(
+        object = sce_small,
+        group = "group",
+        numerator = "group2",
+        denominator = "group1",
+        caller = "edgeR"
+    )
+)
 class(x)
 lapply(x, class)
 }

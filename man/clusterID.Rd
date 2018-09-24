@@ -26,8 +26,8 @@ Cluster Identity
 }
 \examples{
 x <- clusterID(sce_small)
-table(x)
 head(x)
+table(x)
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},
