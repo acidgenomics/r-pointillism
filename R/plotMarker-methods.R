@@ -11,6 +11,7 @@
 #' @name plotMarker
 #' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
+#' @export
 #'
 #' @inheritParams general
 #'
@@ -41,7 +42,7 @@ NULL
 .plotMarker <- function(
     object,
     genes,
-    reducedDim = c("TSNE", "UMAP", "PCA"),
+    reducedDim = c("TSNE", "UMAP"),
     expression = c("mean", "sum"),
     color = getOption(
         "pointillism.continuous.color",
@@ -95,6 +96,7 @@ NULL
 
     # Get the axis labels.
     axes <- colnames(data)[seq_len(2L)]
+    stopifnot(all(grepl("\\d+$", axes)))
 
     requiredCols <- c(
         axes,
@@ -405,9 +407,9 @@ NULL
 #' @rdname plotFeature
 #' @export
 setMethod(
-    "plotFeature",
-    signature("SingleCellExperiment"),
-    .plotFeature
+    f = "plotFeature",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotFeature
 )
 
 
@@ -415,7 +417,10 @@ setMethod(
 #' @rdname plotFeature
 #' @export
 setMethod(
-    "plotFeature",
-    signature("seurat"),
-    getMethod("plotFeature", "SingleCellExperiment")
+    f = "plotFeature",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "plotFeature",
+        signature = signature("SingleCellExperiment")
+    )
 )
