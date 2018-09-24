@@ -22,11 +22,14 @@
 #' @return `KnownSeuratMarkers`.
 #'
 #' @examples
+#' # FIXME Need to update this.
+#' \dontrun{
 #' x <- knownMarkers(
 #'     all = all_markers_small,
 #'     known = known_markers_small
 #' )
 #' head(x)
+#' }
 NULL
 
 
