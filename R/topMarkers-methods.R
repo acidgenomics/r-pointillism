@@ -38,8 +38,10 @@ NULL
         assertIsAnImplicitInteger(n)
         direction <- match.arg(direction)
 
-        # TODO Add our own DataFrame coercion method, which attaches geneID.
-        data <- as(object, "tbl_df")
+        # FIXME Consider making this a shared internal function.
+        data <- as(object, "DataFrame")
+        data[["ranges"]] <- NULL
+        data <- as(data, "tbl_df")
 
         if ("cluster" %in% colnames(data)) {
             message("Grouping by cluster")
