@@ -244,7 +244,7 @@ SeuratMarkers <- function(
 
     # Sanitize Seurat markers --------------------------------------------------
     # Coerce to tibble.
-    data <- as(markers, "tbl_df")
+    data <- as_tibble(markers, rownames = "rowname")
     # Standardize with camel case.
     data <- camel(data)
 
