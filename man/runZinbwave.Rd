@@ -18,7 +18,8 @@ only for \code{SummarizedExperiment}.}
 
 \item{...}{Passthrough arguments to \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.}
 
-\item{K}{integer. Number of latent factors.}
+\item{K}{integer. Number of latent factors. Specify \code{K = 0} if only
+computing observational weights.}
 
 \item{epsilon}{nonnegative scalar. Regularization parameter.}
 

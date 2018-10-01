@@ -62,13 +62,14 @@
 
 \S4method{reducedDims}{seurat}(x)
 
-\S4method{rowData}{seurat}(x, ...)
+\S4method{rowData}{seurat}(x, use.names = TRUE, ...)
 
 \S4method{rownames}{seurat}(x)
 
 \S4method{rowRanges}{seurat}(x)
 
-\S4method{sampleData}{seurat}(object, interestingGroups = NULL)
+\S4method{sampleData}{seurat}(object, blacklist = c("^ident$",
+  "^origIdent$", "^res[.0-9]+$", "^sScore$", "^g2mScore$", "^phase$"))
 
 \S4method{sampleData}{seurat,DataFrame}(object) <- value
 
@@ -85,10 +86,6 @@
 
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
-
-\item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-\code{\link[=sampleData]{sampleData()}} colnames.}
 }
 \value{
 Match \code{SummarizedExperiment} method return.

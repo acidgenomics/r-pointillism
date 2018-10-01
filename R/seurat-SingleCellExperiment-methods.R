@@ -367,7 +367,7 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell sampleData
+#' @importFrom basejump sampleData
 #' @export
 setMethod(
     f = "sampleData",
@@ -375,7 +375,7 @@ setMethod(
     getMethod(
         f = "sampleData",
         signature = signature("SingleCellExperiment"),
-        where = asNamespace("bcbioSingleCell")
+        where = asNamespace("basejump")
     )
 )
 
@@ -396,7 +396,7 @@ setMethod(
             object = "SingleCellExperiment",
             value = "DataFrame"
         ),
-        where = asNamespace("bcbioSingleCell")
+        where = asNamespace("basejump")
     )
 )
 
