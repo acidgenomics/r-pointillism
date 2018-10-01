@@ -81,7 +81,7 @@ NULL
         if (promiscuousThreshold > 1L) {
             cols <- c("cellType", "name")
             promiscuous <- data[, cols] %>%
-                as("tbl_df") %>%
+                as_tibble() %>%
                 ungroup() %>%
                 group_by(!!!syms(cols)) %>%
                 summarize(n = n()) %>%

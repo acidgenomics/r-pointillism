@@ -53,7 +53,7 @@ NULL
 
         list <- pblapply(cellTypes, function(cellType) {
             genes <- markers %>%
-                as("tbl_df") %>%
+                as_tibble() %>%
                 filter(cellType == !!cellType) %>%
                 pull("name") %>%
                 as.character() %>%
