@@ -38,7 +38,7 @@ NULL
     data[["ranges"]] <- NULL
 
     data <- data %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         ungroup() %>%
         select(!!!syms(groupCols), everything()) %>%
         mutate_at(groupCols, as.factor) %>%

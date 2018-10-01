@@ -140,7 +140,7 @@ NULL
     # Prepare data for ggplot.
     cols <- c("geneName", "sampleName", "ident")
     data <- data %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         group_by(!!!syms(cols)) %>%
         summarize(
             avgExp = mean(expm1(!!sym("logcounts"))),

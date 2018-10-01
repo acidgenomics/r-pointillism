@@ -32,7 +32,7 @@ NULL
         cols <- unique(c("ident", interestingGroups))
         assert_is_subset(cols, colnames(data))
         data %>%
-            as("tbl_df") %>%
+            as_tibble() %>%
             arrange(!!!syms(cols)) %>%
             group_by(!!!syms(cols)) %>%
             summarize(n = n()) %>%

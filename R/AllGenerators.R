@@ -48,12 +48,11 @@
     # We're coercing to tibble here to join back to the markers data.
     gene2symbol <- gene2symbol %>%
         as("DataFrame") %>%
-        set_rownames(NULL) %>%
-        as("tbl_df")
+        as_tibble(rownames = NULL)
 
     # Coerce to tibble and sanitize.
     data <- data %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         camel() %>%
         select(!!!syms(c(group, "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
