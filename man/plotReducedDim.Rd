@@ -166,7 +166,7 @@ dots (\code{FALSE}).}
 installing this with conda: \code{conda install -c conda-forge umap-learn}.
 }
 \examples{
-object <- sce_small
+object <- seurat_small
 
 # t-SNE
 plotTSNE(object)

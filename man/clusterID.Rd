@@ -25,7 +25,7 @@ clusterID(object, ...)
 Cluster Identity
 }
 \examples{
-x <- clusterID(sce_small)
+x <- clusterID(seurat_small)
 head(x)
 table(x)
 }

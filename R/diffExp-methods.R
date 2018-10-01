@@ -74,9 +74,12 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' object <- sce_small[seq_len(100L), seq_len(100L)]
+#' object <- as(seurat_small, "SingleCellExperiment")
+#' # Subset example for speed.
+#' object <- [seq_len(100L), seq_len(100L)]
 #' # Ensure genes with all zero counts are filtered.
 #' object <- bcbioSingleCell::filterCells(object)
+#'
 #' numerator <- colnames(object)[object$group == "group2"]
 #' glimpse(numerator)
 #' denominator <- colnames(object)[object$group == "group1"]

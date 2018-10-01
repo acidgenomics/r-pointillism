@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' x <- suppressMessages(
-#'     findMarkers(sce_small, caller = "edgeR")
+#'     findMarkers(seurat_small, caller = "edgeR")
 #' )
 #' class(x)
 #' lapply(x, class)

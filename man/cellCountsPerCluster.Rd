@@ -30,7 +30,7 @@ interesting groups. Must be formatted in camel case and intersect with
 Cell Counts per Cluster
 }
 \examples{
-x <- cellCountsPerCluster(sce_small)
+x <- cellCountsPerCluster(seurat_small)
 print(x)
 }
 \seealso{

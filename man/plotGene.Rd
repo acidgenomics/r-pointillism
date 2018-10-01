@@ -95,7 +95,7 @@ observations. If "width", all violins have the same maximum width.}
 Visualize genes on a dot or violin plot.
 }
 \examples{
-object <- sce_small
+object <- seurat_small
 
 # Plotting with either gene IDs or gene names (symbols) works.
 geneIDs <- head(rownames(object), n = 4L)

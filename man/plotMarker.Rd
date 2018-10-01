@@ -80,16 +80,17 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \examples{
+object <- seurat_small
 title <- "most abundant genes"
-genes <- counts(sce_small) \%>\%
+genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%
     sort(decreasing = TRUE) \%>\%
     head(n = 4L) \%>\%
     names()
 glimpse(genes)
-plotMarker(sce_small, genes = genes[[1L]])
+plotMarker(object, genes = genes[[1L]])
 plotMarker(
-    object = sce_small,
+    object = object,
     genes = genes,
     expression = "mean",
     pointsAsNumbers = TRUE,
