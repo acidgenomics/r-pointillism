@@ -1,8 +1,8 @@
 # SingleCellExperiment Example Data
-# 2018-09-23
+# 2018-09-30
 
-library(reticulate)
 library(bcbioSingleCell)
+library(reticulate)
 library(splatter)
 library(Seurat)
 library(Matrix)
@@ -14,49 +14,9 @@ library(tidyverse)
 # use_condaenv("steinbaugh")
 stopifnot(py_module_available(module = "umap"))
 
-organism <- "Homo sapiens"
-release <- 92L
-
-# splatter =====================================================================
-# Use splatter to generate an example dataset with simulated counts.
-# Note: These DE params are natural log scale.
-params <- newSplatParams()
-params <- setParam(params, "de.facLoc", 1)
-params <- setParam(params, "de.facScale", .25)
-params <- setParam(params, "dropout.type", "experiment")
-params <- setParam(params, "dropout.mid", 3)
-sce <- splatSimulate(params, group.prob = c(.5, .5), method = "groups")
-sce <- camel(sce, rownames = TRUE, colnames = TRUE)
-# Pad the dimnames so they sort correctly.
-rownames(sce) <- rownames(sce) %>%
-    str_replace("gene", "") %>%
-    str_pad(width = 5, side = "left", pad = "0") %>%
-    paste0("gene", .)
-colnames(sce) <- colnames(sce) %>%
-    str_replace("cell", "") %>%
-    str_pad(width = 3, side = "left", pad = "0") %>%
-    paste0("cell", .)
-# Prepare column data.
-colData(sce) <- camel(colData(sce), rownames = TRUE, colnames = TRUE)
-sce$cell <- NULL
-# Add sampleID and sampleName columns.
-sce$batch <- as.factor(camel(sce$batch))
-sce$group <- as.factor(camel(sce$group))
-sce$sampleID <- sce$group
-sce$sampleName <- sce$sampleID
-stopifnot("sampleName" %in% colnames(colData(sce)))
-# Just keep raw counts.
-assays(sce) <- assays(sce)["counts"]
-# Prepare row data.
-gr <- makeGRangesFromEnsembl(organism = organism, release = release)
-rowRanges(sce) <- gr[seq_len(nrow(sce))]
-# Sanitize to camel case.
-colData(sce) <- camel(colData(sce))
-metadata(sce) <- list()
-# Set the interesting groups to sample name.
-interestingGroups(sce) <- "sampleName"
-sce <- metrics(sce, recalculate = TRUE)
-sce <- filterCells(sce, minCellsPerGene = 25)
+sce <- bcbioSingleCell::cellranger_small
+organism <- metadata(sce)$organism
+release <- 84
 
 # seurat_small =================================================================
 seurat_small <- sce %>%
@@ -70,29 +30,6 @@ seurat_small <- sce %>%
     RunTSNE(check_duplicates = FALSE) %>%
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
-
-# sce_small ====================================================================
-# Convert rows (geneName) back to Ensembl IDs (geneID).
-seurat_sce <- seurat_small %>%
-    as("SingleCellExperiment") %>%
-    convertSymbolsToGenes()
-# Check that the conversion worked as expected.
-stopifnot(identical(dimnames(sce), dimnames(seurat_sce)))
-stopifnot(all(c("ident", "origIdent") %in% colnames(colData(seurat_sce))))
-# Ensure that dimensional reduction data is slotted correctly.
-stopifnot(identical(
-    names(reducedDims(seurat_sce)),
-    c("PCA", "TSNE", "UMAP")
-))
-# Overwrite the slots with the seurat data.
-assays(sce) <- assays(seurat_sce)
-colData(sce) <- colData(seurat_sce)
-reducedDims(sce) <- reducedDims(seurat_sce)
-# Remove genes with all zero counts prior to zinbwave.
-sce <- filterCells(sce)
-# Calculate zero weights using zinbwave (ZINB-WaVE negative binomial fit).
-sce <- runZinbwave(sce)
-sce_small <- sce
 
 # all_markers_small ============================================================
 all_markers_small <- SeuratMarkers(
@@ -126,7 +63,6 @@ known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
 devtools::use_data(
-    sce_small,
     seurat_small,
     all_markers_small,
     known_markers_small,
