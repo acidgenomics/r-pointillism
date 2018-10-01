@@ -28,8 +28,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.5),
     SingleCellExperiment,
-    basejump (>= 0.99.0),
-    bcbioSingleCell (>= 0.99.0)
+    basejump (>= 0.99.0)
 Imports:
     assertive.base,
     assertive.numbers,
