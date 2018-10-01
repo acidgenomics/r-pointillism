@@ -4,7 +4,7 @@
 \name{known_markers_small}
 \alias{known_markers_small}
 \title{Known Markers Example}
-\format{An object of class \code{KnownSeuratMarkers} with 4 rows and 9 columns.}
+\format{An object of class \code{KnownSeuratMarkers} with 0 rows and 9 columns.}
 \usage{
 known_markers_small
 }
@@ -16,7 +16,7 @@ glimpse(known_markers_small)
 }
 \seealso{
 Other Minimal Example Data: \code{\link{all_markers_small}},
-  \code{\link{sce_small}}, \code{\link{seurat_small}}
+  \code{\link{seurat_small}}
 }
 \author{
 Michael Steinbaugh

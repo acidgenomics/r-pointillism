@@ -4,7 +4,7 @@
 \name{all_markers_small}
 \alias{all_markers_small}
 \title{Sanitized Markers Example}
-\format{An object of class \code{SeuratMarkers} with 464 rows and 8 columns.}
+\format{An object of class \code{SeuratMarkers} with 607 rows and 8 columns.}
 \usage{
 all_markers_small
 }
@@ -16,7 +16,7 @@ glimpse(all_markers_small)
 }
 \seealso{
 Other Minimal Example Data: \code{\link{known_markers_small}},
-  \code{\link{sce_small}}, \code{\link{seurat_small}}
+  \code{\link{seurat_small}}
 }
 \author{
 Michael Steinbaugh
