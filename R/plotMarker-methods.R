@@ -266,6 +266,7 @@ NULL
 # FIXME Simpilfy the formals here to match `plotReducedDim`.
 # NOTE We aren't using `title` argument here.
 # FIXME We're using continuous color here, so the formal won't match...
+# FIXME argument "color" is missing, with no default
 .plotFeature <- function(
     object,
     features,
