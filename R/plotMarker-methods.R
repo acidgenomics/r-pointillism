@@ -18,16 +18,17 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
+#' object <- seurat_small
 #' title <- "most abundant genes"
-#' genes <- counts(sce_small) %>%
+#' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()
 #' glimpse(genes)
-#' plotMarker(sce_small, genes = genes[[1L]])
+#' plotMarker(object, genes = genes[[1L]])
 #' plotMarker(
-#'     object = sce_small,
+#'     object = object,
 #'     genes = genes,
 #'     expression = "mean",
 #'     pointsAsNumbers = TRUE,
@@ -257,7 +258,7 @@ setMethod(
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
+#' plotFeature(seurat_small, features = c("nUMI", "nGene", "mitoRatio"))
 NULL
 
 

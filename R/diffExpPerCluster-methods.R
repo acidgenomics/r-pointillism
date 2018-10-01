@@ -15,9 +15,10 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
+#' object <- as(seurat_small, "SingleCellExperiment")
 #' x <- suppressMessages(
 #'     diffExpPerCluster(
-#'         object = sce_small,
+#'         object = object,
 #'         group = "group",
 #'         numerator = "group2",
 #'         denominator = "group1",

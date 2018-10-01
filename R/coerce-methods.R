@@ -41,7 +41,7 @@ NULL
 #'
 #' @examples
 #' # SingleCellExperiment to seurat ====
-#' x <- as(sce_small, "seurat")
+#' x <- as(basejump::sce_small, "seurat")
 #' class(x)
 #' print(x)
 setAs(

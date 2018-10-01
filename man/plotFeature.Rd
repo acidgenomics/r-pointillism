@@ -58,7 +58,7 @@ dots (\code{FALSE}).}
 Plot Feature
 }
 \examples{
-plotFeature(sce_small, features = c("nUMI", "nGene", "mitoRatio"))
+plotFeature(seurat_small, features = c("nUMI", "nGene", "mitoRatio"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.

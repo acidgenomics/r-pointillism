@@ -54,7 +54,7 @@ work to run with multiple cores.
 }
 \examples{
 # Example using 200 non-zero genes
-Y <- sce_small
+Y <- as(seurat_small, "SingleCellExperiment")
 Y <- bcbioSingleCell::filterCells(Y)
 Y <- Y[seq_len(200L), ]
 zinb <- suppressMessages(runZinbwave(
