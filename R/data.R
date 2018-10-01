@@ -44,17 +44,6 @@
 
 
 
-#' SingleCellExperiment Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
-#' sce_small
-"sce_small"
-
-
-
 #' Seurat Example
 #'
 #' @family Minimal Example Data
