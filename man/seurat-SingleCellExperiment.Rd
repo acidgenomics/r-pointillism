@@ -42,9 +42,9 @@
 
 \S4method{counts}{seurat}(object, ...)
 
-\S4method{Gene2Symbol}{seurat}(object)
+\S4method{Gene2Symbol}{seurat}(object, ...)
 
-\S4method{interestingGroups}{seurat}(object)
+\S4method{interestingGroups}{seurat}(object, ...)
 
 \S4method{interestingGroups}{seurat,character}(object) <- value
 
@@ -60,7 +60,7 @@
 
 \S4method{metrics}{seurat}(object, ...)
 
-\S4method{reducedDims}{seurat}(x)
+\S4method{reducedDims}{seurat}(x, ...)
 
 \S4method{rowData}{seurat}(x, use.names = TRUE, ...)
 
