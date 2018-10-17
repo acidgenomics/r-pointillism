@@ -9,7 +9,7 @@
 knownMarkers(all, known, ...)
 
 \S4method{knownMarkers}{SeuratMarkers,CellTypeMarkers}(all, known,
-  promiscuousThreshold = 5L)
+  promiscuousThreshold = 0L)
 }
 \arguments{
 \item{all}{\code{SeuratMarkers}.}
