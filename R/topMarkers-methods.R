@@ -3,6 +3,7 @@
 #' @name topMarkers
 #' @family Marker Functions
 #' @author Michael Steinbaugh
+#' @include globals.R
 #'
 #' @inheritParams general
 #' @param n `scalar integer`. Number of genes per cluster.
@@ -28,19 +29,26 @@ NULL
 
 
 
+# FIXME Need to ensure `geneID` column is always added.
 .topMarkers.SeuratMarkers <-  # nolint
     function(
         object,
         n = 10L,
-        direction = c("positive", "negative", "both")
+        direction
     ) {
         validObject(object)
         assertIsAnImplicitInteger(n)
         direction <- match.arg(direction)
 
         # FIXME Consider making this a shared internal function.
+        # REQUIRE That geneID is defined here.
+
+        # Get gene2symbol from slotted ranges.
+        # FIXME Define this as SeuratMarkers to tbl_df coercion method.
         data <- as(object, "DataFrame")
         data[["ranges"]] <- NULL
+        g2s <- mcols(object[["ranges"]])[c("geneID", "geneName")]
+        data <- cbind(data, g2s)
         data <- as(data, "tbl_df")
 
         if ("cluster" %in% colnames(data)) {
@@ -62,6 +70,7 @@ NULL
             # Take the top rows by using slice.
             dplyr::slice(1L:n)
     }
+formals(.topMarkers.SeuratMarkers)[["direction"]] <- direction
 
 
 
