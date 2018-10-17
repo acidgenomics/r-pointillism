@@ -38,7 +38,7 @@ NULL
     function(
         all,
         known,
-        promiscuousThreshold = 5L
+        promiscuousThreshold = 0L
     ) {
         validObject(all)
         validObject(known)
@@ -66,15 +66,16 @@ NULL
 
         # Add the `cellType` column.
         map <- left_join(
-            x = DataFrame(
+            x = tibble(
                 name = data[["name"]],
                 geneID = mcols(data[["ranges"]])[["geneID"]]
             ),
             y = known %>%
-                as("DataFrame") %>%
+                as_tibble(rownames = NULL) %>%
                 select(!!!syms(c("cellType", "geneID"))),
             by = "geneID"
         )
+        assert_are_identical(data[["name"]], map[["name"]])
         data[["cellType"]] <- map[["cellType"]]
 
         # Filter out promiscuous markers present in multiple clusters.
