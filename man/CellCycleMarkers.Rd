@@ -29,15 +29,6 @@ mappings from a \code{SingleCellExperiment} or \code{seurat} object.}
 \description{
 Currently designed for internal use by the pointillism package.
 }
-\examples{
-# Google Sheets method.
-x <- CellCycleMarkers(
-    gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
-    ws = "Homo_sapiens",
-    organism = "Homo sapiens",
-    ensemblRelease = 92L
-)
-}
 \author{
 Michael Steinbaugh
 }

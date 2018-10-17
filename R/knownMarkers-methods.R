@@ -1,3 +1,17 @@
+# FIXME
+# @examples
+# # FIXME Need to update this.
+# \dontrun{
+# data(all_markers_small, known_markers_small)
+# x <- knownMarkers(
+#     all = all_markers_small,
+#     known = known_markers_small
+# )
+# head(x)
+# }
+
+
+
 #' Known Markers Detected
 #'
 #' @note Both the `all` and `known` objects must contain Ensembl gene
@@ -13,23 +27,12 @@
 #' @param all `SeuratMarkers`.
 #' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
 #'   `data.frame` imported by [readCellTypeMarkers()] or pulled from internal
-#'   [cell_cycle_markers] data.
+#'   cell cycle markers data.
 #' @param promiscuousThreshold `scalar integer`. Minimum number of clusters
 #'   required to consider a gene marker promiscuous. Set to `0` to disable
 #'   promiscuous marker filtering.
 #'
 #' @return `KnownSeuratMarkers`.
-#'
-#' @examples
-#' # FIXME Need to update this.
-#' \dontrun{
-#' data(all_markers_small, known_markers_small)
-#' x <- knownMarkers(
-#'     all = all_markers_small,
-#'     known = known_markers_small
-#' )
-#' head(x)
-#' }
 NULL
 
 

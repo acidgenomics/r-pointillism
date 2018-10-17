@@ -55,7 +55,7 @@
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom tibble remove_rownames tibble
+#' @importFrom tibble column_to_rownames remove_rownames tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave

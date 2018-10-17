@@ -9,3 +9,6 @@ darkMarkerColors <-
     ggplot2::scale_color_viridis_c(option = "plasma")
 lightMarkerColors <-
     ggplot2::scale_color_gradient(low = "gray90", high = "red")
+
+direction <- c("positive", "negative", "both")
+reducedDim <- "TSNE"

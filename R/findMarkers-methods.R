@@ -1,3 +1,15 @@
+# TODO Consider adding `progress` option.
+
+
+
+# @examples
+# data(seurat_small)
+# x <- findMarkers(seurat_small, caller = "edgeR")
+# class(x)
+# lapply(x, class)
+
+
+
 #' Find Cluster-Specific Marker Genes
 #'
 #' @note Cluster identity (`ident`) must be defined in `colData()` for this
@@ -13,14 +25,6 @@
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
-#'
-#' @examples
-#' data(seurat_small)
-#' x <- suppressMessages(
-#'     findMarkers(seurat_small, caller = "edgeR")
-#' )
-#' class(x)
-#' lapply(x, class)
 NULL
 
 
@@ -29,6 +33,7 @@ NULL
     function(object, ...) {
         # Object must contain pre-calculate ZINB weights.
         .assertHasZinbwave(object)
+
         # Get the cluster identities.
         ident <- clusterID(object)
         assert_is_factor(ident)
@@ -36,6 +41,7 @@ NULL
         clusters <- levels(ident)
         stopifnot(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
+
         # Loop across the clusters and calculate gene enrichment relative to
         # all of the other clusters combined.
         list <- lapply(
@@ -70,4 +76,14 @@ setMethod(
     f = "findMarkers",
     signature = signature("SingleCellExperiment"),
     definition = .findMarkers.SCE
+)
+
+
+
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("seurat"),
+    definition = getMethod("findMarkers", "SingleCellExperiment")
 )

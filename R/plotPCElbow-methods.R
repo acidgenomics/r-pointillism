@@ -24,7 +24,8 @@
 #' - [Seurat::PCElbowPlot()].
 #'
 #' @examples
-#' plotPCElbow(Seurat::pbmc_small)
+#' data(pbmc_small, package = "Seurat")
+#' plotPCElbow(pbmc_small)
 NULL
 
 
@@ -92,7 +93,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "std dev"
             ) +
             expand_limits(y = 0L) +
@@ -115,7 +116,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "% std dev"
             ) +
             expand_limits(y = 0L) +
@@ -138,7 +139,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "cum % std dev"
             ) +
             expand_limits(y = c(0L, 1L)) +

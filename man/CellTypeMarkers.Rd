@@ -32,15 +32,6 @@ Local spreadsheets (CSV, Excel) and Google Sheets are currently supported.
 \details{
 Must contain \code{phase} and \code{geneID} columns.
 }
-\examples{
-# Google Sheets method.
-x <- CellTypeMarkers(
-    gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",
-    ws = "Homo_sapiens",
-    organism = "Homo sapiens",
-    ensemblRelease = 92L
-)
-}
 \seealso{
 \itemize{
 \item \code{\link[googlesheets:gs_key]{googlesheets::gs_key()}}.

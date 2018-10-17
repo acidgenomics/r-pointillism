@@ -41,7 +41,8 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \examples{
-plotPCElbow(Seurat::pbmc_small)
+data(pbmc_small, package = "Seurat")
+plotPCElbow(pbmc_small)
 }
 \seealso{
 \itemize{

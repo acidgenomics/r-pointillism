@@ -7,6 +7,29 @@
 #' @seealso
 #' - [Seurat::CreateSeuratObject()].
 #' - [Seurat::Convert()].
+#'
+#' @examples
+#' data(seurat_small)
+#' data(sce_small, package = "basejump")
+#'
+#' ## SingleCellExperiment to seurat ====
+#' object <- sce_small
+#' print(object)
+#' x <- as(object, "seurat")
+#' class(x)
+#' print(x)
+#'
+#' ## seurat to SingleCellExperiment ====
+#' x <- as(seurat_small, "SingleCellExperiment")
+#' print(x)
+#'
+#' ## seurat to RangedSummarizedExperiment ====
+#' x <- as(seurat_small, "RangedSummarizedExperiment")
+#' print(x)
+#'
+#' ## seurat to SummarizedExperiment ====
+#' x <- as(seurat_small, "SummarizedExperiment")
+#' print(x)
 NULL
 
 
@@ -37,14 +60,6 @@ as.SingleCellExperiment.seurat <- function(x, ...) {  # nolint
 #' quality control analysis. Here we are passing the raw gene-level counts of
 #' the filtered cells into a new `seurat` class object. Use
 #' [convertGenesToSymbols()] to convert gene IDs to names (symbols).
-#'
-#' @examples
-#' # SingleCellExperiment to seurat ====
-#' object <- basejump::sce_small
-#' print(object)
-#' x <- as(object, "seurat")
-#' class(x)
-#' print(x)
 setAs(
     from = "SingleCellExperiment",
     to = "seurat",
@@ -90,11 +105,6 @@ setAs(
 #' including the `object@scale.data` matrix, and will keep track of stashed
 #' `rowRanges` and `metadata` if the `seurat` object was originally created
 #' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
-#'
-#' @examples
-#' # seurat to SingleCellExperiment ====
-#' x <- as(seurat_small, "SingleCellExperiment")
-#' print(x)
 setAs(
     from = "seurat",
     to = "SingleCellExperiment",
@@ -126,11 +136,6 @@ setAs(
 #' @section `seurat` to `RangedSummarizedExperiment`:
 #' S4 coercion support for creating a `RangedSummarizedExperiment` from a
 #' `seurat` class object.
-#'
-#' @examples
-#' # seurat to RangedSummarizedExperiment ====
-#' x <- as(seurat_small, "RangedSummarizedExperiment")
-#' print(x)
 setAs(
     from = "seurat",
     to = "RangedSummarizedExperiment",
@@ -145,15 +150,9 @@ setAs(
 
 #' @rdname as
 #' @name coerce,seurat,SummarizedExperiment-method
-#'
 #' @section `seurat` to `SummarizedExperiment`:
 #' S4 coercion support for creating a `SummarizedExperiment` from a `seurat`
 #' class object.
-#'
-#' @examples
-#' # seurat to SummarizedExperiment ====
-#' x <- as(seurat_small, "SummarizedExperiment")
-#' print(x)
 setAs(
     from = "seurat",
     to = "SummarizedExperiment",

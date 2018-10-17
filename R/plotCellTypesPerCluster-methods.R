@@ -2,6 +2,9 @@
 # Error in (function (classes, fdef, mtable)  :
 # unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
 # FIXME Need to update to use SeuratMarkers class.
+# FIXME Add progress option, switching pbapply.
+# FIXME Set reducedDim to "TSNE" by default.
+# FIXME Ensure "PC1" in axis label instead of "pc1"
 
 
 
@@ -22,7 +25,7 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' data(seurat_small)
+#' data(seurat_small, known_markers_small)
 #' plotCellTypesPerCluster(
 #'     object = seurat_small,
 #'     markers = known_markers_small
@@ -31,11 +34,11 @@ NULL
 
 
 
+# FIXME Set these formals automatically.
 .plotCellTypesPerCluster.SCE <-  # nolint
     function(
         object,
         markers,
-        # FIXME Set these automatically.
         min = 1L,
         max = Inf,
         reducedDim = 1L,
@@ -51,6 +54,7 @@ NULL
 
         markers <- cellTypesPerCluster(object = markers, min = min, max = max)
         assert_is_all_of(markers, "grouped_df")
+        assert_has_rows(markers)
 
         # Output Markdown headers per cluster
         clusters <- levels(markers[["cluster"]])
@@ -64,6 +68,10 @@ NULL
                 asis = TRUE
             )
             clusterData <- filter(markers, !!sym("cluster") == !!cluster)
+            if (nrow(clusterData) == 0L) {
+                message(paste0("No markers for cluster ", cluster, "."))
+                return(invisible())
+            }
             assert_has_rows(clusterData)
             cellTypes <- clusterData[["cellType"]]
             assert_is_factor(cellTypes)
@@ -90,7 +98,7 @@ NULL
                         object = object,
                         genes = genes,
                         reducedDim = reducedDim,
-                        expression
+                        expression = expression
                     )
                     show(p)
                     invisible(p)
