@@ -51,7 +51,7 @@ setMethod(
     f = "assay",
     signature = signature("seurat"),
     definition = function(x, ...) {
-        assay(.as.SingleCellExperiment.seurat(x), ...)
+        assay(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -64,7 +64,7 @@ setMethod(
     f = "assayNames",
     signature = signature("seurat"),
     definition = function(x, ...) {
-        assayNames(.as.SingleCellExperiment.seurat(x), ...)
+        assayNames(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -77,7 +77,7 @@ setMethod(
     f = "assays",
     signature = signature("seurat"),
     definition = function(x, ...) {
-        assays(.as.SingleCellExperiment.seurat(x), ...)
+        assays(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -90,7 +90,7 @@ setMethod(
     f = "colData",
     signature = signature("seurat"),
     definition = function(x, ...) {
-        colData(.as.SingleCellExperiment.seurat(x), ...)
+        colData(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -121,7 +121,7 @@ setMethod(
     f = "colnames",
     signature = signature("seurat"),
     definition = function(x) {
-        colnames(.as.SingleCellExperiment.seurat(x))
+        colnames(as.SingleCellExperiment(x))
     }
 )
 
@@ -134,7 +134,7 @@ setMethod(
     f = "counts",
     signature = signature("seurat"),
     definition = function(object, ...) {
-        counts(.as.SingleCellExperiment.seurat(object), ...)
+        counts(as.SingleCellExperiment(object), ...)
     }
 )
 
@@ -146,8 +146,8 @@ setMethod(
 setMethod(
     f = "Gene2Symbol",
     signature = signature("seurat"),
-    definition = function(object) {
-        Gene2Symbol(as(object, "SummarizedExperiment"))
+    definition = function(object, ...) {
+        Gene2Symbol(as(object, "SummarizedExperiment"), ...)
     }
 )
 
@@ -159,8 +159,8 @@ setMethod(
 setMethod(
     f = "interestingGroups",
     signature = signature("seurat"),
-    definition = function(object) {
-        interestingGroups(as(object, "SummarizedExperiment"))
+    definition = function(object, ...) {
+        interestingGroups(as(object, "SummarizedExperiment"), ...)
     }
 )
 
@@ -249,7 +249,7 @@ setMethod(
         if (!is.null(stash)) {
             return(stash)
         }
-        metadata(.as.SingleCellExperiment.seurat(x), ...)
+        metadata(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -296,8 +296,8 @@ setMethod(
 setMethod(
     f = "reducedDims",
     signature = signature("seurat"),
-    definition = function(x) {
-        reducedDims(.as.SingleCellExperiment.seurat(x))
+    definition = function(x, ...) {
+        reducedDims(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -323,7 +323,7 @@ setMethod(
     f = "rownames",
     signature = signature("seurat"),
     definition = function(x) {
-        rownames(.as.SingleCellExperiment.seurat(x))
+        rownames(as.SingleCellExperiment(x))
     }
 )
 
@@ -338,7 +338,7 @@ setMethod(
     f = "rowRanges",
     signature = signature("seurat"),
     definition = function(x) {
-        gr <- rowRanges(.as.SingleCellExperiment.seurat(x))
+        gr <- rowRanges(as.SingleCellExperiment(x))
         # Attempt to use stashed rowRanges, if defined.
         stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {

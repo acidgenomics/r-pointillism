@@ -1,4 +1,4 @@
-# TODO Add a corresponding `plot` function
+# FIXME Add a corresponding `plot` function.
 
 
 
@@ -29,7 +29,7 @@ NULL
             interestingGroups = interestingGroups
         )
         interestingGroups(object) <- interestingGroups
-        data <- colData(object)
+        data <- metrics(object)
         cols <- unique(c("ident", interestingGroups))
         assert_is_subset(cols, colnames(data))
         data %>%

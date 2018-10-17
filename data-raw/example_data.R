@@ -1,19 +1,20 @@
 # SingleCellExperiment Example Data
-# 2018-09-30
+# 2018-10-17
 
-library(bcbioSingleCell)
+# Check and make sure Python umap-learn is accessible to run UMAP.
+# We're using this in the `Seurat::RunUMAP()` call below.
+# Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 library(reticulate)
+# use_condaenv("bioinfo")
+# Unable to find conda binary. Is Anaconda installed?
+stopifnot(py_module_available(module = "umap"))
+
 library(splatter)
 library(Seurat)
 library(Matrix)
 library(tidyverse)
 
-# Check and make sure Python umap-learn is accessible to run UMAP.
-# We're using this in the `Seurat::RunUMAP()` call below.
-# Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
-# use_condaenv("steinbaugh")
-stopifnot(py_module_available(module = "umap"))
-
+library(bcbioSingleCell)
 sce <- bcbioSingleCell::cellranger_small
 organism <- metadata(sce)$organism
 release <- 84
