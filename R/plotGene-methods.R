@@ -31,6 +31,7 @@
 #' @return `ggplot`.
 #'
 #' @examples
+#' data(seurat_small)
 #' object <- seurat_small
 #'
 #' # Plotting with either gene IDs or gene names (symbols) works.

@@ -35,6 +35,7 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Plot Known Markers
 }
 \examples{
+data(seurat_small, known_markers_small)
 plotKnownMarkers(
     object = seurat_small,
     markers = known_markers_small

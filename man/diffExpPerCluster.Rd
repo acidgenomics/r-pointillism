@@ -31,6 +31,7 @@ Cluster identity (\code{ident}) must be defined in \code{colData()} for this
 function to work.
 }
 \examples{
+data(seurat_small)
 object <- as(seurat_small, "SingleCellExperiment")
 x <- suppressMessages(
     diffExpPerCluster(

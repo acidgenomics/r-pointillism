@@ -13,6 +13,7 @@
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
+#' data(seurat_small)
 #' x <- cellCountsPerCluster(seurat_small)
 #' print(x)
 NULL

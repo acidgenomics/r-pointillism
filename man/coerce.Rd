@@ -48,7 +48,9 @@ class object.
 
 \examples{
 # SingleCellExperiment to seurat ====
-x <- as(basejump::sce_small, "seurat")
+object <- basejump::sce_small
+print(object)
+x <- as(object, "seurat")
 class(x)
 print(x)
 # seurat to SingleCellExperiment ====

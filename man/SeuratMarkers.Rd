@@ -31,6 +31,7 @@ the \code{gene} column, whereas \code{\link[Seurat:FindMarkers]{Seurat::FindMark
 the rownames of the returned marker \code{data.frame}.
 }
 \examples{
+data(seurat_small)
 object <- seurat_small
 
 # `FindAllMarkers()` return.

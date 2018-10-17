@@ -22,6 +22,7 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
+#' data(seurat_small)
 #' plotCellTypesPerCluster(
 #'     object = seurat_small,
 #'     markers = known_markers_small

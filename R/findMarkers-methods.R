@@ -15,6 +15,7 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
+#' data(seurat_small)
 #' x <- suppressMessages(
 #'     findMarkers(seurat_small, caller = "edgeR")
 #' )

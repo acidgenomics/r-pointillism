@@ -12,7 +12,7 @@ seurat_small
 Seurat Example
 }
 \examples{
-seurat_small
+pointillism::seurat_small
 }
 \seealso{
 Other Minimal Example Data: \code{\link{all_markers_small}},

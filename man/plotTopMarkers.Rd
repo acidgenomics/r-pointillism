@@ -46,6 +46,7 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \examples{
+data(all_markers_small)
 markers <- topMarkers(all_markers_small, n = 1)
 glimpse(markers)
 plotTopMarkers(seurat_small, markers = tail(markers, 1))

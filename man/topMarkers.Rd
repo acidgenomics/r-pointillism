@@ -30,6 +30,7 @@ topMarkers(object, ...)
 Top Markers
 }
 \examples{
+data(all_markers_small)
 x <- topMarkers(
     all_markers_small,
     n = 2L,

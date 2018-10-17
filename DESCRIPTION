@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-Cell Clustering Visualization
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.2.0
-Date: 2018-09-19
+Date: 2018-10-17
 Authors@R: c(
     person(
         given = "Michael",
@@ -27,33 +27,33 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.5),
-    SingleCellExperiment,
-    basejump (>= 0.99.0)
+    basejump (>= 0.99.0),
+    SingleCellExperiment
 Imports:
+    BiocGenerics,
+    BiocParallel,
+    DESeq2 (>= 1.20),
+    Matrix,
+    S4Vectors,
+    Seurat (>= 2.3),
+    SummarizedExperiment,
     assertive.base,
     assertive.numbers,
     assertive.properties,
     assertive.sets,
     assertive.types,
-    BiocGenerics,
-    BiocParallel,
     cowplot,
     crayon,
-    DESeq2 (>= 1.20),
     dplyr,
     edgeR (>= 3.22),
     ggplot2,
     googlesheets,
     magrittr,
-    Matrix,
     methods,
     pbapply,
     rlang,
-    S4Vectors,
     scales,
     sessioninfo,
-    Seurat (>= 2.3),
-    SummarizedExperiment,
     tibble (>= 1.4),
     tidyr,
     zinbwave
@@ -64,8 +64,8 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    hbc/bcbioSingleCell@bioconductor,
-    steinbaugh/basejump@bioconductor
+    steinbaugh/basejump@bioconductor,
+    steinbaugh/bcbioSingleCell@bioconductor
 biocViews:
     DataRepresentation,
     GeneExpression,

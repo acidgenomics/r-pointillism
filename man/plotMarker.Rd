@@ -80,6 +80,7 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \examples{
+data(seurat_small)
 object <- seurat_small
 title <- "most abundant genes"
 genes <- counts(object) \%>\%

@@ -18,6 +18,7 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
+#' data(seurat_small)
 #' object <- seurat_small
 #' title <- "most abundant genes"
 #' genes <- counts(object) %>%
@@ -258,6 +259,7 @@ setMethod(
 #' @return `ggplot` or `list`.
 #'
 #' @examples
+#' data(seurat_small)
 #' plotFeature(seurat_small, features = c("nUMI", "nGene", "mitoRatio"))
 NULL
 

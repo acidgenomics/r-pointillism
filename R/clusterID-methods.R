@@ -10,6 +10,7 @@
 #' @return `factor`.
 #'
 #' @examples
+#' data(seurat_small)
 #' x <- clusterID(seurat_small)
 #' head(x)
 #' table(x)
