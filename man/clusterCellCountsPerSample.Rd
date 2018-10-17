@@ -26,6 +26,7 @@ clusterCellCountsPerSample(object, ...)
 Cluster Cell Counts per Sample
 }
 \examples{
+data(seurat_small)
 x <- clusterCellCountsPerSample(seurat_small)
 print(x)
 }

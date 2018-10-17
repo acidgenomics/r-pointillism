@@ -15,6 +15,7 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
+#' data(seurat_small, known_markers_small)
 #' plotKnownMarkers(
 #'     object = seurat_small,
 #'     markers = known_markers_small

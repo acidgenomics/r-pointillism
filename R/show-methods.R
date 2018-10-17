@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#' data(bcb_small)
 #' show(bcb_small)
 NULL
 
@@ -25,6 +26,7 @@ NULL
         split <- split(x = object, f = object[["phase"]])
         stopifnot(is(split, "SplitDataFrameList"))
         lengths <- nrow(split)
+        # FIXME Can we avoid `sapply()` here?
         genes <- sapply(
             X = split,
             FUN = function(x) {

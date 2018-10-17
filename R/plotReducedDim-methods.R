@@ -23,7 +23,7 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' object <- seurat_small
+#' object <- pointillism::seurat_small
 #'
 #' # t-SNE
 #' plotTSNE(object)

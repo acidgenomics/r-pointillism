@@ -9,6 +9,7 @@
 #' @return `grouped_df`. Grouped by `sampleName` column, arranged by abundance.
 #'
 #' @examples
+#' data(seurat_small)
 #' x <- clusterCellCountsPerSample(seurat_small)
 #' print(x)
 NULL

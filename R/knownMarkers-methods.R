@@ -24,6 +24,7 @@
 #' @examples
 #' # FIXME Need to update this.
 #' \dontrun{
+#' data(all_markers_small, known_markers_small)
 #' x <- knownMarkers(
 #'     all = all_markers_small,
 #'     known = known_markers_small

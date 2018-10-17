@@ -12,7 +12,7 @@ all_markers_small
 Sanitized Markers Example
 }
 \examples{
-glimpse(all_markers_small)
+pointillism::all_markers_small \%>\% glimpse()
 }
 \seealso{
 Other Minimal Example Data: \code{\link{known_markers_small}},

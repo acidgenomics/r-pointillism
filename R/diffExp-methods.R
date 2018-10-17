@@ -74,6 +74,7 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
+#' data(seurat_small)
 #' object <- as(seurat_small, "SingleCellExperiment")
 #' # Subset example for speed.
 #' object <- [seq_len(100L), seq_len(100L)]
@@ -114,7 +115,7 @@ NULL
 
 .underpoweredContrast <- function() {
     warning(paste(
-        "Skipping DE...",
+        "Skipping DE.",
         "Underpowered contrast detected",
         "(not enough cells)."
     ), call. = FALSE)
@@ -134,7 +135,7 @@ NULL
     .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
-    message("Running DESeq2...")
+    message("Running DESeq2.")
     message(printString(system.time({
         dds <- DESeqDataSet(
             se = object,
@@ -160,7 +161,7 @@ NULL
     .assertHasZinbwave(object)
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
-    message("Running edgeR...")
+    message("Running edgeR.")
     # Coerce to dense matrix.
     counts <- as.matrix(counts(object))
     weights <- assay(object, "weights")
@@ -233,7 +234,7 @@ NULL
         counts <- as(counts(object), "dgCMatrix")
 
         # Gene filter ----------------------------------------------------------
-        message("Applying gene expression low pass filter...")
+        message("Applying gene expression low pass filter.")
         message(paste(
             "Requiring at least",
             minCellsPerGene,
@@ -261,7 +262,7 @@ NULL
         # Cell filter ----------------------------------------------------------
         # Re-apply default recommended low-stringency filtering, which can drop
         # low quality cells from the DE analysis.
-        message("Re-applying default cell quality filters...")
+        message("Re-applying default cell quality filters.")
         object <- filterCells(object)
         # Inform the user if any cells have been removed.
         setdiff <- setdiff(cells, colnames(object))

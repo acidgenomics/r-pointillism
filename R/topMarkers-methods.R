@@ -18,6 +18,7 @@
 #' @return `grouped_df`.
 #'
 #' @examples
+#' data(all_markers_small)
 #' x <- topMarkers(
 #'     all_markers_small,
 #'     n = 2L,

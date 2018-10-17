@@ -13,6 +13,7 @@
 #'   of significant known makers per cell type.
 #'
 #' @examples
+#' data(known_markers_small)
 #' x <- cellTypesPerCluster(known_markers_small)
 #' print(x)
 NULL

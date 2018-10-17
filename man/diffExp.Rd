@@ -107,6 +107,7 @@ additional information.
 }
 
 \examples{
+data(seurat_small)
 object <- as(seurat_small, "SingleCellExperiment")
 # Subset example for speed.
 object <- [seq_len(100L), seq_len(100L)]

@@ -201,6 +201,7 @@ formals(CellTypeMarkers) <- f
 #' @export
 #'
 #' @examples
+#' data(seurat_small)
 #' object <- seurat_small
 #'
 #' # `FindAllMarkers()` return.
