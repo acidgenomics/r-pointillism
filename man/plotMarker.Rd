@@ -88,7 +88,7 @@ genes <- counts(object) \%>\%
     sort(decreasing = TRUE) \%>\%
     head(n = 4L) \%>\%
     names()
-glimpse(genes)
+str(genes)
 plotMarker(object, genes = genes[[1L]])
 plotMarker(
     object = object,

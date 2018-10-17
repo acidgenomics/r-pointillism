@@ -1,11 +1,14 @@
-#' Show an Object
-#'
+#' @rdname show
+#' @importFrom methods show
+#' @export
+show <- methods::show
+
+
+
+#' @inherit methods::show
 #' @name show
 #' @family S4 Object
 #' @author Michael Steinbuagh
-#' @importFrom methods show
-#' @inherit methods::show
-#' @export
 #'
 #' @examples
 #' data(bcb_small)

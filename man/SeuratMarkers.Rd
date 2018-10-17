@@ -42,7 +42,7 @@ all_sanitized <- SeuratMarkers(
     markers = all_markers,
     ranges = rowRanges(object)
 )
-glimpse(all_sanitized)
+str(all_sanitized)
 
 # `FindMarkers()` return.
 invisible(capture.output(
@@ -56,7 +56,7 @@ ident_3_sanitized <- SeuratMarkers(
     markers = ident_3_markers,
     ranges = rowRanges(object)
 )
-glimpse(ident_3_sanitized)
+str(ident_3_sanitized)
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},

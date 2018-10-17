@@ -59,7 +59,7 @@
         group_by(!!sym("rowname"))
 
     # Join the geneID and geneName columns by the "rowname" column.
-    g2s <- gene2symbol(object)
+    g2s <- Gene2Symbol(object)
     assert_is_non_empty(g2s)
     assertHasRownames(g2s)
     g2s <- as(g2s, "tbl_df")

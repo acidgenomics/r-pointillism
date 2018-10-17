@@ -3,7 +3,6 @@
 #' @name topMarkers
 #' @family Marker Functions
 #' @author Michael Steinbaugh
-#' @export
 #'
 #' @inheritParams general
 #' @param n `scalar integer`. Number of genes per cluster.

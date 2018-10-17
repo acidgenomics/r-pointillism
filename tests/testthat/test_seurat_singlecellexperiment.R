@@ -55,10 +55,10 @@ test_that("counts", {
 
 
 test_that("gene2symbol", {
-    expect_warning(gene2symbol(pbmc_small))
-    expect_null(suppressWarnings(gene2symbol(pbmc_small)))
+    expect_warning(Gene2Symbol(pbmc_small))
+    expect_null(suppressWarnings(Gene2Symbol(pbmc_small)))
 
-    x <- gene2symbol(seurat_small)
+    x <- Gene2Symbol(seurat_small)
     expect_is(x, "data.frame")
 })
 
