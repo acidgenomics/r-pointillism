@@ -49,7 +49,6 @@
 #' @name diffExp
 #' @family Differential Expression Functions
 #' @author Michael Steinbaugh
-#' @export
 #'
 #' @inheritParams general
 #' @param numerator `character`. Cells to use in the numerator of the contrast
@@ -82,9 +81,9 @@
 #' object <- bcbioSingleCell::filterCells(object)
 #'
 #' numerator <- colnames(object)[object$group == "group2"]
-#' glimpse(numerator)
+#' str(numerator)
 #' denominator <- colnames(object)[object$group == "group1"]
-#' glimpse(denominator)
+#' str(denominator)
 #'
 #' # edgeR
 #' x <- suppressMessages(diffExp(

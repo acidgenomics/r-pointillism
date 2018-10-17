@@ -12,7 +12,8 @@ all_markers_small
 Sanitized Markers Example
 }
 \examples{
-pointillism::all_markers_small \%>\% str()
+data(all_markers_small)
+all_markers_small
 }
 \seealso{
 Other Minimal Example Data: \code{\link{known_markers_small}},

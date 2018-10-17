@@ -12,7 +12,8 @@ known_markers_small
 Known Markers Example
 }
 \examples{
-pointillism::known_markers_small \%>\% str()
+data(known_markers_small)
+known_markers_small
 }
 \seealso{
 Other Minimal Example Data: \code{\link{all_markers_small}},

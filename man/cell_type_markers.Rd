@@ -13,7 +13,8 @@ cell_type_markers
 Cell-Type Markers
 }
 \examples{
-pointillism::cell_type_markers \%>\% names()
+data(cell_type_markers)
+cell_type_markers
 }
 \seealso{
 Other Marker Data: \code{\link{cell_cycle_markers}}

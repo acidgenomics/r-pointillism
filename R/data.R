@@ -4,7 +4,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' pointillism::all_markers_small %>% glimpse()
+#' data(all_markers_small)
+#' all_markers_small
 "all_markers_small"
 
 
@@ -16,7 +17,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' pointillism::cell_cycle_markers %>% names()
+#' data(cell_cycle_markers)
+#' cell_cycle_markers
 "cell_cycle_markers"
 
 
@@ -28,7 +30,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' pointillism::cell_type_markers %>% names()
+#' data(cell_type_markers)
+#' cell_type_markers
 "cell_type_markers"
 
 
@@ -39,7 +42,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' pointillism::known_markers_small %>% glimpse()
+#' data(known_markers_small)
+#' known_markers_small
 "known_markers_small"
 
 
@@ -50,5 +54,6 @@
 #' @author Michael Steinbaugh
 #'
 #' @examples
-#' pointillism::seurat_small
+#' data(seurat_small)
+#' seurat_small
 "seurat_small"
