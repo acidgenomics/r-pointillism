@@ -1,3 +1,10 @@
+#' @rdname plotGene
+#' @importFrom basejump plotGene
+#' @export
+plotGene <- basejump::plotGene
+
+
+
 #' Plot Gene
 #'
 #' Visualize genes on a dot or violin plot.
@@ -5,9 +12,6 @@
 #' @name plotGene
 #' @family Plot Functions
 #' @author Michael Steinbaugh
-#'
-#' @importFrom basejump plotGene
-#' @export
 #'
 #' @inheritParams general
 #' @inheritParams ggplot2::geom_violin

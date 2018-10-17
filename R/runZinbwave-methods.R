@@ -26,7 +26,6 @@
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
 #'   weights added to [assays()].
-#' @export
 #'
 #' @seealso [zinbwave::zinbwave()].
 #'

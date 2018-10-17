@@ -141,13 +141,13 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump gene2symbol
+#' @importFrom basejump Gene2Symbol
 #' @export
 setMethod(
-    f = "gene2symbol",
+    f = "Gene2Symbol",
     signature = signature("seurat"),
     definition = function(object) {
-        gene2symbol(as(object, "SummarizedExperiment"))
+        Gene2Symbol(as(object, "SummarizedExperiment"))
     }
 )
 

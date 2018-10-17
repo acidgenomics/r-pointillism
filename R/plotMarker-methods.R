@@ -11,7 +11,6 @@
 #' @name plotMarker
 #' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @export
 #'
 #' @inheritParams general
 #'
@@ -26,7 +25,7 @@
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()
-#' glimpse(genes)
+#' str(genes)
 #' plotMarker(object, genes = genes[[1L]])
 #' plotMarker(
 #'     object = object,

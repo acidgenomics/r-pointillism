@@ -115,9 +115,9 @@ object <- [seq_len(100L), seq_len(100L)]
 object <- bcbioSingleCell::filterCells(object)
 
 numerator <- colnames(object)[object$group == "group2"]
-glimpse(numerator)
+str(numerator)
 denominator <- colnames(object)[object$group == "group1"]
-glimpse(denominator)
+str(denominator)
 
 # edgeR
 x <- suppressMessages(diffExp(

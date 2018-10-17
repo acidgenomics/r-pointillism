@@ -22,7 +22,7 @@
 #' @examples
 #' data(all_markers_small)
 #' markers <- topMarkers(all_markers_small, n = 1)
-#' glimpse(markers)
+#' str(markers)
 #' plotTopMarkers(seurat_small, markers = tail(markers, 1))
 NULL
 

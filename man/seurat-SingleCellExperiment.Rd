@@ -10,7 +10,7 @@
 \alias{colData<-,seurat,DataFrame-method}
 \alias{colnames,seurat-method}
 \alias{counts,seurat-method}
-\alias{gene2symbol,seurat-method}
+\alias{Gene2Symbol,seurat-method}
 \alias{interestingGroups,seurat-method}
 \alias{interestingGroups<-,seurat,character-method}
 \alias{mapGenesToIDs,seurat-method}
@@ -42,7 +42,7 @@
 
 \S4method{counts}{seurat}(object, ...)
 
-\S4method{gene2symbol}{seurat}(...)
+\S4method{Gene2Symbol}{seurat}(object)
 
 \S4method{interestingGroups}{seurat}(object)
 

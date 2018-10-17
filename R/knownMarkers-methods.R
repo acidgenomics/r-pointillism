@@ -8,7 +8,6 @@
 #' @name knownMarkers
 #' @family Marker Functions
 #' @author Michael Steinbaugh
-#' @export
 #'
 #' @inheritParams general
 #' @param all `SeuratMarkers`.

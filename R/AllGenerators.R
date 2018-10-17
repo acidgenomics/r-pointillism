@@ -212,7 +212,7 @@ formals(CellTypeMarkers) <- f
 #'     markers = all_markers,
 #'     ranges = rowRanges(object)
 #' )
-#' glimpse(all_sanitized)
+#' str(all_sanitized)
 #'
 #' # `FindMarkers()` return.
 #' invisible(capture.output(
@@ -226,7 +226,7 @@ formals(CellTypeMarkers) <- f
 #'     markers = ident_3_markers,
 #'     ranges = rowRanges(object)
 #' )
-#' glimpse(ident_3_sanitized)
+#' str(ident_3_sanitized)
 SeuratMarkers <- function(
     markers,
     ranges,
