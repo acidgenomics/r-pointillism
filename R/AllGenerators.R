@@ -1,3 +1,7 @@
+# FIXME Split this out into separate files.
+
+
+
 # Internal generator for either cell cycle or cell type markers.
 .cellMarkers <- function(
     file,
@@ -97,6 +101,17 @@
 
 
 # CellCycleMarkers =============================================================
+# FIXME Rework this example.
+# @examples
+# # Google Sheets method.
+# # Requires an OAuth token.
+# x <- CellCycleMarkers(
+#     gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
+#     ws = "Homo_sapiens",
+#     organism = "Homo sapiens",
+#     ensemblRelease = 92L
+# )
+
 #' Cell-Cycle Markers
 #'
 #' Currently designed for internal use by the pointillism package.
@@ -108,15 +123,6 @@
 #' @inheritParams CellTypeMarkers
 #'
 #' @return `CellCycleMarkers`.
-#'
-#' @examples
-#' # Google Sheets method.
-#' x <- CellCycleMarkers(
-#'     gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
-#'     ws = "Homo_sapiens",
-#'     organism = "Homo sapiens",
-#'     ensemblRelease = 92L
-#' )
 CellCycleMarkers <-  # nolint
     function() {
         do.call(
@@ -131,6 +137,16 @@ formals(CellCycleMarkers) <- f
 
 
 # CellTypeMarkers ==============================================================
+# FIXME
+# @examples
+# # Google Sheets method.
+# x <- CellTypeMarkers(
+#     gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",
+#     ws = "Homo_sapiens",
+#     organism = "Homo sapiens",
+#     ensemblRelease = 92L
+# )
+
 #' Cell-Type Markers
 #'
 #' Local spreadsheets (CSV, Excel) and Google Sheets are currently supported.
@@ -139,6 +155,7 @@ formals(CellCycleMarkers) <- f
 #'
 #' @family Marker Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @inheritParams googlesheets::gs_read
@@ -153,16 +170,6 @@ formals(CellCycleMarkers) <- f
 #' - [googlesheets::gs_read()].
 #'
 #' @return `CellTypeMarkers`.
-#' @export
-#'
-#' @examples
-#' # Google Sheets method.
-#' x <- CellTypeMarkers(
-#'     gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",
-#'     ws = "Homo_sapiens",
-#'     organism = "Homo sapiens",
-#'     ensemblRelease = 92L
-#' )
 CellTypeMarkers <-  # nolint
     function() {
         do.call(

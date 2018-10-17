@@ -16,7 +16,7 @@ knownMarkers(all, known, ...)
 
 \item{known}{\code{CellTypeMarkers}. Grouped by \code{cellType} column. Known markers
 \code{data.frame} imported by \code{\link[=readCellTypeMarkers]{readCellTypeMarkers()}} or pulled from internal
-\link{cell_cycle_markers} data.}
+cell cycle markers data.}
 
 \item{...}{Additional arguments.}
 
@@ -35,17 +35,6 @@ Both the \code{all} and \code{known} objects must contain Ensembl gene
 identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
-}
-\examples{
-# FIXME Need to update this.
-\dontrun{
-data(all_markers_small, known_markers_small)
-x <- knownMarkers(
-    all = all_markers_small,
-    known = known_markers_small
-)
-head(x)
-}
 }
 \seealso{
 Other Marker Functions: \code{\link{CellTypeMarkers}},

@@ -1,4 +1,7 @@
 # FIXME Improve the formals.
+# FIXME Need to rework this function to use class.
+# FIXME Improve error handling for this:
+# markers <- head(all_markers_small, n = 1L)
 
 
 
@@ -12,6 +15,7 @@
 #' @name plotTopMarkers
 #' @family Plot Functions
 #' @author Michael Steinbaugh
+#' @include globals.R
 #'
 #' @inheritParams general
 #' @inheritParams topMarkers
@@ -20,10 +24,8 @@
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
 #' @examples
-#' data(all_markers_small)
-#' markers <- topMarkers(all_markers_small, n = 1)
-#' str(markers)
-#' plotTopMarkers(seurat_small, markers = tail(markers, 1))
+#' data(seurat_small, all_markers_small)
+#' plotTopMarkers(object = seurat_small, markers = all_markers_small)
 NULL
 
 
@@ -32,34 +34,33 @@ NULL
     function(
         object,
         markers,
-        n = 10L,
-        direction = c("positive", "negative", "both"),
-        coding = FALSE,
-        reducedDim = c("TSNE", "UMAP"),
+        n = 1L,
+        direction,
+        reducedDim,
         headerLevel = 2L,
         ...
     ) {
         # Passthrough: n, direction, coding
         validObject(object)
-        stopifnot(is(markers, "grouped_df"))
-        stopifnot(.isSanitizedMarkers(markers))
         markers <- topMarkers(
-            data = markers,
+            object = markers,
             n = n,
-            direction = direction,
-            coding = coding
+            direction = direction
         )
-        reducedDim <- match.arg(reducedDim)
+        assert_is_scalar(reducedDim)
         assertIsHeaderLevel(headerLevel)
 
         assert_is_subset("cluster", colnames(markers))
         clusters <- levels(markers[["cluster"]])
 
+        # FIXME Add progress option.
         list <- pblapply(clusters, function(cluster) {
             genes <- markers %>%
+                ungroup() %>%
                 filter(cluster == !!cluster) %>%
-                pull("rowname")
+                pull("name")
             if (!length(genes)) {
+                message(paste0("No genes for cluster ", cluster, "."))
                 return(invisible())
             }
             if (length(genes) > 10L) {
@@ -87,6 +88,8 @@ NULL
 
         invisible(list)
     }
+formals(.plotTopMarkers.SCE)[["direction"]] <- direction
+formals(.plotTopMarkers.SCE)[["reducedDim"]] <- reducedDim
 
 
 

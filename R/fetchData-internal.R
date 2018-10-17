@@ -5,14 +5,17 @@
     metadata = FALSE
 ) {
     validObject(object)
-    rownames <- mapGenesToRownames(object, genes)
-    assert_is_subset(rownames, rownames(object))
+    object <- as(object, "SingleCellExperiment")
     assert_is_a_string(assay)
     assert_is_subset(assay, assayNames(object))
     assert_is_a_bool(metadata)
 
-    counts <- assays(object)[[assay]]
-    counts <- counts[rownames, , drop = FALSE]
+    rownames <- mapGenesToRownames(object, genes)
+    assert_is_subset(rownames, rownames(object))
+
+    counts <- assays(object) %>%
+        .[[assay]] %>%
+        .[rownames, , drop = FALSE]
 
     # Transpose, putting the gene rownames into the columns.
     if (is(counts, "sparseMatrix")) {
@@ -38,13 +41,23 @@
     # Otherwise, coerce the counts matrix to a DataFrame.
     data <- as(as.matrix(data), "DataFrame")
 
-    # Always include "ident" and "sampleName" at this step.
+    # Always include "ident" and "sampleName" using `metrics()` here.
+    # This ensures `sampleName` and `interestingGroups` are always defined.
+    metrics <- metrics(object)
     intgroup <- unique(c("ident", "sampleName", interestingGroups))
-    intgroupData <- colData(object)[, intgroup, drop = FALSE]
-    assert_are_identical(rownames(data), rownames(intgroupData))
+    assert_is_subset(
+        x = c("cellID", intgroup),
+        y = colnames(metrics)
+    )
+    colData <- metrics %>%
+        as.data.frame() %>%
+        column_to_rownames("cellID") %>%
+        .[, intgroup, drop = FALSE] %>%
+        as("DataFrame")
+    assert_are_identical(rownames(data), rownames(colData))
 
     # Bind the counts and interesting groups columns.
-    data <- cbind(data, intgroupData)
+    data <- cbind(data, colData)
 
     # Gather into long format tibble.
     # Here we're putting the genes into a "rowname" column.

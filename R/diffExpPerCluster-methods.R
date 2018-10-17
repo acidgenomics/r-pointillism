@@ -1,3 +1,21 @@
+# FIXME Need to define metadata in minimal example that we can use here.
+# @examples
+# data(seurat_small)
+# object <- as(seurat_small, "SingleCellExperiment")
+# x <- suppressMessages(
+#     diffExpPerCluster(
+#         object = object,
+#         group = "group",
+#         numerator = "group2",
+#         denominator = "group1",
+#         caller = "edgeR"
+#     )
+# )
+# class(x)
+# lapply(x, class)
+
+
+
 #' Differential Expression per Cluster
 #'
 #' @note Cluster identity (`ident`) must be defined in `colData()` for this
@@ -13,21 +31,6 @@
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
-#'
-#' @examples
-#' data(seurat_small)
-#' object <- as(seurat_small, "SingleCellExperiment")
-#' x <- suppressMessages(
-#'     diffExpPerCluster(
-#'         object = object,
-#'         group = "group",
-#'         numerator = "group2",
-#'         denominator = "group1",
-#'         caller = "edgeR"
-#'     )
-#' )
-#' class(x)
-#' lapply(x, class)
 NULL
 
 
@@ -40,26 +43,31 @@ NULL
         denominator,
         ...
     ) {
-        # Object must contain pre-calculate ZINB weights.
+        # Object must contain pre-calculated ZINB weights.
         .assertHasZinbwave(object)
+
         # group
         assert_is_a_string(group)
         assert_is_subset(group, colnames(colData(object)))
         groupings <- colData(object)[[group]]
         assert_is_factor(groupings)
+
         # numerator
         assert_is_a_string(numerator)
         assert_is_subset(numerator, levels(groupings))
+
         # denominator
         assert_is_a_string(denominator)
         assert_is_subset(denominator, levels(groupings))
         assert_are_disjoint_sets(numerator, denominator)
+
         # Get the cluster identities.
         ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
         stopifnot(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
+
         # Loop across each cluster and perform pairwise DE based on the single
         # group of interest defined.
         # Consider adding a skip step here for clusters with very few cells.

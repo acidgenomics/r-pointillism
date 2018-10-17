@@ -78,17 +78,19 @@ refer to these materials:
 
 \section{edgeR}{
 
+
 After estimation of the dispersions and posterior probabilities, the
-\code{glmWeightedF()} function is used for statistical inference. This is an
-adapted function from the \code{glmLRT()} function of edgeR. It uses an F-test for
-which the denominator degrees of freedom are by default adjusted according to
-the downweighting of excess zeros (\code{ZI = TRUE}). Also, independent filtering
-can be performed on the obtained p-values (\code{independentFiltering = TRUE}). We
-use the independent filtering strategy that was originally implemented in
-DESeq2. By default, the average fitted values are used as a filter criterion.
+\code{\link[zinbwave:glmWeightedF]{zinbwave::glmWeightedF()}} function is used for statistical inference. This
+is an adaptation of \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}}. It uses an F-test for which the
+denominator degrees of freedom are by default adjusted according to the
+downweighting of excess zeros (\code{ZI = TRUE}). Also, independent filtering can
+be performed on the obtained p-values (\code{independentFiltering = TRUE}). We use
+the independent filtering strategy that was originally implemented in DESeq2.
+By default, the average fitted values are used as a filter criterion.
 }
 
 \section{DESeq2}{
+
 
 We're providing preliminary support for DESeq2 as the differential expression
 caller. It is currently considerably slower for large datasets than edgeR.
@@ -110,16 +112,17 @@ additional information.
 data(seurat_small)
 object <- as(seurat_small, "SingleCellExperiment")
 # Subset example for speed.
-object <- [seq_len(100L), seq_len(100L)]
+object <- object[seq_len(100L), seq_len(100L)]
+
 # Ensure genes with all zero counts are filtered.
-object <- bcbioSingleCell::filterCells(object)
+stopifnot(all(Matrix::rowSums(assay(object)) > 0L))
 
 numerator <- colnames(object)[object$group == "group2"]
 str(numerator)
 denominator <- colnames(object)[object$group == "group1"]
 str(denominator)
 
-# edgeR
+## edgeR ====
 x <- suppressMessages(diffExp(
     object = object,
     numerator = numerator,
@@ -129,7 +132,7 @@ x <- suppressMessages(diffExp(
 class(x)
 summary(x)
 
-# DESeq2
+## DESeq2 ====
 x <- suppressMessages(diffExp(
     object = object,
     numerator = numerator,

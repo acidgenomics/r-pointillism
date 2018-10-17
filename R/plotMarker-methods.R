@@ -40,10 +40,10 @@ NULL
 
 
 
-.plotMarker <- function(
+.plotMarker.SCE <- function(
     object,
     genes,
-    reducedDim = c("TSNE", "UMAP"),
+    reducedDim = 1L,
     expression = c("mean", "sum"),
     color = getOption(
         "pointillism.continuous.color",
@@ -64,15 +64,14 @@ NULL
     # Legacy arguments -----------------------------------------------------
     # color
     if (identical(color, "auto")) {
-        message("Use `color = NULL` instead of `auto`")
-        color <- NULL
+        stop("Use `color = NULL` instead of `auto`.")
     }
 
     # Assert checks --------------------------------------------------------
     validObject(object)
     assert_is_character(genes)
     geneNames <- mapGenesToSymbols(object, genes)
-    reducedDim <- match.arg(reducedDim)
+    assert_is_scalar(reducedDim)
     expression <- match.arg(expression)
     assertIsColorScaleContinuousOrNULL(color)
     assert_is_a_number(pointSize)
@@ -220,9 +219,9 @@ NULL
 #' @rdname plotMarker
 #' @export
 setMethod(
-    "plotMarker",
-    signature("SingleCellExperiment"),
-    .plotMarker
+    f = "plotMarker",
+    signature = signature("SingleCellExperiment"),
+    definition = .plotMarker.SCE
 )
 
 
@@ -230,9 +229,9 @@ setMethod(
 #' @rdname plotMarker
 #' @export
 setMethod(
-    "plotMarker",
-    signature("seurat"),
-    getMethod("plotMarker", "SingleCellExperiment")
+    f = "plotMarker",
+    signature = signature("seurat"),
+    definition = getMethod("plotMarker", "SingleCellExperiment")
 )
 
 

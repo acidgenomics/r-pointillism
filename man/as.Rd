@@ -79,19 +79,25 @@ class object.
 }
 
 \examples{
-# SingleCellExperiment to seurat ====
-object <- basejump::sce_small
+data(seurat_small)
+data(sce_small, package = "basejump")
+
+## SingleCellExperiment to seurat ====
+object <- sce_small
 print(object)
 x <- as(object, "seurat")
 class(x)
 print(x)
-# seurat to SingleCellExperiment ====
+
+## seurat to SingleCellExperiment ====
 x <- as(seurat_small, "SingleCellExperiment")
 print(x)
-# seurat to RangedSummarizedExperiment ====
+
+## seurat to RangedSummarizedExperiment ====
 x <- as(seurat_small, "RangedSummarizedExperiment")
 print(x)
-# seurat to SummarizedExperiment ====
+
+## seurat to SummarizedExperiment ====
 x <- as(seurat_small, "SummarizedExperiment")
 print(x)
 }

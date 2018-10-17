@@ -4,11 +4,14 @@
 \name{findMarkers}
 \alias{findMarkers}
 \alias{findMarkers,SingleCellExperiment-method}
+\alias{findMarkers,seurat-method}
 \title{Find Cluster-Specific Marker Genes}
 \usage{
 findMarkers(object, ...)
 
 \S4method{findMarkers}{SingleCellExperiment}(object, ...)
+
+\S4method{findMarkers}{seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -28,14 +31,6 @@ Find Cluster-Specific Marker Genes
 \note{
 Cluster identity (\code{ident}) must be defined in \code{colData()} for this
 function to work.
-}
-\examples{
-data(seurat_small)
-x <- suppressMessages(
-    findMarkers(seurat_small, caller = "edgeR")
-)
-class(x)
-lapply(x, class)
 }
 \seealso{
 Other Differential Expression Functions: \code{\link{diffExpPerCluster}},

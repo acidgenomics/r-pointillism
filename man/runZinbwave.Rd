@@ -55,10 +55,9 @@ work to run with multiple cores.
 \examples{
 data(seurat_small)
 object <- seurat_small
-# Example using 200 non-zero genes
+# Example using 100 genes, 100 cells.
 Y <- as(object, "SingleCellExperiment")
-Y <- bcbioSingleCell::filterCells(Y)
-Y <- Y[seq_len(200L), ]
+Y <- Y[seq_len(100L), seq_len(100L)]
 zinb <- suppressMessages(runZinbwave(
     Y = Y,
     BPPARAM = BiocParallel::SerialParam(),

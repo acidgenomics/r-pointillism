@@ -1,3 +1,8 @@
+# FIXME This isn't mapping correctly for seurat.
+# FIXME Use `basejump.` instead of `pointillism.` for globals.
+
+
+
 #' @rdname plotGene
 #' @importFrom basejump plotGene
 #' @export
@@ -45,8 +50,8 @@ plotGene <- basejump::plotGene
 #' print(geneNames)
 #'
 #' # Per sample mode enabled.
-#' plotDot(object, genes = geneNames)
-#' plotViolin(object, genes = geneNames)
+#' plotDot(object, genes = geneNames, perSample = TRUE)
+#' plotViolin(object, genes = geneNames, perSample = TRUE)
 #'
 #' # Per sample mode disabled.
 #' plotDot(object, genes = geneIDs, perSample = FALSE)
@@ -56,7 +61,7 @@ NULL
 
 
 # plotGene =====================================================================
-.plotGene <- function(
+.plotGene.SCE <- function(
     object,
     genes,
     geom = c("dot", "violin"),
@@ -104,7 +109,7 @@ NULL
 # FIXME Need to fix the color scale argument here. It's continuous.
 # FIXME Share this default with `plotMarker`.
 # FIXME Set shared formals.
-.plotDot <- function(
+.plotDot.SCE <- function(
     object,
     genes,
     perSample = TRUE,
@@ -113,13 +118,13 @@ NULL
     dotMin = 0L,
     dotScale = 6L,
     color = getOption(
-        "pointillism.continuous.color",
+        "basejump.continuous.color",
         ggplot2::scale_color_gradient(
             low = "orange",
             high = "purple"
         )
     ),
-    legend = getOption("pointillism.legend", TRUE),
+    legend = getOption("basejump.legend", TRUE),
     title = NULL
 ) {
     validObject(object)
@@ -208,8 +213,8 @@ NULL
 
 
 
-# FIXME Set shared formals
-.plotViolin <- function(
+# FIXME Set shared formals.
+.plotViolin.SCE <- function(
     object,
     genes,
     perSample = TRUE,
@@ -313,7 +318,7 @@ NULL
 setMethod(
     f = "plotGene",
     signature = signature("SingleCellExperiment"),
-    definition = .plotGene
+    definition = .plotGene.SCE
 )
 
 
@@ -336,7 +341,7 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = .plotDot
+    definition = .plotDot.SCE
 )
 
 
@@ -359,7 +364,7 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = .plotViolin
+    definition = .plotViolin.SCE
 )
 
 

@@ -10,7 +10,7 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = c("TSNE", "UMAP"), expression = c("mean", "sum"),
+  reducedDim = 1L, expression = c("mean", "sum"),
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -21,8 +21,8 @@ plotMarker(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = TRUE)
 
-\S4method{plotMarker}{seurat}(object, genes, reducedDim = c("TSNE",
-  "UMAP"), expression = c("mean", "sum"),
+\S4method{plotMarker}{seurat}(object, genes, reducedDim = 1L,
+  expression = c("mean", "sum"),
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),

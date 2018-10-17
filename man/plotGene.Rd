@@ -29,15 +29,15 @@ plotGene(object, ...)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("basejump.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  legend = getOption("basejump.legend", TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("basejump.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  legend = getOption("basejump.legend", TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
@@ -107,8 +107,8 @@ geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
 print(geneNames)
 
 # Per sample mode enabled.
-plotDot(object, genes = geneNames)
-plotViolin(object, genes = geneNames)
+plotDot(object, genes = geneNames, perSample = TRUE)
+plotViolin(object, genes = geneNames, perSample = TRUE)
 
 # Per sample mode disabled.
 plotDot(object, genes = geneIDs, perSample = FALSE)

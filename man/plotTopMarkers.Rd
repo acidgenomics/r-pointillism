@@ -9,13 +9,13 @@
 \usage{
 plotTopMarkers(object, ...)
 
-\S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 10L,
-  direction = c("positive", "negative", "both"), coding = FALSE,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+\S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
+  direction = c("positive", "negative", "both"), reducedDim = "TSNE",
+  headerLevel = 2L, ...)
 
-\S4method{plotTopMarkers}{seurat}(object, markers, n = 10L,
-  direction = c("positive", "negative", "both"), coding = FALSE,
-  reducedDim = c("TSNE", "UMAP"), headerLevel = 2L, ...)
+\S4method{plotTopMarkers}{seurat}(object, markers, n = 1L,
+  direction = c("positive", "negative", "both"), reducedDim = "TSNE",
+  headerLevel = 2L, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -28,8 +28,6 @@ plotTopMarkers(object, ...)
 
 \item{direction}{\code{string}. Whether to include "\code{positive}", "\code{negative}", or
 "\code{both}" directions of association per cluster.}
-
-\item{coding}{\code{boolean}. Include only protein coding genes.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
@@ -46,10 +44,8 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \examples{
-data(all_markers_small)
-markers <- topMarkers(all_markers_small, n = 1)
-str(markers)
-plotTopMarkers(seurat_small, markers = tail(markers, 1))
+data(seurat_small, all_markers_small)
+plotTopMarkers(object = seurat_small, markers = all_markers_small)
 }
 \seealso{
 Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
