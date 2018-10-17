@@ -53,7 +53,8 @@ single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocPar
 work to run with multiple cores.
 }
 \examples{
-object <- pointillism::seurat_small
+data(seurat_small)
+object <- seurat_small
 # Example using 200 non-zero genes
 Y <- as(object, "SingleCellExperiment")
 Y <- bcbioSingleCell::filterCells(Y)

@@ -30,7 +30,8 @@
 #' @seealso [zinbwave::zinbwave()].
 #'
 #' @examples
-#' object <- pointillism::seurat_small
+#' data(seurat_small)
+#' object <- seurat_small
 #' # Example using 200 non-zero genes
 #' Y <- as(object, "SingleCellExperiment")
 #' Y <- bcbioSingleCell::filterCells(Y)
