@@ -40,6 +40,7 @@ all_markers_small <- SeuratMarkers(
 
 # known_markers_small ==========================================================
 all <- all_markers_small
+# FIXME Need to make `CellTypeMarkers()` a generic.
 known <- new(
     Class = "CellTypeMarkers",
     DataFrame(
@@ -63,7 +64,7 @@ export(
 known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
-devtools::use_data(
+usethis::use_data(
     seurat_small,
     all_markers_small,
     known_markers_small,
