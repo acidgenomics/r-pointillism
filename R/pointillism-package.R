@@ -51,7 +51,7 @@
 #'   complete.cases mcols mcols<- metadata metadata<- na.omit split
 #' @importFrom scales percent pretty_breaks
 #' @importFrom sessioninfo session_info
-#' @importFrom Seurat as.SingleCellExperiment CreateSeuratObject
+#' @importFrom Seurat Convert CreateSeuratObject
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
