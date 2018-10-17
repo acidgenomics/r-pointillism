@@ -1,3 +1,7 @@
+# FIXME Add a show progress option.
+
+
+
 #' Calculate ZINB-WaVE Weights
 #'
 #' zinbwave will calculate `normalizedValues` and `weights` matrices, which will
@@ -32,10 +36,9 @@
 #' @examples
 #' data(seurat_small)
 #' object <- seurat_small
-#' # Example using 200 non-zero genes
+#' # Example using 100 genes, 100 cells.
 #' Y <- as(object, "SingleCellExperiment")
-#' Y <- bcbioSingleCell::filterCells(Y)
-#' Y <- Y[seq_len(200L), ]
+#' Y <- Y[seq_len(100L), seq_len(100L)]
 #' zinb <- suppressMessages(runZinbwave(
 #'     Y = Y,
 #'     BPPARAM = BiocParallel::SerialParam(),
@@ -141,7 +144,6 @@ NULL
             })),
             sep = "\n"
         ))
-        .assertHasZinbwave(zinb)
 
         # Return ---------------------------------------------------------------
         # Re-slot original raw counts, in case they are sparse.
