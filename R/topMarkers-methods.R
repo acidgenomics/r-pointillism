@@ -2,7 +2,6 @@
 #'
 #' @name topMarkers
 #' @family Marker Functions
-#' @author Michael Steinbaugh
 #' @include globals.R
 #'
 #' @inheritParams general

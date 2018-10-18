@@ -7,7 +7,6 @@
 #'
 #' @name plotKnownMarkers
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".

@@ -2,7 +2,6 @@
 #'
 #' @name cellTypesPerCluster
 #' @family Cluster Statistics Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param min `scalar integer`. Minimum number of marker genes per cluster.

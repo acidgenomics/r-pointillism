@@ -14,7 +14,6 @@
 #'
 #' @name plotTopMarkers
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #' @include globals.R
 #'
 #' @inheritParams general

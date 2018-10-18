@@ -2,7 +2,6 @@
 #'
 #' @name clusterCellCountsPerSample
 #' @family Cluster Statistics Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

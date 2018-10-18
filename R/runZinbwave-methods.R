@@ -18,7 +18,6 @@
 #'
 #' @name runZinbwave
 #' @family Differential Expression Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @inheritParams zinbwave::zinbwave

@@ -7,7 +7,6 @@
 #'
 #' @name plotPCElbow
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param minSD `scalar numeric`. Minimum standard deviation.

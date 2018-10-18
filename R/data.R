@@ -1,7 +1,6 @@
 #' Sanitized Markers Example
 #'
 #' @family Minimal Example Data
-#' @author Michael Steinbaugh
 #'
 #' @examples
 #' data(all_markers_small)
@@ -14,7 +13,6 @@
 #'
 #' @aliases cellCycleMarkers
 #' @family Marker Data
-#' @author Michael Steinbaugh
 #'
 #' @examples
 #' data(cell_cycle_markers)
@@ -27,7 +25,6 @@
 #'
 #' @aliases cellTypeMarkers
 #' @family Marker Data
-#' @author Michael Steinbaugh
 #'
 #' @examples
 #' data(cell_type_markers)
@@ -39,7 +36,6 @@
 #' Known Markers Example
 #'
 #' @family Minimal Example Data
-#' @author Michael Steinbaugh
 #'
 #' @examples
 #' data(known_markers_small)
@@ -51,7 +47,6 @@
 #' Seurat Example
 #'
 #' @family Minimal Example Data
-#' @author Michael Steinbaugh
 #'
 #' @examples
 #' data(seurat_small)

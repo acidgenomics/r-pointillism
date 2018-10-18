@@ -3,7 +3,6 @@
 #' Provide limited `SingleCellExperiment`-like method support.
 #'
 #' @name seurat-SingleCellExperiment
-#' @author Michael Steinbaugh
 #' @keywords internal
 #'
 #' @inheritParams general

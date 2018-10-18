@@ -14,7 +14,6 @@ setOldClass(Classes = "session_info")
 #' defined in [metadata()].
 #'
 #' @family S4 Classes
-#' @author Michael Steinbaugh
 #' @export
 #'
 #' @seealso [CellCycleMarkers()].
@@ -55,7 +54,6 @@ setValidity(
 #' defined in [metadata()].
 #'
 #' @family S4 Classes
-#' @author Michael Steinbaugh
 #' @export
 #'
 #' @seealso [CellTypeMarkers()].
@@ -95,7 +93,6 @@ setValidity(
 #' Class containing essential elements for Seurat marker gene analysis.
 #'
 #' @family S4 Classes
-#' @author Michael Steinbaugh
 #' @export
 #'
 #' @seealso [SeuratMarkers()].
@@ -191,7 +188,6 @@ setValidity(
 #' marker genes.
 #'
 #' @family S4 Classes
-#' @author Michael Steinbaugh
 #' @export
 #'
 #' @seealso [knownMarkers()].

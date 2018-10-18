@@ -16,7 +16,6 @@
 #'
 #' @name plotCellTypesPerCluster
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param markers `KnownSeuratMarkers`.
