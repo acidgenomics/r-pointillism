@@ -32,7 +32,7 @@ discreteColor <- quote(getOption("pointillism.discrete.color", NULL))
 dark <- quote(getOption("pointillism.dark", FALSE))
 # up, down, both (bcbioRNASeq).
 dimsUse <- quote(c(1L, 2L))
-direction <- c("positive", "negative", "both")
+direction <- c("up", "down", "both")
 expression <- c("mean", "sum")
 headerLevel <- 2L
 label <- quote(getOption("pointillism.label", TRUE))
