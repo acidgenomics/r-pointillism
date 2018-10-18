@@ -1,4 +1,11 @@
 # TODO Improve the documentation here.
+# FIXME Update seurat coercion method to keep other assays (e.g. weights).
+
+
+
+# FIXME This can pop up:
+# Error in .local(x, ...) :
+# are_disjoint_sets : colnames(mcols(gr)) and colnames(mcols(stash)) have common elements: gene.
 
 
 
@@ -38,19 +45,60 @@ NULL
 
 
 
-as.SingleCellExperiment <- function(x, ...) {
-    UseMethod("as.SingleCellExperiment")
+# seurat =======================================================================
+as.seurat <- function(from) {
+    UseMethod("as.seurat")
 }
 
 
 
-# Fast internal method, that ensures dimnames are sanitized.
-# Sanitizes legacy seurat objects that contain Ensembl IDs in names.
-as.SingleCellExperiment.seurat <- function(x, ...) {  # nolint
-    validObject(x)
-    names(rownames(x@raw.data)) <- NULL
-    names(rownames(x@data)) <- NULL
-    Seurat::Convert(from = x, to = "sce")
+as.seurat.SingleCellExperiment <- function(from) {
+    # Create the seurat object.
+    args <- list(
+        raw.data = counts(from),
+        meta.data = as.data.frame(colData(from)),
+        # Already applied filtering cutoffs for cells and genes.
+        min.cells = 0L,
+        min.genes = 0L,
+        # Using the default for UMI datasets.
+        is.expr = 0L,
+        project = "pointillism"
+    )
+    to <- do.call(what = CreateSeuratObject, args = args)
+
+    # Check that the dimensions match exactly.
+    assert_are_identical(
+        x = dim(from),
+        y = dim(slot(to, "raw.data"))
+    )
+
+    # Keep extra assays, if defined (e.g. weights).
+    assayNames <- setdiff(
+        x = assayNames(from),
+        y = c(
+            "counts",
+            "logcounts",
+            "scaleData"  # from Seurat-to-SCE.
+        )
+    )
+    assays <- assays(from)[assayNames]
+
+    # rowRanges.
+    rowRanges <- rowRanges(from)
+
+    # metadata.
+    metadata <- metadata(from)
+    metadata[["sessionInfo"]] <- session_info()
+
+    misc <- list(
+        assays = assays,
+        rowRanges = rowRanges,
+        metadata = metadata
+    )
+    misc <- Filter(Negate(is.null), misc)
+    slot(to, name = "misc") <- misc
+
+    to
 }
 
 
@@ -67,34 +115,26 @@ as.SingleCellExperiment.seurat <- function(x, ...) {  # nolint
 setAs(
     from = "SingleCellExperiment",
     to = "seurat",
-    def = function(from) {
-        # Create the seurat object
-        to <- CreateSeuratObject(
-            raw.data = counts(from),
-            project = "pointillism",
-            # Already applied filtering cutoffs for cells and genes.
-            min.cells = 0L,
-            min.genes = 0L,
-            # Using the default for UMI datasets.
-            is.expr = 0L,
-            meta.data = as.data.frame(colData(from))
-        )
-
-        # Check that the dimensions match exactly.
-        assert_are_identical(
-            x = dim(from),
-            y = dim(slot(to, "raw.data"))
-        )
-
-        # Stash metadata and rowRanges into `misc` slot.
-        metadata <- metadata(from)
-        metadata[["sessionInfo"]] <- session_info()
-        to@misc[["metadata"]] <- metadata
-        to@misc[["rowRanges"]] <- rowRanges(from)
-
-        to
-    }
+    def = as.seurat.SingleCellExperiment
 )
+
+
+
+# SingleCellExperiment =========================================================
+as.SingleCellExperiment <- function(from) {
+    UseMethod("as.SingleCellExperiment")
+}
+
+
+
+# Fast internal method, that ensures dimnames are sanitized.
+# Sanitizes legacy seurat objects that contain Ensembl IDs in names.
+as.SingleCellExperiment.seurat <- function(from) {  # nolint
+    validObject(from)
+    names(rownames(from@raw.data)) <- NULL
+    names(rownames(from@data)) <- NULL
+    Seurat::Convert(from = from, to = "sce")
+}
 
 
 
