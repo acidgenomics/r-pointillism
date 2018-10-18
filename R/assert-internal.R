@@ -1,8 +1,8 @@
 # TODO Rethink these assert checks, and deprecate if possible.
 
 
-
 # assertHasDesignFormula =======================================================
+# FIXME Add `design()` method for SCE.
 .assertHasDesignFormula <- function(object) {
     stopifnot(is(object, "SingleCellExperiment"))
     assert_is_factor(object[["group"]])
@@ -12,42 +12,9 @@
 
 
 # assertHasIdent ===============================================================
+# FIXME Add `ident()` generic.
 .assertHasIdent <- function(object) {
     assert_is_subset("ident", colnames(colData(object)))
-}
-
-
-
-# assertHasZinbwave ============================================================
-.assertHasZinbwave <- function(object) {
-    stopifnot(.hasZinbwave(object))
-}
-
-
-
-.hasZinbwave <- function(object) {
-    UseMethod(".hasZinbwave")
-}
-
-
-
-.hasZinbwave.SingleCellExperiment <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    if (!all(c("counts", "weights") %in% assayNames(object))) {
-        return(FALSE)
-    }
-    TRUE
-}
-
-
-
-.hasZinbwave.seurat <- function(object) {
-    stopifnot(is(object, "seurat"))
-    weights <- object@misc$assays$weights
-    if (!is.matrix(weights)) {
-        return(FALSE)
-    }
-    TRUE
 }
 
 
@@ -55,6 +22,7 @@
 # assertIsBPPARAM ==============================================================
 # FIXME Consider moving this to basejump.
 # Require valid BiocParallel bpparam.
+# FIXME Rename to BPParam?
 .assertIsBPPARAM <- function(object) {
     stopifnot(identical(
         attributes(class(object))[["package"]],
