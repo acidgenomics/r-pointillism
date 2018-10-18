@@ -4,7 +4,12 @@
 
 
 
-# FIXME
+# ### cell_type_2
+#
+# Error in UseMethod("depth") :
+#     no applicable method for 'depth' applied to an object of class "NULL"
+# Calls: run_examples ... popgrobvp -> popgrobvp.viewport -> upViewport -> depth
+
 # Error in grid.Call.graphics(C_setviewport, vp, TRUE) :
 #     non-finite location and/or size for viewport
 # Calls: plotCellTypesPerCluster ... push.vp.vpList -> push.vp -> push.vp.viewport -> grid.Call.graphics
