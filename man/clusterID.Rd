@@ -31,11 +31,7 @@ head(x)
 table(x)
 }
 \seealso{
-Other Marker Functions: \code{\link{CellTypeMarkers}},
-  \code{\link{SeuratMarkers}}, \code{\link{knownMarkers}},
-  \code{\link{topMarkers}}
-}
-\author{
-Michael Steinbaugh
+Other Marker Functions: \code{\link{SeuratMarkers}},
+  \code{\link{knownMarkers}}, \code{\link{topMarkers}}
 }
 \concept{Marker Functions}

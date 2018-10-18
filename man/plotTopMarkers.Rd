@@ -53,7 +53,4 @@ Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Plot Functions}

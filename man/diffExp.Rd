@@ -148,7 +148,4 @@ summary(x)
 Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
   \code{\link{findMarkers}}, \code{\link{runZinbwave}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Differential Expression Functions}

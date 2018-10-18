@@ -44,11 +44,7 @@ print(x)
 \item \code{\link[dplyr:top_n]{dplyr::top_n()}}.
 }
 
-Other Marker Functions: \code{\link{CellTypeMarkers}},
-  \code{\link{SeuratMarkers}}, \code{\link{clusterID}},
-  \code{\link{knownMarkers}}
-}
-\author{
-Michael Steinbaugh
+Other Marker Functions: \code{\link{SeuratMarkers}},
+  \code{\link{clusterID}}, \code{\link{knownMarkers}}
 }
 \concept{Marker Functions}

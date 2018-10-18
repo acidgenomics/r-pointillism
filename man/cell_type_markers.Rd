@@ -19,8 +19,5 @@ cell_type_markers
 \seealso{
 Other Marker Data: \code{\link{cell_cycle_markers}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Marker Data}
 \keyword{datasets}

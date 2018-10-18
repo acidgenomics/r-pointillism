@@ -77,8 +77,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
 Collate: 
     'AllClasses.R'
-    'AllGenerators.R'
     'AllGenerics.R'
+    'markers-internal.R'
+    'CellCycleMarkers.R'
+    'CellTypeMarkers.R'
+    'SeuratMarkers.R'
     'as-methods.R'
     'assert-internal.R'
     'cellCountsPerCluster-methods.R'

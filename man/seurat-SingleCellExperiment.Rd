@@ -96,7 +96,4 @@ Provide limited \code{SingleCellExperiment}-like method support.
 \seealso{
 \code{getMethod("metadata<-", "Annotated")}
 }
-\author{
-Michael Steinbaugh
-}
 \keyword{internal}

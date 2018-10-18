@@ -127,7 +127,4 @@ Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
   \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
   \code{\link{plotTopMarkers}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Plot Functions}
