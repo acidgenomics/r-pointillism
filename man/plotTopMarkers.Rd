@@ -10,11 +10,11 @@
 plotTopMarkers(object, ...)
 
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("positive", "negative", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, ...)
 
 \S4method{plotTopMarkers}{seurat}(object, markers, n = 1L,
-  direction = c("positive", "negative", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, ...)
 }
 \arguments{
@@ -26,8 +26,9 @@ plotTopMarkers(object, ...)
 
 \item{n}{\code{scalar integer}. Number of genes per cluster.}
 
-\item{direction}{\code{string}. Whether to include "\code{positive}", "\code{negative}", or
-"\code{both}" directions of association per cluster.}
+\item{direction}{\code{string}. Whether to include upregulated (\code{"up"}; positive
+LFC), downregulated (\code{"down"}; negative LFC) or \code{"both"} directions of
+association per cluster.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
