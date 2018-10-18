@@ -32,6 +32,11 @@ seurat_small <- sce %>%
     RunUMAP() %>%
     SetAllIdent(id = "res.0.4")
 
+# sce_seurat ===================================================================
+sce_seurat <- seurat_small %>%
+    as("SingleCellExperiment") %>%
+    runZinbwave()
+
 # all_markers_small ============================================================
 all_markers_small <- SeuratMarkers(
     markers = FindAllMarkers(seurat_small),
@@ -40,7 +45,6 @@ all_markers_small <- SeuratMarkers(
 
 # known_markers_small ==========================================================
 all <- all_markers_small
-# FIXME Need to make `CellTypeMarkers()` a generic.
 known <- new(
     Class = "CellTypeMarkers",
     DataFrame(
@@ -60,12 +64,12 @@ export(
     x = known,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
-
 known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
 usethis::use_data(
     seurat_small,
+    sce_seurat,
     all_markers_small,
     known_markers_small,
     compress = "xz",
