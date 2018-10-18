@@ -9,7 +9,8 @@
 topMarkers(object, ...)
 
 \S4method{topMarkers}{SeuratMarkers}(object, n = 10L,
-  direction = c("positive", "negative", "both"))
+  direction = c("up", "down", "both"), return = c("tbl_df",
+  "DataFrame", "DataFrameList"))
 }
 \arguments{
 \item{object}{Object.}
@@ -18,8 +19,12 @@ topMarkers(object, ...)
 
 \item{n}{\code{scalar integer}. Number of genes per cluster.}
 
-\item{direction}{\code{string}. Whether to include "\code{positive}", "\code{negative}", or
-"\code{both}" directions of association per cluster.}
+\item{direction}{\code{string}. Whether to include upregulated (\code{"up"}; positive
+LFC), downregulated (\code{"down"}; negative LFC) or \code{"both"} directions of
+association per cluster.}
+
+\item{return}{\code{string}. Return type. Uses \code{\link[base:match.arg]{base::match.arg()}} internally and
+defaults to the first argument in the \code{character} vector.}
 
 \item{coding}{\code{boolean}. Include only protein coding genes.}
 }
@@ -31,11 +36,7 @@ Top Markers
 }
 \examples{
 data(all_markers_small)
-x <- topMarkers(
-    all_markers_small,
-    n = 2L,
-    direction = "positive"
-)
+x <- topMarkers(all_markers_small, n = 2L)
 print(x)
 }
 \seealso{

@@ -7,6 +7,7 @@
 \alias{coerce,seurat,SingleCellExperiment-method}
 \alias{coerce,seurat,RangedSummarizedExperiment-method}
 \alias{coerce,seurat,SummarizedExperiment-method}
+\alias{coerce,SeuratMarkers,tbl_df-method}
 \title{Force an Object to Belong to a Class}
 \description{
 Coerce an object to a given class.
@@ -41,6 +42,11 @@ S4 coercion support for creating a \code{RangedSummarizedExperiment} from a
 
 S4 coercion support for creating a \code{SummarizedExperiment} from a \code{seurat}
 class object.
+}
+
+\section{\code{SeuratMarkers} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from a \code{SeuratMarkers} object.
 }
 
 \section{Description}{
