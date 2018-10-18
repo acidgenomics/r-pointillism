@@ -1,6 +1,6 @@
 # Require zero weights to be calculated, showing a more informative error.
 .weights <- function(object) {
-    tryCatch(
+    weights <- tryCatch(
         expr = weights(object),
         error = function(e) {
             stop(paste(
@@ -10,4 +10,6 @@
             ), call. = FALSE)
         }
     )
+    assert_is_matrix(weights)
+    weights
 }
