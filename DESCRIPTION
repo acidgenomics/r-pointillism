@@ -42,6 +42,7 @@ Imports:
     assertive.properties,
     assertive.sets,
     assertive.types,
+    bcbioSingleCell,
     cowplot,
     crayon,
     dplyr,
@@ -65,7 +66,8 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@bioconductor
+    steinbaugh/basejump@bioconductor,
+    steinbaugh/bcbioSingleCell@bioconductor
 biocViews:
     DataRepresentation,
     GeneExpression,
@@ -91,9 +93,9 @@ Collate:
     'clusterID-methods.R'
     'data.R'
     'deprecated.R'
+    'globals.R'
     'diffExp-methods.R'
     'diffExpPerCluster-methods.R'
-    'globals.R'
     'fetchData-internal.R'
     'findMarkers-methods.R'
     'general.R'

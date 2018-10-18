@@ -28,6 +28,7 @@
 #'   convertGenesToSymbols gene2symbol import mapGenesToRownames
 #'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
 #'   printString theme_midnight upperCamel
+#' @importFrom bcbioSingleCell filterCells
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply sapply
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
@@ -48,13 +49,14 @@
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
-#' @importFrom rlang !! !!! := sym syms
+#' @importFrom rlang !! !!! := has_length sym syms
 #' @importFrom S4Vectors as.data.frame as.matrix
 #'   complete.cases mcols mcols<- metadata metadata<- na.omit split
 #' @importFrom scales percent pretty_breaks
 #' @importFrom sessioninfo session_info
 #' @importFrom Seurat Convert CreateSeuratObject
-#' @importFrom SingleCellExperiment reducedDimNames reducedDims
+#' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
+#'   weights<-
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
