@@ -1,6 +1,7 @@
 # TODO Rethink these assert checks, and deprecate if possible.
 
 
+
 # assertHasDesignFormula =======================================================
 # FIXME Add `design()` method for SCE.
 .assertHasDesignFormula <- function(object) {

@@ -98,14 +98,6 @@ print(x)
 ## seurat to SingleCellExperiment ====
 x <- as(seurat_small, "SingleCellExperiment")
 print(x)
-
-## seurat to RangedSummarizedExperiment ====
-x <- as(seurat_small, "RangedSummarizedExperiment")
-print(x)
-
-## seurat to SummarizedExperiment ====
-x <- as(seurat_small, "SummarizedExperiment")
-print(x)
 }
 \references{
 Chambers, John M. (2016)

@@ -113,3 +113,4 @@ Collate:
     'seurat-SingleCellExperiment-methods.R'
     'show-methods.R'
     'topMarkers-methods.R'
+    'weights-internal.R'

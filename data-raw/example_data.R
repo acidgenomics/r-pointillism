@@ -1,12 +1,10 @@
 # SingleCellExperiment Example Data
-# 2018-10-17
+# 2018-10-18
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 library(reticulate)
-# use_condaenv("bioinfo")
-# Unable to find conda binary. Is Anaconda installed?
 stopifnot(py_module_available(module = "umap"))
 
 library(splatter)
