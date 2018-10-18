@@ -283,7 +283,7 @@ setMethod(
     f = "metrics",
     signature = signature("seurat"),
     definition = function(object, ...) {
-        metrics(as(object, "SingleCellExperiment"))
+        metrics(as(object, "SingleCellExperiment"), ...)
     }
 )
 
