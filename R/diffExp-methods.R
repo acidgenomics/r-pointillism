@@ -1,15 +1,22 @@
+# TODO Add MAST, Wilcoxon support?
+# TODO Consider adding back zingeR support here.
+
+
+
 #' Differential Expression
 #'
 #' Perform pairwise differential expression across groups of cells by fitting
 #' to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
 #' Currently supports edgeR and DESeq2 as DE callers.
 #'
-#' This step will run a lot faster if you pre-calculate the ZINB weights using
-#' the [runZinbwave()] function, which will stash the weights into the
-#' [assays()] slot of the object. Running zinbwave across the entire set of
-#' filtered cells also has greater sensitivity for weight calculations.
-#'
 #' @section zinbwave:
+#'
+#' This function will run a lot faster if you pre-calculate the ZINB weights
+#' using the [runZinbwave()] function, which will stash the weights into the
+#' [SingleCellExperiment::weights()] slot of the object. Running zinbwave across
+#' the entire set of filtered cells also has greater sensitivity for weight
+#' calculations.
+#'
 #' We are currently using an epsilon setting of `1e12`, as recommended by the
 #' ZINB-WaVE integration paper. For more information on the zinbwave package,
 #' refer to these materials:
@@ -40,6 +47,7 @@
 #' information.
 #'
 #' @section Seurat conventions:
+#'
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::DiffExpTest()] for
 #' additional information.
@@ -50,8 +58,10 @@
 #'
 #' @name diffExp
 #' @family Differential Expression Functions
+#' @include globals.R
 #'
 #' @inheritParams general
+#' @inheritParams runZinbwave
 #' @param numerator `character`. Cells to use in the numerator of the contrast
 #'   (e.g. treatment).
 #' @param denominator `character`. Cells to use in the denominator of the
@@ -72,40 +82,6 @@
 #'   shrunken results are desired.
 #'
 #' @seealso [Seurat::WhichCells()].
-#'
-#' @examples
-#' data(seurat_small)
-#' object <- as(seurat_small, "SingleCellExperiment")
-#' # Subset example for speed.
-#' object <- object[seq_len(100L), seq_len(100L)]
-#'
-#' # Ensure genes with all zero counts are filtered.
-#' stopifnot(all(Matrix::rowSums(assay(object)) > 0L))
-#'
-#' numerator <- colnames(object)[object$group == "group2"]
-#' str(numerator)
-#' denominator <- colnames(object)[object$group == "group1"]
-#' str(denominator)
-#'
-#' ## edgeR ====
-#' x <- suppressMessages(diffExp(
-#'     object = object,
-#'     numerator = numerator,
-#'     denominator = denominator,
-#'     caller = "edgeR"
-#' ))
-#' class(x)
-#' summary(x)
-#'
-#' ## DESeq2 ====
-#' x <- suppressMessages(diffExp(
-#'     object = object,
-#'     numerator = numerator,
-#'     denominator = denominator,
-#'     caller = "DESeq2"
-#' ))
-#' class(x)
-#' summary(x)
 NULL
 
 
@@ -133,7 +109,7 @@ NULL
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    .assertHasZinbwave(object)
+    # FIXME Switch to using `design()` generic.
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
@@ -159,7 +135,7 @@ NULL
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    .assertHasZinbwave(object)
+    # FIXME Switch to using `design()` generic.
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR.")
@@ -196,7 +172,8 @@ NULL
         denominator,
         caller = c("edgeR", "DESeq2"),
         minCellsPerGene = 25L,
-        minCountsPerCell = 5L
+        minCountsPerCell = 5L,
+        bpparam  # nolint
     ) {
         minCells <- 10L
         # Coerce to standard SCE to ensure fast subsetting.
@@ -210,15 +187,18 @@ NULL
         }
         assert_are_disjoint_sets(numerator, denominator)
         caller <- match.arg(caller)
-        # Consider adding zingeR support back once it's on Bioconductor.
-        zeroWeights <- "zinbwave"
         assertIsAnImplicitInteger(minCountsPerCell)
         assertIsAnImplicitInteger(minCellsPerGene)
         assert_all_are_positive(c(minCountsPerCell, minCellsPerGene))
+        .assertIsBPPARAM(bpparam)
+
+        weights <- .weights(object)
+        weightsFun <- metadata(object)[["weights"]]
+        assert_is_subset(weightsFun, "zinbwave")
 
         message(paste(
             "Performing differential expression with",
-            paste(zeroWeights, caller, sep = "-")
+            paste(weightsFun, caller, sep = "-")
         ))
 
         # Subset the SCE object to contain the input cells.
@@ -232,7 +212,7 @@ NULL
         object <- object[, cells]
 
         # Ensure we're using a sparse matrix to calculate the logical matrix.
-        counts <- as(counts(object), "dgCMatrix")
+        counts <- as(counts(object), "sparseMatrix")
 
         # Gene filter ----------------------------------------------------------
         message("Applying gene expression low pass filter.")
@@ -253,7 +233,7 @@ NULL
 
         # Early return NULL if no genes pass.
         if (!length(genes)) {
-            warning("No genes passed the low count filter")
+            warning("No genes passed the low count filter", call. = FALSE)
             return(NULL)
         }
 
@@ -306,19 +286,20 @@ NULL
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
 
-        # Calculate the weights.
-        weightsFunction <- get(paste0("run", upperCamel(zeroWeights)))
-        object <- weightsFunction(Y = object, BPPARAM = SerialParam())
-
         # Ensure raw counts matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))
 
         # Perform differential expression (e.g. `.zinbwave.edgeR`).
-        callerFunction <- get(paste("", zeroWeights, caller, sep = "."))
-        data <- callerFunction(object)
-
-        data
+        fun <- paste("", weightsFun, caller, sep = ".")
+        fun <- get(
+            x  = fun,
+            envir = asNamespace("pointillism"),
+            inherits = FALSE
+        )
+        assert_is_function(fun)
+        fun(object)
     }
+formals(.diffExp.SCE)[["bpparam"]] <- bpparam
 
 
 

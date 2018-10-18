@@ -11,11 +11,11 @@ diffExp(object, ...)
 
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
-  minCountsPerCell = 5L)
+  minCountsPerCell = 5L, bpparam = BiocParallel::SerialParam())
 
 \S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
-  minCountsPerCell = 5L)
+  minCountsPerCell = 5L, bpparam = BiocParallel::SerialParam())
 }
 \arguments{
 \item{object}{Object.}
@@ -53,18 +53,19 @@ Perform pairwise differential expression across groups of cells by fitting
 to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
 Currently supports edgeR and DESeq2 as DE callers.
 }
-\details{
-This step will run a lot faster if you pre-calculate the ZINB weights using
-the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
-\code{\link[=assays]{assays()}} slot of the object. Running zinbwave across the entire set of
-filtered cells also has greater sensitivity for weight calculations.
-}
 \note{
 We are currently recommending the ZINB-WaVE method over zingeR, since
 it is faster, and has been show to be more sensitive for most single-cell
 RNA-seq datasets.
 }
 \section{zinbwave}{
+
+
+This function will run a lot faster if you pre-calculate the ZINB weights
+using the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
+\code{\link[SingleCellExperiment:weights]{SingleCellExperiment::weights()}} slot of the object. Running zinbwave across
+the entire set of filtered cells also has greater sensitivity for weight
+calculations.
 
 We are currently using an epsilon setting of \code{1e12}, as recommended by the
 ZINB-WaVE integration paper. For more information on the zinbwave package,
@@ -103,45 +104,12 @@ information.
 
 \section{Seurat conventions}{
 
+
 Note that Seurat currently uses the convention \code{cells.1} for the numerator
 and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seurat::DiffExpTest()}} for
 additional information.
 }
 
-\examples{
-data(seurat_small)
-object <- as(seurat_small, "SingleCellExperiment")
-# Subset example for speed.
-object <- object[seq_len(100L), seq_len(100L)]
-
-# Ensure genes with all zero counts are filtered.
-stopifnot(all(Matrix::rowSums(assay(object)) > 0L))
-
-numerator <- colnames(object)[object$group == "group2"]
-str(numerator)
-denominator <- colnames(object)[object$group == "group1"]
-str(denominator)
-
-## edgeR ====
-x <- suppressMessages(diffExp(
-    object = object,
-    numerator = numerator,
-    denominator = denominator,
-    caller = "edgeR"
-))
-class(x)
-summary(x)
-
-## DESeq2 ====
-x <- suppressMessages(diffExp(
-    object = object,
-    numerator = numerator,
-    denominator = denominator,
-    caller = "DESeq2"
-))
-class(x)
-summary(x)
-}
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 

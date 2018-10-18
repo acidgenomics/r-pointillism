@@ -2,14 +2,6 @@
 
 
 
-# @examples
-# data(seurat_small)
-# x <- findMarkers(seurat_small, caller = "edgeR")
-# class(x)
-# lapply(x, class)
-
-
-
 #' Find Cluster-Specific Marker Genes
 #'
 #' @note Cluster identity (`ident`) must be defined in `colData()` for this
@@ -24,14 +16,21 @@
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
+#'
+#' @examples
+#' data(seurat_small)
+#' sce <- as(seurat_small, "SingleCellExperiment")
+#' sce <- runZinbwave(sce)
+#' x <- findMarkers(sce, caller = "edgeR")
+#' class(x)
+#' lapply(x, class)
 NULL
 
 
 
 .findMarkers.SCE <-  # nolint
     function(object, ...) {
-        # Object must contain pre-calculate ZINB weights.
-        .assertHasZinbwave(object)
+        weights <- .weights(object)
 
         # Get the cluster identities.
         ident <- clusterID(object)
@@ -79,10 +78,10 @@ setMethod(
 
 
 
-#' @rdname findMarkers
-#' @export
-setMethod(
-    f = "findMarkers",
-    signature = signature("seurat"),
-    definition = getMethod("findMarkers", "SingleCellExperiment")
-)
+# #' @rdname findMarkers
+# #' @export
+# setMethod(
+#     f = "findMarkers",
+#     signature = signature("seurat"),
+#     definition = getMethod("findMarkers", "SingleCellExperiment")
+# )

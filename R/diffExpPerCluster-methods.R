@@ -106,3 +106,16 @@ setMethod(
     signature = signature("SingleCellExperiment"),
     definition = .diffExpPerCluster.SCE
 )
+
+
+
+# #' @rdname diffExpPerCluster
+# #' @export
+# setMethod(
+#     f = "diffExpPerCluster",
+#     signature = signature("seurat"),
+#     definition = getMethod(
+#         f = "diffExp",
+#         signature = signature("SingleCellExperiment")
+#     )
+# )

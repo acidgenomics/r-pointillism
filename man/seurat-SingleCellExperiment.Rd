@@ -26,6 +26,8 @@
 \alias{sampleData,seurat-method}
 \alias{sampleData<-,seurat,DataFrame-method}
 \alias{sampleNames,seurat-method}
+\alias{weights,seurat-method}
+\alias{weights<-,seurat-method}
 \title{Extend S4 Methods for \code{seurat} Class}
 \usage{
 \S4method{assay}{seurat,ANY}(x, i, ...)
@@ -74,6 +76,10 @@
 \S4method{sampleData}{seurat,DataFrame}(object) <- value
 
 \S4method{sampleNames}{seurat}(object)
+
+\S4method{weights}{seurat}(object)
+
+\S4method{weights}{seurat}(object) <- value
 }
 \arguments{
 \item{x}{Object.}

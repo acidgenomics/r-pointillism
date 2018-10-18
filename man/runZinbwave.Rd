@@ -4,6 +4,7 @@
 \name{runZinbwave}
 \alias{runZinbwave}
 \alias{runZinbwave,SingleCellExperiment-method}
+\alias{runZinbwave,seurat-method}
 \title{Calculate ZINB-WaVE Weights}
 \usage{
 runZinbwave(Y, ...)
@@ -11,6 +12,8 @@ runZinbwave(Y, ...)
 \S4method{runZinbwave}{SingleCellExperiment}(Y, K = 0L,
   epsilon = 1e+12, BPPARAM = BiocParallel::SerialParam(),
   recalculate = FALSE, verbose = FALSE, ...)
+
+\S4method{runZinbwave}{seurat}(Y, ...)
 }
 \arguments{
 \item{Y}{The data (genes in rows, samples in columns). Currently implemented
@@ -44,9 +47,15 @@ be defined in the \code{\link[=assays]{assays()}} slot. If these values have alr
 calculated, the object will be returned unmodified, unless
 \code{recalculate = TRUE}.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{seurat}: Coerces to \code{SingleCellExperiment} and stashes weights
+in the \code{\link[=weights]{weights()}} slot.
+}}
+
 \note{
 zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the
-number of cores to use (\code{BPPARAM} argument), but we've found that this
+number of cores to use (\code{bpparam} argument), but we've found that this
 works inconsistently across installations. Currently, we recommend using
 \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}} by default, which will run in serial, using a
 single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}} should
@@ -64,7 +73,7 @@ zinb <- suppressMessages(runZinbwave(
     recalculate = TRUE
 ))
 print(zinb)
-assayNames(zinb)
+class(weights(zinb))
 }
 \seealso{
 \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.
