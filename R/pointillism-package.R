@@ -6,7 +6,9 @@
 #'
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
+#'
 #' @importMethodsFrom basejump coerce
+#'
 #' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_in_open_range assert_all_are_non_negative
@@ -52,10 +54,11 @@
 #' @importFrom scales percent pretty_breaks
 #' @importFrom sessioninfo session_info
 #' @importFrom Seurat Convert CreateSeuratObject
+#' @importFrom SingleCellExperiment reducedDimNames reducedDims
 #' @importFrom stats median model.matrix relevel
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom tibble column_to_rownames remove_rownames tibble
+#' @importFrom tibble as_tibble column_to_rownames remove_rownames tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 #' @importFrom zinbwave glmWeightedF zinbFit zinbwave
