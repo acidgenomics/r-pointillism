@@ -1,11 +1,4 @@
 # TODO Improve the documentation here.
-# FIXME Update seurat coercion method to keep other assays (e.g. weights).
-
-
-
-# FIXME This can pop up:
-# Error in .local(x, ...) :
-# are_disjoint_sets : colnames(mcols(gr)) and colnames(mcols(stash)) have common elements: gene.
 
 
 
@@ -33,19 +26,11 @@
 #' ## seurat to SingleCellExperiment ====
 #' x <- as(seurat_small, "SingleCellExperiment")
 #' print(x)
-#'
-#' ## seurat to RangedSummarizedExperiment ====
-#' x <- as(seurat_small, "RangedSummarizedExperiment")
-#' print(x)
-#'
-#' ## seurat to SummarizedExperiment ====
-#' x <- as(seurat_small, "SummarizedExperiment")
-#' print(x)
 NULL
 
 
 
-# seurat =======================================================================
+# SingleCellExperiment to seurat ===============================================
 as.seurat <- function(from) {
     UseMethod("as.seurat")
 }
@@ -120,7 +105,7 @@ setAs(
 
 
 
-# SingleCellExperiment =========================================================
+# seurat to SingleCellExperiment ===============================================
 as.SingleCellExperiment <- function(from) {
     UseMethod("as.SingleCellExperiment")
 }
@@ -162,8 +147,9 @@ setAs(
             assays(to)[["scaleData"]] <- scaleData
         }
         # Sanitize row and column data colnames using camel case.
-        rowRanges(to) <- camel(rowRanges(from))
-        colData(to) <- camel(colData(to))
+        # FIXME This step is breaking.
+        rowRanges(to) <- rowRanges(from)
+        colData(to) <- colData(to)
         metadata(to) <- metadata(from)
         # Slot variable genes, if calculated.
         varGenes <- slot(from, "var.genes")
@@ -174,6 +160,7 @@ setAs(
 
 
 
+# seurat to SummarizedExperiment ===============================================
 #' @rdname as
 #' @name coerce,seurat,RangedSummarizedExperiment-method
 #'
@@ -209,6 +196,7 @@ setAs(
 
 
 
+# SeuratMarkers to tbl_df ======================================================
 #' @rdname as
 #' @name coerce,SeuratMarkers,tbl_df-method
 #' @section `SeuratMarkers` to `tbl_df`:
