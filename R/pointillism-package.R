@@ -27,7 +27,7 @@
 #'   assertIsHeaderLevel assertIsImplicitInteger camel coerce
 #'   convertGenesToSymbols gene2symbol import mapGenesToRownames
 #'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   printString theme_midnight uniteInterestingGroups upperCamel
+#'   printString theme_midnight upperCamel
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply sapply
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam

@@ -7,6 +7,7 @@
 #' @name plotReducedDim
 #' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
+#' @include globals.R
 #'
 #' @importFrom BiocGenerics plotPCA
 #'
@@ -44,7 +45,7 @@ NULL
     object,
     reducedDim,
     dimsUse,
-    interestingGroups = "ident",
+    interestingGroups = NULL,
     color,
     pointSize,
     pointAlpha,
@@ -55,10 +56,15 @@ NULL
     legend,
     title = NULL
 ) {
+    validObject(object)
     .assertHasIdent(object)
     assert_is_scalar(reducedDim)
     assertIsImplicitInteger(dimsUse)
     assert_is_of_length(dimsUse, 2L)
+    # Color by `ident` factor by default.
+    if (is.null(interestingGroups)) {
+        interestingGroups <- "ident"
+    }
     assert_is_a_string(interestingGroups)
     assertIsColorScaleDiscreteOrNULL(color)
     assert_is_a_number(pointSize)
@@ -77,20 +83,21 @@ NULL
     )
     assert_is_all_of(data, "DataFrame")
     assert_is_subset(
-        x = c(interestingGroups, "x", "y", "centerX", "centerY"),
+        x = c("x", "y", "centerX", "centerY", "interestingGroups"),
         y = colnames(data)
     )
-    data <- uniteInterestingGroups(
-        object = data,
-        interestingGroups = interestingGroups
-    )
 
-    # Set the x- and y-axis labels (e.g. tSNE1, tSNE2).
-    axes <- camel(colnames(reducedDims(object)[[reducedDim]])[dimsUse])
+    # Color by `ident` factor by default (see above).
+    if (interestingGroups == "ident") {
+        data[["interestingGroups"]] <- data[["ident"]]
+    }
+
+    # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
+    axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
     assert_is_subset(axes, colnames(data))
 
     p <- ggplot(
-        data = as(data, "tbl_df"),
+        data = as_tibble(data),
         mapping = aes(
             x = !!sym("x"),
             y = !!sym("y"),
@@ -104,7 +111,11 @@ NULL
         )
 
     if (isTRUE(pointsAsNumbers)) {
-        if (pointSize < 4L) pointSize <- 4L
+        # Increase the size, if necessary.
+        if (pointSize < 4L) {
+            warning("Increase `pointSize` to at least 4.")
+            pointSize <- 4L
+        }
         p <- p +
             geom_text(
                 mapping = aes(
@@ -164,6 +175,7 @@ NULL
 formals(.plotReducedDim.SCE)[c(
     "color",
     "dark",
+    "dimsUse",
     "label",
     "labelSize",
     "legend",
@@ -172,13 +184,14 @@ formals(.plotReducedDim.SCE)[c(
     "pointsAsNumbers"
 )] <- list(
     color = discreteColor,
-    dark,
-    label,
-    labelSize,
-    legend,
-    pointAlpha,
-    pointSize,
-    pointsAsNumbers
+    dark = dark,
+    dimsUse = dimsUse,
+    label = label,
+    labelSize = labelSize,
+    legend = legend,
+    pointAlpha = pointAlpha,
+    pointSize = pointSize,
+    pointsAsNumbers = pointsAsNumbers
 )
 
 
