@@ -10,7 +10,7 @@
 #' `recalculate = TRUE`.
 #'
 #' @note zinbwave defaults to using [BiocParallel::bpparam()] to register the
-#'   number of cores to use (`BPPARAM` argument), but we've found that this
+#'   number of cores to use (`bpparam` argument), but we've found that this
 #'   works inconsistently across installations. Currently, we recommend using
 #'   [BiocParallel::SerialParam()] by default, which will run in serial, using a
 #'   single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should
@@ -18,6 +18,7 @@
 #'
 #' @name runZinbwave
 #' @family Differential Expression Functions
+#' @include globals.R
 #'
 #' @inheritParams general
 #' @inheritParams zinbwave::zinbwave
@@ -44,40 +45,43 @@
 #'     recalculate = TRUE
 #' ))
 #' print(zinb)
-#' assayNames(zinb)
+#' class(weights(zinb))
 NULL
 
 
 
+# SingleCellExperiment =========================================================
 .runZinbwave.SCE <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
         epsilon = 1e12,
         # Use serial by default, for cross-platform compatibility.
-        BPPARAM = BiocParallel::SerialParam(),  # nolint
+        BPPARAM,  # nolint
         recalculate = FALSE,
         verbose = FALSE,
         ...
     ) {
+        message("Running zinbwave.")
         stopifnot(is(Y, "SingleCellExperiment"))
-        # Early return if weights are already calculated.
-        if (
-            .hasZinbwave(Y) &&
-            !isTRUE(recalculate)
-        ) {
+
+        # Early return if weights are calculated -------------------------------
+        weights <- tryCatch(
+            expr = weights(Y),
+            error = function(e) NULL
+        )
+        if (is.matrix(weights) && !isTRUE(recalculate)) {
+            warning(
+                "Object already contains pre-calculated weights.",
+                call. = FALSE
+            )
             return(Y)
         }
 
         # Assert checks --------------------------------------------------------
         assert_is_a_number(K)
         assert_is_a_number(epsilon)
-        # Require valid BiocParallel bpparam.
-        stopifnot(identical(
-            attributes(class(BPPARAM))[["package"]],
-            "BiocParallel"
-        ))
-        stopifnot(grepl("Param$", class(BPPARAM)))
+        .assertIsBPPARAM(BPPARAM)
         assert_is_a_bool(recalculate)
         assert_is_a_bool(verbose)
 
@@ -150,8 +154,10 @@ NULL
         assert_are_identical(dimnames(zinb), dimnames(counts))
         assays(object) <- assays(zinb)
         counts(object) <- counts
+        metadata(object)[["weights"]] <- "zinbwave"
         object
     }
+formals(.runZinbwave.SCE)[["BPPARAM"]] <- bpparam
 
 
 
@@ -161,4 +167,25 @@ setMethod(
     f = "runZinbwave",
     signature = signature(Y = "SingleCellExperiment"),
     definition = .runZinbwave.SCE
+)
+
+
+
+# seurat =======================================================================
+.runZinbwave.seurat <- function(Y, ...) {
+    zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
+    weights(Y) <- weights(zinb)
+    metadata(Y)[["weights"]] <- "zinbwave"
+    Y
+}
+
+
+
+#' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashes weights
+#'   in the [weights()] slot.
+#' @export
+setMethod(
+    f = "runZinbwave",
+    signature = signature("seurat"),
+    definition = .runZinbwave.seurat
 )
