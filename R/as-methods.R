@@ -1,3 +1,7 @@
+# TODO Improve the documentation here.
+
+
+
 #' @inherit methods::as
 #' @name as
 #' @aliases coerce
@@ -63,7 +67,7 @@ as.SingleCellExperiment.seurat <- function(x, ...) {  # nolint
 setAs(
     from = "SingleCellExperiment",
     to = "seurat",
-    function(from) {
+    def = function(from) {
         # Create the seurat object
         to <- CreateSeuratObject(
             raw.data = counts(from),
@@ -108,7 +112,7 @@ setAs(
 setAs(
     from = "seurat",
     to = "SingleCellExperiment",
-    function(from) {
+    def = function(from) {
         to <- as.SingleCellExperiment(from)
         # Slot scaleData, if defined. Note that we're making the dimensions
         # match the other count matrices here.
@@ -139,7 +143,7 @@ setAs(
 setAs(
     from = "seurat",
     to = "RangedSummarizedExperiment",
-    function(from) {
+    def = function(from) {
         sce <- as(from, "SingleCellExperiment")
         rse <- as(sce, "RangedSummarizedExperiment")
         rse
@@ -156,9 +160,40 @@ setAs(
 setAs(
     from = "seurat",
     to = "SummarizedExperiment",
-    function(from) {
+    def = function(from) {
         rse <- as(from, "RangedSummarizedExperiment")
         se <- as(rse, "SummarizedExperiment")
         se
+    }
+)
+
+
+
+#' @rdname as
+#' @name coerce,SeuratMarkers,tbl_df-method
+#' @section `SeuratMarkers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from a `SeuratMarkers` object.
+setAs(
+    from = "SeuratMarkers",
+    to = "tbl_df",
+    def = function(from) {
+        validObject(from)
+
+        # Get gene2symbol from slotted ranges.
+        g2s <- mcols(from[["ranges"]])[c("geneID", "geneName")]
+
+        data <- as(from, "DataFrame")
+        data[["ranges"]] <- NULL
+        assert_are_disjoint_sets(colnames(data), colnames(g2s))
+        data <- cbind(data, g2s)
+        data <- as(data, "tbl_df")
+
+        # Inform the user when sanitizing `Seurat::FindAllMarkers()` return.
+        if ("cluster" %in% colnames(data)) {
+            message("Grouping by cluster.")
+            data <- group_by(data, !!sym("cluster"))
+        }
+
+        data
     }
 )
