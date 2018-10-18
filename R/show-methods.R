@@ -1,3 +1,7 @@
+# FIXME Need to add working examples.
+
+
+
 #' @rdname show
 #' @importFrom methods show
 #' @export
@@ -9,10 +13,6 @@ show <- methods::show
 #' @name show
 #' @family S4 Object
 #' @author Michael Steinbuagh
-#'
-#' @examples
-#' data(bcb_small)
-#' show(bcb_small)
 NULL
 
 
