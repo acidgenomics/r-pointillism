@@ -1,5 +1,4 @@
-# FIXME This isn't mapping correctly for seurat.
-# FIXME Use `basejump.` instead of `pointillism.` for globals.
+# FIXME Use `basejump.` instead of `basejump.` for globals.
 
 
 
@@ -66,7 +65,7 @@ NULL
     geom = c("dot", "violin"),
     perSample = TRUE,
     color,
-    legend = getOption("pointillism.legend", TRUE),
+    legend,
     title = NULL
 ) {
     validObject(object)
@@ -80,6 +79,13 @@ NULL
     args[["geom"]] <- NULL
     do.call(what = what, args = args)
 }
+formals(.plotGene.SCE)[c(
+    "color",
+    "legend"
+)] <- list(
+    color = continuousColor,
+    legend = legend
+)
 
 
 
@@ -116,14 +122,8 @@ NULL
     colMax = 2.5,
     dotMin = 0L,
     dotScale = 6L,
-    color = getOption(
-        "basejump.continuous.color",
-        ggplot2::scale_color_gradient(
-            low = "orange",
-            high = "purple"
-        )
-    ),
-    legend = getOption("basejump.legend", TRUE),
+    color,
+    legend,
     title = NULL
 ) {
     validObject(object)
@@ -209,17 +209,23 @@ NULL
 
     p
 }
+formals(.plotDot.SCE)[c(
+    "color",
+    "legend"
+)] <- list(
+    color = continuousColor2,
+    legend = legend
+)
 
 
 
-# FIXME Set shared formals.
 .plotViolin.SCE <- function(
     object,
     genes,
     perSample = TRUE,
     scale = c("count", "width", "area"),
-    color = getOption("pointillism.discrete.color", NULL),
-    legend = getOption("pointillism.legend", TRUE),
+    color,
+    legend,
     title = NULL
 ) {
     validObject(object)
@@ -308,6 +314,13 @@ NULL
 
     p
 }
+formals(.plotViolin.SCE)[c(
+    "color",
+    "legend"
+)] <- list(
+    color = discreteColor,
+    legend = legend
+)
 
 
 

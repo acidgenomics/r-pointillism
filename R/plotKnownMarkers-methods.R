@@ -1,5 +1,4 @@
-# FIXME Fix the formals.
-# FIXME Rethink how this works.
+# Rethink how this works. Improve the formals.
 
 
 
@@ -27,8 +26,8 @@ NULL
     function(
         object,
         markers,
-        reducedDim = 1L,
-        headerLevel = 2L,
+        reducedDim,
+        headerLevel,
         ...
     ) {
         validObject(object)
@@ -81,6 +80,13 @@ NULL
 
         invisible(list)
     }
+formals(.plotKnownMarkers.SCE)[c(
+    "headerLevel",
+    "reducedDim"
+)] <- list(
+    headerLevel = headerLevel,
+    reducedDim = reducedDim
+)
 
 
 

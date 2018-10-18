@@ -30,6 +30,23 @@ Differential Expression per Cluster
 Cluster identity (\code{ident}) must be defined in \code{colData()} for this
 function to work.
 }
+\examples{
+\dontrun{
+data(sce_small)
+object <- as(seurat_small, "SingleCellExperiment")
+x <- suppressMessages(
+    diffExpPerCluster(
+        object = object,
+        group = "group",
+        numerator = "group2",
+        denominator = "group1",
+        caller = "edgeR"
+    )
+)
+class(x)
+lapply(x, class)
+}
+}
 \seealso{
 Other Differential Expression Functions: \code{\link{diffExp}},
   \code{\link{findMarkers}}, \code{\link{runZinbwave}}
