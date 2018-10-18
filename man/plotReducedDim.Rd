@@ -22,7 +22,7 @@ plotTSNE(object, ...)
 plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
-  dimsUse, interestingGroups = "ident",
+  dimsUse = c(1L, 2L), interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -32,7 +32,18 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse,
+\S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
+  2L), interestingGroups = "ident",
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
+
+\S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
   interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -43,7 +54,7 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse,
+\S4method{plotTSNE}{seurat}(object, dimsUse = c(1L, 2L),
   interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -54,17 +65,7 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotTSNE}{seurat}(object, dimsUse, interestingGroups = "ident",
-  color = getOption("pointillism.discrete.color", NULL),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
-
-\S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse,
+\S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
   interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -75,17 +76,7 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotUMAP}{seurat}(object, dimsUse, interestingGroups = "ident",
-  color = getOption("pointillism.discrete.color", NULL),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
-
-\S4method{plotPCA}{SingleCellExperiment}(object, dimsUse,
+\S4method{plotUMAP}{seurat}(object, dimsUse = c(1L, 2L),
   interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
@@ -96,7 +87,19 @@ plotUMAP(object, ...)
   dark = getOption("pointillism.dark", FALSE),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
-\S4method{plotPCA}{seurat}(object, dimsUse, interestingGroups = "ident",
+\S4method{plotPCA}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+  interestingGroups = "ident",
+  color = getOption("pointillism.discrete.color", NULL),
+  pointSize = getOption("pointillism.pointSize", 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
+  label = getOption("pointillism.label", TRUE),
+  labelSize = getOption("pointillism.labelSize", 6L),
+  dark = getOption("pointillism.dark", FALSE),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
+
+\S4method{plotPCA}{seurat}(object, dimsUse = c(1L, 2L),
+  interestingGroups = "ident",
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
