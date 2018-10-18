@@ -4,6 +4,7 @@
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
+# This is not working consistently for me on Linux.
 library(reticulate)
 stopifnot(py_module_available(module = "umap"))
 
