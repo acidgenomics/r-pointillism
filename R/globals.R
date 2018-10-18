@@ -13,6 +13,10 @@ darkMarkerColors <-
 lightMarkerColors <-
     ggplot2::scale_color_gradient(low = "gray90", high = "red")
 
+# Recommend serial by default.
+# This works reliably across platforms, but is slower.
+bpparam <- quote(BiocParallel::SerialParam())
+
 continuousColor <- quote(getOption(
     "pointillism.continuous.color",
     ggplot2::scale_color_gradient(
