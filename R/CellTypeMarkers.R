@@ -5,7 +5,7 @@
 #' Must contain `phase` and `geneID` columns.
 #'
 #' @family Marker Generators
-#' #' @export
+#' @export
 #'
 #' @inheritParams general
 #' @inheritParams googlesheets::gs_read
