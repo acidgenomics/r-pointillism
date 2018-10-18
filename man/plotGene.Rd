@@ -20,24 +20,27 @@ plotViolin(object, ...)
 plotGene(object, ...)
 
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
-  "violin"), perSample = TRUE, color,
+  "violin"), perSample = TRUE,
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotGene}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, color, legend = getOption("pointillism.legend",
-  TRUE), title = NULL)
+  perSample = TRUE, color = getOption("pointillism.continuous.color",
+  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("basejump.continuous.color",
+  color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("basejump.legend", TRUE), title = NULL)
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("basejump.continuous.color",
+  color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("basejump.legend", TRUE), title = NULL)
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),

@@ -11,10 +11,10 @@ plotKnownMarkers(object, markers, ...)
 
 
   \S4method{plotKnownMarkers}{SingleCellExperiment,KnownSeuratMarkers}(object,
-  markers, reducedDim = 1L, headerLevel = 2L, ...)
+  markers, reducedDim = "TSNE", headerLevel = 2L, ...)
 
 \S4method{plotKnownMarkers}{seurat,KnownSeuratMarkers}(object, markers,
-  reducedDim = 1L, headerLevel = 2L, ...)
+  reducedDim = "TSNE", headerLevel = 2L, ...)
 }
 \arguments{
 \item{object}{Object.}

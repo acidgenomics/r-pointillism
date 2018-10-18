@@ -1,18 +1,4 @@
 # FIXME Need to define metadata in minimal example that we can use here.
-# @examples
-# data(seurat_small)
-# object <- as(seurat_small, "SingleCellExperiment")
-# x <- suppressMessages(
-#     diffExpPerCluster(
-#         object = object,
-#         group = "group",
-#         numerator = "group2",
-#         denominator = "group1",
-#         caller = "edgeR"
-#     )
-# )
-# class(x)
-# lapply(x, class)
 
 
 
@@ -30,6 +16,23 @@
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
+#'
+#' @examples
+#' \dontrun{
+#' data(sce_small)
+#' object <- as(seurat_small, "SingleCellExperiment")
+#' x <- suppressMessages(
+#'     diffExpPerCluster(
+#'         object = object,
+#'         group = "group",
+#'         numerator = "group2",
+#'         denominator = "group1",
+#'         caller = "edgeR"
+#'     )
+#' )
+#' class(x)
+#' lapply(x, class)
+#' }
 NULL
 
 

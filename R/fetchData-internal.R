@@ -1,3 +1,10 @@
+#' Fetch Data
+#' @include globals.R
+#' @noRd
+NULL
+
+
+
 .fetchGeneData <- function(
     object,
     genes,
@@ -85,8 +92,8 @@
 
 .fetchReducedDimData <- function(
     object,
-    reducedDim = 1L,
-    dimsUse = c(1L, 2L)
+    reducedDim,
+    dimsUse
 ) {
     validObject(object)
     object <- as(object, "SingleCellExperiment")
@@ -135,13 +142,20 @@
 
     as(tbl, "DataFrame")
 }
+formals(.fetchReducedDimData)[c(
+    "dimsUse",
+    "reducedDim"
+)] <- list(
+    dimsUse = dimsUse,
+    reducedDim = reducedDim
+)
 
 
 
 .fetchReducedDimExpressionData <- function(
     object,
     genes,
-    reducedDim = 1L
+    reducedDim
 ) {
     validObject(object)
     assert_is_character(genes)
@@ -182,3 +196,4 @@
     assert_is_all_of(data, "DataFrame")
     data
 }
+formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim

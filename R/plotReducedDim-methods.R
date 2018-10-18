@@ -42,17 +42,17 @@ NULL
 # Constructors =================================================================
 .plotReducedDim.SCE <- function(
     object,
-    reducedDim = 1L,
-    dimsUse = c(1L, 2L),
+    reducedDim,
+    dimsUse,
     interestingGroups = "ident",
-    color = getOption("pointillism.discrete.color", NULL),
-    pointSize = getOption("pointillism.pointSize", 0.75),
-    pointAlpha = getOption("pointillism.pointAlpha", 0.75),
-    pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-    label = getOption("pointillism.label", TRUE),
-    labelSize = getOption("pointillism.labelSize", 6L),
-    dark = getOption("pointillism.dark", FALSE),
-    legend = getOption("pointillism.legend", TRUE),
+    color,
+    pointSize,
+    pointAlpha,
+    pointsAsNumbers,
+    label,
+    labelSize,
+    dark,
+    legend,
     title = NULL
 ) {
     .assertHasIdent(object)
@@ -161,7 +161,25 @@ NULL
 
     p
 }
-
+formals(.plotReducedDim.SCE)[c(
+    "color",
+    "dark",
+    "label",
+    "labelSize",
+    "legend",
+    "pointAlpha",
+    "pointSize",
+    "pointsAsNumbers"
+)] <- list(
+    color = discreteColor,
+    dark,
+    label,
+    labelSize,
+    legend,
+    pointAlpha,
+    pointSize,
+    pointsAsNumbers
+)
 
 
 

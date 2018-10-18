@@ -11,12 +11,12 @@
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  min = 1L, max = Inf, reducedDim = 1L, expression = c("mean",
-  "median", "sum"), headerLevel = 2L)
+  min = 1L, max = Inf, reducedDim = "TSNE", expression = c("mean",
+  "sum"), headerLevel = 2L)
 
 \S4method{plotCellTypesPerCluster}{seurat}(object, markers, min = 1L,
-  max = Inf, reducedDim = 1L, expression = c("mean", "median",
-  "sum"), headerLevel = 2L)
+  max = Inf, reducedDim = "TSNE", expression = c("mean", "sum"),
+  headerLevel = 2L)
 }
 \arguments{
 \item{object}{Object.}

@@ -1,10 +1,13 @@
-# FIXME Fix the formals.
-# Error in (function (classes, fdef, mtable)  :
-# unable to find an inherited method for function 'mapGenesToSymbols' for signature '"seurat"'
 # FIXME Need to update to use SeuratMarkers class.
 # FIXME Add progress option, switching pbapply.
-# FIXME Set reducedDim to "TSNE" by default.
-# FIXME Ensure "PC1" in axis label instead of "pc1"
+# FIXME Ensure "PC1" in axis label instead of "pc1".
+
+
+
+# FIXME
+# Error in grid.Call.graphics(C_setviewport, vp, TRUE) :
+#     non-finite location and/or size for viewport
+# Calls: plotCellTypesPerCluster ... push.vp.vpList -> push.vp -> push.vp.viewport -> grid.Call.graphics
 
 
 
@@ -16,6 +19,7 @@
 #'
 #' @name plotCellTypesPerCluster
 #' @family Plot Functions
+#' @include globals.R
 #'
 #' @inheritParams general
 #' @param markers `KnownSeuratMarkers`.
@@ -33,15 +37,14 @@ NULL
 
 
 
-# FIXME Set these formals automatically.
 .plotCellTypesPerCluster.SCE <-  # nolint
     function(
         object,
         markers,
         min = 1L,
         max = Inf,
-        reducedDim = 1L,
-        expression = c("mean", "median", "sum"),
+        reducedDim,
+        expression,
         headerLevel = 2L
     ) {
         # Passthrough: color, dark.
@@ -107,6 +110,8 @@ NULL
 
         invisible(return)
     }
+formals(.plotCellTypesPerCluster.SCE)[["reducedDim"]] <- reducedDim
+formals(.plotCellTypesPerCluster.SCE)[["expression"]] <- expression
 
 
 
