@@ -37,11 +37,7 @@ based on the gene names, since these change often and can mismatch
 easily.
 }
 \seealso{
-Other Marker Functions: \code{\link{CellTypeMarkers}},
-  \code{\link{SeuratMarkers}}, \code{\link{clusterID}},
-  \code{\link{topMarkers}}
-}
-\author{
-Michael Steinbaugh
+Other Marker Functions: \code{\link{SeuratMarkers}},
+  \code{\link{clusterID}}, \code{\link{topMarkers}}
 }
 \concept{Marker Functions}

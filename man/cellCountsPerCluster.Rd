@@ -38,7 +38,4 @@ print(x)
 Other Cluster Statistics Functions: \code{\link{cellTypesPerCluster}},
   \code{\link{clusterCellCountsPerSample}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Cluster Statistics Functions}

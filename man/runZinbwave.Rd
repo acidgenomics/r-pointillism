@@ -72,7 +72,4 @@ assayNames(zinb)
 Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
   \code{\link{diffExp}}, \code{\link{findMarkers}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Differential Expression Functions}

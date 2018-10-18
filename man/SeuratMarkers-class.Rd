@@ -14,7 +14,4 @@ Other S4 Classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
   \code{\link{KnownSeuratMarkers-class}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{S4 Classes}

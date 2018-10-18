@@ -34,7 +34,4 @@ function to work.
 Other Differential Expression Functions: \code{\link{diffExp}},
   \code{\link{findMarkers}}, \code{\link{runZinbwave}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Differential Expression Functions}

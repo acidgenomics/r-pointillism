@@ -19,8 +19,5 @@ seurat_small
 Other Minimal Example Data: \code{\link{all_markers_small}},
   \code{\link{known_markers_small}}
 }
-\author{
-Michael Steinbaugh
-}
 \concept{Minimal Example Data}
 \keyword{datasets}
