@@ -1,10 +1,12 @@
-context("Cluster Statistics Functions")
+context("Cluster Statistics")
 
 # basejump SCE example doesn't contain clustering data.
 # data(sce_small, package = "basejump", envir = environment())
 
 data(seurat_small, known_markers_small, envir = environment())
 sce_small <- as(seurat_small, "SingleCellExperiment")
+
+group_vars <- dplyr::group_vars
 
 
 
@@ -13,7 +15,7 @@ with_parameters_test_that(
     "cellCountsPerCluster", {
         x <- cellCountsPerCluster(object)
         expect_is(x, "grouped_df")
-        expect_identical(dplyr::group_vars(x), "ident")
+        expect_identical(group_vars(x), "ident")
     },
     object = list(
         SingleCellExperiment = sce_small,
@@ -28,7 +30,7 @@ with_parameters_test_that(
     "cellTypesPerCluster", {
         x <- cellTypesPerCluster(object)
         expect_is(x, "grouped_df")
-        expect_identical(dplyr::group_vars(x), "cluster")
+        expect_identical(group_vars(x), "cluster")
         expect_identical(
             lapply(x, class),
             list(
@@ -53,7 +55,7 @@ with_parameters_test_that(
     "clusterCellCountsPerSample", {
         x <- clusterCellCountsPerSample(object)
         expect_is(x, "grouped_df")
-        expect_identical(dplyr::group_vars(x), "sampleName")
+        expect_identical(group_vars(x), "sampleName")
         expect_identical(
             lapply(x, class),
             list(
