@@ -38,39 +38,26 @@ NULL
         return(data)
     }
 
-    # Metadata is required for the plotting functions.
-    interestingGroups <- interestingGroups(object)
-    if (is.null(interestingGroups)) {
-        interestingGroups <- "sampleName"
-    }
-    assert_is_non_empty(interestingGroups)
-
-    # Otherwise, coerce the counts matrix to a DataFrame.
+    # Coerce the counts matrix to a DataFrame.
     data <- as(as.matrix(data), "DataFrame")
 
     # Always include "ident" and "sampleName" using `metrics()` here.
     # This ensures `sampleName` and `interestingGroups` are always defined.
-    metrics <- metrics(object)
-    intgroup <- unique(c("ident", "sampleName", interestingGroups))
-    assert_is_subset(
-        x = c("cellID", intgroup),
-        y = colnames(metrics)
-    )
-    colData <- metrics %>%
-        as.data.frame() %>%
-        column_to_rownames("cellID") %>%
-        .[, intgroup, drop = FALSE] %>%
-        as("DataFrame")
+    colData <- metrics(object, return = "DataFrame")
     assert_are_identical(rownames(data), rownames(colData))
+    assert_is_subset(
+        x = c("ident", "interestingGroups", "sampleName"),
+        y = colnames(colData)
+    )
 
     # Bind the counts and interesting groups columns.
+    assert_are_disjoint_sets(colnames(data), colnames(colData))
     data <- cbind(data, colData)
 
-    # Gather into long format tibble.
+    # Gather into long format.
     # Here we're putting the genes into a "rowname" column.
     data <- data %>%
         as_tibble(rownames = "rowname") %>%
-        uniteInterestingGroups(interestingGroups) %>%
         gather(
             key = "rowname",
             value = !!sym(assay),
@@ -109,7 +96,8 @@ NULL
     reducedDimData <- as(reducedDimData, "DataFrame")
 
     # Cellular barcode metrics.
-    colData <- colData(object)
+    colData <- metrics(object, return = "DataFrame")
+    assert_is_subset("ident", colnames(colData))
 
     # Assert checks to make sure the cbind operation works.
     assert_are_identical(
@@ -128,20 +116,20 @@ NULL
     data <- cbind(reducedDimData, colData)
     assert_is_all_of(data, "DataFrame")
 
-    # Coerce to long format tibble.
-    tbl <- data %>%
+    # Coerce to long format DataFrame.
+    data <- data %>%
         as_tibble() %>%
-        camel() %>%
-        # Group by ident here for center calculations.
         group_by(!!sym("ident")) %>%
         mutate(
             x = !!sym(dimCols[[1L]]),
             y = !!sym(dimCols[[2L]]),
             centerX = median(!!sym(dimCols[[1L]])),
             centerY = median(!!sym(dimCols[[2L]]))
-        )
-
-    as(tbl, "DataFrame")
+        ) %>%
+        as("DataFrame")
+    assertHasRownames(data)
+    assert_are_identical(rownames(data), colnames(object))
+    data
 }
 formals(.fetchReducedDimData)[c(
     "dimsUse",
