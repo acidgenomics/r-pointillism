@@ -103,12 +103,13 @@ NULL
     assert_is_of_length(dimsUse, 2L)
 
     # Reduced dimension coordinates.
+    assert_is_subset(reducedDim, reducedDimNames(object))
     reducedDimData <- reducedDims(object)[[reducedDim]]
-    assert_is_non_empty(reducedDimData)
-    reducedDimData <- camel(as(reducedDimData, "DataFrame"))
+    # Coerce to DataFrame, for `cbind()` call below.
+    reducedDimData <- as(reducedDimData, "DataFrame")
 
     # Cellular barcode metrics.
-    colData <- camel(colData(object))
+    colData <- colData(object)
 
     # Assert checks to make sure the cbind operation works.
     assert_are_identical(
