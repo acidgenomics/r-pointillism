@@ -246,7 +246,6 @@ setMethod(
 #'
 #' @name plotFeature
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param features `character`. Features to plot (e.g. gene expression, PC

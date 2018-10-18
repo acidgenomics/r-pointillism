@@ -17,7 +17,6 @@
 #'
 #' @name findMarkers
 #' @family Differential Expression Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param ... Passthrough arguments to [diffExp()].

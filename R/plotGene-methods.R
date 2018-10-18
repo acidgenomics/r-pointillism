@@ -16,7 +16,6 @@ plotGene <- basejump::plotGene
 #'
 #' @name plotGene
 #' @family Plot Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @inheritParams ggplot2::geom_violin

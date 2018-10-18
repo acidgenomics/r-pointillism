@@ -50,7 +50,6 @@
 #'
 #' @name diffExp
 #' @family Differential Expression Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param numerator `character`. Cells to use in the numerator of the contrast

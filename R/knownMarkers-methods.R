@@ -21,7 +21,6 @@
 #'
 #' @name knownMarkers
 #' @family Marker Functions
-#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #' @param all `SeuratMarkers`.
