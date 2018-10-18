@@ -1,6 +1,6 @@
 globalVariables(".")
 
-# FIXME Make a header function in show.R
+# TODO Make a header function in show.R
 url <- "https://steinbaugh.com/pointillism"
 citation <- "citation(\"pointillism\")"
 
@@ -42,3 +42,12 @@ pointAlpha <- quote(getOption("pointillism.pointAlpha", 0.8))
 pointSize <- quote(getOption("pointillism.pointSize", 0.75))
 pointsAsNumbers <- quote(getOption("pointillism.pointsAsNumbers", FALSE))
 reducedDim <- "TSNE"
+
+# Set default ggplot2 theme.
+if (isTRUE(getOption("pointillism.dark"))) {
+    theme <- basejump::theme_midnight
+} else {
+    theme <- basejump::theme_paperwhite
+}
+theme <- theme(base_size = 14L, legend_position = "right")
+ggplot2::theme_set(new = theme)
