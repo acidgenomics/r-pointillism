@@ -1,4 +1,4 @@
-# FIXME Rework this.
+# FIXME Re/think/rework this approach.
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
