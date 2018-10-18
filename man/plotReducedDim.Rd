@@ -22,7 +22,7 @@ plotTSNE(object, ...)
 plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
-  dimsUse = c(1L, 2L), interestingGroups = "ident",
+  dimsUse = c(1L, 2L), interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -33,7 +33,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
-  2L), interestingGroups = "ident",
+  2L), interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -44,7 +44,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -55,7 +55,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotTSNE}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -66,7 +66,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -77,7 +77,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotUMAP}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -88,7 +88,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotPCA}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -99,7 +99,7 @@ plotUMAP(object, ...)
   legend = getOption("pointillism.legend", TRUE), title = NULL)
 
 \S4method{plotPCA}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = "ident",
+  interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.8),
@@ -160,6 +160,10 @@ dots (\code{FALSE}).}
 \item PCA: \strong{P}rincipal \strong{C}omponent \strong{A}nalysis.
 \item UMAP: \strong{U}niform \strong{M}anifold \strong{A}pproximation and \strong{P}rojection.
 }
+}
+\details{
+Colors using \code{ident} column defined in \code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}} by
+default.
 }
 \note{
 \code{\link[=plotUMAP]{plotUMAP()}} requires the Python dependency \code{umap-learn}. We recommend

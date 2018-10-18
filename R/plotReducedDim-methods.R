@@ -4,6 +4,9 @@
 #' - PCA: **P**rincipal **C**omponent **A**nalysis.
 #' - UMAP: **U**niform **M**anifold **A**pproximation and **P**rojection.
 #'
+#' Colors using `ident` column defined in [SummarizedExperiment::colData()] by
+#' default.
+#'
 #' @name plotReducedDim
 #' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
