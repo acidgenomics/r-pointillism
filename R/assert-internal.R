@@ -1,4 +1,115 @@
-# FIXME Re/think/rework this approach.
+# TODO Rethink these assert checks, and deprecate if possible.
+
+
+
+# assertHasDesignFormula =======================================================
+.assertHasDesignFormula <- function(object) {
+    stopifnot(is(object, "SingleCellExperiment"))
+    assert_is_factor(object[["group"]])
+    assert_is_matrix(metadata(object)[["design"]])
+}
+
+
+
+# assertHasIdent ===============================================================
+.assertHasIdent <- function(object) {
+    assert_is_subset("ident", colnames(colData(object)))
+}
+
+
+
+# assertHasZinbwave ============================================================
+.assertHasZinbwave <- function(object) {
+    stopifnot(.hasZinbwave(object))
+}
+
+
+
+.hasZinbwave <- function(object) {
+    UseMethod(".hasZinbwave")
+}
+
+
+
+.hasZinbwave.SingleCellExperiment <- function(object) {
+    stopifnot(is(object, "SingleCellExperiment"))
+    if (!all(c("counts", "weights") %in% assayNames(object))) {
+        return(FALSE)
+    }
+    TRUE
+}
+
+
+
+.hasZinbwave.seurat <- function(object) {
+    stopifnot(is(object, "seurat"))
+    weights <- object@misc$assays$weights
+    if (!is.matrix(weights)) {
+        return(FALSE)
+    }
+    TRUE
+}
+
+
+
+# assertIsBPPARAM ==============================================================
+# FIXME Consider moving this to basejump.
+# Require valid BiocParallel bpparam.
+.assertIsBPPARAM <- function(object) {
+    stopifnot(identical(
+        attributes(class(object))[["package"]],
+        "BiocParallel"
+    ))
+    stopifnot(grepl("Param$", class(object)))
+}
+
+
+
+# assertIsKnownMarkers =========================================================
+# FIXME Deprecate this and use SeuratMarkers validity method instead.
+.assertIsKnownMarkers <- function(object) {
+    # Require a tibble.
+    assert_is_tbl_df(object)
+    # Require grouping by `cellType` column.
+    # Can use `attr()` instead of `group_vars()` here.
+    assert_are_identical(group_vars(object), "cellType")
+    # Require that there are genes.
+    assert_has_rows(object)
+}
+
+
+
+.assertIsKnownMarkersDetected <- function(object) {
+    .assertIsKnownMarkers(object)
+    requiredCols <- c(
+        "cellType",  # bcbio
+        "cluster",   # Seurat
+        "geneID",    # bcbio
+        "geneName",  # bcbio
+        "avgLogFC",  # Seurat v2.1
+        "padj"       # Seurat v2.1
+    )
+    assert_is_subset(requiredCols, colnames(object))
+}
+
+
+
+# assertIsSanitizedMarkers =====================================================
+.assertIsSanitizedMarkers <- function(object) {
+    stopifnot(.isSanitizedMarkers(object))
+}
+
+
+
+# hasMultipleSamples ===========================================================
+.hasMultipleSamples <- function(object) {
+    length(sampleNames(object)) > 1L
+}
+
+
+
+# isSanitizedMarkers ===========================================================
+# TODO Re/think/rework this approach.
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
@@ -34,85 +145,4 @@
             return(TRUE)
         }
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-# FIXME Deprecate all of these if we can.
-
-
-
-.assertHasDesignFormula <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    assert_is_factor(object[["group"]])
-    assert_is_matrix(metadata(object)[["design"]])
-}
-
-
-
-.assertHasIdent <- function(object) {
-    assert_is_subset("ident", colnames(colData(object)))
-}
-
-
-
-.assertHasZinbwave <- function(object) {
-    stopifnot(.hasZinbwave(object))
-}
-
-.hasZinbwave <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
-    # Require `counts` to always be slotted.
-    stopifnot("counts" %in% assayNames(object))
-    all(c("normalizedValues", "weights") %in% assayNames(object))
-}
-
-
-
-# FIXME Deprecate this.
-.assertIsKnownMarkers <- function(object) {
-    # Require a tibble.
-    assert_is_tbl_df(object)
-    # Require grouping by `cellType` column.
-    # Can use `attr()` instead of `group_vars()` here.
-    assert_are_identical(group_vars(object), "cellType")
-    # Require that there are genes.
-    assert_has_rows(object)
-}
-
-
-
-.assertIsKnownMarkersDetected <- function(object) {
-    .assertIsKnownMarkers(object)
-    requiredCols <- c(
-        "cellType",  # bcbio
-        "cluster",   # Seurat
-        "geneID",    # bcbio
-        "geneName",  # bcbio
-        "avgLogFC",  # Seurat v2.1
-        "padj"       # Seurat v2.1
-    )
-    assert_is_subset(requiredCols, colnames(object))
-}
-
-
-
-.assertIsSanitizedMarkers <- function(object) {
-    stopifnot(.isSanitizedMarkers(object))
-}
-
-
-
-.hasMultipleSamples <- function(object) {
-    length(sampleNames(object)) > 1L
 }
