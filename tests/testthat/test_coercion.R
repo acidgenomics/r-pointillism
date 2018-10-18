@@ -1,5 +1,8 @@
 context("Coercion Methods")
 
+# FIXME Need to test seurat to SCE.
+# FIXME Need to test SeuratMarkers to tbl_df.
+
 data(sce_small, package = "basejump", envir = environment())
 
 
