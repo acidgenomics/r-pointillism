@@ -3,35 +3,35 @@ authors:
     href: /
 
 reference:
-  - title: Package Information
+  - title: S4 classes
     contents:
-    - ends_with("-package")
-  - title: Coercion Methods
+    - starts_with("CellCycleMarkers")
+    - starts_with("CellTypeMarkers")
+    - starts_with("KnownSeuratMarkers")
+    - starts_with("SeuratMarkers")
+  - title: Coercion
     contents:
-    - coerce
-  - title: Differential Expression Functions
+    - as
+  - title: Differential expression
     contents:
     - diffExp
     - findMarkers
     - runZinbwave
-  - title: Cluster Statistics Functions
+  - title: Cluster statistics
     contents:
     - cellCountsPerCluster
     - cellTypesPerCluster
     - clusterCellCountsPerSample
-  - title: Marker Functions
+  - title: Marker analysis
     contents:
     - clusterID
     - knownMarkersDetected
     - readCellTypeMarkers
     - sanitizeSeuratMarkers
     - topMarkers
-  - title: Plot Functions
+  - title: Plots
     contents:
     - starts_with("plot")
-  - title: Markers Data
-    contents:
-    - ends_with("_markers")
-  - title: Example Data
+  - title: Example data
     contents:
     - ends_with("_small")

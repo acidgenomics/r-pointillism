@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -117,23 +117,27 @@
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>, <span class='st'>"PCA"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>,
-  <span class='st'>"median"</span>, <span class='st'>"sum"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>,
-  <span class='kw'>NULL</span>), <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
+  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>, <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
+  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
   <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.8</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>,
-  <span class='fl'>TRUE</span>), <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
+  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointsAsNumbers"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>, <span class='fl'>TRUE</span>),
+  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
   <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.dark"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>,
-  <span class='st'>"UMAP"</span>, <span class='st'>"PCA"</span>), <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"sum"</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
+<span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>,
+  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
   <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
   <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.8</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>,
-  <span class='fl'>TRUE</span>), <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
+  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointsAsNumbers"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>, <span class='fl'>TRUE</span>),
+  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
   <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.dark"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -160,8 +164,8 @@ object.</p></td>
     </tr>
     <tr>
       <th>expression</th>
-      <td><p><code>string</code>. Calculation to apply. Uses <code>match.arg()</code> and
-defaults to the first argument in the <code>character</code> vector.</p></td>
+      <td><p><code>string</code>. Calculation to apply. Uses <code><a href='http://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code>
+and defaults to the first argument in the <code>character</code> vector.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -197,7 +201,7 @@ dots (<code>FALSE</code>).</p></td>
     <tr>
       <th>dark</th>
       <td><p><code>boolean</code>. Plot against a dark background using
-<code><a href='http://www.rdocumentation.org/packages/basejump/topics/themes'>basejump::theme_midnight()</a></code>.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/basejump/topics/ggplot2-themes'>basejump::theme_midnight()</a></code>.</p></td>
     </tr>
     <tr>
       <th>legend</th>
@@ -213,25 +217,18 @@ dots (<code>FALSE</code>).</p></td>
 
     <p>Show graphical output. Invisibly return <code>ggplot</code> <code>list</code>.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Plot Functions: <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
-  <code><a href='plotDot.html'>plotDot</a></code>, <code><a href='plotFeature.html'>plotFeature</a></code>,
-  <code><a href='plotGene.html'>plotGene</a></code>,
-  <code><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></code>,
-  <code><a href='plotPCElbow.html'>plotPCElbow</a></code>, <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
-  <code><a href='plotTopMarkers.html'>plotTopMarkers</a></code>, <code><a href='plotViolin.html'>plotViolin</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>title</span> <span class='kw'>&lt;-</span> <span class='st'>"most abundant genes"</span>
-<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>sce_small</span>) <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>seurat_small</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
+<span class='no'>title</span> <span class='kw'>&lt;-</span> <span class='st'>"most abundant genes"</span>
+<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>object</span>) <span class='kw'>%&gt;%</span>
     <span class='kw pkg'>Matrix</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/Matrix/topics/colSums'>rowSums</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'>sort</span>(<span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'>head</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'>names</span>()
-<span class='fu'>glimpse</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:4] "ENSG00000130711" "ENSG00000100522" "ENSG00000100036" ...</div><div class='input'><span class='fu'>plotMarker</span>(<span class='no'>sce_small</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span><span class='kw'>[[</span><span class='fl'>1L</span>]])</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotMarker</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>sce_small</span>,
+<span class='fu'>str</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:4] "LYZ" "HLA-DRA" "CST3" "HLA-DPB1"</div><div class='input'><span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span><span class='kw'>[[</span><span class='fl'>1L</span>]])</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotMarker</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
     <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>,
     <span class='kw'>expression</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
     <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -246,8 +243,6 @@ dots (<code>FALSE</code>).</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

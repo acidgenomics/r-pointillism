@@ -64,12 +64,8 @@ work to run with multiple cores.
 \examples{
 data(seurat_small)
 Y <- seurat_small
-zinb <- suppressMessages(runZinbwave(
-    Y = Y,
-    recalculate = TRUE
-))
-print(zinb)
-class(weights(zinb))
+Y <- runZinbwave(Y = Y)
+class(weights(Y))
 }
 \seealso{
 \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.
