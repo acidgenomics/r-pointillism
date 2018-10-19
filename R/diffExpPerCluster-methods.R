@@ -18,9 +18,10 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' \dontrun{
-#' data(sce_small)
-#' object <- as(seurat_small, "SingleCellExperiment")
+#' data(seurat_small)
+#' object <- seurat_small
+#' group <- factor(c("group1", "group2"))
+#' colData(object)$group <- group
 #' x <- suppressMessages(
 #'     diffExpPerCluster(
 #'         object = object,
@@ -32,7 +33,6 @@
 #' )
 #' class(x)
 #' lapply(x, class)
-#' }
 NULL
 
 
@@ -45,8 +45,7 @@ NULL
         denominator,
         ...
     ) {
-        # Object must contain pre-calculated ZINB weights.
-        .assertHasZinbwave(object)
+        object <- as(object, "SingleCellExperiment")
 
         # group
         assert_is_a_string(group)
@@ -109,13 +108,13 @@ setMethod(
 
 
 
-# #' @rdname diffExpPerCluster
-# #' @export
-# setMethod(
-#     f = "diffExpPerCluster",
-#     signature = signature("seurat"),
-#     definition = getMethod(
-#         f = "diffExp",
-#         signature = signature("SingleCellExperiment")
-#     )
-# )
+#' @rdname diffExpPerCluster
+#' @export
+setMethod(
+    f = "diffExpPerCluster",
+    signature = signature("seurat"),
+    definition = getMethod(
+        f = "diffExpPerCluster",
+        signature = signature("SingleCellExperiment")
+    )
+)

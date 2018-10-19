@@ -4,11 +4,14 @@
 \name{findMarkers}
 \alias{findMarkers}
 \alias{findMarkers,SingleCellExperiment-method}
+\alias{findMarkers,seurat-method}
 \title{Find Cluster-Specific Marker Genes}
 \usage{
 findMarkers(object, ...)
 
 \S4method{findMarkers}{SingleCellExperiment}(object, ...)
+
+\S4method{findMarkers}{seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -31,9 +34,7 @@ function to work.
 }
 \examples{
 data(seurat_small)
-sce <- as(seurat_small, "SingleCellExperiment")
-sce <- runZinbwave(sce)
-x <- findMarkers(sce, caller = "edgeR")
+x <- findMarkers(seurat_small, caller = "edgeR")
 class(x)
 lapply(x, class)
 }

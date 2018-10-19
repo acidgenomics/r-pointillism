@@ -19,9 +19,7 @@
 #'
 #' @examples
 #' data(seurat_small)
-#' sce <- as(seurat_small, "SingleCellExperiment")
-#' sce <- runZinbwave(sce)
-#' x <- findMarkers(sce, caller = "edgeR")
+#' x <- findMarkers(seurat_small, caller = "edgeR")
 #' class(x)
 #' lapply(x, class)
 NULL
@@ -30,7 +28,7 @@ NULL
 
 .findMarkers.SCE <-  # nolint
     function(object, ...) {
-        weights <- .weights(object)
+        object <- as(object, "SingleCellExperiment")
 
         # Get the cluster identities.
         ident <- clusterID(object)
@@ -78,10 +76,10 @@ setMethod(
 
 
 
-# #' @rdname findMarkers
-# #' @export
-# setMethod(
-#     f = "findMarkers",
-#     signature = signature("seurat"),
-#     definition = getMethod("findMarkers", "SingleCellExperiment")
-# )
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("seurat"),
+    definition = getMethod("findMarkers", "SingleCellExperiment")
+)

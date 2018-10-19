@@ -69,6 +69,8 @@
 #' @param caller `string`. Package to use for differential expression calling.
 #'   Defaults to `"edgeR"` (faster for large datasets) but `"DESeq2"` is also
 #'   supported.
+#' @param minCells `scalar integer`. Minimum number of cells required to perform
+#'   the differential expression analysis.
 #' @param minCellsPerGene `scalar integer`. The minimum number of cells where a
 #'   gene is expressed, to pass low expression filtering.
 #' @param minCountsPerCell `scalar integer`. Minimum number of counts per cell
@@ -140,20 +142,21 @@ NULL
         numerator,
         denominator,
         caller = c("edgeR", "DESeq2"),
-        minCellsPerGene = 25L,
-        minCountsPerCell = 5L,
+        minCells = 2L,  # 10L
+        minCellsPerGene = 1L,  # 25L
+        minCountsPerCell = 1L,  # 5L
         bpparam  # nolint
     ) {
-        # Apply hard minimal cell limit.
-        minCells <- 10L
-
         # Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
 
         assert_is_character(numerator)
         assert_is_character(denominator)
         # Early return `NULL` on an imbalanced contrast.
-        if (length(numerator) < minCells || length(denominator) < minCells) {
+        if (
+            length(numerator) < minCells ||
+            length(denominator) < minCells
+        ) {
             .underpoweredContrast()
             return(NULL)
         }
@@ -205,7 +208,7 @@ NULL
 
         # Early return NULL if no genes pass.
         if (!length(genes)) {
-            warning("No genes passed the low count filter", call. = FALSE)
+            warning("No genes passed the low count filter.", call. = FALSE)
             return(NULL)
         }
 
@@ -223,7 +226,10 @@ NULL
         # Early return `NULL` if there are less than n cells in either.
         numerator <- intersect(numerator, colnames(object))
         denominator <- intersect(denominator, colnames(object))
-        if (length(numerator) < minCells || length(denominator) < minCells) {
+        if (
+            length(numerator) < minCells ||
+            length(denominator) < minCells
+        ) {
             .underpoweredContrast()
             return(NULL)
         }
