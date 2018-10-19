@@ -17,8 +17,6 @@ plotDot(object, ...)
 
 plotViolin(object, ...)
 
-plotGene(object, ...)
-
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
   "violin"), perSample = TRUE,
   color = getOption("pointillism.continuous.color",
