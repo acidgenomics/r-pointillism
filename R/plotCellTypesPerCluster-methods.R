@@ -15,6 +15,14 @@
 # Calls: plotCellTypesPerCluster ... push.vp.vpList -> push.vp -> push.vp.viewport -> grid.Call.graphics
 
 
+### cell_type_1
+
+# Error in dn[[2L]] : subscript out of bounds
+# Calls: <Anonymous> ... replay_stop.list -> lapply -> FUN -> replay_stop.error
+# Loading pointillism
+# Execution halted
+
+
 
 #' Plot Cell Types per Cluster
 #'
@@ -59,12 +67,18 @@ NULL
         expression <- match.arg(expression)
         assertIsHeaderLevel(headerLevel)
 
-        markers <- cellTypesPerCluster(object = markers, min = min, max = max)
+        markers <- cellTypesPerCluster(
+            object = markers,
+            min = min,
+            max = max
+        )
         assert_is_all_of(markers, "grouped_df")
         assert_has_rows(markers)
 
-        # Output Markdown headers per cluster
-        clusters <- levels(markers[["cluster"]])
+        # Output Markdown headers per cluster.
+        clusters <- markers[["cluster"]] %>%
+            as.character() %>%
+            unique()
         assert_is_non_empty(clusters)
 
         return <- pblapply(clusters, function(cluster) {
@@ -101,6 +115,7 @@ NULL
                     )
                     # Modify the title by adding the cluster number.
                     title <- paste(paste0("Cluster ", cluster, ":"), title)
+                    # FIXME This step is breaking.
                     p <- plotMarker(
                         object = object,
                         genes = genes,

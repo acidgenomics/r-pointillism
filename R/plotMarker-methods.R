@@ -3,6 +3,10 @@
 # Need to remap an additional remapping function here I think.
 
 
+# FIXME This is breaking:
+# plotMarker(object, genes = "LTB")
+
+
 
 #' Plot Cell-Type-Specific Gene Markers
 #'
@@ -62,8 +66,9 @@ NULL
     }
 
     # Assert checks --------------------------------------------------------
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert_is_character(genes)
+    # FIXME This step is breaking.
     geneNames <- mapGenesToSymbols(object, genes)
     assert_is_scalar(reducedDim)
     expression <- match.arg(expression)

@@ -65,8 +65,7 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@bioconductor,
-    steinbaugh/bcbioSingleCell@bioconductor
+    steinbaugh/basejump@bioconductor
 biocViews:
     DataRepresentation,
     GeneExpression,

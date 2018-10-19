@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' data(seurat_small)
-#' plotFeature(seurat_small, features = c("nUMI", "nGene", "mitoRatio"))
+#' plotFeature(seurat_small, features = c("nUMI", "nGene"))
 NULL
 
 

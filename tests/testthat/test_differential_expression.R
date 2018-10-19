@@ -2,18 +2,13 @@ context("Differential Expression Functions")
 
 data(seurat_small, envir = environment())
 
-# Prepare minimal sce_small with weights.
 # Compare expression in cluster 3 relative to 2.
-object <- as(seurat_small, "SingleCellExperiment")
-numerator <- colnames(object)[object[["ident"]] == "3"]
-denominator <- colnames(object)[object[["ident"]] == "2"]
+ident <- clusterID(seurat_small)
+numerator <- names(ident)[ident == "3"]
+denominator <- names(ident)[ident == "2"]
+
 stopifnot(length(intersect(numerator, colnames(object))) > 0L)
 stopifnot(length(intersect(denominator, colnames(object))) > 0L)
-# Subset for speed.
-object <- object[seq_len(100L), c(numerator, denominator)]
-object <- runZinbwave(object)
-sce_small <- object
-rm(object)
 
 # Coerce back to seurat to match.
 seurat_small <- as(sce_small, "seurat")
