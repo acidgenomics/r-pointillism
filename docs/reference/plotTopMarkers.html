@@ -66,7 +66,7 @@ for the number of genes to plot here in a future update." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -122,14 +122,14 @@ for the number of genes to plot here in a future update.</p>
     <pre class="usage"><span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
+<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>, <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"TSNE"</span>, <span class='st'>"UMAP"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,12 +152,9 @@ for the number of genes to plot here in a future update.</p>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p><code>string</code>. Whether to include "<code>positive</code>", "<code>negative</code>", or
-"<code>both</code>" directions of association per cluster.</p></td>
-    </tr>
-    <tr>
-      <th>coding</th>
-      <td><p><code>boolean</code>. Include only protein coding genes.</p></td>
+      <td><p><code>string</code>. Whether to include upregulated (<code>"up"</code>; positive
+LFC), downregulated (<code>"down"</code>; negative LFC) or <code>"both"</code> directions of
+association per cluster.</p></td>
     </tr>
     <tr>
       <th>reducedDim</th>
@@ -174,41 +171,22 @@ for the number of genes to plot here in a future update.</p>
 
     <p>Show graphical output. Invisibly return <code>ggplot</code> <code>list</code>.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Plot Functions: <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
-  <code><a href='plotDot.html'>plotDot</a></code>, <code><a href='plotFeature.html'>plotFeature</a></code>,
-  <code><a href='plotGene.html'>plotGene</a></code>,
-  <code><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></code>,
-  <code><a href='plotMarker.html'>plotMarker</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
-  <code><a href='plotReducedDim.html'>plotReducedDim</a></code>, <code><a href='plotViolin.html'>plotViolin</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='topMarkers.html'>topMarkers</a></span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'>glimpse</span>(<span class='no'>markers</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 18
-#&gt; $ cluster        &lt;fct&gt; 0, 1
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.1586621, 0.9477752
-#&gt; $ pct1           &lt;dbl&gt; 1.00, 0.98
-#&gt; $ pct2           &lt;dbl&gt; 0.878, 0.863
-#&gt; $ rowname        &lt;chr&gt; "PRDM12", "GNPNAT1"
-#&gt; $ pvalue         &lt;dbl&gt; 7.116805e-18, 1.467963e-16
-#&gt; $ padj           &lt;dbl&gt; 8.547283e-15, 1.763023e-13
-#&gt; $ seqnames       &lt;fct&gt; 9, 14
-#&gt; $ start          &lt;int&gt; 130664594, 52775194
-#&gt; $ end            &lt;int&gt; 130682981, 52791668
-#&gt; $ width          &lt;int&gt; 18388, 16475
-#&gt; $ strand         &lt;fct&gt; +, -
-#&gt; $ broadClass     &lt;fct&gt; coding, coding
-#&gt; $ description    &lt;fct&gt; PR/SET domain 12 [Source:HGNC Symbol;Acc:HGNC:13997]...
-#&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000130711", "ENSG00000100522"
-#&gt; $ geneName       &lt;fct&gt; PRDM12, GNPNAT1
-#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome</div><div class='input'><span class='fu'>plotTopMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='fu'>tail</span>(<span class='no'>markers</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>seurat_small</span>, <span class='no'>all_markers_small</span>)
+<span class='fu'>plotTopMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>all_markers_small</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## Cluster 0 {.tabset}
+#&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 1 {.tabset}
-#&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='img'><img src='plotTopMarkers-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## Cluster 2 {.tabset}
+#&gt; </div><div class='img'><img src='plotTopMarkers-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## Cluster 3 {.tabset}
+#&gt; </div><div class='img'><img src='plotTopMarkers-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -216,15 +194,9 @@ for the number of genes to plot here in a future update.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

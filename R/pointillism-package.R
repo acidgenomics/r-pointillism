@@ -2,7 +2,7 @@
 #'
 #' R package for for single-cell RNA-seq clustering analysis.
 #'
-#' @aliases NULL
+#' @keywords internal
 #'
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment

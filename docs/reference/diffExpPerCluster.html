@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read Cell Type Markers File — readCellTypeMarkers • pointillism</title>
+<title>Differential Expression per Cluster — diffExpPerCluster • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Read Cell Type Markers File — readCellTypeMarkers" />
+<meta property="og:title" content="Differential Expression per Cluster — diffExpPerCluster" />
 
-<meta property="og:description" content="Read Cell Type Markers File" />
+<meta property="og:description" content="Differential Expression per Cluster" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -102,61 +102,88 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read Cell Type Markers File</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/readCellTypeMarkers.R'><code>R/readCellTypeMarkers.R</code></a></small>
-    <div class="hidden name"><code>readCellTypeMarkers.Rd</code></div>
+    <h1>Differential Expression per Cluster</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/diffExpPerCluster-methods.R'><code>R/diffExpPerCluster-methods.R</code></a></small>
+    <div class="hidden name"><code>diffExpPerCluster.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Read Cell Type Markers File</p>
+    <p>Differential Expression per Cluster</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>readCellTypeMarkers</span>(<span class='no'>file</span>, <span class='no'>gene2symbol</span>)</pre>
+    <pre class="usage"><span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>group</span>,
+  <span class='no'>numerator</span>, <span class='no'>denominator</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>group</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p><code>string</code>. Gene markers file path (CSV or Excel).</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>gene2symbol</th>
-      <td><p><code>data.frame</code>. Gene-to-symbol mappings. Columns must
-contain <code>geneID</code> and <code>geneName</code>.</p></td>
+      <th>...</th>
+      <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>grouped_df</code>, grouped by "<code>cellType</code>" column.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p><code>list</code> containing:</p><ul>
+<li><p><code>caller = "edgeR"</code>: <code>DGELRT</code>.</p></li>
+<li><p><code>caller = "DESeq2"</code>: <code>DESeqResults</code>.</p></li>
+</ul>
 
-    <div class='dont-index'><p>Other Marker Functions: <code><a href='clusterID.html'>clusterID</a></code>,
-  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
-  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code>,
-  <code><a href='topMarkers.html'>topMarkers</a></code></p></div>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Cluster identity (<code>ident</code>) must be defined in <code>colData()</code> for this
+function to work.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Homo sapiens</span>
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(
-    <span class='fu'>file.path</span>(<span class='st'>"extdata"</span>, <span class='st'>"cell_type_markers.csv"</span>),
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pointillism"</span>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>seurat_small</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
+<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='fu'>factor</span>(<span class='fu'>c</span>(<span class='st'>"group1"</span>, <span class='st'>"group2"</span>))
+<span class='fu'>colData</span>(<span class='no'>object</span>)$<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='no'>group</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>suppressMessages</span>(
+    <span class='fu'>diffExpPerCluster</span>(
+        <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
+        <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"group"</span>,
+        <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='st'>"group2"</span>,
+        <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='st'>"group1"</span>,
+        <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
+    )
 )
-<span class='no'>gene2symbol</span> <span class='kw'>&lt;-</span> <span class='fu'>makeGene2symbolFromEnsembl</span>(<span class='st'>"Homo sapiens"</span>)</div><div class='output co'>#&gt; <span class='message'>Making GRanges from Ensembl with AnnotationHub 2.12.0 (2018-04-30)</span></div><div class='output co'>#&gt; <span class='message'>Ensembl 92 EnsDb for Homo Sapiens</span></div><div class='output co'>#&gt; <span class='message'>id: "AH60977"</span>
-#&gt; <span class='message'>organism: "Homo sapiens"</span>
-#&gt; <span class='message'>build: "GRCh38"</span>
-#&gt; <span class='message'>release: "92"</span>
-#&gt; <span class='message'>format: "genes"</span></div><div class='output co'>#&gt; <span class='message'>Standardizing the metadata columns</span></div><div class='output co'>#&gt; <span class='message'>Defining broad class using: geneName, geneBiotype, seqnames</span></div><div class='output co'>#&gt; <span class='message'>Sorting ranges by geneID</span></div><div class='input'><span class='fu'>readCellTypeMarkers</span>(<span class='no'>file</span>, <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>gene2symbol</span>)</div><div class='output co'>#&gt; <span class='message'>Reading cell_type_markers.csv</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt; # Groups:   cellType [2]
-#&gt;   cellType    geneID          geneName
-#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   
-#&gt; 1 cell_type_1 ENSG00000130711 PRDM12  
-#&gt; 2 cell_type_2 ENSG00000109099 PMP22   </div></pre>
+<span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'>lapply</span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; $`0`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`1`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`2`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`3`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -165,14 +192,10 @@ contain <code>geneID</code> and <code>geneName</code>.</p></td>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>
