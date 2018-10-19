@@ -114,12 +114,13 @@ additional information.
 
 \examples{
 data(seurat_small)
+object <- seurat_small
 
 # Calculate ZINB weights (already stashed).
-# seurat_small <- runZinbwave(seurat_small)
+# seurat_small <- runZinbwave(object)
 
 # Compare expression in cluster 3 relative to 2.
-ident <- clusterID(seurat_small)
+ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 summary(numerator)
 denominator <- names(ident)[ident == "2"]
