@@ -80,7 +80,7 @@ NULL
         # Inform the user whether running in parallel or serial.
         bpparamInfo <- capture.output(BPPARAM)
         message(paste(
-            "BiocParallel param registered:",
+            "BiocParallel param registered.",
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
         ))
@@ -99,17 +99,20 @@ NULL
         counts(Y) <- as.matrix(counts(Y))
 
         # Fit a ZINB regression model ------------------------------------------
-        message("Fitting a ZINB regression model.")
+        message("zinbFit(): Fitting a ZINB regression model.")
         message(paste(
             "CPU time used:",
             printString(system.time({
-                fittedModel <- zinbFit(
-                    Y = Y,
-                    K = K,
-                    epsilon = epsilon,
-                    BPPARAM = BPPARAM,
-                    verbose = verbose
-                )
+                # Wrapping here to disable progress bars.
+                invisible(capture.output(
+                    fittedModel <- zinbFit(
+                        Y = Y,
+                        K = K,
+                        epsilon = epsilon,
+                        BPPARAM = BPPARAM,
+                        verbose = verbose
+                    )
+                ))
             })),
             sep = "\n"
         ))
@@ -119,19 +122,22 @@ NULL
         ))
 
         # zinbwave -------------------------------------------------------------
-        message("Running zinbwave.")
+        message("zinbwave(): Running zinbwave.")
         message(paste(
             "CPU time used:",
             printString(system.time({
-                zinb <- zinbwave(
-                    Y = Y,
-                    fitted_model = fittedModel,
-                    K = K,
-                    epsilon = epsilon,
-                    BPPARAM = BPPARAM,
-                    verbose = verbose,
-                    ...
-                )
+                # Wrapping here to disable progress bars.
+                invisible(capture.output(
+                    zinb <- zinbwave(
+                        Y = Y,
+                        fitted_model = fittedModel,
+                        K = K,
+                        epsilon = epsilon,
+                        BPPARAM = BPPARAM,
+                        verbose = verbose,
+                        ...
+                    )
+                ))
             })),
             sep = "\n"
         ))
