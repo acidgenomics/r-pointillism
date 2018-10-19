@@ -14,7 +14,6 @@ basejump::plotGene
 #' Visualize genes on a dot or violin plot.
 #'
 #' @name plotGene
-#' @family Plot Functions
 #'
 #' @inheritParams general
 #' @inheritParams ggplot2::geom_violin
@@ -27,7 +26,7 @@ basejump::plotGene
 #'   will have no dot drawn.
 #' @param dotScale `scalar numeric`. Scale the size of the points, similar to
 #'   `cex`.
-#' @param geom `string`. Plot type. Uses [match.arg()] to pick the type.
+#' @param geom `string`. Plot type. Uses [base::match.arg()] to pick the type.
 #'   Currently supports "`dot`" and "`violin`".
 #'
 #' @seealso
@@ -59,7 +58,7 @@ NULL
 
 
 # plotGene =====================================================================
-.plotGene.SCE <- function(
+.plotGene.SingleCellExperiment <- function(
     object,
     genes,
     geom = c("dot", "violin"),
@@ -79,7 +78,7 @@ NULL
     args[["geom"]] <- NULL
     do.call(what = what, args = args)
 }
-formals(.plotGene.SCE)[c(
+formals(.plotGene.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -114,7 +113,7 @@ formals(.plotGene.SCE)[c(
 # FIXME Need to fix the color scale argument here. It's continuous.
 # FIXME Share this default with `plotMarker`.
 # FIXME Set shared formals.
-.plotDot.SCE <- function(
+.plotDot.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -209,7 +208,7 @@ formals(.plotGene.SCE)[c(
 
     p
 }
-formals(.plotDot.SCE)[c(
+formals(.plotDot.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -219,7 +218,7 @@ formals(.plotDot.SCE)[c(
 
 
 
-.plotViolin.SCE <- function(
+.plotViolin.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -314,7 +313,7 @@ formals(.plotDot.SCE)[c(
 
     p
 }
-formals(.plotViolin.SCE)[c(
+formals(.plotViolin.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -330,7 +329,7 @@ formals(.plotViolin.SCE)[c(
 setMethod(
     f = "plotGene",
     signature = signature("SingleCellExperiment"),
-    definition = .plotGene.SCE
+    definition = .plotGene.SingleCellExperiment
 )
 
 
@@ -353,7 +352,7 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = .plotDot.SCE
+    definition = .plotDot.SingleCellExperiment
 )
 
 
@@ -376,7 +375,7 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = .plotViolin.SCE
+    definition = .plotViolin.SingleCellExperiment
 )
 
 

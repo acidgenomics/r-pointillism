@@ -17,7 +17,6 @@
 #'   work to run with multiple cores.
 #'
 #' @name runZinbwave
-#' @family Differential Expression Functions
 #' @include globals.R
 #'
 #' @inheritParams general
@@ -47,7 +46,7 @@ NULL
 
 
 # SingleCellExperiment =========================================================
-.runZinbwave.SCE <-  # nolint
+.runZinbwave.SingleCellExperiment <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
@@ -153,7 +152,7 @@ NULL
         metadata(object)[["weights"]] <- "zinbwave"
         object
     }
-formals(.runZinbwave.SCE)[["BPPARAM"]] <- bpparam
+formals(.runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 
 
 
@@ -162,7 +161,7 @@ formals(.runZinbwave.SCE)[["BPPARAM"]] <- bpparam
 setMethod(
     f = "runZinbwave",
     signature = signature(Y = "SingleCellExperiment"),
-    definition = .runZinbwave.SCE
+    definition = .runZinbwave.SingleCellExperiment
 )
 
 

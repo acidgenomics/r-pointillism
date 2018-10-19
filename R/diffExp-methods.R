@@ -57,7 +57,6 @@
 #'   RNA-seq datasets.
 #'
 #' @name diffExp
-#' @family Differential Expression Functions
 #' @include globals.R
 #'
 #' @inheritParams general
@@ -136,7 +135,7 @@ NULL
 
 
 # diffExp ======================================================================
-.diffExp.SCE <-  # nolint
+.diffExp.SingleCellExperiment <-  # nolint
     function(
         object,
         numerator,
@@ -273,7 +272,7 @@ NULL
         assert_is_function(fun)
         fun(object)
     }
-formals(.diffExp.SCE)[["bpparam"]] <- bpparam
+formals(.diffExp.SingleCellExperiment)[["bpparam"]] <- bpparam
 
 
 
@@ -282,7 +281,7 @@ formals(.diffExp.SCE)[["bpparam"]] <- bpparam
 setMethod(
     f = "diffExp",
     signature = signature("SingleCellExperiment"),
-    definition = .diffExp.SCE
+    definition = .diffExp.SingleCellExperiment
 )
 
 

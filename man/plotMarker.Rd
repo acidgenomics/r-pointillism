@@ -44,8 +44,8 @@ object.}
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
-defaults to the first argument in the \code{character} vector.}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+and defaults to the first argument in the \code{character} vector.}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
@@ -100,14 +100,6 @@ plotMarker(
     title = title
 )
 }
-\seealso{
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
-}
 \author{
 Michael Steinbaugh, Rory Kirchner
 }
-\concept{Plot Functions}

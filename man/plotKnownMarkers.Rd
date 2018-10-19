@@ -41,11 +41,3 @@ plotKnownMarkers(
     markers = known_markers_small
 )
 }
-\seealso{
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
-}
-\concept{Plot Functions}

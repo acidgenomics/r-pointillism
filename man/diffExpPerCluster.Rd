@@ -51,8 +51,3 @@ x <- suppressMessages(
 class(x)
 lapply(x, class)
 }
-\seealso{
-Other Differential Expression Functions: \code{\link{diffExp}},
-  \code{\link{findMarkers}}, \code{\link{runZinbwave}}
-}
-\concept{Differential Expression Functions}

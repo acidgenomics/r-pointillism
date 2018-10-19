@@ -48,10 +48,3 @@ for the number of genes to plot here in a future update.
 data(seurat_small, all_markers_small)
 plotTopMarkers(object = seurat_small, markers = all_markers_small)
 }
-\seealso{
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}}
-}
-\concept{Plot Functions}

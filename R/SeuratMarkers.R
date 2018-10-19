@@ -7,8 +7,6 @@
 #'   the `gene` column, whereas [Seurat::FindMarkers()] maps them correctly in
 #'   the rownames of the returned marker `data.frame`.
 #'
-#' @family Marker Functions
-#'
 #' @inheritParams general
 #' @param markers `data.frame`. Unmodified [Seurat::FindAllMarkers()] or
 #'   [Seurat::FindMarkers()] return.

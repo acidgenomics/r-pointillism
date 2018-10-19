@@ -58,8 +58,3 @@ ident_3_sanitized <- SeuratMarkers(
 )
 str(ident_3_sanitized)
 }
-\seealso{
-Other Marker Functions: \code{\link{clusterID}},
-  \code{\link{knownMarkers}}, \code{\link{topMarkers}}
-}
-\concept{Marker Functions}

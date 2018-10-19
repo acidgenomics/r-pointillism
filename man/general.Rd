@@ -44,8 +44,8 @@ calculations. Defaults the first and second dimensions.}
 
 \item{ensemblRelease}{\code{scalar integer}. Ensembl release version (e.g. \code{90}).}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
-defaults to the first argument in the \code{character} vector.}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+and defaults to the first argument in the \code{character} vector.}
 
 \item{fill}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 fill scale.
 Must supply discrete values. When set to \code{NULL}, the default ggplot2 color
@@ -57,8 +57,8 @@ To set the discrete fill palette globally, use
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
 
-\item{geom}{\code{string}. Plot type. Uses \code{\link[=match.arg]{match.arg()}} and defaults to the first
-argument in the \code{character} vector.}
+\item{geom}{\code{string}. Plot type. Uses \code{\link[base:match.arg]{base::match.arg()}} and defaults to the
+first argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
 

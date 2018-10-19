@@ -20,7 +20,6 @@
 #'   easily.
 #'
 #' @name knownMarkers
-#' @family Marker Functions
 #'
 #' @inheritParams general
 #' @param all `SeuratMarkers`.
