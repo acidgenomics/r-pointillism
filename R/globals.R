@@ -17,18 +17,21 @@ lightMarkerColors <-
 # This works reliably across platforms, but is slower.
 bpparam <- quote(BiocParallel::SerialParam())
 
+# Sometimes nice but can be too busy.
+# viridis::scale_color_viridis(direction = -1L)
+
 continuousColor <- quote(getOption(
     "pointillism.continuous.color",
     ggplot2::scale_color_gradient(
         low = "gray75",
-        high = "purple"
+        high = "red"
     )
 ))
-continuousColor2 <- quote(getOption(
+continuousColorPurpleOrange <- quote(getOption(
     "pointillism.continuous.color",
     ggplot2::scale_color_gradient(
-        low = "orange",
-        high = "purple"
+        low = "orange",  # orange
+        high = "purple"  # purple
     )
 ))
 discreteColor <- quote(getOption("pointillism.discrete.color", NULL))
@@ -42,7 +45,7 @@ headerLevel <- 2L
 label <- quote(getOption("pointillism.label", TRUE))
 labelSize <- quote(getOption("pointillism.labelSize", 6L))
 legend <- quote(getOption("pointillism.legend", TRUE))
-pointAlpha <- quote(getOption("pointillism.pointAlpha", 0.8))
+pointAlpha <- quote(getOption("pointillism.pointAlpha", 0.85))
 pointSize <- quote(getOption("pointillism.pointSize", 0.75))
 pointsAsNumbers <- quote(getOption("pointillism.pointsAsNumbers", FALSE))
 reducedDim <- "TSNE"
