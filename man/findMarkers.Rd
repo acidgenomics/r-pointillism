@@ -38,8 +38,3 @@ x <- findMarkers(seurat_small, caller = "edgeR")
 class(x)
 lapply(x, class)
 }
-\seealso{
-Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
-  \code{\link{diffExp}}, \code{\link{runZinbwave}}
-}
-\concept{Differential Expression Functions}

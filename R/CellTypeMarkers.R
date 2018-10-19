@@ -4,7 +4,6 @@
 #'
 #' Must contain `phase` and `geneID` columns.
 #'
-#' @family Marker Generators
 #' @include markers-internal.R
 #' @export
 #'

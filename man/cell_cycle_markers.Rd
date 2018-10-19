@@ -16,8 +16,4 @@ Cell-Cycle Markers
 data(cell_cycle_markers)
 cell_cycle_markers
 }
-\seealso{
-Other Marker Data: \code{\link{cell_type_markers}}
-}
-\concept{Marker Data}
 \keyword{datasets}

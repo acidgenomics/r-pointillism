@@ -13,7 +13,6 @@
 #' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 #'
 #' @name plotMarker
-#' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @inheritParams general
@@ -44,7 +43,7 @@ NULL
 
 
 
-.plotMarker.SCE <- function(
+.plotMarker.SingleCellExperiment <- function(
     object,
     genes,
     reducedDim,
@@ -212,7 +211,7 @@ NULL
 
     p
 }
-formals(.plotMarker.SCE)[c(
+formals(.plotMarker.SingleCellExperiment)[c(
     "color",
     "dark",
     "expression",
@@ -243,7 +242,7 @@ formals(.plotMarker.SCE)[c(
 setMethod(
     f = "plotMarker",
     signature = signature("SingleCellExperiment"),
-    definition = .plotMarker.SCE
+    definition = .plotMarker.SingleCellExperiment
 )
 
 

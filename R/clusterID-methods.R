@@ -1,7 +1,6 @@
 #' Cluster Identity
 #'
 #' @name clusterID
-#' @family Marker Functions
 #'
 #' @inheritParams general
 #'
@@ -16,7 +15,7 @@ NULL
 
 
 
-.clusterID.SCE <-  # nolint
+.clusterID.SingleCellExperiment <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
@@ -32,7 +31,7 @@ NULL
 setMethod(
     f = "clusterID",
     signature = signature("SingleCellExperiment"),
-    definition = .clusterID.SCE
+    definition = .clusterID.SingleCellExperiment
 )
 
 

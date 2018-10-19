@@ -40,7 +40,3 @@ x <- CellCycleMarkers(
 )
 }
 }
-\seealso{
-Other Marker Generators: \code{\link{CellTypeMarkers}}
-}
-\concept{Marker Generators}

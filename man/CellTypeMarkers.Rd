@@ -48,7 +48,4 @@ x <- CellTypeMarkers(
 \item \code{\link[googlesheets:gs_key]{googlesheets::gs_key()}}.
 \item \code{\link[googlesheets:gs_read]{googlesheets::gs_read()}}.
 }
-
-Other Marker Generators: \code{\link{CellCycleMarkers}}
 }
-\concept{Marker Generators}

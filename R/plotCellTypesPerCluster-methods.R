@@ -31,7 +31,6 @@
 #' many (`max` cutoff) marker genes will be skipped.
 #'
 #' @name plotCellTypesPerCluster
-#' @family Plot Functions
 #' @include globals.R
 #'
 #' @inheritParams general
@@ -50,7 +49,7 @@ NULL
 
 
 
-.plotCellTypesPerCluster.SCE <-  # nolint
+.plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
@@ -130,8 +129,8 @@ NULL
 
         invisible(return)
     }
-formals(.plotCellTypesPerCluster.SCE)[["reducedDim"]] <- reducedDim
-formals(.plotCellTypesPerCluster.SCE)[["expression"]] <- expression
+formals(.plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <- reducedDim
+formals(.plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <- expression
 
 
 
@@ -140,7 +139,7 @@ formals(.plotCellTypesPerCluster.SCE)[["expression"]] <- expression
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .plotCellTypesPerCluster.SCE
+    definition = .plotCellTypesPerCluster.SingleCellExperiment
 )
 
 

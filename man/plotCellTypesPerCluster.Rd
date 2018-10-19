@@ -32,8 +32,8 @@ plotCellTypesPerCluster(object, ...)
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
-defaults to the first argument in the \code{character} vector.}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+and defaults to the first argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
 }
@@ -52,11 +52,3 @@ plotCellTypesPerCluster(
     markers = known_markers_small
 )
 }
-\seealso{
-Other Plot Functions: \code{\link{plotDot}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
-}
-\concept{Plot Functions}
