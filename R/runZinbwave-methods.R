@@ -1,26 +1,25 @@
-# FIXME Add a show progress option.
-
-
-
-#' Calculate ZINB-WaVE Weights
-#'
-#' zinbwave will calculate `normalizedValues` and `weights` matrices, which will
-#' be defined in the [assays()] slot. If these values have already been
-#' calculated, the object will be returned unmodified, unless
-#' `recalculate = TRUE`.
-#'
-#' @note zinbwave defaults to using [BiocParallel::bpparam()] to register the
-#'   number of cores to use (`bpparam` argument), but we've found that this
-#'   works inconsistently across installations. Currently, we recommend using
-#'   [BiocParallel::SerialParam()] by default, which will run in serial, using a
-#'   single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should
-#'   work to run with multiple cores.
-#'
+#' @inherit zinbwave::zinbwave title description params
 #' @name runZinbwave
 #' @include globals.R
 #'
+#' @details
+#' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which will
+#' be defined in the [SummarizedExperiment::assays()] slot. If these values have
+#' already been calculated, the object will be returned unmodified, unless
+#' `recalculate = TRUE`.
+#'
+#' [zinbwave]: https://bioconductor.org/packages/release/bioc/html/zinbwave.html
+#'
+#' @section Parallelization:
+#'
+#' zinbwave defaults to using [BiocParallel::bpparam()] to register the number
+#' of cores to use (`bpparam` argument), but we've found that this works
+#' inconsistently across installations. Currently, we recommend using
+#' [BiocParallel::SerialParam()] by default, which will run in serial, using a
+#' single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should work
+#' to run with multiple cores.
+#'
 #' @inheritParams general
-#' @inheritParams zinbwave::zinbwave
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
 #' @param recalculate `logical`. Force recalculation of weights.
@@ -28,7 +27,7 @@
 #' @param ... Passthrough arguments to [zinbwave::zinbwave()].
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
-#'   weights added to [assays()].
+#'   weights added to [SummarizedExperiment::assays()].
 #'
 #' @seealso [zinbwave::zinbwave()].
 #'
@@ -42,7 +41,7 @@ NULL
 
 
 # SingleCellExperiment =========================================================
-.runZinbwave.SingleCellExperiment <-  # nolint
+runZinbwave.SingleCellExperiment <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
@@ -154,7 +153,7 @@ NULL
         metadata(object)[["weights"]] <- "zinbwave"
         object
     }
-formals(.runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
+formals(runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 
 
 
@@ -163,13 +162,13 @@ formals(.runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 setMethod(
     f = "runZinbwave",
     signature = signature(Y = "SingleCellExperiment"),
-    definition = .runZinbwave.SingleCellExperiment
+    definition = runZinbwave.SingleCellExperiment
 )
 
 
 
 # seurat =======================================================================
-.runZinbwave.seurat <- function(Y, ...) {
+runZinbwave.seurat <- function(Y, ...) {
     zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
     weights(Y) <- weights(zinb)
     metadata(Y)[["weights"]] <- "zinbwave"
@@ -184,5 +183,5 @@ setMethod(
 setMethod(
     f = "runZinbwave",
     signature = signature("seurat"),
-    definition = .runZinbwave.seurat
+    definition = runZinbwave.seurat
 )
