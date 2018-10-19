@@ -24,7 +24,7 @@ continuousColor <- quote(getOption(
     "pointillism.continuous.color",
     ggplot2::scale_color_gradient(
         low = "gray75",
-        high = "red"
+        high = "purple"
     )
 ))
 continuousColorPurpleOrange <- quote(getOption(
