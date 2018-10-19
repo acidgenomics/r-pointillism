@@ -140,19 +140,15 @@ setAs(
     def = function(from) {
         to <- as.SingleCellExperiment(from)
 
+        # Assays.
+        assays <- assays(to)
         # Slot scaleData, if defined. Note that we're making the dimensions
         # match the other count matrices here.
         scaleData <- slot(from, "scale.data")
         if (!is.null(scaleData)) {
             scaleData <- scaleData[rownames(to), colnames(to)]
-            assays(to)[["scaleData"]] <- scaleData
+            assays[["scaleData"]] <- scaleData
         }
-
-        # Slot variable genes, if calculated.
-        varGenes <- slot(from, "var.genes")
-
-        # Slot additional assays, if stashed.
-        assays <- assays(to)
         stash <- .getSeuratStash(from, "assays")
         if (!is.null(stash)) {
             assert_are_disjoint_sets(names(assays), names(stash))
@@ -160,11 +156,13 @@ setAs(
             assays(to) <- assays
         }
 
+        # Row and column data.
         rowRanges(to) <- rowRanges(from)
         colData(to) <- colData(to)
 
+        # Metadata.
         metadata(to) <- metadata(from)
-        metadata(to)[["varGenes"]] <- varGenes
+        metadata(to)[["varGenes"]] <- slot(from, "var.genes")
 
         to
     }
