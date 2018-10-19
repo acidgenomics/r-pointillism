@@ -14,7 +14,7 @@ plotMarker(object, ...)
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -26,7 +26,7 @@ plotMarker(object, ...)
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -89,12 +89,17 @@ genes <- counts(object) \%>\%
     head(n = 4L) \%>\%
     names()
 str(genes)
+
+## Default appearance.
 plotMarker(object, genes = genes[[1L]])
+
+## Dark mode with viridis palette.
 plotMarker(
     object = object,
     genes = genes,
     expression = "mean",
     pointsAsNumbers = TRUE,
+    color = ggplot2::scale_color_viridis_c(),
     dark = TRUE,
     label = FALSE,
     title = title

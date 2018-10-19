@@ -58,12 +58,11 @@ NULL
 
 
 # plotGene =====================================================================
-.plotGene.SingleCellExperiment <- function(
+plotGene.SingleCellExperiment <- function(
     object,
     genes,
     geom = c("dot", "violin"),
     perSample = TRUE,
-    color,
     legend,
     title = NULL
 ) {
@@ -78,13 +77,7 @@ NULL
     args[["geom"]] <- NULL
     do.call(what = what, args = args)
 }
-formals(.plotGene.SingleCellExperiment)[c(
-    "color",
-    "legend"
-)] <- list(
-    color = continuousColor,
-    legend = legend
-)
+formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 
@@ -212,7 +205,7 @@ formals(.plotDot.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
-    color = continuousColor2,
+    color = continuousColorPurpleOrange,
     legend = legend
 )
 
@@ -329,7 +322,7 @@ formals(.plotViolin.SingleCellExperiment)[c(
 setMethod(
     f = "plotGene",
     signature = signature("SingleCellExperiment"),
-    definition = .plotGene.SingleCellExperiment
+    definition = plotGene.SingleCellExperiment
 )
 
 
