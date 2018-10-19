@@ -42,7 +42,6 @@ Imports:
     assertive.properties,
     assertive.sets,
     assertive.types,
-    bcbioSingleCell,
     cowplot,
     crayon,
     dplyr,
