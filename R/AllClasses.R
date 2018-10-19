@@ -13,7 +13,7 @@ setOldClass(Classes = "session_info")
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [metadata()].
 #'
-#' @family S4 Classes
+#' @family S4 classes
 #' @export
 #'
 #' @seealso [CellCycleMarkers()].
@@ -53,7 +53,7 @@ setValidity(
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [metadata()].
 #'
-#' @family S4 Classes
+#' @family S4 classes
 #' @export
 #'
 #' @seealso [CellTypeMarkers()].
@@ -92,7 +92,7 @@ setValidity(
 #'
 #' Class containing essential elements for Seurat marker gene analysis.
 #'
-#' @family S4 Classes
+#' @family S4 classes
 #' @export
 #'
 #' @seealso [SeuratMarkers()].
@@ -187,7 +187,7 @@ setValidity(
 #' Class containing essential elements for analysis of known, cell-type specific
 #' marker genes.
 #'
-#' @family S4 Classes
+#' @family S4 classes
 #' @export
 #'
 #' @seealso [knownMarkers()].

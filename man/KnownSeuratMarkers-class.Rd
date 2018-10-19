@@ -11,8 +11,8 @@ marker genes.
 \seealso{
 \code{\link[=knownMarkers]{knownMarkers()}}.
 
-Other S4 Classes: \code{\link{CellCycleMarkers-class}},
+Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
   \code{\link{SeuratMarkers-class}}
 }
-\concept{S4 Classes}
+\concept{S4 classes}

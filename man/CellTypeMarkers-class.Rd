@@ -11,8 +11,8 @@ defined in \code{\link[=metadata]{metadata()}}.
 \seealso{
 \code{\link[=CellTypeMarkers]{CellTypeMarkers()}}.
 
-Other S4 Classes: \code{\link{CellCycleMarkers-class}},
+Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{KnownSeuratMarkers-class}},
   \code{\link{SeuratMarkers-class}}
 }
-\concept{S4 Classes}
+\concept{S4 classes}

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Top Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/topMarkers.R'><code>R/topMarkers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/topMarkers-methods.R'><code>R/topMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>topMarkers.Rd</code></div>
     </div>
 
@@ -113,16 +113,23 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>topMarkers</span>(<span class='no'>data</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"positive"</span>, <span class='st'>"negative"</span>,
-  <span class='st'>"both"</span>), <span class='kw'>coding</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SeuratMarkers</span>
+<span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"tbl_df"</span>,
+  <span class='st'>"DataFrame"</span>, <span class='st'>"DataFrameList"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p><code>grouped_df</code>. <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return, sanitized with
-our <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers()</a></code> function.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -130,8 +137,14 @@ our <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers()</a></code
     </tr>
     <tr>
       <th>direction</th>
-      <td><p><code>string</code>. Whether to include "<code>positive</code>", "<code>negative</code>", or
-"<code>both</code>" directions of association per cluster.</p></td>
+      <td><p><code>string</code>. Whether to include upregulated (<code>"up"</code>; positive
+LFC), downregulated (<code>"down"</code>; negative LFC) or <code>"both"</code> directions of
+association per cluster.</p></td>
+    </tr>
+    <tr>
+      <th>return</th>
+      <td><p><code>string</code>. Return type. Uses <code><a href='http://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code> internally and
+defaults to the first argument in the <code>character</code> vector.</p></td>
     </tr>
     <tr>
       <th>coding</th>
@@ -149,38 +162,22 @@ our <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers()</a></code
 <li><p><code><a href='http://dplyr.tidyverse.org/reference/slice.html'>dplyr::slice()</a></code>.</p></li>
 <li><p><code><a href='http://dplyr.tidyverse.org/reference/top_n.html'>dplyr::top_n()</a></code>.</p></li>
 </ul></div>
-    <div class='dont-index'><p>Other Marker Functions: <code><a href='clusterID.html'>clusterID</a></code>,
-  <code><a href='knownMarkersDetected.html'>knownMarkersDetected</a></code>,
-  <code><a href='readCellTypeMarkers.html'>readCellTypeMarkers</a></code>,
-  <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>all_markers_small</span>,
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"positive"</span>
-)
-<span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 18
-#&gt; $ cluster        &lt;fct&gt; 0, 0, 1, 1
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.1586621, 1.5726929, 0.9477752, 1.2452577
-#&gt; $ pct1           &lt;dbl&gt; 1.000, 0.980, 0.980, 0.959
-#&gt; $ pct2           &lt;dbl&gt; 0.878, 0.816, 0.863, 0.902
-#&gt; $ rowname        &lt;chr&gt; "PRDM12", "PMP22", "GNPNAT1", "MBD4"
-#&gt; $ pvalue         &lt;dbl&gt; 7.116805e-18, 9.620190e-17, 1.467963e-16, 1.948117e-15
-#&gt; $ padj           &lt;dbl&gt; 8.547283e-15, 1.155385e-13, 1.763023e-13, 2.339689e-12
-#&gt; $ seqnames       &lt;fct&gt; 9, 17, 14, 3
-#&gt; $ start          &lt;int&gt; 130664594, 15229777, 52775194, 129430944
-#&gt; $ end            &lt;int&gt; 130682981, 15265357, 52791668, 129440179
-#&gt; $ width          &lt;int&gt; 18388, 35581, 16475, 9236
-#&gt; $ strand         &lt;fct&gt; +, -, -, -
-#&gt; $ broadClass     &lt;fct&gt; coding, coding, coding, coding
-#&gt; $ description    &lt;fct&gt; PR/SET domain 12 [Source:HGNC Symbol;Acc:HGNC:13997]...
-#&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding, protein_coding, prot...
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000130711", "ENSG00000109099", "ENSG000001005...
-#&gt; $ geneName       &lt;fct&gt; PRDM12, PMP22, GNPNAT1, MBD4
-#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome, chromosome, chromosome</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>all_markers_small</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 9
+#&gt; # Groups:   cluster [4]
+#&gt;   cluster name    avgLogFC  pct1  pct2   pvalue     padj geneID        geneName
+#&gt;   &lt;fct&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;fct&gt;   
+#&gt; 1 0       LTB         2.50 1     0.333 1.54e-11 3.54e- 9 ENSG00000204… LTB     
+#&gt; 2 0       TMEM123     2.09 0.69  0.216 2.16e- 6 4.96e- 4 ENSG00000152… TMEM123 
+#&gt; 3 1       TYMP        1.77 0.828 0.196 1.13e- 8 2.59e- 6 ENSG00000025… TYMP    
+#&gt; 4 1       LYZ         2.27 0.862 0.51  4.60e- 8 1.06e- 5 ENSG00000090… LYZ     
+#&gt; 5 2       GNLY        3.45 1     0.103 1.36e-12 3.13e-10 ENSG00000115… GNLY    
+#&gt; 6 2       GZMB        3.94 0.917 0.074 1.46e-12 3.35e-10 ENSG00000100… GZMB    
+#&gt; 7 3       GNG11       6.01 1     0     8.79e-19 2.02e-16 ENSG00000127… GNG11   
+#&gt; 8 3       CLU         5.87 1     0     8.79e-19 2.02e-16 ENSG00000120… CLU     </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -193,10 +190,6 @@ our <code><a href='sanitizeSeuratMarkers.html'>sanitizeSeuratMarkers()</a></code
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

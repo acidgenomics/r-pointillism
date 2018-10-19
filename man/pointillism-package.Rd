@@ -2,6 +2,8 @@
 % Please edit documentation in R/pointillism-package.R
 \docType{package}
 \name{pointillism-package}
+\alias{pointillism}
+\alias{pointillism-package}
 \title{pointillism}
 \description{
 R package for for single-cell RNA-seq clustering analysis.
@@ -24,3 +26,4 @@ Other contributors:
 }
 
 }
+\keyword{internal}
