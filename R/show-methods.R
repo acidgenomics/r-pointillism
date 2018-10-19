@@ -11,7 +11,6 @@ methods::show
 
 #' @inherit methods::show
 #' @name show
-#' @family S4 Object
 #' @author Michael Steinbuagh
 NULL
 

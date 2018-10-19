@@ -36,8 +36,3 @@ identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 }
-\seealso{
-Other Marker Functions: \code{\link{SeuratMarkers}},
-  \code{\link{clusterID}}, \code{\link{topMarkers}}
-}
-\concept{Marker Functions}

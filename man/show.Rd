@@ -80,4 +80,3 @@ y   169   196   225   256   289   324   361   400
 \author{
 Michael Steinbuagh
 }
-\concept{S4 Object}

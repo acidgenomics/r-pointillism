@@ -5,7 +5,6 @@
 #' Plot Known Markers
 #'
 #' @name plotKnownMarkers
-#' @family Plot Functions
 #'
 #' @inheritParams general
 #' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".
@@ -22,7 +21,7 @@ NULL
 
 
 
-.plotKnownMarkers.SCE <-  # nolint
+.plotKnownMarkers.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
@@ -80,7 +79,7 @@ NULL
 
         invisible(list)
     }
-formals(.plotKnownMarkers.SCE)[c(
+formals(.plotKnownMarkers.SingleCellExperiment)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -98,7 +97,7 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownSeuratMarkers"
     ),
-    definition = .plotKnownMarkers.SCE
+    definition = .plotKnownMarkers.SingleCellExperiment
 )
 
 

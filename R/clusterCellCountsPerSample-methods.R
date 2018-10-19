@@ -1,7 +1,6 @@
 #' Cluster Cell Counts per Sample
 #'
 #' @name clusterCellCountsPerSample
-#' @family Cluster Statistics Functions
 #'
 #' @inheritParams general
 #'
@@ -15,7 +14,7 @@ NULL
 
 
 
-.clusterCellCountsPerSample.SCE <-  # nolint
+.clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
     function(object) {
         .assertHasIdent(object)
         metrics <- metrics(object)
@@ -38,7 +37,7 @@ NULL
 setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("SingleCellExperiment"),
-    definition = .clusterCellCountsPerSample.SCE
+    definition = .clusterCellCountsPerSample.SingleCellExperiment
 )
 
 

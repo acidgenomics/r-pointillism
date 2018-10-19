@@ -5,7 +5,6 @@
 #' Cell Counts per Cluster
 #'
 #' @name cellCountsPerCluster
-#' @family Cluster Statistics Functions
 #'
 #' @inheritParams general
 #'
@@ -19,7 +18,7 @@ NULL
 
 
 
-.cellCountsPerCluster.SCE <-  # nolint
+.cellCountsPerCluster.SingleCellExperiment <-  # nolint
     function(object, interestingGroups = NULL) {
         validObject(object)
         .assertHasIdent(object)
@@ -49,7 +48,7 @@ NULL
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .cellCountsPerCluster.SCE
+    definition = .cellCountsPerCluster.SingleCellExperiment
 )
 
 

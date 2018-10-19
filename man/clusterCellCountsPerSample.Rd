@@ -30,8 +30,3 @@ data(seurat_small)
 x <- clusterCellCountsPerSample(seurat_small)
 print(x)
 }
-\seealso{
-Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},
-  \code{\link{cellTypesPerCluster}}
-}
-\concept{Cluster Statistics Functions}

@@ -148,8 +148,4 @@ summary(x)
 }
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
-
-Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
-  \code{\link{findMarkers}}, \code{\link{runZinbwave}}
 }
-\concept{Differential Expression Functions}

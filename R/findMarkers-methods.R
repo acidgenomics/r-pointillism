@@ -8,7 +8,6 @@
 #'   function to work.
 #'
 #' @name findMarkers
-#' @family Differential Expression Functions
 #'
 #' @inheritParams general
 #' @param ... Passthrough arguments to [diffExp()].
@@ -26,7 +25,7 @@ NULL
 
 
 
-.findMarkers.SCE <-  # nolint
+.findMarkers.SingleCellExperiment <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
 
@@ -71,7 +70,7 @@ NULL
 setMethod(
     f = "findMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = .findMarkers.SCE
+    definition = .findMarkers.SingleCellExperiment
 )
 
 

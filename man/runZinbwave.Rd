@@ -73,8 +73,4 @@ class(weights(zinb))
 }
 \seealso{
 \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.
-
-Other Differential Expression Functions: \code{\link{diffExpPerCluster}},
-  \code{\link{diffExp}}, \code{\link{findMarkers}}
 }
-\concept{Differential Expression Functions}

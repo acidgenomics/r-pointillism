@@ -2,7 +2,6 @@
 #'
 #' Currently designed for internal use by the pointillism package.
 #'
-#' @family Marker Generators
 #' @include markers-internal.R
 #' @export
 #'

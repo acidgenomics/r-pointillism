@@ -44,8 +44,4 @@ print(x)
 \item \code{\link[dplyr:slice]{dplyr::slice()}}.
 \item \code{\link[dplyr:top_n]{dplyr::top_n()}}.
 }
-
-Other Marker Functions: \code{\link{SeuratMarkers}},
-  \code{\link{clusterID}}, \code{\link{knownMarkers}}
 }
-\concept{Marker Functions}

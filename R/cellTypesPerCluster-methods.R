@@ -1,7 +1,6 @@
 #' Cell Types per Cluster
 #'
 #' @name cellTypesPerCluster
-#' @family Cluster Statistics Functions
 #'
 #' @inheritParams general
 #' @param min `scalar integer`. Minimum number of marker genes per cluster.
