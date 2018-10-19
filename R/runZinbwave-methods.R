@@ -122,7 +122,10 @@ NULL
         ))
 
         # zinbwave -------------------------------------------------------------
-        message("zinbwave(): Running zinbwave.")
+        message(paste(
+            "zinbwave(): Performing dimensionality reduction using a",
+            "ZINB regression model with gene and cell-level covariates."
+        ))
         message(paste(
             "CPU time used:",
             printString(system.time({
