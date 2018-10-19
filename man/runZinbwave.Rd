@@ -12,7 +12,7 @@ runZinbwave(Y, ...)
 
 \S4method{runZinbwave}{SingleCellExperiment}(Y, K = 0L,
   epsilon = 1e+12, BPPARAM = BiocParallel::SerialParam(),
-  recalculate = FALSE, verbose = FALSE, ...)
+  recalculate = FALSE, verbose = FALSE)
 
 \S4method{runZinbwave}{seurat}(Y, ...)
 }
@@ -20,7 +20,8 @@ runZinbwave(Y, ...)
 \item{Y}{The data (genes in rows, samples in columns). Currently implemented
 only for \code{SummarizedExperiment}.}
 
-\item{...}{Passthrough arguments to \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.}
+\item{...}{Additional parameters to describe the model, see
+\code{\link{zinbModel}}.}
 
 \item{K}{integer. Number of latent factors. Specify \code{K = 0} if only
 computing observational weights.}
@@ -33,7 +34,7 @@ back-end to be used for computations. See
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
-\item{verbose}{\code{logical}. Run zinbwave in verbose model (for debugging).}
+\item{verbose}{\code{logical}. Run zinbwave in verbose mode (for debugging).}
 }
 \value{
 Modified object (S4 class must extend \code{SingleCellExperiment}), with
