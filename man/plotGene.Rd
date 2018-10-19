@@ -103,17 +103,17 @@ Visualize genes on a dot or violin plot.
 data(seurat_small)
 object <- seurat_small
 
-# Plotting with either gene IDs or gene names (symbols) works.
+## Plotting with either gene IDs or gene names (symbols) works.
 geneIDs <- head(rownames(object), n = 4L)
 print(geneIDs)
 geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
 print(geneNames)
 
-# Per sample mode enabled.
+## Per sample mode enabled.
 plotDot(object, genes = geneNames, perSample = TRUE)
 plotViolin(object, genes = geneNames, perSample = TRUE)
 
-# Per sample mode disabled.
+## Per sample mode disabled.
 plotDot(object, genes = geneIDs, perSample = FALSE)
 plotViolin(object, genes = geneIDs, perSample = FALSE)
 }

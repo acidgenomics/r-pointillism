@@ -116,17 +116,17 @@ additional information.
 data(seurat_small)
 object <- seurat_small
 
-# Calculate ZINB weights (already stashed).
-# seurat_small <- runZinbwave(object)
+## Calculate ZINB weights (already stashed).
+## seurat_small <- runZinbwave(object)
 
-# Compare expression in cluster 3 relative to 2.
+## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 summary(numerator)
 denominator <- names(ident)[ident == "2"]
 summary(denominator)
 
-# edgeR.
+## edgeR.
 x <- diffExp(
     object = object,
     numerator = numerator,
@@ -136,7 +136,7 @@ x <- diffExp(
 class(x)
 summary(x)
 
-# DESeq2.
+## DESeq2.
 x <- diffExp(
     object = object,
     numerator = numerator,

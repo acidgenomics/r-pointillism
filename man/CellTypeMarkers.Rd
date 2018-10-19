@@ -33,7 +33,7 @@ Local spreadsheets (CSV, Excel) and Google Sheets are currently supported.
 Must contain \code{phase} and \code{geneID} columns.
 }
 \examples{
-# Google Sheets method (requires OAuth).
+## Google Sheets method (requires OAuth).
 \dontrun{
 x <- CellTypeMarkers(
     gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",

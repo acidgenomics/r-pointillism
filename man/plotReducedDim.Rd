@@ -173,14 +173,14 @@ installing this with conda: \code{conda install -c conda-forge umap-learn}.
 data(seurat_small)
 object <- seurat_small
 
-# t-SNE
+## t-SNE
 plotTSNE(object)
 plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 
-# UMAP
+## UMAP
 plotUMAP(object)
 
-# PCA
+## PCA
 plotPCA(object)
 }
 \seealso{
