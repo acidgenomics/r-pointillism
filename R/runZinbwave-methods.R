@@ -23,8 +23,7 @@
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
 #' @param recalculate `logical`. Force recalculation of weights.
-#' @param verbose `logical`. Run zinbwave in verbose model (for debugging).
-#' @param ... Passthrough arguments to [zinbwave::zinbwave()].
+#' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
 #'   weights added to [SummarizedExperiment::assays()].
@@ -49,8 +48,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
         # Use serial by default, for cross-platform compatibility.
         BPPARAM,  # nolint
         recalculate = FALSE,
-        verbose = FALSE,
-        ...
+        verbose = FALSE
     ) {
         message("Running zinbwave.")
         stopifnot(is(Y, "SingleCellExperiment"))
@@ -136,8 +134,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
                         K = K,
                         epsilon = epsilon,
                         BPPARAM = BPPARAM,
-                        verbose = verbose,
-                        ...
+                        verbose = verbose
                     )
                 ))
             })),

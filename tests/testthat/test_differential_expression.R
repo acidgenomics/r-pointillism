@@ -1,17 +1,16 @@
 context("Differential Expression Functions")
 
 data(seurat_small, envir = environment())
+sce_small <- as(seurat_small, "SingleCellExperiment")
 
 # Compare expression in cluster 3 relative to 2.
-ident <- clusterID(seurat_small)
+object <- seurat_small
+ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 denominator <- names(ident)[ident == "2"]
-
 stopifnot(length(intersect(numerator, colnames(object))) > 0L)
 stopifnot(length(intersect(denominator, colnames(object))) > 0L)
-
-# Coerce back to seurat to match.
-seurat_small <- as(sce_small, "seurat")
+rm(object)
 
 
 
@@ -68,26 +67,32 @@ with_parameters_test_that(
         ))
     },
     object = list(
-        SingleCellExperiment = sce_small
-        # seurat = seurat_small
+        SingleCellExperiment = sce_small,
+        seurat = seurat_small
     )
 )
 
 
 
 # runZinbwave ==================================================================
-test_that("runZinbwave", {
-    # edgeR
-    x <- runZinbwave(
-        Y = sce_small,
-        caller = "edgeR",
-        recalculate = TRUE
-    )
+with_parameters_test_that(
+    "runZinbwave", {
+        # edgeR
+        x <- runZinbwave(
+            Y = sce_small,
+            caller = "edgeR",
+            recalculate = TRUE
+        )
 
-    # DESeq2
-    x <- runZinbwave(
-        Y = sce_small,
-        caller = "DESeq2",
-        recalculate = TRUE
+        # DESeq2
+        x <- runZinbwave(
+            Y = sce_small,
+            caller = "DESeq2",
+            recalculate = TRUE
+        )
+    },
+    object = list(
+        SingleCellExperiment = sce_small,
+        seurat = seurat_small
     )
-})
+)

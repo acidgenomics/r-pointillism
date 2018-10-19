@@ -1,55 +1,19 @@
-context("Marker Functions")
+context("Marker Analysis")
+
+data(seurat_small, envir = environment())
 
 
 
-# knownMarkersDetected =========================================================
-test_that("knownMarkersDetected", {
-    x <- knownMarkersDetected(
-        all = all_markers_small,
-        known = known_markers_small,
-        filterPromiscuous = TRUE
-    )
-    expect_is(x, "grouped_df")
-    expect_identical(dplyr::group_vars(x), "cellType")
-    expect_identical(
-        lapply(x, class) %>%
-            .[sort(names(.))],
-        list(
-            avgLogFC = "numeric",
-            broadClass = "character",
-            cellType = "factor",
-            cluster = "factor",
-            description = "character",
-            end = "integer",
-            geneBiotype = "character",
-            geneID = "character",
-            geneName = "character",
-            padj = "numeric",
-            pct1 = "numeric",
-            pct2 = "numeric",
-            pvalue = "numeric",
-            rowname = "character",
-            seqCoordSystem = "character",
-            seqnames = "character",
-            start = "integer",
-            strand = "character",
-            width = "integer"
-        )
-    )
-})
-
-
-
-# readCellTypeMarkers ==========================================================
-test_that("readCellTypeMarkers : Mus musculus", {
+# CellTypeMarkers ==============================================================
+test_that("CellTypeMarkers : Mus musculus", {
     file <- system.file(
         "extdata/cell_type_markers.csv",
         package = "pointillism"
     )
-    gene2symbol <- makeGene2symbolFromEnsembl("Homo sapiens")
+    g2s <- Gene2Symbol(seurat_small)
     x <- readCellTypeMarkers(
         file = file,
-        gene2symbol = gene2symbol
+        gene2symbol = g2s
     )
     group <- dplyr::group_vars(x)
     expect_identical(group, "cellType")

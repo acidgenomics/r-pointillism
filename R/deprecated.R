@@ -47,8 +47,7 @@ plotKnownMarkersDetected <- function(...) {
 #' @rdname deprecated
 #' @export
 readCellTypeMarkers <- function(...) {
-    .Deprecated("CellTypeMarkers")
-    CellTypeMarkers(...)
+    .Defunct("CellTypeMarkers")
 }
 
 

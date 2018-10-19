@@ -79,9 +79,6 @@ RoxygenNote: 6.1.0
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
-    'markers-internal.R'
-    'CellCycleMarkers.R'
-    'CellTypeMarkers.R'
     'SeuratMarkers.R'
     'as-methods.R'
     'assert-internal.R'
@@ -98,6 +95,8 @@ Collate:
     'findMarkers-methods.R'
     'general.R'
     'knownMarkers-methods.R'
+    'makeCellTypeMarkersFromGoogle.R'
+    'markers.R'
     'plotCellTypesPerCluster-methods.R'
     'plotFeature-methods.R'
     'plotGene-methods.R'
