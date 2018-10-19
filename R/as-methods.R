@@ -139,6 +139,7 @@ setAs(
     to = "SingleCellExperiment",
     def = function(from) {
         to <- as.SingleCellExperiment(from)
+
         # Slot scaleData, if defined. Note that we're making the dimensions
         # match the other count matrices here.
         scaleData <- slot(from, "scale.data")
@@ -146,14 +147,25 @@ setAs(
             scaleData <- scaleData[rownames(to), colnames(to)]
             assays(to)[["scaleData"]] <- scaleData
         }
-        # Sanitize row and column data colnames using camel case.
-        # FIXME This step is breaking.
-        rowRanges(to) <- rowRanges(from)
-        colData(to) <- colData(to)
-        metadata(to) <- metadata(from)
+
         # Slot variable genes, if calculated.
         varGenes <- slot(from, "var.genes")
+
+        # Slot additional assays, if stashed.
+        assays <- assays(to)
+        stash <- .getSeuratStash(from, "assays")
+        if (!is.null(stash)) {
+            assert_are_disjoint_sets(names(assays), names(stash))
+            assays <- c(assays, stash)
+            assays(to) <- assays
+        }
+
+        rowRanges(to) <- rowRanges(from)
+        colData(to) <- colData(to)
+
+        metadata(to) <- metadata(from)
         metadata(to)[["varGenes"]] <- varGenes
+
         to
     }
 )
