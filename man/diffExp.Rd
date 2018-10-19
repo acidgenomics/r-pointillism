@@ -10,12 +10,12 @@
 diffExp(object, ...)
 
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
-  caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
-  minCountsPerCell = 5L, bpparam = BiocParallel::SerialParam())
+  caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
+  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
 
 \S4method{diffExp}{seurat}(object, numerator, denominator,
-  caller = c("edgeR", "DESeq2"), minCellsPerGene = 25L,
-  minCountsPerCell = 5L, bpparam = BiocParallel::SerialParam())
+  caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
+  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
 }
 \arguments{
 \item{object}{Object.}
@@ -31,6 +31,9 @@ contrast (e.g. control).}
 \item{caller}{\code{string}. Package to use for differential expression calling.
 Defaults to \code{"edgeR"} (faster for large datasets) but \code{"DESeq2"} is also
 supported.}
+
+\item{minCells}{\code{scalar integer}. Minimum number of cells required to perform
+the differential expression analysis.}
 
 \item{minCellsPerGene}{\code{scalar integer}. The minimum number of cells where a
 gene is expressed, to pass low expression filtering.}
