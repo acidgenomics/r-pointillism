@@ -2,10 +2,10 @@
 
 
 
-#' @rdname show
 #' @importFrom methods show
+#' @aliases NULL
 #' @export
-show <- methods::show
+methods::show
 
 
 
