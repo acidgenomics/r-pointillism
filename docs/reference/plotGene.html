@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Gene — plotGene • pointillism</title>
+<title>Plot Gene — plotDot • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot Gene — plotGene" />
+<meta property="og:title" content="Plot Gene — plotDot" />
 
 <meta property="og:description" content="Visualize genes on a dot or violin plot." />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Gene</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotGene-methods.R'><code>R/plotGene-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotGene-methods.R'><code>R/plotGene-methods.R</code></a></small>
     <div class="hidden name"><code>plotGene.Rd</code></div>
     </div>
 
@@ -113,9 +113,48 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
+    <pre class="usage"><span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>,
-  <span class='st'>"violin"</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>))</pre>
+  <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -125,18 +164,66 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
       <th>genes</th>
       <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
 object.</p></td>
     </tr>
     <tr>
       <th>geom</th>
-      <td><p><code>string</code>. Plot type. Uses <code>match.arg()</code> to pick the type.
+      <td><p><code>string</code>. Plot type. Uses <code><a href='http://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code> to pick the type.
 Currently supports "<code>dot</code>" and "<code>violin</code>".</p></td>
+    </tr>
+    <tr>
+      <th>perSample</th>
+      <td><p><code>boolean</code>. Visualize the distributions per sample?</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
+scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
+color palette will be used. If manual color definitions are desired, we
+recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
+To set the discrete color palette globally, use
+<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
     </tr>
     <tr>
       <th>legend</th>
       <td><p><code>boolean</code>. Include plot legend.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p><code>string</code> or <code>NULL</code>. Plot title.</p></td>
+    </tr>
+    <tr>
+      <th>colMin</th>
+      <td><p><code>scalar numeric</code>. Minimum scaled average expression threshold.
+Everything smaller will be set to this.</p></td>
+    </tr>
+    <tr>
+      <th>colMax</th>
+      <td><p><code>scalar numeric</code>. Maximum scaled average expression threshold.
+Everything larger will be set to this.</p></td>
+    </tr>
+    <tr>
+      <th>dotMin</th>
+      <td><p><code>scalar numeric</code>. The fraction of cells at which to draw the
+smallest dot. All cell groups with less than this expressing the given gene
+will have no dot drawn.</p></td>
+    </tr>
+    <tr>
+      <th>dotScale</th>
+      <td><p><code>scalar numeric</code>. Scale the size of the points, similar to
+<code>cex</code>.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>if "area" (default), all violins have the same area (before trimming
+the tails). If "count", areas are scaled proportionally to the number of
+observations. If "width", all violins have the same maximum width.</p></td>
     </tr>
     </table>
     
@@ -147,26 +234,24 @@ Currently supports "<code>dot</code>" and "<code>violin</code>".</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><ul>
-<li><p><code><a href='plotDot.html'>plotDot()</a></code>, <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/DotPlot'>Seurat::DotPlot()</a></code>.</p></li>
-<li><p><code><a href='plotViolin.html'>plotViolin()</a></code>, <code><a href='http://www.rdocumentation.org/packages/Seurat/topics/VlnPlot'>Seurat::VlnPlot()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/DotPlot'>Seurat::DotPlot()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/VlnPlot'>Seurat::VlnPlot()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/Seurat/topics/RidgePlot'>Seurat::RidgePlot()</a></code>.</p></li>
 </ul></div>
-    <div class='dont-index'><p>Other Plot Functions: <code><a href='plotCellTypesPerCluster.html'>plotCellTypesPerCluster</a></code>,
-  <code><a href='plotDot.html'>plotDot</a></code>, <code><a href='plotFeature.html'>plotFeature</a></code>,
-  <code><a href='plotKnownMarkersDetected.html'>plotKnownMarkersDetected</a></code>,
-  <code><a href='plotMarker.html'>plotMarker</a></code>, <code><a href='plotPCElbow.html'>plotPCElbow</a></code>,
-  <code><a href='plotReducedDim.html'>plotReducedDim</a></code>,
-  <code><a href='plotTopMarkers.html'>plotTopMarkers</a></code>, <code><a href='plotViolin.html'>plotViolin</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce_small</span>
-<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='fu'>rownames</span>(<span class='no'>object</span>))
-<span class='fu'>glimpse</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:6] "ENSG00000000938" "ENSG00000001460" "ENSG00000001497" ...</div><div class='input'>
-<span class='co'># Dot</span>
-<span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"dot"</span>)</div><div class='img'><img src='plotGene-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Violin</span>
-<span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"violin"</span>)</div><div class='img'><img src='plotGene-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>seurat_small</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
+
+<span class='co'>## Plotting with either gene IDs or gene names (symbols) works.</span>
+<span class='no'>geneIDs</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='fu'>rownames</span>(<span class='no'>object</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
+<span class='fu'>print</span>(<span class='no'>geneIDs</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'><span class='no'>geneNames</span> <span class='kw'>&lt;-</span> <span class='fu'>head</span>(<span class='fu'>as.character</span>(<span class='fu'>rowRanges</span>(<span class='no'>object</span>)$<span class='no'>geneName</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
+<span class='fu'>print</span>(<span class='no'>geneNames</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'>
+<span class='co'>## Per sample mode enabled.</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotGene-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotGene-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## Per sample mode disabled.</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotGene-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotGene-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,10 +264,6 @@ Currently supports "<code>dot</code>" and "<code>violin</code>".</p></td>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

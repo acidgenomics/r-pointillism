@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend S4 Methods for <code>seurat</code> Class — plotGene,seurat-method • pointillism</title>
+<title>Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Extend S4 Methods for <code>seurat</code> Class — plotGene,seurat-method" />
+<meta property="og:title" content="Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment" />
 
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extend S4 Methods for <code>seurat</code> Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotGene-methods.R'><code>R/plotGene-methods.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/seurat-SingleCellExperiment-methods.R'><code>R/seurat-SingleCellExperiment-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/seurat-SingleCellExperiment-methods.R'><code>R/seurat-SingleCellExperiment-methods.R</code></a></small>
     <div class="hidden name"><code>seurat-SingleCellExperiment.Rd</code></div>
     </div>
 
@@ -113,11 +113,7 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for seurat</span>
-<span class='fu'><a href='plotGene.html'>plotGene</a></span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>))
-
-<span class='co'># S4 method for seurat,ANY</span>
+    <pre class="usage"><span class='co'># S4 method for seurat,ANY</span>
 <span class='fu'>assay</span>(<span class='no'>x</span>, <span class='no'>i</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
@@ -139,13 +135,22 @@
 <span class='fu'>counts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>gene2symbol</span>(<span class='no'>object</span>)
+<span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>interestingGroups</span>(<span class='no'>object</span>)
+<span class='fu'>interestingGroups</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat,character</span>
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>mapGenesToIDs</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>mapGenesToRownames</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>mapGenesToSymbols</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>metadata</span>(<span class='no'>x</span>, <span class='no'>...</span>)
@@ -157,10 +162,10 @@
 <span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>reducedDims</span>(<span class='no'>x</span>)
+<span class='fu'>reducedDims</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>rowData</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>rowData</span>(<span class='no'>x</span>, <span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>rownames</span>(<span class='no'>x</span>)
@@ -168,39 +173,31 @@
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>)
 
+<span class='co'># S4 method for seurat,ANY</span>
+<span class='fu'>rowRanges</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>interestingGroups</span>)
+<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>blacklist</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"^ident$"</span>,
+  <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[.0-9]+$"</span>, <span class='st'>"^sScore$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^phase$"</span>))
 
 <span class='co'># S4 method for seurat,DataFrame</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>sampleNames</span>(<span class='no'>object</span>)</pre>
+<span class='fu'>sampleNames</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>weights</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for seurat</span>
+<span class='fu'>weights</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>genes</th>
-      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
-object.</p></td>
-    </tr>
-    <tr>
-      <th>geom</th>
-      <td><p><code>string</code>. Plot type. Uses <code>match.arg()</code> and defaults to the first
-argument in the <code>character</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>legend</th>
-      <td><p><code>boolean</code>. Include plot legend.</p></td>
-    </tr>
-    <tr>
       <th>x</th>
-      <td><p>Primary object.</p></td>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -211,10 +208,13 @@ argument in the <code>character</code> vector.</p></td>
       <td><p>Object to assign.</p></td>
     </tr>
     <tr>
-      <th>interestingGroups</th>
-      <td><p><code>character</code> or <code>NULL</code>. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-<code>sampleData()</code> colnames.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>genes</th>
+      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
+object.</p></td>
     </tr>
     </table>
     
@@ -237,10 +237,6 @@ interesting groups. Must be formatted in camel case and intersect with
 
       <li><a href="#see-also">See also</a></li>
           </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

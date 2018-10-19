@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -117,51 +117,60 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>grouped_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 464 rows and 18 columns.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Minimal Example Data: <code><a href='known_markers_detected_small.html'>known_markers_detected_small</a></code>,
-  <code><a href='known_markers_small.html'>known_markers_small</a></code>,
-  <code><a href='sce_small.html'>sce_small</a></code>, <code><a href='seurat_small.html'>seurat_small</a></code></p></div>
+    <p>An object of class <code>SeuratMarkers</code> with 208 rows and 8 columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>glimpse</span>(<span class='no'>all_markers_small</span>)</div><div class='output co'>#&gt; Observations: 464
-#&gt; Variables: 18
-#&gt; $ cluster        &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.1586621, 1.5726929, -0.9477752, 2.5888717, 1.33147...
-#&gt; $ pct1           &lt;dbl&gt; 1.000, 0.980, 0.863, 0.961, 0.961, 0.902, 0.961, 0.7...
-#&gt; $ pct2           &lt;dbl&gt; 0.878, 0.816, 0.980, 0.551, 0.837, 0.959, 0.939, 0.9...
-#&gt; $ rowname        &lt;chr&gt; "PRDM12", "PMP22", "GNPNAT1", "CYR61", "SLC35E4", "M...
-#&gt; $ pvalue         &lt;dbl&gt; 7.116805e-18, 9.620190e-17, 1.467963e-16, 3.809588e-...
-#&gt; $ padj           &lt;dbl&gt; 8.547283e-15, 1.155385e-13, 1.763023e-13, 4.575315e-...
-#&gt; $ seqnames       &lt;fct&gt; 9, 17, 14, 1, 22, 3, 11, 7, 17, 9, 17, 10, 19, 3, 7,...
-#&gt; $ start          &lt;int&gt; 130664594, 15229777, 52775194, 85580761, 30635652, 1...
-#&gt; $ end            &lt;int&gt; 130682981, 15265357, 52791668, 85583962, 30669016, 1...
-#&gt; $ width          &lt;int&gt; 18388, 35581, 16475, 3202, 33365, 9236, 6819, 18906,...
-#&gt; $ strand         &lt;fct&gt; +, -, -, +, +, -, -, +, +, -, -, -, -, +, -, -, +, -...
-#&gt; $ broadClass     &lt;fct&gt; coding, coding, coding, coding, coding, coding, codi...
-#&gt; $ description    &lt;fct&gt; PR/SET domain 12 [Source:HGNC Symbol;Acc:HGNC:13997]...
-#&gt; $ geneBiotype    &lt;fct&gt; protein_coding, protein_coding, protein_coding, prot...
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000130711", "ENSG00000109099", "ENSG000001005...
-#&gt; $ geneName       &lt;fct&gt; PRDM12, PMP22, GNPNAT1, CYR61, SLC35E4, MBD4, KBTBD4...
-#&gt; $ seqCoordSystem &lt;fct&gt; chromosome, chromosome, chromosome, chromosome, chro...</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>all_markers_small</span>)
+<span class='no'>all_markers_small</span></div><div class='output co'>#&gt; SeuratMarkers with 208 rows and 8 columns
+#&gt;      cluster        name          avgLogFC      pct1      pct2
+#&gt;     &lt;factor&gt; &lt;character&gt;         &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1          0         LTB  2.50348949728715         1     0.333
+#&gt; 2          0     TMEM123  2.08632570977532      0.69     0.216
+#&gt; 3          0       CXCR4  1.41440148239822     0.759     0.275
+#&gt; 4          0       SRSF7  1.70689515786656     0.759     0.333
+#&gt; 5          0     PIK3IP1  3.55649087761027     0.379      0.02
+#&gt; ...      ...         ...               ...       ...       ...
+#&gt; 204        3    HLA-DRB1  -2.3765395210213       0.1     0.571
+#&gt; 205        3      LGALS1 -1.34450784538079       0.2     0.686
+#&gt; 206        3    HLA-DPA1  -2.0788156288727       0.1     0.586
+#&gt; 207        3      HNRNPF -3.76509298015523         0     0.457
+#&gt; 208        3        FCN1 -4.17125259366575         0     0.457
+#&gt;                   pvalue                 padj
+#&gt;                &lt;numeric&gt;            &lt;numeric&gt;
+#&gt; 1   1.53751850203421e-11 3.53629255467868e-09
+#&gt; 2   2.15606187433309e-06  0.00049589423109661
+#&gt; 3   3.93568453878244e-06 0.000905207443919961
+#&gt; 4   1.13655640592559e-05  0.00261407973362885
+#&gt; 5    1.4653488047655e-05  0.00337030225096066
+#&gt; ...                  ...                  ...
+#&gt; 204  0.00797069077562979                    1
+#&gt; 205    0.007974980302718                    1
+#&gt; 206  0.00847153022622001                    1
+#&gt; 207  0.00877994304016565                    1
+#&gt; 208  0.00877994304016565                    1
+#&gt;                                 ranges
+#&gt;                              &lt;GRanges&gt;
+#&gt; 1   HSCHR6_MHC_COX:31535744-31537711:-
+#&gt; 2             11:102267063-102341115:-
+#&gt; 3              2:136871919-136875735:-
+#&gt; 4                2:38970741-38978636:-
+#&gt; 5               22:31677579-31688520:-
+#&gt; ...                                ...
+#&gt; 204              6:32546546-32557625:-
+#&gt; 205             22:38071615-38075813:+
+#&gt; 206 HSCHR6_MHC_MCF:33065822-33082016:-
+#&gt; 207             10:43881065-43904614:-
+#&gt; 208            9:137801431-137809809:-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cell-Cycle Markers — cell_cycle_markers • pointillism</title>
+<title>Known Markers Detected — knownMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Cell-Cycle Markers — cell_cycle_markers" />
+<meta property="og:title" content="Known Markers Detected — knownMarkers" />
 
-<meta property="og:description" content="Cell-Cycle Markers" />
+<meta property="og:description" content="Known Markers Detected" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,62 +102,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cell-Cycle Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>cell_cycle_markers.Rd</code></div>
+    <h1>Known Markers Detected</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/knownMarkers-methods.R'><code>R/knownMarkers-methods.R</code></a></small>
+    <div class="hidden name"><code>knownMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Cell-Cycle Markers</p>
+    <p>Known Markers Detected</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>cell_cycle_markers</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>knownMarkers</span>(<span class='no'>all</span>, <span class='no'>known</span>, <span class='no'>...</span>)
 
-    <p>An object of class <code>list</code> of length 3.</p>
+<span class='co'># S4 method for SeuratMarkers,CellTypeMarkers</span>
+<span class='fu'>knownMarkers</span>(<span class='no'>all</span>, <span class='no'>known</span>,
+  <span class='kw'>promiscuousThreshold</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>all</th>
+      <td><p><code>SeuratMarkers</code>.</p></td>
+    </tr>
+    <tr>
+      <th>known</th>
+      <td><p><code>CellTypeMarkers</code>. Grouped by <code>cellType</code> column. Known markers
+<code>data.frame</code> imported by <code><a href='deprecated.html'>readCellTypeMarkers()</a></code> or pulled from internal
+cell cycle markers data.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
+      <th>promiscuousThreshold</th>
+      <td><p><code>scalar integer</code>. Minimum number of clusters
+required to consider a gene marker promiscuous. Set to <code>0</code> to disable
+promiscuous marker filtering.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>KnownSeuratMarkers</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Both the <code>all</code> and <code>known</code> objects must contain Ensembl gene
+identifiers in the <code>geneID</code> column. We must avoid any matching operations
+based on the gene names, since these change often and can mismatch
+easily.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>cell_cycle_markers</span>)
-<span class='no'>cell_cycle_markers</span></div><div class='output co'>#&gt; $homoSapiens
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Homo sapiens (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (54): ANLN ANP32E ... TUBB4B UBE2C
-#&gt; S (54): ATAD2 BLM ... USP1 WDR76
-#&gt; 
-#&gt; $musMusculus
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Mus musculus (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (54): Anln Anp32e ... Tubb4b Ube2c
-#&gt; S (54): Atad2 Blm ... Usp1 Wdr76
-#&gt; 
-#&gt; $drosophilaMelanogaster
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Drosophila melanogaster (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (37): aurA Bub1 ... twe vih
-#&gt; S (37): Blm Caf1-105 ... Ts Usp1
-#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
+          </ul>
 
   </div>
 </div>

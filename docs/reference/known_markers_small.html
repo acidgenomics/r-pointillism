@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -117,35 +117,33 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>grouped_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 2 rows and 2 columns.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Minimal Example Data: <code><a href='all_markers_small.html'>all_markers_small</a></code>,
-  <code><a href='known_markers_detected_small.html'>known_markers_detected_small</a></code>,
-  <code><a href='sce_small.html'>sce_small</a></code>, <code><a href='seurat_small.html'>seurat_small</a></code></p></div>
+    <p>An object of class <code>KnownSeuratMarkers</code> with 2 rows and 9 columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>glimpse</span>(<span class='no'>known_markers_small</span>)</div><div class='output co'>#&gt; Observations: 2
-#&gt; Variables: 2
-#&gt; $ cellType &lt;chr&gt; "cell_type_1", "cell_type_2"
-#&gt; $ geneID   &lt;chr&gt; "ENSG00000130711", "ENSG00000109099"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>known_markers_small</span>)
+<span class='no'>known_markers_small</span></div><div class='output co'>#&gt; KnownSeuratMarkers with 2 rows and 9 columns
+#&gt;          cluster        name         avgLogFC      pct1      pct2
+#&gt;         &lt;factor&gt; &lt;character&gt;        &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; LTB            0         LTB 2.50348949728715         1     0.333
+#&gt; TMEM123        0     TMEM123 2.08632570977532      0.69     0.216
+#&gt;                       pvalue                 padj
+#&gt;                    &lt;numeric&gt;            &lt;numeric&gt;
+#&gt; LTB     1.53751850203421e-11 3.53629255467868e-09
+#&gt; TMEM123 2.15606187433309e-06  0.00049589423109661
+#&gt;                                     ranges    cellType
+#&gt;                                  &lt;GRanges&gt;    &lt;factor&gt;
+#&gt; LTB     HSCHR6_MHC_COX:31535744-31537711:- cell_type_1
+#&gt; TMEM123           11:102267063-102341115:- cell_type_2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
 
   </div>
 </div>

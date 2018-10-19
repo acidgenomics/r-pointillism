@@ -10,8 +10,8 @@ Class containing essential elements for Seurat marker gene analysis.
 \seealso{
 \code{\link[=SeuratMarkers]{SeuratMarkers()}}.
 
-Other S4 Classes: \code{\link{CellCycleMarkers-class}},
+Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
   \code{\link{KnownSeuratMarkers-class}}
 }
-\concept{S4 Classes}
+\concept{S4 classes}

@@ -35,12 +35,8 @@
 #' @examples
 #' data(seurat_small)
 #' Y <- seurat_small
-#' zinb <- suppressMessages(runZinbwave(
-#'     Y = Y,
-#'     recalculate = TRUE
-#' ))
-#' print(zinb)
-#' class(weights(zinb))
+#' Y <- runZinbwave(Y = Y)
+#' class(weights(Y))
 NULL
 
 
@@ -66,10 +62,7 @@ NULL
             error = function(e) NULL
         )
         if (is.matrix(weights) && !isTRUE(recalculate)) {
-            warning(
-                "Object already contains pre-calculated weights.",
-                call. = FALSE
-            )
+            message("Object already contains pre-calculated weights.")
             return(Y)
         }
 

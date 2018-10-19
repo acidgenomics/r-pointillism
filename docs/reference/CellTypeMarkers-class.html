@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Known Markers Detected Example — known_markers_detected_small • pointillism</title>
+<title><code>CellTypeMarkers</code> Class — CellTypeMarkers-class • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Known Markers Detected Example — known_markers_detected_small" />
+<meta property="og:title" content="<code>CellTypeMarkers</code> Class — CellTypeMarkers-class" />
 
-<meta property="og:description" content="Known Markers Detected Example" />
+<meta property="og:description" content="Data provenence information, including the organism and Ensembl release are
+defined in metadata()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -102,67 +103,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Known Markers Detected Example</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>known_markers_detected_small.Rd</code></div>
+    <h1><code>CellTypeMarkers</code> Class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <div class="hidden name"><code>CellTypeMarkers-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Known Markers Detected Example</p>
+    <p>Data provenence information, including the organism and Ensembl release are
+defined in <code>metadata()</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>known_markers_detected_small</span></pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>grouped_df</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 4 rows and 19 columns.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Minimal Example Data: <code><a href='all_markers_small.html'>all_markers_small</a></code>,
-  <code><a href='known_markers_small.html'>known_markers_small</a></code>,
-  <code><a href='sce_small.html'>sce_small</a></code>, <code><a href='seurat_small.html'>seurat_small</a></code></p></div>
+    <div class='dont-index'><p><code><a href='CellTypeMarkers.html'>CellTypeMarkers()</a></code>.</p>
+<p>Other S4 classes: <code><a href='CellCycleMarkers-class.html'>CellCycleMarkers-class</a></code>,
+  <code><a href='KnownSeuratMarkers-class.html'>KnownSeuratMarkers-class</a></code>,
+  <code><a href='SeuratMarkers-class.html'>SeuratMarkers-class</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>glimpse</span>(<span class='no'>known_markers_detected_small</span>)</div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 19
-#&gt; $ cellType       &lt;fct&gt; cell_type_1, cell_type_1, cell_type_2, cell_type_2
-#&gt; $ cluster        &lt;fct&gt; 0, 1, 0, 1
-#&gt; $ geneID         &lt;chr&gt; "ENSG00000130711", "ENSG00000130711", "ENSG000001090...
-#&gt; $ geneName       &lt;chr&gt; "PRDM12", "PRDM12", "PMP22", "PMP22"
-#&gt; $ avgLogFC       &lt;dbl&gt; 1.158662, -1.158662, 1.572693, -1.572693
-#&gt; $ pct1           &lt;dbl&gt; 1.000, 0.878, 0.980, 0.816
-#&gt; $ pct2           &lt;dbl&gt; 0.878, 1.000, 0.816, 0.980
-#&gt; $ rowname        &lt;chr&gt; "PRDM12", "PRDM12", "PMP22", "PMP22"
-#&gt; $ pvalue         &lt;dbl&gt; 7.116805e-18, 7.116805e-18, 9.620190e-17, 9.620190e-17
-#&gt; $ padj           &lt;dbl&gt; 8.547283e-15, 8.547283e-15, 1.155385e-13, 1.155385e-13
-#&gt; $ seqnames       &lt;chr&gt; "9", "9", "17", "17"
-#&gt; $ start          &lt;int&gt; 130664594, 130664594, 15229777, 15229777
-#&gt; $ end            &lt;int&gt; 130682981, 130682981, 15265357, 15265357
-#&gt; $ width          &lt;int&gt; 18388, 18388, 35581, 35581
-#&gt; $ strand         &lt;chr&gt; "+", "+", "-", "-"
-#&gt; $ broadClass     &lt;chr&gt; "coding", "coding", "coding", "coding"
-#&gt; $ description    &lt;chr&gt; "PR/SET domain 12 [Source:HGNC Symbol;Acc:HGNC:13997...
-#&gt; $ geneBiotype    &lt;chr&gt; "protein_coding", "protein_coding", "protein_coding"...
-#&gt; $ seqCoordSystem &lt;chr&gt; "chromosome", "chromosome", "chromosome", "chromosome"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#format">Format</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh
+          </ul>
 
   </div>
 </div>
