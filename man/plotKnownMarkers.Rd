@@ -11,22 +11,25 @@ plotKnownMarkers(object, markers, ...)
 
 
   \S4method{plotKnownMarkers}{SingleCellExperiment,KnownSeuratMarkers}(object,
-  markers, reducedDim = "TSNE", headerLevel = 2L, ...)
+  markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
+  ...)
 
 \S4method{plotKnownMarkers}{seurat,KnownSeuratMarkers}(object, markers,
-  reducedDim = "TSNE", headerLevel = 2L, ...)
+  reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cellType}".}
 
-\item{...}{Additional arguments.}
+\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+
+\item{progress}{\code{boolean}. Show progress, using progress bars.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot} \code{list}.

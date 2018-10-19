@@ -16,7 +16,7 @@ NULL
 
 
 
-.show.CellCycleMarkers <-  # nolint
+show.CellCycleMarkers <-  # nolint
     function(object) {
         validObject(object)
 
@@ -54,7 +54,7 @@ NULL
 
 
 
-.show.CellTypeMarkers <-  # nolint
+show.CellTypeMarkers <-  # nolint
     function(object) {
         validObject(object)
 
@@ -92,7 +92,7 @@ NULL
 
 
 # FIXME Need to finish this and add S4 method.
-.show.SeuratMarkers <-  # nolint
+show.SeuratMarkers <-  # nolint
     function(object) {
         validObject(object)
         data <- as(object, "DataFrame")
@@ -126,7 +126,7 @@ NULL
 setMethod(
     f = "show",
     signature = signature("CellCycleMarkers"),
-    definition = .show.CellCycleMarkers
+    definition = show.CellCycleMarkers
 )
 
 
@@ -137,5 +137,5 @@ setMethod(
 setMethod(
     f = "show",
     signature = signature("CellTypeMarkers"),
-    definition = .show.CellTypeMarkers
+    definition = show.CellTypeMarkers
 )

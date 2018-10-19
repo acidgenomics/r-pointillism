@@ -88,6 +88,8 @@ dots (\code{FALSE}).}
 
 \item{pointSize}{\code{scalar numeric}. Cell point size.}
 
+\item{progress}{\code{boolean}. Show progress, using progress bars.}
+
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 

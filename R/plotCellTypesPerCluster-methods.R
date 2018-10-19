@@ -1,29 +1,3 @@
-# FIXME Need to update to use SeuratMarkers class.
-# FIXME Add progress option, switching pbapply.
-# FIXME Ensure "PC1" in axis label instead of "pc1".
-
-
-
-# ### cell_type_2
-#
-# Error in UseMethod("depth") :
-#     no applicable method for 'depth' applied to an object of class "NULL"
-# Calls: run_examples ... popgrobvp -> popgrobvp.viewport -> upViewport -> depth
-
-# Error in grid.Call.graphics(C_setviewport, vp, TRUE) :
-#     non-finite location and/or size for viewport
-# Calls: plotCellTypesPerCluster ... push.vp.vpList -> push.vp -> push.vp.viewport -> grid.Call.graphics
-
-
-### cell_type_1
-
-# Error in dn[[2L]] : subscript out of bounds
-# Calls: <Anonymous> ... replay_stop.list -> lapply -> FUN -> replay_stop.error
-# Loading pointillism
-# Execution halted
-
-
-
 #' Plot Cell Types per Cluster
 #'
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -49,7 +23,7 @@ NULL
 
 
 
-.plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
+plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
@@ -57,7 +31,9 @@ NULL
         max = Inf,
         reducedDim,
         expression,
-        headerLevel = 2L
+        headerLevel = 2L,
+        progress = FALSE,
+        ...
     ) {
         # Passthrough: color, dark.
         validObject(object)
@@ -65,6 +41,12 @@ NULL
         assert_is_scalar(reducedDim)
         expression <- match.arg(expression)
         assertIsHeaderLevel(headerLevel)
+        assert_is_a_bool(progress)
+        if (isTRUE(progress)) {
+            applyFun <- pblapply
+        } else {
+            applyFun <- lapply
+        }
 
         markers <- cellTypesPerCluster(
             object = markers,
@@ -80,7 +62,7 @@ NULL
             unique()
         assert_is_non_empty(clusters)
 
-        return <- pblapply(clusters, function(cluster) {
+        return <- applyFun(clusters, function(cluster) {
             markdownHeader(
                 text = paste("Cluster", cluster),
                 level = headerLevel,
@@ -114,12 +96,12 @@ NULL
                     )
                     # Modify the title by adding the cluster number.
                     title <- paste(paste0("Cluster ", cluster, ":"), title)
-                    # FIXME This step is breaking.
                     p <- plotMarker(
                         object = object,
                         genes = genes,
                         reducedDim = reducedDim,
-                        expression = expression
+                        expression = expression,
+                        ...
                     )
                     show(p)
                     invisible(p)
@@ -129,8 +111,10 @@ NULL
 
         invisible(return)
     }
-formals(.plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <- reducedDim
-formals(.plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <- expression
+formals(plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <-
+    reducedDim
+formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
+    expression
 
 
 
@@ -139,7 +123,7 @@ formals(.plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <- expres
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .plotCellTypesPerCluster.SingleCellExperiment
+    definition = plotCellTypesPerCluster.SingleCellExperiment
 )
 
 

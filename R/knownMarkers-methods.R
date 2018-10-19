@@ -35,7 +35,7 @@ NULL
 
 
 
-.knownMarkers.SeuratMarkers <-  # nolint
+knownMarkers.SeuratMarkers <-  # nolint
     function(
         all,
         known,
@@ -116,5 +116,5 @@ setMethod(
         all = "SeuratMarkers",
         known = "CellTypeMarkers"
     ),
-    definition = .knownMarkers.SeuratMarkers
+    definition = knownMarkers.SeuratMarkers
 )

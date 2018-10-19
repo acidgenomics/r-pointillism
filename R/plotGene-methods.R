@@ -1,7 +1,3 @@
-# FIXME Use `basejump.` instead of `basejump.` for globals.
-
-
-
 #' @importFrom basejump plotGene
 #' @aliases NULL
 #' @export
@@ -103,10 +99,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 
-# FIXME Need to fix the color scale argument here. It's continuous.
-# FIXME Share this default with `plotMarker`.
-# FIXME Set shared formals.
-.plotDot.SingleCellExperiment <- function(
+plotDot.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -201,7 +194,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
     p
 }
-formals(.plotDot.SingleCellExperiment)[c(
+formals(plotDot.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -211,7 +204,7 @@ formals(.plotDot.SingleCellExperiment)[c(
 
 
 
-.plotViolin.SingleCellExperiment <- function(
+plotViolin.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -258,7 +251,7 @@ formals(.plotDot.SingleCellExperiment)[c(
     }
 
     p <- ggplot(
-        data = as.data.frame(data),
+        data = as_tibble(data),
         mapping = aes(
             x = !!sym(x),
             y = !!sym("logcounts"),
@@ -306,7 +299,7 @@ formals(.plotDot.SingleCellExperiment)[c(
 
     p
 }
-formals(.plotViolin.SingleCellExperiment)[c(
+formals(plotViolin.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -345,7 +338,7 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = .plotDot.SingleCellExperiment
+    definition = plotDot.SingleCellExperiment
 )
 
 
@@ -368,7 +361,7 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = .plotViolin.SingleCellExperiment
+    definition = plotViolin.SingleCellExperiment
 )
 
 

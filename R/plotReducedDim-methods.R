@@ -7,6 +7,27 @@
 #' Colors using `ident` column defined in [SummarizedExperiment::colData()] by
 #' default.
 #'
+#' @section UMAP calculation:
+#'
+#' [UMAP][] calculation in R requires the [Python][] module `umap-learn`.
+#'
+#' We recommend installing this with [conda][]:
+#'
+#' ```
+#' conda install -c conda-forge umap-learn
+#' ```
+#'
+#' The UMAP module can be loaded in R using [reticulate][]. Reticulate works
+#' reliably when setting `RETICULATE_PYTHON` to point to your conda python
+#' binary. Export this variable in  `~/.Renviron`.
+#'
+#' See [base::Sys.getenv()] for more information on the R system environment.
+#'
+#' [conda]: https://conda.io
+#' [Python]: https://www.python.org
+#' [UMAP]: https://github.com/lmcinnes/umap
+#' [reticulate]: https://rstudio.github.io/reticulate/
+#'
 #' @name plotReducedDim
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
@@ -15,12 +36,8 @@
 #'
 #' @inheritParams general
 #'
-#' @note [plotUMAP()] requires the Python dependency `umap-learn`. We recommend
-#' installing this with conda: `conda install -c conda-forge umap-learn`.
-#'
 #' @seealso
 #' - [Seurat::DimPlot()].
-#' - [UMAP GitHub repo](https://github.com/lmcinnes/umap).
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @return `ggplot`.
