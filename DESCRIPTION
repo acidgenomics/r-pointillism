@@ -94,6 +94,7 @@ Collate:
     'fetchData-internal.R'
     'findMarkers-methods.R'
     'general.R'
+    'importMarkers.R'
     'knownMarkers-methods.R'
     'makeCellTypeMarkersFromGoogle.R'
     'markers.R'
