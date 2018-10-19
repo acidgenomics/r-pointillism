@@ -35,13 +35,9 @@
 #'
 #' @examples
 #' data(seurat_small)
-#' object <- seurat_small
-#' ## Example using 100 genes, 100 cells.
-#' Y <- as(object, "SingleCellExperiment")
-#' Y <- Y[seq_len(100L), seq_len(100L)]
+#' Y <- seurat_small
 #' zinb <- suppressMessages(runZinbwave(
 #'     Y = Y,
-#'     BPPARAM = BiocParallel::SerialParam(),
 #'     recalculate = TRUE
 #' ))
 #' print(zinb)

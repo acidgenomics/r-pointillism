@@ -80,7 +80,7 @@ Plot Feature
 }
 \examples{
 data(seurat_small)
-plotFeature(seurat_small, features = c("nUMI", "nGene", "mitoRatio"))
+plotFeature(seurat_small, features = c("nUMI", "nGene"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
