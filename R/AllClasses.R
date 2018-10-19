@@ -1,3 +1,10 @@
+.prototypeMetadata <- list(
+    version = packageVersion("pointillism"),
+    date = Sys.Date()
+)
+
+
+
 # S3 classes ===================================================================
 # package_version
 setOldClass(Classes = class(packageVersion("base")))
@@ -22,8 +29,6 @@ setClass(
     contains = "DataFrame"
 )
 
-
-
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
@@ -45,8 +50,6 @@ setValidity(
     }
 )
 
-
-
 # CellTypeMarkers ==============================================================
 #' `CellTypeMarkers` Class
 #'
@@ -61,8 +64,6 @@ setClass(
     Class = "CellTypeMarkers",
     contains = "DataFrame"
 )
-
-
 
 setValidity(
     Class = "CellTypeMarkers",
@@ -100,8 +101,6 @@ setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame"
 )
-
-
 
 setValidity(
     Class = "SeuratMarkers",
@@ -195,8 +194,6 @@ setClass(
     Class = "KnownSeuratMarkers",
     contains = "SeuratMarkers"
 )
-
-
 
 # FIXME
 # KnownSeuratMarkers

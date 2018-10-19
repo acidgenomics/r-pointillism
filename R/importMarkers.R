@@ -1,0 +1,77 @@
+#' Import Markers from Google
+#'
+#' Currently designed for internal use by the pointillism package.
+#'
+#' @note Google Sheets requires OAuth authentication.
+#'
+#' @name importMarkers
+#'
+#' @inheritParams general
+#' @inheritParams basejump::makeGRanges
+#' @inheritParams googlesheets::gs_read
+#'
+#' @param gs `string`. Google Sheets `sheet_key` identifier, which
+#'   can be located with the [googlesheets::gs_ls()] function.
+#' @param gene2symbol `Gene2Symbol`. Gene-to-symbol mappings.
+#'
+#' @return `CellCycleMarkers` or `CellTypeMarkers`.
+#'
+#' @seealso
+#' - [googlesheets::gs_key()].
+#' - [googlesheets::gs_read()].
+#'
+#' @examples
+#' ## Must be interactive.
+#' if (isTRUE(interactive())) {
+#'     library(googlesheets)
+#'     gs_ls()
+#'
+#'     ## Gene-to-symbol mappings.
+#'     g2s <- makeGene2SymbolFromEnsembl("Homo sapiens")
+#'
+#'     ## Cell-cycle markers.
+#'     x <- importCellCycleMarkersFromGoogle(
+#'         gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
+#'         ws = "Homo_sapiens",
+#'         gene2symbol = g2s
+#'     )
+#'
+#'     ## Cell-type markers.
+#'     x <- importCellTypeMarkersFromGoogle(
+#'         gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",
+#'         ws = "Homo_sapiens",
+#'         gene2symbol = g2s
+#'     )
+#' }
+NULL
+
+
+
+# Import data from Google Sheets.
+.importFromGoogle <- function(gs, ws) {
+    assert_is_a_string(gs)
+    assert_is_scalar(ws)
+    ss <- gs_key(gs)
+    data <- gs_read(ss = ss, ws = ws)
+    as(data, "DataFrame")
+}
+
+
+
+#' @describeIn importMarkers Import Cell-Cycle Markers from Google
+#' @export
+importCellCycleMarkersFromGoogle <-
+    function(gs, ws, gene2symbol) {
+        data <- .importFromGoogle(gs = gs, ws = ws)
+        CellCycleMarkers(object = data, gene2symbol = gene2symbol)
+    }
+
+
+
+#' @describeIn importMarkers Cell-type markers.
+#' @export
+importCellTypeMarkersFromGoogle <-
+    function(gs, ws, gene2symbol) {
+        data <- .importFromGoogle(gs = gs, ws = ws)
+        CellTypeMarkers(object = data,gene2symbol = gene2symbol)
+    }

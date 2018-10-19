@@ -4,7 +4,7 @@
 \alias{CellCycleMarkers}
 \title{\code{CellCycleMarkers} Class}
 \usage{
-CellCycleMarkers(object, organism = NULL, ensemblRelease = NULL)
+CellCycleMarkers(object, gene2symbol)
 }
 \description{
 Data provenence information, including the organism and Ensembl release are

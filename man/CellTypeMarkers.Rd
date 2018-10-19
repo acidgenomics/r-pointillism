@@ -4,7 +4,7 @@
 \alias{CellTypeMarkers}
 \title{\code{CellTypeMarkers} Class}
 \usage{
-CellTypeMarkers(object, organism = NULL, ensemblRelease = NULL)
+CellTypeMarkers(object, gene2symbol)
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
