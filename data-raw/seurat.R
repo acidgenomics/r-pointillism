@@ -1,11 +1,17 @@
-# SingleCellExperiment Example Data
+# Seurat example data
 # 2018-10-18
+
+# # Restrict to 1 MB.
+# Use `pryr::object_size()` instead of `utils::object.size()`.
+library(pryr)
+limit <- structure(1e6, class = "object_size")
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 # This is not working consistently for me on Linux.
 library(reticulate)
+stopifnot(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
 stopifnot(py_module_available(module = "umap"))
 
 library(splatter)
@@ -14,27 +20,29 @@ library(Matrix)
 library(tidyverse)
 
 library(bcbioSingleCell)
-sce <- bcbioSingleCell::cellranger_small
-organism <- metadata(sce)$organism
-release <- 84
+data(pbmc_small, package = "Seurat")
+object_size(pbmc_small)
+stopifnot(object_size(pbmc_small) < limit)
 
 # seurat_small =================================================================
-seurat_small <- sce %>%
-    convertGenesToSymbols() %>%
-    as("seurat") %>%
-    NormalizeData() %>%
-    FindVariableGenes(do.plot = FALSE) %>%
-    ScaleData() %>%
-    RunPCA(do.print = FALSE) %>%
-    FindClusters(resolution = seq(from = 0.4, to = 1.2, by = 0.4)) %>%
-    RunTSNE(check_duplicates = FALSE) %>%
+seurat_small <- pbmc_small %>%
     RunUMAP() %>%
-    SetAllIdent(id = "res.0.4")
-
-# sce_seurat ===================================================================
-sce_seurat <- seurat_small %>%
-    as("SingleCellExperiment") %>%
     runZinbwave()
+object_size(seurat_small)
+stopifnot(object_size(seurat_small) < limit)
+validObject(seurat_small)
+
+# `Seurat::pbmc_small` gene symbols map to GRCh37.
+gr <- makeGRangesFromEnsembl("Homo sapiens", build = "GRCh37")
+x <- rownames(seurat_small)
+table <- gr$geneName %>%
+    as.character() %>%
+    make.unique()
+names(gr) <- table
+stopifnot(all(x %in% table))
+which <- match(x = x, table = table)
+gr <- gr[which]
+rowRanges(seurat_small) <- gr
 
 # all_markers_small ============================================================
 all_markers_small <- SeuratMarkers(
@@ -53,8 +61,9 @@ known <- new(
     ),
     metadata = list(
         version = packageVersion("pointillism"),
-        organism = organism,
-        ensemblRelease = release,
+        organism = "Homo sapiens",
+        genomeBuild = "GRCh37",
+        ensemblRelease = 75L,
         date = Sys.Date()
     )
 )
@@ -68,7 +77,6 @@ known_markers_small <- knownMarkers(all = all, known = known)
 # Save =========================================================================
 usethis::use_data(
     seurat_small,
-    sce_seurat,
     all_markers_small,
     known_markers_small,
     compress = "xz",

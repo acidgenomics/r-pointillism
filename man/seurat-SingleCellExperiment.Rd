@@ -23,6 +23,7 @@
 \alias{rowData,seurat-method}
 \alias{rownames,seurat-method}
 \alias{rowRanges,seurat-method}
+\alias{rowRanges<-,seurat,ANY-method}
 \alias{sampleData,seurat-method}
 \alias{sampleData<-,seurat,DataFrame-method}
 \alias{sampleNames,seurat-method}
@@ -69,6 +70,8 @@
 \S4method{rownames}{seurat}(x)
 
 \S4method{rowRanges}{seurat}(x)
+
+\S4method{rowRanges}{seurat,ANY}(x) <- value
 
 \S4method{sampleData}{seurat}(object, blacklist = c("^ident$",
   "^origIdent$", "^res[.0-9]+$", "^sScore$", "^g2mScore$", "^phase$"))

@@ -375,6 +375,23 @@ setMethod(
 
 
 
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom SummarizedExperiment rowRanges<-
+#' @export
+setMethod(
+    f = "rowRanges<-",
+    signature = signature("seurat"),
+    definition = function(x, value) {
+        assert_are_identical(rownames(x), names(value))
+        misc <- slot(x, "misc")
+        misc[["rowRanges"]] <- value
+        slot(x, "misc") <- misc
+        x
+    }
+)
+
+
+
 # sampleData ===================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump sampleData
