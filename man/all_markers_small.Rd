@@ -4,7 +4,7 @@
 \name{all_markers_small}
 \alias{all_markers_small}
 \title{Sanitized Markers Example}
-\format{An object of class \code{SeuratMarkers} with 607 rows and 8 columns.}
+\format{An object of class \code{SeuratMarkers} with 208 rows and 8 columns.}
 \usage{
 all_markers_small
 }

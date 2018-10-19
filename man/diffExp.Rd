@@ -33,12 +33,11 @@ Defaults to \code{"edgeR"} (faster for large datasets) but \code{"DESeq2"} is al
 supported.}
 
 \item{minCellsPerGene}{\code{scalar integer}. The minimum number of cells where a
-gene is expressed, to pass low expression filtering. Set to \code{0} to disable
-(\emph{not recommended}).}
+gene is expressed, to pass low expression filtering.}
 
 \item{minCountsPerCell}{\code{scalar integer}. Minimum number of counts per cell
 for a gene to pass low expression filtering. The number of cells is defined
-by \code{minCellsPerGene}. Set to \code{0} to disable (\emph{not recommended}).}
+by \code{minCellsPerGene}.}
 }
 \value{
 Varies depending on the \code{caller} argument:
@@ -110,6 +109,39 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seur
 additional information.
 }
 
+\examples{
+data(seurat_small)
+
+# Calculate ZINB weights (already stashed).
+# seurat_small <- runZinbwave(seurat_small)
+
+# Compare expression in cluster 3 relative to 2.
+ident <- clusterID(seurat_small)
+numerator <- names(ident)[ident == "3"]
+summary(numerator)
+denominator <- names(ident)[ident == "2"]
+summary(denominator)
+
+# edgeR.
+x <- diffExp(
+    object = object,
+    numerator = numerator,
+    denominator = denominator,
+    caller = "edgeR"
+)
+class(x)
+summary(x)
+
+# DESeq2.
+x <- diffExp(
+    object = object,
+    numerator = numerator,
+    denominator = denominator,
+    caller = "DESeq2"
+)
+class(x)
+summary(x)
+}
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 
