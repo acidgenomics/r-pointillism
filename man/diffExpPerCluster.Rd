@@ -31,8 +31,8 @@ diffExpPerCluster(object, ...)
 Differential Expression per Cluster
 }
 \note{
-Cluster identity (\code{ident}) must be defined in \code{colData()} for this
-function to work.
+Cluster identity (\code{ident}) must be defined in
+\code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}} for this function to work.
 }
 \examples{
 data(seurat_small)

@@ -1,13 +1,10 @@
-# Rethink how this works. Improve the formals.
-
-
-
 #' Plot Known Markers
 #'
 #' @name plotKnownMarkers
 #'
 #' @inheritParams general
 #' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
@@ -21,12 +18,13 @@ NULL
 
 
 
-.plotKnownMarkers.SingleCellExperiment <-  # nolint
+plotKnownMarkers.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
         reducedDim,
         headerLevel,
+        progress = FALSE,
         ...
     ) {
         validObject(object)
@@ -37,6 +35,12 @@ NULL
         )
         assert_is_scalar(reducedDim)
         assertIsHeaderLevel(headerLevel)
+        assert_is_a_bool(progress)
+        if (isTRUE(progress)) {
+            applyFun <- pblapply
+        } else {
+            applyFun <- lapply
+        }
 
         # Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
@@ -49,7 +53,7 @@ NULL
             unique()
         assert_is_non_empty(cellTypes)
 
-        list <- pblapply(cellTypes, function(cellType) {
+        list <- applyFun(cellTypes, function(cellType) {
             genes <- markers %>%
                 as_tibble() %>%
                 filter(cellType == !!cellType) %>%
@@ -70,7 +74,8 @@ NULL
                 p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reducedDim = reducedDim
+                    reducedDim = reducedDim,
+                    ...
                 )
                 show(p)
                 invisible(p)
@@ -79,7 +84,7 @@ NULL
 
         invisible(list)
     }
-formals(.plotKnownMarkers.SingleCellExperiment)[c(
+formals(plotKnownMarkers.SingleCellExperiment)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -97,7 +102,7 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownSeuratMarkers"
     ),
-    definition = .plotKnownMarkers.SingleCellExperiment
+    definition = plotKnownMarkers.SingleCellExperiment
 )
 
 

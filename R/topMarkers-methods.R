@@ -24,7 +24,7 @@ NULL
 
 
 
-.topMarkers.SeuratMarkers <-  # nolint
+topMarkers.SeuratMarkers <-  # nolint
     function(
         object,
         n = 10L,
@@ -73,7 +73,7 @@ NULL
             data
         }
     }
-formals(.topMarkers.SeuratMarkers)[["direction"]] <- direction
+formals(topMarkers.SeuratMarkers)[["direction"]] <- direction
 
 
 
@@ -82,5 +82,5 @@ formals(.topMarkers.SeuratMarkers)[["direction"]] <- direction
 setMethod(
     f = "topMarkers",
     signature = signature("SeuratMarkers"),
-    definition = .topMarkers.SeuratMarkers
+    definition = topMarkers.SeuratMarkers
 )

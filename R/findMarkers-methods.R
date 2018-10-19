@@ -25,7 +25,7 @@ NULL
 
 
 
-.findMarkers.SingleCellExperiment <-  # nolint
+findMarkers.SingleCellExperiment <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
 
@@ -70,7 +70,7 @@ NULL
 setMethod(
     f = "findMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = .findMarkers.SingleCellExperiment
+    definition = findMarkers.SingleCellExperiment
 )
 
 

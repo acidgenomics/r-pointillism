@@ -28,7 +28,7 @@ NULL
 
 
 
-.plotPCElbow.seurat <-  # nolint
+plotPCElbow.seurat <-  # nolint
     function(
         object,
         minSD = 1L,
@@ -162,5 +162,5 @@ NULL
 setMethod(
     f = "plotPCElbow",
     signature = signature("seurat"),
-    definition = .plotPCElbow.seurat
+    definition = plotPCElbow.seurat
 )

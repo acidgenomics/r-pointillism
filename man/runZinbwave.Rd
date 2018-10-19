@@ -5,7 +5,8 @@
 \alias{runZinbwave}
 \alias{runZinbwave,SingleCellExperiment-method}
 \alias{runZinbwave,seurat-method}
-\title{Calculate ZINB-WaVE Weights}
+\title{Perform dimensionality reduction using a ZINB regression model with
+gene and cell-level covariates.}
 \usage{
 runZinbwave(Y, ...)
 
@@ -26,12 +27,9 @@ computing observational weights.}
 
 \item{epsilon}{nonnegative scalar. Regularization parameter.}
 
-\item{BPPARAM}{BiocParallel param. We recommend one of the following:
-\itemize{
-\item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
-\item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
-\item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
-}}
+\item{BPPARAM}{object of class \code{bpparamClass} that specifies the
+back-end to be used for computations. See
+\code{\link[BiocParallel]{bpparam}} for details.}
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
@@ -39,12 +37,16 @@ computing observational weights.}
 }
 \value{
 Modified object (S4 class must extend \code{SingleCellExperiment}), with
-weights added to \code{\link[=assays]{assays()}}.
+weights added to \code{\link[SummarizedExperiment:assays]{SummarizedExperiment::assays()}}.
 }
 \description{
-zinbwave will calculate \code{normalizedValues} and \code{weights} matrices, which will
-be defined in the \code{\link[=assays]{assays()}} slot. If these values have already been
-calculated, the object will be returned unmodified, unless
+Given an object with the data, it performs dimensionality reduction using
+a ZINB regression model with gene and cell-level covariates.
+}
+\details{
+\href{https://bioconductor.org/packages/release/bioc/html/zinbwave.html}{zinbwave} will calculate \code{normalizedValues} and \code{weights} matrices, which will
+be defined in the \code{\link[SummarizedExperiment:assays]{SummarizedExperiment::assays()}} slot. If these values have
+already been calculated, the object will be returned unmodified, unless
 \code{recalculate = TRUE}.
 }
 \section{Methods (by class)}{
@@ -53,14 +55,17 @@ calculated, the object will be returned unmodified, unless
 in the \code{\link[=weights]{weights()}} slot.
 }}
 
-\note{
-zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the
-number of cores to use (\code{bpparam} argument), but we've found that this
-works inconsistently across installations. Currently, we recommend using
+\section{Parallelization}{
+
+
+zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the number
+of cores to use (\code{bpparam} argument), but we've found that this works
+inconsistently across installations. Currently, we recommend using
 \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}} by default, which will run in serial, using a
-single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}} should
-work to run with multiple cores.
+single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}} should work
+to run with multiple cores.
 }
+
 \examples{
 data(seurat_small)
 Y <- seurat_small

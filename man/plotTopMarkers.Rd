@@ -11,16 +11,16 @@ plotTopMarkers(object, ...)
 
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
-  headerLevel = 2L, ...)
+  headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotTopMarkers}{seurat}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
-  headerLevel = 2L, ...)
+  headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
+\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cluster}".}
 
@@ -34,6 +34,8 @@ association per cluster.}
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+
+\item{progress}{\code{boolean}. Show progress, using progress bars.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot} \code{list}.
