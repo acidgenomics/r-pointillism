@@ -32,8 +32,3 @@ data(known_markers_small)
 x <- cellTypesPerCluster(known_markers_small)
 print(x)
 }
-\seealso{
-Other Cluster Statistics Functions: \code{\link{cellCountsPerCluster}},
-  \code{\link{clusterCellCountsPerSample}}
-}
-\concept{Cluster Statistics Functions}

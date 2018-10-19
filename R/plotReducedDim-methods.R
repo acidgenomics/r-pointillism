@@ -8,7 +8,6 @@
 #' default.
 #'
 #' @name plotReducedDim
-#' @family Plot Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
 #'
@@ -44,7 +43,7 @@ NULL
 
 
 # Constructors =================================================================
-.plotReducedDim.SCE <- function(
+.plotReducedDim.SingleCellExperiment <- function(
     object,
     reducedDim,
     dimsUse,
@@ -175,7 +174,7 @@ NULL
 
     p
 }
-formals(.plotReducedDim.SCE)[c(
+formals(.plotReducedDim.SingleCellExperiment)[c(
     "color",
     "dark",
     "dimsUse",
@@ -199,7 +198,7 @@ formals(.plotReducedDim.SCE)[c(
 
 
 
-.plotPCA.SCE <- function() {
+.plotPCA.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
@@ -210,7 +209,7 @@ formals(.plotReducedDim.SCE)[c(
 
 
 
-.plotTSNE.SCE <- function() {
+.plotTSNE.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
@@ -219,7 +218,7 @@ formals(.plotReducedDim.SCE)[c(
 
 
 
-.plotUMAP.SCE <- function() {
+.plotUMAP.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
@@ -230,11 +229,11 @@ formals(.plotReducedDim.SCE)[c(
 
 # Formals ======================================================================
 # Set the formals for the convenience functions.
-f <- formals(.plotReducedDim.SCE)
+f <- formals(.plotReducedDim.SingleCellExperiment)
 f <- f[setdiff(names(f), "reducedDim")]
-formals(.plotPCA.SCE) <- f
-formals(.plotTSNE.SCE) <- f
-formals(.plotUMAP.SCE) <- f
+formals(.plotPCA.SingleCellExperiment) <- f
+formals(.plotTSNE.SingleCellExperiment) <- f
+formals(.plotUMAP.SingleCellExperiment) <- f
 rm(f)
 
 
@@ -245,7 +244,7 @@ rm(f)
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = .plotReducedDim.SCE
+    definition = .plotReducedDim.SingleCellExperiment
 )
 
 
@@ -268,7 +267,7 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = .plotTSNE.SCE
+    definition = .plotTSNE.SingleCellExperiment
 )
 
 
@@ -291,7 +290,7 @@ setMethod(
 setMethod(
     "plotUMAP",
     signature("SingleCellExperiment"),
-    .plotUMAP.SCE
+    .plotUMAP.SingleCellExperiment
 )
 
 
@@ -314,7 +313,7 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = .plotPCA.SCE
+    definition = .plotPCA.SingleCellExperiment
 )
 
 

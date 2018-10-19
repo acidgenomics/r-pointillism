@@ -69,8 +69,8 @@ dots (\code{FALSE}).}
 
 \item{legend}{\code{boolean}. Include plot legend.}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[=match.arg]{match.arg()}} and
-defaults to the first argument in the \code{character} vector.}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+and defaults to the first argument in the \code{character} vector.}
 }
 \value{
 \code{ggplot} or \code{list}.
@@ -84,11 +84,4 @@ plotFeature(seurat_small, features = c("nUMI", "nGene"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
-
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotKnownMarkers}},
-  \code{\link{plotMarker}}, \code{\link{plotPCElbow}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
 }
-\concept{Plot Functions}

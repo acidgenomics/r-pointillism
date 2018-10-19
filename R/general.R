@@ -29,8 +29,8 @@
 #'   calculations. Defaults the first and second dimensions.
 #' @param dir `string`. Output directory path.
 #' @param ensemblRelease `scalar integer`. Ensembl release version (e.g. `90`).
-#' @param expression `string`. Calculation to apply. Uses [match.arg()] and
-#'   defaults to the first argument in the `character` vector.
+#' @param expression `string`. Calculation to apply. Uses [base::match.arg()]
+#'   and defaults to the first argument in the `character` vector.
 #' @param fill `ggproto`/`ScaleDiscrete` or `NULL`. Desired ggplot2 fill scale.
 #'   Must supply discrete values. When set to `NULL`, the default ggplot2 color
 #'   palette will be used. If manual color definitions are desired, we recommend
@@ -39,8 +39,8 @@
 #'   `options(bcbio.discrete.fill = scale_fill_viridis_d())`.
 #' @param genes `character`. Gene identifiers. Must match the rownames of the
 #'   object.
-#' @param geom `string`. Plot type. Uses [match.arg()] and defaults to the first
-#'   argument in the `character` vector.
+#' @param geom `string`. Plot type. Uses [base::match.arg()] and defaults to the
+#'   first argument in the `character` vector.
 #' @param headerLevel `scalar integer` (`1`-`7`). R Markdown header level.
 #' @param interestingGroups `character` or `NULL`. Character vector of
 #'   interesting groups. Must be formatted in camel case and intersect with

@@ -58,7 +58,7 @@ plotViolin(object, ...)
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
 
-\item{geom}{\code{string}. Plot type. Uses \code{\link[=match.arg]{match.arg()}} to pick the type.
+\item{geom}{\code{string}. Plot type. Uses \code{\link[base:match.arg]{base::match.arg()}} to pick the type.
 Currently supports "\code{dot}" and "\code{violin}".}
 
 \item{perSample}{\code{boolean}. Visualize the distributions per sample?}
@@ -121,11 +121,4 @@ plotViolin(object, genes = geneIDs, perSample = FALSE)
 \item \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
 \item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
 }
-
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
-  \code{\link{plotPCElbow}}, \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
 }
-\concept{Plot Functions}

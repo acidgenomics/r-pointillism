@@ -48,11 +48,4 @@ plotPCElbow(pbmc_small)
 \itemize{
 \item \code{\link[Seurat:PCElbowPlot]{Seurat::PCElbowPlot()}}.
 }
-
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
-  \code{\link{plotReducedDim}},
-  \code{\link{plotTopMarkers}}
 }
-\concept{Plot Functions}

@@ -9,7 +9,6 @@
 #' Plot Feature
 #'
 #' @name plotFeature
-#' @family Plot Functions
 #'
 #' @inheritParams general
 #' @param features `character`. Features to plot (e.g. gene expression, PC
@@ -27,7 +26,7 @@ NULL
 
 
 # Note: We aren't using `title` argument here.
-.plotFeature.SCE <- function(
+.plotFeature.SingleCellExperiment <- function(
     object,
     features,
     reducedDim,
@@ -162,7 +161,7 @@ NULL
         plotlist[[1L]]
     }
 }
-formals(.plotFeature.SCE)[c(
+formals(.plotFeature.SingleCellExperiment)[c(
     "color",
     "dark",
     "expression",
@@ -194,7 +193,7 @@ formals(.plotFeature.SCE)[c(
 setMethod(
     f = "plotFeature",
     signature = signature("SingleCellExperiment"),
-    definition = .plotFeature.SCE
+    definition = .plotFeature.SingleCellExperiment
 )
 
 

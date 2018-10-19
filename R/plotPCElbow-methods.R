@@ -6,7 +6,6 @@
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
 #' @name plotPCElbow
-#' @family Plot Functions
 #'
 #' @inheritParams general
 #' @param minSD `scalar numeric`. Minimum standard deviation.

@@ -15,9 +15,4 @@ Sanitized Markers Example
 data(all_markers_small)
 all_markers_small
 }
-\seealso{
-Other Minimal Example Data: \code{\link{known_markers_small}},
-  \code{\link{seurat_small}}
-}
-\concept{Minimal Example Data}
 \keyword{datasets}

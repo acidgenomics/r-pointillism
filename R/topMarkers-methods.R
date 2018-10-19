@@ -1,7 +1,6 @@
 #' Top Markers
 #'
 #' @name topMarkers
-#' @family Marker Functions
 #' @include globals.R
 #'
 #' @inheritParams general

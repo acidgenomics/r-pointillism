@@ -8,7 +8,6 @@
 #'   function to work.
 #'
 #' @name diffExpPerCluster
-#' @family Differential Expression Functions
 #'
 #' @inheritParams general
 #' @param ... Passthrough arguments to [diffExp()].
@@ -37,7 +36,7 @@ NULL
 
 
 
-.diffExpPerCluster.SCE <-  # nolint
+.diffExpPerCluster.SingleCellExperiment <-  # nolint
     function(
         object,
         group,
@@ -103,7 +102,7 @@ NULL
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .diffExpPerCluster.SCE
+    definition = .diffExpPerCluster.SingleCellExperiment
 )
 
 

@@ -189,13 +189,7 @@ plotPCA(object)
 \item \href{https://github.com/lmcinnes/umap}{UMAP GitHub repo}.
 \item \href{https://satijalab.org/seurat/mca.html}{Seurat Mouse Cell Atlas vignette}.
 }
-
-Other Plot Functions: \code{\link{plotCellTypesPerCluster}},
-  \code{\link{plotDot}}, \code{\link{plotFeature}},
-  \code{\link{plotKnownMarkers}}, \code{\link{plotMarker}},
-  \code{\link{plotPCElbow}}, \code{\link{plotTopMarkers}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
 }
-\concept{Plot Functions}

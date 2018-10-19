@@ -13,7 +13,6 @@
 #' for the number of genes to plot here in a future update.
 #'
 #' @name plotTopMarkers
-#' @family Plot Functions
 #' @include globals.R
 #'
 #' @inheritParams general
@@ -29,7 +28,7 @@ NULL
 
 
 
-.plotTopMarkers.SCE <-  # nolint
+.plotTopMarkers.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
@@ -87,8 +86,8 @@ NULL
 
         invisible(list)
     }
-formals(.plotTopMarkers.SCE)[["direction"]] <- direction
-formals(.plotTopMarkers.SCE)[["reducedDim"]] <- reducedDim
+formals(.plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
+formals(.plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
 
 
 
@@ -97,7 +96,7 @@ formals(.plotTopMarkers.SCE)[["reducedDim"]] <- reducedDim
 setMethod(
     f = "plotTopMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = .plotTopMarkers.SCE
+    definition = .plotTopMarkers.SingleCellExperiment
 )
 
 
