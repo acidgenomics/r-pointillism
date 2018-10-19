@@ -11,7 +11,7 @@
 #' @return `CellCycleMarkers`.
 #' @examples
 #' \dontrun{
-#' # Google Sheets method (requires OAuth).
+#' ## Google Sheets method (requires OAuth).
 #' x <- CellCycleMarkers(
 #'     gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
 #'     ws = "Homo_sapiens",

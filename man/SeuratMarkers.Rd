@@ -34,7 +34,7 @@ the rownames of the returned marker \code{data.frame}.
 data(seurat_small)
 object <- seurat_small
 
-# `FindAllMarkers()` return.
+## `FindAllMarkers()` return.
 invisible(capture.output(
     all_markers <- Seurat::FindAllMarkers(object)
 ))
@@ -44,7 +44,7 @@ all_sanitized <- SeuratMarkers(
 )
 str(all_sanitized)
 
-# `FindMarkers()` return.
+## `FindMarkers()` return.
 invisible(capture.output(
     ident_3_markers <- Seurat::FindMarkers(
         object = object,

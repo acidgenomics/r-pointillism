@@ -64,7 +64,7 @@ work to run with multiple cores.
 \examples{
 data(seurat_small)
 object <- seurat_small
-# Example using 100 genes, 100 cells.
+## Example using 100 genes, 100 cells.
 Y <- as(object, "SingleCellExperiment")
 Y <- Y[seq_len(100L), seq_len(100L)]
 zinb <- suppressMessages(runZinbwave(

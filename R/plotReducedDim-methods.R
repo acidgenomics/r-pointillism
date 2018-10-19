@@ -30,14 +30,14 @@
 #' data(seurat_small)
 #' object <- seurat_small
 #'
-#' # t-SNE
+#' ## t-SNE
 #' plotTSNE(object)
 #' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 #'
-#' # UMAP
+#' ## UMAP
 #' plotUMAP(object)
 #'
-#' # PCA
+#' ## PCA
 #' plotPCA(object)
 NULL
 
