@@ -4,7 +4,7 @@
 \name{known_markers_small}
 \alias{known_markers_small}
 \title{Known Markers Example}
-\format{An object of class \code{KnownSeuratMarkers} with 11 rows and 9 columns.}
+\format{An object of class \code{KnownSeuratMarkers} with 2 rows and 9 columns.}
 \usage{
 known_markers_small
 }
