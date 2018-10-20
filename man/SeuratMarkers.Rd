@@ -18,7 +18,7 @@ the ranges and arrange them alphabetically.}
 discovery rate).}
 }
 \value{
-\code{SeuratMarkers}. Results are arranged by adjusted P value, and
+\code{SeuratMarkers}. Results are arranged by adjusted \emph{P} value, and
 grouped per cluster if applicable.
 }
 \description{
@@ -42,7 +42,7 @@ all_sanitized <- SeuratMarkers(
     markers = all_markers,
     ranges = rowRanges(object)
 )
-str(all_sanitized)
+summary(all_sanitized)
 
 ## `FindMarkers()` return.
 invisible(capture.output(
@@ -56,5 +56,5 @@ ident_3_sanitized <- SeuratMarkers(
     markers = ident_3_markers,
     ranges = rowRanges(object)
 )
-str(ident_3_sanitized)
+summary(ident_3_sanitized)
 }

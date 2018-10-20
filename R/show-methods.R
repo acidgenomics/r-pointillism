@@ -1,7 +1,3 @@
-# FIXME Need to add working examples.
-
-
-
 #' @importFrom methods show
 #' @aliases NULL
 #' @export
