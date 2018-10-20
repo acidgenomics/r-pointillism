@@ -3,6 +3,8 @@
 #' This generator function is designed to take the original return from a Seurat
 #' marker analysis and add corresponding gene annotations.
 #'
+#' @export
+#'
 #' @note [Seurat::FindAllMarkers()] maps the counts matrix rownames correctly in
 #'   the `gene` column, whereas [Seurat::FindMarkers()] maps them correctly in
 #'   the rownames of the returned marker `data.frame`.
@@ -14,9 +16,8 @@
 #'   rownames defined in `seurat@data`. The function will automatically subset
 #'   the ranges and arrange them alphabetically.
 #'
-#' @return `SeuratMarkers`. Results are arranged by adjusted P value, and
+#' @return `SeuratMarkers`. Results are arranged by adjusted *P* value, and
 #'   grouped per cluster if applicable.
-#' @export
 #'
 #' @examples
 #' data(seurat_small)
@@ -30,7 +31,7 @@
 #'     markers = all_markers,
 #'     ranges = rowRanges(object)
 #' )
-#' str(all_sanitized)
+#' summary(all_sanitized)
 #'
 #' ## `FindMarkers()` return.
 #' invisible(capture.output(
@@ -44,7 +45,7 @@
 #'     markers = ident_3_markers,
 #'     ranges = rowRanges(object)
 #' )
-#' str(ident_3_sanitized)
+#' summary(ident_3_sanitized)
 SeuratMarkers <- function(
     markers,
     ranges,
