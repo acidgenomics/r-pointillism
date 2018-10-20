@@ -26,9 +26,6 @@ CellTypeMarkers <- function(object, gene2symbol) {
 
 
 
-# FIXME Improve prototype metadata stash here.
-# Internal generator for either cell cycle or cell type markers.
-# We're combining the code for loading from CSV or Google sheets here.
 .prepareMarkers <- function(
     object,
     gene2symbol,
