@@ -206,13 +206,13 @@ setAs(
 
 
 
-# SeuratMarkers to tbl_df ======================================================
+# Markers to tbl_df ======================================================
 #' @rdname as
-#' @name coerce,SeuratMarkers,tbl_df-method
-#' @section `SeuratMarkers` to `tbl_df`:
-#' S4 coercion support for creating a `tbl_df` from a `SeuratMarkers` object.
+#' @name coerce,Markers,tbl_df-method
+#' @section `Markers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from a `Markers` object.
 setAs(
-    from = "SeuratMarkers",
+    from = "Markers",
     to = "tbl_df",
     def = function(from) {
         validObject(from)
