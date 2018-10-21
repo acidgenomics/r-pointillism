@@ -1,4 +1,5 @@
 # TODO Improve the documentation here.
+# TODO Add `as_tibble()` method support.
 
 
 
@@ -27,6 +28,46 @@
 #' x <- as(seurat_small, "SingleCellExperiment")
 #' print(x)
 NULL
+
+
+
+# CellCycleMarkers to tbl_df ===================================================
+#' @rdname as
+#' @name coerce,CellCycleMarkers,tbl_df-method
+#' @section `CellCycleMarkers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `CellCycleMarkers`.
+setAs(
+    from = "CellCycleMarkers",
+    to = "tbl_df",
+    def = function(from) {
+        validObject(from)
+        data <- do.call(what = rbind, args = from)
+        data <- as(data, "tbl_df")
+        message("Grouping by phase.")
+        data <- group_by(data, !!sym("phase"))
+        data
+    }
+)
+
+
+
+# CellTypeMarkers to tbl_df ====================================================
+#' @rdname as
+#' @name coerce,CellTypeMarkers,tbl_df-method
+#' @section `CellTypeMarkers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `CellTypeMarkers`.
+setAs(
+    from = "CellTypeMarkers",
+    to = "tbl_df",
+    def = function(from) {
+        validObject(from)
+        data <- do.call(what = rbind, args = from)
+        data <- as(data, "tbl_df")
+        message("Grouping by cellType.")
+        data <- group_by(data, !!sym("cellType"))
+        data
+    }
+)
 
 
 
