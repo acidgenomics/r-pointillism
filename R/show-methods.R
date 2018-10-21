@@ -1,3 +1,8 @@
+# FIXME Improve appearance.
+# Remove separator bar and import code from basejump.
+
+
+
 #' @importFrom methods show
 #' @aliases NULL
 #' @export
