@@ -15,10 +15,10 @@ setOldClass(Classes = "session_info")
 
 
 # CellCycleMarkers =============================================================
-#' `CellCycleMarkers` Class
+#' Cell-Cycle Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [metadata()].
+#' defined in [S4Vectors::metadata()].
 #'
 #' @family S4 classes
 #' @export
@@ -51,7 +51,7 @@ setValidity(
 )
 
 # CellTypeMarkers ==============================================================
-#' `CellTypeMarkers` Class
+#' Cell-Type Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [metadata()].
@@ -59,10 +59,12 @@ setValidity(
 #' @family S4 classes
 #' @export
 #'
+#' @return
+#'
 #' @seealso [CellTypeMarkers()].
 setClass(
     Class = "CellTypeMarkers",
-    contains = "DataFrame"
+    contains = "DataFrameList"
 )
 
 setValidity(
@@ -89,7 +91,7 @@ setValidity(
 
 
 # SeuratMarkers ================================================================
-#' `SeuratMarkers` Class
+#' Seurat Markers
 #'
 #' Class containing essential elements for Seurat marker gene analysis.
 #'
@@ -97,9 +99,12 @@ setValidity(
 #' @export
 #'
 #' @seealso [SeuratMarkers()].
+#'
+#' @return `SeuratMarkers`. Results are arranged by adjusted *P* value, and
+#'   grouped per cluster if applicable.
 setClass(
     Class = "SeuratMarkers",
-    contains = "DataFrame"
+    contains = "DataFrameList"
 )
 
 setValidity(
@@ -181,7 +186,7 @@ setValidity(
 
 
 # KnownSeuratMarkers ===========================================================
-#' `KnownSeuratMarkers` Class
+#' Known Seurat Markers
 #'
 #' Class containing essential elements for analysis of known, cell-type specific
 #' marker genes.

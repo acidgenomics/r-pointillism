@@ -2,7 +2,7 @@
 % Please edit documentation in R/markers.R
 \name{CellTypeMarkers}
 \alias{CellTypeMarkers}
-\title{\code{CellTypeMarkers} Class}
+\title{Cell-Type Markers}
 \usage{
 CellTypeMarkers(object, gene2symbol)
 }

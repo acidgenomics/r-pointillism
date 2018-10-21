@@ -3,7 +3,7 @@
 \docType{class}
 \name{KnownSeuratMarkers-class}
 \alias{KnownSeuratMarkers-class}
-\title{\code{KnownSeuratMarkers} Class}
+\title{Known Seurat Markers}
 \description{
 Class containing essential elements for analysis of known, cell-type specific
 marker genes.

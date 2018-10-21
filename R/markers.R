@@ -54,13 +54,12 @@ CellTypeMarkers <- function(object, gene2symbol) {
     # This is useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
     if (length(setdiff)) {
-        warning(paste(
-            "Markers missing from gene2symbol (not expressed):",
+        stop(paste(
+            "Markers missing from gene2symbol:",
             printString(setdiff),
             sep = "\n"
         ))
     }
-
     intersect <- intersect(
         x = data[["geneID"]],
         y = gene2symbol[["geneID"]]
@@ -78,6 +77,14 @@ CellTypeMarkers <- function(object, gene2symbol) {
         group_by(!!sym(group)) %>%
         arrange(!!sym("geneName"), .by_group = TRUE) %>%
         as("DataFrame")
+
+    xxx <- split(x = out, f = out[["phase"]], drop = FALSE)
+    xxx <- snake(xxx)
+    assertHasValidNames(xxx)
+
+
+    # Split these into a DataFrameList.
+
     metadata(out) <- metadata(gene2symbol)
     out
 }
