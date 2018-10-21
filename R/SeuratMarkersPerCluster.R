@@ -13,5 +13,5 @@ SeuratMarkersPerCluster <- function(
     out <- split(x = data, f = data[["cluster"]], drop = FALSE)
     names(out) <- paste0("cluster", names(out))
     metadata(out) <- metadata(data)
-    new(Class = "MarkersPerCluster", out)
+    new(Class = "SeuratMarkersPerCluster", out)
 }
