@@ -23,12 +23,12 @@ NULL
 
 
 
-topMarkers.Markers <-  # nolint
+topMarkers.MarkersPerCluster <-  # nolint
     function(
         object,
         n = 10L,
         direction,
-        return = c("SplitDataFrameList", "DataFrame", "tbl_df")
+        return = c("tbl_df", "DataFrame", "SplitDataFrameList")
     ) {
         validObject(object)
         assertIsAnImplicitInteger(n)
@@ -68,11 +68,12 @@ topMarkers.Markers <-  # nolint
             data <- as(data, "DataFrame")
             assert_is_subset("cluster", colnames(data))
             data <- split(x = data, f = data[["cluster"]])
+            names(data) <- paste0("cluster", names(data))
             stopifnot(is(data, "SplitDataFrameList"))
             data
         }
     }
-formals(topMarkers.Markers)[["direction"]] <- direction
+formals(topMarkers.MarkersPerCluster)[["direction"]] <- direction
 
 
 
@@ -80,6 +81,6 @@ formals(topMarkers.Markers)[["direction"]] <- direction
 #' @export
 setMethod(
     f = "topMarkers",
-    signature = signature("Markers"),
-    definition = topMarkers.Markers
+    signature = signature("MarkersPerCluster"),
+    definition = topMarkers.MarkersPerCluster
 )
