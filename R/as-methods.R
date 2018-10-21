@@ -226,11 +226,34 @@ setAs(
         data <- cbind(data, g2s)
         data <- as(data, "tbl_df")
 
-        # Inform the user when sanitizing `Seurat::FindAllMarkers()` return.
-        if ("cluster" %in% colnames(data)) {
-            message("Grouping by cluster.")
-            data <- group_by(data, !!sym("cluster"))
-        }
+        data
+    }
+)
+
+
+
+# MarkersPerCluster to tbl_df ==================================================
+#' @rdname as
+#' @name coerce,MarkersPerCluster,tbl_df-method
+#' @section `MarkersPerCluster` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `MarkersPerCluster`.
+setAs(
+    from = "MarkersPerCluster",
+    to = "tbl_df",
+    def = function(from) {
+        validObject(from)
+        data <- do.call(what = rbind, args = from)
+
+        # Get gene2symbol from slotted ranges.
+        g2s <- mcols(data[["ranges"]])[c("geneID", "geneName")]
+        data[["ranges"]] <- NULL
+
+        assert_are_disjoint_sets(colnames(data), colnames(g2s))
+        data <- cbind(data, g2s)
+        data <- as(data, "tbl_df")
+
+        message("Grouping by cluster.")
+        data <- group_by(data, !!sym("cluster"))
 
         data
     }
