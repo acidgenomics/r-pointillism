@@ -206,13 +206,13 @@ setAs(
 
 
 
-# Markers to tbl_df ======================================================
+# SeuratMarkers to tbl_df ======================================================
 #' @rdname as
-#' @name coerce,Markers,tbl_df-method
-#' @section `Markers` to `tbl_df`:
+#' @name coerce,SeuratMarkers,tbl_df-method
+#' @section `SeuratMarkers` to `tbl_df`:
 #' S4 coercion support for creating a `tbl_df` from a `Markers` object.
 setAs(
-    from = "Markers",
+    from = "SeuratMarkers",
     to = "tbl_df",
     def = function(from) {
         validObject(from)
@@ -232,13 +232,13 @@ setAs(
 
 
 
-# MarkersPerCluster to tbl_df ==================================================
+# SeuratMarkersPerCluster to tbl_df ============================================
 #' @rdname as
-#' @name coerce,MarkersPerCluster,tbl_df-method
-#' @section `MarkersPerCluster` to `tbl_df`:
-#' S4 coercion support for creating a `tbl_df` from `MarkersPerCluster`.
+#' @name coerce,SeuratMarkersPerCluster,tbl_df-method
+#' @section `SeuratMarkersPerCluster` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `SeuratMarkersPerCluster`.
 setAs(
-    from = "MarkersPerCluster",
+    from = "SeuratMarkersPerCluster",
     to = "tbl_df",
     def = function(from) {
         validObject(from)
