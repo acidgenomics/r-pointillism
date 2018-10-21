@@ -22,7 +22,7 @@
 #' @name knownMarkers
 #'
 #' @inheritParams general
-#' @param all `SeuratMarkers`.
+#' @param all `Markers`.
 #' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
 #'   `data.frame` imported by [readCellTypeMarkers()] or pulled from internal
 #'   cell cycle markers data.
@@ -30,12 +30,12 @@
 #'   required to consider a gene marker promiscuous. Set to `0` to disable
 #'   promiscuous marker filtering.
 #'
-#' @return `KnownSeuratMarkers`.
+#' @return `KnownMarkers`.
 NULL
 
 
 
-knownMarkers.SeuratMarkers <-  # nolint
+knownMarkers.Markers <-  # nolint
     function(
         all,
         known,
@@ -103,7 +103,7 @@ knownMarkers.SeuratMarkers <-  # nolint
             version = packageVersion("pointillism"),
             date = Sys.Date()
         )
-        new(Class = "KnownSeuratMarkers", data)
+        new(Class = "KnownMarkers", data)
     }
 
 
@@ -113,8 +113,8 @@ knownMarkers.SeuratMarkers <-  # nolint
 setMethod(
     f = "knownMarkers",
     signature = signature(
-        all = "SeuratMarkers",
+        all = "Markers",
         known = "CellTypeMarkers"
     ),
-    definition = knownMarkers.SeuratMarkers
+    definition = knownMarkers.Markers
 )
