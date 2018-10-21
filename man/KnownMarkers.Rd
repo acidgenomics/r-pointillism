@@ -36,6 +36,14 @@ identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 }
+\examples{
+data(all_markers_small, cell_type_markers)
+x <- KnownMarkers(
+    markers = all_markers_small,
+    known = cell_type_markers$homoSapiens
+)
+summary(x)
+}
 \seealso{
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
