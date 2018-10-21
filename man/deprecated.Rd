@@ -4,14 +4,14 @@
 \alias{deprecated}
 \alias{plotKnownMarkersDetected}
 \alias{readCellTypeMarkers}
-\alias{sanitizeSeuratMarkers}
+\alias{sanitizeMarkers}
 \title{Deprecated Functions}
 \usage{
 plotKnownMarkersDetected(...)
 
 readCellTypeMarkers(...)
 
-sanitizeSeuratMarkers(...)
+sanitizeMarkers(...)
 }
 \arguments{
 \item{...}{Additional arguments.}

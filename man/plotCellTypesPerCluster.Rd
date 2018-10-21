@@ -23,7 +23,7 @@ plotCellTypesPerCluster(object, ...)
 
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
-\item{markers}{\code{KnownSeuratMarkers}.}
+\item{markers}{\code{KnownMarkers}.}
 
 \item{min}{\code{scalar numeric}. Recommended minimum value cutoff.}
 

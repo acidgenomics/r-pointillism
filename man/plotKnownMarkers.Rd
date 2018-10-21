@@ -3,18 +3,17 @@
 \docType{methods}
 \name{plotKnownMarkers}
 \alias{plotKnownMarkers}
-\alias{plotKnownMarkers,SingleCellExperiment,KnownSeuratMarkers-method}
-\alias{plotKnownMarkers,seurat,KnownSeuratMarkers-method}
+\alias{plotKnownMarkers,SingleCellExperiment,KnownMarkers-method}
+\alias{plotKnownMarkers,seurat,KnownMarkers-method}
 \title{Plot Known Markers}
 \usage{
 plotKnownMarkers(object, markers, ...)
 
-
-  \S4method{plotKnownMarkers}{SingleCellExperiment,KnownSeuratMarkers}(object,
+\S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
   markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
   ...)
 
-\S4method{plotKnownMarkers}{seurat,KnownSeuratMarkers}(object, markers,
+\S4method{plotKnownMarkers}{seurat,KnownMarkers}(object, markers,
   reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{

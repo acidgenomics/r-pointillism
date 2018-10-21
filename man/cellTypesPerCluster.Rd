@@ -3,12 +3,12 @@
 \docType{methods}
 \name{cellTypesPerCluster}
 \alias{cellTypesPerCluster}
-\alias{cellTypesPerCluster,KnownSeuratMarkers-method}
+\alias{cellTypesPerCluster,KnownMarkers-method}
 \title{Cell Types per Cluster}
 \usage{
 cellTypesPerCluster(object, ...)
 
-\S4method{cellTypesPerCluster}{KnownSeuratMarkers}(object, min = 1L,
+\S4method{cellTypesPerCluster}{KnownMarkers}(object, min = 1L,
   max = Inf)
 }
 \arguments{
