@@ -54,9 +54,9 @@ readCellTypeMarkers <- function(...) {
 
 #' @rdname deprecated
 #' @export
-sanitizeSeuratMarkers <- function(...) {
-    .Deprecated("SeuratMarkers")
-    SeuratMarkers(...)
+sanitizeMarkers <- function(...) {
+    .Deprecated("Markers")
+    Markers(...)
 }
 
 
