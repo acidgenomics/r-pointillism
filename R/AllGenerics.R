@@ -75,12 +75,12 @@ setGeneric(
 
 
 
-#' @rdname knownMarkers
+#' @rdname KnownMarkers
 #' @export
 setGeneric(
-    name = "knownMarkers",
+    name = "KnownMarkers",
     def = function(all, known, ...) {
-        standardGeneric("knownMarkers")
+        standardGeneric("KnownMarkers")
     }
 )
 
