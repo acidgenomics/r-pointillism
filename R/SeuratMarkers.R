@@ -70,14 +70,14 @@ SeuratMarkers <- function(
 
     # Map the Seurat matrix rownames to `rownames` column in tibble.
     if ("cluster" %in% colnames(data)) {
-        message("`Seurat::FindAllMarkers()` return detected")
+        message("`Seurat::FindAllMarkers()` return detected.")
         all <- TRUE
         assert_is_subset("gene", colnames(data))
         data <- data %>%
             mutate(rowname = NULL) %>%
             rename(name = !!sym("gene"))
     } else {
-        message("`Seurat::FindMarkers()` return detected")
+        message("`Seurat::FindMarkers()` return detected.")
         all <- FALSE
         data <- rename(data, name = !!sym("rowname"))
     }
@@ -86,7 +86,7 @@ SeuratMarkers <- function(
     if ("avgDiff" %in% colnames(data)) {
         message(paste(
             "Renaming legacy `avgDiff` column to `avgLogFC`",
-            "(changed in Seurat v2.1)"
+            "(changed in Seurat v2.1)."
         ))
         data[["avgLogFC"]] <- data[["avgDiff"]]
         data[["avgDiff"]] <- NULL
@@ -135,11 +135,12 @@ SeuratMarkers <- function(
     new(
         Class = "SeuratMarkers",
         data,
-        metadata = list(
-            alpha = alpha,
-            version = packageVersion("pointillism"),
-            date = Sys.Date(),
-            sessionInfo = session_info(include_base = TRUE)
+        metadata = c(
+            .prototypeMetadata,
+            list(
+                alpha = alpha,
+                sessionInfo = session_info(include_base = TRUE)
+            )
         )
     )
 }
