@@ -45,36 +45,22 @@ gr <- gr[which]
 rowRanges(seurat_small) <- gr
 
 # all_markers_small ============================================================
-all_markers_small <- SeuratMarkers(
-    markers = FindAllMarkers(seurat_small),
-    ranges = rowRanges(seurat_small)
-)
+markers <- FindAllMarkers(seurat_small)
+ranges <- rowRanges(seurat_small)
+all_markers_small <- MarkersPerCluster(object = markers, ranges = ranges)
 
 # known_markers_small ==========================================================
-all <- all_markers_small
-# FIXME Need to use `CellTypeMarkers()` here.
-known <- new(
-    Class = "CellTypeMarkers",
-    DataFrame(
-        cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
-        geneID = as.character(head(all$ranges$geneID, n = 2L)),
-        geneName = as.character(head(all$ranges$geneName, n = 2L))
-    ),
-    metadata = list(
-        version = packageVersion("pointillism"),
-        organism = "Homo sapiens",
-        genomeBuild = "GRCh37",
-        ensemblRelease = 75L,
-        date = Sys.Date()
-    )
+gene2symbol <- Gene2Symbol(seurat_small)
+data <- DataFrame(
+    cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
+    geneID = head(gene2symbol[["geneID"]], n = 2L)
 )
+known_markers_small <- CellTypeMarkers(data, gene2symbol = gene2symbol)
 # Write out an example CSV that we can use to test `CellTypeMarkers()`.
 export(
-    x = known,
+    x = do.call(rbind, known_markers_small),
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
-# FIXME Need to use `KnownSeuratMarkers()` here.
-known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
 usethis::use_data(
