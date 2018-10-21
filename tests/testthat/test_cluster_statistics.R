@@ -44,7 +44,7 @@ with_parameters_test_that(
         )
     },
     object = list(
-        KnownSeuratMarkers = known_markers_small
+        KnownMarkers = known_markers_small
     )
 )
 
