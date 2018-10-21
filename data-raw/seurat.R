@@ -47,7 +47,7 @@ rowRanges(seurat_small) <- gr
 # all_markers_small ============================================================
 markers <- FindAllMarkers(seurat_small)
 ranges <- rowRanges(seurat_small)
-all_markers_small <- MarkersPerCluster(object = markers, ranges = ranges)
+all_markers_small <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 
 # known_markers_small ==========================================================
 gene2symbol <- Gene2Symbol(seurat_small)
@@ -55,7 +55,7 @@ data <- DataFrame(
     cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
     geneID = head(gene2symbol[["geneID"]], n = 2L)
 )
-known_markers_small <- CellTypeMarkers(data, gene2symbol = gene2symbol)
+known_markers_small <- KnownMarkers(data, gene2symbol = gene2symbol)
 
 # Write out an example CSV that we can use to test `CellTypeMarkers()`.
 cell_type_markers <- do.call(rbind, known_markers_small)
