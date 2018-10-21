@@ -21,27 +21,27 @@ test_that("CellTypeMarkers", {
 
 
 
-# sanitizeSeuratMarkers ========================================================
-test_that("sanitizeSeuratMarkers", {
+# SeuratMarkers ================================================================
+test_that("SeuratMarkers", {
     ranges <- rowRanges(seurat_small)
-
-    # FindAllMarkers
-    invisible(capture.output(
-        markers <- Seurat::FindAllMarkers(seurat_small)
-    ))
-    x <- SeuratMarkers(markers = markers, ranges = ranges)
-    expect_is(x, "SeuratMarkers")
-
-    # FindMarkers
     invisible(capture.output(
         markers <- Seurat::FindMarkers(
-            seurat_small,
+            object = seurat_small,
             ident.1 = "1",
             ident.2 = NULL
         )
     ))
-    x <- SeuratMarkers(markers = markers, ranges = ranges)
-    expect_is(x, "SeuratMarkers")
+    x <- SeuratMarkers(object = markers, ranges = ranges)
+    expect_s4_class(x, "SeuratMarkers")
+})
+
+test_that("SeuratMarkersPerCluster", {
+    ranges <- rowRanges(seurat_small)
+    invisible(capture.output(
+        markers <- Seurat::FindAllMarkers(seurat_small)
+    ))
+    x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
+    expect_s4_class(x, "SeuratMarkersPerCluster")
 })
 
 
