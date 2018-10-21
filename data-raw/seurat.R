@@ -1,5 +1,5 @@
 # Seurat example data
-# 2018-10-18
+# 2018-10-21
 
 # # Restrict to 1 MB.
 # Use `pryr::object_size()` instead of `utils::object.size()`.
@@ -33,7 +33,7 @@ stopifnot(object_size(seurat_small) < limit)
 validObject(seurat_small)
 
 # `Seurat::pbmc_small` gene symbols map to GRCh37.
-gr <- makeGRangesFromEnsembl("Homo sapiens", build = "GRCh37")
+gr <- makeGRangesFromEnsembl("Homo sapiens", genomeBuild = "GRCh37")
 x <- rownames(seurat_small)
 table <- gr$geneName %>%
     as.character() %>%
@@ -52,6 +52,7 @@ all_markers_small <- SeuratMarkers(
 
 # known_markers_small ==========================================================
 all <- all_markers_small
+# FIXME Need to use `CellTypeMarkers()` here.
 known <- new(
     Class = "CellTypeMarkers",
     DataFrame(
@@ -72,6 +73,7 @@ export(
     x = known,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
+# FIXME Need to use `KnownSeuratMarkers()` here.
 known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
