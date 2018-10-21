@@ -1,18 +1,19 @@
 context("Seurat as SingleCellExperiment")
 
-pbmc_small <- Seurat::pbmc_small
+data(seurat_small)
+object <- seurat_small
 
 
 
 test_that("assay", {
-    expect_s4_class(assay(pbmc_small), "dgCMatrix")
+    expect_s4_class(assay(object), "sparseMatrix")
 })
 
 
 
 test_that("assayNames", {
     expect_identical(
-        assayNames(pbmc_small),
+        assayNames(object),
         c("counts", "logcounts")
     )
 })
@@ -20,19 +21,19 @@ test_that("assayNames", {
 
 
 test_that("assays", {
-    expect_s4_class(assays(pbmc_small), "SimpleList")
+    expect_s4_class(assays(object), "SimpleList")
 })
 
 
 
 test_that("colData", {
-    expect_s4_class(colData(pbmc_small), "DataFrame")
+    expect_s4_class(colData(object), "DataFrame")
 })
 
 
 
 test_that("colData<-", {
-    x <- pbmc_small
+    x <- object
     colData(x)[["testthat"]] <- factor("XXX")
     expect_identical(
         levels(colData(x)[["testthat"]]),
@@ -43,95 +44,76 @@ test_that("colData<-", {
 
 
 test_that("colnames", {
-    expect_is(colnames(pbmc_small), "character")
+    expect_is(colnames(object), "character")
 })
 
 
 
 test_that("counts", {
-    expect_identical(counts(pbmc_small), assay(pbmc_small))
+    expect_identical(counts(object), assay(object))
 })
 
 
 
-test_that("gene2symbol", {
-    expect_warning(Gene2Symbol(pbmc_small))
-    expect_null(suppressWarnings(Gene2Symbol(pbmc_small)))
-
+test_that("Gene2Symbol", {
     x <- Gene2Symbol(seurat_small)
-    expect_is(x, "data.frame")
+    expect_is(x, "Gene2Symbol")
 })
 
 
 
 test_that("interestingGroups", {
-    expect_null(interestingGroups(pbmc_small))
+    expect_null(interestingGroups(object))
 })
 
 
 
 test_that("interestingGroups<-", {
-    x <- pbmc_small
-    # We're requiring `sampleData()` return here, which requires `sampleID`
-    # and `sampleName` columns in `colData()`.
     expect_error(
-        interestingGroups(x) <- "sampleName",
-        "colData"
+        object = interestingGroups(object) <- "orig.ident",
+        regexp = "sampleData"
     )
-    interestingGroups(x) <- "orig.ident"
-    expect_identical(
-        interestingGroups(x),
-        "orig.ident"
+    expect_error(
+        object = interestingGroups(object) <- "XXX",
+        regexp = "sampleData"
     )
 
-    x <- seurat_small
-    interestingGroups(x) <- "sampleName"
-    expect_identical(
-        interestingGroups(x),
-        "sampleName"
+    expect_silent(
+        object = interestingGroups(object) <- "sampleName"
     )
-    expect_error(
-        interestingGroups(x) <- "XXX",
-        "colData"
+    interestingGroups(object) <- "sampleName"
+    expect_identical(
+        object = interestingGroups(object),
+        expected = "sampleName"
     )
 })
 
 
 
 test_that("metadata", {
-    expect_is(metadata(pbmc_small), "list")
-
-    # metadata assignment
-    x <- pbmc_small
-    metadata(x)[["testthat"]] <- "XXX"
+    expect_is(metadata(object), "list")
+    # Assignment method.
+    metadata(object)[["testthat"]] <- "XXX"
     expect_identical(
-        metadata(x),
-        list(testthat = "XXX")
+        object = metadata(object)[["testthat"]],
+        expected = "XXX"
     )
 })
 
 
 
 test_that("metrics", {
-    # Check for camel case sanitization in `as()` coercion method.
     expect_identical(
-        sort(colnames(metrics(seurat_small))),
+        sort(colnames(metrics(object))),
         c(
-            "batch",
-            "expLibSize",
-            "group",
+            "cellID",
             "ident",
             "interestingGroups",
-            "log10GenesPerUMI",
-            "mitoRatio",
-            "nCoding",
             "nGene",
-            "nMito",
             "nUMI",
-            "origIdent",
-            "res0.4",
-            "res0.8",
-            "res1.2",
+            "orig.ident",
+            "res.0.8",
+            "res.1",
             "sampleID",
             "sampleName"
         )
@@ -141,47 +123,39 @@ test_that("metrics", {
 
 
 test_that("reducedDims", {
-    x <- reducedDims(pbmc_small)
+    x <- reducedDims(object)
     expect_s4_class(x, "SimpleList")
-    expect_identical(names(x), c("PCA", "TSNE"))
+    expect_identical(names(x), c("PCA", "TSNE", "UMAP"))
 })
 
 
 
 test_that("rowData", {
-    expect_s4_class(rowData(pbmc_small), "DataFrame")
+    expect_s4_class(rowData(object), "DataFrame")
 })
 
 
 
 test_that("rownames", {
-    expect_is(rownames(pbmc_small), "character")
+    expect_type(rownames(object), "character")
 })
 
 
 
 test_that("rowRanges", {
-    expect_s4_class(rowRanges(pbmc_small), "CompressedGRangesList")
+    expect_s4_class(rowRanges(object), "GRanges")
 })
 
 
 
+# FIXME Interesting groups column is named in `sampleData` return.
 test_that("sampleData", {
-    expect_error(sampleData(pbmc_small), "sampleData")
-
-    x <- sampleData(sce_small)
     expect_identical(
-        rownames(x),
-        c("group1", "group2")
-    )
-    expect_identical(
-        colnames(x),
-        c(
-            "batch",
-            "group",
-            "sampleID",
-            "sampleName",
-            "interestingGroups"
+        object = sampleData(object),
+        expected = DataFrame(
+            sampleName = factor("unknown"),
+            interestingGroups = factor("unknown"),
+            row.names = "unknown"
         )
     )
 })
@@ -190,11 +164,11 @@ test_that("sampleData", {
 
 test_that("sampleNames", {
     expect_error(
-        sampleNames(pbmc_small),
+        sampleNames(object),
         "sampleData"
     )
     expect_identical(
-        sampleNames(seurat_small),
+        sampleNames(object),
         c(
             group1 = "group1",
             group2 = "group2"
