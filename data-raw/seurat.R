@@ -56,9 +56,12 @@ data <- DataFrame(
     geneID = head(gene2symbol[["geneID"]], n = 2L)
 )
 known_markers_small <- CellTypeMarkers(data, gene2symbol = gene2symbol)
+
 # Write out an example CSV that we can use to test `CellTypeMarkers()`.
+cell_type_markers <- do.call(rbind, known_markers_small)
+rownames(cell_type_markers) <- NULL
 export(
-    x = do.call(rbind, known_markers_small),
+    x = cell_type_markers,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
