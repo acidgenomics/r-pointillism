@@ -8,7 +8,7 @@
 #' @include globals.R
 #'
 #' @inheritParams general
-#' @param markers `KnownSeuratMarkers`.
+#' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.

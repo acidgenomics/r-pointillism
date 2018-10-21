@@ -93,7 +93,7 @@ show.CellTypeMarkers <-  # nolint
 
 
 # FIXME Need to finish this and add S4 method.
-show.SeuratMarkers <-  # nolint
+show.Markers <-  # nolint
     function(object) {
         validObject(object)
         data <- as(object, "DataFrame")

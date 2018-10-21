@@ -100,7 +100,7 @@ setMethod(
     f = "plotKnownMarkers",
     signature = signature(
         object = "SingleCellExperiment",
-        markers = "KnownSeuratMarkers"
+        markers = "KnownMarkers"
     ),
     definition = plotKnownMarkers.SingleCellExperiment
 )
@@ -113,13 +113,13 @@ setMethod(
     f = "plotKnownMarkers",
     signature = signature(
         object = "seurat",
-        markers = "KnownSeuratMarkers"
+        markers = "KnownMarkers"
     ),
     definition = getMethod(
         f = "plotKnownMarkers",
         signature = signature(
             object = "SingleCellExperiment",
-            markers = "KnownSeuratMarkers"
+            markers = "KnownMarkers"
         )
     )
 )
