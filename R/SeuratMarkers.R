@@ -1,9 +1,9 @@
-#' Sanitize Seurat Markers
+#' @inherit SeuratMarkers-class
+#' @export
 #'
+#' @description
 #' This generator function is designed to take the original return from a Seurat
 #' marker analysis and add corresponding gene annotations.
-#'
-#' @export
 #'
 #' @note [Seurat::FindAllMarkers()] maps the counts matrix rownames correctly in
 #'   the `gene` column, whereas [Seurat::FindMarkers()] maps them correctly in
@@ -15,9 +15,6 @@
 #' @param ranges `GRanges`. Gene annotations. Names must correspond to the
 #'   rownames defined in `seurat@data`. The function will automatically subset
 #'   the ranges and arrange them alphabetically.
-#'
-#' @return `SeuratMarkers`. Results are arranged by adjusted *P* value, and
-#'   grouped per cluster if applicable.
 #'
 #' @examples
 #' data(seurat_small)

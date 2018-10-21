@@ -19,13 +19,14 @@ discovery rate).}
 
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
-\item{bpparam}{\code{bpparamClass}. \href{https://doi.org/doi:10.18129/B9.bioc.BiocParallel}{BiocParallel} parameter specifying the
+\item{bpparam}{\code{bpparamClass}. \link{BiocParallel} parameter specifying the
 back-end to be used for computations. See \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} for
 details. We recommend one of the following:
 \itemize{
 \item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
 \item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
 \item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
+\link{BiocParallel}: https://doi.org/doi:10.18129/B9.bioc.BiocParallel
 }}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color

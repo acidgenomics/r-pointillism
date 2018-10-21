@@ -3,7 +3,7 @@
 \docType{class}
 \name{CellTypeMarkers-class}
 \alias{CellTypeMarkers-class}
-\title{\code{CellTypeMarkers} Class}
+\title{Cell-Type Markers}
 \description{
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[=metadata]{metadata()}}.

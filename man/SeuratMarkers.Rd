@@ -2,7 +2,7 @@
 % Please edit documentation in R/SeuratMarkers.R
 \name{SeuratMarkers}
 \alias{SeuratMarkers}
-\title{Sanitize Seurat Markers}
+\title{Seurat Markers}
 \usage{
 SeuratMarkers(markers, ranges, alpha = 0.05)
 }
@@ -57,4 +57,11 @@ ident_3_sanitized <- SeuratMarkers(
     ranges = rowRanges(object)
 )
 summary(ident_3_sanitized)
+}
+\seealso{
+\code{\link[=SeuratMarkers]{SeuratMarkers()}}.
+
+Other S4 classes: \code{\link{CellCycleMarkers-class}},
+  \code{\link{CellTypeMarkers-class}},
+  \code{\link{KnownSeuratMarkers-class}}
 }

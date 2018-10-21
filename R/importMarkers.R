@@ -23,8 +23,7 @@
 #' @examples
 #' ## Must be interactive.
 #' if (isTRUE(interactive())) {
-#'     library(googlesheets)
-#'     gs_ls()
+#'     googlesheets::gs_ls()
 #'
 #'     ## Gene-to-symbol mappings.
 #'     g2s <- makeGene2SymbolFromEnsembl("Homo sapiens")

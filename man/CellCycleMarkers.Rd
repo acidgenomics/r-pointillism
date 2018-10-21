@@ -2,7 +2,7 @@
 % Please edit documentation in R/markers.R
 \name{CellCycleMarkers}
 \alias{CellCycleMarkers}
-\title{\code{CellCycleMarkers} Class}
+\title{Cell-Cycle Markers}
 \usage{
 CellCycleMarkers(object, gene2symbol)
 }
@@ -13,7 +13,7 @@ CellCycleMarkers(object, gene2symbol)
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{\link[=metadata]{metadata()}}.
+defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
 }
 \seealso{
 \code{\link[=CellCycleMarkers]{CellCycleMarkers()}}.

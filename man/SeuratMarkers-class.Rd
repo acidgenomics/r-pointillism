@@ -3,7 +3,11 @@
 \docType{class}
 \name{SeuratMarkers-class}
 \alias{SeuratMarkers-class}
-\title{\code{SeuratMarkers} Class}
+\title{Seurat Markers}
+\value{
+\code{SeuratMarkers}. Results are arranged by adjusted \emph{P} value, and
+grouped per cluster if applicable.
+}
 \description{
 Class containing essential elements for Seurat marker gene analysis.
 }
