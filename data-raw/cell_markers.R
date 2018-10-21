@@ -1,5 +1,5 @@
 # Cell Cycle and Cell Type Markers
-# 2018-09-21
+# 2018-10-21
 # This code is derived from:
 # - Tirosh et al, 2015
 # - http://satijalab.org/seurat/cell_cycle_vignette.html
@@ -38,11 +38,14 @@ cell_cycle_markers <- lapply(
     X = ws,
     FUN = function(ws) {
         organism <- gsub("_", " ", ws)
-        CellCycleMarkers(
+        gene2symbol <- makeGene2SymbolFromEnsembl(
+            organism = organism,
+            release = release
+        )
+        importCellCycleMarkersFromGoogle(
             gs = sheet_key,
             ws = ws,
-            organism = organism,
-            ensemblRelease = release
+            gene2symbol = gene2symbol
         )
     }
 )
@@ -63,18 +66,21 @@ cell_type_markers <- lapply(
     X = ws,
     FUN = function(ws) {
         organism <- gsub("_", " ", ws)
-        CellTypeMarkers(
+        gene2symbol <- makeGene2SymbolFromEnsembl(
+            organism = organism,
+            release = release
+        )
+        importCellTypeMarkersFromGoogle(
             gs = sheet_key,
             ws = ws,
-            organism = organism,
-            ensemblRelease = release
+            gene2symbol = gene2symbol
         )
     }
 )
 names(cell_type_markers) <- camel(ws)
 
 # Save R data ==================================================================
-devtools::use_data(
+usethis::use_data(
     cell_cycle_markers,
     cell_type_markers,
     compress = "xz",
