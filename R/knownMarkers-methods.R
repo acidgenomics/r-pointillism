@@ -4,7 +4,7 @@
 # \dontrun{
 # data(all_markers_small, known_markers_small)
 # x <- KnownMarkers(
-#     all = all_markers_small,
+#     markers = all_markers_small,
 #     known = known_markers_small
 # )
 # head(x)
@@ -12,17 +12,16 @@
 
 
 
-#' Known Markers Detected
+#' @inherit KnownMarkers-class
+#' @name KnownMarkers
 #'
-#' @note Both the `all` and `known` objects must contain Ensembl gene
+#' @note Both the `markers` and `known` objects must contain Ensembl gene
 #'   identifiers in the `geneID` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
 #'
-#' @name KnownMarkers
-#'
 #' @inheritParams general
-#' @param all `Markers`.
+#' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
 #'   `data.frame` imported by [readCellTypeMarkers()] or pulled from internal
 #'   cell cycle markers data.
@@ -35,31 +34,32 @@ NULL
 
 
 
-KnownMarkers.Markers <-  # nolint
+KnownMarkers.SeuratMarkersPerCluster <-  # nolint
     function(
-        all,
+        markers,
         known,
         promiscuousThreshold = 0L
     ) {
-        validObject(all)
+        validObject(markers)
         validObject(known)
         assertIsAnImplicitInteger(promiscuousThreshold)
         assert_all_are_non_negative(promiscuousThreshold)
         promiscuousThreshold <- as.integer(promiscuousThreshold)
 
-        alpha <- metadata(all)[["alpha"]]
+        alpha <- metadata(markers)[["alpha"]]
         assertIsAlpha(alpha)
 
-        # Determine where the known markers are located in the all markers data.
+        # Coerce markers data to tibble.
+        markers <- do.call(rbind, markers)
+        known <- do.call(rbind, known)
+
+        # Determine where the known markers are located in the markers data.
         # Here we have slotted the gene IDs inside a "ranges" column.
-        allGenes <- all %>%
-            .[["ranges"]] %>%
-            mcols() %>%
-            .[["geneID"]]
+        allGenes <- unique(data[["geneID"]])
         knownGenes <- known[["geneID"]]
         assert_are_intersecting_sets(knownGenes, allGenes)
         keep <- allGenes %in% knownGenes
-        data <- all[keep, , drop = FALSE]
+        data <- markers[keep, , drop = FALSE]
 
         # Apply our alpha level cutoff.
         keep <- data[["padj"]] < alpha
@@ -113,8 +113,8 @@ KnownMarkers.Markers <-  # nolint
 setMethod(
     f = "KnownMarkers",
     signature = signature(
-        all = "Markers",
+        markers = "SeuratMarkersPerCluster",
         known = "CellTypeMarkers"
     ),
-    definition = KnownMarkers.Markers
+    definition = KnownMarkers.SeuratMarkersPerCluster
 )
