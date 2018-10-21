@@ -123,31 +123,67 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>cell_cycle_markers</span>)
 <span class='no'>cell_cycle_markers</span></div><div class='output co'>#&gt; $homoSapiens
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Homo sapiens (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (54): ANLN ANP32E ... TUBB4B UBE2C
-#&gt; S (54): ATAD2 BLM ... USP1 WDR76
+#&gt; CellCycleMarkers of length 2
+#&gt; $g2_m
+#&gt; DataFrame with 54 rows and 3 columns
+#&gt;        phase          geneID    geneName
+#&gt;     &lt;factor&gt;     &lt;character&gt; &lt;character&gt;
+#&gt; 1       G2/M ENSG00000011426        ANLN
+#&gt; 2       G2/M ENSG00000143401      ANP32E
+#&gt; 3       G2/M ENSG00000087586       AURKA
+#&gt; 4       G2/M ENSG00000178999       AURKB
+#&gt; 5       G2/M ENSG00000089685       BIRC5
+#&gt; ...      ...             ...         ...
+#&gt; 50      G2/M ENSG00000131747       TOP2A
+#&gt; 51      G2/M ENSG00000088325        TPX2
+#&gt; 52      G2/M ENSG00000112742         TTK
+#&gt; 53      G2/M ENSG00000188229      TUBB4B
+#&gt; 54      G2/M ENSG00000175063       UBE2C
+#&gt; 
+#&gt; ...
+#&gt; &lt;1 more element&gt;
 #&gt; 
 #&gt; $musMusculus
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Mus musculus (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (54): Anln Anp32e ... Tubb4b Ube2c
-#&gt; S (54): Atad2 Blm ... Usp1 Wdr76
+#&gt; CellCycleMarkers of length 2
+#&gt; $g2_m
+#&gt; DataFrame with 54 rows and 3 columns
+#&gt;        phase             geneID    geneName
+#&gt;     &lt;factor&gt;        &lt;character&gt; &lt;character&gt;
+#&gt; 1       G2/M ENSMUSG00000036777        Anln
+#&gt; 2       G2/M ENSMUSG00000015749      Anp32e
+#&gt; 3       G2/M ENSMUSG00000027496       Aurka
+#&gt; 4       G2/M ENSMUSG00000020897       Aurkb
+#&gt; 5       G2/M ENSMUSG00000017716       Birc5
+#&gt; ...      ...                ...         ...
+#&gt; 50      G2/M ENSMUSG00000020914       Top2a
+#&gt; 51      G2/M ENSMUSG00000027469        Tpx2
+#&gt; 52      G2/M ENSMUSG00000038379         Ttk
+#&gt; 53      G2/M ENSMUSG00000036752      Tubb4b
+#&gt; 54      G2/M ENSMUSG00000001403       Ube2c
+#&gt; 
+#&gt; ...
+#&gt; &lt;1 more element&gt;
 #&gt; 
 #&gt; $drosophilaMelanogaster
-#&gt; CellCycleMarkers 0.2.0
-#&gt; Drosophila melanogaster (Ensembl 92)
-#&gt; https://steinbaugh.com/pointillism
-#&gt; citation("pointillism")
-#&gt; ────────────────────────────────────────────────────────────────────────
-#&gt; G2/M (37): aurA Bub1 ... twe vih
-#&gt; S (37): Blm Caf1-105 ... Ts Usp1
+#&gt; CellCycleMarkers of length 2
+#&gt; $g2_m
+#&gt; DataFrame with 37 rows and 3 columns
+#&gt;        phase      geneID    geneName
+#&gt;     &lt;factor&gt; &lt;character&gt; &lt;character&gt;
+#&gt; 1       G2/M FBgn0000147        aurA
+#&gt; 2       G2/M FBgn0031696        Bub1
+#&gt; 3       G2/M FBgn0263855       BubR1
+#&gt; 4       G2/M FBgn0040233        cana
+#&gt; 5       G2/M FBgn0039680      Cap-D2
+#&gt; ...      ...         ...         ...
+#&gt; 33      G2/M FBgn0003607  Su(var)205
+#&gt; 34      G2/M FBgn0003545         sub
+#&gt; 35      G2/M FBgn0284220        Top2
+#&gt; 36      G2/M FBgn0002673         twe
+#&gt; 37      G2/M FBgn0264848         vih
+#&gt; 
+#&gt; ...
+#&gt; &lt;1 more element&gt;
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

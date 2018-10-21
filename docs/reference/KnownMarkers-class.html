@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><code>KnownSeuratMarkers</code> Class — KnownSeuratMarkers-class • pointillism</title>
+<title>Known Markers — KnownMarkers-class • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,10 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="<code>KnownSeuratMarkers</code> Class — KnownSeuratMarkers-class" />
+<meta property="og:title" content="Known Markers — KnownMarkers-class" />
 
-<meta property="og:description" content="Class containing essential elements for analysis of known, cell-type specific
-marker genes." />
+<meta property="og:description" content="Class containing known markers detected." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,25 +102,29 @@ marker genes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><code>KnownSeuratMarkers</code> Class</h1>
+    <h1>Known Markers</h1>
     <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
-    <div class="hidden name"><code>KnownSeuratMarkers-class.Rd</code></div>
+    <div class="hidden name"><code>KnownMarkers-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Class containing essential elements for analysis of known, cell-type specific
-marker genes.</p>
+    <p>Class containing known markers detected.</p>
     
     </div>
 
         
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Results are grouped by <code>cellType</code> column and arranged by adjusted
+<em>P</em> value (<code>padj</code>).</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='knownMarkers.html'>knownMarkers()</a></code>.</p>
-<p>Other S4 classes: <code><a href='CellCycleMarkers-class.html'>CellCycleMarkers-class</a></code>,
+    <div class='dont-index'><p>Other S4 classes: <code><a href='CellCycleMarkers-class.html'>CellCycleMarkers-class</a></code>,
   <code><a href='CellTypeMarkers-class.html'>CellTypeMarkers-class</a></code>,
-  <code><a href='SeuratMarkers-class.html'>SeuratMarkers-class</a></code></p></div>
+  <code><a href='SeuratMarkers-class.html'>SeuratMarkers-class</a></code>,
+  <code><a href='SeuratMarkersPerCluster-class.html'>SeuratMarkersPerCluster-class</a></code></p></div>
     
 
   </div>
@@ -129,6 +132,8 @@ marker genes.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#see-also">See also</a></li>
           </ul>
 

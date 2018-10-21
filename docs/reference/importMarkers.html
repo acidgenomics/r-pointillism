@@ -162,24 +162,23 @@ respectively, of the worksheet</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Must be interactive.</span>
 <span class='kw'>if</span> (<span class='fu'>isTRUE</span>(<span class='fu'>interactive</span>())) {
-    <span class='fu'>library</span>(<span class='no'>googlesheets</span>)
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_ls'>gs_ls</a></span>()
+    <span class='kw pkg'>googlesheets</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_ls'>gs_ls</a></span>()
 
     <span class='co'>## Gene-to-symbol mappings.</span>
-    <span class='no'>g2s</span> <span class='kw'>&lt;-</span> <span class='fu'>makeGene2SymbolFromEnsembl</span>(<span class='st'>"Homo sapiens"</span>)
+    <span class='no'>gene2symbol</span> <span class='kw'>&lt;-</span> <span class='fu'>makeGene2SymbolFromEnsembl</span>(<span class='st'>"Homo sapiens"</span>)
 
     <span class='co'>## Cell-cycle markers.</span>
     <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importCellCycleMarkersFromGoogle</span>(
         <span class='kw'>gs</span> <span class='kw'>=</span> <span class='st'>"1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw"</span>,
         <span class='kw'>ws</span> <span class='kw'>=</span> <span class='st'>"Homo_sapiens"</span>,
-        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>g2s</span>
+        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>gene2symbol</span>
     )
 
     <span class='co'>## Cell-type markers.</span>
     <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importCellTypeMarkersFromGoogle</span>(
         <span class='kw'>gs</span> <span class='kw'>=</span> <span class='st'>"1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0"</span>,
         <span class='kw'>ws</span> <span class='kw'>=</span> <span class='st'>"Homo_sapiens"</span>,
-        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>g2s</span>
+        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>gene2symbol</span>
     )
 }</div></pre>
   </div>
