@@ -26,20 +26,20 @@
 #'     googlesheets::gs_ls()
 #'
 #'     ## Gene-to-symbol mappings.
-#'     g2s <- makeGene2SymbolFromEnsembl("Homo sapiens")
+#'     gene2symbol <- makeGene2SymbolFromEnsembl("Homo sapiens")
 #'
 #'     ## Cell-cycle markers.
 #'     x <- importCellCycleMarkersFromGoogle(
 #'         gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
 #'         ws = "Homo_sapiens",
-#'         gene2symbol = g2s
+#'         gene2symbol = gene2symbol
 #'     )
 #'
 #'     ## Cell-type markers.
 #'     x <- importCellTypeMarkersFromGoogle(
 #'         gs = "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0",
 #'         ws = "Homo_sapiens",
-#'         gene2symbol = g2s
+#'         gene2symbol = gene2symbol
 #'     )
 #' }
 NULL
