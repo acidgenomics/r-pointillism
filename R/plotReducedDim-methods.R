@@ -132,7 +132,7 @@ NULL
     if (isTRUE(pointsAsNumbers)) {
         # Increase the size, if necessary.
         if (pointSize < 4L) {
-            warning("Increase `pointSize` to at least 4.")
+            message("Increase pointSize to 4.")
             pointSize <- 4L
         }
         p <- p +
