@@ -4,6 +4,9 @@
 \name{CellCycleMarkers-class}
 \alias{CellCycleMarkers-class}
 \title{Cell-Cycle Markers}
+\value{
+\code{CellTypeMarkers}
+}
 \description{
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
@@ -12,7 +15,8 @@ defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
 \code{\link[=CellCycleMarkers]{CellCycleMarkers()}}.
 
 Other S4 classes: \code{\link{CellTypeMarkers-class}},
-  \code{\link{KnownSeuratMarkers-class}},
-  \code{\link{SeuratMarkers-class}}
+  \code{\link{KnownMarkers-class}},
+  \code{\link{Markers-class}},
+  \code{\link{MarkersPerCluster-class}}
 }
 \concept{S4 classes}

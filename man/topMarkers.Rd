@@ -3,14 +3,14 @@
 \docType{methods}
 \name{topMarkers}
 \alias{topMarkers}
-\alias{topMarkers,SeuratMarkers-method}
+\alias{topMarkers,Markers-method}
 \title{Top Markers}
 \usage{
 topMarkers(object, ...)
 
-\S4method{topMarkers}{SeuratMarkers}(object, n = 10L,
-  direction = c("up", "down", "both"), return = c("tbl_df",
-  "DataFrame", "DataFrameList"))
+\S4method{topMarkers}{Markers}(object, n = 10L, direction = c("up",
+  "down", "both"), return = c("SplitDataFrameList", "DataFrame",
+  "tbl_df"))
 }
 \arguments{
 \item{object}{Object.}

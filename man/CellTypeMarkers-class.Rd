@@ -4,6 +4,9 @@
 \name{CellTypeMarkers-class}
 \alias{CellTypeMarkers-class}
 \title{Cell-Type Markers}
+\value{
+\code{CellTypeMarkers}
+}
 \description{
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[=metadata]{metadata()}}.
@@ -12,7 +15,8 @@ defined in \code{\link[=metadata]{metadata()}}.
 \code{\link[=CellTypeMarkers]{CellTypeMarkers()}}.
 
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
-  \code{\link{KnownSeuratMarkers-class}},
-  \code{\link{SeuratMarkers-class}}
+  \code{\link{KnownMarkers-class}},
+  \code{\link{Markers-class}},
+  \code{\link{MarkersPerCluster-class}}
 }
 \concept{S4 classes}

@@ -3,16 +3,16 @@
 \docType{methods}
 \name{knownMarkers}
 \alias{knownMarkers}
-\alias{knownMarkers,SeuratMarkers,CellTypeMarkers-method}
+\alias{knownMarkers,Markers,CellTypeMarkers-method}
 \title{Known Markers Detected}
 \usage{
 knownMarkers(all, known, ...)
 
-\S4method{knownMarkers}{SeuratMarkers,CellTypeMarkers}(all, known,
+\S4method{knownMarkers}{Markers,CellTypeMarkers}(all, known,
   promiscuousThreshold = 0L)
 }
 \arguments{
-\item{all}{\code{SeuratMarkers}.}
+\item{all}{\code{Markers}.}
 
 \item{known}{\code{CellTypeMarkers}. Grouped by \code{cellType} column. Known markers
 \code{data.frame} imported by \code{\link[=readCellTypeMarkers]{readCellTypeMarkers()}} or pulled from internal
@@ -25,7 +25,7 @@ required to consider a gene marker promiscuous. Set to \code{0} to disable
 promiscuous marker filtering.}
 }
 \value{
-\code{KnownSeuratMarkers}.
+\code{KnownMarkers}.
 }
 \description{
 Known Markers Detected
