@@ -25,17 +25,17 @@
 #'     markers <- Seurat::FindMarkers(
 #'         object = object,
 #'         ident.1 = "1",
-#'         ident.2 = "0"
+#'         ident.2 = NULL
 #'     )
 #' ))
-#' x <- MarkersPerCluster(object = markers, ranges = ranges)
-#' summary(ident_3_sanitized)
+#' x <- SeuratMarkers(object = markers, ranges = ranges)
+#' summary(x)
 #'
 #' ## `FindAllMarkers()` return.
 #' invisible(capture.output(
 #'     markers <- Seurat::FindAllMarkers(object)
 #' ))
-#' x <- MarkersPerCluster(object = markers, ranges = ranges)
+#' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
 SeuratMarkers <- function(
     object,
@@ -49,5 +49,5 @@ SeuratMarkers <- function(
     )
     rownames(data) <- data[["name"]]
     data[["name"]] <- NULL
-    new(Class = "Markers", data)
+    new(Class = "SeuratMarkers", data)
 }
