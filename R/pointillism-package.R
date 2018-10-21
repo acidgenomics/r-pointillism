@@ -47,7 +47,7 @@
 #' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom Matrix rowMeans rowSums
-#' @importFrom methods as getMethod is setAs show slot slot<- validObject
+#' @importFrom methods as getMethod is new setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := has_length sym syms
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
