@@ -12,7 +12,9 @@
 #' @param alpha `scalar numeric`. Alpha cutoff (adjusted P value; false
 #'   discovery rate).
 #' @param aspectRatio `scalar integer`. Aspect ratio.
-#' @param bpparam [BiocParallel][] param. We recommend one of the following:
+#' @param bpparam `bpparamClass`. [BiocParallel][] parameter specifying the
+#'   back-end to be used for computations. See [BiocParallel::bpparam()] for
+#'   details. We recommend one of the following:
 #'   - [BiocParallel::bpparam()].
 #'   - [BiocParallel::SerialParam()].
 #'   - [BiocParallel::MulticoreParam()].
