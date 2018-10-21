@@ -119,16 +119,13 @@
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>,
-  <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>,
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>),
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -182,15 +179,6 @@ Currently supports "<code>dot</code>" and "<code>violin</code>".</p></td>
       <td><p><code>boolean</code>. Visualize the distributions per sample?</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
-scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
-color palette will be used. If manual color definitions are desired, we
-recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
-To set the discrete color palette globally, use
-<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
-    </tr>
-    <tr>
       <th>legend</th>
       <td><p><code>boolean</code>. Include plot legend.</p></td>
     </tr>
@@ -218,6 +206,15 @@ will have no dot drawn.</p></td>
       <th>dotScale</th>
       <td><p><code>scalar numeric</code>. Scale the size of the points, similar to
 <code>cex</code>.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
+scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
+color palette will be used. If manual color definitions are desired, we
+recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
+To set the discrete color palette globally, use
+<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
     </tr>
     <tr>
       <th>scale</th>

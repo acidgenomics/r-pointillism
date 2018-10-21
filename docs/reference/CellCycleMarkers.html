@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cell-Cycle Markers — CellCycleMarkers • pointillism</title>
+<title><code>CellCycleMarkers</code> Class — CellCycleMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Cell-Cycle Markers — CellCycleMarkers" />
+<meta property="og:title" content="<code>CellCycleMarkers</code> Class — CellCycleMarkers" />
 
-<meta property="og:description" content="Currently designed for internal use by the pointillism package." />
+<meta property="og:description" content="Data provenence information, including the organism and Ensembl release are
+defined in metadata()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,77 +103,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cell-Cycle Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/CellCycleMarkers.R'><code>R/CellCycleMarkers.R</code></a></small>
+    <h1><code>CellCycleMarkers</code> Class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/markers.R'><code>R/markers.R</code></a></small>
     <div class="hidden name"><code>CellCycleMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Currently designed for internal use by the pointillism package.</p>
+    <p>Data provenence information, including the organism and Ensembl release are
+defined in <code>metadata()</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>CellCycleMarkers</span>(<span class='no'>file</span>, <span class='no'>gs</span>, <span class='kw'>ws</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='no'>organism</span>, <span class='no'>ensemblRelease</span>,
-  <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>CellCycleMarkers</span>(<span class='no'>object</span>, <span class='no'>gene2symbol</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p><code>string</code> or <code>missing</code>. Gene markers file path (CSV or Excel).</p></td>
-    </tr>
-    <tr>
-      <th>gs</th>
-      <td><p><code>string</code> or <code>missing</code>. Google Sheets <code>sheet_key</code> identifier, which
-can be located with the <code><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_ls'>googlesheets::gs_ls()</a></code> function.</p></td>
-    </tr>
-    <tr>
-      <th>ws</th>
-      <td><p>positive integer or character string specifying index or title,
-respectively, of the worksheet</p></td>
-    </tr>
-    <tr>
-      <th>organism</th>
-      <td><p><code>string</code>. Full Latin organism name (e.g. <code>"Homo sapiens"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>ensemblRelease</th>
-      <td><p><code>scalar integer</code>. Ensembl release version (e.g. <code>90</code>).</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
       <th>gene2symbol</th>
-      <td><p><code>gene2symbol</code> or <code>NULL</code>. Use the stashed gene-to-symbol
-mappings from a <code>SingleCellExperiment</code> or <code>seurat</code> object.</p></td>
+      <td><p><code>Gene2Symbol</code>. Gene-to-symbol mappings.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>CellCycleMarkers</code>.</p>
+    <div class='dont-index'><p><code>CellCycleMarkers()</code>.</p>
+<p>Other S4 classes: <code><a href='CellTypeMarkers-class.html'>CellTypeMarkers-class</a></code>,
+  <code><a href='KnownSeuratMarkers-class.html'>KnownSeuratMarkers-class</a></code>,
+  <code><a href='SeuratMarkers-class.html'>SeuratMarkers-class</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>## Google Sheets method (requires OAuth).</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>CellCycleMarkers</span>(
-    <span class='kw'>gs</span> <span class='kw'>=</span> <span class='st'>"1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw"</span>,
-    <span class='kw'>ws</span> <span class='kw'>=</span> <span class='st'>"Homo_sapiens"</span>,
-    <span class='kw'>organism</span> <span class='kw'>=</span> <span class='st'>"Homo sapiens"</span>,
-    <span class='kw'>ensemblRelease</span> <span class='kw'>=</span> <span class='fl'>92L</span>
-)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>

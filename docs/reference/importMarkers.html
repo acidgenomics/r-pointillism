@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Known Markers — plotKnownMarkers • pointillism</title>
+<title>Import Markers from Google — importMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot Known Markers — plotKnownMarkers" />
+<meta property="og:title" content="Import Markers from Google — importMarkers" />
 
-<meta property="og:description" content="Plot Known Markers" />
+<meta property="og:description" content="Currently designed for internal use by the pointillism package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,76 +102,86 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Known Markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotKnownMarkers-methods.R'><code>R/plotKnownMarkers-methods.R</code></a></small>
-    <div class="hidden name"><code>plotKnownMarkers.Rd</code></div>
+    <h1>Import Markers from Google</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/importMarkers.R'><code>R/importMarkers.R</code></a></small>
+    <div class="hidden name"><code>importMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot Known Markers</p>
+    <p>Currently designed for internal use by the pointillism package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>importCellCycleMarkersFromGoogle</span>(<span class='no'>gs</span>, <span class='no'>ws</span>, <span class='no'>gene2symbol</span>)
 
-
-  <span class='co'># S4 method for SingleCellExperiment,KnownSeuratMarkers</span>
-<span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>,
-  <span class='no'>markers</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>)
-
-<span class='co'># S4 method for seurat,KnownSeuratMarkers</span>
-<span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>importCellTypeMarkersFromGoogle</span>(<span class='no'>gs</span>, <span class='no'>ws</span>, <span class='no'>gene2symbol</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>gs</th>
+      <td><p><code>string</code>. Google Sheets <code>sheet_key</code> identifier, which
+can be located with the <code><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_ls'>googlesheets::gs_ls()</a></code> function.</p></td>
     </tr>
     <tr>
-      <th>markers</th>
-      <td><p><code>grouped_df</code>. Marker genes, grouped by "<code>cellType</code>".</p></td>
+      <th>ws</th>
+      <td><p>positive integer or character string specifying index or title,
+respectively, of the worksheet</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='plotMarker.html'>plotMarker()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>reducedDim</th>
-      <td><p><code>string</code>. Name of reduced dimension matrix slotted in
-<code>reducedDims()</code>. Includes TNSE, UMAP, PCA, for example.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code>scalar integer</code> (<code>1</code>-<code>7</code>). R Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>progress</th>
-      <td><p><code>boolean</code>. Show progress, using progress bars.</p></td>
+      <th>gene2symbol</th>
+      <td><p><code>Gene2Symbol</code>. Gene-to-symbol mappings.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Show graphical output. Invisibly return <code>ggplot</code> <code>list</code>.</p>
+    <p><code>CellCycleMarkers</code> or <code>CellTypeMarkers</code>.</p>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>importCellCycleMarkersFromGoogle</code>: Import Cell-Cycle Markers from Google</p></li>
+<li><p><code>importCellTypeMarkersFromGoogle</code>: Cell-type markers.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Google Sheets requires OAuth authentication.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/googlesheets/topics/googlesheet'>googlesheets::gs_key()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_read'>googlesheets::gs_read()</a></code>.</p></li>
+</ul></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>seurat_small</span>, <span class='no'>known_markers_small</span>)
-<span class='fu'>plotKnownMarkers</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat_small</span>,
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>known_markers_small</span>
-)</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ## cell_type_1 {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ## cell_type_2 {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## Must be interactive.</span>
+<span class='kw'>if</span> (<span class='fu'>isTRUE</span>(<span class='fu'>interactive</span>())) {
+    <span class='fu'>library</span>(<span class='no'>googlesheets</span>)
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/googlesheets/topics/gs_ls'>gs_ls</a></span>()
+
+    <span class='co'>## Gene-to-symbol mappings.</span>
+    <span class='no'>g2s</span> <span class='kw'>&lt;-</span> <span class='fu'>makeGene2SymbolFromEnsembl</span>(<span class='st'>"Homo sapiens"</span>)
+
+    <span class='co'>## Cell-cycle markers.</span>
+    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importCellCycleMarkersFromGoogle</span>(
+        <span class='kw'>gs</span> <span class='kw'>=</span> <span class='st'>"1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw"</span>,
+        <span class='kw'>ws</span> <span class='kw'>=</span> <span class='st'>"Homo_sapiens"</span>,
+        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>g2s</span>
+    )
+
+    <span class='co'>## Cell-type markers.</span>
+    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importCellTypeMarkersFromGoogle</span>(
+        <span class='kw'>gs</span> <span class='kw'>=</span> <span class='st'>"1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0"</span>,
+        <span class='kw'>ws</span> <span class='kw'>=</span> <span class='st'>"Homo_sapiens"</span>,
+        <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='no'>g2s</span>
+    )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,6 +189,12 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#functions">Functions</a></li>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

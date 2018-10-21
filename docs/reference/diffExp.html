@@ -172,6 +172,15 @@ gene is expressed, to pass low expression filtering.</p></td>
 for a gene to pass low expression filtering. The number of cells is defined
 by <code>minCellsPerGene</code>.</p></td>
     </tr>
+    <tr>
+      <th>bpparam</th>
+      <td><p>BiocParallel param. We recommend one of the following:</p><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>BiocParallel::SerialParam()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.
+BiocParallel: https://doi.org/doi:10.18129/B9.bioc.BiocParallel</p></li>
+</ul></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -262,7 +271,7 @@ additional information.</p>
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
 #&gt; <span class='message'>Numerator: 10 cells</span>
 #&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.205   0.005   0.220 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>  0.275   0.012   0.485 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
 #&gt; [1] "edgeR"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
 #&gt; coefficients           374   -none-           numeric  
@@ -294,7 +303,7 @@ additional information.</p>
 #&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2.</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='warning'>Warning: for 33 row(s), the weights as supplied won't allow parameter estimation, producing a</span>
 #&gt; <span class='warning'>  degenerate design matrix. These rows have been flagged in mcols(dds)$weightsFail</span>
 #&gt; <span class='warning'>  and treated as if the row contained all zeros (mcols(dds)$allZero set to TRUE).</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.341   0.020   1.367 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
+#&gt; <span class='message'>  2.168   0.036   2.657 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
 #&gt; attr(,"package")
 #&gt; [1] "DESeq2"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
 #&gt;            6 DESeqResults           S4 </div></pre>
