@@ -1,11 +1,11 @@
-#' @rdname Markers
+#' @rdname SeuratMarkers
 #' @export
-MarkersPerCluster <- function(
+SeuratMarkersPerCluster <- function(
     object,
     ranges,
     alpha = 0.05
 ) {
-    data <- .markers(
+    data <- .seuratMarkers(
         object = object,
         ranges = ranges,
         alpha = alpha
