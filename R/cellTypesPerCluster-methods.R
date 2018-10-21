@@ -10,8 +10,12 @@
 #'   of significant known makers per cell type.
 #'
 #' @examples
-#' data(known_markers_small)
-#' x <- cellTypesPerCluster(known_markers_small)
+#' data(all_markers_small, cell_type_markers)
+#' markers <- KnownMarkers(
+#'     markers = all_markers_small,
+#'     known = cell_type_markers$homoSapiens
+#' )
+#' x <- cellTypesPerCluster(markers)
 #' print(x)
 NULL
 
@@ -30,12 +34,7 @@ cellTypesPerCluster.KnownMarkers <- function(
     # Note that the order is important here.
     groupCols <- c("cluster", "cellType")
 
-    data <- as(object, "DataFrame")
-    data[["geneID"]] <- mcols(data[["ranges"]])[["geneID"]]
-    data[["geneName"]] <- mcols(data[["ranges"]])[["geneName"]]
-    data[["ranges"]] <- NULL
-
-    data <- data %>%
+    data <- object %>%
         as_tibble() %>%
         ungroup() %>%
         select(!!!syms(groupCols), everything()) %>%
