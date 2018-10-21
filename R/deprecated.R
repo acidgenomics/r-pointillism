@@ -29,22 +29,29 @@ NULL
 # v0.2.0 =======================================================================
 #' @rdname defunct
 #' @export
-knownMarkersDetected <- function(...) {
-    .Defunct()
+knownMarkers <- function(...) {
+    .Defunct("KnownMarkers")
 }
 
 
 
-#' @rdname deprecated
+#' @rdname defunct
+#' @export
+knownMarkersDetected <- function(...) {
+    .Defunct("KnownMarkers")
+}
+
+
+
+#' @rdname defunct
 #' @export
 plotKnownMarkersDetected <- function(...) {
     .Defunct("plotKnownMarkers")
-    plotKnownMarkers(...)
 }
 
 
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 readCellTypeMarkers <- function(...) {
     .Defunct("CellTypeMarkers")
@@ -52,11 +59,10 @@ readCellTypeMarkers <- function(...) {
 
 
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 sanitizeMarkers <- function(...) {
-    .Deprecated("Markers")
-    Markers(...)
+    .Defunct("SeuratMarkers")
 }
 
 
