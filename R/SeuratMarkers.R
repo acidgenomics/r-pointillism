@@ -1,4 +1,4 @@
-#' @inherit Markers-class
+#' @inherit SeuratMarkers-class
 #' @export
 #'
 #' @description
@@ -37,12 +37,12 @@
 #' ))
 #' x <- MarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
-Markers <- function(
+SeuratMarkers <- function(
     object,
     ranges,
     alpha = 0.05
 ) {
-    data <- .markers(
+    data <- .seuratMarkers(
         object = object,
         ranges = ranges,
         alpha = alpha
