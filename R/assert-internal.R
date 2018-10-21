@@ -35,7 +35,7 @@
 
 
 # assertIsKnownMarkers =========================================================
-# FIXME Deprecate this and use SeuratMarkers validity method instead.
+# FIXME Deprecate this and use Markers validity method instead.
 .assertIsKnownMarkers <- function(object) {
     # Require a tibble.
     assert_is_tbl_df(object)
