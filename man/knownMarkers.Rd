@@ -3,16 +3,16 @@
 \docType{methods}
 \name{KnownMarkers}
 \alias{KnownMarkers}
-\alias{KnownMarkers,Markers,CellTypeMarkers-method}
-\title{Known Markers Detected}
+\alias{KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers-method}
+\title{Known Markers}
 \usage{
-KnownMarkers(all, known, ...)
+KnownMarkers(markers, known, ...)
 
-\S4method{KnownMarkers}{Markers,CellTypeMarkers}(all, known,
-  promiscuousThreshold = 0L)
+\S4method{KnownMarkers}{SeuratMarkersPerCluster,CellTypeMarkers}(markers,
+  known, promiscuousThreshold = 0L)
 }
 \arguments{
-\item{all}{\code{Markers}.}
+\item{markers}{\code{SeuratMarkers} or \code{SeuratMarkersPerCluster}.}
 
 \item{known}{\code{CellTypeMarkers}. Grouped by \code{cellType} column. Known markers
 \code{data.frame} imported by \code{\link[=readCellTypeMarkers]{readCellTypeMarkers()}} or pulled from internal
@@ -28,11 +28,17 @@ promiscuous marker filtering.}
 \code{KnownMarkers}.
 }
 \description{
-Known Markers Detected
+Class containing known markers detected.
 }
 \note{
-Both the \code{all} and \code{known} objects must contain Ensembl gene
+Both the \code{markers} and \code{known} objects must contain Ensembl gene
 identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
+}
+\seealso{
+Other S4 classes: \code{\link{CellCycleMarkers-class}},
+  \code{\link{CellTypeMarkers-class}},
+  \code{\link{SeuratMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }

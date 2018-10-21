@@ -16,7 +16,7 @@ defined in \code{\link[=metadata]{metadata()}}.
 
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{KnownMarkers-class}},
-  \code{\link{Markers-class}},
-  \code{\link{MarkersPerCluster-class}}
+  \code{\link{SeuratMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }
 \concept{S4 classes}
