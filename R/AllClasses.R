@@ -34,19 +34,18 @@ setClass(
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = lapply(object, class),
-        #     y = list(
-        #         phase = "factor",
-        #         geneID = "character",
-        #         geneName = "character"
-        #     )
-        # )
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(metadata(object))
-        # )
+        assert_are_identical(
+            x = lapply(object[[1L]], class),
+            y = list(
+                phase = "factor",
+                geneID = "character",
+                geneName = "character"
+            )
+        )
+        assert_is_subset(
+            x = c("version", "organism", "ensemblRelease", "date"),
+            y = names(metadata(object))
+        )
         TRUE
     }
 )
@@ -71,44 +70,57 @@ setClass(
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
-        # assert_has_rows(object)
-        # assert_are_identical(
-        #     x = lapply(object, class),
-        #     y = list(
-        #         cellType = "factor",
-        #         geneID = "character",
-        #         geneName = "character"
-        #     )
-        # )
-        # assert_is_subset(
-        #     x = c("version", "organism", "ensemblRelease", "date"),
-        #     y = names(metadata(object))
-        # )
+        assert_are_identical(
+            x = lapply(object[[1L]], class),
+            y = list(
+                cellType = "factor",
+                geneID = "character",
+                geneName = "character"
+            )
+        )
+        assert_is_subset(
+            x = c("version", "organism", "ensemblRelease", "date"),
+            y = names(metadata(object))
+        )
         TRUE
     }
 )
 
 
 
-# SeuratMarkers ================================================================
-#' Seurat Markers
+# Markers ======================================================================
+#' Single-Cell Markers
 #'
-#' Class containing essential elements for Seurat marker gene analysis.
+#' Class containing essential elements for marker gene analysis.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso [SeuratMarkers()].
-#'
-#' @return `SeuratMarkers`. Results are arranged by adjusted *P* value, and
-#'   grouped per cluster if applicable.
+#' @return Results are arranged by adjusted *P* value (`padj`).
 setClass(
-    Class = "SeuratMarkers",
-    contains = "DataFrameList"
+    Class = "Markers",
+    contains = "DataFrame"
+)
+
+
+
+# MarkersPerCluster ============================================================
+#' Single-Cell Markers per Cluster
+#'
+#' Class containing essential elements for marker gene analysis.
+#'
+#' @family S4 classes
+#' @export
+#'
+#' @return Results are split per `cluster` and arranged by adjusted *P* value
+#'   (`padj`).
+setClass(
+    Class = "MarkersPerCluster",
+    contains = "CompressedSplitDataFrameList"
 )
 
 setValidity(
-    Class = "SeuratMarkers",
+    Class = "MarkersPerCluster",
     method = function(object) {
         # data <- slot(object, name = "data")
         # # `FindAllMarkers()`
@@ -194,12 +206,12 @@ setValidity(
 #' @family S4 classes
 #' @export
 #'
-#' @seealso [knownMarkers()].
+#' @seealso [KnownMarkers()].
 #'
-#' @return `KnownSeuratMarkers`.
+#' @return `KnownMarkers`.
 setClass(
-    Class = "KnownSeuratMarkers",
-    contains = "SeuratMarkers"
+    Class = "KnownMarkers",
+    contains = "Markers"
 )
 
 # FIXME
