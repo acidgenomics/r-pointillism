@@ -58,7 +58,7 @@
 
 
 
-.markers <- function(
+.seuratMarkers <- function(
     object,
     ranges,
     alpha = 0.05
