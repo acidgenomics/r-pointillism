@@ -25,8 +25,6 @@ association per cluster.}
 
 \item{return}{\code{string}. Return type. Uses \code{\link[base:match.arg]{base::match.arg()}} internally and
 defaults to the first argument in the \code{character} vector.}
-
-\item{coding}{\code{boolean}. Include only protein coding genes.}
 }
 \value{
 \code{grouped_df}.

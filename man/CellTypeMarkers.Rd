@@ -6,6 +6,11 @@
 \usage{
 CellTypeMarkers(object, gene2symbol)
 }
+\arguments{
+\item{object}{Object.}
+
+\item{gene2symbol}{\code{Gene2Symbol}. Gene-to-symbol mappings.}
+}
 \description{
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[=metadata]{metadata()}}.

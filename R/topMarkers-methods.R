@@ -8,7 +8,6 @@
 #' @param direction `string`. Whether to include upregulated (`"up"`; positive
 #'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of
 #'   association per cluster.
-#' @param coding `boolean`. Include only protein coding genes.
 #'
 #' @seealso
 #' - [dplyr::slice()].
