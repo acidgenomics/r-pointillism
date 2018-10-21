@@ -3,6 +3,8 @@
 \name{as}
 \alias{as}
 \alias{coerce}
+\alias{coerce,CellCycleMarkers,tbl_df-method}
+\alias{coerce,CellTypeMarkers,tbl_df-method}
 \alias{coerce,SingleCellExperiment,seurat-method}
 \alias{coerce,seurat,SingleCellExperiment-method}
 \alias{coerce,seurat,RangedSummarizedExperiment-method}
@@ -13,6 +15,16 @@
 \description{
 Coerce an object to a given class.
 }
+\section{\code{CellCycleMarkers} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from \code{CellCycleMarkers}.
+}
+
+\section{\code{CellTypeMarkers} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from \code{CellTypeMarkers}.
+}
+
 \section{\code{SingleCellExperiment} to \code{seurat}}{
 
 Interally \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}} is called without applying any

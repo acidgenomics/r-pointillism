@@ -4,7 +4,7 @@
 \name{known_markers_small}
 \alias{known_markers_small}
 \title{Known Markers Example}
-\format{An object of class \code{CellTypeMarkers} of dimension 1 x 1 x 3 x 3.}
+\format{An object of class \code{KnownMarkers} with 5 rows and 10 columns.}
 \usage{
 known_markers_small
 }
