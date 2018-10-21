@@ -3,7 +3,7 @@
 # # FIXME Need to update this.
 # \dontrun{
 # data(all_markers_small, known_markers_small)
-# x <- knownMarkers(
+# x <- KnownMarkers(
 #     all = all_markers_small,
 #     known = known_markers_small
 # )
@@ -19,7 +19,7 @@
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
 #'
-#' @name knownMarkers
+#' @name KnownMarkers
 #'
 #' @inheritParams general
 #' @param all `Markers`.
@@ -35,7 +35,7 @@ NULL
 
 
 
-knownMarkers.Markers <-  # nolint
+KnownMarkers.Markers <-  # nolint
     function(
         all,
         known,
@@ -108,13 +108,13 @@ knownMarkers.Markers <-  # nolint
 
 
 
-#' @rdname knownMarkers
+#' @rdname KnownMarkers
 #' @export
 setMethod(
-    f = "knownMarkers",
+    f = "KnownMarkers",
     signature = signature(
         all = "Markers",
         known = "CellTypeMarkers"
     ),
-    definition = knownMarkers.Markers
+    definition = KnownMarkers.Markers
 )
