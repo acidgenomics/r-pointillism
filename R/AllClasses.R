@@ -50,6 +50,8 @@ setValidity(
     }
 )
 
+
+
 # CellTypeMarkers ==============================================================
 #' Cell-Type Markers
 #'
@@ -88,8 +90,25 @@ setValidity(
 
 
 
-# Markers ======================================================================
-#' Single-Cell Markers
+# Known Markers ================================================================
+#' Known Markers
+#'
+#' Class containing known markers detected.
+#'
+#' @family S4 classes
+#' @export
+#'
+#' @return Results are grouped by `cellType` column and arranged by adjusted
+#'   *P* value (`padj`).
+setClass(
+    Class = "KnownMarkers",
+    contains = "DataFrame"  # FIXME SplitDataFrameList
+)
+
+
+
+# Seurat Markers ===============================================================
+#' Seurat Markers
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
@@ -98,16 +117,16 @@ setValidity(
 #'
 #' @return Results are arranged by adjusted *P* value (`padj`).
 setClass(
-    Class = "Markers",
+    Class = "SeuratMarkers",
     contains = "DataFrame"
 )
 
 
 
-# MarkersPerCluster ============================================================
-#' Single-Cell Markers per Cluster
+# SeuratMarkersPerCluster ======================================================
+#' Seurat Markers per Cluster
 #'
-#' Class containing essential elements for marker gene analysis.
+#' Class containing essential elements for marker per cluster analysis.
 #'
 #' @family S4 classes
 #' @export
@@ -115,12 +134,12 @@ setClass(
 #' @return Results are split per `cluster` and arranged by adjusted *P* value
 #'   (`padj`).
 setClass(
-    Class = "MarkersPerCluster",
+    Class = "SeuratMarkersPerCluster",
     contains = "CompressedSplitDataFrameList"
 )
 
 setValidity(
-    Class = "MarkersPerCluster",
+    Class = "SeuratMarkersPerCluster",
     method = function(object) {
         # data <- slot(object, name = "data")
         # # `FindAllMarkers()`
@@ -194,30 +213,3 @@ setValidity(
         TRUE
     }
 )
-
-
-
-# KnownMarkers =================================================================
-#' Known Seurat Markers
-#'
-#' Class containing essential elements for analysis of known, cell-type specific
-#' marker genes.
-#'
-#' @family S4 classes
-#' @export
-#'
-#' @seealso [KnownMarkers()].
-#'
-#' @return `KnownMarkers`.
-setClass(
-    Class = "KnownMarkers",
-    contains = "Markers"
-)
-
-# FIXME
-# KnownMarkers
-# assert_are_identical(
-#     x = group_vars(markers),
-#     y = "cluster"
-# )
-# assert_is_subset(c("cellType", "name"), colnames(name))
