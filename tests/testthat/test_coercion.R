@@ -1,5 +1,5 @@
 # FIXME Need to test seurat to SCE.
-# FIXME Need to test SeuratMarkers to tbl_df.
+# FIXME Need to test Markers to tbl_df.
 
 context("Coercion Methods")
 
