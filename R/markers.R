@@ -1,4 +1,5 @@
 #' @inherit CellCycleMarkers-class
+#' @inheritParams general
 #' @export
 CellCycleMarkers <- function(object, gene2symbol) {
     class <- "CellCycleMarkers"
@@ -13,6 +14,7 @@ CellCycleMarkers <- function(object, gene2symbol) {
 
 
 #' @inherit CellTypeMarkers-class
+#' @inheritParams general
 #' @export
 CellTypeMarkers <- function(object, gene2symbol) {
     class <- "CellTypeMarkers"

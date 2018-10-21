@@ -12,10 +12,11 @@
 #' @param alpha `scalar numeric`. Alpha cutoff (adjusted P value; false
 #'   discovery rate).
 #' @param aspectRatio `scalar integer`. Aspect ratio.
-#' @param BPPARAM BiocParallel param. We recommend one of the following:
+#' @param bpparam [BiocParallel][] param. We recommend one of the following:
 #'   - [BiocParallel::bpparam()].
 #'   - [BiocParallel::SerialParam()].
 #'   - [BiocParallel::MulticoreParam()].
+#' [BiocParallel]: https://doi.org/doi:10.18129/B9.bioc.BiocParallel
 #' @param color `ggproto`/`ScaleDiscrete` or `NULL`. Desired ggplot2 color
 #'   scale. Must supply discrete values. When set to `NULL`, the default ggplot2
 #'   color palette will be used. If manual color definitions are desired, we
@@ -37,6 +38,7 @@
 #'   using [ggplot2::scale_fill_manual()].
 #'   To set the discrete fill palette globally, use
 #'   `options(bcbio.discrete.fill = scale_fill_viridis_d())`.
+#' @param gene2symbol `Gene2Symbol`. Gene-to-symbol mappings.
 #' @param genes `character`. Gene identifiers. Must match the rownames of the
 #'   object.
 #' @param geom `string`. Plot type. Uses [base::match.arg()] and defaults to the
