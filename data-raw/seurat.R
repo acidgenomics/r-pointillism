@@ -50,18 +50,12 @@ ranges <- rowRanges(seurat_small)
 all_markers_small <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 
 # known_markers_small ==========================================================
-gene2symbol <- Gene2Symbol(seurat_small)
-data <- DataFrame(
-    cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
-    geneID = head(gene2symbol[["geneID"]], n = 2L)
+known_markers_small <- KnownMarkers(
+    markers = all_markers_small,
+    known = cell_type_markers$homoSapiens
 )
-known_markers_small <- KnownMarkers(data, gene2symbol = gene2symbol)
-
-# Write out an example CSV that we can use to test `CellTypeMarkers()`.
-cell_type_markers <- do.call(rbind, known_markers_small)
-rownames(cell_type_markers) <- NULL
 export(
-    x = cell_type_markers,
+    x = known_markers_small,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
