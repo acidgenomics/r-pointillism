@@ -147,11 +147,12 @@ discovery rate).</p></td>
       <td><p><code>scalar integer</code>. Aspect ratio.</p></td>
     </tr>
     <tr>
-      <th>BPPARAM</th>
+      <th>bpparam</th>
       <td><p>BiocParallel param. We recommend one of the following:</p><ul>
 <li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>BiocParallel::SerialParam()</a></code>.</p></li>
-<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.
+BiocParallel: https://doi.org/doi:10.18129/B9.bioc.BiocParallel</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -195,6 +196,10 @@ palette will be used. If manual color definitions are desired, we recommend
 using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_fill_manual()</a></code>.
 To set the discrete fill palette globally, use
 <code>options(bcbio.discrete.fill = scale_fill_viridis_d())</code>.</p></td>
+    </tr>
+    <tr>
+      <th>gene2symbol</th>
+      <td><p><code>Gene2Symbol</code>. Gene-to-symbol mappings.</p></td>
     </tr>
     <tr>
       <th>genes</th>
@@ -257,6 +262,10 @@ dots (<code>FALSE</code>).</p></td>
     <tr>
       <th>pointSize</th>
       <td><p><code>scalar numeric</code>. Cell point size.</p></td>
+    </tr>
+    <tr>
+      <th>progress</th>
+      <td><p><code>boolean</code>. Show progress, using progress bars.</p></td>
     </tr>
     <tr>
       <th>reducedDim</th>
