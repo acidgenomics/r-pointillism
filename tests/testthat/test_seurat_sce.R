@@ -148,7 +148,6 @@ test_that("rowRanges", {
 
 
 
-# FIXME Interesting groups column is named in `sampleData` return.
 test_that("sampleData", {
     expect_identical(
         object = sampleData(object),
@@ -163,15 +162,8 @@ test_that("sampleData", {
 
 
 test_that("sampleNames", {
-    expect_error(
-        sampleNames(object),
-        "sampleData"
-    )
     expect_identical(
-        sampleNames(object),
-        c(
-            group1 = "group1",
-            group2 = "group2"
-        )
+        object = sampleNames(object),
+        expected = c(unknown = "unknown")
     )
 })
