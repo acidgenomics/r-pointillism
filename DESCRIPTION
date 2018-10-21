@@ -77,7 +77,6 @@ RoxygenNote: 6.1.0
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
-    'SeuratMarkers.R'
     'as-methods.R'
     'assert-internal.R'
     'cellCountsPerCluster-methods.R'
@@ -94,6 +93,7 @@ Collate:
     'general.R'
     'importMarkers.R'
     'knownMarkers-methods.R'
+    'knownMarkers.R'
     'makeCellTypeMarkersFromGoogle.R'
     'markers.R'
     'plotCellTypesPerCluster-methods.R'
