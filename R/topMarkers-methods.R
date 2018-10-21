@@ -23,7 +23,7 @@ NULL
 
 
 
-topMarkers.MarkersPerCluster <-  # nolint
+topMarkers.SeuratMarkersPerCluster <-  # nolint
     function(
         object,
         n = 10L,
@@ -73,7 +73,7 @@ topMarkers.MarkersPerCluster <-  # nolint
             data
         }
     }
-formals(topMarkers.MarkersPerCluster)[["direction"]] <- direction
+formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
 
 
 
@@ -81,6 +81,6 @@ formals(topMarkers.MarkersPerCluster)[["direction"]] <- direction
 #' @export
 setMethod(
     f = "topMarkers",
-    signature = signature("MarkersPerCluster"),
-    definition = topMarkers.MarkersPerCluster
+    signature = signature("SeuratMarkersPerCluster"),
+    definition = topMarkers.SeuratMarkersPerCluster
 )
