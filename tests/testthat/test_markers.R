@@ -5,65 +5,43 @@ data(seurat_small, envir = environment())
 
 
 # CellTypeMarkers ==============================================================
-test_that("CellTypeMarkers : Mus musculus", {
+test_that("CellTypeMarkers", {
     file <- system.file(
         "extdata/cell_type_markers.csv",
         package = "pointillism"
     )
-    # FIXME Need to resave example data with improved Gene2Symbol.
+    data <- import(file)
     g2s <- Gene2Symbol(seurat_small)
-    x <- readCellTypeMarkers(
-        file = file,
+    x <- CellTypeMarkers(
+        object = data,
         gene2symbol = g2s
     )
-    group <- dplyr::group_vars(x)
-    expect_identical(group, "cellType")
-    y <- tibble::tibble(
-        cellType = c("cell_type_1", "cell_type_2"),
-        geneID = c("ENSG00000130711", "ENSG00000109099"),
-        geneName = c("PRDM12", "PMP22")
-    ) %>%
-        dplyr::group_by(!!rlang::sym("cellType"))
-    expect_equal(x, y)
+    expect_is(x, "CellTypeMarkers")
 })
 
 
 
 # sanitizeSeuratMarkers ========================================================
 test_that("sanitizeSeuratMarkers", {
-    # Early return on sanitized data
-    expect_message(
-        sanitizeSeuratMarkers(
-            data = all_markers_small,
-            rowRanges = rowRanges(seurat_small)
-        ),
-        "Markers are already sanitized"
-    )
+    ranges <- rowRanges(seurat_small)
 
     # FindAllMarkers
     invisible(capture.output(
-        all <- Seurat::FindAllMarkers(seurat_small)
+        markers <- Seurat::FindAllMarkers(seurat_small)
     ))
-    x <- sanitizeSeuratMarkers(
-        data = all,
-        rowRanges = rowRanges(seurat_small)
-    )
-    expect_is(x, "grouped_df")
+    x <- SeuratMarkers(markers = markers, ranges = ranges)
+    expect_is(x, "SeuratMarkers")
 
     # FindMarkers
     invisible(capture.output(
-        ident1 <- Seurat::FindMarkers(
+        markers <- Seurat::FindMarkers(
             seurat_small,
             ident.1 = "1",
             ident.2 = NULL
         )
     ))
-    x <- sanitizeSeuratMarkers(
-        data = ident1,
-        rowRanges = rowRanges(seurat_small)
-    )
-    expect_is(x, "data.frame")
-    expect_true(tibble::has_rownames(x))
+    x <- SeuratMarkers(markers = markers, ranges = ranges)
+    expect_is(x, "SeuratMarkers")
 })
 
 
@@ -78,29 +56,16 @@ test_that("topMarkers : grouped_df", {
             .[sort(names(.))],
         list(
             avgLogFC = "numeric",
-            broadClass = "factor",
             cluster = "factor",
-            description = "factor",
-            end = "integer",
-            geneBiotype = "factor",
             geneID = "character",
             geneName = "factor",
+            name = "character",
             padj = "numeric",
             pct1 = "numeric",
             pct2 = "numeric",
-            pvalue = "numeric",
-            rowname = "character",
-            seqCoordSystem = "factor",
-            seqnames = "factor",
-            start = "integer",
-            strand = "factor",
-            width = "integer"
+            pvalue = "numeric"
         )
     )
-
-    # Coding
-    x <- topMarkers(all_markers_small, coding = TRUE)
-    expect_is(x, "data.frame")
 
     # Direction
     direction <- formals(topMarkers) %>%
@@ -114,7 +79,7 @@ test_that("topMarkers : grouped_df", {
                 data = all_markers_small,
                 direction = direction
             )
-            expect_is(x, "data.frame")
+            expect_is(x, "tbl_df")
         }
     ))
 })
