@@ -17,7 +17,7 @@ NULL
 
 
 
-cellTypesPerCluster.KnownSeuratMarkers <- function(
+cellTypesPerCluster.KnownMarkers <- function(
     object,
     min = 1L,
     max = Inf
@@ -73,6 +73,6 @@ cellTypesPerCluster.KnownSeuratMarkers <- function(
 #' @export
 setMethod(
     f = "cellTypesPerCluster",
-    signature = signature("KnownSeuratMarkers"),
-    definition = cellTypesPerCluster.KnownSeuratMarkers
+    signature = signature("KnownMarkers"),
+    definition = cellTypesPerCluster.KnownMarkers
 )
