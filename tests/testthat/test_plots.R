@@ -6,7 +6,7 @@ objects <- list(
     SingleCellExperiment = sce_small,
     seurat = seurat_small
 )
-genes <- head(rownames(object))
+genes <- head(rownames(seurat_small))
 
 
 
