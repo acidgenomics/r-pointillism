@@ -122,21 +122,21 @@ show.SeuratMarkers <-  # nolint
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("CellCycleMarkers"),
-    definition = show.CellCycleMarkers
-)
+#' #' @rdname show
+#' #' @export
+#' setMethod(
+#'     f = "show",
+#'     signature = signature("CellCycleMarkers"),
+#'     definition = show.CellCycleMarkers
+#' )
 
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("CellTypeMarkers"),
-    definition = show.CellTypeMarkers
-)
+#' #' @rdname show
+#' #' @export
+#' setMethod(
+#'     f = "show",
+#'     signature = signature("CellTypeMarkers"),
+#'     definition = show.CellTypeMarkers
+#' )

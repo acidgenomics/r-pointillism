@@ -197,7 +197,7 @@ setValidity(
 
 
 
-# KnownSeuratMarkers ===========================================================
+# KnownMarkers =================================================================
 #' Known Seurat Markers
 #'
 #' Class containing essential elements for analysis of known, cell-type specific
@@ -215,7 +215,7 @@ setClass(
 )
 
 # FIXME
-# KnownSeuratMarkers
+# KnownMarkers
 # assert_are_identical(
 #     x = group_vars(markers),
 #     y = "cluster"
