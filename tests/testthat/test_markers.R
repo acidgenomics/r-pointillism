@@ -10,6 +10,7 @@ test_that("CellTypeMarkers : Mus musculus", {
         "extdata/cell_type_markers.csv",
         package = "pointillism"
     )
+    # FIXME Need to resave example data with improved Gene2Symbol.
     g2s <- Gene2Symbol(seurat_small)
     x <- readCellTypeMarkers(
         file = file,
