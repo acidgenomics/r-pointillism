@@ -23,19 +23,19 @@ NULL
 
 
 
-topMarkers.SeuratMarkers <-  # nolint
+topMarkers.Markers <-  # nolint
     function(
         object,
         n = 10L,
         direction,
-        return = c("tbl_df", "DataFrame", "DataFrameList")
+        return = c("SplitDataFrameList", "DataFrame", "tbl_df")
     ) {
         validObject(object)
         assertIsAnImplicitInteger(n)
         direction <- match.arg(direction)
         return <- match.arg(return)
 
-        # Using `SeuratMarkers` to `tbl_df` coercion method.
+        # Using `Markers` to `tbl_df` coercion method.
         data <- as(object, "tbl_df")
 
         # Subset to positive or negative correlation, if desired ("direction")
@@ -63,7 +63,7 @@ topMarkers.SeuratMarkers <-  # nolint
         } else if (return == "DataFrame") {
             message("Returning as DataFrame.")
             as(data, "DataFrame")
-        } else if (return == "DataFrameList") {
+        } else if (return == "SplitDataFrameList") {
             message("Returning as DataFrameList.")
             data <- as(data, "DataFrame")
             assert_is_subset("cluster", colnames(data))
@@ -72,7 +72,7 @@ topMarkers.SeuratMarkers <-  # nolint
             data
         }
     }
-formals(topMarkers.SeuratMarkers)[["direction"]] <- direction
+formals(topMarkers.Markers)[["direction"]] <- direction
 
 
 
@@ -80,6 +80,6 @@ formals(topMarkers.SeuratMarkers)[["direction"]] <- direction
 #' @export
 setMethod(
     f = "topMarkers",
-    signature = signature("SeuratMarkers"),
-    definition = topMarkers.SeuratMarkers
+    signature = signature("Markers"),
+    definition = topMarkers.Markers
 )
