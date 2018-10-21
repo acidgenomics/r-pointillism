@@ -3,20 +3,18 @@
 \docType{class}
 \name{KnownMarkers-class}
 \alias{KnownMarkers-class}
-\title{Known Seurat Markers}
+\title{Known Markers}
 \value{
-\code{KnownMarkers}.
+Results are grouped by \code{cellType} column and arranged by adjusted
+\emph{P} value (\code{padj}).
 }
 \description{
-Class containing essential elements for analysis of known, cell-type specific
-marker genes.
+Class containing known markers detected.
 }
 \seealso{
-\code{\link[=KnownMarkers]{KnownMarkers()}}.
-
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
-  \code{\link{Markers-class}},
-  \code{\link{MarkersPerCluster-class}}
+  \code{\link{SeuratMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }
 \concept{S4 classes}

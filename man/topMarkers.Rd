@@ -3,12 +3,12 @@
 \docType{methods}
 \name{topMarkers}
 \alias{topMarkers}
-\alias{topMarkers,MarkersPerCluster-method}
+\alias{topMarkers,SeuratMarkersPerCluster-method}
 \title{Top Markers}
 \usage{
 topMarkers(object, ...)
 
-\S4method{topMarkers}{MarkersPerCluster}(object, n = 10L,
+\S4method{topMarkers}{SeuratMarkersPerCluster}(object, n = 10L,
   direction = c("up", "down", "both"), return = c("tbl_df",
   "DataFrame", "SplitDataFrameList"))
 }

@@ -16,7 +16,7 @@ defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
 
 Other S4 classes: \code{\link{CellTypeMarkers-class}},
   \code{\link{KnownMarkers-class}},
-  \code{\link{Markers-class}},
-  \code{\link{MarkersPerCluster-class}}
+  \code{\link{SeuratMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }
 \concept{S4 classes}

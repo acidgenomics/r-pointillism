@@ -2,10 +2,22 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
+\alias{knownMarkers}
 \alias{knownMarkersDetected}
+\alias{plotKnownMarkersDetected}
+\alias{readCellTypeMarkers}
+\alias{sanitizeMarkers}
 \title{Defunct Functions}
 \usage{
+knownMarkers(...)
+
 knownMarkersDetected(...)
+
+plotKnownMarkersDetected(...)
+
+readCellTypeMarkers(...)
+
+sanitizeMarkers(...)
 }
 \arguments{
 \item{...}{Additional arguments.}
