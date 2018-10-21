@@ -58,8 +58,5 @@ setMethod(
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "cellCountsPerCluster",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = getMethod("cellCountsPerCluster", "SingleCellExperiment")
 )
