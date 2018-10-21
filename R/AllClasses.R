@@ -24,28 +24,29 @@ setOldClass(Classes = "session_info")
 #' @export
 #'
 #' @seealso [CellCycleMarkers()].
+#'
+#' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
-    contains = "DataFrame"
+    contains = "CompressedSplitDataFrameList"
 )
 
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
-        assert_is_all_of(object, "DataFrame")
-        assert_has_rows(object)
-        assert_are_identical(
-            x = lapply(object, class),
-            y = list(
-                phase = "factor",
-                geneID = "character",
-                geneName = "character"
-            )
-        )
-        assert_is_subset(
-            x = c("version", "organism", "ensemblRelease", "date"),
-            y = names(metadata(object))
-        )
+        # assert_has_rows(object)
+        # assert_are_identical(
+        #     x = lapply(object, class),
+        #     y = list(
+        #         phase = "factor",
+        #         geneID = "character",
+        #         geneName = "character"
+        #     )
+        # )
+        # assert_is_subset(
+        #     x = c("version", "organism", "ensemblRelease", "date"),
+        #     y = names(metadata(object))
+        # )
         TRUE
     }
 )
@@ -59,31 +60,30 @@ setValidity(
 #' @family S4 classes
 #' @export
 #'
-#' @return
-#'
 #' @seealso [CellTypeMarkers()].
+#'
+#' @return `CellTypeMarkers`
 setClass(
     Class = "CellTypeMarkers",
-    contains = "DataFrameList"
+    contains = "CompressedSplitDataFrameList"
 )
 
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
-        assert_is_all_of(object, "DataFrame")
-        assert_has_rows(object)
-        assert_are_identical(
-            x = lapply(object, class),
-            y = list(
-                cellType = "factor",
-                geneID = "character",
-                geneName = "character"
-            )
-        )
-        assert_is_subset(
-            x = c("version", "organism", "ensemblRelease", "date"),
-            y = names(metadata(object))
-        )
+        # assert_has_rows(object)
+        # assert_are_identical(
+        #     x = lapply(object, class),
+        #     y = list(
+        #         cellType = "factor",
+        #         geneID = "character",
+        #         geneName = "character"
+        #     )
+        # )
+        # assert_is_subset(
+        #     x = c("version", "organism", "ensemblRelease", "date"),
+        #     y = names(metadata(object))
+        # )
         TRUE
     }
 )
@@ -195,6 +195,8 @@ setValidity(
 #' @export
 #'
 #' @seealso [knownMarkers()].
+#'
+#' @return `KnownSeuratMarkers`.
 setClass(
     Class = "KnownSeuratMarkers",
     contains = "SeuratMarkers"
