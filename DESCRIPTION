@@ -51,7 +51,7 @@ Imports:
     magrittr,
     methods,
     pbapply,
-    rlang,
+    rlang (>= 0.3),
     scales,
     sessioninfo,
     tibble (>= 1.4),
