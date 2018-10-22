@@ -1,10 +1,3 @@
-# FIXME Improve the formals.
-# FIXME Need to rework this function to use class.
-# FIXME Improve error handling for this:
-# markers <- head(all_markers_small, n = 1L)
-
-
-
 #' Plot Top Markers
 #'
 #' The number of markers to plot is determined by the output of the
@@ -18,6 +11,7 @@
 #' @inheritParams general
 #' @inheritParams topMarkers
 #' @param markers `grouped_df`. Marker genes, grouped by "`cluster`".
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
@@ -28,7 +22,7 @@ NULL
 
 
 
-.plotTopMarkers.SingleCellExperiment <-  # nolint
+plotTopMarkers.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
@@ -36,6 +30,7 @@ NULL
         direction,
         reducedDim,
         headerLevel = 2L,
+        progress = FALSE,
         ...
     ) {
         # Passthrough: n, direction, coding
@@ -47,12 +42,18 @@ NULL
         )
         assert_is_scalar(reducedDim)
         assertIsHeaderLevel(headerLevel)
+        assert_is_a_bool(progress)
+        if (isTRUE(progress)) {
+            applyFun <- pblapply
+        } else {
+            applyFun <- lapply
+        }
 
         assert_is_subset("cluster", colnames(markers))
         clusters <- levels(markers[["cluster"]])
 
-        # FIXME Add progress option.
-        list <- pblapply(clusters, function(cluster) {
+
+        list <- applyFun(clusters, function(cluster) {
             genes <- markers %>%
                 ungroup() %>%
                 filter(cluster == !!cluster) %>%
@@ -86,8 +87,8 @@ NULL
 
         invisible(list)
     }
-formals(.plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
-formals(.plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
+formals(plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
+formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
 
 
 
@@ -96,7 +97,7 @@ formals(.plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
 setMethod(
     f = "plotTopMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = .plotTopMarkers.SingleCellExperiment
+    definition = plotTopMarkers.SingleCellExperiment
 )
 
 

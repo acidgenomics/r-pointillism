@@ -1,8 +1,3 @@
-# TODO Add MAST, Wilcoxon support?
-# TODO Consider adding back zingeR support here.
-
-
-
 #' Differential Expression
 #'
 #' Perform pairwise differential expression across groups of cells by fitting

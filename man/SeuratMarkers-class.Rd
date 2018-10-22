@@ -3,15 +3,17 @@
 \docType{class}
 \name{SeuratMarkers-class}
 \alias{SeuratMarkers-class}
-\title{\code{SeuratMarkers} Class}
+\title{Seurat Markers}
+\value{
+Results are arranged by adjusted \emph{P} value (\code{padj}).
+}
 \description{
-Class containing essential elements for Seurat marker gene analysis.
+Class containing essential elements for marker gene analysis.
 }
 \seealso{
-\code{\link[=SeuratMarkers]{SeuratMarkers()}}.
-
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{CellTypeMarkers-class}},
-  \code{\link{KnownSeuratMarkers-class}}
+  \code{\link{KnownMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }
 \concept{S4 classes}

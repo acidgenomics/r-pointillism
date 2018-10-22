@@ -14,7 +14,7 @@ NULL
 
 
 
-.clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
+clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
     function(object) {
         .assertHasIdent(object)
         metrics <- metrics(object)
@@ -37,7 +37,7 @@ NULL
 setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("SingleCellExperiment"),
-    definition = .clusterCellCountsPerSample.SingleCellExperiment
+    definition = clusterCellCountsPerSample.SingleCellExperiment
 )
 
 

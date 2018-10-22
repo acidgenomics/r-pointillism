@@ -121,7 +121,7 @@
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
   <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.8</span>),
+  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.85</span>),
   <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointsAsNumbers"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>, <span class='fl'>TRUE</span>),
   <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
@@ -134,7 +134,7 @@
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
   <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointSize"</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.8</span>),
+  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointAlpha"</span>, <span class='fl'>0.85</span>),
   <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.pointsAsNumbers"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.label"</span>, <span class='fl'>TRUE</span>),
   <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.labelSize"</span>, <span class='fl'>6L</span>),
@@ -227,11 +227,16 @@ dots (<code>FALSE</code>).</p></td>
     <span class='fu'>sort</span>(<span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'>head</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'>names</span>()
-<span class='fu'>str</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:4] "LYZ" "HLA-DRA" "CST3" "HLA-DPB1"</div><div class='input'><span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span><span class='kw'>[[</span><span class='fl'>1L</span>]])</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotMarker</span>(
+<span class='fu'>str</span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt;  chr [1:4] "LYZ" "HLA-DRA" "CST3" "HLA-DPB1"</div><div class='input'>
+<span class='co'>## Default appearance.</span>
+<span class='fu'>plotMarker</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span><span class='kw'>[[</span><span class='fl'>1L</span>]])</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## Dark mode with viridis palette.</span>
+<span class='fu'>plotMarker</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
     <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>,
     <span class='kw'>expression</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
     <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis'>scale_color_viridis_c</a></span>(),
     <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>title</span>

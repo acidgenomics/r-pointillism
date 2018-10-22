@@ -1,3 +1,10 @@
+.prototypeMetadata <- list(
+    version = packageVersion("pointillism"),
+    date = Sys.Date()
+)
+
+
+
 # S3 classes ===================================================================
 # package_version
 setOldClass(Classes = class(packageVersion("base")))
@@ -8,29 +15,27 @@ setOldClass(Classes = "session_info")
 
 
 # CellCycleMarkers =============================================================
-#' `CellCycleMarkers` Class
+#' Cell-Cycle Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [metadata()].
+#' defined in [S4Vectors::metadata()].
 #'
 #' @family S4 classes
 #' @export
 #'
 #' @seealso [CellCycleMarkers()].
+#'
+#' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
-    contains = "DataFrame"
+    contains = "CompressedSplitDataFrameList"
 )
-
-
 
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
-        assert_is_all_of(object, "DataFrame")
-        assert_has_rows(object)
         assert_are_identical(
-            x = lapply(object, class),
+            x = lapply(object[[1L]], class),
             y = list(
                 phase = "factor",
                 geneID = "character",
@@ -48,7 +53,7 @@ setValidity(
 
 
 # CellTypeMarkers ==============================================================
-#' `CellTypeMarkers` Class
+#' Cell-Type Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [metadata()].
@@ -57,20 +62,18 @@ setValidity(
 #' @export
 #'
 #' @seealso [CellTypeMarkers()].
+#'
+#' @return `CellTypeMarkers`
 setClass(
     Class = "CellTypeMarkers",
-    contains = "DataFrame"
+    contains = "CompressedSplitDataFrameList"
 )
-
-
 
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
-        assert_is_all_of(object, "DataFrame")
-        assert_has_rows(object)
         assert_are_identical(
-            x = lapply(object, class),
+            x = lapply(object[[1L]], class),
             y = list(
                 cellType = "factor",
                 geneID = "character",
@@ -87,15 +90,32 @@ setValidity(
 
 
 
-# SeuratMarkers ================================================================
-#' `SeuratMarkers` Class
+# Known Markers ================================================================
+#' Known Markers
 #'
-#' Class containing essential elements for Seurat marker gene analysis.
+#' Class containing known markers detected.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso [SeuratMarkers()].
+#' @return Results are grouped by `cellType` column and arranged by adjusted
+#'   *P* value (`padj`).
+setClass(
+    Class = "KnownMarkers",
+    contains = "DataFrame"  # FIXME SplitDataFrameList
+)
+
+
+
+# Seurat Markers ===============================================================
+#' Seurat Markers
+#'
+#' Class containing essential elements for marker gene analysis.
+#'
+#' @family S4 classes
+#' @export
+#'
+#' @return Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame"
@@ -103,8 +123,23 @@ setClass(
 
 
 
+# SeuratMarkersPerCluster ======================================================
+#' Seurat Markers per Cluster
+#'
+#' Class containing essential elements for marker per cluster analysis.
+#'
+#' @family S4 classes
+#' @export
+#'
+#' @return Results are split per `cluster` and arranged by adjusted *P* value
+#'   (`padj`).
+setClass(
+    Class = "SeuratMarkersPerCluster",
+    contains = "CompressedSplitDataFrameList"
+)
+
 setValidity(
-    Class = "SeuratMarkers",
+    Class = "SeuratMarkersPerCluster",
     method = function(object) {
         # data <- slot(object, name = "data")
         # # `FindAllMarkers()`
@@ -178,30 +213,3 @@ setValidity(
         TRUE
     }
 )
-
-
-
-# KnownSeuratMarkers ===========================================================
-#' `KnownSeuratMarkers` Class
-#'
-#' Class containing essential elements for analysis of known, cell-type specific
-#' marker genes.
-#'
-#' @family S4 classes
-#' @export
-#'
-#' @seealso [knownMarkers()].
-setClass(
-    Class = "KnownSeuratMarkers",
-    contains = "SeuratMarkers"
-)
-
-
-
-# FIXME
-# KnownSeuratMarkers
-# assert_are_identical(
-#     x = group_vars(markers),
-#     y = "cluster"
-# )
-# assert_is_subset(c("cellType", "name"), colnames(name))

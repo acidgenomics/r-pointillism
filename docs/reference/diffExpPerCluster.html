@@ -134,6 +134,21 @@
       <th>...</th>
       <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>group</th>
+      <td><p><code>string</code>. Group of interest for differential expression per
+cluster. Must be a <code>factor</code> column in <code><a href='http://www.rdocumentation.org/packages/SummarizedExperiment/topics/SummarizedExperiment-class'>SummarizedExperiment::colData()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>numerator</th>
+      <td><p><code>character</code>. Cells to use in the numerator of the contrast
+(e.g. treatment).</p></td>
+    </tr>
+    <tr>
+      <th>denominator</th>
+      <td><p><code>character</code>. Cells to use in the denominator of the
+contrast (e.g. control).</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -146,8 +161,8 @@
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Cluster identity (<code>ident</code>) must be defined in <code>colData()</code> for this
-function to work.</p>
+    <p>Cluster identity (<code>ident</code>) must be defined in
+<code><a href='http://www.rdocumentation.org/packages/SummarizedExperiment/topics/SummarizedExperiment-class'>SummarizedExperiment::colData()</a></code> for this function to work.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

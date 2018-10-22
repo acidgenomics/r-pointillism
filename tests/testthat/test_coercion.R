@@ -1,7 +1,7 @@
-context("Coercion Methods")
-
 # FIXME Need to test seurat to SCE.
-# FIXME Need to test SeuratMarkers to tbl_df.
+# FIXME Need to test Markers to tbl_df.
+
+context("Coercion Methods")
 
 data(sce_small, package = "basejump", envir = environment())
 
@@ -20,18 +20,24 @@ test_that("SingleCellExperiment to seurat", {
 
 test_that("SCE-seurat interconversion with subsetting", {
     a <- sce_small
+
     # Coerce to seurat.
     b <- as(a, "seurat")
     expect_s4_class(b, "seurat")
+
     # Coerce back to SCE.
     c <- as(b, "SingleCellExperiment")
     expect_s4_class(c, "SingleCellExperiment")
-    # Subset to contain 100 genes, 10 cells
-    d <- c[seq_len(100L), seq_len(10L)]
+
+    # Subset to contain n-1 genes, n-1 cells.
+    nr <- nrow(c) - 1L
+    nc <- ncol(c) - 1L
+    d <- c[seq_len(nr), seq_len(nc)]
     expect_s4_class(d, "SingleCellExperiment")
-    expect_identical(dim(d), c(100L, 10L))
-    # Coerce back to seurat
+    expect_identical(dim(d), c(nr, nc))
+
+    # Coerce back to seurat.
     e <- as(d, "seurat")
     expect_s4_class(e, "seurat")
-    expect_identical(dim(counts(e)), c(100L, 10L))
+    expect_identical(dim(counts(e)), c(nr, nc))
 })

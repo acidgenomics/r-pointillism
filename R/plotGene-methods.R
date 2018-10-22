@@ -1,7 +1,3 @@
-# FIXME Use `basejump.` instead of `basejump.` for globals.
-
-
-
 #' @importFrom basejump plotGene
 #' @aliases NULL
 #' @export
@@ -58,12 +54,11 @@ NULL
 
 
 # plotGene =====================================================================
-.plotGene.SingleCellExperiment <- function(
+plotGene.SingleCellExperiment <- function(
     object,
     genes,
     geom = c("dot", "violin"),
     perSample = TRUE,
-    color,
     legend,
     title = NULL
 ) {
@@ -78,13 +73,7 @@ NULL
     args[["geom"]] <- NULL
     do.call(what = what, args = args)
 }
-formals(.plotGene.SingleCellExperiment)[c(
-    "color",
-    "legend"
-)] <- list(
-    color = continuousColor,
-    legend = legend
-)
+formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 
@@ -110,10 +99,7 @@ formals(.plotGene.SingleCellExperiment)[c(
 
 
 
-# FIXME Need to fix the color scale argument here. It's continuous.
-# FIXME Share this default with `plotMarker`.
-# FIXME Set shared formals.
-.plotDot.SingleCellExperiment <- function(
+plotDot.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -208,17 +194,17 @@ formals(.plotGene.SingleCellExperiment)[c(
 
     p
 }
-formals(.plotDot.SingleCellExperiment)[c(
+formals(plotDot.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
-    color = continuousColor2,
+    color = continuousColorPurpleOrange,
     legend = legend
 )
 
 
 
-.plotViolin.SingleCellExperiment <- function(
+plotViolin.SingleCellExperiment <- function(
     object,
     genes,
     perSample = TRUE,
@@ -265,7 +251,7 @@ formals(.plotDot.SingleCellExperiment)[c(
     }
 
     p <- ggplot(
-        data = as.data.frame(data),
+        data = as_tibble(data),
         mapping = aes(
             x = !!sym(x),
             y = !!sym("logcounts"),
@@ -313,7 +299,7 @@ formals(.plotDot.SingleCellExperiment)[c(
 
     p
 }
-formals(.plotViolin.SingleCellExperiment)[c(
+formals(plotViolin.SingleCellExperiment)[c(
     "color",
     "legend"
 )] <- list(
@@ -329,7 +315,7 @@ formals(.plotViolin.SingleCellExperiment)[c(
 setMethod(
     f = "plotGene",
     signature = signature("SingleCellExperiment"),
-    definition = .plotGene.SingleCellExperiment
+    definition = plotGene.SingleCellExperiment
 )
 
 
@@ -352,7 +338,7 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = .plotDot.SingleCellExperiment
+    definition = plotDot.SingleCellExperiment
 )
 
 
@@ -375,7 +361,7 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = .plotViolin.SingleCellExperiment
+    definition = plotViolin.SingleCellExperiment
 )
 
 

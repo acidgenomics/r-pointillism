@@ -3,15 +3,28 @@
 \name{as}
 \alias{as}
 \alias{coerce}
+\alias{coerce,CellCycleMarkers,tbl_df-method}
+\alias{coerce,CellTypeMarkers,tbl_df-method}
 \alias{coerce,SingleCellExperiment,seurat-method}
 \alias{coerce,seurat,SingleCellExperiment-method}
 \alias{coerce,seurat,RangedSummarizedExperiment-method}
 \alias{coerce,seurat,SummarizedExperiment-method}
 \alias{coerce,SeuratMarkers,tbl_df-method}
+\alias{coerce,SeuratMarkersPerCluster,tbl_df-method}
 \title{Force an Object to Belong to a Class}
 \description{
 Coerce an object to a given class.
 }
+\section{\code{CellCycleMarkers} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from \code{CellCycleMarkers}.
+}
+
+\section{\code{CellTypeMarkers} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from \code{CellTypeMarkers}.
+}
+
 \section{\code{SingleCellExperiment} to \code{seurat}}{
 
 Interally \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}} is called without applying any
@@ -46,7 +59,12 @@ class object.
 
 \section{\code{SeuratMarkers} to \code{tbl_df}}{
 
-S4 coercion support for creating a \code{tbl_df} from a \code{SeuratMarkers} object.
+S4 coercion support for creating a \code{tbl_df} from a \code{Markers} object.
+}
+
+\section{\code{SeuratMarkersPerCluster} to \code{tbl_df}}{
+
+S4 coercion support for creating a \code{tbl_df} from \code{SeuratMarkersPerCluster}.
 }
 
 \section{Description}{

@@ -1,34 +1,32 @@
-# FIXME Add a show progress option.
-
-
-
-#' Calculate ZINB-WaVE Weights
-#'
-#' zinbwave will calculate `normalizedValues` and `weights` matrices, which will
-#' be defined in the [assays()] slot. If these values have already been
-#' calculated, the object will be returned unmodified, unless
-#' `recalculate = TRUE`.
-#'
-#' @note zinbwave defaults to using [BiocParallel::bpparam()] to register the
-#'   number of cores to use (`bpparam` argument), but we've found that this
-#'   works inconsistently across installations. Currently, we recommend using
-#'   [BiocParallel::SerialParam()] by default, which will run in serial, using a
-#'   single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should
-#'   work to run with multiple cores.
-#'
+#' @inherit zinbwave::zinbwave title description params
 #' @name runZinbwave
 #' @include globals.R
 #'
+#' @details
+#' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which will
+#' be defined in the [SummarizedExperiment::assays()] slot. If these values have
+#' already been calculated, the object will be returned unmodified, unless
+#' `recalculate = TRUE`.
+#'
+#' [zinbwave]: https://bioconductor.org/packages/release/bioc/html/zinbwave.html
+#'
+#' @section Parallelization:
+#'
+#' zinbwave defaults to using [BiocParallel::bpparam()] to register the number
+#' of cores to use (`bpparam` argument), but we've found that this works
+#' inconsistently across installations. Currently, we recommend using
+#' [BiocParallel::SerialParam()] by default, which will run in serial, using a
+#' single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should work
+#' to run with multiple cores.
+#'
 #' @inheritParams general
-#' @inheritParams zinbwave::zinbwave
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
 #' @param recalculate `logical`. Force recalculation of weights.
-#' @param verbose `logical`. Run zinbwave in verbose model (for debugging).
-#' @param ... Passthrough arguments to [zinbwave::zinbwave()].
+#' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
-#'   weights added to [assays()].
+#'   weights added to [SummarizedExperiment::assays()].
 #'
 #' @seealso [zinbwave::zinbwave()].
 #'
@@ -42,7 +40,7 @@ NULL
 
 
 # SingleCellExperiment =========================================================
-.runZinbwave.SingleCellExperiment <-  # nolint
+runZinbwave.SingleCellExperiment <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
@@ -50,8 +48,7 @@ NULL
         # Use serial by default, for cross-platform compatibility.
         BPPARAM,  # nolint
         recalculate = FALSE,
-        verbose = FALSE,
-        ...
+        verbose = FALSE
     ) {
         message("Running zinbwave.")
         stopifnot(is(Y, "SingleCellExperiment"))
@@ -80,7 +77,7 @@ NULL
         # Inform the user whether running in parallel or serial.
         bpparamInfo <- capture.output(BPPARAM)
         message(paste(
-            "BiocParallel param registered:",
+            "BiocParallel param registered.",
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
         ))
@@ -99,17 +96,20 @@ NULL
         counts(Y) <- as.matrix(counts(Y))
 
         # Fit a ZINB regression model ------------------------------------------
-        message("Fitting a ZINB regression model.")
+        message("zinbFit(): Fitting a ZINB regression model.")
         message(paste(
             "CPU time used:",
             printString(system.time({
-                fittedModel <- zinbFit(
-                    Y = Y,
-                    K = K,
-                    epsilon = epsilon,
-                    BPPARAM = BPPARAM,
-                    verbose = verbose
-                )
+                # Wrapping here to disable progress bars.
+                invisible(capture.output(
+                    fittedModel <- zinbFit(
+                        Y = Y,
+                        K = K,
+                        epsilon = epsilon,
+                        BPPARAM = BPPARAM,
+                        verbose = verbose
+                    )
+                ))
             })),
             sep = "\n"
         ))
@@ -119,19 +119,24 @@ NULL
         ))
 
         # zinbwave -------------------------------------------------------------
-        message("Running zinbwave.")
+        message(paste(
+            "zinbwave(): Performing dimensionality reduction using a",
+            "ZINB regression model with gene and cell-level covariates."
+        ))
         message(paste(
             "CPU time used:",
             printString(system.time({
-                zinb <- zinbwave(
-                    Y = Y,
-                    fitted_model = fittedModel,
-                    K = K,
-                    epsilon = epsilon,
-                    BPPARAM = BPPARAM,
-                    verbose = verbose,
-                    ...
-                )
+                # Wrapping here to disable progress bars.
+                invisible(capture.output(
+                    zinb <- zinbwave(
+                        Y = Y,
+                        fitted_model = fittedModel,
+                        K = K,
+                        epsilon = epsilon,
+                        BPPARAM = BPPARAM,
+                        verbose = verbose
+                    )
+                ))
             })),
             sep = "\n"
         ))
@@ -145,7 +150,7 @@ NULL
         metadata(object)[["weights"]] <- "zinbwave"
         object
     }
-formals(.runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
+formals(runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 
 
 
@@ -154,13 +159,13 @@ formals(.runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 setMethod(
     f = "runZinbwave",
     signature = signature(Y = "SingleCellExperiment"),
-    definition = .runZinbwave.SingleCellExperiment
+    definition = runZinbwave.SingleCellExperiment
 )
 
 
 
 # seurat =======================================================================
-.runZinbwave.seurat <- function(Y, ...) {
+runZinbwave.seurat <- function(Y, ...) {
     zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
     weights(Y) <- weights(zinb)
     metadata(Y)[["weights"]] <- "zinbwave"
@@ -175,5 +180,5 @@ setMethod(
 setMethod(
     f = "runZinbwave",
     signature = signature("seurat"),
-    definition = .runZinbwave.seurat
+    definition = runZinbwave.seurat
 )

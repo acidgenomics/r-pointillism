@@ -18,15 +18,12 @@ plotDot(object, ...)
 plotViolin(object, ...)
 
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
-  "violin"), perSample = TRUE,
-  color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  "violin"), perSample = TRUE, legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
 
 \S4method{plotGene}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  perSample = TRUE, legend = getOption("pointillism.legend", TRUE),
+  title = NULL)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
@@ -63,13 +60,6 @@ Currently supports "\code{dot}" and "\code{violin}".}
 
 \item{perSample}{\code{boolean}. Visualize the distributions per sample?}
 
-\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
-scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
-color palette will be used. If manual color definitions are desired, we
-recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
-To set the discrete color palette globally, use
-\code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
-
 \item{legend}{\code{boolean}. Include plot legend.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
@@ -86,6 +76,13 @@ will have no dot drawn.}
 
 \item{dotScale}{\code{scalar numeric}. Scale the size of the points, similar to
 \code{cex}.}
+
+\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
+color palette will be used. If manual color definitions are desired, we
+recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
+To set the discrete color palette globally, use
+\code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of

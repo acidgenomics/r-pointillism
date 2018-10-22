@@ -4,39 +4,25 @@
 \alias{CellCycleMarkers}
 \title{Cell-Cycle Markers}
 \usage{
-CellCycleMarkers(file, gs, ws = 1L, organism, ensemblRelease,
-  gene2symbol = NULL)
+CellCycleMarkers(object, gene2symbol)
 }
 \arguments{
-\item{file}{\code{string} or \code{missing}. Gene markers file path (CSV or Excel).}
+\item{object}{Object.}
 
-\item{gs}{\code{string} or \code{missing}. Google Sheets \code{sheet_key} identifier, which
-can be located with the \code{\link[googlesheets:gs_ls]{googlesheets::gs_ls()}} function.}
-
-\item{ws}{positive integer or character string specifying index or title,
-respectively, of the worksheet}
-
-\item{organism}{\code{string}. Full Latin organism name (e.g. \code{"Homo sapiens"}).}
-
-\item{ensemblRelease}{\code{scalar integer}. Ensembl release version (e.g. \code{90}).}
-
-\item{gene2symbol}{\code{gene2symbol} or \code{NULL}. Use the stashed gene-to-symbol
-mappings from a \code{SingleCellExperiment} or \code{seurat} object.}
+\item{gene2symbol}{\code{Gene2Symbol}. Gene-to-symbol mappings.}
 }
 \value{
-\code{CellCycleMarkers}.
+\code{CellTypeMarkers}
 }
 \description{
-Currently designed for internal use by the pointillism package.
+Data provenence information, including the organism and Ensembl release are
+defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
 }
-\examples{
-\dontrun{
-## Google Sheets method (requires OAuth).
-x <- CellCycleMarkers(
-    gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
-    ws = "Homo_sapiens",
-    organism = "Homo sapiens",
-    ensemblRelease = 92L
-)
-}
+\seealso{
+\code{\link[=CellCycleMarkers]{CellCycleMarkers()}}.
+
+Other S4 classes: \code{\link{CellTypeMarkers-class}},
+  \code{\link{KnownMarkers-class}},
+  \code{\link{SeuratMarkers-class}},
+  \code{\link{SeuratMarkersPerCluster-class}}
 }

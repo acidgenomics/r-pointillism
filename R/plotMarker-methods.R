@@ -1,13 +1,3 @@
-# TODO Consolidate these defaults with `.plotReducedDim`.
-# FIXME Keep the original gene input, to use for the labels.
-# Need to remap an additional remapping function here I think.
-
-
-# FIXME This is breaking:
-# plotMarker(object, genes = "LTB")
-
-
-
 #' Plot Cell-Type-Specific Gene Markers
 #'
 #' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
@@ -29,12 +19,17 @@
 #'     head(n = 4L) %>%
 #'     names()
 #' str(genes)
+#'
+#' ## Default appearance.
 #' plotMarker(object, genes = genes[[1L]])
+#'
+#' ## Dark mode with viridis palette.
 #' plotMarker(
 #'     object = object,
 #'     genes = genes,
 #'     expression = "mean",
 #'     pointsAsNumbers = TRUE,
+#'     color = ggplot2::scale_color_viridis_c(),
 #'     dark = TRUE,
 #'     label = FALSE,
 #'     title = title
@@ -43,7 +38,7 @@ NULL
 
 
 
-.plotMarker.SingleCellExperiment <- function(
+plotMarker.SingleCellExperiment <- function(
     object,
     genes,
     reducedDim,
@@ -109,7 +104,7 @@ NULL
     assert_is_subset(requiredCols, colnames(data))
 
     p <- ggplot(
-        data = as.data.frame(data),
+        data = as_tibble(data),
         mapping = aes(
             x = !!sym("x"),
             y = !!sym("y"),
@@ -211,7 +206,7 @@ NULL
 
     p
 }
-formals(.plotMarker.SingleCellExperiment)[c(
+formals(plotMarker.SingleCellExperiment)[c(
     "color",
     "dark",
     "expression",
@@ -242,7 +237,7 @@ formals(.plotMarker.SingleCellExperiment)[c(
 setMethod(
     f = "plotMarker",
     signature = signature("SingleCellExperiment"),
-    definition = .plotMarker.SingleCellExperiment
+    definition = plotMarker.SingleCellExperiment
 )
 
 

@@ -8,7 +8,6 @@
 #' @param direction `string`. Whether to include upregulated (`"up"`; positive
 #'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of
 #'   association per cluster.
-#' @param coding `boolean`. Include only protein coding genes.
 #'
 #' @seealso
 #' - [dplyr::slice()].
@@ -24,19 +23,19 @@ NULL
 
 
 
-.topMarkers.SeuratMarkers <-  # nolint
+topMarkers.SeuratMarkersPerCluster <-  # nolint
     function(
         object,
         n = 10L,
         direction,
-        return = c("tbl_df", "DataFrame", "DataFrameList")
+        return = c("tbl_df", "DataFrame", "SplitDataFrameList")
     ) {
         validObject(object)
         assertIsAnImplicitInteger(n)
         direction <- match.arg(direction)
         return <- match.arg(return)
 
-        # Using `SeuratMarkers` to `tbl_df` coercion method.
+        # Using `Markers` to `tbl_df` coercion method.
         data <- as(object, "tbl_df")
 
         # Subset to positive or negative correlation, if desired ("direction")
@@ -64,16 +63,17 @@ NULL
         } else if (return == "DataFrame") {
             message("Returning as DataFrame.")
             as(data, "DataFrame")
-        } else if (return == "DataFrameList") {
+        } else if (return == "SplitDataFrameList") {
             message("Returning as DataFrameList.")
             data <- as(data, "DataFrame")
             assert_is_subset("cluster", colnames(data))
             data <- split(x = data, f = data[["cluster"]])
+            names(data) <- paste0("cluster", names(data))
             stopifnot(is(data, "SplitDataFrameList"))
             data
         }
     }
-formals(.topMarkers.SeuratMarkers)[["direction"]] <- direction
+formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
 
 
 
@@ -81,6 +81,6 @@ formals(.topMarkers.SeuratMarkers)[["direction"]] <- direction
 #' @export
 setMethod(
     f = "topMarkers",
-    signature = signature("SeuratMarkers"),
-    definition = .topMarkers.SeuratMarkers
+    signature = signature("SeuratMarkersPerCluster"),
+    definition = topMarkers.SeuratMarkersPerCluster
 )

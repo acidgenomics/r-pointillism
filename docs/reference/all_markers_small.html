@@ -117,12 +117,14 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>SeuratMarkers</code> with 208 rows and 8 columns.</p>
+    <p>An object of class <code>SeuratMarkersPerCluster</code> of dimension 43 x 73 x 45 x 47 x 8 x 8 x 8 x 8.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>all_markers_small</span>)
-<span class='no'>all_markers_small</span></div><div class='output co'>#&gt; SeuratMarkers with 208 rows and 8 columns
+<span class='no'>all_markers_small</span></div><div class='output co'>#&gt; SeuratMarkersPerCluster of length 4
+#&gt; $cluster0
+#&gt; DataFrame with 43 rows and 8 columns
 #&gt;      cluster        name          avgLogFC      pct1      pct2
 #&gt;     &lt;factor&gt; &lt;character&gt;         &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
 #&gt; 1          0         LTB  2.50348949728715         1     0.333
@@ -131,11 +133,11 @@
 #&gt; 4          0       SRSF7  1.70689515786656     0.759     0.333
 #&gt; 5          0     PIK3IP1  3.55649087761027     0.379      0.02
 #&gt; ...      ...         ...               ...       ...       ...
-#&gt; 204        3    HLA-DRB1  -2.3765395210213       0.1     0.571
-#&gt; 205        3      LGALS1 -1.34450784538079       0.2     0.686
-#&gt; 206        3    HLA-DPA1  -2.0788156288727       0.1     0.586
-#&gt; 207        3      HNRNPF -3.76509298015523         0     0.457
-#&gt; 208        3        FCN1 -4.17125259366575         0     0.457
+#&gt; 39         0        TCF7  2.61511873672966     0.276     0.078
+#&gt; 40         0       THYN1  2.55438916699597     0.276     0.078
+#&gt; 41         0        LDHB  1.88248610400459     0.552     0.451
+#&gt; 42         0        GPX1  -1.3153750144271     0.552     0.725
+#&gt; 43         0      IFITM2 0.620907875453607     0.793     0.765
 #&gt;                   pvalue                 padj
 #&gt;                &lt;numeric&gt;            &lt;numeric&gt;
 #&gt; 1   1.53751850203421e-11 3.53629255467868e-09
@@ -144,11 +146,11 @@
 #&gt; 4   1.13655640592559e-05  0.00261407973362885
 #&gt; 5    1.4653488047655e-05  0.00337030225096066
 #&gt; ...                  ...                  ...
-#&gt; 204  0.00797069077562979                    1
-#&gt; 205    0.007974980302718                    1
-#&gt; 206  0.00847153022622001                    1
-#&gt; 207  0.00877994304016565                    1
-#&gt; 208  0.00877994304016565                    1
+#&gt; 39   0.00927058221665326                    1
+#&gt; 40   0.00927058221665326                    1
+#&gt; 41   0.00937188160155699                    1
+#&gt; 42   0.00953082440009675                    1
+#&gt; 43   0.00997090872547945                    1
 #&gt;                                 ranges
 #&gt;                              &lt;GRanges&gt;
 #&gt; 1   HSCHR6_MHC_COX:31535744-31537711:-
@@ -157,11 +159,14 @@
 #&gt; 4                2:38970741-38978636:-
 #&gt; 5               22:31677579-31688520:-
 #&gt; ...                                ...
-#&gt; 204              6:32546546-32557625:-
-#&gt; 205             22:38071615-38075813:+
-#&gt; 206 HSCHR6_MHC_MCF:33065822-33082016:-
-#&gt; 207             10:43881065-43904614:-
-#&gt; 208            9:137801431-137809809:-</div></pre>
+#&gt; 39             5:133450402-133487556:+
+#&gt; 40            11:134118173-134123264:-
+#&gt; 41              12:21788276-21910791:-
+#&gt; 42               3:49394609-49396033:-
+#&gt; 43                  11:307631-315272:+
+#&gt; 
+#&gt; ...
+#&gt; &lt;3 more elements&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
