@@ -1,5 +1,5 @@
 # Seurat example data
-# 2018-10-18
+# 2018-10-21
 
 # # Restrict to 1 MB.
 # Use `pryr::object_size()` instead of `utils::object.size()`.
@@ -33,7 +33,7 @@ stopifnot(object_size(seurat_small) < limit)
 validObject(seurat_small)
 
 # `Seurat::pbmc_small` gene symbols map to GRCh37.
-gr <- makeGRangesFromEnsembl("Homo sapiens", build = "GRCh37")
+gr <- makeGRangesFromEnsembl("Homo sapiens", genomeBuild = "GRCh37")
 x <- rownames(seurat_small)
 table <- gr$geneName %>%
     as.character() %>%
@@ -45,34 +45,19 @@ gr <- gr[which]
 rowRanges(seurat_small) <- gr
 
 # all_markers_small ============================================================
-all_markers_small <- SeuratMarkers(
-    markers = FindAllMarkers(seurat_small),
-    ranges = rowRanges(seurat_small)
-)
+markers <- FindAllMarkers(seurat_small)
+ranges <- rowRanges(seurat_small)
+all_markers_small <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 
 # known_markers_small ==========================================================
-all <- all_markers_small
-known <- new(
-    Class = "CellTypeMarkers",
-    DataFrame(
-        cellType = as.factor(paste("cell_type", seq_len(2L), sep = "_")),
-        geneID = as.character(head(all$ranges$geneID, n = 2L)),
-        geneName = as.character(head(all$ranges$geneName, n = 2L))
-    ),
-    metadata = list(
-        version = packageVersion("pointillism"),
-        organism = "Homo sapiens",
-        genomeBuild = "GRCh37",
-        ensemblRelease = 75L,
-        date = Sys.Date()
-    )
+known_markers_small <- KnownMarkers(
+    markers = all_markers_small,
+    known = cell_type_markers$homoSapiens
 )
-# Write out an example CSV that we can use to test `CellTypeMarkers()`.
 export(
-    x = known,
+    x = known_markers_small,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
-known_markers_small <- knownMarkers(all = all, known = known)
 
 # Save =========================================================================
 usethis::use_data(

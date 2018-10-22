@@ -41,6 +41,16 @@ gene is expressed, to pass low expression filtering.}
 \item{minCountsPerCell}{\code{scalar integer}. Minimum number of counts per cell
 for a gene to pass low expression filtering. The number of cells is defined
 by \code{minCellsPerGene}.}
+
+\item{bpparam}{\code{bpparamClass}. \link{BiocParallel} parameter specifying the
+back-end to be used for computations. See \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} for
+details. We recommend one of the following:
+\itemize{
+\item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
+\item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
+\item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
+\link{BiocParallel}: https://doi.org/doi:10.18129/B9.bioc.BiocParallel
+}}
 }
 \value{
 Varies depending on the \code{caller} argument:

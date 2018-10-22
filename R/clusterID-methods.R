@@ -15,7 +15,7 @@ NULL
 
 
 
-.clusterID.SingleCellExperiment <-  # nolint
+clusterID.SingleCellExperiment <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
@@ -31,7 +31,7 @@ NULL
 setMethod(
     f = "clusterID",
     signature = signature("SingleCellExperiment"),
-    definition = .clusterID.SingleCellExperiment
+    definition = clusterID.SingleCellExperiment
 )
 
 

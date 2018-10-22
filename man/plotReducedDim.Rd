@@ -25,7 +25,7 @@ plotUMAP(object, ...)
   dimsUse = c(1L, 2L), interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -36,7 +36,7 @@ plotUMAP(object, ...)
   2L), interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -47,7 +47,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -58,7 +58,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -69,7 +69,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -80,7 +80,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -91,7 +91,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -102,7 +102,7 @@ plotUMAP(object, ...)
   interestingGroups = NULL,
   color = getOption("pointillism.discrete.color", NULL),
   pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.8),
+  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
   label = getOption("pointillism.label", TRUE),
   labelSize = getOption("pointillism.labelSize", 6L),
@@ -165,10 +165,21 @@ dots (\code{FALSE}).}
 Colors using \code{ident} column defined in \code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}} by
 default.
 }
-\note{
-\code{\link[=plotUMAP]{plotUMAP()}} requires the Python dependency \code{umap-learn}. We recommend
-installing this with conda: \code{conda install -c conda-forge umap-learn}.
+\section{UMAP calculation}{
+
+
+\href{https://github.com/lmcinnes/umap}{UMAP} calculation in R requires the \href{https://www.python.org}{Python} module \code{umap-learn}.
+
+We recommend installing this with \href{https://conda.io}{conda}:\preformatted{conda install -c conda-forge umap-learn
 }
+
+The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticulate/}{reticulate}. Reticulate works
+reliably when setting \code{RETICULATE_PYTHON} to point to your conda python
+binary. Export this variable in  \code{~/.Renviron}.
+
+See \code{\link[base:Sys.getenv]{base::Sys.getenv()}} for more information on the R system environment.
+}
+
 \examples{
 data(seurat_small)
 object <- seurat_small
@@ -186,7 +197,6 @@ plotPCA(object)
 \seealso{
 \itemize{
 \item \code{\link[Seurat:DimPlot]{Seurat::DimPlot()}}.
-\item \href{https://github.com/lmcinnes/umap}{UMAP GitHub repo}.
 \item \href{https://satijalab.org/seurat/mca.html}{Seurat Mouse Cell Atlas vignette}.
 }
 }

@@ -18,7 +18,7 @@ NULL
 
 
 
-.cellCountsPerCluster.SingleCellExperiment <-  # nolint
+cellCountsPerCluster.SingleCellExperiment <-  # nolint
     function(object, interestingGroups = NULL) {
         validObject(object)
         .assertHasIdent(object)
@@ -48,7 +48,7 @@ NULL
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .cellCountsPerCluster.SingleCellExperiment
+    definition = cellCountsPerCluster.SingleCellExperiment
 )
 
 
@@ -58,8 +58,5 @@ setMethod(
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "cellCountsPerCluster",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = getMethod("cellCountsPerCluster", "SingleCellExperiment")
 )

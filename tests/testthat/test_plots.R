@@ -1,154 +1,190 @@
 context("Plot Functions")
 
+data(seurat_small, known_markers_small)
+sce_small <- as(seurat_small, "SingleCellExperiment")
+objects <- list(
+    SingleCellExperiment = sce_small,
+    seurat = seurat_small
+)
+genes <- head(rownames(seurat_small))
+
 
 
 # plotCellTypesPerCluster ======================================================
-test_that("plotCellTypesPerCluster", {
-    markers <- known_markers_detected_small %>%
-        cellTypesPerCluster() %>%
-        # Subset for speed
-        head(2L)
-    invisible(capture.output(
-        p <- plotCellTypesPerCluster(
-            object = seurat_small,
-            markers = markers
-        )
-    ))
-    expect_is(p, "list")
-    expect_is(p[[1L]][[1L]], "ggplot")
-})
-
-
-
-# plotDot ======================================================================
-test_that("plotDot", {
-    object <- sce_small
-    genes <- head(rownames(object))
-
-    p <- plotDot(object, genes = genes)
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotCellTypesPerCluster", {
+        invisible(capture.output(
+            list <- plotCellTypesPerCluster(
+                object = object,
+                markers = known_markers_small
+            )
+        ))
+        expect_type(list, "list")
+        expect_s3_class(list[[1L]][[1L]], "ggplot")
+    },
+    object = objects
+)
 
 
 
 # plotFeature ==================================================================
-test_that("plotFeature", {
-    p <- plotFeature(sce_small, features = c("PC1", "PC2"))
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotFeature", {
+        p <- plotFeature(object, features = c("PC1", "PC2"))
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
 
 
 
 # plotGene =====================================================================
-test_that("plotGene", {
-    object <- sce_small
-    genes <- head(rownames(object))
+with_parameters_test_that(
+    "plotGene", {
+        # Dot.
+        p <- plotGene(
+            object = object,
+            genes = genes,
+            geom = "dot"
+        )
+        expect_s3_class(p, "ggplot")
 
-    # Dot
-    p <- plotGene(
-        object = object,
-        genes = genes,
-        geom = "dot"
-    )
-    expect_is(p, "ggplot")
+        # Violin.
+        p <- plotGene(
+            object = object,
+            genes = genes,
+            geom = "violin"
+        )
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
 
-    # Violin
-    p <- plotGene(
-        object = object,
-        genes = genes,
-        geom = "violin"
-    )
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotDot", {
+        p <- plotDot(object, genes = genes)
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
+
+with_parameters_test_that(
+    "plotViolin", {
+        p <- plotViolin(object, genes = genes)
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
+
 
 
 
 # plotMarker ===================================================================
-object <- sce_small
-genes <- head(rownames(object))
+with_parameters_test_that(
+    "plotMarker", {
+        expression <- methodFormals("plotMarker", "seurat") %>%
+            .[["expression"]] %>%
+            as.character() %>%
+            .[-1L]
+        invisible(lapply(expression, function(expression) {
+            p <- plotMarker(
+                object = object,
+                genes = genes,
+                expression = expression
+            )
+            expect_s3_class(p, "ggplot")
+        }))
+    },
+    object = objects
+)
 
-test_that("plotMarker", {
-    expression <- methodFormals("plotMarker", "seurat") %>%
-        .[["expression"]] %>%
-        as.character() %>%
-        .[-1L]
-    invisible(lapply(expression, function(expression) {
-        p <- plotMarker(object, genes = genes, expression = expression)
-        expect_is(p, "ggplot")
-    }))
-})
+with_parameters_test_that(
+    "plotKnownMarkers", {
+        invisible(capture.output(
+            p <- plotKnownMarkers(
+                object = object,
+                markers = known_markers_small
+            )
+        ))
+        expect_type(p, "list")
+    },
+    object = objects
+)
 
-test_that("plotKnownMarkersDetected", {
-    invisible(capture.output(
-        p <- plotKnownMarkersDetected(
-            object = sce_small,
-            markers = head(known_markers_detected_small, 2L)
-        )
-    ))
-    expect_is(p, "list")
-})
-
-test_that("plotTopMarkers", {
-    markers <- topMarkers(all_markers_small, n = 1L) %>%
-        # Subset for speed
-        head(2L)
-    invisible(capture.output(
-        x <- plotTopMarkers(
-            object = seurat_small,
-            markers = markers
-        )
-    ))
-    expect_is(x, "list")
-    expect_is(x[[1L]][[1L]], "ggplot")
-})
+with_parameters_test_that(
+    "plotTopMarkers", {
+        markers <- head(all_markers_small, n = 2L)
+        invisible(capture.output(
+            x <- plotTopMarkers(
+                object = object,
+                markers = markers
+            )
+        ))
+        expect_type(x, "list")
+        expect_s3_class(x[[1L]][[1L]], "ggplot")
+    },
+    object = objects
+)
 
 
 
 # plotPCElbow ==================================================================
-test_that("plotPCElbow", {
-    x <- plotPCElbow(Seurat::pbmc_small)
-    expect_identical(x, seq_len(11L))
-})
+# We're testing here to ensure that our seurat_small matches pbmc_small.
+with_parameters_test_that(
+    "plotPCElbow", {
+        x <- plotPCElbow(object)
+        expect_identical(x, seq)
+    },
+    object = list(
+        seurat_small,
+        Seurat::pbmc_small
+    ),
+    seq = list(
+        seq_len(11L),
+        seq_len(11L)
+    )
+)
 
 
 
 # plotReducedDim ===============================================================
-test_that("plotReducedDim", {
-    p <- plotReducedDim(
-        object = sce_small,
-        reducedDim = "TSNE",
-        pointsAsNumbers = TRUE,
-        dark = TRUE,
-        label = FALSE
-    )
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotReducedDim", {
+        p <- plotReducedDim(
+            object = object,
+            reducedDim = "TSNE",
+            pointsAsNumbers = TRUE,
+            dark = TRUE,
+            label = FALSE
+        )
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
 
 # PCA
-test_that("plotPCA", {
-    p <- plotPCA(sce_small)
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotPCA", {
+        p <- plotPCA(object)
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
 
 # t-SNE
-test_that("plotTSNE", {
-    p <- plotTSNE(sce_small)
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotTSNE", {
+        p <- plotTSNE(object)
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)
 
 # UMAP
-test_that("plotUMAP", {
-    p <- plotTSNE(sce_small)
-    expect_is(p, "ggplot")
-})
-
-
-
-# plotViolin ===================================================================
-test_that("plotViolin", {
-    object <- sce_small
-    genes <- head(rownames(object))
-
-    p <- plotViolin(object, genes = genes)
-    expect_is(p, "ggplot")
-})
+with_parameters_test_that(
+    "plotUMAP", {
+        p <- plotTSNE(object)
+        expect_s3_class(p, "ggplot")
+    },
+    object = objects
+)

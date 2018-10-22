@@ -12,18 +12,18 @@ plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
   min = 1L, max = Inf, reducedDim = "TSNE", expression = c("mean",
-  "sum"), headerLevel = 2L)
+  "sum"), headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotCellTypesPerCluster}{seurat}(object, markers, min = 1L,
   max = Inf, reducedDim = "TSNE", expression = c("mean", "sum"),
-  headerLevel = 2L)
+  headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 
-\item{markers}{\code{KnownSeuratMarkers}.}
+\item{markers}{\code{KnownMarkers}.}
 
 \item{min}{\code{scalar numeric}. Recommended minimum value cutoff.}
 
@@ -36,6 +36,8 @@ plotCellTypesPerCluster(object, ...)
 and defaults to the first argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+
+\item{progress}{\code{boolean}. Show progress, using progress bars.}
 }
 \value{
 Show graphical output. Invisibly return \code{list}.

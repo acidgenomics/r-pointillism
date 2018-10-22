@@ -1,15 +1,14 @@
-# FIXME Need to define metadata in minimal example that we can use here.
-
-
-
 #' Differential Expression per Cluster
 #'
-#' @note Cluster identity (`ident`) must be defined in `colData()` for this
-#'   function to work.
+#' @note Cluster identity (`ident`) must be defined in
+#'   [SummarizedExperiment::colData()] for this function to work.
 #'
 #' @name diffExpPerCluster
 #'
 #' @inheritParams general
+#' @inheritParams diffExp
+#' @param group `string`. Group of interest for differential expression per
+#'   cluster. Must be a `factor` column in [SummarizedExperiment::colData()].
 #' @param ... Passthrough arguments to [diffExp()].
 #'
 #' @return `list` containing:
@@ -36,7 +35,7 @@ NULL
 
 
 
-.diffExpPerCluster.SingleCellExperiment <-  # nolint
+diffExpPerCluster.SingleCellExperiment <-  # nolint
     function(
         object,
         group,
@@ -102,7 +101,7 @@ NULL
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = .diffExpPerCluster.SingleCellExperiment
+    definition = diffExpPerCluster.SingleCellExperiment
 )
 
 

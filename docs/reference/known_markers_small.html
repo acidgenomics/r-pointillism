@@ -117,24 +117,33 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>KnownSeuratMarkers</code> with 2 rows and 9 columns.</p>
+    <p>An object of class <code>KnownMarkers</code> with 5 rows and 10 columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>known_markers_small</span>)
-<span class='no'>known_markers_small</span></div><div class='output co'>#&gt; KnownSeuratMarkers with 2 rows and 9 columns
-#&gt;          cluster        name         avgLogFC      pct1      pct2
-#&gt;         &lt;factor&gt; &lt;character&gt;        &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; LTB            0         LTB 2.50348949728715         1     0.333
-#&gt; TMEM123        0     TMEM123 2.08632570977532      0.69     0.216
-#&gt;                       pvalue                 padj
-#&gt;                    &lt;numeric&gt;            &lt;numeric&gt;
-#&gt; LTB     1.53751850203421e-11 3.53629255467868e-09
-#&gt; TMEM123 2.15606187433309e-06  0.00049589423109661
-#&gt;                                     ranges    cellType
-#&gt;                                  &lt;GRanges&gt;    &lt;factor&gt;
-#&gt; LTB     HSCHR6_MHC_COX:31535744-31537711:- cell_type_1
-#&gt; TMEM123           11:102267063-102341115:- cell_type_2</div></pre>
+<span class='no'>known_markers_small</span></div><div class='output co'>#&gt; KnownMarkers with 5 rows and 10 columns
+#&gt;    cluster        name          avgLogFC      pct1      pct2
+#&gt;   &lt;factor&gt; &lt;character&gt;         &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1        0        CD3D   2.3127312497169     0.552     0.137
+#&gt; 2        1    HLA-DPB1  1.01913147360322     0.862     0.353
+#&gt; 3        1    HLA-DPA1  1.11066892854515     0.828     0.353
+#&gt; 4        1     HLA-DRA 0.709039144388978     0.897     0.569
+#&gt; 5        2       CD247   1.6444921986612      0.75     0.118
+#&gt;                 pvalue                 padj          geneID geneName
+#&gt;              &lt;numeric&gt;            &lt;numeric&gt;     &lt;character&gt; &lt;factor&gt;
+#&gt; 1 1.93986052321432e-05  0.00446167920339293 ENSG00000167286     CD3D
+#&gt; 2  1.6166805248437e-05  0.00371836520714052 ENSG00000215048 HLA-DPB1
+#&gt; 3 2.43440340874436e-05  0.00559912784011202 ENSG00000168384 HLA-DPA1
+#&gt; 4 0.000191209589650134   0.0439782056195308 ENSG00000204287  HLA-DRA
+#&gt; 5 2.16310297302231e-06 0.000497513683795131 ENSG00000198821    CD247
+#&gt;         cellType
+#&gt;         &lt;factor&gt;
+#&gt; 1         T Cell
+#&gt; 2 Dendritic Cell
+#&gt; 3 Dendritic Cell
+#&gt; 4 Dendritic Cell
+#&gt; 5         T Cell</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

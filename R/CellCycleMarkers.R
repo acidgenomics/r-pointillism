@@ -1,30 +1,12 @@
-#' Cell-Cycle Markers
-#'
-#' Currently designed for internal use by the pointillism package.
-#'
-#' @include markers-internal.R
+#' @inherit CellCycleMarkers-class
+#' @inheritParams general
 #' @export
-#'
-#' @inheritParams CellTypeMarkers
-#'
-#' @return `CellCycleMarkers`.
-#' @examples
-#' \dontrun{
-#' ## Google Sheets method (requires OAuth).
-#' x <- CellCycleMarkers(
-#'     gs = "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw",
-#'     ws = "Homo_sapiens",
-#'     organism = "Homo sapiens",
-#'     ensemblRelease = 92L
-#' )
-#' }
-CellCycleMarkers <-  # nolint
-    function() {
-        do.call(
-            what = .getMarkers,
-            args = matchArgsToDoCall(args = list(class = "CellCycleMarkers"))
-        )
-    }
-f <- formals(.getMarkers)
-f <- f[setdiff(names(f), "class")]
-formals(CellCycleMarkers) <- f
+CellCycleMarkers <- function(object, gene2symbol) {
+    class <- "CellCycleMarkers"
+    data <- .cellMarkers(
+        object = object,
+        gene2symbol = gene2symbol,
+        class = class
+    )
+    new(Class = class, data)
+}

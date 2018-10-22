@@ -115,10 +115,10 @@
 
     <pre class="usage"><span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for SeuratMarkers</span>
+<span class='co'># S4 method for SeuratMarkersPerCluster</span>
 <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"tbl_df"</span>,
-  <span class='st'>"DataFrame"</span>, <span class='st'>"DataFrameList"</span>))</pre>
+  <span class='st'>"DataFrame"</span>, <span class='st'>"SplitDataFrameList"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,10 +145,6 @@ association per cluster.</p></td>
       <th>return</th>
       <td><p><code>string</code>. Return type. Uses <code><a href='http://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code> internally and
 defaults to the first argument in the <code>character</code> vector.</p></td>
-    </tr>
-    <tr>
-      <th>coding</th>
-      <td><p><code>boolean</code>. Include only protein coding genes.</p></td>
     </tr>
     </table>
     

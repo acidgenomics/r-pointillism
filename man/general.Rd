@@ -19,11 +19,14 @@ discovery rate).}
 
 \item{aspectRatio}{\code{scalar integer}. Aspect ratio.}
 
-\item{BPPARAM}{BiocParallel param. We recommend one of the following:
+\item{bpparam}{\code{bpparamClass}. \link{BiocParallel} parameter specifying the
+back-end to be used for computations. See \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} for
+details. We recommend one of the following:
 \itemize{
 \item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
 \item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
 \item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
+\link{BiocParallel}: https://doi.org/doi:10.18129/B9.bioc.BiocParallel
 }}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
@@ -53,6 +56,8 @@ palette will be used. If manual color definitions are desired, we recommend
 using \code{\link[ggplot2:scale_fill_manual]{ggplot2::scale_fill_manual()}}.
 To set the discrete fill palette globally, use
 \code{options(bcbio.discrete.fill = scale_fill_viridis_d())}.}
+
+\item{gene2symbol}{\code{Gene2Symbol}. Gene-to-symbol mappings.}
 
 \item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
 object.}
@@ -87,6 +92,8 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 dots (\code{FALSE}).}
 
 \item{pointSize}{\code{scalar numeric}. Cell point size.}
+
+\item{progress}{\code{boolean}. Show progress, using progress bars.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}

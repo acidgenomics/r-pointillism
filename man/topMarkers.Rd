@@ -3,14 +3,14 @@
 \docType{methods}
 \name{topMarkers}
 \alias{topMarkers}
-\alias{topMarkers,SeuratMarkers-method}
+\alias{topMarkers,SeuratMarkersPerCluster-method}
 \title{Top Markers}
 \usage{
 topMarkers(object, ...)
 
-\S4method{topMarkers}{SeuratMarkers}(object, n = 10L,
+\S4method{topMarkers}{SeuratMarkersPerCluster}(object, n = 10L,
   direction = c("up", "down", "both"), return = c("tbl_df",
-  "DataFrame", "DataFrameList"))
+  "DataFrame", "SplitDataFrameList"))
 }
 \arguments{
 \item{object}{Object.}
@@ -25,8 +25,6 @@ association per cluster.}
 
 \item{return}{\code{string}. Return type. Uses \code{\link[base:match.arg]{base::match.arg()}} internally and
 defaults to the first argument in the \code{character} vector.}
-
-\item{coding}{\code{boolean}. Include only protein coding genes.}
 }
 \value{
 \code{grouped_df}.

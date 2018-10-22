@@ -1,4 +1,5 @@
-# FIXME Need to add working examples.
+# FIXME Improve appearance.
+# Remove separator bar and import code from basejump.
 
 
 
@@ -16,7 +17,7 @@ NULL
 
 
 
-.show.CellCycleMarkers <-  # nolint
+show.CellCycleMarkers <-  # nolint
     function(object) {
         validObject(object)
 
@@ -54,7 +55,7 @@ NULL
 
 
 
-.show.CellTypeMarkers <-  # nolint
+show.CellTypeMarkers <-  # nolint
     function(object) {
         validObject(object)
 
@@ -92,7 +93,7 @@ NULL
 
 
 # FIXME Need to finish this and add S4 method.
-.show.SeuratMarkers <-  # nolint
+show.Markers <-  # nolint
     function(object) {
         validObject(object)
         data <- as(object, "DataFrame")
@@ -121,21 +122,21 @@ NULL
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("CellCycleMarkers"),
-    definition = .show.CellCycleMarkers
-)
+#' #' @rdname show
+#' #' @export
+#' setMethod(
+#'     f = "show",
+#'     signature = signature("CellCycleMarkers"),
+#'     definition = show.CellCycleMarkers
+#' )
 
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("CellTypeMarkers"),
-    definition = .show.CellTypeMarkers
-)
+#' #' @rdname show
+#' #' @export
+#' setMethod(
+#'     f = "show",
+#'     signature = signature("CellTypeMarkers"),
+#'     definition = show.CellTypeMarkers
+#' )

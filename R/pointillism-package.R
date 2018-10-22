@@ -28,7 +28,7 @@
 #'   assertIsHeaderLevel assertIsImplicitInteger camel coerce
 #'   convertGenesToSymbols gene2symbol import mapGenesToRownames
 #'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   printString theme_midnight upperCamel
+#'   printString snake theme_midnight upperCamel
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply sapply
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
@@ -44,14 +44,14 @@
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme
-#' @importFrom googlesheets gs_key
+#' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom Matrix rowMeans rowSums
-#' @importFrom methods as getMethod is setAs show slot slot<- validObject
+#' @importFrom methods as getMethod is new setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := has_length sym syms
-#' @importFrom S4Vectors as.data.frame as.matrix
-#'   complete.cases mcols mcols<- metadata metadata<- na.omit split
+#' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
+#'   mcols<- metadata metadata<- na.omit split tail
 #' @importFrom scales percent pretty_breaks
 #' @importFrom sessioninfo session_info
 #' @importFrom Seurat Convert CreateSeuratObject
