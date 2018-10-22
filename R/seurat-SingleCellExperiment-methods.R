@@ -12,7 +12,7 @@ NULL
 
 
 
-# Internals ====================================================================
+# Internal =====================================================================
 .getSeuratStash <- function(object, name) {
     stopifnot(is(object, "seurat"))
     assert_is_a_string(name)
