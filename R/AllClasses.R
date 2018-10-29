@@ -1,3 +1,5 @@
+# FIXME Use `validate_that()` here.
+
 .prototypeMetadata <- list(
     version = packageVersion("pointillism"),
     date = Sys.Date()
