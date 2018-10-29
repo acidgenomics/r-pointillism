@@ -19,7 +19,7 @@
 #' single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should work
 #' to run with multiple cores.
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
 #' @param recalculate `logical`. Force recalculation of weights.
@@ -51,7 +51,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
         verbose = FALSE
     ) {
         message("Running zinbwave.")
-        stopifnot(is(Y, "SingleCellExperiment"))
+        assert_that(is(Y, "SingleCellExperiment"))
 
         # Early return if weights are calculated -------------------------------
         weights <- tryCatch(

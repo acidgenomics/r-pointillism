@@ -5,7 +5,7 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
@@ -89,7 +89,7 @@ plotMarker.SingleCellExperiment <- function(
 
     # Get the axis labels.
     axes <- colnames(data)[seq_len(2L)]
-    stopifnot(all(grepl("\\d+$", axes)))
+    assert_that(all(grepl("\\d+$", axes)))
 
     requiredCols <- c(
         axes,

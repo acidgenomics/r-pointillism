@@ -11,7 +11,7 @@ basejump::plotGene
 #'
 #' @name plotGene
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @inheritParams ggplot2::geom_violin
 #' @param colMin `scalar numeric`. Minimum scaled average expression threshold.
 #'   Everything smaller will be set to this.

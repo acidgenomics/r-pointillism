@@ -5,7 +5,7 @@
 # assertHasDesignFormula =======================================================
 # FIXME Add `design()` method for SCE.
 .assertHasDesignFormula <- function(object) {
-    stopifnot(is(object, "SingleCellExperiment"))
+    assert_that(is(object, "SingleCellExperiment"))
     assert_is_factor(object[["group"]])
     assert_is_matrix(metadata(object)[["design"]])
 }
@@ -25,11 +25,11 @@
 # Require valid BiocParallel bpparam.
 # FIXME Rename to BPParam?
 .assertIsBPPARAM <- function(object) {
-    stopifnot(identical(
+    assert_that(identical(
         attributes(class(object))[["package"]],
         "BiocParallel"
     ))
-    stopifnot(grepl("Param$", class(object)))
+    assert_that(grepl("Param$", class(object)))
 }
 
 
@@ -65,7 +65,7 @@
 
 # assertIsSanitizedMarkers =====================================================
 .assertIsSanitizedMarkers <- function(object) {
-    stopifnot(.isSanitizedMarkers(object))
+    assert_that(.isSanitizedMarkers(object))
 }
 
 

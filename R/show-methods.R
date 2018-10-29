@@ -27,7 +27,7 @@ show.CellCycleMarkers <-  # nolint
 
         # Include the gene lengths per phase.
         split <- split(x = object, f = object[["phase"]])
-        stopifnot(is(split, "SplitDataFrameList"))
+        assert_that(is(split, "SplitDataFrameList"))
         lengths <- nrow(split)
         # FIXME Can we avoid `sapply()` here?
         genes <- sapply(
@@ -65,7 +65,7 @@ show.CellTypeMarkers <-  # nolint
 
         # Include the gene lengths per phase.
         split <- split(x = object, f = object[["cellType"]])
-        stopifnot(is(split, "SplitDataFrameList"))
+        assert_that(is(split, "SplitDataFrameList"))
         lengths <- nrow(split)
         genes <- sapply(
             X = split,
@@ -110,7 +110,7 @@ show.Markers <-  # nolint
             f <- "FindAllMarkers"
             clusters <- levels(data[["cluster"]])
             split <- split(x = data, f = object[["cluster"]])
-            stopifnot(is(split, "SplitDataFrameList"))
+            assert_that(is(split, "SplitDataFrameList"))
             assert_are_identical(names(split), clusters)
 
         } else {

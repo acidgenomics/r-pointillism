@@ -7,7 +7,7 @@
 #'
 #' @name plotPCElbow
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param minSD `scalar numeric`. Minimum standard deviation.
 #' @param minPct `scalar numeric` (`0`-`1`). Minimum percent standard deviation.
 #' @param maxCumPct `scalar numeric` (`0`-`1`).Maximum cumulative percent

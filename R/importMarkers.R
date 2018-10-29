@@ -6,7 +6,7 @@
 #'
 #' @name importMarkers
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @inheritParams basejump::makeGRanges
 #' @inheritParams googlesheets::gs_read
 #'
