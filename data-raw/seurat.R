@@ -11,8 +11,8 @@ limit <- structure(1e6, class = "object_size")
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 # This is not working consistently for me on Linux.
 library(reticulate)
-stopifnot(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
-stopifnot(py_module_available(module = "umap"))
+assert_that(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
+assert_that(py_module_available(module = "umap"))
 
 library(splatter)
 library(Seurat)
@@ -22,14 +22,14 @@ library(tidyverse)
 library(bcbioSingleCell)
 data(pbmc_small, package = "Seurat")
 object_size(pbmc_small)
-stopifnot(object_size(pbmc_small) < limit)
+assert_that(object_size(pbmc_small) < limit)
 
 # seurat_small =================================================================
 seurat_small <- pbmc_small %>%
     RunUMAP() %>%
     runZinbwave()
 object_size(seurat_small)
-stopifnot(object_size(seurat_small) < limit)
+assert_that(object_size(seurat_small) < limit)
 validObject(seurat_small)
 
 # `Seurat::pbmc_small` gene symbols map to GRCh37.
@@ -39,7 +39,7 @@ table <- gr$geneName %>%
     as.character() %>%
     make.unique()
 names(gr) <- table
-stopifnot(all(x %in% table))
+assert_that(all(x %in% table))
 which <- match(x = x, table = table)
 gr <- gr[which]
 rowRanges(seurat_small) <- gr

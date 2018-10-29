@@ -3,7 +3,7 @@
 #' @name topMarkers
 #' @include globals.R
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param n `scalar integer`. Number of genes per cluster.
 #' @param direction `string`. Whether to include upregulated (`"up"`; positive
 #'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of
@@ -69,7 +69,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
             assert_is_subset("cluster", colnames(data))
             data <- split(x = data, f = data[["cluster"]])
             names(data) <- paste0("cluster", names(data))
-            stopifnot(is(data, "SplitDataFrameList"))
+            assert_that(is(data, "SplitDataFrameList"))
             data
         }
     }

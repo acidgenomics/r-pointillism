@@ -5,7 +5,7 @@
 #' @name seurat-SingleCellExperiment
 #' @keywords internal
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return Match `SummarizedExperiment` method return.
 NULL
@@ -14,7 +14,7 @@ NULL
 
 # Internal =====================================================================
 .getSeuratStash <- function(object, name) {
-    stopifnot(is(object, "seurat"))
+    assert_that(is(object, "seurat"))
     assert_is_a_string(name)
 
     misc <- slot(object, "misc")

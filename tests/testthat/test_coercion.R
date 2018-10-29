@@ -3,23 +3,23 @@
 
 context("Coercion Methods")
 
-data(sce_small, package = "basejump", envir = environment())
+data(sce, package = "basejump.data", envir = environment())
 
 
 
 test_that("SingleCellExperiment to seurat", {
-    x <- as(sce_small, "seurat")
+    x <- as(sce, "seurat")
     expect_is(x, "seurat")
     # Check slotted count integrity.
     counts <- counts(x)
     expect_is(counts, "dgCMatrix")
-    expect_identical(dim(counts), dim(sce_small))
+    expect_identical(dim(counts), dim(sce))
 })
 
 
 
 test_that("SCE-seurat interconversion with subsetting", {
-    a <- sce_small
+    a <- sce
 
     # Coerce to seurat.
     b <- as(a, "seurat")

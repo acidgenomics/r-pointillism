@@ -54,7 +54,7 @@
 #' @name diffExp
 #' @include globals.R
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @inheritParams runZinbwave
 #' @param numerator `character`. Cells to use in the numerator of the contrast
 #'   (e.g. treatment).

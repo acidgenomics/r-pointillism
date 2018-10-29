@@ -10,7 +10,7 @@
 #'
 #' @name plotFeature
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'
@@ -82,7 +82,7 @@ NULL
             what = cbind,
             args = reducedDims(object)
         )
-        stopifnot(identical(rownames(data), rownames(reducedDimsData)))
+        assert_that(identical(rownames(data), rownames(reducedDimsData)))
         reducedDimsData <- camel(reducedDimsData)
         data <- data %>%
             .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%

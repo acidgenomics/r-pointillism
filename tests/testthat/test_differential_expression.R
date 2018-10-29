@@ -1,15 +1,15 @@
 context("Differential Expression")
 
 data(seurat_small, envir = environment())
-sce_small <- as(seurat_small, "SingleCellExperiment")
+sce <- as(seurat_small, "SingleCellExperiment")
 
 # Compare expression in cluster 3 relative to 2.
 object <- seurat_small
 ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 denominator <- names(ident)[ident == "2"]
-stopifnot(length(intersect(numerator, colnames(object))) > 0L)
-stopifnot(length(intersect(denominator, colnames(object))) > 0L)
+assert_that(length(intersect(numerator, colnames(object))) > 0L)
+assert_that(length(intersect(denominator, colnames(object))) > 0L)
 rm(object)
 
 
@@ -39,7 +39,7 @@ with_parameters_test_that(
         expect_s4_class(x, "DESeqResults")
     },
     object = list(
-        SingleCellExperiment = sce_small,
+        SingleCellExperiment = sce,
         seurat = seurat_small
     )
 )
@@ -73,7 +73,7 @@ with_parameters_test_that(
         ))
     },
     object = list(
-        SingleCellExperiment = sce_small,
+        SingleCellExperiment = sce,
         seurat = seurat_small
     )
 )
@@ -87,7 +87,7 @@ with_parameters_test_that(
         expect_is(weights(x), "matrix")
     },
     Y = list(
-        SingleCellExperiment = sce_small,
+        SingleCellExperiment = sce,
         seurat = seurat_small
     )
 )

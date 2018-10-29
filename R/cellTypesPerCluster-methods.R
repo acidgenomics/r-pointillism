@@ -2,7 +2,7 @@
 #'
 #' @name cellTypesPerCluster
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param min `scalar integer`. Minimum number of marker genes per cluster.
 #' @param max `scalar integer`. Maximum number of marker genes per cluster.
 #'

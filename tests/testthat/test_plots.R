@@ -1,9 +1,9 @@
 context("Plot Functions")
 
 data(seurat_small, known_markers_small)
-sce_small <- as(seurat_small, "SingleCellExperiment")
+sce <- as(seurat_small, "SingleCellExperiment")
 objects <- list(
-    SingleCellExperiment = sce_small,
+    SingleCellExperiment = sce,
     seurat = seurat_small
 )
 genes <- head(rownames(seurat_small))

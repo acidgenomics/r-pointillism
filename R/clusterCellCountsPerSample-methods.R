@@ -2,7 +2,7 @@
 #'
 #' @name clusterCellCountsPerSample
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return `grouped_df`. Grouped by `sampleName` column, arranged by abundance.
 #'

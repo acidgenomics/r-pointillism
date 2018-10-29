@@ -5,7 +5,7 @@
 # - http://satijalab.org/seurat/cell_cycle_vignette.html
 
 # Must be interactive, requiring Google Sheets authentication.
-stopifnot(interactive())
+assert_that(interactive())
 
 library(googlesheets)
 library(tidyverse)

@@ -1,5 +1,5 @@
 #' @inherit CellTypeMarkers-class
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @export
 CellTypeMarkers <- function(object, gene2symbol) {
     class <- "CellTypeMarkers"

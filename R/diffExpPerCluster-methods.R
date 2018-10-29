@@ -5,7 +5,7 @@
 #'
 #' @name diffExpPerCluster
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @inheritParams diffExp
 #' @param group `string`. Group of interest for differential expression per
 #'   cluster. Must be a `factor` column in [SummarizedExperiment::colData()].
@@ -64,7 +64,7 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
         ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
-        stopifnot(length(clusters) >= 2L)
+        assert_that(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
         # Loop across each cluster and perform pairwise DE based on the single

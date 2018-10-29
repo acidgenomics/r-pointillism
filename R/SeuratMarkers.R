@@ -8,7 +8,7 @@
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param object `data.frame`. Unmodified [Seurat::FindMarkers()] or
 #'   [Seurat::FindAllMarkers()] return.
 #' @param ranges `GRanges`. Gene annotations. Names must correspond to the

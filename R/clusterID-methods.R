@@ -2,7 +2,7 @@
 #'
 #' @name clusterID
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return `factor`.
 #'

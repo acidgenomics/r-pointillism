@@ -7,7 +7,7 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
@@ -82,7 +82,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                 FUN = function(cellType) {
                     cellData <- clusterData %>%
                         filter(!!sym("cellType") == !!cellType)
-                    stopifnot(nrow(cellData) == 1L)
+                    assert_that(nrow(cellData) == 1L)
                     genes <- cellData %>%
                         pull("name") %>%
                         as.character() %>%
