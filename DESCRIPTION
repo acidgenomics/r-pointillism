@@ -42,6 +42,7 @@ Imports:
     assertive.properties,
     assertive.sets,
     assertive.types,
+    assertthat,
     cowplot,
     crayon,
     dplyr,
