@@ -1,6 +1,10 @@
 context("Plot Functions")
 
-data(seurat_small, known_markers_small)
+data(
+    all_markers_small, seurat_small, known_markers_small,
+    envir = environment()
+)
+
 sce <- as(seurat_small, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
