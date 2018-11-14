@@ -19,9 +19,8 @@ cellCountsPerCluster(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{interestingGroups}{\code{character} or \code{NULL}. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-\code{\link[=sampleData]{sampleData()}} colnames.}
+\item{interestingGroups}{\code{character} or \code{NULL}. Groups of interest that
+define the samples. If left unset, defaults to \code{sampleName}.}
 }
 \value{
 \code{tbl_df}. Grouped by \code{ident} column and arranged by \code{n}.
