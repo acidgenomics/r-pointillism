@@ -52,15 +52,16 @@ plotViolin(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
-object.}
+\item{genes}{\code{character}. Gene identifiers. It is considered better practice
+to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
+and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.}
 
 \item{geom}{\code{string}. Plot type. Uses \code{\link[base:match.arg]{base::match.arg()}} to pick the type.
 Currently supports "\code{dot}" and "\code{violin}".}
 
-\item{perSample}{\code{boolean}. Visualize the distributions per sample?}
+\item{perSample}{\code{boolean}. Visualize the distributions per sample.}
 
-\item{legend}{\code{boolean}. Include plot legend.}
+\item{legend}{\code{boolean}. Show plot legend.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
 
@@ -80,9 +81,9 @@ will have no dot drawn.}
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
-recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
-To set the discrete color palette globally, use
-\code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
+recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
+palette globally, use
+\code{options(basejump.discrete.color = ggplot2::scale_color_viridis_d())}.}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of

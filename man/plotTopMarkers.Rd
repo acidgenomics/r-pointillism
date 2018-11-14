@@ -24,16 +24,14 @@ plotTopMarkers(object, ...)
 
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cluster}".}
 
-\item{n}{\code{scalar integer}. Number of genes per cluster.}
+\item{n}{\code{scalar integer}. Number to include.}
 
-\item{direction}{\code{string}. Whether to include upregulated (\code{"up"}; positive
-LFC), downregulated (\code{"down"}; negative LFC) or \code{"both"} directions of
-association per cluster.}
+\item{direction}{\code{string}. Plot "\code{both}", "\code{up}", or "\code{down}" directions.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
-\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). Markdown header level.}
 
 \item{progress}{\code{boolean}. Show progress, using progress bars.}
 }
