@@ -1,10 +1,3 @@
-#' @importFrom basejump plotGene
-#' @aliases NULL
-#' @export
-basejump::plotGene
-
-
-
 #' Plot Gene
 #'
 #' Visualize genes on a dot or violin plot.
@@ -50,6 +43,13 @@ basejump::plotGene
 #' plotDot(object, genes = geneIDs, perSample = FALSE)
 #' plotViolin(object, genes = geneIDs, perSample = FALSE)
 NULL
+
+
+
+#' @importFrom basejump plotGene
+#' @aliases NULL
+#' @export
+basejump::plotGene
 
 
 
