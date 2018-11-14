@@ -2,26 +2,14 @@
 
 
 
-#' Deprecated Functions
-#'
 #' @name deprecated
+#' @inherit basejump::deprecated
 #' @keywords internal
-#'
-#' @inheritParams basejump.globals::params
-#'
-#' @return [.Deprecated()].
 NULL
 
-
-
-#' Defunct Functions
-#'
 #' @name defunct
+#' @inherit basejump::defunct
 #' @keywords internal
-#'
-#' @inheritParams basejump.globals::params
-#'
-#' @return [.Defunct()].
 NULL
 
 
