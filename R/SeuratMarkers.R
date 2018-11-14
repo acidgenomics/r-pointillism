@@ -1,3 +1,7 @@
+# FIXME This needs to error if the input data.frame contains `cluster` column.
+
+
+
 #' @inherit SeuratMarkers-class
 #' @export
 #'
