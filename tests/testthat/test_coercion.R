@@ -3,7 +3,7 @@
 
 context("Coercion Methods")
 
-data(sce, package = "basejump.data", envir = environment())
+data(sce, package = "basejump", envir = environment())
 
 
 

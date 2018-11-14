@@ -68,13 +68,10 @@ to run with multiple cores.
 }
 
 \examples{
-# Working example is disabled to speed up CI checks.
-/dontrun{
-# data(seurat_small)
-# Y <- seurat_small
-# Y <- runZinbwave(Y = Y)
-# class(weights(Y))
-}
+data(seurat_small)
+Y <- seurat_small
+Y <- runZinbwave(Y = Y)
+class(weights(Y))
 }
 \seealso{
 \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.

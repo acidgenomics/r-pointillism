@@ -10,11 +10,9 @@ test_that("CellTypeMarkers", {
         "extdata/cell_type_markers.csv",
         package = "pointillism"
     )
-    data <- import(file)
-    g2s <- Gene2Symbol(seurat_small)
     x <- CellTypeMarkers(
-        object = data,
-        gene2symbol = g2s
+        object = import(file, dataFrame = "DataFrame"),
+        gene2symbol = Gene2Symbol(seurat_small)
     )
     expect_is(x, "CellTypeMarkers")
 })
