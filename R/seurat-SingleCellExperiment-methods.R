@@ -17,7 +17,7 @@ NULL
     assert_that(is(object, "seurat"))
     assert_is_a_string(name)
 
-    misc <- slot(object, "misc")
+    misc <- slot(object, name = "misc")
 
     # Early return if the `misc` slot is `NULL`.
     if (is.null(misc)) {
@@ -110,7 +110,7 @@ setMethod(
         value = "DataFrame"
     ),
     definition = function(x, value) {
-        slot(x, "meta.data") <- as.data.frame(value)
+        slot(x, "meta.data", check = TRUE) <- as.data.frame(value)
         validObject(x)
         x
     }
@@ -280,7 +280,7 @@ setMethod(
         if (!length(value)) {
             names(value) <- NULL
         }
-        slot(x, "misc")[["metadata"]] <- value
+        x@misc[["metadata"]] <- value
         x
     }
 )
@@ -383,9 +383,7 @@ setMethod(
     signature = signature("seurat"),
     definition = function(x, value) {
         assert_are_identical(rownames(x), names(value))
-        misc <- slot(x, "misc")
-        misc[["rowRanges"]] <- value
-        slot(x, "misc") <- misc
+        x@misc[["rowRanges"]] <- value
         x
     }
 )
@@ -464,7 +462,7 @@ setMethod(
     f = "weights<-",
     signature = signature("seurat"),
     definition = function(object, value) {
-        slot(object, name = "misc")[["assays"]][["weights"]] <- value
+        object@misc[["assays"]][["weights"]] <- value
         object
     }
 )
