@@ -5,7 +5,7 @@
 #' @name seurat-SingleCellExperiment
 #' @keywords internal
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #'
 #' @return Match `SummarizedExperiment` method return.
 NULL

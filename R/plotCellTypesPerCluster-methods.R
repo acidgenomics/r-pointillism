@@ -7,7 +7,7 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'

@@ -6,7 +6,7 @@
 #'
 #' @name cellCountsPerCluster
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #'
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'

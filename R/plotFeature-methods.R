@@ -10,7 +10,7 @@
 #'
 #' @name plotFeature
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'

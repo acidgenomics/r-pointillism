@@ -9,7 +9,7 @@
 #'
 #' @name findMarkers
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @param ... Passthrough arguments to [diffExp()].
 #'
 #' @return `list` containing:

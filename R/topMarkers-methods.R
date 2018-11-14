@@ -3,7 +3,7 @@
 #' @name topMarkers
 #' @include globals.R
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @param n `scalar integer`. Number of genes per cluster.
 #' @param direction `string`. Whether to include upregulated (`"up"`; positive
 #'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of

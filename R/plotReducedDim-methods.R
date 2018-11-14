@@ -34,7 +34,7 @@
 #'
 #' @importFrom BiocGenerics plotPCA
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #'
 #' @seealso
 #' - [Seurat::DimPlot()].

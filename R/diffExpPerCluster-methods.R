@@ -5,7 +5,7 @@
 #'
 #' @name diffExpPerCluster
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @inheritParams diffExp
 #' @param group `string`. Group of interest for differential expression per
 #'   cluster. Must be a `factor` column in [SummarizedExperiment::colData()].
