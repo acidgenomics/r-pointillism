@@ -1,12 +1,6 @@
 # FIXME Improve appearance.
 # Remove separator bar and import code from basejump.
-
-
-
-#' @importFrom methods show
-#' @aliases NULL
-#' @export
-methods::show
+# FIXME Switch to using `showSlotInfo()` (see bcbioRNASeq.)
 
 
 
@@ -14,6 +8,13 @@ methods::show
 #' @name show
 #' @author Michael Steinbuagh
 NULL
+
+
+
+#' @importFrom methods show
+#' @aliases NULL
+#' @export
+methods::show
 
 
 
@@ -42,12 +43,12 @@ show.CellCycleMarkers <-  # nolint
         )
 
         return <- c(
-            bold(paste(class(object), metadata(object)[["version"]])),
-            bold(paste0(organism, " (Ensembl ", release, ")")),
+            paste(class(object), metadata(object)[["version"]]),
+            paste0(organism, " (Ensembl ", release, ")"),
             url,
             citation,
             separatorBar,
-            paste0(bold(names(genes)), " (", lengths, "): ", genes)
+            paste0(names(genes), " (", lengths, "): ", genes)
         )
 
         cat(return, sep = "\n")
@@ -79,12 +80,12 @@ show.CellTypeMarkers <-  # nolint
         )
 
         return <- c(
-            bold(paste(class(object), metadata(object)[["version"]])),
-            bold(paste0(organism, " (Ensembl ", release, ")")),
+            paste(class(object), metadata(object)[["version"]]),
+            paste0(organism, " (Ensembl ", release, ")"),
             url,
             citation,
             separatorBar,
-            paste0(bold(names(genes)), " (", lengths, "): ", genes)
+            paste0(names(genes), " (", lengths, "): ", genes)
         )
 
         cat(return, sep = "\n")
