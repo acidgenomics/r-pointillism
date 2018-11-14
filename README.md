@@ -18,17 +18,8 @@ We recommend installing the package with [BiocManager][].
 if (!require("BiocManager")) {
     install.packages("BiocManager")
 }
-BiocManager::install(
-    pkgs = c(
-        "devtools",
-        "remotes",
-        "GenomeInfoDbData"
-    )
-)
-BiocManager::install(
-    pkgs = "steinbaugh/pointillism",
-    dependencies = c("Depends", "Imports", "Suggests")
-)
+BiocManager::install("remotes")
+BiocManager::install("steinbaugh/pointillism")
 ```
 
 For [R][] < 3.5, [BiocManager][] is not supported. Use `BiocInstaller::biocLite()` instead of `BiocManager::install()`. This requires sourcing the legacy [Bioconductor][] `biocLite.R` script.
