@@ -38,8 +38,9 @@ plotMarker(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
-object.}
+\item{genes}{\code{character}. Gene identifiers. It is considered better practice
+to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
+and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
@@ -50,9 +51,9 @@ and defaults to the first argument in the \code{character} vector.}
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
-recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
-To set the discrete color palette globally, use
-\code{options(bcbio.discrete.color = scale_color_viridis_d())}.}
+recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
+palette globally, use
+\code{options(basejump.discrete.color = ggplot2::scale_color_viridis_d())}.}
 
 \item{pointSize}{\code{scalar numeric}. Cell point size.}
 
@@ -62,14 +63,14 @@ Useful when there many cells in the dataset, and some cells can be masked.}
 \item{pointsAsNumbers}{\code{boolean}. Plot the points as numbers (\code{TRUE}) or
 dots (\code{FALSE}).}
 
-\item{label}{\code{boolean}. Overlay a cluster identitiy label on the plot.}
+\item{label}{\code{boolean}. Superimpose sample text labels on the plot.}
 
 \item{labelSize}{\code{scalar integer}. Size of the text label.}
 
 \item{dark}{\code{boolean}. Plot against a dark background using
-\code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}.}
+\code{basejump::theme_midnight()} ggplot2 theme.}
 
-\item{legend}{\code{boolean}. Include plot legend.}
+\item{legend}{\code{boolean}. Show plot legend.}
 
 \item{title}{\code{string} or \code{NULL}. Plot title.}
 }

@@ -26,7 +26,7 @@ plotKnownMarkers(object, markers, ...)
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
 
-\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). Markdown header level.}
 
 \item{progress}{\code{boolean}. Show progress, using progress bars.}
 }

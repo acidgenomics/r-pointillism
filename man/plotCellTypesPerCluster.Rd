@@ -35,7 +35,7 @@ plotCellTypesPerCluster(object, ...)
 \item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
 and defaults to the first argument in the \code{character} vector.}
 
-\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). R Markdown header level.}
+\item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). Markdown header level.}
 
 \item{progress}{\code{boolean}. Show progress, using progress bars.}
 }
