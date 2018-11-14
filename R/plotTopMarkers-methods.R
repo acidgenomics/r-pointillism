@@ -8,7 +8,7 @@
 #' @name plotTopMarkers
 #' @include globals.R
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @inheritParams topMarkers
 #' @param markers `grouped_df`. Marker genes, grouped by "`cluster`".
 #' @param ... Passthrough arguments to [plotMarker()].

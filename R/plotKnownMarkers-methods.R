@@ -2,7 +2,7 @@
 #'
 #' @name plotKnownMarkers
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".
 #' @param ... Passthrough arguments to [plotMarker()].
 #'

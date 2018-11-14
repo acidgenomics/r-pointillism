@@ -5,7 +5,7 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
