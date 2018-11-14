@@ -14,8 +14,8 @@
 #' - [Seurat::Convert()].
 #'
 #' @examples
+#' data(sce, package = "basejump")
 #' data(seurat_small)
-#' data(sce, package = "basejump.data")
 #'
 #' ## SingleCellExperiment to seurat ====
 #' object <- sce

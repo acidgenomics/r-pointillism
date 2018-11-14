@@ -121,7 +121,7 @@ plotDot.SingleCellExperiment <- function(
     assert_is_a_number(dotScale)
     assertIsColorScaleContinuousOrNULL(color)
     assert_is_a_bool(legend)
-    assertIsAStringOrNULL(title)
+    assertIsStringOrNULL(title)
 
     # Fetch the gene expression data.
     data <- .fetchGeneData(
@@ -219,7 +219,7 @@ plotViolin.SingleCellExperiment <- function(
     scale <- match.arg(scale)
     assertIsColorScaleDiscreteOrNULL(color)
     assert_is_a_bool(legend)
-    assertIsAStringOrNULL(title)
+    assertIsStringOrNULL(title)
 
     # Fetch the gene expression data.
     data <- .fetchGeneData(

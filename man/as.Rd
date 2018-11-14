@@ -103,8 +103,8 @@ S4 coercion support for creating a \code{tbl_df} from \code{SeuratMarkersPerClus
 }
 
 \examples{
+data(sce, package = "basejump")
 data(seurat_small)
-data(sce, package = "basejump.data")
 
 ## SingleCellExperiment to seurat ====
 object <- sce
