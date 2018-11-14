@@ -41,10 +41,10 @@
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme
-#' @importFrom goalie assertHasRownames assertIsAlpha assertIsAStringOrNULL
-#'   assertIsAnImplicitInteger assertIsColorScaleContinuousOrNULL
-#'   assertIsColorScaleDiscreteOrNULL assertIsFillScaleDiscreteOrNULL
-#'   assertIsHeaderLevel assertIsImplicitInteger
+#' @importFrom goalie assertHasRownames assertIsAlpha assertIsAnImplicitInteger
+#'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
+#'   assertIsFillScaleDiscreteOrNULL assertIsHeaderLevel assertIsImplicitInteger
+#'   assertIsStringOrNULL
 #' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom Matrix rowMeans rowSums

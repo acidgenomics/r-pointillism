@@ -93,7 +93,7 @@ NULL
     assert_is_a_number(labelSize)
     assert_is_a_bool(dark)
     assert_is_a_bool(legend)
-    assertIsAStringOrNULL(title)
+    assertIsStringOrNULL(title)
 
     data <- .fetchReducedDimData(
         object = object,
