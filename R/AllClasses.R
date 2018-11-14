@@ -32,7 +32,6 @@ setClass(
     Class = "CellCycleMarkers",
     contains = "CompressedSplitDataFrameList"
 )
-
 setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
@@ -70,7 +69,6 @@ setClass(
     Class = "CellTypeMarkers",
     contains = "CompressedSplitDataFrameList"
 )
-
 setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
@@ -106,6 +104,7 @@ setClass(
     Class = "KnownMarkers",
     contains = "DataFrame"  # FIXME SplitDataFrameList
 )
+# FIXME Need validity method.
 
 
 
@@ -122,6 +121,7 @@ setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame"
 )
+# FIXME Need validity method.
 
 
 
@@ -139,7 +139,7 @@ setClass(
     Class = "SeuratMarkersPerCluster",
     contains = "CompressedSplitDataFrameList"
 )
-
+# FIXME Need validity method.
 setValidity(
     Class = "SeuratMarkersPerCluster",
     method = function(object) {
