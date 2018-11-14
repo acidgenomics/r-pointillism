@@ -87,14 +87,19 @@
 \arguments{
 \item{x}{Object.}
 
+\item{i}{Indices specifying elements to extract or replace. Indices are
+\code{numeric} or \code{character} vectors, empty (\code{missing}), or \code{NULL}. See
+\code{help(topic = "Extract", package = "base")} for more information.}
+
 \item{...}{Additional arguments.}
 
-\item{value}{Object to assign.}
+\item{value}{Value to assign.}
 
 \item{object}{Object.}
 
-\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
-object.}
+\item{genes}{\code{character}. Gene identifiers. It is considered better practice
+to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
+and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.}
 }
 \value{
 Match \code{SummarizedExperiment} method return.
