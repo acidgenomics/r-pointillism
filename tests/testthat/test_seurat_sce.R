@@ -69,17 +69,14 @@ test_that("interestingGroups", {
 
 
 test_that("interestingGroups<-", {
-    expect_error(
-        object = interestingGroups(object) <- "orig.ident",
-        regexp = "sampleData"
-    )
-    expect_error(
-        object = interestingGroups(object) <- "XXX",
-        regexp = "sampleData"
-    )
-
     expect_silent(
-        object = interestingGroups(object) <- "sampleName"
+        interestingGroups(object) <- "sampleName"
+    )
+    expect_error(
+        interestingGroups(object) <- "orig.ident"
+    )
+    expect_error(
+        interestingGroups(object) <- "XXX"
     )
     interestingGroups(object) <- "sampleName"
     expect_identical(
