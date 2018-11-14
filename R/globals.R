@@ -9,31 +9,34 @@ separatorBar <- basejump::separator()
 
 # DR marker default color palettes
 darkMarkerColors <-
-    ggplot2::scale_color_viridis_c(option = "plasma")
+    ggplot2::scale_colour_viridis_c(option = "plasma")
 lightMarkerColors <-
-    ggplot2::scale_color_gradient(low = "gray90", high = "red")
+    ggplot2::scale_colour_gradient(low = "gray90", high = "red")
 
 # Recommend serial by default.
 # This works reliably across platforms, but is slower.
 bpparam <- quote(BiocParallel::SerialParam())
 
 # Sometimes nice but can be too busy.
-# viridis::scale_color_viridis(direction = -1L)
+# viridis::scale_colour_viridis(direction = -1L)
 
 continuousColor <- quote(getOption(
     "pointillism.continuous.color",
-    ggplot2::scale_color_gradient(
+    ggplot2::scale_colour_gradient(
         low = "gray75",
         high = "purple"
     )
 ))
 continuousColorPurpleOrange <- quote(getOption(
     "pointillism.continuous.color",
-    ggplot2::scale_color_gradient(
-        low = "orange",  # orange
-        high = "purple"  # purple
+    ggplot2::scale_colour_gradient2(
+        low = "orange",
+        mid = "gray75",
+        high = "purple",
+        midpoint = 0L
     )
 ))
+
 discreteColor <- quote(getOption("pointillism.discrete.color", NULL))
 
 dark <- quote(getOption("pointillism.dark", FALSE))
