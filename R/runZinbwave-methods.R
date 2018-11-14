@@ -31,10 +31,13 @@
 #' @seealso [zinbwave::zinbwave()].
 #'
 #' @examples
-#' data(seurat_small)
-#' Y <- seurat_small
-#' Y <- runZinbwave(Y = Y)
-#' class(weights(Y))
+#' # Working example is disabled to speed up CI checks.
+#' /dontrun{
+#' # data(seurat_small)
+#' # Y <- seurat_small
+#' # Y <- runZinbwave(Y = Y)
+#' # class(weights(Y))
+#' }
 NULL
 
 
