@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-Cell Clustering Visualization
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.2.0
-Date: 2018-10-21
+Date: 2018-11-14
 Authors@R: c(
     person(
         given = "Michael",
@@ -24,11 +24,11 @@ URL:
 BugReports: https://github.com/steinbaugh/pointillism/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: TRUE
+LazyData: false
 Depends:
     R (>= 3.5),
-    basejump (>= 0.99.0),
-    SingleCellExperiment
+    SingleCellExperiment,
+    basejump (>= 0.8)
 Imports:
     BiocGenerics,
     BiocParallel,
@@ -44,10 +44,10 @@ Imports:
     assertive.types,
     assertthat,
     cowplot,
-    crayon,
     dplyr,
     edgeR (>= 3.22),
     ggplot2,
+    goalie,
     googlesheets,
     magrittr,
     methods,
@@ -65,7 +65,8 @@ Suggests:
     splatter,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@bioconductor
+    steinbaugh/basejump@develop,
+    steinbaugh/goalie@develop
 biocViews:
     DataRepresentation,
     GeneExpression,
@@ -74,7 +75,7 @@ biocViews:
     Transcription,
     Visualization
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
@@ -96,10 +97,10 @@ Collate:
     'diffExpPerCluster-methods.R'
     'fetchData-internal.R'
     'findMarkers-methods.R'
-    'general.R'
     'importMarkers.R'
     'makeCellTypeMarkersFromGoogle.R'
     'markers-internal.R'
+    'package.R'
     'plotCellTypesPerCluster-methods.R'
     'plotFeature-methods.R'
     'plotGene-methods.R'
@@ -108,7 +109,6 @@ Collate:
     'plotPCElbow-methods.R'
     'plotReducedDim-methods.R'
     'plotTopMarkers-methods.R'
-    'pointillism-package.R'
     'runZinbwave-methods.R'
     'seurat-SingleCellExperiment-methods.R'
     'show-methods.R'
