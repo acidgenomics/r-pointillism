@@ -12,9 +12,6 @@
 # https://gist.github.com/mjsteinbaugh/47d9a7aecdd8c3c1962a3247d791635f
 script: true
 
-# r_build_args: "--no-build-vignettes"
-# r_check_args: "--no-vignettes"
-
 language: r
 cache: packages
 sudo: false
