@@ -1,3 +1,14 @@
+#' @rdname barcodeRanksPerSample
+#' @export
+setGeneric(
+    "barcodeRanksPerSample",
+    function(object, ...) {
+        standardGeneric("barcodeRanksPerSample")
+    }
+)
+
+
+
 #' @rdname cellCountsPerCluster
 #' @export
 setGeneric(

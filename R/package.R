@@ -1,3 +1,7 @@
+# FIXME Explicitly call Matrix rowMeans and rowSums
+
+
+
 #' pointillism
 #'
 #' R package for for single-cell RNA-seq clustering analysis.
@@ -9,6 +13,7 @@
 #'
 #' @importMethodsFrom basejump coerce
 #'
+#' @importFrom Matrix rowMeans rowSums
 #' @importFrom assertive.base assert_are_identical assert_all_are_not_na
 #' @importFrom assertive.numbers assert_all_are_in_left_open_range
 #'   assert_all_are_in_open_range assert_all_are_non_negative
@@ -47,7 +52,6 @@
 #'   assertIsStringOrNULL
 #' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom Matrix rowMeans rowSums
 #' @importFrom methods as getMethod is new setAs show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := has_length sym syms
