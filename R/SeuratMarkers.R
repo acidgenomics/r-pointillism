@@ -1,4 +1,6 @@
 # FIXME This needs to error if the input data.frame contains `cluster` column.
+# TODO Consider only using `SeuratMarkers()` as a single generator but
+# returning `SeuratMarkers` or `SeuratMarkersPerCluster` automatically.
 
 
 
@@ -54,4 +56,24 @@ SeuratMarkers <- function(
     rownames(data) <- data[["name"]]
     data[["name"]] <- NULL
     new(Class = "SeuratMarkers", data)
+}
+
+
+
+#' @rdname SeuratMarkers
+#' @export
+SeuratMarkersPerCluster <- function(
+    object,
+    ranges,
+    alpha = 0.05
+) {
+    data <- .seuratMarkers(
+        object = object,
+        ranges = ranges,
+        alpha = alpha
+    )
+    out <- split(x = data, f = data[["cluster"]], drop = FALSE)
+    names(out) <- paste0("cluster", names(out))
+    metadata(out) <- metadata(data)
+    new(Class = "SeuratMarkersPerCluster", out)
 }
