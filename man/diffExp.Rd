@@ -42,14 +42,14 @@ gene is expressed, to pass low expression filtering.}
 for a gene to pass low expression filtering. The number of cells is defined
 by \code{minCellsPerGene}.}
 
-\item{bpparam}{\code{bpparamClass}. \link{BiocParallel} parameter specifying the
-back-end to be used for computations. See \code{BiocParallel::bpparam()} for
-details. We recommend one of the following:
+\item{bpparam}{\code{bpparamClass}. BiocParallel parameter specifying the back-end
+to be used for computations. See \code{BiocParallel::bpparam()} for details.
+
+We recommend one of the following:
 \itemize{
 \item \code{BiocParallel::bpparam()}.
 \item \code{BiocParallel::SerialParam()}.
 \item \code{BiocParallel::MulticoreParam()}.
-\link{BiocParallel}: https://doi.org/doi:10.18129/B9.bioc.BiocParallel
 }}
 }
 \value{

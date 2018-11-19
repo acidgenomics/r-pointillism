@@ -12,7 +12,7 @@ plotFeature(object, ...)
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
   reducedDim = "TSNE",
   color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
+  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
@@ -24,7 +24,7 @@ plotFeature(object, ...)
 
 \S4method{plotFeature}{seurat}(object, features, reducedDim = "TSNE",
   color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
+  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("pointillism.pointSize", 0.75),
   pointAlpha = getOption("pointillism.pointAlpha", 0.85),
   pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
@@ -43,19 +43,21 @@ plotFeature(object, ...)
 scores, number of genes detected).}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
-\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
+\code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for
+example.}
 
 \item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
 palette globally, use
-\code{options(basejump.discrete.color = ggplot2::scale_color_viridis_d())}.}
+\code{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())}.}
 
-\item{pointSize}{\code{scalar numeric}. Cell point size.}
+\item{pointSize}{\code{scalar numeric}. Point size for dots in the plot.}
 
 \item{pointAlpha}{\code{scalar numeric} (\code{0}-\code{1}). Alpha transparency level.
-Useful when there many cells in the dataset, and some cells can be masked.}
+Useful when there many points in the dataset (e.g. single-cell data), and
+some points can be masked.}
 
 \item{pointsAsNumbers}{\code{boolean}. Plot the points as numbers (\code{TRUE}) or
 dots (\code{FALSE}).}
@@ -69,7 +71,7 @@ dots (\code{FALSE}).}
 
 \item{legend}{\code{boolean}. Show plot legend.}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{base::match.arg()}
 and defaults to the first argument in the \code{character} vector.}
 }
 \value{

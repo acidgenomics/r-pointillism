@@ -115,7 +115,8 @@ plotUMAP(object, ...)
 \item{...}{Additional arguments.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
-\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
+\code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for
+example.}
 
 \item{dimsUse}{\code{integer}. Vector of length 2 that denotes the columns from
 the reduced dimension matrix to use for \code{centerX} and \code{centerY} column
@@ -129,12 +130,13 @@ scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
 palette globally, use
-\code{options(basejump.discrete.color = ggplot2::scale_color_viridis_d())}.}
+\code{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())}.}
 
-\item{pointSize}{\code{scalar numeric}. Cell point size.}
+\item{pointSize}{\code{scalar numeric}. Point size for dots in the plot.}
 
 \item{pointAlpha}{\code{scalar numeric} (\code{0}-\code{1}). Alpha transparency level.
-Useful when there many cells in the dataset, and some cells can be masked.}
+Useful when there many points in the dataset (e.g. single-cell data), and
+some points can be masked.}
 
 \item{pointsAsNumbers}{\code{boolean}. Plot the points as numbers (\code{TRUE}) or
 dots (\code{FALSE}).}
