@@ -9,7 +9,7 @@
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{\link[=metadata]{metadata()}}.
+defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
 }
 \seealso{
 \code{\link[=CellTypeMarkers]{CellTypeMarkers()}}.

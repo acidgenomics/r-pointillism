@@ -28,14 +28,16 @@ plotViolin(object, ...)
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.continuous.color",
-  ggplot2::scale_color_gradient(low = "orange", high = "purple")),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
@@ -83,7 +85,7 @@ scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
 palette globally, use
-\code{options(basejump.discrete.color = ggplot2::scale_color_viridis_d())}.}
+\code{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())}.}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of

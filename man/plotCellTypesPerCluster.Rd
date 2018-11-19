@@ -30,9 +30,10 @@ plotCellTypesPerCluster(object, ...)
 \item{max}{\code{scalar numeric}. Recommended maximum value cutoff.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
-\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
+\code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for
+example.}
 
-\item{expression}{\code{string}. Calculation to apply. Uses \code{\link[base:match.arg]{base::match.arg()}}
+\item{expression}{\code{string}. Calculation to apply. Uses \code{base::match.arg()}
 and defaults to the first argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). Markdown header level.}

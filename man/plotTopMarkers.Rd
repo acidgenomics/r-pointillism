@@ -29,7 +29,8 @@ plotTopMarkers(object, ...)
 \item{direction}{\code{string}. Plot "\code{both}", "\code{up}", or "\code{down}" directions.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
-\code{\link[=reducedDims]{reducedDims()}}. Includes TNSE, UMAP, PCA, for example.}
+\code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for
+example.}
 
 \item{headerLevel}{\code{scalar integer} (\code{1}-\code{7}). Markdown header level.}
 
