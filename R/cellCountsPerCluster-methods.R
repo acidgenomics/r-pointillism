@@ -58,5 +58,5 @@ setMethod(
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("seurat"),
-    definition = getMethod("cellCountsPerCluster", "SingleCellExperiment")
+    definition = cellCountsPerCluster.SingleCellExperiment
 )
