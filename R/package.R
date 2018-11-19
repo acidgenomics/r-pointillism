@@ -21,17 +21,16 @@
 #' @importFrom assertive.properties assert_has_no_duplicates assert_has_names
 #'   assert_has_rows assert_is_non_empty assert_is_of_length assert_is_scalar
 #' @importFrom assertive.sets assert_are_disjoint_sets
-#'   assert_are_intersecting_sets assert_is_subset
+#'   assert_are_intersecting_sets assert_is_subset is_subset
 #' @importFrom assertive.types assert_is_a_bool assert_is_a_number
 #'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
 #'   assert_is_character assert_is_data.frame assert_is_factor
 #'   assert_is_function assert_is_list assert_is_matrix assert_is_numeric
 #'   assert_is_tbl_df is_a_string
 #' @importFrom assertthat assert_that validate_that
-#' @importFrom basejump camel coerce
-#'   convertGenesToSymbols gene2symbol import mapGenesToRownames
-#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   printString snake theme_midnight upperCamel
+#' @importFrom basejump camel coerce convertGenesToSymbols gene2symbol import
+#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
+#'   matchInterestingGroups printString snake theme_midnight upperCamel
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply sapply
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<- MulticoreParam
 #'   SerialParam
@@ -49,7 +48,7 @@
 #' @importFrom goalie assertHasRownames assertIsAlpha assertIsAnImplicitInteger
 #'   assertIsColorScaleContinuousOrNULL assertIsColorScaleDiscreteOrNULL
 #'   assertIsFillScaleDiscreteOrNULL assertIsHeaderLevel assertIsImplicitInteger
-#'   assertIsStringOrNULL
+#'   assertIsStringOrNULL hasRownames
 #' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs show slot slot<- validObject
