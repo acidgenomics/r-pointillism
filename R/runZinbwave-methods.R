@@ -39,7 +39,6 @@ NULL
 
 
 
-# SingleCellExperiment =========================================================
 runZinbwave.SingleCellExperiment <-  # nolint
     function(
         Y,  # nolint
@@ -150,6 +149,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
         metadata(object)[["weights"]] <- "zinbwave"
         object
     }
+
 formals(runZinbwave.SingleCellExperiment)[["BPPARAM"]] <- bpparam
 
 
@@ -164,7 +164,6 @@ setMethod(
 
 
 
-# seurat =======================================================================
 runZinbwave.seurat <- function(Y, ...) {
     zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
     weights(Y) <- weights(zinb)
