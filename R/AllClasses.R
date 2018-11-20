@@ -147,7 +147,7 @@ setValidity(
     Class = "SeuratMarkers",
     method = function(object) {
         validate_that(
-            hasRownames(object[[1L]]),
+            hasRownames(object),
             identical(
                 x = colnames(object),
                 y = c(
