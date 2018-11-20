@@ -4,9 +4,12 @@
 \name{show}
 \alias{show}
 \alias{show,CellCycleMarkers-method}
+\alias{show,CellTypeMarkers-method}
 \title{Show an Object}
 \usage{
 \S4method{show}{CellCycleMarkers}(object)
+
+\S4method{show}{CellTypeMarkers}(object)
 }
 \arguments{
 \item{object}{Any R object}

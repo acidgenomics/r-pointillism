@@ -57,8 +57,6 @@ setMethod(
 
 show.CellTypeMarkers <-  # nolint
     function(object) {
-        return(cat("DRAFT METHOD"))
-
         validObject(object)
 
         # Include the organism information.
@@ -66,11 +64,9 @@ show.CellTypeMarkers <-  # nolint
         release <- metadata(object)[["ensemblRelease"]]
 
         # Include the gene lengths per phase.
-        split <- split(x = object, f = object[["cellType"]])
-        assert_that(is(split, "SplitDataFrameList"))
-        lengths <- nrow(split)
+        lengths <- nrow(object)
         genes <- sapply(
-            X = split,
+            X = object,
             FUN = function(x) {
                 x <- x[["geneName"]]
                 x <- sort(x)
@@ -83,10 +79,7 @@ show.CellTypeMarkers <-  # nolint
         return <- c(
             class(object),
             paste0(organism, " (Ensembl ", release, ")"),
-            url,
-            citation,
-            separatorBar,
-            paste0(names(genes), " (", lengths, "): ", genes)
+            paste0(names(genes), "(", lengths, "): ", genes)
         )
 
         cat(return, sep = "\n")
@@ -94,13 +87,13 @@ show.CellTypeMarkers <-  # nolint
 
 
 
-# #' @rdname show
-# #' @export
-# setMethod(
-#     f = "show",
-#     signature = signature("CellTypeMarkers"),
-#     definition = show.CellTypeMarkers
-# )
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("CellTypeMarkers"),
+    definition = show.CellTypeMarkers
+)
 
 
 
