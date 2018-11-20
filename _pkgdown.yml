@@ -7,7 +7,7 @@ reference:
     contents:
     - starts_with("CellCycleMarkers")
     - starts_with("CellTypeMarkers")
-    - starts_with("KnownSeuratMarkers")
+    - starts_with("KnownMarkers")
     - starts_with("SeuratMarkers")
     - as
     - show

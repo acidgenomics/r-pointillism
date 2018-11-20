@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -200,12 +200,18 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
+      <th>i</th>
+      <td><p>Indices specifying elements to extract or replace. Indices are
+<code>numeric</code> or <code>character</code> vectors, empty (<code>missing</code>), or <code>NULL</code>. See
+<code>help(topic = "Extract", package = "base")</code> for more information.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>Object to assign.</p></td>
+      <td><p>Value to assign.</p></td>
     </tr>
     <tr>
       <th>object</th>
@@ -213,8 +219,9 @@
     </tr>
     <tr>
       <th>genes</th>
-      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
-object.</p></td>
+      <td><p><code>character</code>. Gene identifiers. It is considered better practice
+to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
+and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.</p></td>
     </tr>
     </table>
     

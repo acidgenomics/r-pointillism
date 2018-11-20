@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -131,15 +131,17 @@
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>,
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"pointillism.legend"</span>,
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
@@ -166,8 +168,9 @@
     </tr>
     <tr>
       <th>genes</th>
-      <td><p><code>character</code>. Gene identifiers. Must match the rownames of the
-object.</p></td>
+      <td><p><code>character</code>. Gene identifiers. It is considered better practice
+to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
+and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -176,11 +179,11 @@ Currently supports "<code>dot</code>" and "<code>violin</code>".</p></td>
     </tr>
     <tr>
       <th>perSample</th>
-      <td><p><code>boolean</code>. Visualize the distributions per sample?</p></td>
+      <td><p><code>boolean</code>. Visualize the distributions per sample.</p></td>
     </tr>
     <tr>
       <th>legend</th>
-      <td><p><code>boolean</code>. Include plot legend.</p></td>
+      <td><p><code>boolean</code>. Show plot legend.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -212,9 +215,9 @@ will have no dot drawn.</p></td>
       <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
 scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
-recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
-To set the discrete color palette globally, use
-<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
+recommend using <code><a href='ggplot2.tidyverse.org/reference/scale_manual.html'>ggplot2::scale_color_manual()</a></code>. To set the discrete color
+palette globally, use
+<code>options(basejump.color.discrete = ggplot2::scale_color_viridis_d())</code>.</p></td>
     </tr>
     <tr>
       <th>scale</th>

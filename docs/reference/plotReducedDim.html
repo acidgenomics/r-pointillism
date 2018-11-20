@@ -67,7 +67,7 @@ UMAP: Uniform Manifold Approximation and Projection.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -237,7 +237,8 @@ UMAP: Uniform Manifold Approximation and Projection.
     <tr>
       <th>reducedDim</th>
       <td><p><code>string</code>. Name of reduced dimension matrix slotted in
-<code>reducedDims()</code>. Includes TNSE, UMAP, PCA, for example.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>SingleCellExperiment::reducedDims()</a></code>. Includes TNSE, UMAP, PCA, for
+example.</p></td>
     </tr>
     <tr>
       <th>dimsUse</th>
@@ -247,27 +248,27 @@ calculations. Defaults the first and second dimensions.</p></td>
     </tr>
     <tr>
       <th>interestingGroups</th>
-      <td><p><code>character</code> or <code>NULL</code>. Character vector of
-interesting groups. Must be formatted in camel case and intersect with
-<code>sampleData()</code> colnames.</p></td>
+      <td><p><code>character</code> or <code>NULL</code>. Groups of interest that
+define the samples. If left unset, defaults to <code>sampleName</code>.</p></td>
     </tr>
     <tr>
       <th>color</th>
       <td><p><code>ggproto</code>/<code>ScaleDiscrete</code> or <code>NULL</code>. Desired ggplot2 color
 scale. Must supply discrete values. When set to <code>NULL</code>, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
-recommend using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.
-To set the discrete color palette globally, use
-<code>options(bcbio.discrete.color = scale_color_viridis_d())</code>.</p></td>
+recommend using <code><a href='ggplot2.tidyverse.org/reference/scale_manual.html'>ggplot2::scale_color_manual()</a></code>. To set the discrete color
+palette globally, use
+<code>options(basejump.color.discrete = ggplot2::scale_color_viridis_d())</code>.</p></td>
     </tr>
     <tr>
       <th>pointSize</th>
-      <td><p><code>scalar numeric</code>. Cell point size.</p></td>
+      <td><p><code>scalar numeric</code>. Point size for dots in the plot.</p></td>
     </tr>
     <tr>
       <th>pointAlpha</th>
       <td><p><code>scalar numeric</code> (<code>0</code>-<code>1</code>). Alpha transparency level.
-Useful when there many cells in the dataset, and some cells can be masked.</p></td>
+Useful when there many points in the dataset (e.g. single-cell data), and
+some points can be masked.</p></td>
     </tr>
     <tr>
       <th>pointsAsNumbers</th>
@@ -276,7 +277,7 @@ dots (<code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p><code>boolean</code>. Overlay a cluster identitiy label on the plot.</p></td>
+      <td><p><code>boolean</code>. Superimpose sample text labels on the plot.</p></td>
     </tr>
     <tr>
       <th>labelSize</th>
@@ -285,11 +286,11 @@ dots (<code>FALSE</code>).</p></td>
     <tr>
       <th>dark</th>
       <td><p><code>boolean</code>. Plot against a dark background using
-<code><a href='http://www.rdocumentation.org/packages/basejump/topics/ggplot2-themes'>basejump::theme_midnight()</a></code>.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/basejump/topics/ggplot2-themes'>basejump::theme_midnight()</a></code> ggplot2 theme.</p></td>
     </tr>
     <tr>
       <th>legend</th>
-      <td><p><code>boolean</code>. Include plot legend.</p></td>
+      <td><p><code>boolean</code>. Show plot legend.</p></td>
     </tr>
     <tr>
       <th>title</th>

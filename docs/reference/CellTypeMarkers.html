@@ -35,7 +35,7 @@
 <meta property="og:title" content="Cell-Type Markers — CellTypeMarkers" />
 
 <meta property="og:description" content="Data provenence information, including the organism and Ensembl release are
-defined in metadata()." />
+defined in S4Vectors::metadata()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +64,7 @@ defined in metadata()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@ defined in metadata()." />
     <div class="ref-description">
     
     <p>Data provenence information, including the organism and Ensembl release are
-defined in <code>metadata()</code>.</p>
+defined in <code><a href='http://www.rdocumentation.org/packages/S4Vectors/topics/Annotated-class'>S4Vectors::metadata()</a></code>.</p>
     
     </div>
 
@@ -126,7 +126,8 @@ defined in <code>metadata()</code>.</p>
     </tr>
     <tr>
       <th>gene2symbol</th>
-      <td><p><code>Gene2Symbol</code>. Gene-to-symbol mappings.</p></td>
+      <td><p><code>Gene2Symbol</code>. Gene-to-symbol mappings. Must contain
+<code>geneID</code> and <code>geneName</code> columns. See <code>Gene2Symbol()</code> for more information.</p></td>
     </tr>
     </table>
     
@@ -137,10 +138,10 @@ defined in <code>metadata()</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>CellTypeMarkers()</code>.</p>
-<p>Other S4 classes: <code><a href='CellCycleMarkers-class.html'>CellCycleMarkers-class</a></code>,
-  <code><a href='KnownMarkers-class.html'>KnownMarkers-class</a></code>,
-  <code><a href='SeuratMarkers-class.html'>SeuratMarkers-class</a></code>,
-  <code><a href='SeuratMarkersPerCluster-class.html'>SeuratMarkersPerCluster-class</a></code></p></div>
+<p>Other S4 classes: <code>CellCycleMarkers-class</code>,
+  <code>KnownMarkers-class</code>,
+  <code>SeuratMarkers-class</code>,
+  <code>SeuratMarkersPerCluster-class</code></p></div>
     
 
   </div>
