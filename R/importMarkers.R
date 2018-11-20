@@ -72,5 +72,5 @@ importCellCycleMarkersFromGoogle <-
 importCellTypeMarkersFromGoogle <-
     function(gs, ws, gene2symbol) {
         data <- .importFromGoogle(gs = gs, ws = ws)
-        CellTypeMarkers(object = data,gene2symbol = gene2symbol)
+        CellTypeMarkers(object = data, gene2symbol = gene2symbol)
     }
