@@ -83,7 +83,6 @@ Collate:
     'CellTypeMarkers.R'
     'KnownMarkers-methods.R'
     'SeuratMarkers.R'
-    'SeuratMarkersPerCluster.R'
     'as-methods.R'
     'assert-internal.R'
     'cellCountsPerCluster-methods.R'

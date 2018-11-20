@@ -65,7 +65,7 @@ Currently supports edgeR and DESeq2 as DE callers." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -174,13 +174,12 @@ by <code>minCellsPerGene</code>.</p></td>
     </tr>
     <tr>
       <th>bpparam</th>
-      <td><p><code>bpparamClass</code>. BiocParallel parameter specifying the
-back-end to be used for computations. See <code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code> for
-details. We recommend one of the following:</p><ul>
+      <td><p><code>bpparamClass</code>. BiocParallel parameter specifying the back-end
+to be used for computations. See <code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code> for details.</p>
+<p>We recommend one of the following:</p><ul>
 <li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/register'>BiocParallel::bpparam()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>BiocParallel::SerialParam()</a></code>.</p></li>
-<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.
-BiocParallel: https://doi.org/doi:10.18129/B9.bioc.BiocParallel</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>BiocParallel::MulticoreParam()</a></code>.</p></li>
 </ul></td>
     </tr>
     </table>
@@ -204,7 +203,7 @@ RNA-seq datasets.</p>
 
     
     <p>This function will run a lot faster if you pre-calculate the ZINB weights
-using the <code><a href='runZinbwave.html'>runZinbwave()</a></code> function, which will stash the weights into the
+using the <code>runZinbwave()</code> function, which will stash the weights into the
 <code><a href='http://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays'>SingleCellExperiment::weights()</a></code> slot of the object. Running zinbwave across
 the entire set of filtered cells also has greater sensitivity for weight
 calculations.</p>
@@ -258,7 +257,7 @@ additional information.</p>
 <span class='co'>## seurat_small &lt;- runZinbwave(object)</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
-<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
+<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'>names</span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
 <span class='fu'>summary</span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        10 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'>names</span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
@@ -273,7 +272,7 @@ additional information.</p>
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
 #&gt; <span class='message'>Numerator: 10 cells</span>
 #&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.160   0.005   0.168 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>  0.127   0.004   0.140 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
 #&gt; [1] "edgeR"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
 #&gt; coefficients           374   -none-           numeric  
@@ -283,7 +282,7 @@ additional information.</p>
 #&gt; unshrunk.coefficients  374   -none-           numeric  
 #&gt; df.residual            187   -none-           numeric  
 #&gt; design                  44   -none-           numeric  
-#&gt; offset                  22   CompressedMatrix numeric  
+#&gt; offset                4114   CompressedMatrix numeric  
 #&gt; dispersion             187   -none-           numeric  
 #&gt; weights               4114   -none-           numeric  
 #&gt; prior.count              1   -none-           numeric  
@@ -305,7 +304,7 @@ additional information.</p>
 #&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running DESeq2.</span></div><div class='output co'>#&gt; <span class='message'>converting counts to integer mode</span></div><div class='output co'>#&gt; <span class='message'>estimating size factors</span></div><div class='output co'>#&gt; <span class='message'>estimating dispersions</span></div><div class='output co'>#&gt; <span class='message'>gene-wise dispersion estimates</span></div><div class='output co'>#&gt; <span class='warning'>Warning: for 33 row(s), the weights as supplied won't allow parameter estimation, producing a</span>
 #&gt; <span class='warning'>  degenerate design matrix. These rows have been flagged in mcols(dds)$weightsFail</span>
 #&gt; <span class='warning'>  and treated as if the row contained all zeros (mcols(dds)$allZero set to TRUE).</span></div><div class='output co'>#&gt; <span class='message'>mean-dispersion relationship</span></div><div class='output co'>#&gt; <span class='message'>final dispersion estimates</span></div><div class='output co'>#&gt; <span class='message'>fitting model and testing</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  1.322   0.022   1.369 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
+#&gt; <span class='message'>  1.180   0.022   1.209 </span></div><div class='input'><span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DESeqResults"
 #&gt; attr(,"package")
 #&gt; [1] "DESeq2"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
 #&gt;            6 DESeqResults           S4 </div></pre>
