@@ -1,12 +1,12 @@
-# FIXME Improve appearance.
+# TODO Improve appearance.
 # Remove separator bar and import code from basejump.
-# FIXME Switch to using `showSlotInfo()` (see bcbioRNASeq.)
+# TODO Switch to using `showSlotInfo()` (see bcbioRNASeq.)
 
 
 
-#' @inherit methods::show
 #' @name show
 #' @author Michael Steinbuagh
+#' @inherit methods::show title description details params
 NULL
 
 
@@ -20,6 +20,8 @@ methods::show
 
 show.CellCycleMarkers <-  # nolint
     function(object) {
+        return(cat("DRAFT METHOD"))
+
         validObject(object)
 
         # Include the organism information.
@@ -30,7 +32,6 @@ show.CellCycleMarkers <-  # nolint
         split <- split(x = object, f = object[["phase"]])
         assert_that(is(split, "SplitDataFrameList"))
         lengths <- nrow(split)
-        # FIXME Can we avoid `sapply()` here?
         genes <- sapply(
             X = split,
             FUN = function(x) {
@@ -56,8 +57,20 @@ show.CellCycleMarkers <-  # nolint
 
 
 
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("CellCycleMarkers"),
+    definition = show.CellCycleMarkers
+)
+
+
+
 show.CellTypeMarkers <-  # nolint
     function(object) {
+        return(cat("DRAFT METHOD"))
+
         validObject(object)
 
         # Include the organism information.
@@ -93,9 +106,38 @@ show.CellTypeMarkers <-  # nolint
 
 
 
-# FIXME Need to finish this and add S4 method.
-show.Markers <-  # nolint
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("CellTypeMarkers"),
+    definition = show.CellTypeMarkers
+)
+
+
+
+show.KnownMarkers <-  # nolint
     function(object) {
+        return(cat("DRAFT METHOD"))
+    }
+
+
+
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("KnownMarkers"),
+    definition = show.KnownMarkers
+)
+
+
+
+show.SeuratMarkers <-  # nolint
+    function(object) {
+        # FIXME
+        return(cat("DRAFT METHOD"))
+
         validObject(object)
         data <- as(object, "DataFrame")
 
@@ -113,7 +155,6 @@ show.Markers <-  # nolint
             split <- split(x = data, f = object[["cluster"]])
             assert_that(is(split, "SplitDataFrameList"))
             assert_are_identical(names(split), clusters)
-
         } else {
             f <- "FindMarkers"
         }
@@ -123,21 +164,20 @@ show.Markers <-  # nolint
 
 
 
-#' #' @rdname show
-#' #' @export
-#' setMethod(
-#'     f = "show",
-#'     signature = signature("CellCycleMarkers"),
-#'     definition = show.CellCycleMarkers
-#' )
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("SeuratMarkers"),
+    definition = show.SeuratMarkers
+)
 
 
 
-
-#' #' @rdname show
-#' #' @export
-#' setMethod(
-#'     f = "show",
-#'     signature = signature("CellTypeMarkers"),
-#'     definition = show.CellTypeMarkers
-#' )
+#' @rdname show
+#' @export
+setMethod(
+    f = "show",
+    signature = signature("SeuratMarkersPerCluster"),
+    definition = show.SeuratMarkers
+)
