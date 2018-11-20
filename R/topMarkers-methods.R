@@ -73,6 +73,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
             data
         }
     }
+
 formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
 
 
