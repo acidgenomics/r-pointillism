@@ -20,20 +20,13 @@ methods::show
 
 show.CellCycleMarkers <-  # nolint
     function(object) {
-        return(cat("DRAFT METHOD"))
-
         validObject(object)
-
         # Include the organism information.
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
-
-        # Include the gene lengths per phase.
-        split <- split(x = object, f = object[["phase"]])
-        assert_that(is(split, "SplitDataFrameList"))
-        lengths <- nrow(split)
+        lengths <- nrow(object)
         genes <- sapply(
-            X = split,
+            X = object,
             FUN = function(x) {
                 x <- x[["geneName"]]
                 x <- sort(x)
@@ -42,16 +35,11 @@ show.CellCycleMarkers <-  # nolint
             },
             USE.NAMES = TRUE
         )
-
         return <- c(
-            paste(class(object), metadata(object)[["version"]]),
+            class(object),
             paste0(organism, " (Ensembl ", release, ")"),
-            url,
-            citation,
-            separatorBar,
-            paste0(names(genes), " (", lengths, "): ", genes)
+            paste0(names(genes), "(", lengths, "): ", genes)
         )
-
         cat(return, sep = "\n")
     }
 
@@ -93,7 +81,7 @@ show.CellTypeMarkers <-  # nolint
         )
 
         return <- c(
-            paste(class(object), metadata(object)[["version"]]),
+            class(object),
             paste0(organism, " (Ensembl ", release, ")"),
             url,
             citation,
@@ -106,13 +94,13 @@ show.CellTypeMarkers <-  # nolint
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("CellTypeMarkers"),
-    definition = show.CellTypeMarkers
-)
+# #' @rdname show
+# #' @export
+# setMethod(
+#     f = "show",
+#     signature = signature("CellTypeMarkers"),
+#     definition = show.CellTypeMarkers
+# )
 
 
 
@@ -123,13 +111,13 @@ show.KnownMarkers <-  # nolint
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("KnownMarkers"),
-    definition = show.KnownMarkers
-)
+# #' @rdname show
+# #' @export
+# setMethod(
+#     f = "show",
+#     signature = signature("KnownMarkers"),
+#     definition = show.KnownMarkers
+# )
 
 
 
@@ -164,20 +152,20 @@ show.SeuratMarkers <-  # nolint
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("SeuratMarkers"),
-    definition = show.SeuratMarkers
-)
+# #' @rdname show
+# #' @export
+# setMethod(
+#     f = "show",
+#     signature = signature("SeuratMarkers"),
+#     definition = show.SeuratMarkers
+# )
 
 
 
-#' @rdname show
-#' @export
-setMethod(
-    f = "show",
-    signature = signature("SeuratMarkersPerCluster"),
-    definition = show.SeuratMarkers
-)
+# #' @rdname show
+# #' @export
+# setMethod(
+#     f = "show",
+#     signature = signature("SeuratMarkersPerCluster"),
+#     definition = show.SeuratMarkers
+# )
