@@ -4,21 +4,9 @@
 \name{show}
 \alias{show}
 \alias{show,CellCycleMarkers-method}
-\alias{show,CellTypeMarkers-method}
-\alias{show,KnownMarkers-method}
-\alias{show,SeuratMarkers-method}
-\alias{show,SeuratMarkersPerCluster-method}
 \title{Show an Object}
 \usage{
 \S4method{show}{CellCycleMarkers}(object)
-
-\S4method{show}{CellTypeMarkers}(object)
-
-\S4method{show}{KnownMarkers}(object)
-
-\S4method{show}{SeuratMarkers}(object)
-
-\S4method{show}{SeuratMarkersPerCluster}(object)
 }
 \arguments{
 \item{object}{Any R object}
