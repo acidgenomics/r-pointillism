@@ -19,7 +19,7 @@
 
     # Coerce to tibble and sanitize.
     data <- object %>%
-        as_tibble() %>%
+        as_tibble(rownames = NULL) %>%
         camel() %>%
         select(!!!syms(c(group, "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
@@ -45,7 +45,7 @@
         mutate(!!sym(group) := as.factor(!!sym(group))) %>%
         unique() %>%
         left_join(
-            y = as_tibble(gene2symbol),
+            y = as_tibble(gene2symbol, rownames = NULL),
             by = "geneID"
         ) %>%
         group_by(!!sym(group)) %>%
