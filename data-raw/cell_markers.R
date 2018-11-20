@@ -1,11 +1,12 @@
 # Cell Cycle and Cell Type Markers
-# 2018-10-21
+# 2018-11-20
+
 # This code is derived from:
 # - Tirosh et al, 2015
 # - http://satijalab.org/seurat/cell_cycle_vignette.html
 
 # Must be interactive, requiring Google Sheets authentication.
-assert_that(interactive())
+stopifnot(interactive())
 
 library(googlesheets)
 library(tidyverse)
@@ -62,6 +63,7 @@ ws <- gs_ws_ls(gs)
 ws <- ws[!str_detect(ws, "^_")]
 print(ws)
 
+# FIXME This is breaking because of invalid column classes for Mus musculus...
 cell_type_markers <- lapply(
     X = ws,
     FUN = function(ws) {

@@ -1,35 +1,35 @@
 # Seurat example data
-# 2018-10-21
+# 2018-11-20
 
-# # Restrict to 1 MB.
-# Use `pryr::object_size()` instead of `utils::object.size()`.
 library(pryr)
-limit <- structure(1e6, class = "object_size")
+library(reticulate)
+library(splatter)
+library(Seurat)
+library(Matrix)
+library(tidyverse)
+library(bcbioSingleCell)
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 # This is not working consistently for me on Linux.
-library(reticulate)
-assert_that(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
-assert_that(py_module_available(module = "umap"))
+stopifnot(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
+stopifnot(py_module_available(module = "umap"))
 
-library(splatter)
-library(Seurat)
-library(Matrix)
-library(tidyverse)
+# # Restrict object size to 1 MB.
+# Use `pryr::object_size()` instead of `utils::object.size()`.
+limit <- structure(1e6, class = "object_size")
 
-library(bcbioSingleCell)
 data(pbmc_small, package = "Seurat")
 object_size(pbmc_small)
-assert_that(object_size(pbmc_small) < limit)
+stopifnot(object_size(pbmc_small) < limit)
 
 # seurat_small =================================================================
 seurat_small <- pbmc_small %>%
     RunUMAP() %>%
     runZinbwave()
 object_size(seurat_small)
-assert_that(object_size(seurat_small) < limit)
+stopifnot(object_size(seurat_small) < limit)
 validObject(seurat_small)
 
 # `Seurat::pbmc_small` gene symbols map to GRCh37.
@@ -39,7 +39,7 @@ table <- gr$geneName %>%
     as.character() %>%
     make.unique()
 names(gr) <- table
-assert_that(all(x %in% table))
+stopifnot(all(x %in% table))
 which <- match(x = x, table = table)
 gr <- gr[which]
 rowRanges(seurat_small) <- gr
