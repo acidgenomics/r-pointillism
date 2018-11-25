@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot PC Elbow — plotPCElbow • pointillism</title>
+<title>Object Summaries — summary • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot PC Elbow — plotPCElbow" />
+<meta property="og:title" content="Object Summaries — summary" />
 
-<meta property="og:description" content="Calculate the principal component (PC) cutoff using a heuristic approach." />
+<meta property="og:description" content="summary is a generic function used to produce result summaries
+  of the results of various model fitting functions.  The function
+  invokes particular methods which depend on the
+  class of the first argument." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,22 +107,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot PC Elbow</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotPCElbow-methods.R'><code>R/plotPCElbow-methods.R</code></a></small>
-    <div class="hidden name"><code>plotPCElbow.Rd</code></div>
+    <h1>Object Summaries</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/summary-methods.R'><code>R/summary-methods.R</code></a></small>
+    <div class="hidden name"><code>summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Calculate the principal component (PC) cutoff using a heuristic approach.</p>
+    <p><code>summary</code> is a generic function used to produce result summaries
+  of the results of various model fitting functions.  The function
+  invokes particular <code><a href='https://www.rdocumentation.org/packages/utils/topics/methods'>methods</a></code> which depend on the
+  <code><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></code> of the first argument.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='co'># S4 method for SeuratMarkers</span>
+<span class='fu'>summary</span>(<span class='no'>object</span>)
 
-<span class='co'># S4 method for seurat</span>
-<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>minSD</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-  <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"identity"</span>, <span class='st'>"sqrt"</span>))</pre>
+<span class='co'># S4 method for SeuratMarkersPerCluster</span>
+<span class='fu'>summary</span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,55 +134,43 @@
       <th>object</th>
       <td><p>Object.</p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    <tr>
-      <th>minSD</th>
-      <td><p><code>scalar numeric</code>. Minimum standard deviation.</p></td>
-    </tr>
-    <tr>
-      <th>minPct</th>
-      <td><p><code>scalar numeric</code> (<code>0</code>-<code>1</code>). Minimum percent standard deviation.</p></td>
-    </tr>
-    <tr>
-      <th>maxCumPct</th>
-      <td><p><code>scalar numeric</code> (<code>0</code>-<code>1</code>).Maximum cumulative percent
-standard deviation.</p></td>
-    </tr>
-    <tr>
-      <th>trans</th>
-      <td><p><code>string</code>. Name of the axis scale transformation to apply. See
-<code><a href='https://www.rdocumentation.org/packages/utils/topics/help'>help("scale_x_continuous", "ggplot2")</a></code> for more information.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Invisible <code>NULL</code>.</p>
     
-<ul>
-<li><p>Show graphical output of elbow plots.</p></li>
-<li><p>Invisibly return numeric sequence vector of PCs to include for
-dimensionality reduction analysis.</p></li>
-</ul>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Automatically return the smallest number of PCs that match the <code>minSD</code>,
-<code>minPct</code>, and <code>maxCumPct</code> cutoffs.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><ul>
-<li><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/PCElbowPlot'>Seurat::PCElbowPlot()</a></code>.</p></li>
-</ul></div>
+    <p>Chambers, J. M. and Hastie, T. J. (1992)
+  <em>Statistical Models in S</em>.
+  Wadsworth &amp; Brooks/Cole.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>pbmc_small</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Seurat"</span>)
-<span class='fu'>plotPCElbow</span>(<span class='no'>pbmc_small</span>)</div><div class='img'><img src='plotPCElbow-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>rse</span>, <span class='no'>tx_se</span>)
+
+<span class='co'>## Gene2Symbol ====</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>Gene2Symbol</span>(<span class='no'>rse</span>)
+<span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; genes: 500
+#&gt; symbols: 500
+#&gt; format: makeUnique
+#&gt; organism: Homo sapiens
+#&gt; genomeBuild: GRCh38
+#&gt; ensemblRelease: 92
+#&gt; id: AH60977
+#&gt; version: 0.8.2
+#&gt; date: 2018-11-19</div><div class='input'>
+<span class='co'>## Tx2Gene ====</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>Tx2Gene</span>(<span class='no'>tx_se</span>)
+<span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; transcripts: 6
+#&gt; genes: 2
+#&gt; organism: Homo sapiens
+#&gt; genomeBuild: GRCh38
+#&gt; ensemblRelease: 92
+#&gt; id: AH60977
+#&gt; version: 0.8.2
+#&gt; date: 2018-11-19</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -185,9 +179,7 @@ dimensionality reduction analysis.</p></li>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
