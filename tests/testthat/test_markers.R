@@ -56,7 +56,7 @@ test_that("topMarkers : grouped_df", {
             avgLogFC = "numeric",
             cluster = "factor",
             geneID = "character",
-            geneName = "factor",
+            geneName = "character",
             name = "character",
             padj = "numeric",
             pct1 = "numeric",
