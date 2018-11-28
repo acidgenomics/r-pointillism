@@ -9,7 +9,7 @@
 #'
 #' @inheritParams basejump::params
 #' @param markers `KnownMarkers`.
-#' @param ... Passthrough arguments to [plotMarker()].
+#' @param ... Passthrough arguments to `plotMarker()`.
 #'
 #' @return Show graphical output. Invisibly return `list`.
 #'

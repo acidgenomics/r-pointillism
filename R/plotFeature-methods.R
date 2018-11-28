@@ -14,7 +14,7 @@
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'
-#' @seealso [Seurat::FeaturePlot()].
+#' @seealso `Seurat::FeaturePlot()`.
 #'
 #' @return `ggplot` or `list`.
 #'

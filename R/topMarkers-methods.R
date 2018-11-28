@@ -10,8 +10,8 @@
 #'   association per cluster.
 #'
 #' @seealso
-#' - [dplyr::slice()].
-#' - [dplyr::top_n()].
+#' - `dplyr::slice()`.
+#' - `dplyr::top_n()`.
 #'
 #' @return `grouped_df`.
 #'

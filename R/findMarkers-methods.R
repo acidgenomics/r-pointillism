@@ -10,7 +10,7 @@
 #' @name findMarkers
 #'
 #' @inheritParams basejump::params
-#' @param ... Passthrough arguments to [diffExp()].
+#' @param ... Passthrough arguments to `diffExp()`.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.

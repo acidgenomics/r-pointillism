@@ -19,7 +19,7 @@
 #'   dimensionality reduction analysis.
 #'
 #' @seealso
-#' - [Seurat::PCElbowPlot()].
+#' - `Seurat::PCElbowPlot()`.
 #'
 #' @examples
 #' data(pbmc_small, package = "Seurat")
