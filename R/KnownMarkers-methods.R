@@ -9,7 +9,7 @@
 #' @inheritParams basejump::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
-#'   `data.frame` imported by [readCellTypeMarkers()] or pulled from internal
+#'   `data.frame` imported by `readCellTypeMarkers()` or pulled from internal
 #'   cell cycle markers data.
 #' @param promiscuousThreshold `scalar integer`. Minimum number of clusters
 #'   required to consider a gene marker promiscuous. Set to `0` to disable

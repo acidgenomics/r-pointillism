@@ -10,8 +10,8 @@
 #' @exportMethod coerce
 #'
 #' @seealso
-#' - [Seurat::CreateSeuratObject()].
-#' - [Seurat::Convert()].
+#' - `Seurat::CreateSeuratObject()`.
+#' - `Seurat::Convert()`.
 #'
 #' @examples
 #' data(sce, package = "basejump")
@@ -133,11 +133,11 @@ as.seurat.SingleCellExperiment <- function(from) {
 #' @name coerce,SingleCellExperiment,seurat-method
 #'
 #' @section `SingleCellExperiment` to `seurat`:
-#' Interally [Seurat::CreateSeuratObject()] is called without applying any
+#' Interally `Seurat::CreateSeuratObject()` is called without applying any
 #' additional filtering cutoffs, since we have already defined them during our
 #' quality control analysis. Here we are passing the raw gene-level counts of
 #' the filtered cells into a new `seurat` class object. Use
-#' [convertGenesToSymbols()] to convert gene IDs to names (symbols).
+#' `convertGenesToSymbols()` to convert gene IDs to names (symbols).
 setAs(
     from = "SingleCellExperiment",
     to = "seurat",
