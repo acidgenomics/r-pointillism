@@ -3,32 +3,33 @@
 #' @include globals.R
 #'
 #' @details
-#' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which will
-#' be defined in the [SummarizedExperiment::assays()] slot. If these values have
-#' already been calculated, the object will be returned unmodified, unless
-#' `recalculate = TRUE`.
+#' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
+#' will be defined in the `assays()` slot. If these values have already been
+#' calculated, the object will be returned unmodified, unless `recalculate =
+#' TRUE`.
 #'
 #' [zinbwave]: https://bioconductor.org/packages/release/bioc/html/zinbwave.html
 #'
 #' @section Parallelization:
 #'
-#' zinbwave defaults to using [BiocParallel::bpparam()] to register the number
+#' zinbwave defaults to using `BiocParallel::bpparam()` to register the number
 #' of cores to use (`bpparam` argument), but we've found that this works
 #' inconsistently across installations. Currently, we recommend using
-#' [BiocParallel::SerialParam()] by default, which will run in serial, using a
-#' single core. On Linux or macOS, [BiocParallel::MulticoreParam()] should work
+#' `BiocParallel::SerialParam()` by default, which will run in serial, using a
+#' single core. On Linux or macOS, `BiocParallel::MulticoreParam()` should work
 #' to run with multiple cores.
 #'
 #' @inheritParams basejump::params
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
+#'
 #' @param recalculate `logical`. Force recalculation of weights.
 #' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
-#'   weights added to [SummarizedExperiment::assays()].
+#'   weights added to `assays()`.
 #'
-#' @seealso [zinbwave::zinbwave()].
+#' @seealso `zinbwave::zinbwave()`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -174,7 +175,7 @@ runZinbwave.seurat <- function(Y, ...) {
 
 
 #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashes weights
-#'   in the [weights()] slot.
+#'   in the `weights()` slot.
 #' @export
 setMethod(
     f = "runZinbwave",

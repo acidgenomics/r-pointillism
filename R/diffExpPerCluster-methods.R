@@ -1,15 +1,15 @@
 #' Differential Expression per Cluster
 #'
-#' @note Cluster identity (`ident`) must be defined in
-#'   [SummarizedExperiment::colData()] for this function to work.
+#' @note Cluster identity (`ident`) must be defined in `colData()` for this
+#'   function to work.
 #'
 #' @name diffExpPerCluster
 #'
 #' @inheritParams basejump::params
 #' @inheritParams diffExp
 #' @param group `string`. Group of interest for differential expression per
-#'   cluster. Must be a `factor` column in [SummarizedExperiment::colData()].
-#' @param ... Passthrough arguments to [diffExp()].
+#'   cluster. Must be a `factor` column in `colData()`.
+#' @param ... Passthrough arguments to `diffExp()`.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.

@@ -4,8 +4,7 @@
 #' - PCA: **P**rincipal **C**omponent **A**nalysis.
 #' - UMAP: **U**niform **M**anifold **A**pproximation and **P**rojection.
 #'
-#' Colors using `ident` column defined in [SummarizedExperiment::colData()] by
-#' default.
+#' Colors using `ident` column defined in `colData()` by default.
 #'
 #' @section UMAP calculation:
 #'
@@ -21,7 +20,7 @@
 #' reliably when setting `RETICULATE_PYTHON` to point to your conda python
 #' binary. Export this variable in  `~/.Renviron`.
 #'
-#' See [base::Sys.getenv()] for more information on the R system environment.
+#' See `base::Sys.getenv()` for more information on the R system environment.
 #'
 #' [conda]: https://conda.io
 #' [Python]: https://www.python.org
@@ -37,7 +36,7 @@
 #' @inheritParams basejump::params
 #'
 #' @seealso
-#' - [Seurat::DimPlot()].
+#' - `Seurat::DimPlot()`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @return `ggplot`.
