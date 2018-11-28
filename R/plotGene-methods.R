@@ -3,9 +3,9 @@
 #' Visualize genes on a dot or violin plot.
 #'
 #' @name plotGene
-#'
 #' @inheritParams basejump::params
 #' @inheritParams ggplot2::geom_violin
+#'
 #' @param colMin `scalar numeric`. Minimum scaled average expression threshold.
 #'   Everything smaller will be set to this.
 #' @param colMax `scalar numeric`. Maximum scaled average expression threshold.
@@ -15,13 +15,13 @@
 #'   will have no dot drawn.
 #' @param dotScale `scalar numeric`. Scale the size of the points, similar to
 #'   `cex`.
-#' @param geom `string`. Plot type. Uses [base::match.arg()] to pick the type.
+#' @param geom `string`. Plot type. Uses `match.arg()` to pick the type.
 #'   Currently supports "`dot`" and "`violin`".
 #'
 #' @seealso
-#' - [Seurat::DotPlot()].
-#' - [Seurat::VlnPlot()].
-#' - [Seurat::RidgePlot()].
+#' - `Seurat::DotPlot()`.
+#' - `Seurat::VlnPlot()`.
+#' - `Seurat::RidgePlot()`.
 #'
 #' @return `ggplot`.
 #'
@@ -79,7 +79,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 # plotDot ======================================================================
 #' Min Max
-#' @seealso [Seurat:::MinMax()].
+#' @seealso `Seurat:::MinMax()`.
 #' @noRd
 .minMax <- function(data, min, max) {
     data2 <- data
@@ -91,7 +91,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 #' Percent Above
-#' @seealso [Seurat:::PercentAbove()].
+#' @seealso `Seurat:::PercentAbove()`.
 #' @noRd
 .percentAbove <- function(x, threshold) {
     length(x[x > threshold]) / length(x)
