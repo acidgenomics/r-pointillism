@@ -46,6 +46,6 @@ plotPCElbow(pbmc_small)
 }
 \seealso{
 \itemize{
-\item \code{\link[Seurat:PCElbowPlot]{Seurat::PCElbowPlot()}}.
+\item \code{Seurat::PCElbowPlot()}.
 }
 }

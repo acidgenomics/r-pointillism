@@ -16,7 +16,7 @@ findMarkers(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[=diffExp]{diffExp()}}.}
+\item{...}{Passthrough arguments to \code{diffExp()}.}
 }
 \value{
 \code{list} containing:

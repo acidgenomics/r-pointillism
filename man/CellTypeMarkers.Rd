@@ -17,10 +17,10 @@ CellTypeMarkers(object, gene2symbol)
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{\link[S4Vectors:metadata]{S4Vectors::metadata()}}.
+defined in \code{metadata()}.
 }
 \seealso{
-\code{\link[=CellTypeMarkers]{CellTypeMarkers()}}.
+\code{CellTypeMarkers()}.
 
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{KnownMarkers-class}},

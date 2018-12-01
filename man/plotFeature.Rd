@@ -46,7 +46,7 @@ scores, number of genes detected).}
 \code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for
 example.}
 
-\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+\item{color}{\code{ggproto}/\code{ScaleDiscrete}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
@@ -85,5 +85,5 @@ data(seurat_small)
 plotFeature(seurat_small, features = c("nUMI", "nGene"))
 }
 \seealso{
-\code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
+\code{Seurat::FeaturePlot()}.
 }

@@ -74,8 +74,8 @@ RNA-seq datasets.
 
 
 This function will run a lot faster if you pre-calculate the ZINB weights
-using the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
-\code{\link[SingleCellExperiment:weights]{SingleCellExperiment::weights()}} slot of the object. Running zinbwave across
+using the \code{runZinbwave()} function, which will stash the weights into the
+\code{SingleCellExperiment::weights()} slot of the object. Running zinbwave across
 the entire set of filtered cells also has greater sensitivity for weight
 calculations.
 
@@ -93,8 +93,8 @@ refer to these materials:
 
 
 After estimation of the dispersions and posterior probabilities, the
-\code{\link[zinbwave:glmWeightedF]{zinbwave::glmWeightedF()}} function is used for statistical inference. This
-is an adaptation of \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}}. It uses an F-test for which the
+\code{zinbwave::glmWeightedF()} function is used for statistical inference. This
+is an adaptation of \code{edgeR::glmLRT()}. It uses an F-test for which the
 denominator degrees of freedom are by default adjusted according to the
 downweighting of excess zeros (\code{ZI = TRUE}). Also, independent filtering can
 be performed on the obtained p-values (\code{independentFiltering = TRUE}). We use
@@ -110,7 +110,7 @@ caller. It is currently considerably slower for large datasets than edgeR.
 
 We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
-level for the fold change calculations. See \code{\link[DESeq2:results]{DESeq2::results()}} for more
+level for the fold change calculations. See \code{DESeq2::results()} for more
 information.
 }
 
@@ -118,7 +118,7 @@ information.
 
 
 Note that Seurat currently uses the convention \code{cells.1} for the numerator
-and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seurat::DiffExpTest()}} for
+and \code{cells.2} for the denominator. See \code{Seurat::DiffExpTest()} for
 additional information.
 }
 
@@ -158,5 +158,5 @@ summary(x)
 # summary(x)
 }
 \seealso{
-\code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
+\code{Seurat::WhichCells()}.
 }

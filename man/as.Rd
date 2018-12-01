@@ -27,11 +27,11 @@ S4 coercion support for creating a \code{tbl_df} from \code{CellTypeMarkers}.
 
 \section{\code{SingleCellExperiment} to \code{seurat}}{
 
-Interally \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}} is called without applying any
+Interally \code{Seurat::CreateSeuratObject()} is called without applying any
 additional filtering cutoffs, since we have already defined them during our
 quality control analysis. Here we are passing the raw gene-level counts of
 the filtered cells into a new \code{seurat} class object. Use
-\code{\link[=convertGenesToSymbols]{convertGenesToSymbols()}} to convert gene IDs to names (symbols).
+\code{convertGenesToSymbols()} to convert gene IDs to names (symbols).
 }
 
 \section{\code{seurat} to \code{SingleCellExperiment}}{
@@ -125,7 +125,7 @@ Chambers, John M. (2016)
 }
 \seealso{
 \itemize{
-\item \code{\link[Seurat:CreateSeuratObject]{Seurat::CreateSeuratObject()}}.
-\item \code{\link[Seurat:Convert]{Seurat::Convert()}}.
+\item \code{Seurat::CreateSeuratObject()}.
+\item \code{Seurat::Convert()}.
 }
 }

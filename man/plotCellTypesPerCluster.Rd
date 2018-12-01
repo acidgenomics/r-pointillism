@@ -21,7 +21,7 @@ plotCellTypesPerCluster(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+\item{...}{Passthrough arguments to \code{plotMarker()}.}
 
 \item{markers}{\code{KnownMarkers}.}
 

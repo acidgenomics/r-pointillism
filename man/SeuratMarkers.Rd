@@ -10,14 +10,14 @@ SeuratMarkers(object, ranges, alpha = 0.05)
 SeuratMarkersPerCluster(object, ranges, alpha = 0.05)
 }
 \arguments{
-\item{object}{\code{data.frame}. Unmodified \code{\link[Seurat:FindMarkers]{Seurat::FindMarkers()}} or
-\code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return.}
+\item{object}{\code{data.frame}. Unmodified \code{Seurat::FindMarkers()} or
+\code{Seurat::FindAllMarkers()} return.}
 
 \item{ranges}{\code{GRanges}. Gene annotations. Names must correspond to the
 rownames. The function will automatically subset the ranges and arrange
 them alphabetically.}
 
-\item{alpha}{\code{scalar numeric} or \code{NULL}. Adjusted P value ("alpha") cutoff.
+\item{alpha}{\code{scalar numeric}. Adjusted P value ("alpha") cutoff.
 If left \code{NULL}, will use the cutoff defined in the object.}
 }
 \value{
@@ -28,7 +28,7 @@ This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations.
 }
 \note{
-For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
+For \code{Seurat::FindAllMarkers()} return, rownames are correctly returned
 in the \code{gene} column.
 }
 \examples{

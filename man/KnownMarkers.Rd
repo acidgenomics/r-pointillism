@@ -15,7 +15,7 @@ KnownMarkers(markers, known, ...)
 \item{markers}{\code{SeuratMarkers} or \code{SeuratMarkersPerCluster}.}
 
 \item{known}{\code{CellTypeMarkers}. Grouped by \code{cellType} column. Known markers
-\code{data.frame} imported by \code{\link[=readCellTypeMarkers]{readCellTypeMarkers()}} or pulled from internal
+\code{data.frame} imported by \code{readCellTypeMarkers()} or pulled from internal
 cell cycle markers data.}
 
 \item{...}{Additional arguments.}

@@ -19,7 +19,7 @@ cellCountsPerCluster(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{interestingGroups}{\code{character} or \code{NULL}. Groups of interest that
+\item{interestingGroups}{\code{character}. Groups of interest that
 define the samples. If left unset, defaults to \code{sampleName}.}
 }
 \value{
