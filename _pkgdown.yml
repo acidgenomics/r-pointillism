@@ -11,6 +11,7 @@ reference:
     - starts_with("SeuratMarkers")
     - as
     - show
+    - summary
   - title: Differential expression
     contents:
     - starts_with("diffExp")

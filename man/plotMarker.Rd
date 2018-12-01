@@ -49,7 +49,7 @@ example.}
 \item{expression}{\code{string}. Calculation to apply. Uses \code{base::match.arg()}
 and defaults to the first argument in the \code{character} vector.}
 
-\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+\item{color}{\code{ggproto}/\code{ScaleDiscrete}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
@@ -74,7 +74,7 @@ dots (\code{FALSE}).}
 
 \item{legend}{\code{boolean}. Show plot legend.}
 
-\item{title}{\code{string} or \code{NULL}. Plot title.}
+\item{title}{\code{string}. Plot title.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot} \code{list}.

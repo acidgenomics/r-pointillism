@@ -122,10 +122,10 @@ example.}
 the reduced dimension matrix to use for \code{centerX} and \code{centerY} column
 calculations. Defaults the first and second dimensions.}
 
-\item{interestingGroups}{\code{character} or \code{NULL}. Groups of interest that
+\item{interestingGroups}{\code{character}. Groups of interest that
 define the samples. If left unset, defaults to \code{sampleName}.}
 
-\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+\item{color}{\code{ggproto}/\code{ScaleDiscrete}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
@@ -150,7 +150,7 @@ dots (\code{FALSE}).}
 
 \item{legend}{\code{boolean}. Show plot legend.}
 
-\item{title}{\code{string} or \code{NULL}. Plot title.}
+\item{title}{\code{string}. Plot title.}
 }
 \value{
 \code{ggplot}.
@@ -163,8 +163,7 @@ dots (\code{FALSE}).}
 }
 }
 \details{
-Colors using \code{ident} column defined in \code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}} by
-default.
+Colors using \code{ident} column defined in \code{colData()} by default.
 }
 \section{UMAP calculation}{
 
@@ -178,7 +177,7 @@ The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticul
 reliably when setting \code{RETICULATE_PYTHON} to point to your conda python
 binary. Export this variable in  \code{~/.Renviron}.
 
-See \code{\link[base:Sys.getenv]{base::Sys.getenv()}} for more information on the R system environment.
+See \code{base::Sys.getenv()} for more information on the R system environment.
 }
 
 \examples{
@@ -197,7 +196,7 @@ plotPCA(object)
 }
 \seealso{
 \itemize{
-\item \code{\link[Seurat:DimPlot]{Seurat::DimPlot()}}.
+\item \code{Seurat::DimPlot()}.
 \item \href{https://satijalab.org/seurat/mca.html}{Seurat Mouse Cell Atlas vignette}.
 }
 }

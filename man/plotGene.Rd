@@ -58,14 +58,14 @@ plotViolin(object, ...)
 to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
 and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.}
 
-\item{geom}{\code{string}. Plot type. Uses \code{\link[base:match.arg]{base::match.arg()}} to pick the type.
+\item{geom}{\code{string}. Plot type. Uses \code{match.arg()} to pick the type.
 Currently supports "\code{dot}" and "\code{violin}".}
 
 \item{perSample}{\code{boolean}. Visualize the distributions per sample.}
 
 \item{legend}{\code{boolean}. Show plot legend.}
 
-\item{title}{\code{string} or \code{NULL}. Plot title.}
+\item{title}{\code{string}. Plot title.}
 
 \item{colMin}{\code{scalar numeric}. Minimum scaled average expression threshold.
 Everything smaller will be set to this.}
@@ -80,7 +80,7 @@ will have no dot drawn.}
 \item{dotScale}{\code{scalar numeric}. Scale the size of the points, similar to
 \code{cex}.}
 
-\item{color}{\code{ggproto}/\code{ScaleDiscrete} or \code{NULL}. Desired ggplot2 color
+\item{color}{\code{ggproto}/\code{ScaleDiscrete}. Desired ggplot2 color
 scale. Must supply discrete values. When set to \code{NULL}, the default ggplot2
 color palette will be used. If manual color definitions are desired, we
 recommend using \code{ggplot2::scale_color_manual()}. To set the discrete color
@@ -117,8 +117,8 @@ plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
-\item \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
-\item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
+\item \code{Seurat::DotPlot()}.
+\item \code{Seurat::VlnPlot()}.
+\item \code{Seurat::RidgePlot()}.
 }
 }

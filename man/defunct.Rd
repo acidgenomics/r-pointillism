@@ -23,7 +23,7 @@ sanitizeMarkers(...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{\link[=.Defunct]{.Defunct()}}.
+\code{.Defunct()}.
 }
 \description{
 Defunct Functions

@@ -20,7 +20,7 @@ plotTopMarkers(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+\item{...}{Passthrough arguments to \code{plotMarker()}.}
 
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cluster}".}
 
@@ -41,7 +41,7 @@ Show graphical output. Invisibly return \code{ggplot} \code{list}.
 }
 \description{
 The number of markers to plot is determined by the output of the
-\code{\link[=topMarkers]{topMarkers()}} function. If you want to reduce the number of genes to plot,
+\code{topMarkers()} function. If you want to reduce the number of genes to plot,
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }

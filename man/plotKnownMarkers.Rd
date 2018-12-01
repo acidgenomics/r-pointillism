@@ -21,7 +21,7 @@ plotKnownMarkers(object, markers, ...)
 
 \item{markers}{\code{grouped_df}. Marker genes, grouped by "\code{cellType}".}
 
-\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+\item{...}{Passthrough arguments to \code{plotMarker()}.}
 
 \item{reducedDim}{\code{string}. Name of reduced dimension matrix slotted in
 \code{SingleCellExperiment::reducedDims()}. Includes TNSE, UMAP, PCA, for

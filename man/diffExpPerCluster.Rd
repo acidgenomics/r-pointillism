@@ -18,10 +18,10 @@ diffExpPerCluster(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[=diffExp]{diffExp()}}.}
+\item{...}{Passthrough arguments to \code{diffExp()}.}
 
 \item{group}{\code{string}. Group of interest for differential expression per
-cluster. Must be a \code{factor} column in \code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}}.}
+cluster. Must be a \code{factor} column in \code{colData()}.}
 
 \item{numerator}{\code{character}. Cells to use in the numerator of the contrast
 (e.g. treatment).}
@@ -40,8 +40,8 @@ contrast (e.g. control).}
 Differential Expression per Cluster
 }
 \note{
-Cluster identity (\code{ident}) must be defined in
-\code{\link[SummarizedExperiment:colData]{SummarizedExperiment::colData()}} for this function to work.
+Cluster identity (\code{ident}) must be defined in \code{colData()} for this
+function to work.
 }
 \examples{
 data(seurat_small)

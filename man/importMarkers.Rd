@@ -12,7 +12,7 @@ importCellTypeMarkersFromGoogle(gs, ws, gene2symbol)
 }
 \arguments{
 \item{gs}{\code{string}. Google Sheets \code{sheet_key} identifier, which
-can be located with the \code{\link[googlesheets:gs_ls]{googlesheets::gs_ls()}} function.}
+can be located with the \code{googlesheets::gs_ls()} function.}
 
 \item{ws}{positive integer or character string specifying index or title,
 respectively, of the worksheet}
@@ -60,7 +60,7 @@ if (isTRUE(interactive())) {
 }
 \seealso{
 \itemize{
-\item \code{\link[googlesheets:gs_key]{googlesheets::gs_key()}}.
-\item \code{\link[googlesheets:gs_read]{googlesheets::gs_read()}}.
+\item \code{googlesheets::gs_key()}.
+\item \code{googlesheets::gs_read()}.
 }
 }

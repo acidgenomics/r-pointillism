@@ -39,7 +39,7 @@ print(x)
 }
 \seealso{
 \itemize{
-\item \code{\link[dplyr:slice]{dplyr::slice()}}.
-\item \code{\link[dplyr:top_n]{dplyr::top_n()}}.
+\item \code{dplyr::slice()}.
+\item \code{dplyr::top_n()}.
 }
 }
