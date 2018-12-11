@@ -45,9 +45,9 @@ source("https://bioconductor.org/biocLite.R")
 - [SingleCellExperiment][]
 - [Seurat][] (v2)
 
-**Note regarding Seurat v3:** The current release of [pointillism][] is compatible with [Seurat][] v2. [Seurat][] v3 is a big update that introduces many changes to the `Seurat` class structure. I'll release an update to [pointillism][] that supports [Seurat][] v3 once it becomes available on [CRAN][].
+**Seurat v3:** The current release of [pointillism][] is compatible only with [Seurat][] v2. The forthcoming v3 update introduces many code-breaking changes to the `Seurat` class structure. I'll release an update to [pointillism][] that supports [Seurat][] v3 when it becomes available on [CRAN][].
 
-Support for the [monocle][] `CellDataSet` class will be added in a future update.
+**monocle v3**: Support for the [monocle][] `CellDataSet` class will be added when [monocle][] v3 becomes available on [Bioconductor][].
 
 ## Markers
 
