@@ -38,6 +38,17 @@ For [R][] < 3.5, [BiocManager][] is not supported. Use `BiocInstaller::biocLite(
 source("https://bioconductor.org/biocLite.R")
 ```
 
+## Supported data classes
+
+[pointillism][] currently supports these S4 single-cell container classes:
+
+- [SingleCellExperiment][]
+- [Seurat][] (v2)
+
+**Note regarding Seurat v3:** The current release of [pointillism][] is compatible with [Seurat][] v2. [Seurat][] v3 is a big update that introduces many changes to the `Seurat` class structure. I'll release an update to [pointillism][] that supports [Seurat][] v3 once it becomes available on [CRAN][].
+
+Support for the [monocle][] `CellDataSet` class will be added in a future update.
+
 ## Markers
 
 Shared [cell-cycle markers][] and [cell-type markers][] are available on [Google Sheets][]. Contact [Michael Steinbaugh][] if you'd like to contribute to this list, and he'll enable write access.
@@ -63,13 +74,17 @@ For more information on this issue, consult `help("dyn.load")` in the [R][] docu
 
 The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[Bioconductor]: https://bioconductor.org
+[Bioconductor]: https://bioconductor.org/
 [BiocManager]: https://cran.r-project.org/package=BiocManager
 [Cell-cycle markers]: https://docs.google.com/spreadsheets/d/1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw
 [Cell-type markers]: https://docs.google.com/spreadsheets/d/1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0
-[conda]: https://conda.io
+[conda]: https://conda.io/
+[CRAN]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
 [Google Sheets]: https://www.google.com/sheets
-[Michael Steinbaugh]: https://mike.steinbaugh.com
-[Paperpile]: https://paperpile.com
-[R]: https://www.r-project.org
-[SCE]: https://doi.org/doi:10.18129/B9.bioc.SingleCellExperiment
+[Michael Steinbaugh]: https://mike.steinbaugh.com/
+[monocle]: http://cole-trapnell-lab.github.io/monocle-release/
+[Paperpile]: https://paperpile.com/
+[pointillism]: https://steinbaugh.com/pointillism/
+[R]: https://www.r-project.org/
+[Seurat]: https://satijalab.org/seurat/
+[SingleCellExperiment]: https://bioconductor.org/packages/SingleCellExperiment/
