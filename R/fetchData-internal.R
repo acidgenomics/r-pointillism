@@ -33,7 +33,7 @@ NULL
     assert_are_identical(class(counts), class(data))
 
     # Early return the transposed matrix, if we don't want metadata.
-    # This return is used by `.fetchReducedDimExpressionData()`.
+    # This return is used by `.fetchReducedDimExpressionData`.
     if (!isTRUE(metadata)) {
         return(data)
     }
@@ -41,7 +41,7 @@ NULL
     # Coerce the counts matrix to a DataFrame.
     data <- as(as.matrix(data), "DataFrame")
 
-    # Always include "ident" and "sampleName" using `metrics()` here.
+    # Always include "ident" and "sampleName" using `metrics` here.
     # This ensures `sampleName` and `interestingGroups` are always defined.
     colData <- metrics(object, return = "DataFrame")
     assert_are_identical(rownames(data), rownames(colData))
@@ -92,7 +92,7 @@ NULL
     # Reduced dimension coordinates.
     assert_is_subset(reducedDim, reducedDimNames(object))
     reducedDimData <- reducedDims(object)[[reducedDim]]
-    # Coerce to DataFrame, for `cbind()` call below.
+    # Coerce to DataFrame, for `cbind` call below.
     reducedDimData <- as(reducedDimData, "DataFrame")
 
     # Cellular barcode metrics.
@@ -171,7 +171,7 @@ formals(.fetchReducedDimData)[c(
     }
 
     # Calculate the expression summary columns.
-    # Note that `rowMedians()` currently isn't supported for sparse data.
+    # Note that `rowMedians` currently isn't supported for sparse data.
     mean <- rowMeans(geneCounts)
     sum <- rowSums(geneCounts)
 

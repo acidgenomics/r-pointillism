@@ -10,15 +10,15 @@
 #' @inheritParams basejump::makeGRanges
 #' @inheritParams googlesheets::gs_read
 #'
-#' @param gs `string`. Google Sheets `sheet_key` identifier, which
-#'   can be located with the `googlesheets::gs_ls()` function.
+#' @param gs `character(1)`. Google Sheets `sheet_key` identifier, which
+#'   can be located with the `googlesheets::gs_ls` function.
 #' @param gene2symbol `Gene2Symbol`. Gene-to-symbol mappings.
 #'
 #' @return `CellCycleMarkers` or `CellTypeMarkers`.
 #'
 #' @seealso
-#' - `googlesheets::gs_key()`.
-#' - `googlesheets::gs_read()`.
+#' - `googlesheets::gs_key`.
+#' - `googlesheets::gs_read`.
 #'
 #' @examples
 #' ## Must be interactive.

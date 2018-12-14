@@ -1,15 +1,15 @@
 #' Differential Expression per Cluster
 #'
-#' @note Cluster identity (`ident`) must be defined in `colData()` for this
+#' @note Cluster identity (`ident`) must be defined in `colData` for this
 #'   function to work.
 #'
 #' @name diffExpPerCluster
 #'
 #' @inheritParams basejump::params
 #' @inheritParams diffExp
-#' @param group `string`. Group of interest for differential expression per
-#'   cluster. Must be a `factor` column in `colData()`.
-#' @param ... Passthrough arguments to `diffExp()`.
+#' @param group `character(1)`. Group of interest for differential expression per
+#'   cluster. Must be a `factor` column in `colData`.
+#' @param ... Passthrough arguments to `diffExp`.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
@@ -64,7 +64,7 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
         ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
-        assert_that(length(clusters) >= 2L)
+        assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
         # Loop across each cluster and perform pairwise DE based on the single

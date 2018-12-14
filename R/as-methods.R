@@ -1,5 +1,5 @@
 # TODO Improve the documentation here.
-# TODO Add `as_tibble()` method support.
+# TODO Add `as_tibble` method support.
 
 
 
@@ -10,8 +10,8 @@
 #' @exportMethod coerce
 #'
 #' @seealso
-#' - `Seurat::CreateSeuratObject()`.
-#' - `Seurat::Convert()`.
+#' - `Seurat::CreateSeuratObject`.
+#' - `Seurat::Convert`.
 #'
 #' @examples
 #' data(sce, package = "basejump")
@@ -133,11 +133,11 @@ as.seurat.SingleCellExperiment <- function(from) {
 #' @name coerce,SingleCellExperiment,seurat-method
 #'
 #' @section `SingleCellExperiment` to `seurat`:
-#' Interally `Seurat::CreateSeuratObject()` is called without applying any
+#' Interally `Seurat::CreateSeuratObject` is called without applying any
 #' additional filtering cutoffs, since we have already defined them during our
 #' quality control analysis. Here we are passing the raw gene-level counts of
 #' the filtered cells into a new `seurat` class object. Use
-#' `convertGenesToSymbols()` to convert gene IDs to names (symbols).
+#' `convertGenesToSymbols` to convert gene IDs to names (symbols).
 setAs(
     from = "SingleCellExperiment",
     to = "seurat",
@@ -171,7 +171,7 @@ as.SingleCellExperiment.seurat <- function(from) {  # nolint
 #' S4 coercion support for creating a `SingleCellExperiment` from a `seurat`
 #' class object. The [Seurat FAQ page](https://satijalab.org/seurat/faq)
 #' explains the `seurat` S4 class structure in detail. Internally, this method
-#' improves the basic `Seurat::as.SingleCellExperiment()` S3 coercion method,
+#' improves the basic `Seurat::as.SingleCellExperiment` S3 coercion method,
 #' including the `object@scale.data` matrix, and will keep track of stashed
 #' `rowRanges` and `metadata` if the `seurat` object was originally created
 #' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).

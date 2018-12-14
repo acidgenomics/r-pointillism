@@ -4,7 +4,7 @@
 #'
 #' @inheritParams basejump::params
 #' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".
-#' @param ... Passthrough arguments to `plotMarker()`.
+#' @param ... Passthrough arguments to `plotMarker`.
 #'
 #' @return Show graphical output. Invisibly return `ggplot` `list`.
 #'
