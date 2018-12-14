@@ -18,12 +18,12 @@ setOldClass(Classes = "session_info")
 #' Cell-Cycle Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata()`.
+#' defined in `metadata`.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso `CellCycleMarkers()`.
+#' @seealso `CellCycleMarkers`.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -56,12 +56,12 @@ setValidity(
 #' Cell-Type Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata()`.
+#' defined in `metadata`.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso `CellTypeMarkers()`.
+#' @seealso `CellTypeMarkers`.
 #'
 #' @return `CellTypeMarkers`
 setClass(

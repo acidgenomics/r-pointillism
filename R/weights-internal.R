@@ -1,8 +1,8 @@
 # Require zero weights to be calculated, showing a more informative error.
 .weights <- function(object) {
     msg <- paste(
-        "Object does not contain zero weights in `weights()` slot.",
-        "`runZinbwave()` is recommended by default.",
+        "Object does not contain zero weights in `weights` slot.",
+        "`runZinbwave` is recommended by default.",
         sep = "\n"
     )
     weights <- tryCatch(

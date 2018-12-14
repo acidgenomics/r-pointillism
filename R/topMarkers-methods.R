@@ -4,14 +4,14 @@
 #' @include globals.R
 #'
 #' @inheritParams basejump::params
-#' @param n `scalar integer`. Number of genes per cluster.
-#' @param direction `string`. Whether to include upregulated (`"up"`; positive
+#' @param n `integer(1)`. Number of genes per cluster.
+#' @param direction `character(1)`. Whether to include upregulated (`"up"`; positive
 #'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of
 #'   association per cluster.
 #'
 #' @seealso
-#' - `dplyr::slice()`.
-#' - `dplyr::top_n()`.
+#' - `dplyr::slice`.
+#' - `dplyr::top_n`.
 #'
 #' @return `grouped_df`.
 #'
@@ -69,7 +69,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
             assert_is_subset("cluster", colnames(data))
             data <- split(x = data, f = data[["cluster"]])
             names(data) <- paste0("cluster", names(data))
-            assert_that(is(data, "SplitDataFrameList"))
+            assert(is(data, "SplitDataFrameList"))
             data
         }
     }

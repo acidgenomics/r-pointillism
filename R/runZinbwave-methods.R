@@ -4,7 +4,7 @@
 #'
 #' @details
 #' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
-#' will be defined in the `assays()` slot. If these values have already been
+#' will be defined in the `assays` slot. If these values have already been
 #' calculated, the object will be returned unmodified, unless `recalculate =
 #' TRUE`.
 #'
@@ -12,11 +12,11 @@
 #'
 #' @section Parallelization:
 #'
-#' zinbwave defaults to using `BiocParallel::bpparam()` to register the number
+#' zinbwave defaults to using `BiocParallel::bpparam` to register the number
 #' of cores to use (`bpparam` argument), but we've found that this works
 #' inconsistently across installations. Currently, we recommend using
-#' `BiocParallel::SerialParam()` by default, which will run in serial, using a
-#' single core. On Linux or macOS, `BiocParallel::MulticoreParam()` should work
+#' `BiocParallel::SerialParam` by default, which will run in serial, using a
+#' single core. On Linux or macOS, `BiocParallel::MulticoreParam` should work
 #' to run with multiple cores.
 #'
 #' @inheritParams basejump::params
@@ -27,9 +27,9 @@
 #' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).
 #'
 #' @return Modified object (S4 class must extend `SingleCellExperiment`), with
-#'   weights added to `assays()`.
+#'   weights added to `assays`.
 #'
-#' @seealso `zinbwave::zinbwave()`.
+#' @seealso `zinbwave::zinbwave`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -51,7 +51,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
         verbose = FALSE
     ) {
         message("Running zinbwave.")
-        assert_that(is(Y, "SingleCellExperiment"))
+        assert(is(Y, "SingleCellExperiment"))
 
         # Early return if weights are calculated -------------------------------
         weights <- tryCatch(
@@ -84,7 +84,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
 
         # Prepare Y object for zinbwave ----------------------------------------
         # We're returnining original object class, with modified assays.
-        # Note that `zinbwave()` otherwise returns `SingleCellExperiment`.
+        # Note that `zinbwave` otherwise returns `SingleCellExperiment`.
         object <- Y
 
         # Coerce to SingleCellExperiment, for consistency.
@@ -175,7 +175,7 @@ runZinbwave.seurat <- function(Y, ...) {
 
 
 #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashes weights
-#'   in the `weights()` slot.
+#'   in the `weights` slot.
 #' @export
 setMethod(
     f = "runZinbwave",

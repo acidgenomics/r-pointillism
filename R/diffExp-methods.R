@@ -7,8 +7,8 @@
 #' @section zinbwave:
 #'
 #' This function will run a lot faster if you pre-calculate the ZINB weights
-#' using the `runZinbwave()` function, which will stash the weights into the
-#' `SingleCellExperiment::weights()` slot of the object. Running zinbwave across
+#' using the `runZinbwave` function, which will stash the weights into the
+#' `SingleCellExperiment::weights` slot of the object. Running zinbwave across
 #' the entire set of filtered cells also has greater sensitivity for weight
 #' calculations.
 #'
@@ -23,8 +23,8 @@
 #' @section edgeR:
 #'
 #' After estimation of the dispersions and posterior probabilities, the
-#' `zinbwave::glmWeightedF()` function is used for statistical inference. This
-#' is an adaptation of `edgeR::glmLRT()`. It uses an F-test for which the
+#' `zinbwave::glmWeightedF` function is used for statistical inference. This
+#' is an adaptation of `edgeR::glmLRT`. It uses an F-test for which the
 #' denominator degrees of freedom are by default adjusted according to the
 #' downweighting of excess zeros (`ZI = TRUE`). Also, independent filtering can
 #' be performed on the obtained p-values (`independentFiltering = TRUE`). We use
@@ -38,13 +38,13 @@
 #'
 #' We're trying to follow the conventions used in DESeq2 for contrasts, defining
 #' the name of the factor in the design formula, numerator, and denominator
-#' level for the fold change calculations. See `DESeq2::results()` for more
+#' level for the fold change calculations. See `DESeq2::results` for more
 #' information.
 #'
 #' @section Seurat conventions:
 #'
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
-#' and `cells.2` for the denominator. See `Seurat::DiffExpTest()` for
+#' and `cells.2` for the denominator. See `Seurat::DiffExpTest` for
 #' additional information.
 #'
 #' @note We are currently recommending the ZINB-WaVE method over zingeR, since
@@ -60,23 +60,23 @@
 #'   (e.g. treatment).
 #' @param denominator `character`. Cells to use in the denominator of the
 #'   contrast (e.g. control).
-#' @param caller `string`. Package to use for differential expression calling.
+#' @param caller `character(1)`. Package to use for differential expression calling.
 #'   Defaults to `"edgeR"` (faster for large datasets) but `"DESeq2"` is also
 #'   supported.
-#' @param minCells `scalar integer`. Minimum number of cells required to perform
+#' @param minCells `integer(1)`. Minimum number of cells required to perform
 #'   the differential expression analysis.
-#' @param minCellsPerGene `scalar integer`. The minimum number of cells where a
+#' @param minCellsPerGene `integer(1)`. The minimum number of cells where a
 #'   gene is expressed, to pass low expression filtering.
-#' @param minCountsPerCell `scalar integer`. Minimum number of counts per cell
+#' @param minCountsPerCell `integer(1)`. Minimum number of counts per cell
 #'   for a gene to pass low expression filtering. The number of cells is defined
 #'   by `minCellsPerGene`.
 #'
 #' @return Varies depending on the `caller` argument:
 #' - `caller = "edgeR"`: `DEGLRT`.
-#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink()` if
+#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink` if
 #'   shrunken results are desired.
 #'
-#' @seealso `Seurat::WhichCells()`.
+#' @seealso `Seurat::WhichCells`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -305,7 +305,7 @@ setMethod(
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    # TODO Switch to using `design()` generic.
+    # TODO Switch to using `design` generic.
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
@@ -331,7 +331,7 @@ setMethod(
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    # TODO Switch to using `design()` generic.
+    # TODO Switch to using `design` generic.
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR.")
