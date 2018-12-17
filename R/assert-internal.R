@@ -3,9 +3,9 @@
 
 
 # assertHasDesignFormula =======================================================
-# FIXME Add `design()` method for SCE.
+# FIXME Add `design` method for SCE.
 .assertHasDesignFormula <- function(object) {
-    assert_that(is(object, "SingleCellExperiment"))
+    assert(is(object, "SingleCellExperiment"))
     assert_is_factor(object[["group"]])
     assert_is_matrix(metadata(object)[["design"]])
 }
@@ -13,7 +13,7 @@
 
 
 # assertHasIdent ===============================================================
-# FIXME Add `ident()` generic.
+# FIXME Add `ident` generic.
 .assertHasIdent <- function(object) {
     assert_is_subset("ident", colnames(colData(object)))
 }
@@ -25,11 +25,11 @@
 # Require valid BiocParallel bpparam.
 # FIXME Rename to BPParam?
 .assertIsBPPARAM <- function(object) {
-    assert_that(identical(
+    assert(identical(
         attributes(class(object))[["package"]],
         "BiocParallel"
     ))
-    assert_that(grepl("Param$", class(object)))
+    assert(grepl("Param$", class(object)))
 }
 
 
@@ -40,7 +40,7 @@
     # Require a tibble.
     assert_is_tbl_df(object)
     # Require grouping by `cellType` column.
-    # Can use `attr()` instead of `group_vars()` here.
+    # Can use `attr` instead of `group_vars` here.
     assert_are_identical(group_vars(object), "cellType")
     # Require that there are genes.
     assert_has_rows(object)
@@ -65,7 +65,7 @@
 
 # assertIsSanitizedMarkers =====================================================
 .assertIsSanitizedMarkers <- function(object) {
-    assert_that(.isSanitizedMarkers(object))
+    assert(.isSanitizedMarkers(object))
 }
 
 
@@ -96,7 +96,7 @@
 
     # Package-specific checks --------------------------------------------------
     if (package == "Seurat") {
-        # Check for `Seurat::FindAllMarkers()` return.
+        # Check for `Seurat::FindAllMarkers` return.
         # These columns are output in an inconsistent format, so we'll sanitize
         # into lowerCamelCase.
         seuratBlacklist <- c(

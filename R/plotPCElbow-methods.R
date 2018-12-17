@@ -8,9 +8,9 @@
 #' @name plotPCElbow
 #'
 #' @inheritParams basejump::params
-#' @param minSD `scalar numeric`. Minimum standard deviation.
-#' @param minPct `scalar numeric` (`0`-`1`). Minimum percent standard deviation.
-#' @param maxCumPct `scalar numeric` (`0`-`1`).Maximum cumulative percent
+#' @param minSD `numeric(1)`. Minimum standard deviation.
+#' @param minPct `numeric(1)` (`0`-`1`). Minimum percent standard deviation.
+#' @param maxCumPct `numeric(1)` (`0`-`1`).Maximum cumulative percent
 #'   standard deviation.
 #'
 #' @return
@@ -19,7 +19,7 @@
 #'   dimensionality reduction analysis.
 #'
 #' @seealso
-#' - `Seurat::PCElbowPlot()`.
+#' - `Seurat::PCElbowPlot`.
 #'
 #' @examples
 #' data(pbmc_small, package = "Seurat")

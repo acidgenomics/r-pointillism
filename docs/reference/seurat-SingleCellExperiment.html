@@ -179,8 +179,9 @@
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>blacklist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"^ident$"</span>,
-  <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[.0-9]+$"</span>, <span class='st'>"^sScore$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^phase$"</span>))
+<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>blacklist</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"^G2M.Score$"</span>,
+  <span class='st'>"^Phase$"</span>, <span class='st'>"^S.Score$"</span>, <span class='st'>"^ident$"</span>, <span class='st'>"^old.ident$"</span>, <span class='st'>"^orig.ident$"</span>,
+  <span class='st'>"^res[.0-9]+$"</span>))
 
 <span class='co'># S4 method for seurat,DataFrame</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
