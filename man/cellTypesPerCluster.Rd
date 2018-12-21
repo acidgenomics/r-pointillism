@@ -20,11 +20,11 @@ Maximum number of marker genes per cluster.}
 }
 \value{
 \code{grouped_df}.
-Grouped by \code{cluster} column, containing the count (\code{n}) of significant
-known makers per cell type.
+Grouped by \code{cluster} column, containing the count (\code{n}) of significant  known
+makers per cell type.
 }
 \description{
-Cell Types per Cluster
+Cell types per cluster
 }
 \examples{
 data(all_markers_small, cell_type_markers)

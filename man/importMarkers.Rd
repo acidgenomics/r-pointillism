@@ -11,13 +11,15 @@ importCellCycleMarkersFromGoogle(gs, ws, gene2symbol)
 importCellTypeMarkersFromGoogle(gs, ws, gene2symbol)
 }
 \arguments{
-\item{gs}{\code{character(1)}. Google Sheets \code{sheet_key} identifier, which
-can be located with the \code{googlesheets::gs_ls()} function.}
+\item{gs}{\code{character(1)}.
+Google Sheets \code{sheet_key} identifier, which can be located with the
+\code{\link[googlesheets:gs_ls]{googlesheets::gs_ls()}} function.}
 
 \item{ws}{positive integer or character string specifying index or title,
 respectively, of the worksheet}
 
-\item{gene2symbol}{\code{Gene2Symbol}. Gene-to-symbol mappings.}
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings.}
 }
 \value{
 \code{CellCycleMarkers} or \code{CellTypeMarkers}.

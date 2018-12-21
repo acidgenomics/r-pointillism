@@ -42,7 +42,7 @@
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
 #' @importFrom pbapply pblapply
-#' @importFrom rlang !! !!! := has_length sym syms
+#' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel

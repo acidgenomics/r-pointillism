@@ -35,7 +35,7 @@ findMarkers.SingleCellExperiment <-  # nolint
         assert_is_factor(ident)
         assert_has_names(ident)
         clusters <- levels(ident)
-        assert_that(length(clusters) >= 2L)
+        assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
         # Loop across the clusters and calculate gene enrichment relative to
@@ -46,7 +46,7 @@ findMarkers.SingleCellExperiment <-  # nolint
                 message(paste("Cluster", cluster, "===="))
                 # Numerator: cells in the current cluster.
                 numerator <- ident[which(ident == cluster)]
-                assert_that(all(numerator == cluster))
+                assert(all(numerator == cluster))
                 numerator <- sort(names(numerator))
                 assert_is_non_empty(numerator)
                 # Denominator: cells in all other clusters.

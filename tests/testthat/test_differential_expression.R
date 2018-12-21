@@ -8,8 +8,8 @@ object <- seurat_small
 ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 denominator <- names(ident)[ident == "2"]
-assert_that(length(intersect(numerator, colnames(object))) > 0L)
-assert_that(length(intersect(denominator, colnames(object))) > 0L)
+expect_that(length(intersect(numerator, colnames(object))) > 0L)
+expect_that(length(intersect(denominator, colnames(object))) > 0L)
 rm(object)
 
 

@@ -17,21 +17,18 @@ setOldClass(Classes = "session_info")
 #' Cell-Cycle Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata()`.
+#' defined in `metadata`.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso `CellCycleMarkers()`.
+#' @seealso `CellCycleMarkers`.
 #'
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
-    contains = "CompressedSplitDataFrameList"
-)
-setValidity(
-    Class = "CellCycleMarkers",
-    method = function(object) {
+    contains = "CompressedSplitDataFrameList",
+    validity = function(object) {
         validate_that(
             identical(
                 x = lapply(object[[1L]], class),
@@ -55,21 +52,18 @@ setValidity(
 #' Cell-Type Markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata()`.
+#' defined in `metadata`.
 #'
 #' @family S4 classes
 #' @export
 #'
-#' @seealso `CellTypeMarkers()`.
+#' @seealso `CellTypeMarkers`.
 #'
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellTypeMarkers",
-    contains = "CompressedSplitDataFrameList"
-)
-setValidity(
-    Class = "CellTypeMarkers",
-    method = function(object) {
+    contains = "CompressedSplitDataFrameList",
+    validity = function(object) {
         validate_that(
             identical(
                 x = lapply(object[[1L]], class),
@@ -101,11 +95,8 @@ setValidity(
 #'   *P* value (`padj`).
 setClass(
     Class = "KnownMarkers",
-    contains = "DataFrame"  # FIXME SplitDataFrameList
-)
-setValidity(
-    Class = "KnownMarkers",
-    method = function(object) {
+    contains = "DataFrame",  # TODO SplitDataFrameList
+    validity = function(object) {
         validate_that(
             is_subset(
                 x = c(
@@ -140,11 +131,8 @@ setValidity(
 #' @return Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
-    contains = "DataFrame"
-)
-setValidity(
-    Class = "SeuratMarkers",
-    method = function(object) {
+    contains = "DataFrame",
+    validity = function(object) {
         validate_that(
             hasRownames(object),
             identical(
@@ -176,11 +164,8 @@ setValidity(
 #'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",
-    contains = "CompressedSplitDataFrameList"
-)
-setValidity(
-    Class = "SeuratMarkersPerCluster",
-    method = function(object) {
+    contains = "CompressedSplitDataFrameList",
+    validity = function(object) {
         validate_that(
             all(grepl("^cluster", names(object))),
             identical(

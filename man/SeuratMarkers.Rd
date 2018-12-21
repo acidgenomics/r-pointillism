@@ -10,8 +10,8 @@ SeuratMarkers(object, ranges, alpha = 0.05)
 SeuratMarkersPerCluster(object, ranges, alpha = 0.05)
 }
 \arguments{
-\item{object}{\code{data.frame}. Unmodified \code{Seurat::FindMarkers()} or
-\code{Seurat::FindAllMarkers()} return.}
+\item{object}{\code{data.frame}. Unmodified \code{Seurat::FindMarkers} or
+\code{Seurat::FindAllMarkers} return.}
 
 \item{ranges}{\code{GRanges}. Gene annotations. Names must correspond to the
 rownames. The function will automatically subset the ranges and arrange
@@ -29,7 +29,7 @@ This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations.
 }
 \note{
-For \code{Seurat::FindAllMarkers()} return, rownames are correctly returned
+For \code{Seurat::FindAllMarkers} return, rownames are correctly returned
 in the \code{gene} column.
 }
 \examples{
@@ -37,7 +37,7 @@ data(seurat_small)
 object <- seurat_small
 ranges <- rowRanges(object)
 
-## `FindMarkers()` return.
+## `FindMarkers` return.
 invisible(capture.output(
     markers <- Seurat::FindMarkers(
         object = object,
@@ -48,7 +48,7 @@ invisible(capture.output(
 x <- SeuratMarkers(object = markers, ranges = ranges)
 summary(x)
 
-## `FindAllMarkers()` return.
+## `FindAllMarkers` return.
 invisible(capture.output(
     markers <- Seurat::FindAllMarkers(object)
 ))

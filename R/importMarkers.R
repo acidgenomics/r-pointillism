@@ -2,19 +2,21 @@
 #'
 #' Currently designed for internal use by the pointillism package.
 #'
-#' @note Google Sheets requires OAuth authentication.
-#'
 #' @name importMarkers
 #'
 #' @inheritParams basejump::params
 #' @inheritParams basejump::makeGRanges
 #' @inheritParams googlesheets::gs_read
 #'
-#' @param gs `character(1)`. Google Sheets `sheet_key` identifier, which
-#'   can be located with the `googlesheets::gs_ls()` function.
-#' @param gene2symbol `Gene2Symbol`. Gene-to-symbol mappings.
+#' @param gs `character(1)`.
+#'   Google Sheets `sheet_key` identifier, which can be located with the
+#'   [googlesheets::gs_ls()] function.
+#' @param gene2symbol `Gene2Symbol`.
+#'   Gene-to-symbol mappings.
 #'
 #' @return `CellCycleMarkers` or `CellTypeMarkers`.
+#'
+#' @note Google Sheets requires OAuth authentication.
 #'
 #' @seealso
 #' - `googlesheets::gs_key()`.

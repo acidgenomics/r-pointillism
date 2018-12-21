@@ -38,7 +38,7 @@ print(x)
 }
 \seealso{
 \itemize{
-\item \code{dplyr::slice()}.
-\item \code{dplyr::top_n()}.
+\item \code{dplyr::slice}.
+\item \code{dplyr::top_n}.
 }
 }

@@ -9,10 +9,10 @@
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{metadata()}.
+defined in \code{metadata}.
 }
 \seealso{
-\code{CellCycleMarkers()}.
+\code{CellCycleMarkers}.
 
 Other S4 classes: \code{\link{CellTypeMarkers-class}},
   \code{\link{KnownMarkers-class}},

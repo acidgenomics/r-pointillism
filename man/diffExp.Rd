@@ -54,7 +54,7 @@ We recommend using one of the following:
 Varies depending on the \code{caller} argument:
 \itemize{
 \item \code{caller = "edgeR"}: \code{DEGLRT}.
-\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}. Use \code{lfcShrink()} if
+\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}. Use \code{lfcShrink} if
 shrunken results are desired.
 }
 }
@@ -157,5 +157,5 @@ summary(x)
 # summary(x)
 }
 \seealso{
-\code{Seurat::WhichCells()}.
+\code{Seurat::WhichCells}.
 }

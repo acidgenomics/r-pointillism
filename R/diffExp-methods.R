@@ -74,10 +74,10 @@
 #' @return Varies depending on the `caller` argument:
 #'
 #' - `caller = "edgeR"`: `DEGLRT`.
-#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink()` if
+#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink` if
 #'   shrunken results are desired.
 #'
-#' @seealso `Seurat::WhichCells()`.
+#' @seealso `Seurat::WhichCells`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -311,7 +311,7 @@ setMethod(
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    # TODO Switch to using `design()` generic.
+    # TODO Switch to using `design` generic.
     .assertHasDesignFormula(object)
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
@@ -337,7 +337,7 @@ setMethod(
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    # TODO Switch to using `design()` generic.
+    # TODO Switch to using `design` generic.
     .assertHasDesignFormula(object)
     # edgeR --------------------------------------------------------------------
     message("Running edgeR.")

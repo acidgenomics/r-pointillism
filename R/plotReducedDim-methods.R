@@ -28,7 +28,7 @@
 #' reliably when setting `RETICULATE_PYTHON` to point to your conda python
 #' binary. Export this variable in  `~/.Renviron`.
 #'
-#' See `base::Sys.getenv()` for more information on the R system environment.
+#' See `base::Sys.getenv` for more information on the R system environment.
 #'
 #' [conda]: https://conda.io
 #' [Python]: https://www.python.org
@@ -36,7 +36,7 @@
 #' [reticulate]: https://rstudio.github.io/reticulate/
 #'
 #' @seealso
-#' - `Seurat::DimPlot()`.
+#' - `Seurat::DimPlot`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples

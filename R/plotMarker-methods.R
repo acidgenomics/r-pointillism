@@ -89,7 +89,7 @@ plotMarker.SingleCellExperiment <- function(
 
     # Get the axis labels.
     axes <- colnames(data)[seq_len(2L)]
-    assert_that(all(grepl("\\d+$", axes)))
+    assert(all(grepl("\\d+$", axes)))
 
     requiredCols <- c(
         axes,

@@ -13,7 +13,7 @@
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'
-#' @seealso `Seurat::FeaturePlot()`.
+#' @seealso `Seurat::FeaturePlot`.
 #'
 #' @return `ggplot` or `list`.
 #'
@@ -88,7 +88,7 @@ plotFeature.SingleCellExperiment <- function(
             what = cbind,
             args = reducedDims(object)
         )
-        assert_that(identical(rownames(data), rownames(reducedDimsData)))
+        assert(identical(rownames(data), rownames(reducedDimsData)))
         reducedDimsData <- camel(reducedDimsData)
         data <- data %>%
             .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%

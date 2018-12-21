@@ -1,16 +1,17 @@
 #' Cell Types per Cluster
 #'
 #' @name cellTypesPerCluster
-#'
+#' @inherit bioverbs::cellTypesPerCluster
 #' @inheritParams basejump::params
+#'
 #' @param min `integer(1)`.
 #'   Minimum number of marker genes per cluster.
 #' @param max `integer(1)`.
 #'   Maximum number of marker genes per cluster.
 #'
 #' @return `grouped_df`.
-#'   Grouped by `cluster` column, containing the count (`n`) of significant
-#'   known makers per cell type.
+#' Grouped by `cluster` column, containing the count (`n`) of significant  known
+#' makers per cell type.
 #'
 #' @examples
 #' data(all_markers_small, cell_type_markers)
@@ -53,7 +54,7 @@ cellTypesPerCluster.KnownMarkers <- function(
         arrange(!!sym("padj"), .by_group = TRUE) %>%
         # Only positive markers are informative and should be used.
         filter(!!sym("avgLogFC") > 0L) %>%
-        # Use `toString()` instead of `aggregate()` for R Markdown tables.
+        # Use `toString` instead of `aggregate` for R Markdown tables.
         # Genes are arranged by P value.
         summarize(
             n = n(),

@@ -10,14 +10,16 @@ library(tidyverse)
 library(bcbioSingleCell)
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
-# We're using this in the `Seurat::RunUMAP()` call below.
+# We're using this in the `Seurat::RunUMAP` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 # This is not working consistently for me on Linux.
-stopifnot(identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"))
-stopifnot(py_module_available(module = "umap"))
+stopifnot(
+    identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"),
+    py_module_available(module = "umap")
+)
 
 # # Restrict object size to 1 MB.
-# Use `pryr::object_size()` instead of `utils::object.size()`.
+# Use `pryr::object_size` instead of `utils::object.size`.
 limit <- structure(1e6, class = "object_size")
 
 data(pbmc_small, package = "Seurat")
