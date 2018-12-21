@@ -21,9 +21,9 @@
 #'   Currently supports `"dot"` and `"violin"`.
 #'
 #' @seealso
-#' - `Seurat::DotPlot()`.
-#' - `Seurat::VlnPlot()`.
-#' - `Seurat::RidgePlot()`.
+#' - `Seurat::DotPlot`.
+#' - `Seurat::VlnPlot`.
+#' - `Seurat::RidgePlot`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -89,7 +89,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 # plotDot ======================================================================
 #' Min Max
-#' @seealso `Seurat:::MinMax()`.
+#' @seealso `Seurat:::MinMax`.
 #' @noRd
 .minMax <- function(data, min, max) {
     data2 <- data
@@ -101,7 +101,7 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 #' Percent Above
-#' @seealso `Seurat:::PercentAbove()`.
+#' @seealso `Seurat:::PercentAbove`.
 #' @noRd
 .percentAbove <- function(x, threshold) {
     length(x[x > threshold]) / length(x)

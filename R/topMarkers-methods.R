@@ -10,8 +10,8 @@
 #'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
 #'
 #' @seealso
-#' - `dplyr::slice()`.
-#' - `dplyr::top_n()`.
+#' - `dplyr::slice`.
+#' - `dplyr::top_n`.
 #'
 #' @examples
 #' data(all_markers_small)
@@ -74,7 +74,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
             assert_is_subset("cluster", colnames(data))
             data <- split(x = data, f = data[["cluster"]])
             names(data) <- paste0("cluster", names(data))
-            assert_that(is(data, "SplitDataFrameList"))
+            assert(is(data, "SplitDataFrameList"))
             data
         }
     }

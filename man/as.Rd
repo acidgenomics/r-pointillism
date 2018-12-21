@@ -27,11 +27,11 @@ S4 coercion support for creating a \code{tbl_df} from \code{CellTypeMarkers}.
 
 \section{\code{SingleCellExperiment} to \code{seurat}}{
 
-Interally \code{Seurat::CreateSeuratObject()} is called without applying any
+Interally \code{Seurat::CreateSeuratObject} is called without applying any
 additional filtering cutoffs, since we have already defined them during our
 quality control analysis. Here we are passing the raw gene-level counts of
 the filtered cells into a new \code{seurat} class object. Use
-\code{convertGenesToSymbols()} to convert gene IDs to names (symbols).
+\code{convertGenesToSymbols} to convert gene IDs to names (symbols).
 }
 
 \section{\code{seurat} to \code{SingleCellExperiment}}{
@@ -39,7 +39,7 @@ the filtered cells into a new \code{seurat} class object. Use
 S4 coercion support for creating a \code{SingleCellExperiment} from a \code{seurat}
 class object. The \href{https://satijalab.org/seurat/faq}{Seurat FAQ page}
 explains the \code{seurat} S4 class structure in detail. Internally, this method
-improves the basic \code{Seurat::as.SingleCellExperiment()} S3 coercion method,
+improves the basic \code{Seurat::as.SingleCellExperiment} S3 coercion method,
 including the \code{object@scale.data} matrix, and will keep track of stashed
 \code{rowRanges} and \code{metadata} if the \code{seurat} object was originally created
 from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
@@ -125,7 +125,7 @@ Chambers, John M. (2016)
 }
 \seealso{
 \itemize{
-\item \code{Seurat::CreateSeuratObject()}.
-\item \code{Seurat::Convert()}.
+\item \code{Seurat::CreateSeuratObject}.
+\item \code{Seurat::Convert}.
 }
 }

@@ -90,5 +90,5 @@ data(seurat_small)
 plotFeature(seurat_small, features = c("nUMI", "nGene"))
 }
 \seealso{
-\code{Seurat::FeaturePlot()}.
+\code{Seurat::FeaturePlot}.
 }

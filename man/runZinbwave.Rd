@@ -38,7 +38,7 @@ back-end to be used for computations. See
 }
 \value{
 Modified object (S4 class must extend \code{SingleCellExperiment}), with
-weights added to \code{assays()}.
+weights added to \code{assays}.
 }
 \description{
 Given an object with the data, it performs dimensionality reduction using
@@ -46,23 +46,23 @@ a ZINB regression model with gene and cell-level covariates.
 }
 \details{
 \href{https://bioconductor.org/packages/release/bioc/html/zinbwave.html}{zinbwave} will calculate \code{normalizedValues} and \code{weights} matrices, which
-will be defined in the \code{assays()} slot. If these values have already been
+will be defined in the \code{assays} slot. If these values have already been
 calculated, the object will be returned unmodified, unless \code{recalculate = TRUE}.
 }
 \section{Methods (by class)}{
 \itemize{
 \item \code{seurat}: Coerces to \code{SingleCellExperiment} and stashes weights
-in the \code{weights()} slot.
+in the \code{weights} slot.
 }}
 
 \section{Parallelization}{
 
 
-zinbwave defaults to using \code{BiocParallel::bpparam()} to register the number
+zinbwave defaults to using \code{BiocParallel::bpparam} to register the number
 of cores to use (\code{bpparam} argument), but we've found that this works
 inconsistently across installations. Currently, we recommend using
-\code{BiocParallel::SerialParam()} by default, which will run in serial, using a
-single core. On Linux or macOS, \code{BiocParallel::MulticoreParam()} should work
+\code{BiocParallel::SerialParam} by default, which will run in serial, using a
+single core. On Linux or macOS, \code{BiocParallel::MulticoreParam} should work
 to run with multiple cores.
 }
 
@@ -73,5 +73,5 @@ Y <- runZinbwave(Y = Y)
 class(weights(Y))
 }
 \seealso{
-\code{zinbwave::zinbwave()}.
+\code{zinbwave::zinbwave}.
 }

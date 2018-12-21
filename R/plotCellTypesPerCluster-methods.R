@@ -89,7 +89,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                 FUN = function(cellType) {
                     cellData <- clusterData %>%
                         filter(!!sym("cellType") == !!cellType)
-                    assert_that(nrow(cellData) == 1L)
+                    assert(nrow(cellData) == 1L)
                     genes <- cellData %>%
                         pull("name") %>%
                         as.character() %>%

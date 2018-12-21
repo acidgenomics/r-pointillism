@@ -71,7 +71,7 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
         ident <- clusterID(object)
         assert_is_factor(ident)
         clusters <- levels(ident)
-        assert_that(length(clusters) >= 2L)
+        assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
         # Loop across each cluster and perform pairwise DE based on the single
