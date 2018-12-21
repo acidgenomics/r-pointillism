@@ -1,11 +1,5 @@
-# TODO Add a corresponding `plot` function.
-
-
-
-#' Cell Counts per Cluster
-#'
 #' @name cellCountsPerCluster
-#'
+#' @inherit bioverbs::cellCountsPerCluster
 #' @inheritParams basejump::params
 #'
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
@@ -15,6 +9,13 @@
 #' x <- cellCountsPerCluster(seurat_small)
 #' print(x)
 NULL
+
+
+
+#' @importFrom bioverbs cellCountsPerCluster
+#' @aliases NULL
+#' @export
+bioverbs::cellCountsPerCluster
 
 
 

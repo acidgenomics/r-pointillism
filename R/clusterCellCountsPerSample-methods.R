@@ -1,16 +1,18 @@
-#' Cluster Cell Counts per Sample
-#'
 #' @name clusterCellCountsPerSample
-#'
+#' @inherit bioverbs::clusterCellCountsPerSample
 #' @inheritParams basejump::params
-#'
-#' @return `grouped_df`. Grouped by `sampleName` column, arranged by abundance.
-#'
 #' @examples
 #' data(seurat_small)
 #' x <- clusterCellCountsPerSample(seurat_small)
 #' print(x)
 NULL
+
+
+
+#' @importFrom bioverbs clusterCellCountsPerSample
+#' @aliases NULL
+#' @export
+bioverbs::clusterCellCountsPerSample
 
 
 
@@ -47,8 +49,5 @@ setMethod(
 setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "clusterCellCountsPerSample",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = clusterCellCountsPerSample.SingleCellExperiment
 )

@@ -1,12 +1,10 @@
-#' Plot Known Markers
-#'
 #' @name plotKnownMarkers
-#'
+#' @inherit bioverbs::plotKnownMarkers
 #' @inheritParams basejump::params
-#' @param markers `grouped_df`. Marker genes, grouped by "`cellType`".
-#' @param ... Passthrough arguments to `plotMarker()`.
 #'
-#' @return Show graphical output. Invisibly return `ggplot` `list`.
+#' @param markers `grouped_df`.
+#'   Marker genes, grouped by `"cellType"`.
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
 #' data(seurat_small, known_markers_small)
@@ -15,6 +13,13 @@
 #'     markers = known_markers_small
 #' )
 NULL
+
+
+
+#' @importFrom bioverbs plotKnownMarkers
+#' @aliases NULL
+#' @export
+bioverbs::plotKnownMarkers
 
 
 
@@ -115,11 +120,5 @@ setMethod(
         object = "seurat",
         markers = "KnownMarkers"
     ),
-    definition = getMethod(
-        f = "plotKnownMarkers",
-        signature = signature(
-            object = "SingleCellExperiment",
-            markers = "KnownMarkers"
-        )
-    )
+    definition = plotKnownMarkers.SingleCellExperiment
 )

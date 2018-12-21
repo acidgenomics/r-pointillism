@@ -11,9 +11,9 @@ R package for for single-cell RNA-seq clustering analysis.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://steinbaugh.com/pointillism}
-  \item \url{https://github.com/steinbaugh/pointillism}
-  \item Report bugs at \url{https://github.com/steinbaugh/pointillism/issues}
+  \item \url{https://steinbaugh.com/pointillism/}
+  \item \url{https://github.com/steinbaugh/pointillism/}
+  \item Report bugs at \url{https://github.com/steinbaugh/pointillism/issues/}
 }
 
 }

@@ -1,29 +1,29 @@
-#' Plot Gene
-#'
-#' Visualize genes on a dot or violin plot.
-#'
 #' @name plotGene
+#' @inherit bioverbs::plotGene
 #' @inheritParams basejump::params
 #' @inheritParams ggplot2::geom_violin
 #'
-#' @param colMin `scalar numeric`. Minimum scaled average expression threshold.
-#'   Everything smaller will be set to this.
-#' @param colMax `scalar numeric`. Maximum scaled average expression threshold.
-#'   Everything larger will be set to this.
-#' @param dotMin `scalar numeric`. The fraction of cells at which to draw the
-#'   smallest dot. All cell groups with less than this expressing the given gene
-#'   will have no dot drawn.
-#' @param dotScale `scalar numeric`. Scale the size of the points, similar to
-#'   `cex`.
-#' @param geom `string`. Plot type. Uses `match.arg()` to pick the type.
-#'   Currently supports "`dot`" and "`violin`".
+#' @description Visualize genes on a dot or violin plot.
+#'
+#' @param colMin `numeric(1)`.
+#'   Minimum scaled average expression threshold. Everything smaller will be
+#'   set to this.
+#' @param colMax `numeric(1)`.
+#'   Maximum scaled average expression threshold. Everything larger will be set
+#'   to this.
+#' @param dotMin `numeric(1)`.
+#'   The fraction of cells at which to draw the smallest dot. All cell groups
+#'   with less than this expressing the given gene will have no dot drawn.
+#' @param dotScale `numeric(1)`.
+#'   Scale the size of the points, similar to `cex`.
+#' @param geom `character(1)`.
+#'   Plot type. Uses [`match.arg()`][base::match.arg] to pick the type.
+#'   Currently supports `"dot"` and `"violin"`.
 #'
 #' @seealso
 #' - `Seurat::DotPlot()`.
 #' - `Seurat::VlnPlot()`.
 #' - `Seurat::RidgePlot()`.
-#'
-#' @return `ggplot`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -46,10 +46,20 @@ NULL
 
 
 
-#' @importFrom basejump plotGene
+#' @importFrom bioverbs plotGene
 #' @aliases NULL
 #' @export
-basejump::plotGene
+bioverbs::plotGene
+
+#' @importFrom bioverbs plotDot
+#' @aliases NULL
+#' @export
+bioverbs::plotDot
+
+#' @importFrom bioverbs plotViolin
+#' @aliases NULL
+#' @export
+bioverbs::plotViolin
 
 
 
@@ -299,13 +309,9 @@ plotViolin.SingleCellExperiment <- function(
 
     p
 }
-formals(plotViolin.SingleCellExperiment)[c(
-    "color",
-    "legend"
-)] <- list(
-    color = discreteColor,
-    legend = legend
-)
+
+formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
+    list(color = discreteColor, legend = legend)
 
 
 
@@ -325,10 +331,7 @@ setMethod(
 setMethod(
     f = "plotGene",
     signature = signature("seurat"),
-    getMethod(
-        f ="plotGene",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotGene.SingleCellExperiment
 )
 
 
@@ -348,10 +351,7 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("seurat"),
-    getMethod(
-        f = "plotDot",
-        signature("SingleCellExperiment")
-    )
+    definition = plotDot.SingleCellExperiment
 )
 
 
@@ -371,8 +371,5 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("seurat"),
-    getMethod(
-        f = "plotViolin",
-        signature("SingleCellExperiment")
-    )
+    definition = plotViolin.SingleCellExperiment
 )

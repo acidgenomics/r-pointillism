@@ -20,7 +20,7 @@ cell cycle markers data.}
 
 \item{...}{Additional arguments.}
 
-\item{promiscuousThreshold}{\code{scalar integer}. Minimum number of clusters
+\item{promiscuousThreshold}{\code{integer(1)}. Minimum number of clusters
 required to consider a gene marker promiscuous. Set to \code{0} to disable
 promiscuous marker filtering.}
 }

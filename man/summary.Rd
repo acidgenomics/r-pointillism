@@ -5,7 +5,7 @@
 \alias{summary}
 \alias{summary,SeuratMarkers-method}
 \alias{summary,SeuratMarkersPerCluster-method}
-\title{Object Summaries}
+\title{Object summaries}
 \usage{
 \S4method{summary}{SeuratMarkers}(object)
 

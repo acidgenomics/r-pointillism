@@ -4,7 +4,7 @@
 \alias{deprecated}
 \title{Deprecated Functions}
 \value{
-\code{.Deprecated()}.
+\code{.Deprecated}.
 }
 \description{
 Deprecated Functions

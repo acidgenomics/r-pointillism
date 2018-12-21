@@ -88,9 +88,11 @@
 \arguments{
 \item{x}{Object.}
 
-\item{i}{Indices specifying elements to extract or replace. Indices are
-\code{numeric} or \code{character} vectors, empty (\code{missing}), or \code{NULL}. See
-\code{help(topic = "Extract", package = "base")} for more information.}
+\item{i}{Indices specifying elements to extract or replace. Indices are \code{numeric} or
+\code{character} vectors, empty (\code{missing}), or \code{NULL}.
+
+For more information:\preformatted{help(topic = "Extract", package = "base")
+}}
 
 \item{...}{Additional arguments.}
 
@@ -98,9 +100,10 @@
 
 \item{object}{Object.}
 
-\item{genes}{\code{character}. Gene identifiers. It is considered better practice
-to input the stable gene identifiers from Ensembl (e.g. "ENSG00000000003")
-and not the (HGNC) gene symbols (e.g. "TSPN6"), if possible.}
+\item{genes}{\code{character}.
+Gene identifiers. It is considered better practice to input the stable gene
+identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
+symbols (e.g. "TSPN6"), if possible.}
 }
 \value{
 Match \code{SummarizedExperiment} method return.

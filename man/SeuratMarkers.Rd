@@ -17,8 +17,9 @@ SeuratMarkersPerCluster(object, ranges, alpha = 0.05)
 rownames. The function will automatically subset the ranges and arrange
 them alphabetically.}
 
-\item{alpha}{\code{scalar numeric}. Adjusted P value ("alpha") cutoff.
-If left \code{NULL}, will use the cutoff defined in the object.}
+\item{alpha}{\code{numeric(1)}.
+Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
+defined in the object.}
 }
 \value{
 Results are arranged by adjusted \emph{P} value (\code{padj}).

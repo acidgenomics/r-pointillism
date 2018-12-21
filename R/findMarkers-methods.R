@@ -1,16 +1,10 @@
-# TODO Consider adding `progress` option.
-
-
-
-#' Find Cluster-Specific Marker Genes
-#'
-#' @note Cluster identity (`ident`) must be defined in `colData()` for this
-#'   function to work.
-#'
 #' @name findMarkers
-#'
+#' @inherit bioverbs::findMarkers
 #' @inheritParams basejump::params
-#' @param ... Passthrough arguments to `diffExp()`.
+#' @param ... Passthrough arguments to [diffExp()].
+#'
+#' @note Cluster identity (`ident`) must be defined in
+#'   [`colData()`][SummarizedExperiment::colData] for this function to work.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
@@ -22,6 +16,13 @@
 #' class(x)
 #' lapply(x, class)
 NULL
+
+
+
+#' @importFrom bioverbs findMarkers
+#' @aliases NULL
+#' @export
+bioverbs::findMarkers
 
 
 
@@ -80,5 +81,5 @@ setMethod(
 setMethod(
     f = "findMarkers",
     signature = signature("seurat"),
-    definition = getMethod("findMarkers", "SingleCellExperiment")
+    definition = findMarkers.SingleCellExperiment
 )

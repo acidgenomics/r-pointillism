@@ -1,25 +1,30 @@
-#' Top Markers
-#'
 #' @name topMarkers
 #' @include globals.R
-#'
+#' @inherit bioverbs::topMarkers
 #' @inheritParams basejump::params
-#' @param n `scalar integer`. Number of genes per cluster.
-#' @param direction `string`. Whether to include upregulated (`"up"`; positive
-#'   LFC), downregulated (`"down"`; negative LFC) or `"both"` directions of
-#'   association per cluster.
+#'
+#' @param n `integer(1)`.
+#'   Number of genes per cluster.
+#' @param direction `character(1)`.
+#'   Whether to include upregulated (`"up"`; positive LFC), downregulated
+#'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
 #'
 #' @seealso
 #' - `dplyr::slice()`.
 #' - `dplyr::top_n()`.
-#'
-#' @return `grouped_df`.
 #'
 #' @examples
 #' data(all_markers_small)
 #' x <- topMarkers(all_markers_small, n = 2L)
 #' print(x)
 NULL
+
+
+
+#' @importFrom bioverbs topMarkers
+#' @aliases NULL
+#' @export
+bioverbs::topMarkers
 
 
 
