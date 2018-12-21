@@ -1,15 +1,15 @@
-#' Plot Cell Types per Cluster
+#' @name plotCellTypesPerCluster
+#' @include globals.R
+#' @inherit bioverbs::plotCellTypesPerCluster
+#' @inheritParams basejump::params
 #'
+#' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
 #' type (per unbiased cluster). Cell types with too few (`min` cutoff) or too
 #' many (`max` cutoff) marker genes will be skipped.
 #'
-#' @name plotCellTypesPerCluster
-#' @include globals.R
-#'
-#' @inheritParams basejump::params
 #' @param markers `KnownMarkers`.
-#' @param ... Passthrough arguments to `plotMarker()`.
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
 #'
@@ -20,6 +20,13 @@
 #'     markers = known_markers_small
 #' )
 NULL
+
+
+
+#' @importFrom bioverbs plotCellTypesPerCluster
+#' @aliases NULL
+#' @export
+bioverbs::plotCellTypesPerCluster
 
 
 
@@ -133,8 +140,5 @@ setMethod(
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotCellTypesPerCluster",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotCellTypesPerCluster.SingleCellExperiment
 )

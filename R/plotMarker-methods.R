@@ -1,14 +1,7 @@
-#' Plot Cell-Type-Specific Gene Markers
-#'
-#' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
-#'
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
-#'
+#' @inherit bioverbs::plotMarker
 #' @inheritParams basejump::params
-#'
-#' @return Show graphical output. Invisibly return `ggplot` `list`.
-#'
 #' @examples
 #' data(seurat_small)
 #' object <- seurat_small
@@ -35,6 +28,13 @@
 #'     title = title
 #' )
 NULL
+
+
+
+#' @importFrom bioverbs plotMarker
+#' @aliases NULL
+#' @export
+bioverbs::plotMarker
 
 
 
@@ -247,5 +247,5 @@ setMethod(
 setMethod(
     f = "plotMarker",
     signature = signature("seurat"),
-    definition = getMethod("plotMarker", "SingleCellExperiment")
+    definition = plotMarker.SingleCellExperiment
 )

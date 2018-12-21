@@ -1,24 +1,30 @@
-#' Plot Top Markers
+#' @name plotTopMarkers
+#' @include globals.R
+#' @inherit bioverbs::plotTopMarkers
+#' @inheritParams basejump::params
+#' @inheritParams topMarkers
 #'
+#' @details
 #' The number of markers to plot is determined by the output of the
-#' `topMarkers()` function. If you want to reduce the number of genes to plot,
+#' [topMarkers()] function. If you want to reduce the number of genes to plot,
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
 #'
-#' @name plotTopMarkers
-#' @include globals.R
-#'
-#' @inheritParams basejump::params
-#' @inheritParams topMarkers
-#' @param markers `grouped_df`. Marker genes, grouped by "`cluster`".
-#' @param ... Passthrough arguments to `plotMarker()`.
-#'
-#' @return Show graphical output. Invisibly return `ggplot` `list`.
+#' @param markers `grouped_df`.
+#'   Marker genes, grouped by "`cluster`".
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
 #' data(seurat_small, all_markers_small)
 #' plotTopMarkers(object = seurat_small, markers = all_markers_small)
 NULL
+
+
+
+#' @importFrom bioverbs plotTopMarkers
+#' @aliases NULL
+#' @export
+bioverbs::plotTopMarkers
 
 
 
@@ -107,8 +113,5 @@ setMethod(
 setMethod(
     f = "plotTopMarkers",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotTopMarkers",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotTopMarkers.SingleCellExperiment
 )

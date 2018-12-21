@@ -1,15 +1,15 @@
-#' Differential Expression per Cluster
-#'
-#' @note Cluster identity (`ident`) must be defined in `colData()` for this
-#'   function to work.
-#'
 #' @name diffExpPerCluster
-#'
+#' @inherit bioverbs::diffExpPerCluster
 #' @inheritParams basejump::params
 #' @inheritParams diffExp
-#' @param group `string`. Group of interest for differential expression per
-#'   cluster. Must be a `factor` column in `colData()`.
-#' @param ... Passthrough arguments to `diffExp()`.
+#'
+#' @param group `character(1)`.
+#'   Group of interest for differential expression per cluster. Must be a
+#'   `factor` column in [`colData()`][SummarizedExperiment::colData].
+#' @param ... Passthrough arguments to [diffExp()].
+#'
+#' @note Cluster identity (`ident`) must be defined in
+#'   [`colData()`][SummarizedExperiment::colData] for this function to work.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
@@ -32,6 +32,13 @@
 #' class(x)
 #' lapply(x, class)
 NULL
+
+
+
+#' @importFrom bioverbs diffExpPerCluster
+#' @aliases NULL
+#' @export
+bioverbs::diffExpPerCluster
 
 
 
@@ -111,8 +118,5 @@ setMethod(
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "diffExpPerCluster",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = diffExpPerCluster.SingleCellExperiment
 )

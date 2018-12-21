@@ -1,30 +1,36 @@
-#' Plot PC Elbow
+#' @name plotPCElbow
+#' @inherit bioverbs::plotPCElbow
+#' @inheritParams basejump::params
 #'
-#' Calculate the principal component (PC) cutoff using a heuristic approach.
-#'
+#' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
-#' @name plotPCElbow
-#'
-#' @inheritParams basejump::params
-#' @param minSD `scalar numeric`. Minimum standard deviation.
-#' @param minPct `scalar numeric` (`0`-`1`). Minimum percent standard deviation.
-#' @param maxCumPct `scalar numeric` (`0`-`1`).Maximum cumulative percent
-#'   standard deviation.
+#' @param minSD `numeric(1)`.
+#'   Minimum standard deviation.
+#' @param minPct `numeric(1)` (`0`-`1`).
+#'   Minimum percent standard deviation.
+#' @param maxCumPct `numeric(1)` (`0`-`1`).
+#'   Maximum cumulative percen standard deviation.
 #'
 #' @return
 #' - Show graphical output of elbow plots.
 #' - Invisibly return numeric sequence vector of PCs to include for
 #'   dimensionality reduction analysis.
 #'
-#' @seealso
-#' - `Seurat::PCElbowPlot()`.
+#' @seealso `Seurat::PCElbowPlot()`.
 #'
 #' @examples
 #' data(pbmc_small, package = "Seurat")
 #' plotPCElbow(pbmc_small)
 NULL
+
+
+
+#' @importFrom bioverbs plotPCElbow
+#' @aliases NULL
+#' @export
+bioverbs::plotPCElbow
 
 
 

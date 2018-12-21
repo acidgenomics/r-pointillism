@@ -1,17 +1,19 @@
-#' Cluster Identity
-#'
 #' @name clusterID
-#'
+#' @inherit bioverbs::clusterID
 #' @inheritParams basejump::params
-#'
-#' @return `factor`.
-#'
 #' @examples
 #' data(seurat_small)
 #' x <- clusterID(seurat_small)
 #' head(x)
 #' table(x)
 NULL
+
+
+
+#' @importFrom bioverbs clusterID
+#' @aliases NULL
+#' @export
+bioverbs::clusterID
 
 
 
@@ -41,8 +43,5 @@ setMethod(
 setMethod(
     f = "clusterID",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "clusterID",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = clusterID.SingleCellExperiment
 )

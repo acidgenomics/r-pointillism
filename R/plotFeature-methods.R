@@ -6,11 +6,10 @@
 
 
 
-#' Plot Feature
-#'
 #' @name plotFeature
-#'
+#' @inherit bioverbs::plotFeature
 #' @inheritParams basejump::params
+#'
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'
@@ -25,8 +24,15 @@ NULL
 
 
 
+#' @importFrom bioverbs plotFeature
+#' @aliases NULL
+#' @export
+bioverbs::plotFeature
+
+
+
 # Note: We aren't using `title` argument here.
-.plotFeature.SingleCellExperiment <- function(
+plotFeature.SingleCellExperiment <- function(
     object,
     features,
     reducedDim,
@@ -161,7 +167,8 @@ NULL
         plotlist[[1L]]
     }
 }
-formals(.plotFeature.SingleCellExperiment)[c(
+
+formals(plotFeature.SingleCellExperiment)[c(
     "color",
     "dark",
     "expression",
@@ -193,7 +200,7 @@ formals(.plotFeature.SingleCellExperiment)[c(
 setMethod(
     f = "plotFeature",
     signature = signature("SingleCellExperiment"),
-    definition = .plotFeature.SingleCellExperiment
+    definition = plotFeature.SingleCellExperiment
 )
 
 
@@ -203,8 +210,5 @@ setMethod(
 setMethod(
     f = "plotFeature",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotFeature",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotFeature.SingleCellExperiment
 )

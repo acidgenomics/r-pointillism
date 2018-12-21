@@ -11,7 +11,7 @@ importCellCycleMarkersFromGoogle(gs, ws, gene2symbol)
 importCellTypeMarkersFromGoogle(gs, ws, gene2symbol)
 }
 \arguments{
-\item{gs}{\code{string}. Google Sheets \code{sheet_key} identifier, which
+\item{gs}{\code{character(1)}. Google Sheets \code{sheet_key} identifier, which
 can be located with the \code{googlesheets::gs_ls()} function.}
 
 \item{ws}{positive integer or character string specifying index or title,

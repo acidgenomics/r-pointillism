@@ -1,10 +1,18 @@
-#' Plot Reduced Dimensions
+#' @name plotReducedDim
+#' @author Michael Steinbaugh, Rory Kirchner
+#' @include globals.R
+#' @inherit bioverbs::plotReducedDim
+#' @inheritParams basejump::params
 #'
-#' - t-SNE: **t**-distributed **S**tochastic **N**eighbor **E**mbedding.
+#' @details
+#' Colors using `ident` column defined in
+#' [`colData()`][SummarizedExperiment::colData] by default.
+#'
+#' @section Reduction types:
+#'
 #' - PCA: **P**rincipal **C**omponent **A**nalysis.
+#' - t-SNE: **t**-distributed **S**tochastic **N**eighbor **E**mbedding.
 #' - UMAP: **U**niform **M**anifold **A**pproximation and **P**rojection.
-#'
-#' Colors using `ident` column defined in `colData()` by default.
 #'
 #' @section UMAP calculation:
 #'
@@ -27,19 +35,9 @@
 #' [UMAP]: https://github.com/lmcinnes/umap
 #' [reticulate]: https://rstudio.github.io/reticulate/
 #'
-#' @name plotReducedDim
-#' @author Michael Steinbaugh, Rory Kirchner
-#' @include globals.R
-#'
-#' @importFrom BiocGenerics plotPCA
-#'
-#' @inheritParams basejump::params
-#'
 #' @seealso
 #' - `Seurat::DimPlot()`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
-#'
-#' @return `ggplot`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -58,8 +56,30 @@ NULL
 
 
 
+#' @importFrom bioverbs plotReducedDim
+#' @aliases NULL
+#' @export
+bioverbs::plotReducedDim
+
+#' @importFrom BiocGenerics plotPCA
+#' @aliases NULL
+#' @export
+BiocGenerics::plotPCA
+
+#' @importFrom bioverbs plotTSNE
+#' @aliases NULL
+#' @export
+bioverbs::plotTSNE
+
+#' @importFrom bioverbs plotUMAP
+#' @aliases NULL
+#' @export
+bioverbs::plotUMAP
+
+
+
 # Constructors =================================================================
-.plotReducedDim.SingleCellExperiment <- function(
+plotReducedDim.SingleCellExperiment <- function(
     object,
     reducedDim,
     dimsUse,
@@ -190,7 +210,7 @@ NULL
 
     p
 }
-formals(.plotReducedDim.SingleCellExperiment)[c(
+formals(plotReducedDim.SingleCellExperiment)[c(
     "color",
     "dark",
     "dimsUse",
@@ -214,7 +234,7 @@ formals(.plotReducedDim.SingleCellExperiment)[c(
 
 
 
-.plotPCA.SingleCellExperiment <- function() {
+plotPCA.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
@@ -225,7 +245,7 @@ formals(.plotReducedDim.SingleCellExperiment)[c(
 
 
 
-.plotTSNE.SingleCellExperiment <- function() {
+plotTSNE.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
@@ -234,7 +254,7 @@ formals(.plotReducedDim.SingleCellExperiment)[c(
 
 
 
-.plotUMAP.SingleCellExperiment <- function() {
+plotUMAP.SingleCellExperiment <- function() {
     do.call(
         what = plotReducedDim,
         args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
@@ -245,11 +265,11 @@ formals(.plotReducedDim.SingleCellExperiment)[c(
 
 # Formals ======================================================================
 # Set the formals for the convenience functions.
-f <- formals(.plotReducedDim.SingleCellExperiment)
+f <- formals(plotReducedDim.SingleCellExperiment)
 f <- f[setdiff(names(f), "reducedDim")]
-formals(.plotPCA.SingleCellExperiment) <- f
-formals(.plotTSNE.SingleCellExperiment) <- f
-formals(.plotUMAP.SingleCellExperiment) <- f
+formals(plotPCA.SingleCellExperiment) <- f
+formals(plotTSNE.SingleCellExperiment) <- f
+formals(plotUMAP.SingleCellExperiment) <- f
 rm(f)
 
 
@@ -260,7 +280,7 @@ rm(f)
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = .plotReducedDim.SingleCellExperiment
+    definition = plotReducedDim.SingleCellExperiment
 )
 
 
@@ -270,10 +290,7 @@ setMethod(
 setMethod(
     f = "plotReducedDim",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotReducedDim",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotReducedDim.SingleCellExperiment
 )
 
 
@@ -283,7 +300,7 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = .plotTSNE.SingleCellExperiment
+    definition = plotTSNE.SingleCellExperiment
 )
 
 
@@ -293,10 +310,7 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotTSNE",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotTSNE.SingleCellExperiment
 )
 
 
@@ -304,9 +318,9 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotUMAP",
-    signature("SingleCellExperiment"),
-    .plotUMAP.SingleCellExperiment
+    f = "plotUMAP",
+    signature = signature("SingleCellExperiment"),
+    definition = plotUMAP.SingleCellExperiment
 )
 
 
@@ -316,10 +330,7 @@ setMethod(
 setMethod(
     f = "plotUMAP",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotUMAP",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotUMAP.SingleCellExperiment
 )
 
 
@@ -329,7 +340,7 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = .plotPCA.SingleCellExperiment
+    definition = plotPCA.SingleCellExperiment
 )
 
 
@@ -339,8 +350,5 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("seurat"),
-    definition = getMethod(
-        f = "plotPCA",
-        signature = signature("SingleCellExperiment")
-    )
+    definition = plotPCA.SingleCellExperiment
 )

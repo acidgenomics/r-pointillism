@@ -3,11 +3,14 @@
 #' @name cellTypesPerCluster
 #'
 #' @inheritParams basejump::params
-#' @param min `scalar integer`. Minimum number of marker genes per cluster.
-#' @param max `scalar integer`. Maximum number of marker genes per cluster.
+#' @param min `integer(1)`.
+#'   Minimum number of marker genes per cluster.
+#' @param max `integer(1)`.
+#'   Maximum number of marker genes per cluster.
 #'
-#' @return `grouped_df`. Grouped by `cluster` column, containing the count (`n`)
-#'   of significant known makers per cell type.
+#' @return `grouped_df`.
+#'   Grouped by `cluster` column, containing the count (`n`) of significant
+#'   known makers per cell type.
 #'
 #' @examples
 #' data(all_markers_small, cell_type_markers)
@@ -18,6 +21,13 @@
 #' x <- cellTypesPerCluster(markers)
 #' print(x)
 NULL
+
+
+
+#' @importFrom bioverbs cellTypesPerCluster
+#' @aliases NULL
+#' @export
+bioverbs::cellTypesPerCluster
 
 
 
