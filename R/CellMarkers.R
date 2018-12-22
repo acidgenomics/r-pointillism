@@ -63,27 +63,29 @@
 #' @inherit CellCycleMarkers-class
 #' @inheritParams basejump::params
 #' @export
-CellCycleMarkers <- function(object, gene2symbol) {
-    class <- "CellCycleMarkers"
-    data <- .cellMarkers(
-        object = object,
-        gene2symbol = gene2symbol,
-        class = class
-    )
-    new(Class = class, data)
-}
+CellCycleMarkers <-  # nolint
+    function(object, gene2symbol) {
+        class <- "CellCycleMarkers"
+        data <- .cellMarkers(
+            object = object,
+            gene2symbol = gene2symbol,
+            class = class
+        )
+        new(Class = class, data)
+    }
 
 
 
 #' @inherit CellTypeMarkers-class
 #' @inheritParams basejump::params
 #' @export
-CellTypeMarkers <- function(object, gene2symbol) {
-    class <- "CellTypeMarkers"
-    data <- .cellMarkers(
-        object = object,
-        gene2symbol = gene2symbol,
-        class = class
-    )
-    new(Class = class, data)
-}
+CellTypeMarkers <-  # nolint
+    function(object, gene2symbol) {
+        class <- "CellTypeMarkers"
+        data <- .cellMarkers(
+            object = object,
+            gene2symbol = gene2symbol,
+            class = class
+        )
+        new(Class = class, data)
+    }
