@@ -7,8 +7,10 @@
     gene2symbol,
     class = c("CellCycleMarkers", "CellTypeMarkers")
 ) {
-    assert_is_all_of(object, "DataFrame")
-    assert_is_all_of(gene2symbol, "Gene2Symbol")
+    assert(
+        is(object, "DataFrame"),
+        is(gene2symbol, "Gene2Symbol")
+    )
     class <- match.arg(class)
 
     if (class == "CellCycleMarkers") {
@@ -34,11 +36,8 @@
             sep = "\n"
         ))
     }
-    intersect <- intersect(
-        x = data[["geneID"]],
-        y = gene2symbol[["geneID"]]
-    )
-    assert_is_non_empty(intersect)
+    intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
+    assert(isNonEmpty(intersect))
 
     data <- data %>%
         filter(!!sym("geneID") %in% !!intersect) %>%

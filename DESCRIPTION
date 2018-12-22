@@ -37,6 +37,7 @@ Imports:
     S4Vectors,
     Seurat (>= 2.3),
     SummarizedExperiment,
+    bioverbs (>= 0.1),
     cowplot,
     dplyr,
     edgeR (>= 3.22),
@@ -51,7 +52,7 @@ Imports:
     sessioninfo,
     tibble (>= 1.4),
     tidyr,
-    zinbwave
+    zinbwave (>= 1.0)
 Suggests:
     BiocStyle,
     patrick,
@@ -77,7 +78,7 @@ Collate:
     'KnownMarkers-methods.R'
     'SeuratMarkers.R'
     'as-methods.R'
-    'assert-internal.R'
+    'assertions-internal.R'
     'cellCountsPerCluster-methods.R'
     'cellTypesPerCluster-methods.R'
     'clusterCellCountsPerSample-methods.R'

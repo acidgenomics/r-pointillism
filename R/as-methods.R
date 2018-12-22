@@ -93,10 +93,7 @@ as.seurat.SingleCellExperiment <- function(from) {
     to <- do.call(what = CreateSeuratObject, args = args)
 
     # Check that the dimensions match exactly.
-    assert_are_identical(
-        x = dim(from),
-        y = dim(slot(to, "raw.data"))
-    )
+    assert(identical(dim(from), dim(slot(to, "raw.data"))))
 
     # Keep extra assays, if defined (e.g. weights).
     assayNames <- setdiff(
@@ -192,7 +189,7 @@ setAs(
         }
         stash <- .getSeuratStash(from, "assays")
         if (!is.null(stash)) {
-            assert_are_disjoint_sets(names(assays), names(stash))
+            assert(areDisjointSets(names(assays), names(stash)))
             assays <- c(assays, stash)
             assays(to) <- assays
         }
@@ -263,7 +260,7 @@ setAs(
 
         data <- as(from, "DataFrame")
         data[["ranges"]] <- NULL
-        assert_are_disjoint_sets(colnames(data), colnames(g2s))
+        assert(areDisjointSets(colnames(data), colnames(g2s)))
         data <- cbind(data, g2s)
         data <- as(data, "tbl_df")
 
@@ -289,7 +286,7 @@ setAs(
         g2s <- mcols(data[["ranges"]])[c("geneID", "geneName")]
         data[["ranges"]] <- NULL
 
-        assert_are_disjoint_sets(colnames(data), colnames(g2s))
+        assert(areDisjointSets(colnames(data), colnames(g2s)))
         data <- cbind(data, g2s)
         data <- as(data, "tbl_df")
 

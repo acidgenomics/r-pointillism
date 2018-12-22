@@ -153,8 +153,11 @@ diffExp.SingleCellExperiment <-  # nolint
         # Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
 
-        assert_is_character(numerator)
-        assert_is_character(denominator)
+        assert(
+            is.character(numerator),
+            is.character(denominator)
+        )
+
         # Early return `NULL` on an imbalanced contrast.
         if (
             length(numerator) < minCells ||
@@ -163,16 +166,18 @@ diffExp.SingleCellExperiment <-  # nolint
             .underpoweredContrast()
             return(NULL)
         }
-        assert_are_disjoint_sets(numerator, denominator)
+        assert(
+            areDisjointSets(numerator, denominator),
+            isInt(minCountsPerCell),
+            isInt(minCellsPerGene),
+            allArePositive(c(minCountsPerCell, minCellsPerGene)),
+            .isBPPARAM(bpparam),
+            is.matrix(.weights(object))
+        )
         caller <- match.arg(caller)
-        assertIsAnImplicitInteger(minCountsPerCell)
-        assertIsAnImplicitInteger(minCellsPerGene)
-        assert_all_are_positive(c(minCountsPerCell, minCellsPerGene))
-        .assertIsBPPARAM(bpparam)
 
-        assert_is_matrix(.weights(object))
         weightsFun <- metadata(object)[["weights"]]
-        assert_is_subset(weightsFun, "zinbwave")
+        assert(isSubset(weightsFun, "zinbwave"))
 
         message(paste(
             "Performing differential expression with",
@@ -267,13 +272,12 @@ diffExp.SingleCellExperiment <-  # nolint
         counts(object) <- as.matrix(counts(object))
 
         # Perform differential expression (e.g. `.zinbwave.edgeR`).
-        fun <- paste("", weightsFun, caller, sep = ".")
         fun <- get(
-            x  = fun,
+            x  = paste("", weightsFun, caller, sep = "."),
             envir = asNamespace("pointillism"),
             inherits = FALSE
         )
-        assert_is_function(fun)
+        assert(is.function(fun))
         fun(object)
     }
 
@@ -312,7 +316,7 @@ setMethod(
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
     # TODO Switch to using `design` generic.
-    .assertHasDesignFormula(object)
+    assert(.hasDesignFormula(object))
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
     message(printString(system.time({
@@ -338,17 +342,17 @@ setMethod(
 
 .zinbwave.edgeR <- function(object) {  # nolint
     # TODO Switch to using `design` generic.
-    .assertHasDesignFormula(object)
+    assert(.hasDesignFormula(object))
     # edgeR --------------------------------------------------------------------
     message("Running edgeR.")
     # Coerce to dense matrix.
     counts <- as.matrix(counts(object))
     weights <- assay(object, "weights")
-    assert_is_matrix(weights)
+    assert(is.matrix(weights))
     design <- metadata(object)[["design"]]
-    assert_is_matrix(design)
+    assert(is.matrix(design))
     group <- object[["group"]]
-    assert_is_factor(group)
+    assert(is.factor(group))
     message(printString(system.time({
         dge <- DGEList(counts, group = group)
         dge <- calcNormFactors(dge)

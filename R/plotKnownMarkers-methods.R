@@ -34,13 +34,12 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
     ) {
         validObject(object)
         validObject(markers)
-        assert_is_subset(
-            x = unique(markers[["name"]]),
-            y = rownames(object)
+        assert(
+            isSubset(unique(markers[["name"]]), rownames(object)),
+            isScalar(reducedDim),
+            isHeaderLevel(headerLevel),
+            isFlag(progress)
         )
-        assert_is_scalar(reducedDim)
-        assertIsHeaderLevel(headerLevel)
-        assert_is_a_bool(progress)
         if (isTRUE(progress)) {
             applyFun <- pblapply
         } else {
@@ -56,7 +55,7 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
             as.character() %>%
             na.omit() %>%
             unique()
-        assert_is_non_empty(cellTypes)
+        assert(isNonEmpty(cellTypes))
 
         list <- applyFun(cellTypes, function(cellType) {
             genes <- markers %>%
@@ -66,7 +65,7 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
                 as.character() %>%
                 na.omit() %>%
                 unique()
-            assert_is_non_empty(genes)
+            assert(isNonEmpty(genes))
 
             markdownHeader(
                 text = as.character(cellType),
@@ -89,6 +88,7 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
 
         invisible(list)
     }
+
 formals(plotKnownMarkers.SingleCellExperiment)[c(
     "headerLevel",
     "reducedDim"

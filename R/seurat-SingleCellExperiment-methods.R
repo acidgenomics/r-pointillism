@@ -14,8 +14,10 @@ NULL
 
 # Internal =====================================================================
 .getSeuratStash <- function(object, name) {
-    assert(is(object, "seurat"))
-    assert_is_a_string(name)
+    assert(
+        is(object, "seurat"),
+        isString(name)
+    )
 
     misc <- slot(object, name = "misc")
 
@@ -276,7 +278,7 @@ setMethod(
         value = "ANY"
     ),
     definition = function(x, value) {
-        assert_is_list(value)
+        assert(is.list(value))
         if (!length(value)) {
             names(value) <- NULL
         }
@@ -357,7 +359,7 @@ setMethod(
         # Attempt to use stashed rowRanges, if defined.
         stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {
-            assert_are_identical(names(gr), names(stash))
+            assert(identical(names(gr), names(stash)))
             mcols1 <- mcols(stash)
             mcols2 <- mcols(gr)
             mcols2 <- mcols2[
@@ -382,7 +384,7 @@ setMethod(
     f = "rowRanges<-",
     signature = signature("seurat"),
     definition = function(x, value) {
-        assert_are_identical(rownames(x), names(value))
+        assert(identical(rownames(x), names(value)))
         x@misc[["rowRanges"]] <- value
         x
     }

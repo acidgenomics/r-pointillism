@@ -4,7 +4,7 @@
 \name{KnownMarkers}
 \alias{KnownMarkers}
 \alias{KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers-method}
-\title{Known Markers}
+\title{Known markers}
 \usage{
 KnownMarkers(markers, known, ...)
 

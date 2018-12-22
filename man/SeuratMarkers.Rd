@@ -3,7 +3,7 @@
 \name{SeuratMarkers}
 \alias{SeuratMarkers}
 \alias{SeuratMarkersPerCluster}
-\title{Seurat Markers}
+\title{Seurat markers}
 \usage{
 SeuratMarkers(object, ranges, alpha = 0.05)
 

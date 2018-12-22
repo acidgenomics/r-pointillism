@@ -2,7 +2,7 @@
 % Please edit documentation in R/CellMarkers.R
 \name{CellTypeMarkers}
 \alias{CellTypeMarkers}
-\title{Cell-Type Markers}
+\title{Cell-type markers}
 \usage{
 CellTypeMarkers(object, gene2symbol)
 }
@@ -18,7 +18,7 @@ Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns.
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{metadata}.
+defined in \code{\link[S4Vectors:metadata]{metadata()}}.
 }
 \seealso{
 \code{CellTypeMarkers}.

@@ -36,12 +36,14 @@ KnownMarkers.SeuratMarkersPerCluster <-  # nolint
     ) {
         validObject(markers)
         validObject(known)
-        assertIsAnImplicitInteger(promiscuousThreshold)
-        assert_all_are_non_negative(promiscuousThreshold)
+        assert(
+            isInt(promiscuousThreshold),
+            allAreNonNegative(promiscuousThreshold)
+        )
         promiscuousThreshold <- as.integer(promiscuousThreshold)
 
         alpha <- metadata(markers)[["alpha"]]
-        assertIsAlpha(alpha)
+        assert(isAlpha(alpha))
 
         # Coerce data.
         markers <- as(markers, "tbl_df")
@@ -50,7 +52,7 @@ KnownMarkers.SeuratMarkersPerCluster <-  # nolint
 
         # Determine where the known markers are located in the markers data.
         # Here we have slotted the gene IDs inside a "ranges" column.
-        assert_are_intersecting_sets(markers[["geneID"]], known[["geneID"]])
+        assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
         keep <- markers[["geneID"]] %in% known[["geneID"]]
         data <- markers[keep, , drop = FALSE]
 

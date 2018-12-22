@@ -14,6 +14,6 @@
     if (is.null(weights)) {
         stop(msg, call. = FALSE)
     }
-    assert_is_matrix(weights)
+    assert(is.matrix(weights))
     weights
 }

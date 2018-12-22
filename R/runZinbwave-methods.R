@@ -64,11 +64,14 @@ runZinbwave.SingleCellExperiment <-  # nolint
         }
 
         # Assert checks --------------------------------------------------------
-        assert_is_a_number(K)
-        assert_is_a_number(epsilon)
-        .assertIsBPPARAM(BPPARAM)
-        assert_is_a_bool(recalculate)
-        assert_is_a_bool(verbose)
+        assert(
+            isNumber(K),
+            isNumber(epsilon),
+            # TODO Export this check in goalie
+            .isBPPARAM(BPPARAM),
+            isFlag(recalculate),
+            isFlag(verbose)
+        )
 
         # BiocParallel ---------------------------------------------------------
         # Use a progress bar (only applies to multicore).
@@ -144,7 +147,7 @@ runZinbwave.SingleCellExperiment <-  # nolint
         # Return ---------------------------------------------------------------
         # Re-slot original raw counts, in case they are sparse.
         counts <- counts(object)
-        assert_are_identical(dimnames(zinb), dimnames(counts))
+        assert(identical(dimnames(zinb), dimnames(counts)))
         assays(object) <- assays(zinb)
         counts(object) <- counts
         metadata(object)[["weights"]] <- "zinbwave"

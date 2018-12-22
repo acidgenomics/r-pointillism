@@ -21,7 +21,7 @@ clusterID.SingleCellExperiment <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
-        assert_is_factor(x)
+        assert(is.factor(x))
         names(x) <- colnames(object)
         x
     }

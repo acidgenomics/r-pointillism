@@ -49,16 +49,17 @@ SeuratMarkers <- function(
     ranges,
     alpha = 0.05
 ) {
-    assert_is_data.frame(object)
-    assert_has_rows(object)
-    assertHasRownames(object)
-    assert_is_all_of(ranges, "GRanges")
-    assert_is_subset(
-        x = c("geneID", "geneName"),
-        y = colnames(mcols(ranges))
+    assert(
+        is.data.frame(object),
+        hasRows(object),
+        hasRownames(object),
+        is(ranges, "GRanges"),
+        isSubset(
+            x = c("geneID", "geneName"),
+            y = colnames(mcols(ranges))
+        ),
+        isAlpha(alpha)
     )
-    assert_is_a_number(alpha)
-    assert_all_are_in_open_range(alpha, lower = 0L, upper = 1L)
 
     # Detect function from column names ----------------------------------------
     seuratMarkerCols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
@@ -124,7 +125,7 @@ SeuratMarkers <- function(
         "padj",
         "pvalue"        # Renamed from `p_val`.
     )
-    assert_is_subset(requiredCols, colnames(data))
+    assert(isSubset(requiredCols, colnames(data)))
 
     if (isTRUE(perCluster)) {
         # `cluster` is only present in `FindAllMarkers() return`.
@@ -141,7 +142,7 @@ SeuratMarkers <- function(
     # Bind ranges as column ---------------------------------------------------
     data <- as(data, "DataFrame")
     # Require that all of the markers are defined in ranges.
-    assert_is_subset(unique(data[["name"]]), names(ranges))
+    assert(isSubset(unique(data[["name"]]), names(ranges)))
     data[["ranges"]] <- ranges[data[["name"]]]
 
     # Add metadata and return --------------------------------------------------

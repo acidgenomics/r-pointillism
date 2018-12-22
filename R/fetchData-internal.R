@@ -13,12 +13,14 @@ NULL
 ) {
     validObject(object)
     object <- as(object, "SingleCellExperiment")
-    assert_is_a_string(assay)
-    assert_is_subset(assay, assayNames(object))
-    assert_is_a_bool(metadata)
+    assert(
+        isString(assay),
+        isSubset(assay, assayNames(object)),
+        isFlag(metadata)
+    )
 
     rownames <- mapGenesToRownames(object, genes)
-    assert_is_subset(rownames, rownames(object))
+    assert(isSubset(rownames, rownames(object)))
 
     counts <- assays(object) %>%
         .[[assay]] %>%
@@ -30,7 +32,7 @@ NULL
     }
     data <- t(counts)
     # Ensure we're not accidentally coercing the matrix to a different class.
-    assert_are_identical(class(counts), class(data))
+    assert(identical(class(counts), class(data)))
 
     # Early return the transposed matrix, if we don't want metadata.
     # This return is used by `.fetchReducedDimExpressionData`.
@@ -44,14 +46,16 @@ NULL
     # Always include "ident" and "sampleName" using `metrics` here.
     # This ensures `sampleName` and `interestingGroups` are always defined.
     colData <- metrics(object, return = "DataFrame")
-    assert_are_identical(rownames(data), rownames(colData))
-    assert_is_subset(
-        x = c("ident", "interestingGroups", "sampleName"),
-        y = colnames(colData)
+    assert(
+        identical(rownames(data), rownames(colData)),
+        isSubset(
+            x = c("ident", "interestingGroups", "sampleName"),
+            y = colnames(colData)
+        )
     )
 
     # Bind the counts and interesting groups columns.
-    assert_are_disjoint_sets(colnames(data), colnames(colData))
+    assert(areDisjointSets(colnames(data), colnames(colData)))
     data <- cbind(data, colData)
 
     # Gather into long format.
@@ -67,8 +71,7 @@ NULL
 
     # Join the geneID and geneName columns by the "rowname" column.
     g2s <- Gene2Symbol(object)
-    assert_is_non_empty(g2s)
-    assertHasRownames(g2s)
+    assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "tbl_df")
     data <- left_join(data, g2s, by = "rowname")
 
@@ -80,41 +83,43 @@ NULL
 .fetchReducedDimData <- function(
     object,
     reducedDim,
-    dimsUse
+    dimsUse = seq_len(2L)
 ) {
     validObject(object)
     object <- as(object, "SingleCellExperiment")
-    .assertHasIdent(object)
-    assert_is_scalar(reducedDim)
-    assertIsImplicitInteger(dimsUse)
-    assert_is_of_length(dimsUse, 2L)
+    assert(
+        .hasIdent(object),
+        isScalar(reducedDim),
+        isIntegerish(dimsUse),
+        hasLength(dimsUse, n = 2L)
+    )
 
     # Reduced dimension coordinates.
-    assert_is_subset(reducedDim, reducedDimNames(object))
+    assert(isSubset(reducedDim, reducedDimNames(object)))
     reducedDimData <- reducedDims(object)[[reducedDim]]
     # Coerce to DataFrame, for `cbind` call below.
     reducedDimData <- as(reducedDimData, "DataFrame")
 
     # Cellular barcode metrics.
     colData <- metrics(object, return = "DataFrame")
-    assert_is_subset("ident", colnames(colData))
-
-    # Assert checks to make sure the cbind operation works.
-    assert_are_identical(
-        x = rownames(reducedDimData),
-        y = rownames(colData)
-    )
-    assert_are_disjoint_sets(
-        x = colnames(reducedDimData),
-        y = colnames(colData)
+    assert(
+        isSubset("ident", colnames(colData)),
+        identical(
+            x = rownames(reducedDimData),
+            y = rownames(colData)
+        ),
+        areDisjointSets(
+            x = colnames(reducedDimData),
+            y = colnames(colData)
+        )
     )
 
     dimCols <- colnames(reducedDimData)[dimsUse]
-    assert_is_character(dimCols)
+    assert(is.character(dimCols))
 
     # Bind the data frames.
     data <- cbind(reducedDimData, colData)
-    assert_is_all_of(data, "DataFrame")
+    assert(is(data, "DataFrame"))
 
     # Coerce to long format DataFrame.
     data <- data %>%
@@ -127,17 +132,15 @@ NULL
             centerY = median(!!sym(dimCols[[2L]]))
         ) %>%
         as("DataFrame")
-    assertHasRownames(data)
-    assert_are_identical(rownames(data), colnames(object))
+    assert(
+        hasRownames(data),
+        identical(rownames(data), colnames(object))
+    )
     data
 }
-formals(.fetchReducedDimData)[c(
-    "dimsUse",
-    "reducedDim"
-)] <- list(
-    dimsUse = dimsUse,
-    reducedDim = reducedDim
-)
+
+formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
+    list(dimsUse = dimsUse, reducedDim = reducedDim)
 
 
 
@@ -147,8 +150,10 @@ formals(.fetchReducedDimData)[c(
     reducedDim
 ) {
     validObject(object)
-    assert_is_character(genes)
-    assert_is_scalar(reducedDim)
+    assert(
+        is.character(genes),
+        isScalar(reducedDim)
+    )
 
     rownames <- mapGenesToRownames(object, genes = genes)
 
@@ -159,10 +164,10 @@ formals(.fetchReducedDimData)[c(
         assay = "logcounts",
         metadata = FALSE
     )
-    assert_are_identical(
+    assert(identical(
         x = colnames(geneCounts),
         y = as.character(rownames)
-    )
+    ))
 
     # Keep the supported operations sparse.
     if (is(geneCounts, "sparseMatrix")) {
@@ -182,7 +187,7 @@ formals(.fetchReducedDimData)[c(
     )
 
     data <- cbind(reducedDimData, mean, sum)
-    assert_is_all_of(data, "DataFrame")
+    assert(is(data, "DataFrame"))
     data
 }
 formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim

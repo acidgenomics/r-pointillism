@@ -38,9 +38,11 @@ cellTypesPerCluster.KnownMarkers <- function(
     max = Inf
 ) {
     validObject(object)
-    assert_is_a_number(min)
-    assert_is_a_number(max)
-    assert_all_are_positive(c(min, max))
+    assert(
+        allArePositive(c(min, max)),
+        isInt(min),
+        isInt(max)
+    )
 
     # Note that the order is important here.
     groupCols <- c("cluster", "cellType")
@@ -72,7 +74,7 @@ cellTypesPerCluster.KnownMarkers <- function(
     if (is.numeric(max) && max > 1L) {
         data <- filter(data, !!sym("n") <= !!max)
     }
-    assert_has_rows(data)
+    assert(hasRows(data))
 
     data
 }

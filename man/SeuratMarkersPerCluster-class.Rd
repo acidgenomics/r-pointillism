@@ -3,7 +3,7 @@
 \docType{class}
 \name{SeuratMarkersPerCluster-class}
 \alias{SeuratMarkersPerCluster-class}
-\title{Seurat Markers per Cluster}
+\title{Seurat markers per cluster}
 \value{
 Results are split per \code{cluster} and arranged by adjusted \emph{P} value
 (\code{padj}).

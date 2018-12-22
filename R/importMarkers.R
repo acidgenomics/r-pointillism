@@ -50,8 +50,10 @@ NULL
 
 # Import data from Google Sheets.
 .importFromGoogle <- function(gs, ws) {
-    assert_is_a_string(gs)
-    assert_is_scalar(ws)
+    assert(
+        isString(gs),
+        isScalar(ws)
+    )
     ss <- gs_key(gs)
     data <- gs_read(ss = ss, ws = ws)
     as(data, "DataFrame")

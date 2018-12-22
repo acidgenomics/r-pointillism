@@ -22,15 +22,12 @@ bioverbs::cellCountsPerCluster
 cellCountsPerCluster.SingleCellExperiment <-  # nolint
     function(object, interestingGroups = NULL) {
         validObject(object)
-        .assertHasIdent(object)
-        interestingGroups <- matchInterestingGroups(
-            object = object,
-            interestingGroups = interestingGroups
-        )
-        interestingGroups(object) <- interestingGroups
+        assert(.hasIdent(object))
+        interestingGroups(object) <-
+            matchInterestingGroups(object, interestingGroups)
         data <- metrics(object)
         cols <- unique(c("ident", interestingGroups))
-        assert_is_subset(cols, colnames(data))
+        assert(isSubset(cols, colnames(data)))
         data %>%
             as_tibble() %>%
             arrange(!!!syms(cols)) %>%

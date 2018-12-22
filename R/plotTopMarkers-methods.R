@@ -46,16 +46,18 @@ plotTopMarkers.SingleCellExperiment <-  # nolint
             n = n,
             direction = direction
         )
-        assert_is_scalar(reducedDim)
-        assertIsHeaderLevel(headerLevel)
-        assert_is_a_bool(progress)
+        assert(
+            isScalar(reducedDim),
+            isHeaderLevel(headerLevel),
+            isFlag(progress)
+        )
         if (isTRUE(progress)) {
             applyFun <- pblapply
         } else {
             applyFun <- lapply
         }
 
-        assert_is_subset("cluster", colnames(markers))
+        assert(isSubset("cluster", colnames(markers)))
         clusters <- levels(markers[["cluster"]])
 
 

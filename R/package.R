@@ -35,8 +35,11 @@
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme
-#' @importFrom goalie assert isAlpha isInt hasRownames isGGScale isHeaderLevel
-#'   isIntegerish validate
+#' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
+#'   areDisjointSets areIntersectingSets assert isAlpha isInt hasLength hasNames
+#'   hasRownames hasRows isGGScale isAny isCharacter isFlag isHeaderLevel
+#'   isIntegerish isNonEmpty isNumber isPositive isScalar isString isSubset
+#'   validate
 #' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-

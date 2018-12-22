@@ -14,10 +14,10 @@ setOldClass(Classes = "session_info")
 
 
 # CellCycleMarkers =============================================================
-#' Cell-Cycle Markers
+#' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata`.
+#' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
 #' @export
@@ -29,7 +29,7 @@ setClass(
     Class = "CellCycleMarkers",
     contains = "CompressedSplitDataFrameList",
     validity = function(object) {
-        validate_that(
+        validate(
             identical(
                 x = lapply(object[[1L]], class),
                 y = list(
@@ -38,7 +38,7 @@ setClass(
                     geneName = "character"
                 )
             ),
-            is_subset(
+            isSubset(
                 x = c("version", "organism", "ensemblRelease", "date"),
                 y = names(metadata(object))
             )
@@ -49,10 +49,10 @@ setClass(
 
 
 # CellTypeMarkers ==============================================================
-#' Cell-Type Markers
+#' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in `metadata`.
+#' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
 #' @export
@@ -64,7 +64,7 @@ setClass(
     Class = "CellTypeMarkers",
     contains = "CompressedSplitDataFrameList",
     validity = function(object) {
-        validate_that(
+        validate(
             identical(
                 x = lapply(object[[1L]], class),
                 y = list(
@@ -73,7 +73,7 @@ setClass(
                     geneName = "character"
                 )
             ),
-            is_subset(
+            isSubset(
                 x = c("version", "organism", "ensemblRelease", "date"),
                 y = names(metadata(object))
             )
@@ -84,7 +84,7 @@ setClass(
 
 
 # Known Markers ================================================================
-#' Known Markers
+#' Known markers
 #'
 #' Class containing known markers detected.
 #'
@@ -97,8 +97,8 @@ setClass(
     Class = "KnownMarkers",
     contains = "DataFrame",  # TODO SplitDataFrameList
     validity = function(object) {
-        validate_that(
-            is_subset(
+        validate(
+            isSubset(
                 x = c(
                     "cellType",
                     "cluster",
@@ -110,7 +110,7 @@ setClass(
                 ),
                 y = colnames(object)
             ),
-            is_subset(
+            isSubset(
                 x = c("alpha", "date", "version"),
                 y = names(metadata(object))
             )
@@ -121,7 +121,7 @@ setClass(
 
 
 # Seurat Markers ===============================================================
-#' Seurat Markers
+#' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
@@ -133,7 +133,7 @@ setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame",
     validity = function(object) {
-        validate_that(
+        validate(
             hasRownames(object),
             identical(
                 x = colnames(object),
@@ -153,7 +153,7 @@ setClass(
 
 
 # SeuratMarkersPerCluster ======================================================
-#' Seurat Markers per Cluster
+#' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.
 #'
@@ -166,7 +166,7 @@ setClass(
     Class = "SeuratMarkersPerCluster",
     contains = "CompressedSplitDataFrameList",
     validity = function(object) {
-        validate_that(
+        validate(
             all(grepl("^cluster", names(object))),
             identical(
                 x = colnames(object)[[1L]],

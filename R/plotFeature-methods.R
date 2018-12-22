@@ -53,18 +53,20 @@ plotFeature.SingleCellExperiment <- function(
     }
 
     # Assert checks ------------------------------------------------------------
-    assert_is_character(features)
+    assert(isCharacter(features))
     # Sanitize input to camel case.
     features <- camel(features)
     reducedDim <- match.arg(reducedDim)
-    assertIsColorScaleContinuousOrNULL(color)
-    assert_is_a_number(pointSize)
-    assert_is_a_number(pointAlpha)
-    assert_is_a_bool(pointsAsNumbers)
-    assert_is_a_bool(label)
-    assert_is_a_number(labelSize)
-    assert_is_a_bool(dark)
-    assert_is_a_bool(legend)
+    assert(
+        isGGScale(color, scale = "continuous", aes = "colour", nullOK = TRUE),
+        isNumber(pointSize),
+        isNumber(pointAlpha),
+        isFlag(pointsAsNumbers),
+        isFlag(label),
+        isNumber(labelSize),
+        isFlag(dark),
+        isFlag(legend)
+    )
 
     # Dark mode setup.
     if (isTRUE(dark)) {
@@ -94,7 +96,7 @@ plotFeature.SingleCellExperiment <- function(
             .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%
             cbind(reducedDimsData)
     }
-    assert_is_subset(features, colnames(data))
+    assert(isSubset(features, colnames(data)))
 
     # FIXME Need to add pointsAsNumbers support.
     if (isTRUE(pointsAsNumbers)) {
@@ -191,7 +193,6 @@ formals(plotFeature.SingleCellExperiment)[c(
     pointsAsNumbers = pointsAsNumbers,
     reducedDim = reducedDim
 )
-
 
 
 
