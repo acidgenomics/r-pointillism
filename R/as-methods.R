@@ -1,8 +1,5 @@
-# TODO Improve the documentation here.
-# TODO Add `as_tibble` method support.
-
-
-
+#' Force an object to belong to a class
+#'
 #' @inherit methods::as
 #' @name as
 #' @aliases coerce

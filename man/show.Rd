@@ -5,7 +5,7 @@
 \alias{show}
 \alias{show,CellCycleMarkers-method}
 \alias{show,CellTypeMarkers-method}
-\title{Show an Object}
+\title{Show an object}
 \usage{
 \S4method{show}{CellCycleMarkers}(object)
 
