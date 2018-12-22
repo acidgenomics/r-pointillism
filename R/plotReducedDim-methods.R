@@ -79,142 +79,144 @@ bioverbs::plotUMAP
 
 
 # Constructors =================================================================
-plotReducedDim.SingleCellExperiment <- function(
-    object,
-    reducedDim,
-    dimsUse,
-    interestingGroups = NULL,
-    color,
-    pointSize,
-    pointAlpha,
-    pointsAsNumbers,
-    label,
-    labelSize,
-    dark,
-    legend,
-    title = NULL
-) {
-    validObject(object)
-    assert(
-        .hasIdent(object),
-        isScalar(reducedDim),
-        isIntegerish(dimsUse),
-        hasLength(dimsUse, n = 2L),
-        isString(interestingGroups, nullOK = TRUE),  # FIXME ?
-        isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
-        isNumber(pointSize),
-        isNumber(pointAlpha),
-        isFlag(pointsAsNumbers),
-        isFlag(label),
-        isNumber(labelSize),
-        isFlag(dark),
-        isFlag(legend),
-        isString(title, nullOK = TRUE)
-    )
-
-    # Color by `ident` factor by default.
-    if (is.null(interestingGroups)) {
-        interestingGroups <- "ident"
-    }
-
-    data <- .fetchReducedDimData(
-        object = object,
-        reducedDim = reducedDim,
-        dimsUse = dimsUse
-    )
-    assert(
-        is(data, "DataFrame"),
-        isSubset(
-            x = c("x", "y", "centerX", "centerY", "interestingGroups"),
-            y = colnames(data)
-        )
-    )
-
-    # Color by `ident` factor by default (see above).
-    if (interestingGroups == "ident") {
-        data[["interestingGroups"]] <- data[["ident"]]
-    }
-
-    # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
-    axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-    assert(isSubset(axes, colnames(data)))
-
-    p <- ggplot(
-        data = as_tibble(data),
-        mapping = aes(
-            x = !!sym("x"),
-            y = !!sym("y"),
-            color = !!sym("interestingGroups")
-        )
-    ) +
-        labs(
-            x = axes[[1L]],
-            y = axes[[2L]],
-            color = paste(interestingGroups, collapse = ":\n")
+plotReducedDim.SingleCellExperiment <-  # nolint
+    function(
+        object,
+        reducedDim,
+        dimsUse,
+        interestingGroups = NULL,
+        color,
+        pointSize,
+        pointAlpha,
+        pointsAsNumbers,
+        label,
+        labelSize,
+        dark,
+        legend,
+        title = NULL
+    ) {
+        validObject(object)
+        assert(
+            .hasIdent(object),
+            isScalar(reducedDim),
+            isIntegerish(dimsUse),
+            hasLength(dimsUse, n = 2L),
+            isString(interestingGroups, nullOK = TRUE),
+            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+            isNumber(pointSize),
+            isNumber(pointAlpha),
+            isFlag(pointsAsNumbers),
+            isFlag(label),
+            isNumber(labelSize),
+            isFlag(dark),
+            isFlag(legend),
+            isString(title, nullOK = TRUE)
         )
 
-    if (isTRUE(pointsAsNumbers)) {
-        # Increase the size, if necessary.
-        if (pointSize < 4L) {
-            message("Increase pointSize to 4.")
-            pointSize <- 4L
+        # Color by `ident` factor by default.
+        if (is.null(interestingGroups)) {
+            interestingGroups <- "ident"
         }
-        p <- p +
-            geom_text(
-                mapping = aes(
-                    x = !!sym("x"),
-                    y = !!sym("y"),
-                    label = !!sym("ident"),
-                    color = !!sym("interestingGroups")
-                ),
-                alpha = pointAlpha,
-                size = pointSize,
-                show.legend = legend
-            )
-    } else {
-        p <- p +
-            geom_point(
-                alpha = pointAlpha,
-                size = pointSize,
-                show.legend = legend
-            )
-    }
 
-    if (isTRUE(label)) {
-        if (isTRUE(dark)) {
-            labelColor <- "white"
+        data <- .fetchReducedDimData(
+            object = object,
+            reducedDim = reducedDim,
+            dimsUse = dimsUse
+        )
+        assert(
+            is(data, "DataFrame"),
+            isSubset(
+                x = c("x", "y", "centerX", "centerY", "interestingGroups"),
+                y = colnames(data)
+            )
+        )
+
+        # Color by `ident` factor by default (see above).
+        if (interestingGroups == "ident") {
+            data[["interestingGroups"]] <- data[["ident"]]
+        }
+
+        # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
+        axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
+        assert(isSubset(axes, colnames(data)))
+
+        p <- ggplot(
+            data = as_tibble(data),
+            mapping = aes(
+                x = !!sym("x"),
+                y = !!sym("y"),
+                color = !!sym("interestingGroups")
+            )
+        ) +
+            labs(
+                x = axes[[1L]],
+                y = axes[[2L]],
+                color = paste(interestingGroups, collapse = ":\n")
+            )
+
+        if (isTRUE(pointsAsNumbers)) {
+            # Increase the size, if necessary.
+            if (pointSize < 4L) {
+                message("Increase pointSize to 4.")
+                pointSize <- 4L
+            }
+            p <- p +
+                geom_text(
+                    mapping = aes(
+                        x = !!sym("x"),
+                        y = !!sym("y"),
+                        label = !!sym("ident"),
+                        color = !!sym("interestingGroups")
+                    ),
+                    alpha = pointAlpha,
+                    size = pointSize,
+                    show.legend = legend
+                )
         } else {
-            labelColor <- "black"
+            p <- p +
+                geom_point(
+                    alpha = pointAlpha,
+                    size = pointSize,
+                    show.legend = legend
+                )
         }
+
+        if (isTRUE(label)) {
+            if (isTRUE(dark)) {
+                labelColor <- "white"
+            } else {
+                labelColor <- "black"
+            }
+            p <- p +
+                geom_text(
+                    mapping = aes(
+                        x = !!sym("centerX"),
+                        y = !!sym("centerY"),
+                        label = !!sym("ident")
+                    ),
+                    color = labelColor,
+                    size = labelSize,
+                    fontface = "bold"
+                )
+        }
+
+        # Dark mode.
+        if (isTRUE(dark)) {
+            p <- p + theme_midnight()
+        }
+
+        if (is(color, "ScaleDiscrete")) {
+            p <- p + color
+        }
+
+        # Improve the axis breaks.
         p <- p +
-            geom_text(
-                mapping = aes(
-                    x = !!sym("centerX"),
-                    y = !!sym("centerY"),
-                    label = !!sym("ident")
-                ),
-                color = labelColor,
-                size = labelSize,
-                fontface = "bold"
-            )
+            scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
+            scale_y_continuous(breaks = pretty_breaks(n = 4L))
+
+        p
     }
 
-    # Dark mode.
-    if (isTRUE(dark)) {
-        p <- p + theme_midnight()
-    }
-
-    if (is(color, "ScaleDiscrete")) {
-        p <- p + color
-    }
-
-    # Improve the axis breaks.
-    p <- p +
-        scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
-        scale_y_continuous(breaks = pretty_breaks(n = 4L))
-
-    p
-}
 formals(plotReducedDim.SingleCellExperiment)[c(
     "color",
     "dark",
@@ -239,32 +241,35 @@ formals(plotReducedDim.SingleCellExperiment)[c(
 
 
 
-plotPCA.SingleCellExperiment <- function() {
-    do.call(
-        what = plotReducedDim,
-        args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
-    )
+plotPCA.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
+        )
 
-}
-
-
-
-
-plotTSNE.SingleCellExperiment <- function() {
-    do.call(
-        what = plotReducedDim,
-        args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
-    )
-}
+    }
 
 
 
-plotUMAP.SingleCellExperiment <- function() {
-    do.call(
-        what = plotReducedDim,
-        args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
-    )
-}
+
+plotTSNE.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
+        )
+    }
+
+
+
+plotUMAP.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
+        )
+    }
 
 
 

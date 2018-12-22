@@ -67,7 +67,6 @@ runZinbwave.SingleCellExperiment <-  # nolint
         assert(
             isNumber(K),
             isNumber(epsilon),
-            # TODO Export this check in goalie
             .isBPPARAM(BPPARAM),
             isFlag(recalculate),
             isFlag(verbose)
@@ -168,17 +167,18 @@ setMethod(
 
 
 
-runZinbwave.seurat <- function(Y, ...) {
-    zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
-    weights(Y) <- weights(zinb)
-    metadata(Y)[["weights"]] <- "zinbwave"
-    Y
-}
+runZinbwave.seurat <-  # nolint
+    function(Y, ...) {  # nolint
+        zinb <- runZinbwave(Y = as(Y, "SingleCellExperiment"), ...)
+        weights(Y) <- weights(zinb)
+        metadata(Y)[["weights"]] <- "zinbwave"
+        Y
+    }
 
 
 
 #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashes weights
-#'   in the `weights` slot.
+#'   in the `weights()` slot.
 #' @export
 setMethod(
     f = "runZinbwave",

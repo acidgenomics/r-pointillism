@@ -96,7 +96,7 @@ plotFeature.SingleCellExperiment <-  # nolint
         }
         assert(isSubset(features, colnames(data)))
 
-        # FIXME Need to add pointsAsNumbers support.
+        # Need to add pointsAsNumbers support.
         if (isTRUE(pointsAsNumbers)) {
             stop("pointsAsNumbers isn't supported yet")
         }

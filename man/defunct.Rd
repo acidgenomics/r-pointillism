@@ -7,7 +7,7 @@
 \alias{plotKnownMarkersDetected}
 \alias{readCellTypeMarkers}
 \alias{sanitizeMarkers}
-\title{Defunct Functions}
+\title{Defunct functions}
 \usage{
 knownMarkers(...)
 
@@ -26,6 +26,6 @@ sanitizeMarkers(...)
 \code{.Defunct}.
 }
 \description{
-Defunct Functions
+Defunct functions
 }
 \keyword{internal}
