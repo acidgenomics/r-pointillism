@@ -17,9 +17,6 @@ lightMarkerColors <-
 # This works reliably across platforms, but is slower.
 bpparam <- quote(BiocParallel::SerialParam())
 
-# Sometimes nice but can be too busy.
-# viridis::scale_colour_viridis(direction = -1L)
-
 continuousColor <- quote(getOption(
     "pointillism.continuous.color",
     ggplot2::scale_colour_gradient(
