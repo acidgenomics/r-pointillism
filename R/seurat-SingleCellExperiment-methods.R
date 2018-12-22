@@ -359,7 +359,11 @@ setMethod(
         # Attempt to use stashed rowRanges, if defined.
         stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {
-            assert(identical(names(gr), names(stash)))
+            assert(identical(length(gr), length(stash)))
+            # Handle situation where we've changed from gene IDs to gene names.
+            if (!identical(names(gr), names(stash))) {
+                names(stash) <- names(gr)
+            }
             mcols1 <- mcols(stash)
             mcols2 <- mcols(gr)
             mcols2 <- mcols2[
