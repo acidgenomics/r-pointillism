@@ -3,13 +3,13 @@
 \docType{data}
 \name{known_markers_small}
 \alias{known_markers_small}
-\title{Known Markers Example}
+\title{Known markers example}
 \format{An object of class \code{KnownMarkers} with 5 rows and 10 columns.}
 \usage{
 known_markers_small
 }
 \description{
-Known Markers Example
+Known markers example
 }
 \examples{
 data(known_markers_small)

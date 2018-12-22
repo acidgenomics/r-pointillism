@@ -4,13 +4,13 @@
 \name{cell_type_markers}
 \alias{cell_type_markers}
 \alias{cellTypeMarkers}
-\title{Cell-Type Markers}
+\title{Cell-type markers}
 \format{An object of class \code{list} of length 3.}
 \usage{
 cell_type_markers
 }
 \description{
-Cell-Type Markers
+Cell-type markers
 }
 \examples{
 data(cell_type_markers)

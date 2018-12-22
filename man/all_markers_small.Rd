@@ -3,13 +3,13 @@
 \docType{data}
 \name{all_markers_small}
 \alias{all_markers_small}
-\title{Sanitized Markers Example}
+\title{Sanitized markers example}
 \format{An object of class \code{SeuratMarkersPerCluster} of dimension 43 x 73 x 45 x 47 x 8 x 8 x 8 x 8.}
 \usage{
 all_markers_small
 }
 \description{
-Sanitized Markers Example
+Sanitized markers example
 }
 \examples{
 data(all_markers_small)

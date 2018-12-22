@@ -1,4 +1,4 @@
-#' Sanitized Markers Example
+#' Sanitized markers example
 #' @examples
 #' data(all_markers_small)
 #' all_markers_small
@@ -6,7 +6,7 @@
 
 
 
-#' Cell-Cycle Markers
+#' Cell-cycle markers
 #' @aliases cellCycleMarkers
 #' @examples
 #' data(cell_cycle_markers)
@@ -15,7 +15,7 @@
 
 
 
-#' Cell-Type Markers
+#' Cell-type markers
 #' @aliases cellTypeMarkers
 #' @examples
 #' data(cell_type_markers)
@@ -24,7 +24,7 @@
 
 
 
-#' Known Markers Example
+#' Known markers example
 #' @examples
 #' data(known_markers_small)
 #' known_markers_small
@@ -32,7 +32,7 @@
 
 
 
-#' Seurat Example
+#' Seurat example
 #' @examples
 #' data(seurat_small)
 #' seurat_small

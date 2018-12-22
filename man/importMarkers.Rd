@@ -4,7 +4,7 @@
 \alias{importMarkers}
 \alias{importCellCycleMarkersFromGoogle}
 \alias{importCellTypeMarkersFromGoogle}
-\title{Import Markers from Google}
+\title{Import markers from Google Sheets}
 \usage{
 importCellCycleMarkersFromGoogle(gs, ws, gene2symbol)
 

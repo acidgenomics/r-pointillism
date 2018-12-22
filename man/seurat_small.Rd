@@ -3,13 +3,13 @@
 \docType{data}
 \name{seurat_small}
 \alias{seurat_small}
-\title{Seurat Example}
+\title{Seurat example}
 \format{An object of class \code{seurat} of length 1.}
 \usage{
 seurat_small
 }
 \description{
-Seurat Example
+Seurat example
 }
 \examples{
 data(seurat_small)

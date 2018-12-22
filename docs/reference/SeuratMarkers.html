@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Seurat Markers — SeuratMarkers • pointillism</title>
+<title>Seurat markers — SeuratMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Seurat Markers — SeuratMarkers" />
+<meta property="og:title" content="Seurat markers — SeuratMarkers" />
 
 <meta property="og:description" content="This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations." />
@@ -66,7 +66,7 @@ marker analysis and add corresponding gene annotations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -105,7 +105,7 @@ marker analysis and add corresponding gene annotations." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Seurat Markers</h1>
+    <h1>Seurat markers</h1>
     <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/SeuratMarkers.R'><code>R/SeuratMarkers.R</code></a></small>
     <div class="hidden name"><code>SeuratMarkers.Rd</code></div>
     </div>
@@ -126,8 +126,8 @@ marker analysis and add corresponding gene annotations.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p><code>data.frame</code>. Unmodified <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers()</a></code> or
-<code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return.</p></td>
+      <td><p><code>data.frame</code>. Unmodified <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers</a></code> or
+<code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers</a></code> return.</p></td>
     </tr>
     <tr>
       <th>ranges</th>
@@ -137,8 +137,9 @@ them alphabetically.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p><code>scalar numeric</code>. Adjusted P value ("alpha") cutoff.
-If left <code>NULL</code>, will use the cutoff defined in the object.</p></td>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
+Adjusted P value ("alpha") cutoff. If left <code>NULL</code>, will use the cutoff
+defined in the object.</p></td>
     </tr>
     </table>
     
@@ -148,7 +149,7 @@ If left <code>NULL</code>, will use the cutoff defined in the object.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>For <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return, rownames are correctly returned
+    <p>For <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers</a></code> return, rownames are correctly returned
 in the <code>gene</code> column.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -164,7 +165,7 @@ in the <code>gene</code> column.</p>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
 <span class='no'>ranges</span> <span class='kw'>&lt;-</span> <span class='fu'>rowRanges</span>(<span class='no'>object</span>)
 
-<span class='co'>## `FindMarkers()` return.</span>
+<span class='co'>## `FindMarkers` return.</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/invisible'>invisible</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/capture.output'>capture.output</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>FindMarkers</a></span>(
         <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
@@ -176,9 +177,9 @@ in the <code>gene</code> column.</p>
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.2.1
-#&gt; date: 2018-12-01</div><div class='input'>
-<span class='co'>## `FindAllMarkers()` return.</span>
+#&gt; version: 0.2.2
+#&gt; date: 2018-12-22</div><div class='input'>
+<span class='co'>## `FindAllMarkers` return.</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/invisible'>invisible</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/capture.output'>capture.output</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>FindAllMarkers</a></span>(<span class='no'>object</span>)
 ))
@@ -187,8 +188,8 @@ in the <code>gene</code> column.</p>
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.2.1
-#&gt; date: 2018-12-01</div></pre>
+#&gt; version: 0.2.2
+#&gt; date: 2018-12-22</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -213,7 +214,7 @@ in the <code>gene</code> column.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

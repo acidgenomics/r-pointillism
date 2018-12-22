@@ -1,4 +1,4 @@
-#' Import Markers from Google
+#' Import markers from Google Sheets
 #'
 #' Currently designed for internal use by the pointillism package.
 #'
