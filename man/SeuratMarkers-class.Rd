@@ -3,7 +3,7 @@
 \docType{class}
 \name{SeuratMarkers-class}
 \alias{SeuratMarkers-class}
-\title{Seurat Markers}
+\title{Seurat markers}
 \value{
 Results are arranged by adjusted \emph{P} value (\code{padj}).
 }

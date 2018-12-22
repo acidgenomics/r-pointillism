@@ -45,10 +45,12 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
         # Passthrough: color, dark.
         validObject(object)
         validObject(markers)
-        assert_is_scalar(reducedDim)
+        assert(isScalar(reducedDim))
         expression <- match.arg(expression)
-        assertIsHeaderLevel(headerLevel)
-        assert_is_a_bool(progress)
+        assert(
+            isHeaderLevel(headerLevel),
+            isFlag(progress)
+        )
         if (isTRUE(progress)) {
             applyFun <- pblapply
         } else {
@@ -60,14 +62,16 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
             min = min,
             max = max
         )
-        assert_is_all_of(markers, "grouped_df")
-        assert_has_rows(markers)
+        assert(
+            is(markers, "grouped_df"),
+            hasRows(markers)
+        )
 
         # Output Markdown headers per cluster.
         clusters <- markers[["cluster"]] %>%
             as.character() %>%
             unique()
-        assert_is_non_empty(clusters)
+        assert(isNonEmpty(clusters))
 
         return <- applyFun(clusters, function(cluster) {
             markdownHeader(
@@ -81,9 +85,9 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                 message(paste0("No markers for cluster ", cluster, "."))
                 return(invisible())
             }
-            assert_has_rows(clusterData)
+            assert(hasRows(clusterData))
             cellTypes <- clusterData[["cellType"]]
-            assert_is_factor(cellTypes)
+            assert(is.factor(cellTypes))
             lapply(
                 X = cellTypes,
                 FUN = function(cellType) {

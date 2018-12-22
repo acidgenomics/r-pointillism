@@ -3,7 +3,7 @@
 \docType{class}
 \name{KnownMarkers-class}
 \alias{KnownMarkers-class}
-\title{Known Markers}
+\title{Known markers}
 \value{
 Results are grouped by \code{cellType} column and arranged by adjusted
 \emph{P} value (\code{padj}).

@@ -61,22 +61,24 @@ plotMarker.SingleCellExperiment <- function(
 
     # Assert checks --------------------------------------------------------
     object <- as(object, "SingleCellExperiment")
-    assert_is_character(genes)
-    # FIXME This step is breaking.
+    assert(
+        isCharacter(genes),
+        isScalar(reducedDim),
+        isGGScale(color, scale = "continuous", aes = "colour", nullOK = TRUE),
+        isNumber(pointSize),
+        isNumber(pointAlpha),
+        isFlag(pointsAsNumbers),
+        isFlag(label),
+        isNumber(labelSize),
+        isFlag(dark),
+        isFlag(legend),
+        isAny(title, c("character", "logical", "NULL"))
+    )
+    # FIXME This step is erroring?
     geneNames <- mapGenesToSymbols(object, genes)
-    assert_is_scalar(reducedDim)
     expression <- match.arg(expression)
-    assertIsColorScaleContinuousOrNULL(color)
-    assert_is_a_number(pointSize)
-    assert_is_a_number(pointAlpha)
-    assert_is_a_bool(pointsAsNumbers)
-    assert_is_a_bool(label)
-    assert_is_a_number(labelSize)
-    assert_is_a_bool(dark)
-    assert_is_a_bool(legend)
-    assert_is_any_of(title, c("character", "logical", "NULL"))
     if (is.character(title)) {
-        assert_is_a_string(title)
+        assert(isString(title))
     }
 
     # Fetch reduced dimension data
@@ -85,7 +87,7 @@ plotMarker.SingleCellExperiment <- function(
         genes = genes,
         reducedDim = reducedDim
     )
-    assert_is_all_of(data, "DataFrame")
+    assert(is(data, "DataFrame"))
 
     # Get the axis labels.
     axes <- colnames(data)[seq_len(2L)]
@@ -101,7 +103,7 @@ plotMarker.SingleCellExperiment <- function(
         "x",
         "y"
     )
-    assert_is_subset(requiredCols, colnames(data))
+    assert(isSubset(requiredCols, colnames(data)))
 
     p <- ggplot(
         data = as_tibble(data),
@@ -115,7 +117,7 @@ plotMarker.SingleCellExperiment <- function(
     # Titles
     subtitle <- NULL
     if (isTRUE(title)) {
-        if (is_a_string(geneNames)) {
+        if (isString(geneNames)) {
             title <- geneNames
         } else {
             title <- NULL
@@ -139,7 +141,7 @@ plotMarker.SingleCellExperiment <- function(
 
     # Customize legend.
     if (isTRUE(legend)) {
-        if (is_a_string(genes)) {
+        if (isString(genes)) {
             guideTitle <- "logcounts"
         } else {
             guideTitle <- paste0(
@@ -206,6 +208,7 @@ plotMarker.SingleCellExperiment <- function(
 
     p
 }
+
 formals(plotMarker.SingleCellExperiment)[c(
     "color",
     "dark",

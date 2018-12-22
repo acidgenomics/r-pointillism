@@ -114,8 +114,8 @@ plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{Seurat::DotPlot}.
-\item \code{Seurat::VlnPlot}.
-\item \code{Seurat::RidgePlot}.
+\item \code{Seurat::DotPlot()}.
+\item \code{Seurat::VlnPlot()}.
+\item \code{Seurat::RidgePlot()}.
 }
 }

@@ -18,10 +18,10 @@ bioverbs::clusterCellCountsPerSample
 
 clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
     function(object) {
-        .assertHasIdent(object)
+        assert(.hasIdent(object))
         metrics <- metrics(object)
         cols <- c("sampleName", "ident")
-        assert_is_subset(cols, colnames(metrics))
+        assert(isSubset(cols, colnames(metrics)))
         metrics %>%
             arrange(!!!syms(cols)) %>%
             group_by(!!!syms(cols)) %>%

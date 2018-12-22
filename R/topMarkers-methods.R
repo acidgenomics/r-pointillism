@@ -36,7 +36,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         return = c("tbl_df", "DataFrame", "SplitDataFrameList")
     ) {
         validObject(object)
-        assertIsAnImplicitInteger(n)
+        assert(isInt(n))
         direction <- match.arg(direction)
         return <- match.arg(return)
 
@@ -71,7 +71,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         } else if (return == "SplitDataFrameList") {
             message("Returning as DataFrameList.")
             data <- as(data, "DataFrame")
-            assert_is_subset("cluster", colnames(data))
+            assert(isSubset("cluster", colnames(data)))
             data <- split(x = data, f = data[["cluster"]])
             names(data) <- paste0("cluster", names(data))
             assert(is(data, "SplitDataFrameList"))

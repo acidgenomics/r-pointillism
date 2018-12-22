@@ -53,23 +53,29 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
         object <- as(object, "SingleCellExperiment")
 
         # group
-        assert_is_a_string(group)
-        assert_is_subset(group, colnames(colData(object)))
+        assert(
+            isString(group),
+            isSubset(group, colnames(colData(object)))
+        )
         groupings <- colData(object)[[group]]
-        assert_is_factor(groupings)
+        assert(is.factor(groupings))
 
         # numerator
-        assert_is_a_string(numerator)
-        assert_is_subset(numerator, levels(groupings))
+        assert(
+            isString(numerator),
+            isSubset(numerator, levels(groupings))
+        )
 
         # denominator
-        assert_is_a_string(denominator)
-        assert_is_subset(denominator, levels(groupings))
-        assert_are_disjoint_sets(numerator, denominator)
+        assert(
+            isString(denominator),
+            isSubset(denominator, levels(groupings)),
+            areDisjointSets(numerator, denominator)
+        )
 
         # Get the cluster identities.
         ident <- clusterID(object)
-        assert_is_factor(ident)
+        assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
@@ -83,7 +89,7 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
                 message(paste("Cluster", cluster, "===="))
                 # Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
-                assert_is_non_empty(cells)
+                assert(isNonEmpty(cells))
                 subset <- object[, cells]
                 # Ensure that both the numerator and denominator are defined.
                 groupings <- droplevels(colData(subset)[[group]])

@@ -3,13 +3,13 @@
 \docType{class}
 \name{CellCycleMarkers-class}
 \alias{CellCycleMarkers-class}
-\title{Cell-Cycle Markers}
+\title{Cell-cycle markers}
 \value{
 \code{CellTypeMarkers}
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{metadata}.
+defined in \code{\link[S4Vectors:metadata]{metadata()}}.
 }
 \seealso{
 \code{CellCycleMarkers}.

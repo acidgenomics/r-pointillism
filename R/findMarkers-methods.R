@@ -32,8 +32,7 @@ findMarkers.SingleCellExperiment <-  # nolint
 
         # Get the cluster identities.
         ident <- clusterID(object)
-        assert_is_factor(ident)
-        assert_has_names(ident)
+        assert(is.factor(ident), hasNames(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
@@ -48,10 +47,10 @@ findMarkers.SingleCellExperiment <-  # nolint
                 numerator <- ident[which(ident == cluster)]
                 assert(all(numerator == cluster))
                 numerator <- sort(names(numerator))
-                assert_is_non_empty(numerator)
+                assert(isNonEmpty(numerator))
                 # Denominator: cells in all other clusters.
                 denominator <- sort(setdiff(colnames(object), numerator))
-                assert_is_non_empty(denominator)
+                assert(isNonEmpty(denominator))
                 diffExp(
                     object = object,
                     numerator = numerator,

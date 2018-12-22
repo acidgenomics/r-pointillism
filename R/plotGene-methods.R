@@ -21,9 +21,9 @@
 #'   Currently supports `"dot"` and `"violin"`.
 #'
 #' @seealso
-#' - `Seurat::DotPlot`.
-#' - `Seurat::VlnPlot`.
-#' - `Seurat::RidgePlot`.
+#' - `Seurat::DotPlot()`.
+#' - `Seurat::VlnPlot()`.
+#' - `Seurat::RidgePlot()`.
 #'
 #' @examples
 #' data(seurat_small)
@@ -83,6 +83,7 @@ plotGene.SingleCellExperiment <- function(
     args[["geom"]] <- NULL
     do.call(what = what, args = args)
 }
+
 formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
@@ -122,16 +123,18 @@ plotDot.SingleCellExperiment <- function(
     title = NULL
 ) {
     validObject(object)
-    .assertHasIdent(object)
-    assert_is_character(genes)
-    assert_is_a_bool(perSample)
-    assert_is_a_number(colMin)
-    assert_is_a_number(colMax)
-    assert_is_a_number(dotMin)
-    assert_is_a_number(dotScale)
-    assertIsColorScaleContinuousOrNULL(color)
-    assert_is_a_bool(legend)
-    assertIsStringOrNULL(title)
+    assert(
+        .hasIdent(object),
+        isCharacter(genes),
+        isFlag(perSample),
+        isNumber(colMin),
+        isNumber(colMax),
+        isNumber(dotMin),
+        isNumber(dotScale),
+        isGGScale(color, scale = "continuous", aes = "colour", nullOK = TRUE),
+        isFlag(legend),
+        isString(title, nullOK = TRUE)
+    )
 
     # Fetch the gene expression data.
     data <- .fetchGeneData(
@@ -204,6 +207,7 @@ plotDot.SingleCellExperiment <- function(
 
     p
 }
+
 formals(plotDot.SingleCellExperiment)[c(
     "color",
     "legend"
@@ -224,12 +228,14 @@ plotViolin.SingleCellExperiment <- function(
     title = NULL
 ) {
     validObject(object)
-    assert_is_character(genes)
-    assert_is_a_bool(perSample)
+    assert(
+        isCharacter(genes),
+        isFlag(perSample),
+        isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+        isFlag(legend),
+        isString(title, nullOK = TRUE)
+    )
     scale <- match.arg(scale)
-    assertIsColorScaleDiscreteOrNULL(color)
-    assert_is_a_bool(legend)
-    assertIsStringOrNULL(title)
 
     # Fetch the gene expression data.
     data <- .fetchGeneData(
@@ -268,9 +274,7 @@ plotViolin.SingleCellExperiment <- function(
             color = !!sym(colorMapping)
         )
     ) +
-        geom_jitter(
-            show.legend = legend
-        ) +
+        geom_jitter(show.legend = legend) +
         geom_violin(
             fill = NA,
             scale = scale,
@@ -279,10 +283,7 @@ plotViolin.SingleCellExperiment <- function(
             trim = TRUE
         ) +
         # Note that `scales = free_y` will hide the x-axis for some plots.
-        labs(
-            title = title,
-            color = colorLabs
-        )
+        labs(title = title, color = colorLabs)
 
     # Handling step for multiple samples, if desired.
     if (

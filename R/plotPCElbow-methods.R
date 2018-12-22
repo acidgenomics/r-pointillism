@@ -42,21 +42,23 @@ plotPCElbow.seurat <-  # nolint
         maxCumPct = 0.9,
         trans = c("identity", "sqrt")
     ) {
-        assert_is_a_number(minSD)
-        assert_all_are_positive(minSD)
-        assert_is_a_number(minPct)
-        assert_is_a_number(maxCumPct)
-        assert_all_are_in_left_open_range(
-            x = c(minPct, maxCumPct),
-            lower = 0L,
-            upper = 1L
+        assert(
+            isNumber(minSD),
+            isPositive(minSD),
+            isNumber(minPct),
+            isNumber(maxCumPct),
+            allAreInLeftOpenRange(
+                x = c(minPct, maxCumPct),
+                lower = 0L,
+                upper = 1L
+            )
         )
         trans <- match.arg(trans)
 
         # dr: dimensional reduction
         # sdev: standard deviation
         sdev <- object@dr[["pca"]]@sdev
-        assert_is_numeric(sdev)
+        assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)
 

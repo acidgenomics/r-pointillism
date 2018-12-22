@@ -95,34 +95,39 @@ plotReducedDim.SingleCellExperiment <- function(
     title = NULL
 ) {
     validObject(object)
-    .assertHasIdent(object)
-    assert_is_scalar(reducedDim)
-    assertIsImplicitInteger(dimsUse)
-    assert_is_of_length(dimsUse, 2L)
+    assert(
+        .hasIdent(object),
+        isScalar(reducedDim),
+        isIntegerish(dimsUse),
+        hasLength(dimsUse, n = 2L),
+        isString(interestingGroups, nullOK = TRUE),  # FIXME ?
+        isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+        isNumber(pointSize),
+        isNumber(pointAlpha),
+        isFlag(pointsAsNumbers),
+        isFlag(label),
+        isNumber(labelSize),
+        isFlag(dark),
+        isFlag(legend),
+        isString(title, nullOK = TRUE)
+    )
+
     # Color by `ident` factor by default.
     if (is.null(interestingGroups)) {
         interestingGroups <- "ident"
     }
-    assert_is_a_string(interestingGroups)
-    assertIsColorScaleDiscreteOrNULL(color)
-    assert_is_a_number(pointSize)
-    assert_is_a_number(pointAlpha)
-    assert_is_a_bool(pointsAsNumbers)
-    assert_is_a_bool(label)
-    assert_is_a_number(labelSize)
-    assert_is_a_bool(dark)
-    assert_is_a_bool(legend)
-    assertIsStringOrNULL(title)
 
     data <- .fetchReducedDimData(
         object = object,
         reducedDim = reducedDim,
         dimsUse = dimsUse
     )
-    assert_is_all_of(data, "DataFrame")
-    assert_is_subset(
-        x = c("x", "y", "centerX", "centerY", "interestingGroups"),
-        y = colnames(data)
+    assert(
+        is(data, "DataFrame"),
+        isSubset(
+            x = c("x", "y", "centerX", "centerY", "interestingGroups"),
+            y = colnames(data)
+        )
     )
 
     # Color by `ident` factor by default (see above).
@@ -132,7 +137,7 @@ plotReducedDim.SingleCellExperiment <- function(
 
     # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
     axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-    assert_is_subset(axes, colnames(data))
+    assert(isSubset(axes, colnames(data)))
 
     p <- ggplot(
         data = as_tibble(data),
