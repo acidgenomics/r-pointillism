@@ -95,7 +95,7 @@ setClass(
 #'   *P* value (`padj`).
 setClass(
     Class = "KnownMarkers",
-    contains = "DataFrame",  # TODO SplitDataFrameList
+    contains = "DataFrame",
     validity = function(object) {
         validate(
             isSubset(

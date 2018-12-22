@@ -64,25 +64,26 @@ bioverbs::plotViolin
 
 
 # plotGene =====================================================================
-plotGene.SingleCellExperiment <- function(
-    object,
-    genes,
-    geom = c("dot", "violin"),
-    perSample = TRUE,
-    legend,
-    title = NULL
-) {
-    validObject(object)
-    geom <- match.arg(geom)
-    if (geom == "dot") {
-        what <- plotDot
-    } else if (geom == "violin") {
-        what <- plotViolin
+plotGene.SingleCellExperiment <-  # nolint
+    function(
+        object,
+        genes,
+        geom = c("dot", "violin"),
+        perSample = TRUE,
+        legend,
+        title = NULL
+    ) {
+        validObject(object)
+        geom <- match.arg(geom)
+        if (geom == "dot") {
+            what <- plotDot
+        } else if (geom == "violin") {
+            what <- plotViolin
+        }
+        args <- as.list(sys.call(which = -1L))[-1L]
+        args[["geom"]] <- NULL
+        do.call(what = what, args = args)
     }
-    args <- as.list(sys.call(which = -1L))[-1L]
-    args[["geom"]] <- NULL
-    do.call(what = what, args = args)
-}
 
 formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
@@ -110,103 +111,109 @@ formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
 
 
 
-plotDot.SingleCellExperiment <- function(
-    object,
-    genes,
-    perSample = TRUE,
-    colMin = -2.5,
-    colMax = 2.5,
-    dotMin = 0L,
-    dotScale = 6L,
-    color,
-    legend,
-    title = NULL
-) {
-    validObject(object)
-    assert(
-        .hasIdent(object),
-        isCharacter(genes),
-        isFlag(perSample),
-        isNumber(colMin),
-        isNumber(colMax),
-        isNumber(dotMin),
-        isNumber(dotScale),
-        isGGScale(color, scale = "continuous", aes = "colour", nullOK = TRUE),
-        isFlag(legend),
-        isString(title, nullOK = TRUE)
-    )
-
-    # Fetch the gene expression data.
-    data <- .fetchGeneData(
-        object = object,
-        genes = genes,
-        assay = "logcounts",
-        metadata = TRUE
-    )
-
-    # Prepare data for ggplot.
-    cols <- c("geneName", "sampleName", "ident")
-    data <- data %>%
-        as_tibble() %>%
-        group_by(!!!syms(cols)) %>%
-        summarize(
-            avgExp = mean(expm1(!!sym("logcounts"))),
-            # Consider making threshold user definable.
-            pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
-        ) %>%
-        ungroup() %>%
-        mutate(geneName = as.factor(!!sym("geneName"))) %>%
-        group_by(!!sym("geneName")) %>%
-        mutate(
-            avgExpScale = scale(!!sym("avgExp")),
-            avgExpScale = .minMax(
-                !!sym("avgExpScale"),
-                max = colMax,
-                min = colMin
-            )
-        ) %>%
-        arrange(!!!syms(cols), .by_group = TRUE)
-
-    # Apply our `dotMin` threshold.
-    data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
-
-    p <- ggplot(
-        data = data,
-        mapping = aes(
-            x = !!sym("geneName"),
-            y = !!sym("ident")
-        )
-    ) +
-        geom_point(
-            mapping = aes(
-                color = !!sym("avgExpScale"),
-                size = !!sym("pctExp")
-            ),
-            show.legend = legend
-        ) +
-        scale_radius(range = c(0L, dotScale)) +
-        labs(
-            x = NULL,
-            y = NULL
-        )
-
-    # Handling step for multiple samples, if desired.
-    if (
-        isTRUE(perSample) &&
-        isTRUE(.hasMultipleSamples(object))
+plotDot.SingleCellExperiment <-  # nolint
+    function(
+        object,
+        genes,
+        perSample = TRUE,
+        colMin = -2.5,
+        colMax = 2.5,
+        dotMin = 0L,
+        dotScale = 6L,
+        color,
+        legend,
+        title = NULL
     ) {
-        p <- p +
-            facet_wrap(
-                facets = vars(!!sym("sampleName"))
+        validObject(object)
+        assert(
+            .hasIdent(object),
+            isCharacter(genes),
+            isFlag(perSample),
+            isNumber(colMin),
+            isNumber(colMax),
+            isNumber(dotMin),
+            isNumber(dotScale),
+            isGGScale(
+                x = color,
+                scale = "continuous",
+                aes = "colour",
+                nullOK = TRUE
+            ),
+            isFlag(legend),
+            isString(title, nullOK = TRUE)
+        )
+
+        # Fetch the gene expression data.
+        data <- .fetchGeneData(
+            object = object,
+            genes = genes,
+            assay = "logcounts",
+            metadata = TRUE
+        )
+
+        # Prepare data for ggplot.
+        cols <- c("geneName", "sampleName", "ident")
+        data <- data %>%
+            as_tibble() %>%
+            group_by(!!!syms(cols)) %>%
+            summarize(
+                avgExp = mean(expm1(!!sym("logcounts"))),
+                # Consider making threshold user definable.
+                pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
+            ) %>%
+            ungroup() %>%
+            mutate(geneName = as.factor(!!sym("geneName"))) %>%
+            group_by(!!sym("geneName")) %>%
+            mutate(
+                avgExpScale = scale(!!sym("avgExp")),
+                avgExpScale = .minMax(
+                    !!sym("avgExpScale"),
+                    max = colMax,
+                    min = colMin
+                )
+            ) %>%
+            arrange(!!!syms(cols), .by_group = TRUE)
+
+        # Apply our `dotMin` threshold.
+        data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
+
+        p <- ggplot(
+            data = data,
+            mapping = aes(
+                x = !!sym("geneName"),
+                y = !!sym("ident")
             )
-    }
+        ) +
+            geom_point(
+                mapping = aes(
+                    color = !!sym("avgExpScale"),
+                    size = !!sym("pctExp")
+                ),
+                show.legend = legend
+            ) +
+            scale_radius(range = c(0L, dotScale)) +
+            labs(
+                x = NULL,
+                y = NULL
+            )
 
-    if (is(color, "ScaleContinuous")) {
-        p <- p + color
-    }
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            isTRUE(.hasMultipleSamples(object))
+        ) {
+            p <- p +
+                facet_wrap(
+                    facets = vars(!!sym("sampleName"))
+                )
+        }
 
-    p
-}
+        if (is(color, "ScaleContinuous")) {
+            p <- p + color
+        }
+
+        p
+    }
 
 formals(plotDot.SingleCellExperiment)[c(
     "color",
@@ -218,98 +225,99 @@ formals(plotDot.SingleCellExperiment)[c(
 
 
 
-plotViolin.SingleCellExperiment <- function(
-    object,
-    genes,
-    perSample = TRUE,
-    scale = c("count", "width", "area"),
-    color,
-    legend,
-    title = NULL
-) {
-    validObject(object)
-    assert(
-        isCharacter(genes),
-        isFlag(perSample),
-        isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
-        isFlag(legend),
-        isString(title, nullOK = TRUE)
-    )
-    scale <- match.arg(scale)
-
-    # Fetch the gene expression data.
-    data <- .fetchGeneData(
-        object = object,
-        genes = genes,
-        assay = "logcounts",
-        metadata = TRUE
-    )
-
-    # Handling step for multiple samples, if desired.
-    if (
-        isTRUE(perSample) &&
-        isTRUE(.hasMultipleSamples(object))
+plotViolin.SingleCellExperiment <-  # nolint
+    function(
+        object,
+        genes,
+        perSample = TRUE,
+        scale = c("count", "width", "area"),
+        color,
+        legend,
+        title = NULL
     ) {
-        x <- "sampleName"
-        interestingGroups <- interestingGroups(object)
-        if (
-            is.null(interestingGroups) ||
-            interestingGroups == "ident"
-        ) {
-            interestingGroups <- "sampleName"
-        }
-        colorMapping <- "interestingGroups"
-        colorLabs <- paste(interestingGroups, collapse = ":\n")
-    } else {
-        x <- "ident"
-        colorMapping <- x
-        colorLabs <- x
-    }
-
-    p <- ggplot(
-        data = as_tibble(data),
-        mapping = aes(
-            x = !!sym(x),
-            y = !!sym("logcounts"),
-            color = !!sym(colorMapping)
+        validObject(object)
+        assert(
+            isCharacter(genes),
+            isFlag(perSample),
+            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+            isFlag(legend),
+            isString(title, nullOK = TRUE)
         )
-    ) +
-        geom_jitter(show.legend = legend) +
-        geom_violin(
-            fill = NA,
-            scale = scale,
-            adjust = 1L,
-            show.legend = legend,
-            trim = TRUE
+        scale <- match.arg(scale)
+
+        # Fetch the gene expression data.
+        data <- .fetchGeneData(
+            object = object,
+            genes = genes,
+            assay = "logcounts",
+            metadata = TRUE
+        )
+
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            isTRUE(.hasMultipleSamples(object))
+        ) {
+            x <- "sampleName"
+            interestingGroups <- interestingGroups(object)
+            if (
+                is.null(interestingGroups) ||
+                interestingGroups == "ident"
+            ) {
+                interestingGroups <- "sampleName"
+            }
+            colorMapping <- "interestingGroups"
+            colorLabs <- paste(interestingGroups, collapse = ":\n")
+        } else {
+            x <- "ident"
+            colorMapping <- x
+            colorLabs <- x
+        }
+
+        p <- ggplot(
+            data = as_tibble(data),
+            mapping = aes(
+                x = !!sym(x),
+                y = !!sym("logcounts"),
+                color = !!sym(colorMapping)
+            )
         ) +
-        # Note that `scales = free_y` will hide the x-axis for some plots.
-        labs(title = title, color = colorLabs)
+            geom_jitter(show.legend = legend) +
+            geom_violin(
+                fill = NA,
+                scale = scale,
+                adjust = 1L,
+                show.legend = legend,
+                trim = TRUE
+            ) +
+            # Note that `scales = free_y` will hide the x-axis for some plots.
+            labs(title = title, color = colorLabs)
 
-    # Handling step for multiple samples, if desired.
-    if (
-        isTRUE(perSample) &&
-        isTRUE(.hasMultipleSamples(object))
-    ) {
-        p <- p +
-            facet_grid(
-                rows = vars(!!sym("ident")),
-                cols = vars(!!sym("geneName")),
-                scales = "free_y"
-            )
-    } else {
-        p <- p +
-            facet_wrap(
-                facets = vars(!!sym("geneName")),
-                scales = "free_y"
-            )
+        # Handling step for multiple samples, if desired.
+        if (
+            isTRUE(perSample) &&
+            isTRUE(.hasMultipleSamples(object))
+        ) {
+            p <- p +
+                facet_grid(
+                    rows = vars(!!sym("ident")),
+                    cols = vars(!!sym("geneName")),
+                    scales = "free_y"
+                )
+        } else {
+            p <- p +
+                facet_wrap(
+                    facets = vars(!!sym("geneName")),
+                    scales = "free_y"
+                )
+        }
+
+        if (is(color, "ScaleDiscrete")) {
+            p <- p + color
+        }
+
+        p
     }
-
-    if (is(color, "ScaleDiscrete")) {
-        p <- p + color
-    }
-
-    p
-}
 
 formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
     list(color = discreteColor, legend = legend)

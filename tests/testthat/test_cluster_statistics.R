@@ -1,12 +1,9 @@
 context("Cluster Statistics")
 
-# basejump SCE example doesn't contain clustering data.
-# data(sce, package = "basejump.data", envir = environment())
-
 data(seurat_small, known_markers_small, envir = environment())
 sce <- as(seurat_small, "SingleCellExperiment")
 
-group_vars <- dplyr::group_vars
+group_vars <- dplyr::group_vars  # nolint
 
 
 

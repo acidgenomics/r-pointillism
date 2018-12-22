@@ -315,7 +315,6 @@ setMethod(
 #
 # DESeq2 supports `weights` in assays automatically.
 .zinbwave.DESeq2 <- function(object) {  # nolint
-    # TODO Switch to using `design` generic.
     assert(.hasDesignFormula(object))
     # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
@@ -341,7 +340,6 @@ setMethod(
 
 
 .zinbwave.edgeR <- function(object) {  # nolint
-    # TODO Switch to using `design` generic.
     assert(.hasDesignFormula(object))
     # edgeR --------------------------------------------------------------------
     message("Running edgeR.")

@@ -52,7 +52,7 @@ calculated, the object will be returned unmodified, unless \code{recalculate = T
 \section{Methods (by class)}{
 \itemize{
 \item \code{seurat}: Coerces to \code{SingleCellExperiment} and stashes weights
-in the \code{weights} slot.
+in the \code{weights()} slot.
 }}
 
 \section{Parallelization}{
