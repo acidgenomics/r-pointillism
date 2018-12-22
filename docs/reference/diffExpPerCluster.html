@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Differential Expression per Cluster — diffExpPerCluster • pointillism</title>
+<title>Differential expression per cluster — diffExpPerCluster • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Differential Expression per Cluster — diffExpPerCluster" />
+<meta property="og:title" content="Differential expression per cluster — diffExpPerCluster" />
 
-<meta property="og:description" content="Differential Expression per Cluster" />
+<meta property="og:description" content="Differential expression per cluster" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -104,20 +104,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Differential Expression per Cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pointillism/blob/master/R/diffExpPerCluster-methods.R'><code>R/diffExpPerCluster-methods.R</code></a></small>
+    <h1>Differential expression per cluster</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/diffExpPerCluster-methods.R'><code>R/diffExpPerCluster-methods.R</code></a></small>
     <div class="hidden name"><code>diffExpPerCluster.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Differential Expression per Cluster</p>
+    <p>Differential expression per cluster</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
+    <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>group</span>,
   <span class='no'>numerator</span>, <span class='no'>denominator</span>, <span class='no'>...</span>)
 
@@ -133,23 +131,24 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
-    </tr>
-    <tr>
       <th>group</th>
-      <td><p><code>string</code>. Group of interest for differential expression per
-cluster. Must be a <code>factor</code> column in <code>colData()</code>.</p></td>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Group of interest for differential expression per cluster. Must be a
+<code>factor</code> column in <code><a href='https://www.rdocumentation.org/packages/SummarizedExperiment/topics/SummarizedExperiment-class'>colData()</a></code>.</p></td>
     </tr>
     <tr>
       <th>numerator</th>
-      <td><p><code>character</code>. Cells to use in the numerator of the contrast
-(e.g. treatment).</p></td>
+      <td><p><code>character</code>.
+Cells to use in the numerator of the contrast (e.g. treatment).</p></td>
     </tr>
     <tr>
       <th>denominator</th>
-      <td><p><code>character</code>. Cells to use in the denominator of the
-contrast (e.g. control).</p></td>
+      <td><p><code>character</code>.
+Cells to use in the denominator of the contrast (e.g. control).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -163,8 +162,8 @@ contrast (e.g. control).</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Cluster identity (<code>ident</code>) must be defined in <code>colData()</code> for this
-function to work.</p>
+    <p>Cluster identity (<code>ident</code>) must be defined in
+<code><a href='https://www.rdocumentation.org/packages/SummarizedExperiment/topics/SummarizedExperiment-class'>colData()</a></code> for this function to work.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -223,7 +222,7 @@ function to work.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

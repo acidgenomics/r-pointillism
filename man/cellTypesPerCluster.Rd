@@ -4,7 +4,7 @@
 \name{cellTypesPerCluster}
 \alias{cellTypesPerCluster}
 \alias{cellTypesPerCluster,KnownMarkers-method}
-\title{Cell Types per Cluster}
+\title{Cell types per cluster}
 \usage{
 \S4method{cellTypesPerCluster}{KnownMarkers}(object, min = 1L,
   max = Inf)

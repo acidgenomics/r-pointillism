@@ -1,5 +1,3 @@
-#' Cell Types per Cluster
-#'
 #' @name cellTypesPerCluster
 #' @inherit bioverbs::cellTypesPerCluster
 #' @inheritParams basejump::params
