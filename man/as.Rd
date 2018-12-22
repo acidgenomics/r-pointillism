@@ -11,7 +11,7 @@
 \alias{coerce,seurat,SummarizedExperiment-method}
 \alias{coerce,SeuratMarkers,tbl_df-method}
 \alias{coerce,SeuratMarkersPerCluster,tbl_df-method}
-\title{Force an Object to Belong to a Class}
+\title{Force an object to belong to a class}
 \description{
 Coerce an object to a given class.
 }
