@@ -245,7 +245,12 @@ plotPCA.SingleCellExperiment <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
-            args = matchArgsToDoCall(args = list(reducedDim = "PCA"))
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "PCA"
+                )
+            )
         )
 
     }
@@ -257,7 +262,12 @@ plotTSNE.SingleCellExperiment <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
-            args = matchArgsToDoCall(args = list(reducedDim = "TSNE"))
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "TSNE"
+                )
+            )
         )
     }
 
@@ -267,7 +277,12 @@ plotUMAP.SingleCellExperiment <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
-            args = matchArgsToDoCall(args = list(reducedDim = "UMAP"))
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "UMAP"
+                )
+            )
         )
     }
 
