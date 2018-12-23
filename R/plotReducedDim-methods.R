@@ -1,4 +1,5 @@
 #' @name plotReducedDim
+#' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
 #' @inherit bioverbs::plotReducedDim
