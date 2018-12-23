@@ -3,6 +3,8 @@
 \docType{methods}
 \name{plotGene}
 \alias{plotGene}
+\alias{plotDot}
+\alias{plotViolin}
 \alias{plotGene,SingleCellExperiment-method}
 \alias{plotGene,seurat-method}
 \alias{plotDot,SingleCellExperiment-method}

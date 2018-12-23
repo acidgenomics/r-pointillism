@@ -3,6 +3,9 @@
 \docType{methods}
 \name{plotReducedDim}
 \alias{plotReducedDim}
+\alias{plotPCA}
+\alias{plotTSNE}
+\alias{plotUMAP}
 \alias{plotReducedDim,SingleCellExperiment-method}
 \alias{plotReducedDim,seurat-method}
 \alias{plotTSNE,SingleCellExperiment-method}

@@ -1,4 +1,5 @@
 #' @name plotGene
+#' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotGene
 #' @inheritParams basejump::params
 #' @inheritParams ggplot2::geom_violin
