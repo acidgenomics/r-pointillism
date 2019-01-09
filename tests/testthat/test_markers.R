@@ -11,7 +11,7 @@ test_that("CellTypeMarkers", {
         package = "pointillism"
     )
     x <- CellTypeMarkers(
-        object = import(file, dataFrame = "DataFrame"),
+        object = as(import(file), "DataFrame"),
         gene2symbol = Gene2Symbol(seurat_small)
     )
     expect_is(x, "CellTypeMarkers")
