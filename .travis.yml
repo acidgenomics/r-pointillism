@@ -11,6 +11,10 @@ matrix:
   - os: osx
     r: release
 
+branches:
+  only:
+  - master
+
 env:
   global:
     - LINTR_COMMENT_BOT=true
