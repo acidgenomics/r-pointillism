@@ -1,97 +1,148 @@
-#' Plot Reduced Dimensions
+#' @name plotReducedDim
+#' @aliases plotPCA plotTSNE plotUMAP
+#' @author Michael Steinbaugh, Rory Kirchner
+#' @include globals.R
+#' @inherit bioverbs::plotReducedDim
+#' @inheritParams basejump::params
 #'
-#' - t-SNE: **t**-distributed **S**tochastic **N**eighbor **E**mbedding.
+#' @details
+#' Colors using `ident` column defined in
+#' [`colData()`][SummarizedExperiment::colData] by default.
+#'
+#' @section Reduction types:
+#'
 #' - PCA: **P**rincipal **C**omponent **A**nalysis.
+#' - t-SNE: **t**-distributed **S**tochastic **N**eighbor **E**mbedding.
 #' - UMAP: **U**niform **M**anifold **A**pproximation and **P**rojection.
 #'
-#' @name plotReducedDim
-#' @family Clustering Functions
-#' @author Michael Steinbaugh, Rory Kirchner
+#' @section UMAP calculation:
 #'
-#' @importFrom BiocGenerics plotPCA
+#' [UMAP][] calculation in R requires the [Python][] module `umap-learn`.
 #'
-#' @inheritParams general
+#' We recommend installing this with [conda][]:
 #'
-#' @note [plotUMAP()] requires the Python dependency `umap-learn`. We recommend
-#' installing this with conda: `conda install -c conda-forge umap-learn`.
+#' ```
+#' conda install -c conda-forge umap-learn
+#' ```
+#'
+#' The UMAP module can be loaded in R using [reticulate][]. Reticulate works
+#' reliably when setting `RETICULATE_PYTHON` to point to your conda python
+#' binary. Export this variable in  `~/.Renviron`.
+#'
+#' See `base::Sys.getenv` for more information on the R system environment.
+#'
+#' [conda]: https://conda.io
+#' [Python]: https://www.python.org
+#' [UMAP]: https://github.com/lmcinnes/umap
+#' [reticulate]: https://rstudio.github.io/reticulate/
 #'
 #' @seealso
-#' - [Seurat::DimPlot()].
-#' - [UMAP GitHub repo](https://github.com/lmcinnes/umap).
+#' - `Seurat::DimPlot`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
-#' @return `ggplot`.
-#'
 #' @examples
-#' object <- sce_small
+#' data(seurat_small)
+#' object <- seurat_small
 #'
-#' # t-SNE
+#' ## t-SNE
 #' plotTSNE(object)
 #' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
 #'
-#' # UMAP
+#' ## UMAP
 #' plotUMAP(object)
 #'
-#' # PCA
+#' ## PCA
 #' plotPCA(object)
 NULL
 
 
 
-#' @rdname plotReducedDim
+#' @importFrom bioverbs plotReducedDim
+#' @aliases NULL
 #' @export
-setMethod(
-    "plotReducedDim",
-    signature("SingleCellExperiment"),
+bioverbs::plotReducedDim
+
+#' @importFrom BiocGenerics plotPCA
+#' @aliases NULL
+#' @export
+BiocGenerics::plotPCA
+
+#' @importFrom bioverbs plotTSNE
+#' @aliases NULL
+#' @export
+bioverbs::plotTSNE
+
+#' @importFrom bioverbs plotUMAP
+#' @aliases NULL
+#' @export
+bioverbs::plotUMAP
+
+
+
+# Constructors =================================================================
+plotReducedDim.SingleCellExperiment <-  # nolint
     function(
         object,
         reducedDim,
-        dimsUse = c(1L, 2L),
-        interestingGroups = "ident",
-        color = getOption("pointillism.discrete.color", NULL),
-        pointSize = getOption("pointillism.pointSize", 0.75),
-        pointAlpha = getOption("pointillism.pointAlpha", 0.75),
-        pointsAsNumbers = FALSE,
-        label = getOption("pointillism.label", TRUE),
-        labelSize = getOption("pointillism.labelSize", 6L),
-        dark = getOption("pointillism.dark", FALSE),
-        legend = getOption("pointillism.legend", TRUE),
+        dimsUse,
+        interestingGroups = NULL,
+        color,
+        pointSize,
+        pointAlpha,
+        pointsAsNumbers,
+        label,
+        labelSize,
+        dark,
+        legend,
         title = NULL
     ) {
-        .assertHasIdent(object)
-        assert_is_a_string(reducedDim)
-        assertIsImplicitInteger(dimsUse)
-        assert_is_of_length(dimsUse, 2L)
-        assert_is_a_string(interestingGroups)
-        interestingGroups(object) <- interestingGroups
-        assertIsColorScaleDiscreteOrNULL(color)
-        assert_is_a_number(pointSize)
-        assert_is_a_number(pointAlpha)
-        assert_is_a_bool(pointsAsNumbers)
-        assert_is_a_bool(label)
-        assert_is_a_number(labelSize)
-        assert_is_a_bool(dark)
-        assert_is_a_bool(legend)
-        assertIsAStringOrNULL(title)
+        validObject(object)
+        assert(
+            .hasIdent(object),
+            isScalar(reducedDim),
+            isIntegerish(dimsUse),
+            hasLength(dimsUse, n = 2L),
+            isString(interestingGroups, nullOK = TRUE),
+            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+            isNumber(pointSize),
+            isNumber(pointAlpha),
+            isFlag(pointsAsNumbers),
+            isFlag(label),
+            isNumber(labelSize),
+            isFlag(dark),
+            isFlag(legend),
+            isString(title, nullOK = TRUE)
+        )
+
+        # Color by `ident` factor by default.
+        if (is.null(interestingGroups)) {
+            interestingGroups <- "ident"
+        }
 
         data <- .fetchReducedDimData(
             object = object,
             reducedDim = reducedDim,
             dimsUse = dimsUse
         )
-        assert_is_data.frame(data)
-        assert_is_subset(
-            c("x", "y", "centerX", "centerY"),
-            colnames(data)
+        assert(
+            is(data, "DataFrame"),
+            isSubset(
+                x = c("x", "y", "centerX", "centerY", "interestingGroups"),
+                y = colnames(data)
+            )
         )
 
-        # Get the x- and y-axis labels (e.g. tSNE_1, tSNE_2)
+        # Color by `ident` factor by default (see above).
+        if (interestingGroups == "ident") {
+            data[["interestingGroups"]] <- data[["ident"]]
+        }
+
+        # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
         axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-        assert_is_character(axes)
-        assert_is_subset(axes, colnames(data))
+        assert(isSubset(axes, colnames(data)))
 
         p <- ggplot(
-            data = data,
+            data = as_tibble(data),
             mapping = aes(
                 x = !!sym("x"),
                 y = !!sym("y"),
@@ -105,7 +156,11 @@ setMethod(
             )
 
         if (isTRUE(pointsAsNumbers)) {
-            if (pointSize < 4L) pointSize <- 4L
+            # Increase the size, if necessary.
+            if (pointSize < 4L) {
+                message("Increase pointSize to 4.")
+                pointSize <- 4L
+            }
             p <- p +
                 geom_text(
                     mapping = aes(
@@ -146,7 +201,7 @@ setMethod(
                 )
         }
 
-        # Dark mode
+        # Dark mode.
         if (isTRUE(dark)) {
             p <- p + theme_midnight()
         }
@@ -155,65 +210,103 @@ setMethod(
             p <- p + color
         }
 
-        # Improve the axis breaks
+        # Improve the axis breaks.
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
 
         p
     }
+
+formals(plotReducedDim.SingleCellExperiment)[c(
+    "color",
+    "dark",
+    "dimsUse",
+    "label",
+    "labelSize",
+    "legend",
+    "pointAlpha",
+    "pointSize",
+    "pointsAsNumbers"
+)] <- list(
+    color = discreteColor,
+    dark = dark,
+    dimsUse = dimsUse,
+    label = label,
+    labelSize = labelSize,
+    legend = legend,
+    pointAlpha = pointAlpha,
+    pointSize = pointSize,
+    pointsAsNumbers = pointsAsNumbers
 )
 
 
 
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotReducedDim",
-    signature("seurat"),
-    getMethod("plotReducedDim", "SingleCellExperiment")
-)
+plotPCA.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "PCA"
+                )
+            )
+        )
+
+    }
 
 
 
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotPCA",
-    signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "PCA",
-            ...
+
+plotTSNE.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "TSNE"
+                )
+            )
         )
     }
-)
 
 
 
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotPCA",
-    signature("seurat"),
-    getMethod("plotPCA", "SingleCellExperiment")
-)
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    "plotTSNE",
-    signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "TSNE",
-            ...
+plotUMAP.SingleCellExperiment <-  # nolint
+    function() {
+        do.call(
+            what = plotReducedDim,
+            args = matchArgsToDoCall(
+                args = list(
+                    object = object,
+                    reducedDim = "UMAP"
+                )
+            )
         )
     }
+
+
+
+# Formals ======================================================================
+# Set the formals for the convenience functions.
+f <- formals(plotReducedDim.SingleCellExperiment)
+f <- f[setdiff(names(f), "reducedDim")]
+formals(plotPCA.SingleCellExperiment) <- f
+formals(plotTSNE.SingleCellExperiment) <- f
+formals(plotUMAP.SingleCellExperiment) <- f
+rm(f)
+
+
+
+# Methods ======================================================================
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotReducedDim",
+    signature = signature("SingleCellExperiment"),
+    definition = plotReducedDim.SingleCellExperiment
 )
 
 
@@ -221,9 +314,9 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotTSNE",
-    signature("seurat"),
-    getMethod("plotTSNE", "SingleCellExperiment")
+    f = "plotReducedDim",
+    signature = signature("seurat"),
+    definition = plotReducedDim.SingleCellExperiment
 )
 
 
@@ -231,15 +324,9 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotUMAP",
-    signature("SingleCellExperiment"),
-    function(object, ...) {
-        plotReducedDim(
-            object = object,
-            reducedDim = "UMAP",
-            ...
-        )
-    }
+    f = "plotTSNE",
+    signature = signature("SingleCellExperiment"),
+    definition = plotTSNE.SingleCellExperiment
 )
 
 
@@ -247,7 +334,47 @@ setMethod(
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    "plotUMAP",
-    signature("seurat"),
-    getMethod("plotUMAP", "SingleCellExperiment")
+    f = "plotTSNE",
+    signature = signature("seurat"),
+    definition = plotTSNE.SingleCellExperiment
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("SingleCellExperiment"),
+    definition = plotUMAP.SingleCellExperiment
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("seurat"),
+    definition = plotUMAP.SingleCellExperiment
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("SingleCellExperiment"),
+    definition = plotPCA.SingleCellExperiment
+)
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("seurat"),
+    definition = plotPCA.SingleCellExperiment
 )

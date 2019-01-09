@@ -1,114 +1,143 @@
-#' Plot Cell Types per Cluster
+#' @name plotCellTypesPerCluster
+#' @include globals.R
+#' @inherit bioverbs::plotCellTypesPerCluster
+#' @inheritParams basejump::params
 #'
+#' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
 #' type (per unbiased cluster). Cell types with too few (`min` cutoff) or too
 #' many (`max` cutoff) marker genes will be skipped.
 #'
-#' @name plotCellTypesPerCluster
-#' @family Clustering Functions
-#' @author Michael Steinbaugh
-#'
-#' @inheritParams general
-#' @param markers `grouped_df`. Cell types per cluster data. This must be the
-#'   return from [cellTypesPerCluster()].
+#' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' markers <- cellTypesPerCluster(known_markers_detected_small)
-#' # Subset for speed.
-#' markers <- head(markers, n = 2L)
-#' glimpse(markers)
-#'
-#' # Let's plot the first row, as an example.
+#' data(seurat_small, known_markers_small)
 #' plotCellTypesPerCluster(
 #'     object = seurat_small,
-#'     markers = markers
+#'     markers = known_markers_small
 #' )
 NULL
 
 
 
-#' @rdname plotCellTypesPerCluster
+#' @importFrom bioverbs plotCellTypesPerCluster
+#' @aliases NULL
 #' @export
-setMethod(
-    "plotCellTypesPerCluster",
-    signature("SingleCellExperiment"),
+bioverbs::plotCellTypesPerCluster
+
+
+
+plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
-        reducedDim = c("TSNE", "UMAP"),
-        expression = c("mean", "median", "sum"),
+        min = 1L,
+        max = Inf,
+        reducedDim,
+        expression,
         headerLevel = 2L,
+        progress = FALSE,
         ...
     ) {
-        # Legacy arguments -----------------------------------------------------
-        call <- match.call()
-        if ("cellTypesPerCluster" %in% names(call)) {
-            stop("Use `markers` instead of `cellTypesPerCluster`")
+        # Passthrough: color, dark.
+        validObject(object)
+        validObject(markers)
+        assert(isScalar(reducedDim))
+        expression <- match.arg(expression)
+        assert(
+            isHeaderLevel(headerLevel),
+            isFlag(progress)
+        )
+        if (isTRUE(progress)) {
+            applyFun <- pblapply
+        } else {
+            applyFun <- lapply
         }
 
-        # Assert checks --------------------------------------------------------
-        # Passthrough: color, dark
-        validObject(object)
-        stopifnot(is(markers, "grouped_df"))
-        assert_has_rows(markers)
-        assert_are_identical(
-            x = group_vars(markers),
-            y = "cluster"
+        markers <- cellTypesPerCluster(
+            object = markers,
+            min = min,
+            max = max
         )
-        assert_is_subset(c("cellType", "rowname"), colnames(markers))
-        reducedDim <- match.arg(reducedDim)
-        expression <- match.arg(expression)
-        assertIsAHeaderLevel(headerLevel)
+        assert(
+            is(markers, "grouped_df"),
+            hasRows(markers)
+        )
 
-        markers <- markers %>%
-            ungroup() %>%
-            mutate_if(is.factor, droplevels)
+        # Output Markdown headers per cluster.
+        clusters <- markers[["cluster"]] %>%
+            as.character() %>%
+            unique()
+        assert(isNonEmpty(clusters))
 
-        # Output Markdown headers per cluster
-        clusters <- levels(markers[["cluster"]])
-        assert_is_non_empty(clusters)
-
-        return <- pblapply(clusters, function(cluster) {
+        return <- applyFun(clusters, function(cluster) {
             markdownHeader(
                 text = paste("Cluster", cluster),
                 level = headerLevel,
                 tabset = TRUE,
                 asis = TRUE
             )
-            subset <- markers %>%
-                .[.[["cluster"]] == cluster, , drop = FALSE]
-            assert_has_rows(subset)
-            lapply(seq_len(nrow(subset)), function(x) {
-                cellType <- subset[x, , drop = FALSE]
-                genes <- pull(cellType, "rowname") %>%
-                    as.character() %>%
-                    strsplit(", ") %>%
-                    .[[1L]]
-                title <- as.character(pull(cellType, "cellType"))
-                markdownHeader(
-                    text = title,
-                    level = headerLevel + 1L,
-                    asis = TRUE
-                )
-                # Modify the title by adding the cluster number (for the plot)
-                title <- paste(paste0("Cluster ", cluster, ":"), title)
-                p <- plotMarker(
-                    object = object,
-                    genes = genes,
-                    reducedDim = reducedDim,
-                    expression,
-                    ...
-                )
-                show(p)
-                invisible(p)
-            })
+            clusterData <- filter(markers, !!sym("cluster") == !!cluster)
+            if (nrow(clusterData) == 0L) {
+                message(paste0("No markers for cluster ", cluster, "."))
+                return(invisible())
+            }
+            assert(hasRows(clusterData))
+            cellTypes <- clusterData[["cellType"]]
+            assert(is.factor(cellTypes))
+            lapply(
+                X = cellTypes,
+                FUN = function(cellType) {
+                    title <- as.character(cellType)
+                    markdownHeader(
+                        text = title,
+                        level = headerLevel + 1L,
+                        asis = TRUE
+                    )
+                    # Modify the title by adding the cluster number.
+                    title <- paste(paste0("Cluster ", cluster, ":"), title)
+                    cellData <-
+                        filter(clusterData, !!sym("cellType") == !!cellType)
+                    assert(nrow(cellData) == 1L)
+                    genes <- cellData %>%
+                        pull("name") %>%
+                        as.character() %>%
+                        strsplit(", ") %>%
+                        .[[1L]]
+                    if (!hasLength(genes)) {
+                        return(invisible())
+                    }
+                    p <- plotMarker(
+                        object = object,
+                        genes = genes,
+                        reducedDim = reducedDim,
+                        expression = expression,
+                        ...
+                    )
+                    show(p)
+                    invisible(p)
+                }
+            )
         })
 
         invisible(return)
     }
+formals(plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <-
+    reducedDim
+formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
+    expression
+
+
+
+#' @rdname plotCellTypesPerCluster
+#' @export
+setMethod(
+    f = "plotCellTypesPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = plotCellTypesPerCluster.SingleCellExperiment
 )
 
 
@@ -116,7 +145,7 @@ setMethod(
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
-    "plotCellTypesPerCluster",
-    signature("seurat"),
-    getMethod("plotCellTypesPerCluster", "SingleCellExperiment")
+    f = "plotCellTypesPerCluster",
+    signature = signature("seurat"),
+    definition = plotCellTypesPerCluster.SingleCellExperiment
 )

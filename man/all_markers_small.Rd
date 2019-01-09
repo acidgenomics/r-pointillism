@@ -3,24 +3,16 @@
 \docType{data}
 \name{all_markers_small}
 \alias{all_markers_small}
-\title{Sanitized Markers Example}
-\format{An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 464 rows and 18 columns.}
+\title{Sanitized markers example}
+\format{An object of class \code{SeuratMarkersPerCluster} of dimension 43 x 73 x 45 x 47 x 8 x 8 x 8 x 8.}
 \usage{
 all_markers_small
 }
 \description{
-Sanitized Markers Example
+Sanitized markers example
 }
 \examples{
-glimpse(all_markers_small)
+data(all_markers_small)
+all_markers_small
 }
-\seealso{
-Other Minimal Example Data: \code{\link{known_markers_detected_small}},
-  \code{\link{known_markers_small}},
-  \code{\link{sce_small}}, \code{\link{seurat_small}}
-}
-\author{
-Michael Steinbaugh
-}
-\concept{Minimal Example Data}
 \keyword{datasets}

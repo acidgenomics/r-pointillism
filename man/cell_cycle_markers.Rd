@@ -4,22 +4,16 @@
 \name{cell_cycle_markers}
 \alias{cell_cycle_markers}
 \alias{cellCycleMarkers}
-\title{Cell-Cycle Markers}
+\title{Cell-cycle markers}
 \format{An object of class \code{list} of length 3.}
 \usage{
 cell_cycle_markers
 }
 \description{
-Cell-Cycle Markers
+Cell-cycle markers
 }
 \examples{
-names(cell_cycle_markers)
+data(cell_cycle_markers)
+cell_cycle_markers
 }
-\seealso{
-Other Marker Data: \code{\link{cell_type_markers}}
-}
-\author{
-Michael Steinbaugh
-}
-\concept{Marker Data}
 \keyword{datasets}

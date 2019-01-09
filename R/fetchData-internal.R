@@ -1,30 +1,81 @@
+#' Fetch Data
+#' @include globals.R
+#' @noRd
+NULL
+
+
+
 .fetchGeneData <- function(
     object,
     genes,
     assay = "logcounts",
-    gene2symbol = FALSE
+    metadata = FALSE
 ) {
-    assert_is_character(genes)
-    assert_has_no_duplicates(genes)
-    assert_is_a_string(assay)
-    assert_is_subset(assay, assayNames(object))
-    assert_is_a_bool(gene2symbol)
+    validObject(object)
+    object <- as(object, "SingleCellExperiment")
+    assert(
+        isString(assay),
+        isSubset(assay, assayNames(object)),
+        isFlag(metadata)
+    )
 
-    counts <- assays(object)[[assay]]
-    assert_is_subset(genes, rownames(object))
-    counts <- counts[genes, , drop = FALSE]
-    counts <- as.matrix(counts)
+    rownames <- mapGenesToRownames(object, genes)
+    assert(isSubset(rownames, rownames(object)))
 
-    # Convert gene IDs to gene names (symbols)
-    if (isTRUE(gene2symbol) && isTRUE(.useGene2symbol(object))) {
-        g2s <- gene2symbol(object)
-        assertIsGene2symbol(g2s)
-        g2s <- g2s[genes, , drop = FALSE]
-        assert_are_identical(rownames(counts), g2s[["geneID"]])
-        rownames(counts) <- make.unique(g2s[["geneName"]])
+    counts <- assays(object) %>%
+        .[[assay]] %>%
+        .[rownames, , drop = FALSE]
+
+    # Transpose, putting the gene rownames into the columns.
+    if (is(counts, "sparseMatrix")) {
+        t <- Matrix::t
+    }
+    data <- t(counts)
+    # Ensure we're not accidentally coercing the matrix to a different class.
+    assert(identical(class(counts), class(data)))
+
+    # Early return the transposed matrix, if we don't want metadata.
+    # This return is used by `.fetchReducedDimExpressionData`.
+    if (!isTRUE(metadata)) {
+        return(data)
     }
 
-    t(counts)
+    # Coerce the counts matrix to a DataFrame.
+    data <- as(as.matrix(data), "DataFrame")
+
+    # Always include "ident" and "sampleName" using `metrics` here.
+    # This ensures `sampleName` and `interestingGroups` are always defined.
+    colData <- metrics(object, return = "DataFrame")
+    assert(
+        identical(rownames(data), rownames(colData)),
+        isSubset(
+            x = c("ident", "interestingGroups", "sampleName"),
+            y = colnames(colData)
+        )
+    )
+
+    # Bind the counts and interesting groups columns.
+    assert(areDisjointSets(colnames(data), colnames(colData)))
+    data <- cbind(data, colData)
+
+    # Gather into long format.
+    # Here we're putting the genes into a "rowname" column.
+    data <- data %>%
+        as_tibble(rownames = "rowname") %>%
+        gather(
+            key = "rowname",
+            value = !!sym(assay),
+            !!rownames
+        ) %>%
+        group_by(!!sym("rowname"))
+
+    # Join the geneID and geneName columns by the "rowname" column.
+    g2s <- Gene2Symbol(object)
+    assert(isNonEmpty(g2s), hasRownames(g2s))
+    g2s <- as(g2s, "tbl_df")
+    data <- left_join(data, g2s, by = "rowname")
+
+    as(data, "DataFrame")
 }
 
 
@@ -32,32 +83,47 @@
 .fetchReducedDimData <- function(
     object,
     reducedDim,
-    dimsUse = c(1L, 2L)
+    dimsUse = seq_len(2L)
 ) {
+    validObject(object)
     object <- as(object, "SingleCellExperiment")
-    .assertHasIdent(object)
-    assert_is_a_string(reducedDim)
-    assertIsImplicitInteger(dimsUse)
-    assert_is_of_length(dimsUse, 2L)
+    assert(
+        .hasIdent(object),
+        isScalar(reducedDim),
+        isIntegerish(dimsUse),
+        hasLength(dimsUse, n = 2L)
+    )
 
-    data <- slot(object, "reducedDims")[[reducedDim]]
-    if (!is.matrix(data)) {
-        stop(
-            paste(reducedDim, "reduced dimension not calculated"),
-            call. = FALSE
+    # Reduced dimension coordinates.
+    assert(isSubset(reducedDim, reducedDimNames(object)))
+    reducedDimData <- reducedDims(object)[[reducedDim]]
+    # Coerce to DataFrame, for `cbind` call below.
+    reducedDimData <- as(reducedDimData, "DataFrame")
+
+    # Cellular barcode metrics.
+    colData <- metrics(object, return = "DataFrame")
+    assert(
+        isSubset("ident", colnames(colData)),
+        identical(
+            x = rownames(reducedDimData),
+            y = rownames(colData)
+        ),
+        areDisjointSets(
+            x = colnames(reducedDimData),
+            y = colnames(colData)
         )
-    }
-    data <- as.data.frame(data)
+    )
 
-    metrics <- metrics(object)
-    assert_are_identical(rownames(data), rownames(metrics))
+    dimCols <- colnames(reducedDimData)[dimsUse]
+    assert(is.character(dimCols))
 
-    dimCols <- colnames(data)[dimsUse]
-    assert_is_character(dimCols)
+    # Bind the data frames.
+    data <- cbind(reducedDimData, colData)
+    assert(is(data, "DataFrame"))
 
-    cbind(data, metrics) %>%
-        rownames_to_column() %>%
-        # Group by ident here for center calculations
+    # Coerce to long format DataFrame.
+    data <- data %>%
+        as_tibble() %>%
         group_by(!!sym("ident")) %>%
         mutate(
             x = !!sym(dimCols[[1L]]),
@@ -65,10 +131,16 @@
             centerX = median(!!sym(dimCols[[1L]])),
             centerY = median(!!sym(dimCols[[2L]]))
         ) %>%
-        ungroup() %>%
-        as.data.frame() %>%
-        column_to_rownames()
+        as("DataFrame")
+    assert(
+        hasRownames(data),
+        identical(rownames(data), colnames(object))
+    )
+    data
 }
+
+formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
+    list(dimsUse = dimsUse, reducedDim = reducedDim)
 
 
 
@@ -77,25 +149,45 @@
     genes,
     reducedDim
 ) {
-    assert_is_subset(genes, rownames(object))
-
-    # Log counts
-    geneData <- .fetchGeneData(
-        object = object,
-        genes = genes,
-        assay = "logcounts"
+    validObject(object)
+    assert(
+        is.character(genes),
+        isScalar(reducedDim)
     )
 
-    # Expression columns
-    mean <- rowMeans(geneData)
-    median <- rowMedians(geneData)
-    sum <- rowSums(geneData)
+    rownames <- mapGenesToRownames(object, genes = genes)
 
-    # Reduced dim data
+    # Transposed log counts matrix, with genes in the columns.
+    geneCounts <- .fetchGeneData(
+        object = object,
+        genes = rownames,
+        assay = "logcounts",
+        metadata = FALSE
+    )
+    assert(identical(
+        x = colnames(geneCounts),
+        y = as.character(rownames)
+    ))
+
+    # Keep the supported operations sparse.
+    if (is(geneCounts, "sparseMatrix")) {
+        rowMeans <- Matrix::rowMeans
+        rowSums <- Matrix::rowSums
+    }
+
+    # Calculate the expression summary columns.
+    # Note that `rowMedians` currently isn't supported for sparse data.
+    mean <- rowMeans(geneCounts)
+    sum <- rowSums(geneCounts)
+
+    # Fetch reduced dim data.
     reducedDimData <- .fetchReducedDimData(
         object = object,
         reducedDim = reducedDim
     )
 
-    cbind(reducedDimData, mean, median, sum)
+    data <- cbind(reducedDimData, mean, sum)
+    assert(is(data, "DataFrame"))
+    data
 }
+formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim

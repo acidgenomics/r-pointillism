@@ -2,7 +2,7 @@
 
 [![Travis CI](https://travis-ci.org/steinbaugh/pointillism.svg?branch=master)](https://travis-ci.org/steinbaugh/pointillism)
 [![Codecov](https://codecov.io/gh/steinbaugh/pointillism/branch/master/graph/badge.svg)](https://codecov.io/gh/steinbaugh/pointillism)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 [R][] package for for single-cell RNA-seq clustering analysis.
 
@@ -18,24 +18,8 @@ We recommend installing the package with [BiocManager][].
 if (!require("BiocManager")) {
     install.packages("BiocManager")
 }
-BiocManager::install(
-    pkgs = c(
-        "devtools",
-        "remotes",
-        "GenomeInfoDbData"
-    )
-)
-BiocManager::install(
-    pkgs = "steinbaugh/pointillism",
-    dependencies = c("Depends", "Imports", "Suggests")
-)
-```
-
-For [R][] < 3.5, [BiocManager][] is not supported. Use `BiocInstaller::biocLite()` instead of `BiocManager::install()`. This requires sourcing the legacy [Bioconductor][] `biocLite.R` script.
-
-```r
-# try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
+BiocManager::install("remotes")
+BiocManager::install("steinbaugh/pointillism")
 ```
 
 ## Supported data classes
@@ -51,7 +35,7 @@ source("https://bioconductor.org/biocLite.R")
 
 ## Markers
 
-Shared [cell-cycle markers][] and [cell-type markers][] are available on [Google Sheets][]. Contact [Michael Steinbaugh][] if you'd like to contribute to this list, and he'll enable write access.
+Shared [cell-cycle markers][] and [cell-type markers][] are available on [Google Sheets][]. Contact [Michael Steinbaugh][] if you'd like to contribute to this list.
 
 ## Troubleshooting
 

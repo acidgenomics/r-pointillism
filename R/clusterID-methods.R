@@ -1,27 +1,39 @@
-#' Cluster Identity
-#'
 #' @name clusterID
-#' @family Marker Functions
-#' @author Michael Steinbaugh
-#'
-#' @inheritParams general
-#'
-#' @return `factor`.
-#'
+#' @inherit bioverbs::clusterID
+#' @inheritParams basejump::params
 #' @examples
-#' clusterID(sce_small)
+#' data(seurat_small)
+#' x <- clusterID(seurat_small)
+#' head(x)
+#' table(x)
 NULL
+
+
+
+#' @importFrom bioverbs clusterID
+#' @aliases NULL
+#' @export
+bioverbs::clusterID
+
+
+
+clusterID.SingleCellExperiment <-  # nolint
+    function(object) {
+        object <- as(object, "SingleCellExperiment")
+        x <- colData(object)[["ident"]]
+        assert(is.factor(x))
+        names(x) <- colnames(object)
+        x
+    }
 
 
 
 #' @rdname clusterID
 #' @export
 setMethod(
-    "clusterID",
-    signature("SingleCellExperiment"),
-    function(object) {
-        colData(object)[["ident"]]
-    }
+    f = "clusterID",
+    signature = signature("SingleCellExperiment"),
+    definition = clusterID.SingleCellExperiment
 )
 
 
@@ -29,9 +41,7 @@ setMethod(
 #' @rdname clusterID
 #' @export
 setMethod(
-    "clusterID",
-    signature("seurat"),
-    function(object) {
-        slot(object, "ident")
-    }
+    f = "clusterID",
+    signature = signature("seurat"),
+    definition = clusterID.SingleCellExperiment
 )

@@ -1,64 +1,73 @@
-#' Plot Top Markers
+#' @name plotTopMarkers
+#' @include globals.R
+#' @inherit bioverbs::plotTopMarkers
+#' @inheritParams basejump::params
+#' @inheritParams topMarkers
 #'
+#' @details
 #' The number of markers to plot is determined by the output of the
 #' [topMarkers()] function. If you want to reduce the number of genes to plot,
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
 #'
-#' @name plotTopMarkers
-#' @family Clustering Functions
-#' @author Michael Steinbaugh
-#'
-#' @inheritParams general
-#' @inheritParams topMarkers
-#' @param markers `grouped_df`. Marker genes, grouped by "`cluster`".
-#'
-#' @return Show graphical output. Invisibly return `ggplot` `list`.
+#' @param markers `grouped_df`.
+#'   Marker genes, grouped by "`cluster`".
+#' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' markers <- topMarkers(all_markers_small, n = 1)
-#' glimpse(markers)
-#' plotTopMarkers(seurat_small, markers = tail(markers, 1))
+#' data(seurat_small, all_markers_small)
+#' plotTopMarkers(object = seurat_small, markers = all_markers_small)
 NULL
 
 
 
-#' @rdname plotTopMarkers
+#' @importFrom bioverbs plotTopMarkers
+#' @aliases NULL
 #' @export
-setMethod(
-    "plotTopMarkers",
-    signature("SingleCellExperiment"),
+bioverbs::plotTopMarkers
+
+
+
+plotTopMarkers.SingleCellExperiment <-  # nolint
     function(
         object,
         markers,
-        n = 10L,
-        direction = c("positive", "negative", "both"),
-        coding = FALSE,
-        reducedDim = c("TSNE", "UMAP"),
+        n = 1L,
+        direction,
+        reducedDim,
         headerLevel = 2L,
+        progress = FALSE,
         ...
     ) {
         # Passthrough: n, direction, coding
         validObject(object)
-        stopifnot(is(markers, "grouped_df"))
-        stopifnot(.isSanitizedMarkers(markers))
         markers <- topMarkers(
-            data = markers,
+            object = markers,
             n = n,
-            direction = direction,
-            coding = coding
+            direction = direction
         )
-        reducedDim <- match.arg(reducedDim)
-        assertIsAHeaderLevel(headerLevel)
+        assert(
+            isScalar(reducedDim),
+            isHeaderLevel(headerLevel),
+            isFlag(progress)
+        )
+        if (isTRUE(progress)) {
+            applyFun <- pblapply
+        } else {
+            applyFun <- lapply
+        }
 
-        assert_is_subset("cluster", colnames(markers))
+        assert(isSubset("cluster", colnames(markers)))
         clusters <- levels(markers[["cluster"]])
 
-        list <- pblapply(clusters, function(cluster) {
+
+        list <- applyFun(clusters, function(cluster) {
             genes <- markers %>%
+                ungroup() %>%
                 filter(cluster == !!cluster) %>%
-                pull("rowname")
+                pull("name")
             if (!length(genes)) {
+                message(paste0("No genes for cluster ", cluster, "."))
                 return(invisible())
             }
             if (length(genes) > 10L) {
@@ -86,6 +95,17 @@ setMethod(
 
         invisible(list)
     }
+formals(plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
+formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
+
+
+
+#' @rdname plotTopMarkers
+#' @export
+setMethod(
+    f = "plotTopMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = plotTopMarkers.SingleCellExperiment
 )
 
 
@@ -93,7 +113,7 @@ setMethod(
 #' @rdname plotTopMarkers
 #' @export
 setMethod(
-    "plotTopMarkers",
-    signature("seurat"),
-    getMethod("plotTopMarkers", "SingleCellExperiment")
+    f = "plotTopMarkers",
+    signature = signature("seurat"),
+    definition = plotTopMarkers.SingleCellExperiment
 )

@@ -1,29 +1,28 @@
-#' Plot Cell-Type-Specific Gene Markers
-#'
-#' Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
-#'
 #' @name plotMarker
-#' @family Clustering Functions
 #' @author Michael Steinbaugh, Rory Kirchner
-#'
-#' @inheritParams general
-#'
-#' @return Show graphical output. Invisibly return `ggplot` `list`.
-#'
+#' @inherit bioverbs::plotMarker
+#' @inheritParams basejump::params
 #' @examples
+#' data(seurat_small)
+#' object <- seurat_small
 #' title <- "most abundant genes"
-#' genes <- counts(sce_small) %>%
+#' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()
-#' glimpse(genes)
-#' plotMarker(sce_small, genes = genes[[1L]])
+#' str(genes)
+#'
+#' ## Default appearance.
+#' plotMarker(object, genes = genes[[1L]])
+#'
+#' ## Dark mode with viridis palette.
 #' plotMarker(
-#'     object = sce_small,
+#'     object = object,
 #'     genes = genes,
 #'     expression = "mean",
 #'     pointsAsNumbers = TRUE,
+#'     color = ggplot2::scale_color_viridis_c(),
 #'     dark = TRUE,
 #'     label = FALSE,
 #'     title = title
@@ -32,63 +31,59 @@ NULL
 
 
 
-# Strip everything except the x-axis text labels.
-.minimalAxis <- function() {
-    theme(
-        axis.line = element_blank(),
-        # axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks = element_blank(),
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        legend.position = "none",
-        panel.grid = element_blank(),
-        title = element_blank()
-    )
-}
-
-
-
-#' @rdname plotMarker
+#' @importFrom bioverbs plotMarker
+#' @aliases NULL
 #' @export
-setMethod(
-    "plotMarker",
-    signature("SingleCellExperiment"),
+bioverbs::plotMarker
+
+
+
+plotMarker.SingleCellExperiment <-  # nolint
     function(
         object,
         genes,
-        reducedDim = c("TSNE", "UMAP", "PCA"),
-        expression = c("mean", "median", "sum"),
-        color = getOption("pointillism.discrete.color", NULL),
-        pointSize = getOption("pointillism.pointSize", 0.75),
-        pointAlpha = getOption("pointillism.pointAlpha", 0.8),
-        pointsAsNumbers = FALSE,
-        label = getOption("pointillism.label", TRUE),
-        labelSize = getOption("pointillism.labelSize", 6L),
-        dark = getOption("pointillism.dark", FALSE),
-        legend = getOption("pointillism.legend", TRUE),
+        reducedDim,
+        expression,
+        color,
+        pointSize,
+        pointAlpha,
+        pointsAsNumbers,
+        label,
+        labelSize,
+        dark,
+        legend,
         title = TRUE
     ) {
-        assert_is_character(genes)
-        assert_has_no_duplicates(genes)
-        assert_is_subset(genes, rownames(object))
-        reducedDim <- match.arg(reducedDim)
-        expression <- match.arg(expression)
-        # Legacy support for `color = "auto"`
+        # Legacy arguments -----------------------------------------------------
+        # color
         if (identical(color, "auto")) {
-            color <- NULL
+            stop("Use `color = NULL` instead of `auto`.")
         }
-        assertIsColorScaleContinuousOrNULL(color)
-        assert_is_a_number(pointSize)
-        assert_is_a_number(pointAlpha)
-        assert_is_a_bool(pointsAsNumbers)
-        assert_is_a_bool(label)
-        assert_is_a_number(labelSize)
-        assert_is_a_bool(dark)
-        assert_is_a_bool(legend)
-        assert_is_any_of(title, c("character", "logical", "NULL"))
+
+        # Assert checks --------------------------------------------------------
+        object <- as(object, "SingleCellExperiment")
+        assert(
+            isCharacter(genes),
+            isScalar(reducedDim),
+            isGGScale(
+                x = color,
+                scale = "continuous",
+                aes = "colour",
+                nullOK = TRUE
+            ),
+            isNumber(pointSize),
+            isNumber(pointAlpha),
+            isFlag(pointsAsNumbers),
+            isFlag(label),
+            isNumber(labelSize),
+            isFlag(dark),
+            isFlag(legend),
+            isAny(title, c("character", "logical", "NULL"))
+        )
+        geneNames <- mapGenesToSymbols(object, genes)
+        expression <- match.arg(expression)
         if (is.character(title)) {
-            assert_is_a_string(title)
+            assert(isString(title))
         }
 
         # Fetch reduced dimension data
@@ -97,35 +92,26 @@ setMethod(
             genes = genes,
             reducedDim = reducedDim
         )
-        axes <- colnames(data)[seq_len(2L)]
+        assert(is(data, "DataFrame"))
 
-        if (isTRUE(.useGene2symbol(object))) {
-            g2s <- gene2symbol(object)
-            symbols <- g2s[
-                match(genes, g2s[["geneID"]]),
-                "geneName",
-                drop = TRUE
-            ]
-            stopifnot(!any(is.na(symbols)))
-            genes <- make.unique(symbols)
-        }
-        genes <- sort(unique(genes))
+        # Get the axis labels.
+        axes <- colnames(data)[seq_len(2L)]
+        assert(all(grepl("\\d+$", axes)))
 
         requiredCols <- c(
             axes,
-            "x",
-            "y",
             "centerX",
             "centerY",
-            "mean",
-            "median",
             "ident",
-            "sum"
+            "mean",
+            "sum",
+            "x",
+            "y"
         )
-        assert_is_subset(requiredCols, colnames(data))
+        assert(isSubset(requiredCols, colnames(data)))
 
         p <- ggplot(
-            data = data,
+            data = as_tibble(data),
             mapping = aes(
                 x = !!sym("x"),
                 y = !!sym("y"),
@@ -136,11 +122,11 @@ setMethod(
         # Titles
         subtitle <- NULL
         if (isTRUE(title)) {
-            if (is_a_string(genes)) {
-                title <- genes
+            if (isString(geneNames)) {
+                title <- geneNames
             } else {
                 title <- NULL
-                subtitle <- genes
+                subtitle <- geneNames
                 # Limit to the first 5 markers
                 if (length(subtitle) > 5L) {
                     subtitle <- c(subtitle[1L:5L], "...")
@@ -158,9 +144,9 @@ setMethod(
                 subtitle = subtitle
             )
 
-        # Customize legend
+        # Customize legend.
         if (isTRUE(legend)) {
-            if (is_a_string(genes)) {
+            if (isString(genes)) {
                 guideTitle <- "logcounts"
             } else {
                 guideTitle <- paste0(
@@ -213,7 +199,7 @@ setMethod(
                 )
         }
 
-        # Dark mode
+        # Dark mode.
         if (isTRUE(dark)) {
             p <- p + theme_midnight()
             if (is.null(color)) {
@@ -227,6 +213,29 @@ setMethod(
 
         p
     }
+
+formals(plotMarker.SingleCellExperiment)[c(
+    "color",
+    "dark",
+    "expression",
+    "label",
+    "labelSize",
+    "legend",
+    "pointAlpha",
+    "pointSize",
+    "pointsAsNumbers",
+    "reducedDim"
+)] <- list(
+    color = continuousColor,
+    dark = dark,
+    expression = expression,
+    label = label,
+    labelSize = labelSize,
+    legend = legend,
+    pointAlpha = pointAlpha,
+    pointSize = pointSize,
+    pointsAsNumbers = pointsAsNumbers,
+    reducedDim = reducedDim
 )
 
 
@@ -234,7 +243,17 @@ setMethod(
 #' @rdname plotMarker
 #' @export
 setMethod(
-    "plotMarker",
-    signature("seurat"),
-    getMethod("plotMarker", "SingleCellExperiment")
+    f = "plotMarker",
+    signature = signature("SingleCellExperiment"),
+    definition = plotMarker.SingleCellExperiment
+)
+
+
+
+#' @rdname plotMarker
+#' @export
+setMethod(
+    f = "plotMarker",
+    signature = signature("seurat"),
+    definition = plotMarker.SingleCellExperiment
 )

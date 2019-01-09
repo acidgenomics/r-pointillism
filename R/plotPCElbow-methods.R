@@ -1,39 +1,40 @@
-#' Plot PC Elbow
+#' @name plotPCElbow
+#' @inherit bioverbs::plotPCElbow
+#' @inheritParams basejump::params
 #'
-#' Calculate the principal component (PC) cutoff using a heuristic approach.
-#'
+#' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
-#' @name plotPCElbow
-#' @family Clustering Functions
-#' @author Michael Steinbaugh
-#'
-#' @inheritParams general
-#' @param minSD `scalar numeric`. Minimum standard deviation.
-#' @param minPct `scalar numeric` (`0`-`1`). Minimum percent standard deviation.
-#' @param maxCumPct `scalar numeric` (`0`-`1`).Maximum cumulative percent
-#'   standard deviation.
+#' @param minSD `numeric(1)`.
+#'   Minimum standard deviation.
+#' @param minPct `numeric(1)` (`0`-`1`).
+#'   Minimum percent standard deviation.
+#' @param maxCumPct `numeric(1)` (`0`-`1`).
+#'   Maximum cumulative percen standard deviation.
 #'
 #' @return
 #' - Show graphical output of elbow plots.
 #' - Invisibly return numeric sequence vector of PCs to include for
 #'   dimensionality reduction analysis.
 #'
-#' @seealso
-#' - [Seurat::PCElbowPlot()].
+#' @seealso `Seurat::PCElbowPlot()`.
 #'
 #' @examples
-#' plotPCElbow(Seurat::pbmc_small)
+#' data(pbmc_small, package = "Seurat")
+#' plotPCElbow(pbmc_small)
 NULL
 
 
 
-#' @rdname plotPCElbow
+#' @importFrom bioverbs plotPCElbow
+#' @aliases NULL
 #' @export
-setMethod(
-    "plotPCElbow",
-    signature("seurat"),
+bioverbs::plotPCElbow
+
+
+
+plotPCElbow.seurat <-  # nolint
     function(
         object,
         minSD = 1L,
@@ -41,21 +42,23 @@ setMethod(
         maxCumPct = 0.9,
         trans = c("identity", "sqrt")
     ) {
-        assert_is_a_number(minSD)
-        assert_all_are_positive(minSD)
-        assert_is_a_number(minPct)
-        assert_is_a_number(maxCumPct)
-        assert_all_are_in_left_open_range(
-            x = c(minPct, maxCumPct),
-            lower = 0L,
-            upper = 1L
+        assert(
+            isNumber(minSD),
+            isPositive(minSD),
+            isNumber(minPct),
+            isNumber(maxCumPct),
+            allAreInLeftOpenRange(
+                x = c(minPct, maxCumPct),
+                lower = 0L,
+                upper = 1L
+            )
         )
         trans <- match.arg(trans)
 
         # dr: dimensional reduction
         # sdev: standard deviation
         sdev <- object@dr[["pca"]]@sdev
-        assert_is_numeric(sdev)
+        assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)
 
@@ -96,7 +99,7 @@ setMethod(
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "std dev"
             ) +
             expand_limits(y = 0L) +
@@ -119,7 +122,7 @@ setMethod(
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "% std dev"
             ) +
             expand_limits(y = 0L) +
@@ -142,7 +145,7 @@ setMethod(
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "pc",
+                x = "PC",
                 y = "cum % std dev"
             ) +
             expand_limits(y = c(0L, 1L)) +
@@ -159,4 +162,13 @@ setMethod(
 
         invisible(seq_len(cutoff))
     }
+
+
+
+#' @rdname plotPCElbow
+#' @export
+setMethod(
+    f = "plotPCElbow",
+    signature = signature("seurat"),
+    definition = plotPCElbow.seurat
 )

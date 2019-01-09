@@ -2,11 +2,30 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\title{Defunct Functions}
+\alias{knownMarkers}
+\alias{knownMarkersDetected}
+\alias{plotKnownMarkersDetected}
+\alias{readCellTypeMarkers}
+\alias{sanitizeMarkers}
+\title{Defunct functions}
+\usage{
+knownMarkers(...)
+
+knownMarkersDetected(...)
+
+plotKnownMarkersDetected(...)
+
+readCellTypeMarkers(...)
+
+sanitizeMarkers(...)
+}
+\arguments{
+\item{...}{Additional arguments.}
+}
 \value{
-\code{\link[=.Defunct]{.Defunct()}}.
+\code{.Defunct}.
 }
 \description{
-Defunct Functions
+Defunct functions
 }
 \keyword{internal}
