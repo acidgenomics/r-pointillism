@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -72,14 +72,14 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#pointillism" class="anchor"></a>pointillism</h1></div>
 
-<p><a href="https://www.r-project.org">R</a> package for for single-cell RNA-seq clustering analysis.</p>
+<p><a href="https://www.r-project.org/">R</a> package for for single-cell RNA-seq clustering analysis.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>This is an <a href="https://www.r-project.org">R</a> package.</p>
+<p>This is an <a href="https://www.r-project.org/">R</a> package.</p>
 <div id="bioconductor" class="section level3">
 <h3 class="hasAnchor">
-<a href="#bioconductor" class="anchor"></a><a href="https://bioconductor.org">Bioconductor</a>
+<a href="#bioconductor" class="anchor"></a><a href="https://bioconductor.org/">Bioconductor</a>
 </h3>
 <p>We recommend installing the package with <a href="https://cran.r-project.org/package=BiocManager">BiocManager</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"BiocManager"</span>)) {
@@ -89,10 +89,22 @@ BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocu
 BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"steinbaugh/pointillism"</span>)</code></pre></div>
 </div>
 </div>
+<div id="supported-data-classes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#supported-data-classes" class="anchor"></a>Supported data classes</h2>
+<p><a href="https://steinbaugh.com/pointillism/">pointillism</a> currently supports these S4 single-cell container classes:</p>
+<ul>
+<li><a href="https://bioconductor.org/packages/SingleCellExperiment/">SingleCellExperiment</a></li>
+<li>
+<a href="https://satijalab.org/seurat/">Seurat</a> (v2)</li>
+</ul>
+<p><strong>Seurat v3:</strong> The current release of <a href="https://steinbaugh.com/pointillism/">pointillism</a> is compatible only with <a href="https://satijalab.org/seurat/">Seurat</a> v2. The forthcoming v3 update introduces many code-breaking changes to the <code>Seurat</code> class structure. I’ll release an update to <a href="https://steinbaugh.com/pointillism/">pointillism</a> that supports <a href="https://satijalab.org/seurat/">Seurat</a> v3 when it becomes available on <a href="https://cran.r-project.org/" title="The Comprehensive R Archive Network">CRAN</a>.</p>
+<p><strong>monocle v3</strong>: Support for the <a href="http://cole-trapnell-lab.github.io/monocle-release/">monocle</a> <code>CellDataSet</code> class will be added when <a href="http://cole-trapnell-lab.github.io/monocle-release/">monocle</a> v3 becomes available on <a href="https://bioconductor.org/">Bioconductor</a>.</p>
+</div>
 <div id="markers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markers" class="anchor"></a>Markers</h2>
-<p>Shared <a href="https://docs.google.com/spreadsheets/d/1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw">cell-cycle markers</a> and <a href="https://docs.google.com/spreadsheets/d/1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0">cell-type markers</a> are available on <a href="https://www.google.com/sheets">Google Sheets</a>. Contact <a href="https://mike.steinbaugh.com">Michael Steinbaugh</a> if you’d like to contribute to this list.</p>
+<p>Shared <a href="https://docs.google.com/spreadsheets/d/1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw">cell-cycle markers</a> and <a href="https://docs.google.com/spreadsheets/d/1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0">cell-type markers</a> are available on <a href="https://www.google.com/sheets">Google Sheets</a>. Contact <a href="https://mike.steinbaugh.com/">Michael Steinbaugh</a> if you’d like to contribute to this list.</p>
 </div>
 <div id="troubleshooting" class="section level2">
 <h2 class="hasAnchor">
@@ -102,15 +114,15 @@ BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocu
 <a href="#maximal-number-of-dlls-reached" class="anchor"></a>Maximal number of DLLs reached</h3>
 <pre><code>Error: package or namespace load failed for 'bcbioSingleCell' in dyn.load(file, DLLpath = DLLpath, ...):
   maximal number of DLLs reached...</code></pre>
-<p>Depending on your operating system, you may encounter this error about hitting the DLL limit in <a href="https://www.r-project.org">R</a>. This issue is becoming more common as RNA-seq analysis packages grow increasingly complex. Luckily, we can configure <a href="https://www.r-project.org">R</a> to increase the DLL limit. Append this line to your <code>~/.Renviron</code> file:</p>
+<p>Depending on your operating system, you may encounter this error about hitting the DLL limit in <a href="https://www.r-project.org/">R</a>. This issue is becoming more common as RNA-seq analysis packages grow increasingly complex. Luckily, we can configure <a href="https://www.r-project.org/">R</a> to increase the DLL limit. Append this line to your <code>~/.Renviron</code> file:</p>
 <pre><code>R_MAX_NUM_DLLS=150</code></pre>
-<p>For more information on this issue, consult <code><a href="https://www.rdocumentation.org/packages/utils/topics/help">help("dyn.load")</a></code> in the <a href="https://www.r-project.org">R</a> documentation. The number of loaded DLLs in an <a href="https://www.r-project.org">R</a> session can be obtained with <code><a href="https://www.rdocumentation.org/packages/base/topics/getLoadedDLLs">getLoadedDLLs()</a></code>.</p>
+<p>For more information on this issue, consult <code><a href="https://www.rdocumentation.org/packages/utils/topics/help">help("dyn.load")</a></code> in the <a href="https://www.r-project.org/">R</a> documentation. The number of loaded DLLs in an <a href="https://www.r-project.org/">R</a> session can be obtained with <code><a href="https://www.rdocumentation.org/packages/base/topics/getLoadedDLLs">getLoadedDLLs()</a></code>.</p>
 </div>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p>The papers and software cited in our workflows are available as a <a href="https://paperpile.com/shared/5PLRi1">shared library</a> on <a href="https://paperpile.com">Paperpile</a>.</p>
+<p>The papers and software cited in our workflows are available as a <a href="https://paperpile.com/shared/5PLRi1">shared library</a> on <a href="https://paperpile.com/">Paperpile</a>.</p>
 </div>
 </div>
   </div>
