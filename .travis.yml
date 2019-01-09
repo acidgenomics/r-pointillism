@@ -1,56 +1,29 @@
 # Travis-CI configuration for Bioconductor packages
 # https://docs.travis-ci.com/user/languages/r
 
-# How Travis builds R packages:
-# https://github.com/travis-ci/travis-build/blob/master/lib/travis/build/script/r.rb
-
-# Can we use build stages to cache the Bioconductor package library?
-# https://docs.travis-ci.com/user/build-stages
-# https://docs.travis-ci.com/user/build-stages/warm-cache/
-
-# Temporarily enable when caching package library.
-# https://gist.github.com/mjsteinbaugh/47d9a7aecdd8c3c1962a3247d791635f
-script: true
-
 language: r
 cache: packages
-sudo: false
-bioc_required: true
 
 matrix:
   include:
   - os: linux
-    r: bioc-release
-    warnings_are_errors: true
-  - os: linux
-    r: bioc-devel
-    latex: false
-    warnings_are_errors: false
+    r: release
   - os: osx
-    r: bioc-release
-    fortran: false
-    latex: false
-    warnings_are_errors: false
-  fast_finish: true
+    r: release
+
+branches:
+  only:
+  - master
 
 env:
   global:
-    - _R_CHECK_FORCE_SUGGESTS_=false
     - LINTR_COMMENT_BOT=true
-    - R_MAX_NUM_DLLS=150
-    - R_REMOTES_NO_ERRORS_FROM_WARNINGS=true
 
-r_packages:
-  - covr
-bioc_packages:
-  - BiocCheck
-r_github_packages:
+github_packages:
   - mjsteinbaugh/lintr
 
 after_success:
   - Rscript -e 'lintr::lint_package()'
-  - Rscript -e 'covr::codecov()'
-  - R CMD BiocCheck .
 
 notifications:
   email:
