@@ -3,25 +3,16 @@
 \docType{data}
 \name{seurat_small}
 \alias{seurat_small}
-\title{Seurat Example}
+\title{Seurat example}
 \format{An object of class \code{seurat} of length 1.}
 \usage{
 seurat_small
 }
 \description{
-Seurat Example
+Seurat example
 }
 \examples{
+data(seurat_small)
 seurat_small
 }
-\seealso{
-Other Minimal Example Data: \code{\link{all_markers_small}},
-  \code{\link{known_markers_detected_small}},
-  \code{\link{known_markers_small}},
-  \code{\link{sce_small}}
-}
-\author{
-Michael Steinbaugh
-}
-\concept{Minimal Example Data}
 \keyword{datasets}

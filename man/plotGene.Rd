@@ -3,51 +3,121 @@
 \docType{methods}
 \name{plotGene}
 \alias{plotGene}
+\alias{plotDot}
+\alias{plotViolin}
 \alias{plotGene,SingleCellExperiment-method}
-\title{Plot Gene}
+\alias{plotGene,seurat-method}
+\alias{plotDot,SingleCellExperiment-method}
+\alias{plotDot,seurat-method}
+\alias{plotViolin,SingleCellExperiment-method}
+\alias{plotViolin,seurat-method}
+\title{Plot gene expression}
 \usage{
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
-  "violin"), legend = getOption("pointillism.legend", TRUE))
+  "violin"), perSample = TRUE, legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
+
+\S4method{plotGene}{seurat}(object, genes, geom = c("dot", "violin"),
+  perSample = TRUE, legend = getOption("pointillism.legend", TRUE),
+  title = NULL)
+
+\S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
+  colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
+
+\S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
+  colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
+  color = getOption("pointillism.continuous.color",
+  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
+  TRUE), title = NULL)
+
+\S4method{plotViolin}{SingleCellExperiment}(object, genes,
+  perSample = TRUE, scale = c("count", "width", "area"),
+  color = getOption("pointillism.discrete.color", NULL),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
+
+\S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
+  scale = c("count", "width", "area"),
+  color = getOption("pointillism.discrete.color", NULL),
+  legend = getOption("pointillism.legend", TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{genes}{\code{character}. Gene identifiers. Must match the rownames of the
-object.}
+\item{genes}{\code{character}.
+Gene identifiers. It is considered better practice to input the stable gene
+identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
+symbols (e.g. "TSPN6"), if possible.}
 
-\item{geom}{\code{string}. Plot type. Uses \code{\link[=match.arg]{match.arg()}} to pick the type.
-Currently supports "\code{dot}" and "\code{violin}".}
+\item{geom}{\code{character(1)}.
+Plot type. Uses \code{\link[base:match.arg]{match.arg()}} to pick the type.
+Currently supports \code{"dot"} and \code{"violin"}.}
 
-\item{legend}{\code{boolean}. Include plot legend.}
-}
-\value{
-\code{ggplot}.
+\item{perSample}{\code{logical(1)}.
+Visualize the distributions per sample.}
+
+\item{legend}{\code{logical(1)}.
+Show plot legend.}
+
+\item{title}{\code{character(1)}.
+Plot title.}
+
+\item{colMin}{\code{numeric(1)}.
+Minimum scaled average expression threshold. Everything smaller will be
+set to this.}
+
+\item{colMax}{\code{numeric(1)}.
+Maximum scaled average expression threshold. Everything larger will be set
+to this.}
+
+\item{dotMin}{\code{numeric(1)}.
+The fraction of cells at which to draw the smallest dot. All cell groups
+with less than this expressing the given gene will have no dot drawn.}
+
+\item{dotScale}{\code{numeric(1)}.
+Scale the size of the points, similar to \code{cex}.}
+
+\item{color}{\code{ScaleDiscrete}.
+Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
+the default ggplot2 color palette will be used. If manual color definitions
+are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
+
+To set the discrete color palette globally, use:\preformatted{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())
+}}
+
+\item{scale}{if "area" (default), all violins have the same area (before trimming
+the tails). If "count", areas are scaled proportionally to the number of
+observations. If "width", all violins have the same maximum width.}
 }
 \description{
 Visualize genes on a dot or violin plot.
 }
 \examples{
-object <- sce_small
-genes <- head(rownames(object))
-glimpse(genes)
+data(seurat_small)
+object <- seurat_small
 
-# Dot
-plotGene(object, genes = genes, geom = "dot")
+## Plotting with either gene IDs or gene names (symbols) works.
+geneIDs <- head(rownames(object), n = 4L)
+print(geneIDs)
+geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
+print(geneNames)
 
-# Violin
-plotGene(object, genes = genes, geom = "violin")
+## Per sample mode enabled.
+plotDot(object, genes = geneNames, perSample = TRUE)
+plotViolin(object, genes = geneNames, perSample = TRUE)
+
+## Per sample mode disabled.
+plotDot(object, genes = geneIDs, perSample = FALSE)
+plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{\link[=plotDot]{plotDot()}}, \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
-\item \code{\link[=plotViolin]{plotViolin()}}, \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
-\item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
+\item \code{Seurat::DotPlot()}.
+\item \code{Seurat::VlnPlot()}.
+\item \code{Seurat::RidgePlot()}.
 }
-
-Other Gene Expression Functions: \code{\link{plotDot}},
-  \code{\link{plotViolin}}
 }
-\author{
-Michael Steinbaugh
-}
-\concept{Gene Expression Functions}

@@ -1,27 +1,27 @@
-#' Cluster Cell Counts per Sample
-#'
 #' @name clusterCellCountsPerSample
-#'
-#' @inheritParams general
-#'
-#' @return `tibble` grouped by "`sampleName`" column, arranged by abundance.
-#'
+#' @inherit bioverbs::clusterCellCountsPerSample
+#' @inheritParams basejump::params
 #' @examples
-#' clusterCellCountsPerSample(sce_small)
+#' data(seurat_small)
+#' x <- clusterCellCountsPerSample(seurat_small)
+#' print(x)
 NULL
 
 
 
-#' @rdname clusterCellCountsPerSample
+#' @importFrom bioverbs clusterCellCountsPerSample
+#' @aliases NULL
 #' @export
-setMethod(
-    "clusterCellCountsPerSample",
-    signature("SingleCellExperiment"),
+bioverbs::clusterCellCountsPerSample
+
+
+
+clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
     function(object) {
-        .assertHasIdent(object)
+        assert(.hasIdent(object))
         metrics <- metrics(object)
         cols <- c("sampleName", "ident")
-        assert_is_subset(cols, colnames(metrics))
+        assert(isSubset(cols, colnames(metrics)))
         metrics %>%
             arrange(!!!syms(cols)) %>%
             group_by(!!!syms(cols)) %>%
@@ -31,6 +31,15 @@ setMethod(
             group_by(!!sym("sampleName")) %>%
             mutate(ratio = !!sym("n") / sum(!!sym("n")))
     }
+
+
+
+#' @rdname clusterCellCountsPerSample
+#' @export
+setMethod(
+    f = "clusterCellCountsPerSample",
+    signature = signature("SingleCellExperiment"),
+    definition = clusterCellCountsPerSample.SingleCellExperiment
 )
 
 
@@ -38,7 +47,7 @@ setMethod(
 #' @rdname clusterCellCountsPerSample
 #' @export
 setMethod(
-    "clusterCellCountsPerSample",
-    signature("seurat"),
-    getMethod("clusterCellCountsPerSample", "SingleCellExperiment")
+    f = "clusterCellCountsPerSample",
+    signature = signature("seurat"),
+    definition = clusterCellCountsPerSample.SingleCellExperiment
 )

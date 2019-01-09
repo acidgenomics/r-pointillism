@@ -1,45 +1,56 @@
-#' Find Cluster-Specific Marker Genes
-#'
 #' @name findMarkers
-#' @family Differential Expression Functions
-#' @author Michael Steinbaugh
-#'
-#' @inheritParams general
+#' @inherit bioverbs::findMarkers
+#' @inheritParams basejump::params
 #' @param ... Passthrough arguments to [diffExp()].
+#'
+#' @note Cluster identity (`ident`) must be defined in
+#'   [`colData()`][SummarizedExperiment::colData] for this function to work.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' object <- sce_small
-#'
-#' # edgeR
-#' x <- findMarkers(object, caller = "edgeR")
-#'
-#' # DESeq2
-#' x <- findMarkers(object, caller = "DESeq2")
+#' data(seurat_small)
+#' x <- findMarkers(seurat_small, caller = "edgeR")
+#' class(x)
+#' lapply(x, class)
 NULL
 
 
 
-#' @rdname findMarkers
+#' @importFrom bioverbs findMarkers
+#' @aliases NULL
 #' @export
-setMethod(
-    "findMarkers",
-    signature("SingleCellExperiment"),
+bioverbs::findMarkers
+
+
+
+findMarkers.SingleCellExperiment <-  # nolint
     function(object, ...) {
-        .assertHasZinbwave(object)
+        object <- as(object, "SingleCellExperiment")
+
+        # Get the cluster identities.
         ident <- clusterID(object)
-        assert_is_factor(ident)
+        assert(is.factor(ident), hasNames(ident))
         clusters <- levels(ident)
-        stopifnot(length(clusters) >= 2L)
+        assert(length(clusters) >= 2L)
+        message(paste(length(clusters), "clusters detected"))
+
+        # Loop across the clusters and calculate gene enrichment relative to
+        # all of the other clusters combined.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 message(paste("Cluster", cluster, "===="))
-                numerator <- colnames(object)[which(ident == cluster)]
-                denominator <- colnames(object)[which(ident != cluster)]
+                # Numerator: cells in the current cluster.
+                numerator <- ident[which(ident == cluster)]
+                assert(all(numerator == cluster))
+                numerator <- sort(names(numerator))
+                assert(isNonEmpty(numerator))
+                # Denominator: cells in all other clusters.
+                denominator <- sort(setdiff(colnames(object), numerator))
+                assert(isNonEmpty(denominator))
                 diffExp(
                     object = object,
                     numerator = numerator,
@@ -51,4 +62,23 @@ setMethod(
         names(list) <- clusters
         list
     }
+
+
+
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = findMarkers.SingleCellExperiment
+)
+
+
+
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("seurat"),
+    definition = findMarkers.SingleCellExperiment
 )

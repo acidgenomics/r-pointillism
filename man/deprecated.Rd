@@ -2,11 +2,11 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\title{Deprecated Functions}
+\title{Deprecated functions}
 \value{
-\code{\link[=.Deprecated]{.Deprecated()}}.
+\code{.Deprecated}.
 }
 \description{
-Deprecated Functions
+Deprecated functions
 }
 \keyword{internal}

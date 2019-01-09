@@ -4,76 +4,74 @@
 \name{runZinbwave}
 \alias{runZinbwave}
 \alias{runZinbwave,SingleCellExperiment-method}
-\title{Calculate ZINB-WaVE Weights}
+\alias{runZinbwave,seurat-method}
+\title{Perform dimensionality reduction using a ZINB regression model with
+gene and cell-level covariates.}
 \usage{
 runZinbwave(Y, ...)
 
 \S4method{runZinbwave}{SingleCellExperiment}(Y, K = 0L,
   epsilon = 1e+12, BPPARAM = BiocParallel::SerialParam(),
-  recalculate = FALSE, verbose = FALSE, ...)
+  recalculate = FALSE, verbose = FALSE)
+
+\S4method{runZinbwave}{seurat}(Y, ...)
 }
 \arguments{
 \item{Y}{The data (genes in rows, samples in columns). Currently implemented
 only for \code{SummarizedExperiment}.}
 
-\item{...}{Passthrough arguments to \code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.}
+\item{...}{Additional parameters to describe the model, see
+\code{\link{zinbModel}}.}
 
-\item{K}{integer. Number of latent factors.}
+\item{K}{integer. Number of latent factors. Specify \code{K = 0} if only
+computing observational weights.}
 
 \item{epsilon}{nonnegative scalar. Regularization parameter.}
 
-\item{BPPARAM}{BiocParallel param. We recommend one of the following:
-\itemize{
-\item \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}}.
-\item \code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}}.
-\item \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}}.
-}}
+\item{BPPARAM}{object of class \code{bpparamClass} that specifies the
+back-end to be used for computations. See
+\code{\link[BiocParallel]{bpparam}} for details.}
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
-\item{verbose}{\code{logical}. Run zinbwave in verbose model (for debugging).}
+\item{verbose}{\code{logical}. Run zinbwave in verbose mode (for debugging).}
 }
 \value{
 Modified object (S4 class must extend \code{SingleCellExperiment}), with
-weights added to \code{\link[=assays]{assays()}}.
+weights added to \code{assays}.
 }
 \description{
-zinbwave will calculate \code{normalizedValues} and \code{weights} matrices, which will
-be defined in the \code{\link[=assays]{assays()}} slot. If these values have already been
-calculated, the object will be returned unmodified, unless
-\code{recalculate = TRUE}.
+Given an object with the data, it performs dimensionality reduction using
+a ZINB regression model with gene and cell-level covariates.
 }
-\note{
-zinbwave defaults to using \code{\link[BiocParallel:bpparam]{BiocParallel::bpparam()}} to register the
-number of cores to use (\code{BPPARAM} argument), but we've found that this
-works inconsistently across installations. Currently, we recommend using
-\code{\link[BiocParallel:SerialParam]{BiocParallel::SerialParam()}} by default, which will run in serial, using a
-single core. On Linux or macOS, \code{\link[BiocParallel:MulticoreParam]{BiocParallel::MulticoreParam()}} should
-work to run with multiple cores.
+\details{
+\href{https://bioconductor.org/packages/release/bioc/html/zinbwave.html}{zinbwave} will calculate \code{normalizedValues} and \code{weights} matrices, which
+will be defined in the \code{assays} slot. If these values have already been
+calculated, the object will be returned unmodified, unless \code{recalculate = TRUE}.
 }
-\examples{
-# Example using 200 non-zero genes
-Y <- sce_small
-Y <- bcbioSingleCell::filterCells(Y)
-Y <- Y[seq_len(200L), ]
+\section{Methods (by class)}{
+\itemize{
+\item \code{seurat}: Coerces to \code{SingleCellExperiment} and stashes weights
+in the \code{weights()} slot.
+}}
 
-# Serial (recommended default)
-zinb <- runZinbwave(
-    Y = Y,
-    BPPARAM = BiocParallel::SerialParam(),
-    recalculate = TRUE,
-    verbose = TRUE
-)
-print(zinb)
-assayNames(zinb)
+\section{Parallelization}{
+
+
+zinbwave defaults to using \code{BiocParallel::bpparam} to register the number
+of cores to use (\code{bpparam} argument), but we've found that this works
+inconsistently across installations. Currently, we recommend using
+\code{BiocParallel::SerialParam} by default, which will run in serial, using a
+single core. On Linux or macOS, \code{BiocParallel::MulticoreParam} should work
+to run with multiple cores.
+}
+
+\examples{
+data(seurat_small)
+Y <- seurat_small
+Y <- runZinbwave(Y = Y)
+class(weights(Y))
 }
 \seealso{
-\code{\link[zinbwave:zinbwave]{zinbwave::zinbwave()}}.
-
-Other Differential Expression Functions: \code{\link{diffExp}},
-  \code{\link{findMarkers}}
+\code{zinbwave::zinbwave}.
 }
-\author{
-Michael Steinbaugh
-}
-\concept{Differential Expression Functions}

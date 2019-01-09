@@ -1,76 +1,39 @@
-#' Sanitized Markers Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
+#' Sanitized markers example
 #' @examples
-#' glimpse(all_markers_small)
+#' data(all_markers_small)
+#' all_markers_small
 "all_markers_small"
 
 
 
-#' Cell-Cycle Markers
-#'
+#' Cell-cycle markers
 #' @aliases cellCycleMarkers
-#' @family Marker Data
-#' @author Michael Steinbaugh
-#'
 #' @examples
-#' names(cell_cycle_markers)
+#' data(cell_cycle_markers)
+#' cell_cycle_markers
 "cell_cycle_markers"
 
 
 
-#' Cell-Type Markers
-#'
+#' Cell-type markers
 #' @aliases cellTypeMarkers
-#' @family Marker Data
-#' @author Michael Steinbaugh
-#'
 #' @examples
-#' names(cell_type_markers)
+#' data(cell_type_markers)
+#' cell_type_markers
 "cell_type_markers"
 
 
 
-#' Known Markers Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
+#' Known markers example
 #' @examples
-#' glimpse(known_markers_small)
+#' data(known_markers_small)
+#' known_markers_small
 "known_markers_small"
 
 
 
-#' Known Markers Detected Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
+#' Seurat example
 #' @examples
-#' glimpse(known_markers_detected_small)
-"known_markers_detected_small"
-
-
-
-#' SingleCellExperiment Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
-#' sce_small
-"sce_small"
-
-
-
-#' Seurat Example
-#'
-#' @family Minimal Example Data
-#' @author Michael Steinbaugh
-#'
-#' @examples
+#' data(seurat_small)
 #' seurat_small
 "seurat_small"

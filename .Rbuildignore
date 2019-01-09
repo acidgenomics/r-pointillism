@@ -1,7 +1,10 @@
 ^.*\.Rproj$
 ^.*\.gz$
+^.*\.pdf$
+^CONTRIBUTING\.md$
 ^\.Rprofile$
 ^\.Rproj\.user$
+^\.httr-oauth$
 ^\.lintr$
 ^\.travis\.yml$
 ^_pkgdown\.yml$

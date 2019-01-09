@@ -3,63 +3,100 @@
 #' Provide limited `SingleCellExperiment`-like method support.
 #'
 #' @name seurat-SingleCellExperiment
-#' @author Michael Steinbaugh
 #' @keywords internal
 #'
-#' @inheritParams general
+#' @inheritParams basejump::params
 #'
 #' @return Match `SummarizedExperiment` method return.
 NULL
 
 
 
+# Internal =====================================================================
+.getSeuratStash <- function(object, name) {
+    assert(
+        is(object, "seurat"),
+        isString(name)
+    )
+
+    misc <- slot(object, name = "misc")
+
+    # Early return if the `misc` slot is `NULL`.
+    if (is.null(misc)) {
+        return(NULL)
+    }
+
+    # Look first directly in `object@misc` slot.
+    x <- misc[[name]]
+    if (!is.null(x)) {
+        return(x)
+    }
+
+    # Next, handle legacy `bcbio` stash list inside `object@misc`.
+    # As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(misc)) {
+        x <- misc[["bcbio"]][[name]]
+        if (!is.null(x)) {
+            return(x)
+        }
+    }
+
+    NULL
+}
+
+
+
+# assay ========================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
 setMethod(
-    "assay",
-    signature("seurat"),
-    function(x, ...) {
-        assay(.as.SingleCellExperiment.seurat(x), ...)
+    f = "assay",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        assay(as.SingleCellExperiment(x), ...)
     }
 )
 
 
 
+# assayNames ===================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assayNames
 #' @export
 setMethod(
-    "assayNames",
-    signature("seurat"),
-    function(x, ...) {
-        assayNames(.as.SingleCellExperiment.seurat(x), ...)
+    f = "assayNames",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        assayNames(as.SingleCellExperiment(x), ...)
     }
 )
 
 
 
+# assays =======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assays
 #' @export
 setMethod(
-    "assays",
-    signature("seurat"),
-    function(x, ...) {
-        assays(.as.SingleCellExperiment.seurat(x), ...)
+    f = "assays",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        assays(as.SingleCellExperiment(x), ...)
     }
 )
 
 
 
+# colData ======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment colData
 #' @export
 setMethod(
-    "colData",
-    signature("seurat"),
-    function(x, ...) {
-        colData(.as.SingleCellExperiment.seurat(x), ...)
+    f = "colData",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        colData(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -69,13 +106,13 @@ setMethod(
 #' @importFrom SummarizedExperiment colData<-
 #' @export
 setMethod(
-    "colData<-",
-    signature(
+    f = "colData<-",
+    signature = signature(
         x = "seurat",
         value = "DataFrame"
     ),
-    function(x, value) {
-        slot(x, "meta.data") <- as.data.frame(value)
+    definition = function(x, value) {
+        slot(x, "meta.data", check = TRUE) <- as.data.frame(value)
         validObject(x)
         x
     }
@@ -83,84 +120,58 @@ setMethod(
 
 
 
+# colnames =====================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom BiocGenerics colnames
 #' @export
 setMethod(
-    "colnames",
-    signature("seurat"),
-    function(x) {
-        colnames(.as.SingleCellExperiment.seurat(x))
+    f = "colnames",
+    signature = signature("seurat"),
+    definition = function(x) {
+        colnames(as.SingleCellExperiment(x))
     }
 )
 
 
 
-#' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump convertGenesToSymbols
-#' @export
-setMethod(
-    "convertGenesToSymbols",
-    signature("seurat"),
-    function(object) {
-        validObject(object)
-        .assertIsNewSeurat(object)
-        gene2symbol <- gene2symbol(object)
-        if (is.null(gene2symbol)) {
-            warning("Object doesn't contain gene-to-symbol mappings")
-            return(object)
-        }
-        symbols <- gene2symbol %>%
-            .[, "geneName", drop = TRUE] %>%
-            as.character() %>%
-            make.unique()
-        rownames(object@raw.data) <- symbols
-        object@data <- object@raw.data
-        object
-    }
-)
-
-
-
+# counts =======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom BiocGenerics counts
 #' @export
 setMethod(
-    "counts",
-    signature("seurat"),
-    function(object, ...) {
-        counts(.as.SingleCellExperiment.seurat(object), ...)
+    f = "counts",
+    signature = signature("seurat"),
+    definition = function(object, ...) {
+        counts(as.SingleCellExperiment(object), ...)
     }
 )
 
 
 
+# Gene2Symbol ==================================================================
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom basejump gene2symbol
+#' @importFrom basejump Gene2Symbol
 #' @export
 setMethod(
-    "gene2symbol",
-    signature("seurat"),
-    getMethod(
-        "gene2symbol",
-        "SummarizedExperiment",
-        asNamespace("basejump")
-    )
+    f = "Gene2Symbol",
+    signature = signature("seurat"),
+    definition = function(object, ...) {
+        Gene2Symbol(as(object, "SummarizedExperiment"), ...)
+    }
 )
 
 
 
+# interestingGroups ============================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump interestingGroups
 #' @export
 setMethod(
-    "interestingGroups",
-    signature("seurat"),
-    getMethod(
-        "interestingGroups",
-        "SummarizedExperiment",
-        asNamespace("basejump")
-    )
+    f = "interestingGroups",
+    signature = signature("seurat"),
+    definition = function(object, ...) {
+        interestingGroups(as(object, "SummarizedExperiment"), ...)
+    }
 )
 
 
@@ -169,35 +180,88 @@ setMethod(
 #' @importFrom basejump interestingGroups<-
 #' @export
 setMethod(
-    "interestingGroups<-",
-    signature(
+    f = "interestingGroups<-",
+    signature = signature(
         object = "seurat",
         value = "character"
     ),
     getMethod(
-        "interestingGroups<-",
-        signature(
+        f = "interestingGroups<-",
+        signature = signature(
             object = "SummarizedExperiment",
             value = "character"
         ),
-        asNamespace("basejump")
+        where = asNamespace("basejump")
     )
 )
 
 
 
+# mapGenes =====================================================================
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToIDs
+#' @export
+setMethod(
+    f = "mapGenesToIDs",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToIDs(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToRownames
+#' @export
+setMethod(
+    f = "mapGenesToRownames",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToRownames(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump mapGenesToSymbols
+#' @export
+setMethod(
+    f = "mapGenesToSymbols",
+    signature = signature("seurat"),
+    definition = function(object, genes, strict = TRUE) {
+        mapGenesToSymbols(
+            object = as(object, "RangedSummarizedExperiment"),
+            genes = genes,
+            strict = strict
+        )
+    }
+)
+
+
+
+# metadata =====================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom S4Vectors metadata
 #' @export
 setMethod(
-    "metadata",
-    signature("seurat"),
-    function(x, ...) {
-        stash <- slot(x, "misc")[["bcbio"]][["metadata"]]
+    f = "metadata",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        stash <- .getSeuratStash(x, "metadata")
         if (!is.null(stash)) {
             return(stash)
         }
-        metadata(.as.SingleCellExperiment.seurat(x), ...)
+        metadata(as.SingleCellExperiment(x), ...)
     }
 )
 
@@ -208,110 +272,109 @@ setMethod(
 #' @seealso `getMethod("metadata<-", "Annotated")`
 #' @export
 setMethod(
-    "metadata<-",
-    signature(
+    f = "metadata<-",
+    signature = signature(
         x = "seurat",
         value = "ANY"
     ),
-    function(x, value) {
-        if (!is.list(value)) {
-            stop("replacement 'metadata' value must be a list")
-        }
+    definition = function(x, value) {
+        assert(is.list(value))
         if (!length(value)) {
             names(value) <- NULL
         }
-        slot(x, "misc")[["bcbio"]][["metadata"]] <- value
+        x@misc[["metadata"]] <- value
         x
     }
 )
 
 
 
+# metrics ======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump metrics
 #' @export
 setMethod(
-    "metrics",
-    signature("seurat"),
-    function(object, ...) {
-        metrics(as(object, "SingleCellExperiment"))
+    f = "metrics",
+    signature = signature("seurat"),
+    definition = function(object, ...) {
+        metrics(as(object, "SingleCellExperiment"), ...)
     }
 )
 
 
 
+# reducedDims ==================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment reducedDims
 #' @export
 setMethod(
-    "reducedDims",
-    signature("seurat"),
-    function(x) {
-        reducedDims(.as.SingleCellExperiment.seurat(x))
+    f = "reducedDims",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
+        reducedDims(as.SingleCellExperiment(x), ...)
     }
 )
 
 
 
+# rowData ======================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowData
 #' @export
 setMethod(
-    "rowData",
-    signature("seurat"),
-    function(x, ...) {
+    f = "rowData",
+    signature = signature("seurat"),
+    definition = function(x, ...) {
         rowData(as(x, "SingleCellExperiment"), ...)
     }
 )
 
 
 
+# rownames =====================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom BiocGenerics rownames
 #' @export
 setMethod(
-    "rownames",
-    signature("seurat"),
-    function(x) {
-        rownames(.as.SingleCellExperiment.seurat(x))
+    f = "rownames",
+    signature = signature("seurat"),
+    definition = function(x) {
+        rownames(as.SingleCellExperiment(x))
     }
 )
 
 
 
-# Note that there may be a names issue when handling GRanges with NA values
-# in either the geneID or geneName columns
+# rowRanges ====================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowRanges
 #' @export
 setMethod(
-    "rowRanges",
-    signature("seurat"),
-    function(x) {
-        gr <- rowRanges(.as.SingleCellExperiment.seurat(x))
-
-        # Attempt to use stashed rowRanges, if present
-        stash <- slot(x, "misc")[["bcbio"]][["rowRanges"]]
+    f = "rowRanges",
+    signature = signature("seurat"),
+    definition = function(x) {
+        sce <- as.SingleCellExperiment(x)
+        # Default coercion method will return a GRangesList.
+        gr <- rowRanges(sce)
+        # Attempt to use stashed rowRanges, if defined.
+        stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {
-            assert_is_subset(c("geneID", "geneName"), colnames(mcols(stash)))
-            # Check to see if we're using IDs or symbols
-            if (any(names(gr) %in% mcols(stash)[["geneID"]])) {
-                namesCol <- "geneID"
-            } else if (any(names(gr) %in% mcols(stash)[["geneName"]])) {
-                namesCol <- "geneName"
-            } else {
-                stop("Failed to match identifiers to rownames")
+            assert(identical(length(gr), length(stash)))
+            # Handle situation where we've changed from gene IDs to gene names.
+            if (!identical(names(gr), names(stash))) {
+                names(stash) <- names(gr)
             }
-            names(stash) <- make.unique(as.character(mcols(stash)[[namesCol]]))
-            assert_are_identical(names(gr), names(stash))
-            assert_are_disjoint_sets(
-                x = colnames(mcols(gr)),
-                y = colnames(mcols(stash))
-            )
-            mcols(stash) <- cbind(mcols(stash), mcols(gr))
+            mcols1 <- mcols(stash)
+            mcols2 <- mcols(gr)
+            mcols2 <- mcols2[
+                ,
+                setdiff(colnames(mcols2), colnames(mcols1)),
+                drop = FALSE
+            ]
+            mcols <- cbind(mcols1, mcols2)
             gr <- stash
+            mcols(gr) <- mcols
         }
-
         gr
     }
 )
@@ -319,15 +382,31 @@ setMethod(
 
 
 #' @rdname seurat-SingleCellExperiment
-#' @importFrom bcbioSingleCell sampleData
+#' @importFrom SummarizedExperiment rowRanges<-
 #' @export
 setMethod(
-    "sampleData",
-    signature("seurat"),
+    f = "rowRanges<-",
+    signature = signature("seurat"),
+    definition = function(x, value) {
+        assert(identical(rownames(x), names(value)))
+        x@misc[["rowRanges"]] <- value
+        x
+    }
+)
+
+
+
+# sampleData ===================================================================
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom basejump sampleData
+#' @export
+setMethod(
+    f = "sampleData",
+    signature = signature("seurat"),
     getMethod(
-        "sampleData",
-        "SingleCellExperiment",
-        asNamespace("bcbioSingleCell")
+        f = "sampleData",
+        signature = signature("SingleCellExperiment"),
+        where = asNamespace("basejump")
     )
 )
 
@@ -337,28 +416,59 @@ setMethod(
 #' @importFrom basejump sampleData<-
 #' @export
 setMethod(
-    "sampleData<-",
-    signature(
+    f = "sampleData<-",
+    signature = signature(
         object = "seurat",
         value = "DataFrame"
     ),
     getMethod(
-        "sampleData<-",
-        signature(
+        f = "sampleData<-",
+        signature = signature(
             object = "SingleCellExperiment",
             value = "DataFrame"
         ),
-        asNamespace("bcbioSingleCell")
+        where = asNamespace("basejump")
     )
 )
 
 
 
+# sampleNames ==================================================================
 #' @rdname seurat-SingleCellExperiment
 #' @importFrom basejump sampleNames
 #' @export
 setMethod(
-    "sampleNames",
-    signature("seurat"),
-    getMethod("sampleNames", "SummarizedExperiment")
+    f = "sampleNames",
+    signature = signature("seurat"),
+    definition = function(object) {
+        sampleNames(as(object, "SingleCellExperiment"))
+    }
+)
+
+
+
+# weights ======================================================================
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom SingleCellExperiment weights
+#' @export
+setMethod(
+    f = "weights",
+    signature = signature("seurat"),
+    definition = function(object) {
+        slot(object, name = "misc")[["assays"]][["weights"]]
+    }
+)
+
+
+
+#' @rdname seurat-SingleCellExperiment
+#' @importFrom SingleCellExperiment weights<-
+#' @export
+setMethod(
+    f = "weights<-",
+    signature = signature("seurat"),
+    definition = function(object, value) {
+        object@misc[["assays"]][["weights"]] <- value
+        object
+    }
 )

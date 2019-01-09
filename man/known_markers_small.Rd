@@ -3,24 +3,16 @@
 \docType{data}
 \name{known_markers_small}
 \alias{known_markers_small}
-\title{Known Markers Example}
-\format{An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 2 rows and 2 columns.}
+\title{Known markers example}
+\format{An object of class \code{KnownMarkers} with 5 rows and 10 columns.}
 \usage{
 known_markers_small
 }
 \description{
-Known Markers Example
+Known markers example
 }
 \examples{
-glimpse(known_markers_small)
+data(known_markers_small)
+known_markers_small
 }
-\seealso{
-Other Minimal Example Data: \code{\link{all_markers_small}},
-  \code{\link{known_markers_detected_small}},
-  \code{\link{sce_small}}, \code{\link{seurat_small}}
-}
-\author{
-Michael Steinbaugh
-}
-\concept{Minimal Example Data}
 \keyword{datasets}

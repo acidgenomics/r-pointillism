@@ -1,34 +1,35 @@
-#' Cell Counts per Cluster
-#'
 #' @name cellCountsPerCluster
+#' @inherit bioverbs::cellCountsPerCluster
+#' @inheritParams basejump::params
 #'
-#' @inheritParams general
-#'
-#' @return `tibble` grouped by "`ident`" column, arranged by abundance.
+#' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' x <- cellCountsPerCluster(sce_small)
-#' glimpse(x)
+#' data(seurat_small)
+#' x <- cellCountsPerCluster(seurat_small)
+#' print(x)
 NULL
 
 
 
-#' @rdname cellCountsPerCluster
+#' @importFrom bioverbs cellCountsPerCluster
+#' @aliases NULL
 #' @export
-setMethod(
-    "cellCountsPerCluster",
-    signature("SingleCellExperiment"),
-    function(object, interestingGroups) {
+bioverbs::cellCountsPerCluster
+
+
+
+cellCountsPerCluster.SingleCellExperiment <-  # nolint
+    function(object, interestingGroups = NULL) {
         validObject(object)
-        .assertHasIdent(object)
-        interestingGroups <- matchInterestingGroups(
-            object = object,
-            interestingGroups = interestingGroups
-        )
-        metrics <- metrics(object, interestingGroups = interestingGroups)
+        assert(.hasIdent(object))
+        interestingGroups(object) <-
+            matchInterestingGroups(object, interestingGroups)
+        data <- metrics(object)
         cols <- unique(c("ident", interestingGroups))
-        assert_is_subset(cols, colnames(metrics))
-        metrics %>%
+        assert(isSubset(cols, colnames(data)))
+        data %>%
+            as_tibble() %>%
             arrange(!!!syms(cols)) %>%
             group_by(!!!syms(cols)) %>%
             summarize(n = n()) %>%
@@ -37,6 +38,15 @@ setMethod(
             group_by(!!sym("ident")) %>%
             mutate(ratio = !!sym("n") / sum(!!sym("n")))
     }
+
+
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = cellCountsPerCluster.SingleCellExperiment
 )
 
 
@@ -44,7 +54,7 @@ setMethod(
 #' @rdname cellCountsPerCluster
 #' @export
 setMethod(
-    "cellCountsPerCluster",
-    signature("seurat"),
-    getMethod("cellCountsPerCluster", "SingleCellExperiment")
+    f = "cellCountsPerCluster",
+    signature = signature("seurat"),
+    definition = cellCountsPerCluster.SingleCellExperiment
 )
