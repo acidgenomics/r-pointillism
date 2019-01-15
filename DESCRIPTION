@@ -30,36 +30,19 @@ Depends:
     SingleCellExperiment (>= 1.2),
     basejump (>= 0.9.3)
 Imports:
-    BiocGenerics,
-    BiocParallel,
-    DESeq2 (>= 1.20),
-    Matrix,
-    S4Vectors,
-    Seurat (>= 2.3),
-    SummarizedExperiment,
-    bioverbs (>= 0.1),
-    cowplot,
-    dplyr,
-    edgeR (>= 3.22),
-    ggplot2,
-    goalie (>= 0.2.3),
-    googlesheets,
-    magrittr,
-    methods,
-    pbapply,
-    rlang (>= 0.3),
-    scales,
-    sessioninfo,
-    tibble (>= 1.4),
-    tidyr,
-    zinbwave (>= 1.0)
+    S4Transformer (>= 0.1), bioverbs (>= 0.1.2), goalie (>= 0.2.4),
+    BiocGenerics, BiocParallel, DESeq2 (>= 1.20), S4Vectors,
+        SummarizedExperiment, edgeR (>= 3.22), zinbwave,
+    Matrix (>= 1.2), Seurat (>= 2.3), cowplot (>= 0.9), dplyr (>= 0.7),
+        ggplot2 (>= 3.1), googlesheets (>= 0.3), magrittr (>= 1.5),
+        pbapply (>= 1.3), rlang (>= 0.3), sessioninfo (>= 1.1), tibble (>= 2.0),
+        tidyr (>= 0.8),
+    methods, scales
 Suggests:
-    BiocStyle,
-    patrick,
-    roxygen2,
-    splatter,
-    testthat (>= 2.0)
+    BiocStyle, splatter,
+    patrick, roxygen2, testthat
 Remotes:
+    steinbaugh/S4Transformer,
     steinbaugh/basejump,
     steinbaugh/goalie
 biocViews:
@@ -91,6 +74,7 @@ Collate:
     'fetchData-internal.R'
     'findMarkers-methods.R'
     'importMarkers.R'
+    'imports.R'
     'package.R'
     'plotCellCountsPerCluster-methods.R'
     'plotCellTypesPerCluster-methods.R'
