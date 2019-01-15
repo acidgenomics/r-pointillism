@@ -91,14 +91,6 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
             lapply(
                 X = cellTypes,
                 FUN = function(cellType) {
-                    cellData <- clusterData %>%
-                        filter(!!sym("cellType") == !!cellType)
-                    assert(nrow(cellData) == 1L)
-                    genes <- cellData %>%
-                        pull("name") %>%
-                        as.character() %>%
-                        strsplit(", ") %>%
-                        .[[1L]]
                     title <- as.character(cellType)
                     markdownHeader(
                         text = title,
@@ -107,6 +99,17 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                     )
                     # Modify the title by adding the cluster number.
                     title <- paste(paste0("Cluster ", cluster, ":"), title)
+                    cellData <-
+                        filter(clusterData, !!sym("cellType") == !!cellType)
+                    assert(nrow(cellData) == 1L)
+                    genes <- cellData %>%
+                        pull("name") %>%
+                        as.character() %>%
+                        strsplit(", ") %>%
+                        .[[1L]]
+                    if (!hasLength(genes)) {
+                        return(invisible())
+                    }
                     p <- plotMarker(
                         object = object,
                         genes = genes,
