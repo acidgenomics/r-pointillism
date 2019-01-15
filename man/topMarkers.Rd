@@ -21,9 +21,8 @@ Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
 \item{return}{\code{character(1)}.
-Return type.
-Uses \link[base:match.arg]{match.arg()} internally and defaults to the first
-argument in the \code{character} vector.}
+Return type. Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults
+to the first argument in the \code{character} vector.}
 }
 \value{
 \code{grouped_df}.
