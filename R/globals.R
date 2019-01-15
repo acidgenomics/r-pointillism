@@ -1,6 +1,6 @@
 globalVariables(".")
 
-# TODO Make a header function in show.R
+# FIXME Make a header function in show.R
 url <- "https://steinbaugh.com/pointillism"
 citation <- "citation(\"pointillism\")"
 
