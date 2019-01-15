@@ -4,7 +4,7 @@
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
-#' @importMethodsFrom S4Transformer coerce
+#' @importMethodsFrom basejump coerce
 #'
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply rowMeans
 #'   rowSums sapply
