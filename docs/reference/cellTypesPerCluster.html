@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -147,25 +147,17 @@ makers per cell type.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>all_markers_small</span>, <span class='no'>cell_type_markers</span>)
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='KnownMarkers.html'>KnownMarkers</a></span>(
+<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'>KnownMarkers</span>(
     <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>all_markers_small</span>,
     <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>cell_type_markers</span>$<span class='no'>homoSapiens</span>
 )</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Grouping by cellType.</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>markers</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 32 x 6</span><span>
-#&gt; </span><span style='color: #555555;'># Groups:   cluster [4]</span><span>
-#&gt;    cluster cellType          n name          geneID               geneName      
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         
-#&gt; </span><span style='color: #555555;'> 1</span><span> 0       T Cell            1 CD3D          ENSG00000167286      CD3D          
-#&gt; </span><span style='color: #555555;'> 2</span><span> 0       B Cell            0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0       Dendritic Ce…     0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 4</span><span> 0       Gut Epitheli…     0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 5</span><span> 0       Macrophage        0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 6</span><span> 0       Mesenchymal …     0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 7</span><span> 0       Monocyte          0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 8</span><span> 0       Natural Kill…     0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'> 9</span><span> 1       Dendritic Ce…     3 HLA-DPB1, HL… ENSG00000215048, EN… HLA-DPB1, HLA…
-#&gt; </span><span style='color: #555555;'>10</span><span> 1       B Cell            0 </span><span style='color: #555555;'>""</span><span>            </span><span style='color: #555555;'>""</span><span>                   </span><span style='color: #555555;'>""</span><span>            
-#&gt; </span><span style='color: #555555;'># … with 22 more rows</span><span></div></span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 6</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   cluster [3]</span><span>
+#&gt;   cluster cellType        n name          geneID                 geneName       
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0       T Cell          1 CD3D          ENSG00000167286        CD3D           
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 1       Dendritic …     3 HLA-DPB1, HL… ENSG00000215048, ENSG… HLA-DPB1, HLA-…
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 2       T Cell          1 CD247         ENSG00000198821        CD247          </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
