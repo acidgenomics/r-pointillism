@@ -60,6 +60,8 @@ NULL
 
     # Gather into long format.
     # Here we're putting the genes into a "rowname" column.
+    # Note that this step can attempt to sanitize gene symbols (e.g. "HLA-DRA"
+    # to "HLA.DRA") here in the `as_tibble()` call, if we're not careful.
     data <- data %>%
         as_tibble(rownames = "rowname") %>%
         gather(
