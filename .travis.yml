@@ -15,6 +15,15 @@ branches:
   only:
   - master
 
+# External dependencies
+# These are needed to install zinbwave on Linux.
+addons:
+  apt:
+    packages:
+      - gsl-bin
+      - libgsl-dev
+      - libhdf5-dev
+
 env:
   global:
     - LINTR_COMMENT_BOT=true
@@ -27,7 +36,5 @@ after_success:
 
 notifications:
   email:
-    recipients:
-      - mike@steinbaugh.com
     on_success: change
-    on_failure: always
+    on_failure: change
