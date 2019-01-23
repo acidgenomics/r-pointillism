@@ -43,6 +43,7 @@ Suggests:
     patrick, roxygen2, testthat
 Remotes:
     steinbaugh/basejump,
+    steinbaugh/bioverbs,
     steinbaugh/goalie
 biocViews:
     DataRepresentation,
