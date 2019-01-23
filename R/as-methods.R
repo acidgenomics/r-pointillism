@@ -285,6 +285,8 @@ setAs(
 
         assert(areDisjointSets(colnames(data), colnames(g2s)))
         data <- cbind(data, g2s)
+        # Ensure Rle columns get decoded.
+        data <- decode(data)
         data <- as(data, "tbl_df")
 
         message("Grouping by cluster.")
