@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -150,14 +150,14 @@ Recommended maximum value cutoff.</p></td>
       <th>reducedDim</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Name of reduced dimension matrix slotted in
-<a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDims</a>. Includes TNSE, UMAP, PCA,
-for example.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDims()</a></code>.
+Includes TNSE, UMAP, PCA, for example.</p></td>
     </tr>
     <tr>
       <th>expression</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Calculation to apply.
-Uses <a href='https://www.rdocumentation.org/packages/base/topics/match.arg'>match.arg()</a> internally and defaults to the first
+Uses <code><a href='https://www.rdocumentation.org/packages/base/topics/match.arg'>match.arg()</a></code> internally and defaults to the first
 argument in the <code>character</code> vector.</p></td>
     </tr>
     <tr>
@@ -172,7 +172,7 @@ Show progress, using progress bars.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='plotMarker.html'>plotMarker()</a></code>.</p></td>
+      <td><p>Passthrough arguments to <code>plotMarker()</code>.</p></td>
     </tr>
     </table>
     
@@ -201,34 +201,6 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
 #&gt; ### T Cell
 #&gt; </div><div class='img'><img src='plotCellTypesPerCluster-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; ### B Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Dendritic Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Gut Epithelial Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Macrophage
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Mesenchymal Stem Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Monocyte
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Natural Killer Cell
-#&gt; 
-#&gt; 
-#&gt; 
 #&gt; ## Cluster 1 {.tabset}
 #&gt; 
 #&gt; 
@@ -236,103 +208,12 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
 #&gt; ### Dendritic Cell
 #&gt; </div><div class='img'><img src='plotCellTypesPerCluster-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; ### B Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Gut Epithelial Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Macrophage
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Mesenchymal Stem Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Monocyte
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Natural Killer Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### T Cell
-#&gt; 
-#&gt; 
-#&gt; 
 #&gt; ## Cluster 2 {.tabset}
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; ### T Cell
-#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ### B Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Dendritic Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Gut Epithelial Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Macrophage
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Mesenchymal Stem Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Monocyte
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Natural Killer Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ## Cluster 3 {.tabset}
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### B Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Dendritic Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Gut Epithelial Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Macrophage
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Mesenchymal Stem Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Monocyte
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Natural Killer Cell
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### T Cell
-#&gt; </div></pre>
+#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
