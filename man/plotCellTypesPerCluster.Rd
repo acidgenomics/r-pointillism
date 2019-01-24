@@ -28,12 +28,12 @@ Recommended maximum value cutoff.}
 
 \item{reducedDim}{\code{character(1)}.
 Name of reduced dimension matrix slotted in
-\link[SingleCellExperiment:reducedDims]{reducedDims}. Includes TNSE, UMAP, PCA,
-for example.}
+\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
+Includes TNSE, UMAP, PCA, for example.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.
-Uses \link[base:match.arg]{match.arg()} internally and defaults to the first
+Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults to the first
 argument in the \code{character} vector.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).

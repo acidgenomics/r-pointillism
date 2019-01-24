@@ -109,8 +109,8 @@
 
 \item{reducedDim}{\code{character(1)}.
 Name of reduced dimension matrix slotted in
-\link[SingleCellExperiment:reducedDims]{reducedDims}. Includes TNSE, UMAP, PCA,
-for example.}
+\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
+Includes TNSE, UMAP, PCA, for example.}
 
 \item{dimsUse}{\code{integer}.
 Vector of length 2 that denotes the columns from the reduced dimension

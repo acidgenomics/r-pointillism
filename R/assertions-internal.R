@@ -1,8 +1,8 @@
-# TODO Rethink these assert checks, and deprecate if possible.
+# FIXME Rethink these assert checks, and deprecate if possible.
 
 
 
-# TODO Add `design()` method for SCE.
+# FIXME Add `design()` method for SCE.
 .hasDesignFormula <- function(object) {
     all(
         is(object, "SingleCellExperiment"),
@@ -13,7 +13,7 @@
 
 
 
-# TODO Add `ident` generic.
+# FIXME Add `ident` generic.
 .hasIdent <- function(object) {
     "ident" %in% colnames(colData(object))
 }
@@ -26,9 +26,9 @@
 
 
 
-# TODO Consider moving this to basejump.
+# FIXME Consider moving this to basejump.
 # Require valid BiocParallel bpparam.
-# TODO Rename to BPParam?
+# FIXME Rename to BPParam?
 .isBPPARAM <- function(object) {
     all(
         identical(
@@ -77,7 +77,7 @@
 
 
 
-# TODO Re/think/rework this approach.
+# FIXME Re/think/rework this approach.
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
