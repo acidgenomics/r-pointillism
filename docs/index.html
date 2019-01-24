@@ -82,11 +82,11 @@
 <a href="#bioconductor" class="anchor"></a><a href="https://bioconductor.org/">Bioconductor</a>
 </h3>
 <p>We recommend installing the package with <a href="https://cran.r-project.org/package=BiocManager">BiocManager</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"BiocManager"</span>)) {
+<pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"BiocManager"</span>)) {
     <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"BiocManager"</span>)
 }
-BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"remotes"</span>)
-BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"steinbaugh/pointillism"</span>)</code></pre></div>
+BiocManager::<span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"remotes"</span>)
+BiocManager::<span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"steinbaugh/pointillism"</span>)</code></pre>
 </div>
 </div>
 <div id="supported-data-classes" class="section level2">
@@ -157,7 +157,7 @@ BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocu
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/steinbaugh/pointillism"><img src="https://travis-ci.org/steinbaugh/pointillism.svg?branch=master" alt="Travis CI"></a></li>
+<li><a href="https://travis-ci.org/steinbaugh/pointillism"><embed src="https://travis-ci.org/steinbaugh/pointillism.svg?branch=master"></embed></a></li>
 <li><a href="https://codecov.io/gh/steinbaugh/pointillism"><img src="https://codecov.io/gh/steinbaugh/pointillism/branch/master/graph/badge.svg" alt="Codecov"></a></li>
 <li><a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></li>
 </ul>
