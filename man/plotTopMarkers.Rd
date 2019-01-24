@@ -29,8 +29,8 @@ Plot "\code{both}", "\code{up}", or "\code{down}" directions.}
 
 \item{reducedDim}{\code{character(1)}.
 Name of reduced dimension matrix slotted in
-\link[SingleCellExperiment:reducedDims]{reducedDims}. Includes TNSE, UMAP, PCA,
-for example.}
+\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
+Includes TNSE, UMAP, PCA, for example.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}

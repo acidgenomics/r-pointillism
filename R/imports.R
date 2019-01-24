@@ -1,10 +1,12 @@
 # Conflicts:
 # @importFrom Matrix rowMeans rowSums
 
+
+
 #' @importClassesFrom Seurat seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
-#' @importMethodsFrom S4Transformer coerce
+#' @importMethodsFrom basejump coerce
 #'
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply rowMeans
 #'   rowSums sapply
@@ -18,10 +20,10 @@
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
-#' @importFrom basejump camel coerce convertGenesToSymbols gene2symbol import
-#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
-#'   matchInterestingGroups printString showSlotInfo snake theme_midnight
-#'   upperCamel
+#' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
+#'   import mapGenesToRownames mapGenesToSymbols markdownHeader
+#'   matchArgsToDoCall matchInterestingGroups printString showSlotInfo snake
+#'   theme_midnight upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize

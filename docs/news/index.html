@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -105,6 +105,14 @@
       <small>Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="pointillism-0-2-4-2019-01-24" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-2-4-2019-01-24" class="anchor"></a>pointillism 0.2.4 (2019-01-24)</h2>
+</div>
+    <div id="pointillism-0-2-3-2019-01-08" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-2-3-2019-01-08" class="anchor"></a>pointillism 0.2.3 (2019-01-08)</h2>
+</div>
     <div id="pointillism-0-2-2-2018-12-22" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0-2-2-2018-12-22" class="anchor"></a>pointillism 0.2.2 (2018-12-22)</h2>
@@ -125,7 +133,7 @@
 <a href="#major-changes" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
-<code><a href="../reference/as.html">as(seurat, "SingleCellExperiment")</a></code> now returns <code>scaleData</code> in assays, along with <code>varGenes</code> in <code>metadata()</code> and ensures that <code>colData()</code> and <code>rowRanges()</code> are sanitized into camel case using the <code>camel()</code> function internally.</li>
+<code>as(seurat, "SingleCellExperiment")</code> now returns <code>scaleData</code> in assays, along with <code>varGenes</code> in <code>metadata()</code> and ensures that <code>colData()</code> and <code>rowRanges()</code> are sanitized into camel case using the <code>camel()</code> function internally.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level3">
@@ -134,12 +142,12 @@
 <ul>
 <li>Removed <code>convertGenesToSymbols()</code> support for <code>seurat</code> class. Coerce genes to symbols manually prior to <code>seurat</code> coercion from <code>SingleCellExperiment</code>.</li>
 <li>
-<code><a href="../reference/clusterID.html">clusterID()</a></code>: improved consistency between <code>SingleCellExperiment</code> and <code>seurat</code> methods, which now both work on <code>colData()</code>.</li>
+<code>clusterID()</code>: improved consistency between <code>SingleCellExperiment</code> and <code>seurat</code> methods, which now both work on <code>colData()</code>.</li>
 <li>Improved internal <code>fetchData</code> calls to use camel case for consistency.</li>
 <li>
-<code><a href="../reference/plotFeature.html">plotFeature()</a></code> now sanitizes the <code>features</code> argument into camel case internally, for more consistent matching.</li>
+<code>plotFeature()</code> now sanitizes the <code>features</code> argument into camel case internally, for more consistent matching.</li>
 <li>
-<code><a href="../reference/plotReducedDim.html">plotReducedDim()</a></code> now uses camel case formatting for axis labels.</li>
+<code>plotReducedDim()</code> now uses camel case formatting for axis labels.</li>
 <li>Removed unnecessary legacy <code>.minimalAxis</code> constructor.</li>
 <li>
 <code>metadata&lt;-</code> assignment method now stashes directly into <code>object@misc</code> for <code>seurat</code> class.</li>
@@ -155,20 +163,20 @@
 <a href="#new-functions" class="anchor"></a>New functions</h3>
 <ul>
 <li>
-<code><a href="../reference/clusterID.html">clusterID()</a></code>: S4 generic that returns the cell cluster identity mappings as a <code>factor</code> for all cells.</li>
+<code>clusterID()</code>: S4 generic that returns the cell cluster identity mappings as a <code>factor</code> for all cells.</li>
 <li>
-<code><a href="../reference/findMarkers.html">findMarkers()</a></code>: Utility function that wraps <code><a href="../reference/diffExp.html">diffExp()</a></code> to identify cluster- specific genes across all clusters.</li>
+<code>findMarkers()</code>: Utility function that wraps <code>diffExp()</code> to identify cluster- specific genes across all clusters.</li>
 </ul>
 </div>
 <div id="minor-changes-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Converted <code><a href="../reference/runZinbwave.html">runZinbwave()</a></code> to an S4 method that works on <code>SingleCellExperiment</code>. For <code>seurat</code> objects, coerce to <code>SingleCellExperiment</code> before calculating weights.</li>
+<li>Converted <code>runZinbwave()</code> to an S4 method that works on <code>SingleCellExperiment</code>. For <code>seurat</code> objects, coerce to <code>SingleCellExperiment</code> before calculating weights.</li>
 <li>
 <code>plotDot()</code> now uses default <a href="https://ggplot2.tidyverse.org">ggplot2</a> color scale, unless specified.</li>
 <li>
-<code><a href="../reference/plotReducedDim.html">plotReducedDim()</a></code>, <code><a href="../reference/plotMarker.html">plotMarker()</a></code>: <code>theme_paperwhite()</code> is no longer used by default. Removed <code>grid</code> and <code>aspectRatio</code> arguments to simplify <a href="https://ggplot2.tidyverse.org">ggplot2</a> code handling.</li>
+<code>plotReducedDim()</code>, <code>plotMarker()</code>: <code>theme_paperwhite()</code> is no longer used by default. Removed <code>grid</code> and <code>aspectRatio</code> arguments to simplify <a href="https://ggplot2.tidyverse.org">ggplot2</a> code handling.</li>
 </ul>
 </div>
 </div>
@@ -179,7 +187,7 @@
 <h3 class="hasAnchor">
 <a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
-<li>Now exporting <code><a href="../reference/runZinbwave.html">runZinbwave()</a></code> and <code>hasZinbwave()</code>, which were previously internal functions called by <code><a href="../reference/diffExp.html">diffExp()</a></code>.</li>
+<li>Now exporting <code>runZinbwave()</code> and <code>hasZinbwave()</code>, which were previously internal functions called by <code>diffExp()</code>.</li>
 </ul>
 </div>
 <div id="minor-changes-2" class="section level3">
@@ -203,6 +211,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pointillism-0-2-4-2019-01-24">0.2.4</a></li>
+        <li><a href="#pointillism-0-2-3-2019-01-08">0.2.3</a></li>
         <li><a href="#pointillism-0-2-2-2018-12-22">0.2.2</a></li>
         <li><a href="#pointillism-0-2-1-2018-12-01">0.2.1</a></li>
         <li><a href="#pointillism-0-2-0-2018-11-15">0.2.0</a></li>
