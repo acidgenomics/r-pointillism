@@ -35,14 +35,14 @@ branches:
   only:
   - master
 
+# These are taken from the Seurat Travis CI config.
+# 1.10.4 is current. 1.8.17 used for Seurat CI.
+# https://www.hdfgroup.org/downloads/hdf5/
 env:
   global:
-    # These are taken from the Seurat Travis CI config.
-    # 1.10.4 is current. 1.8.17 used for Seurat CI.
-    # https://www.hdfgroup.org/downloads/hdf5/
-    - HDF5_VERSION=1.8.17
+    - HDF5_VERSION="1.8.17"
     - HDF5_RELEASE_URL="https://support.hdfgroup.org/ftp/HDF5/releases"
-    - LINTR_COMMENT_BOT=true
+    - LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 
 before_install:
   - chmod +x travis_setup.sh
@@ -57,6 +57,10 @@ addons:
       - libgsl-dev
       # This is too old for hdf5r. Installing from source instead.
       # - libhdf5-dev
+
+env:
+  global:
+    - LINTR_COMMENT_BOT=true
 
 github_packages:
   - mjsteinbaugh/lintr
