@@ -27,12 +27,12 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
-    SingleCellExperiment (>= 1.2),
+    SingleCellExperiment (>= 1.4),
     basejump (>= 0.9.7)
 Imports:
     bioverbs (>= 0.1.4), goalie (>= 0.2.6),
-    BiocGenerics, BiocParallel, DESeq2 (>= 1.20), S4Vectors,
-        SummarizedExperiment, edgeR (>= 3.22), zinbwave,
+    BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
+        SummarizedExperiment, edgeR (>= 3.24), zinbwave (>= 1.4),
     Matrix (>= 1.2), Seurat (>= 2.3), cowplot (>= 0.9), dplyr (>= 0.7),
         ggplot2 (>= 3.1), googlesheets (>= 0.3), magrittr (>= 1.5),
         pbapply (>= 1.3), rlang (>= 0.3), sessioninfo (>= 1.1), tibble (>= 2.0),
