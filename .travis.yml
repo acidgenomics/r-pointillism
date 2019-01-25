@@ -25,15 +25,15 @@ sudo: required
 
 matrix:
   include:
-  - os: linux
-    r: release
-  # Disabled until macOS uses BioC 3.8 by default.
-  # - os: osx
-  #   r: release
+    - os: linux
+      r: release
+    # Disabled until macOS uses BioC 3.8 by default.
+    # - os: osx
+    #   r: release
 
 branches:
   only:
-  - master
+    - master
 
 # These are taken from the Seurat Travis CI config.
 # 1.10.4 is current. 1.8.17 used for Seurat CI.
@@ -63,12 +63,14 @@ env:
     - LINTR_COMMENT_BOT=true
 
 github_packages:
-  - mjsteinbaugh/lintr
+  - steinbaugh/lintr
 
 after_success:
   - Rscript -e 'lintr::lint_package()'
 
 notifications:
   email:
+    recipients:
+      - mike@steinbaugh.com
     on_success: change
     on_failure: change
