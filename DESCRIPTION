@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-Cell Clustering Visualization
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.2.4
-Date: 2019-01-23
+Date: 2019-01-24
 Authors@R: c(
     person(
         given = "Michael",
