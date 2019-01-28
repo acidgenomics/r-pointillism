@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Consider adding a step to check for hdf5 version, and skipping this step to
+# speed up the build time.
 if [[ "$TRAVIS_OS_NAME" != "osx" ]]
 then
     wd="$PWD"

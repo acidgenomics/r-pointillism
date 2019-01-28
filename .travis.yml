@@ -16,8 +16,10 @@ matrix:
   include:
   - os: linux
     r: release
-  - os: osx
-    r: release
+  # Disabling because macOS is stuck on BioC 3.7.
+  # Consider making a Docker image and switching to Circle CI.
+  # - os: osx
+  #   r: release
 
 branches:
   only:
