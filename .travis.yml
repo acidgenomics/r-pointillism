@@ -27,8 +27,6 @@ matrix:
   include:
     - os: linux
       r: release
-    # Disabling because macOS is stuck on BioC 3.7.
-    # Consider making a Docker image and switching to Circle CI.
     # Disabled until macOS uses BioC 3.8 by default.
     # - os: osx
     #   r: release
@@ -72,5 +70,7 @@ after_success:
 
 notifications:
   email:
+    recipients:
+      - mike@steinbaugh.com
     on_success: change
     on_failure: change
