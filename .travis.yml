@@ -27,10 +27,10 @@ sudo: required
 matrix:
   include:
     - os: linux
-      r: release
+      r: bioc-release
     # Disabled until macOS image is updated to BioC 3.8.
     # - os: osx
-    #   r: release
+    #   r: bioc-release
 
 branches:
   only:
