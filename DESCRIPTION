@@ -28,7 +28,7 @@ LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.9.9)
+    basejump (>= 0.9.10)
 Imports:
     bioverbs (>= 0.1.6), goalie (>= 0.2.8),
     BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
