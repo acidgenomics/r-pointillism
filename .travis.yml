@@ -36,10 +36,10 @@ branches:
   only:
     - master
 
+# https://docs.travis-ci.com/user/environment-variables/
 env:
   global:
     - HDF5_VERSION="1.10.4"
-    - HDF5_RELEASE_URL="https://support.hdfgroup.org/ftp/HDF5/releases"
     - LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
     - LINTR_COMMENT_BOT=true
 
