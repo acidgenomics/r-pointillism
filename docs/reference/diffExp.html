@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -203,7 +203,7 @@ RNA-seq datasets.</p>
 
     
     <p>This function will run a lot faster if you pre-calculate the ZINB weights
-using the <code>runZinbwave()</code> function, which will stash the weights into the
+using the <code><a href='runZinbwave.html'>runZinbwave()</a></code> function, which will stash the weights into the
 <code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays'>SingleCellExperiment::weights()</a></code> slot of the object. Running zinbwave across
 the entire set of filtered cells also has greater sensitivity for weight
 calculations.</p>
@@ -255,11 +255,11 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 <span class='co'>## seurat_small &lt;- runZinbwave(object)</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
-<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
+<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        10 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        12 character character </div><div class='input'>
 <span class='co'>## edgeR.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
@@ -270,9 +270,9 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 )</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
 #&gt; <span class='message'>Numerator: 10 cells</span>
 #&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.206   0.001   0.211 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>  0.218   0.002   0.224 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
-#&gt; [1] "edgeR"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
+#&gt; [1] "edgeR"</div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
 #&gt; coefficients           374   -none-           numeric  
 #&gt; fitted.values         4114   -none-           numeric  
 #&gt; deviance               187   -none-           numeric  
