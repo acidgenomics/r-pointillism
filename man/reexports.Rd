@@ -3,8 +3,9 @@
 %   R/cellTypesPerCluster-methods.R, R/clusterCellCountsPerSample-methods.R,
 %   R/clusterID-methods.R, R/diffExp-methods.R, R/diffExpPerCluster-methods.R,
 %   R/findMarkers-methods.R, R/plotCellTypesPerCluster-methods.R,
-%   R/plotFeature-methods.R, R/plotGene-methods.R, R/plotKnownMarkers-methods.R,
-%   R/plotMarker-methods.R, R/plotPCElbow-methods.R, R/plotReducedDim-methods.R,
+%   R/plotCounts-methods.R, R/plotFeature-methods.R,
+%   R/plotKnownMarkers-methods.R, R/plotMarker-methods.R,
+%   R/plotPCElbow-methods.R, R/plotReducedDim-methods.R,
 %   R/plotTopMarkers-methods.R, R/show-methods.R, R/topMarkers-methods.R
 \docType{import}
 \name{reexports}
@@ -17,7 +18,7 @@ below to see their documentation.
 \describe{
   \item{BiocGenerics}{\code{\link[BiocGenerics]{plotPCA}}}
 
-  \item{bioverbs}{\code{\link[bioverbs]{cellCountsPerCluster}}, \code{\link[bioverbs]{cellTypesPerCluster}}, \code{\link[bioverbs]{clusterCellCountsPerSample}}, \code{\link[bioverbs]{clusterID}}, \code{\link[bioverbs]{diffExp}}, \code{\link[bioverbs]{diffExpPerCluster}}, \code{\link[bioverbs]{findMarkers}}, \code{\link[bioverbs]{plotCellTypesPerCluster}}, \code{\link[bioverbs]{plotFeature}}, \code{\link[bioverbs]{plotGene}}, \code{\link[bioverbs]{plotDot}}, \code{\link[bioverbs]{plotViolin}}, \code{\link[bioverbs]{plotKnownMarkers}}, \code{\link[bioverbs]{plotMarker}}, \code{\link[bioverbs]{plotPCElbow}}, \code{\link[bioverbs]{plotReducedDim}}, \code{\link[bioverbs]{plotTSNE}}, \code{\link[bioverbs]{plotUMAP}}, \code{\link[bioverbs]{plotTopMarkers}}, \code{\link[bioverbs]{topMarkers}}}
+  \item{bioverbs}{\code{\link[bioverbs]{cellCountsPerCluster}}, \code{\link[bioverbs]{cellTypesPerCluster}}, \code{\link[bioverbs]{clusterCellCountsPerSample}}, \code{\link[bioverbs]{clusterID}}, \code{\link[bioverbs]{diffExp}}, \code{\link[bioverbs]{diffExpPerCluster}}, \code{\link[bioverbs]{findMarkers}}, \code{\link[bioverbs]{plotCellTypesPerCluster}}, \code{\link[bioverbs]{plotCounts}}, \code{\link[bioverbs]{plotDot}}, \code{\link[bioverbs]{plotViolin}}, \code{\link[bioverbs]{plotFeature}}, \code{\link[bioverbs]{plotKnownMarkers}}, \code{\link[bioverbs]{plotMarker}}, \code{\link[bioverbs]{plotPCElbow}}, \code{\link[bioverbs]{plotReducedDim}}, \code{\link[bioverbs]{plotTSNE}}, \code{\link[bioverbs]{plotUMAP}}, \code{\link[bioverbs]{plotTopMarkers}}, \code{\link[bioverbs]{topMarkers}}}
 
   \item{methods}{\code{\link[methods]{show}}}
 }}

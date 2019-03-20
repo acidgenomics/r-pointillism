@@ -1,6 +1,6 @@
-#' @name plotGene
+#' @name plotCounts
 #' @aliases plotDot plotViolin
-#' @inherit bioverbs::plotGene
+#' @inherit bioverbs::plotCounts
 #' @inheritParams basejump::params
 #' @inheritParams ggplot2::geom_violin
 #'
@@ -47,10 +47,10 @@ NULL
 
 
 
-#' @importFrom bioverbs plotGene
+#' @importFrom bioverbs plotCounts
 #' @aliases NULL
 #' @export
-bioverbs::plotGene
+bioverbs::plotCounts
 
 #' @importFrom bioverbs plotDot
 #' @aliases NULL
@@ -64,8 +64,8 @@ bioverbs::plotViolin
 
 
 
-# plotGene =====================================================================
-plotGene.SingleCellExperiment <-  # nolint
+# plotCounts =====================================================================
+plotCounts.SingleCellExperiment <-  # nolint
     function(
         object,
         genes,
@@ -86,7 +86,7 @@ plotGene.SingleCellExperiment <-  # nolint
         do.call(what = what, args = args)
     }
 
-formals(plotGene.SingleCellExperiment)[["legend"]] <- legend
+formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 
@@ -326,27 +326,27 @@ formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
 
 
 # Methods ======================================================================
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotGene",
+    f = "plotCounts",
     signature = signature("SingleCellExperiment"),
-    definition = plotGene.SingleCellExperiment
+    definition = plotCounts.SingleCellExperiment
 )
 
 
 
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotGene",
+    f = "plotCounts",
     signature = signature("seurat"),
-    definition = plotGene.SingleCellExperiment
+    definition = plotCounts.SingleCellExperiment
 )
 
 
 
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotDot",
@@ -356,7 +356,7 @@ setMethod(
 
 
 
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotDot",
@@ -366,7 +366,7 @@ setMethod(
 
 
 
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotViolin",
@@ -376,7 +376,7 @@ setMethod(
 
 
 
-#' @rdname plotGene
+#' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotViolin",
