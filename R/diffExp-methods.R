@@ -2,28 +2,10 @@
 #' @include globals.R
 #' @inherit bioverbs::diffExp
 #' @inheritParams basejump::params
-#' @inheritParams runZinbwave
 #'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
 #' supports edgeR and DESeq2 as DE callers.
-
-#'
-#' @section zinbwave:
-#'
-#' This function will run a lot faster if you pre-calculate the ZINB weights
-#' using the [runZinbwave()] function, which will stash the weights into the
-#' [SingleCellExperiment::weights()] slot of the object. Running zinbwave across
-#' the entire set of filtered cells also has greater sensitivity for weight
-#' calculations.
-#'
-#' We are currently using an epsilon setting of `1e12`, as recommended by the
-#' ZINB-WaVE integration paper. For more information on the zinbwave package,
-#' refer to these materials:
-#'
-#' - [zinbwave paper](https://doi.org/10.1186/s13059-018-1406-4).
-#' - [zinbwave vignette](https://bit.ly/2wtDdpS).
-#' - [zinbwave-DESeq2 workflow](https://github.com/mikelove/zinbwave-deseq2).
 #'
 #' @section DESeq2:
 #'
@@ -76,6 +58,10 @@
 #' @param minCountsPerCell `integer(1)`.
 #'   Minimum number of counts per cell for a gene to pass low expression
 #'   filtering. The number of cells is defined by `minCellsPerGene`.
+#' @param BPPARAM `bpparamClass`.
+#'   Back-end method to be used for computations.
+#'   See [`bpparam`][BiocParallel::bpparam] for details.
+#'   Currently only used by DESeq2 but not edgeR for calculations here.
 #'
 #' @return Varies depending on the `caller` argument:
 #'
@@ -151,7 +137,7 @@ diffExp.SingleCellExperiment <-  # nolint
         minCells = 2L,  # 10L
         minCellsPerGene = 1L,  # 25L
         minCountsPerCell = 1L,  # 5L
-        bpparam  # nolint
+        BPPARAM  # nolint
     ) {
         # Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
@@ -174,7 +160,7 @@ diffExp.SingleCellExperiment <-  # nolint
             isInt(minCountsPerCell),
             isInt(minCellsPerGene),
             allArePositive(c(minCountsPerCell, minCellsPerGene)),
-            .isBPPARAM(bpparam)
+            .isBPPARAM(BPPARAM)
         )
         caller <- match.arg(caller)
 
@@ -279,7 +265,7 @@ diffExp.SingleCellExperiment <-  # nolint
         fun(object)
     }
 
-formals(diffExp.SingleCellExperiment)[["bpparam"]] <- bpparam
+formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 
@@ -312,7 +298,7 @@ setMethod(
 # - `minmu`: Set a lower threshold than the default 0.5, as recommended
 #   in Mike Love's zinbwave-DESeq2 vignette.
 
-.diffExp.DESeq2 <- function(object) {  # nolint
+.diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
     assert(.hasDesignFormula(object))
     message("Running DESeq2.")
     message(printString(system.time({
@@ -326,10 +312,15 @@ setMethod(
             reduced = ~ 1L,
             sfType = "poscounts",
             minmu = 1e-6,
-            minReplicatesForReplace = Inf
+            minReplicatesForReplace = Inf,
+            BPPARAM = BPPARAM
         )
         # We have already performed low count filtering.
-        res <- results(dds, independentFiltering = FALSE)
+        res <- results(
+            object = dds,
+            independentFiltering = FALSE,
+            BPPARAM = BPPARAM
+        )
     })))
     res
 }

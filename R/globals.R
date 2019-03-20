@@ -13,7 +13,7 @@ lightMarkerColors <-
 
 # Recommend serial by default.
 # This works reliably across platforms, but is slower.
-bpparam <- quote(BiocParallel::SerialParam())
+BPPARAM <- quote(BiocParallel::SerialParam())  # nolint
 
 continuousColor <- quote(getOption(
     "pointillism.continuous.color",
