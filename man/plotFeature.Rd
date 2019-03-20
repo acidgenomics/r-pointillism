@@ -11,25 +11,25 @@
   reducedDim = "TSNE",
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE),
+  pointSize = getOption("pointillism.pointSize", default = 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
+  FALSE), label = getOption("pointillism.label", default = TRUE),
+  labelSize = getOption("pointillism.labelSize", default = 6L),
+  dark = getOption("pointillism.dark", default = FALSE),
+  legend = getOption("pointillism.legend", default = TRUE),
   expression = c("mean", "sum"))
 
 \S4method{plotFeature}{seurat}(object, features, reducedDim = "TSNE",
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE),
+  pointSize = getOption("pointillism.pointSize", default = 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
+  FALSE), label = getOption("pointillism.label", default = TRUE),
+  labelSize = getOption("pointillism.labelSize", default = 6L),
+  dark = getOption("pointillism.dark", default = FALSE),
+  legend = getOption("pointillism.legend", default = TRUE),
   expression = c("mean", "sum"))
 }
 \arguments{

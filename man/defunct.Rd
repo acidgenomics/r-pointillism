@@ -7,6 +7,8 @@
 \alias{plotKnownMarkersDetected}
 \alias{readCellTypeMarkers}
 \alias{sanitizeMarkers}
+\alias{importCellCycleMarkersFromGoogle}
+\alias{importCellTypeMarkersFromGoogle}
 \title{Defunct functions}
 \usage{
 knownMarkers(...)
@@ -18,6 +20,10 @@ plotKnownMarkersDetected(...)
 readCellTypeMarkers(...)
 
 sanitizeMarkers(...)
+
+importCellCycleMarkersFromGoogle(...)
+
+importCellTypeMarkersFromGoogle()
 }
 \arguments{
 \item{...}{Additional arguments.}
