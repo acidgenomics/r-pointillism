@@ -4,6 +4,7 @@
 ^CONTRIBUTING\.md$
 ^\.Rprofile$
 ^\.Rproj\.user$
+^\.circleci$
 ^\.httr-oauth$
 ^\.lintr$
 ^\.travis\.yml$
