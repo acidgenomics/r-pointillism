@@ -9,11 +9,11 @@
 \usage{
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 
 \S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 }
 \arguments{
 \item{object}{Object.}
@@ -40,15 +40,10 @@ expression filtering.}
 Minimum number of counts per cell for a gene to pass low expression
 filtering. The number of cells is defined by \code{minCellsPerGene}.}
 
-\item{bpparam}{\code{bpparamClass}.
-BiocParallel parameter specifying the back-end to be used for computations.
-
-We recommend using one of the following:
-\itemize{
-\item \link[BiocParallel:bpparam]{bpparam}.
-\item \link[BiocParallel:SerialParam]{SerialParam}.
-\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
-}}
+\item{BPPARAM}{\code{bpparamClass}.
+Back-end method to be used for computations.
+See \code{\link[BiocParallel:bpparam]{bpparam}} for details.
+Currently only used by DESeq2 but not edgeR for calculations here.}
 }
 \value{
 Varies depending on the \code{caller} argument:
@@ -70,25 +65,6 @@ We are currently recommending the ZINB-WaVE method over zingeR, since
 it is faster, and has been show to be more sensitive for most single-cell
 RNA-seq datasets.
 }
-\section{zinbwave}{
-
-
-This function will run a lot faster if you pre-calculate the ZINB weights
-using the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
-\code{\link[SingleCellExperiment:weights]{SingleCellExperiment::weights()}} slot of the object. Running zinbwave across
-the entire set of filtered cells also has greater sensitivity for weight
-calculations.
-
-We are currently using an epsilon setting of \code{1e12}, as recommended by the
-ZINB-WaVE integration paper. For more information on the zinbwave package,
-refer to these materials:
-\itemize{
-\item \href{https://doi.org/10.1186/s13059-018-1406-4}{zinbwave paper}.
-\item \href{https://bit.ly/2wtDdpS}{zinbwave vignette}.
-\item \href{https://github.com/mikelove/zinbwave-deseq2}{zinbwave-DESeq2 workflow}.
-}
-}
-
 \section{DESeq2}{
 
 
