@@ -5,9 +5,9 @@
 #' @inheritParams runZinbwave
 #'
 #' @details
-#' Perform pairwise differential expression across groups of cells by fitting
-#' to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
-#' Currently supports edgeR and DESeq2 as DE callers.
+#' Perform pairwise differential expression across groups of cells. Currently
+#' supports edgeR and DESeq2 as DE callers.
+
 #'
 #' @section zinbwave:
 #'
@@ -25,17 +25,6 @@
 #' - [zinbwave vignette](https://bit.ly/2wtDdpS).
 #' - [zinbwave-DESeq2 workflow](https://github.com/mikelove/zinbwave-deseq2).
 #'
-#' @section edgeR:
-#'
-#' After estimation of the dispersions and posterior probabilities, the
-#' [zinbwave::glmWeightedF()] function is used for statistical inference. This
-#' is an adaptation of [edgeR::glmLRT()]. It uses an F-test for which the
-#' denominator degrees of freedom are by default adjusted according to the
-#' downweighting of excess zeros (`ZI = TRUE`). Also, independent filtering can
-#' be performed on the obtained p-values (`independentFiltering = TRUE`). We use
-#' the independent filtering strategy that was originally implemented in DESeq2.
-#' By default, the average fitted values are used as a filter criterion.
-#'
 #' @section DESeq2:
 #'
 #' We're providing preliminary support for DESeq2 as the differential expression
@@ -44,6 +33,23 @@
 #' We're trying to follow the conventions used in DESeq2 for contrasts, defining
 #' the name of the factor in the design formula, numerator, and denominator
 #' level for the fold change calculations. See [DESeq2::results()] for details.
+#'
+#' Van de Berge and Perraudeau and others have shown the LRT may perform better
+#' for null hypothesis testing, so we use the LRT. In order to use the Wald
+#' test, it is recommended to set `useT = TRUE` (*not currently in use*).
+#'
+#' For UMI data, for which the expected counts may be very low, the likelihood
+#' ratio test implemented in `nbinomLRT()` should be used.
+#'
+#' Note that DESeq2 supports `weights` in assays automatically, if slotted using
+#' zinbwave, which is no longer recommended for droplet scRNA-seq.
+#'
+#' @section edgeR:
+#'
+#' The LRT has been shown to perform better for null hypothesis testing with
+#' droplet scRNA-seq data. Here we are using [edgeR::glmLRT()] internally.
+#'
+#' edgeR is currently significantly faster than DESeq2 for large datasets.
 #'
 #' @section Seurat conventions:
 #'
@@ -74,17 +80,14 @@
 #' @return Varies depending on the `caller` argument:
 #'
 #' - `caller = "edgeR"`: `DEGLRT`.
-#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`. Use `lfcShrink` if
-#'   shrunken results are desired.
+#' - `caller = "DESeq2"`: Unshrunken `DESeqResults`.
+#'   Apply [DESeq2::lfcShrink()] if shrunken results are desired.
 #'
-#' @seealso `Seurat::WhichCells`.
+#' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
 #' data(seurat_small)
 #' object <- seurat_small
-#'
-#' ## Calculate ZINB weights (already stashed).
-#' ## seurat_small <- runZinbwave(object)
 #'
 #' ## Compare expression in cluster 3 relative to 2.
 #' ident <- clusterID(object)
@@ -171,18 +174,11 @@ diffExp.SingleCellExperiment <-  # nolint
             isInt(minCountsPerCell),
             isInt(minCellsPerGene),
             allArePositive(c(minCountsPerCell, minCellsPerGene)),
-            .isBPPARAM(bpparam),
-            is.matrix(.weights(object))
+            .isBPPARAM(bpparam)
         )
         caller <- match.arg(caller)
 
-        weightsFun <- metadata(object)[["weights"]]
-        assert(isSubset(weightsFun, "zinbwave"))
-
-        message(paste(
-            "Performing differential expression with",
-            paste(weightsFun, caller, sep = "-")
-        ))
+        message(paste0("Performing differential expression with ", caller, "."))
 
         # Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
@@ -192,7 +188,7 @@ diffExp.SingleCellExperiment <-  # nolint
             paste("Denominator:", length(denominator), "cells"),
             sep = "\n"
         ))
-        object <- object[, cells]
+        object <- object[, cells, drop = FALSE]
 
         # Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- as(counts(object), "sparseMatrix")
@@ -204,7 +200,7 @@ diffExp.SingleCellExperiment <-  # nolint
             minCellsPerGene,
             "cells with counts of",
             minCountsPerCell,
-            "or more per gene"
+            "or more per gene."
         ))
 
         # Filter the genes based on our expression threshold criteria.
@@ -212,7 +208,9 @@ diffExp.SingleCellExperiment <-  # nolint
         # a lot faster when using a sparse matrix (see above).
         genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
-        message(paste(length(genes), "of", nrow(object), "genes passed filter"))
+        message(paste(
+            length(genes), "of", nrow(object), "genes passed filter."
+        ))
 
         # Early return NULL if no genes pass.
         if (!length(genes)) {
@@ -221,13 +219,13 @@ diffExp.SingleCellExperiment <-  # nolint
         }
 
         # Now subset the object by applying our low pass expression filter.
-        object <- object[genes, ]
+        object <- object[genes, , drop = FALSE]
 
         # Cell filter ----------------------------------------------------------
         # Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (length(trash)) {
-            message(paste("Removed", length(trash), "low quality cells"))
+            message(paste("Removed", length(trash), "low quality cells."))
         }
 
         # Resize the numerator and denominator after our QC filters.
@@ -273,7 +271,7 @@ diffExp.SingleCellExperiment <-  # nolint
 
         # Perform differential expression (e.g. `.zinbwave.edgeR`).
         fun <- get(
-            x  = paste("", weightsFun, caller, sep = "."),
+            x  = paste("diffExp", caller, sep = "."),
             envir = asNamespace("pointillism"),
             inherits = FALSE
         )
@@ -305,18 +303,17 @@ setMethod(
 
 
 
-# zinbwave =====================================================================
-# Van De Berge and Perraudeau and others have shown the LRT may perform better
-# for null hypothesis testing, so we use the LRT. In order to use the Wald test,
-# it is recommended to set `useT = TRUE`.
+# DESeq2 is slow for large datasets.
 #
-# For UMI data, for which the expected counts may be very low, the likelihood
-# ratio test implemented in nbinomLRT should be used.
-#
-# DESeq2 supports `weights` in assays automatically.
-.zinbwave.DESeq2 <- function(object) {  # nolint
+# - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
+# - `sfType`: Use "poscounts" instead of "ratio" here because we're
+#   expecting genes with zero counts.
+#   See `DESeq2::estimateSizeFactors()` for details.
+# - `minmu`: Set a lower threshold than the default 0.5, as recommended
+#   in Mike Love's zinbwave-DESeq2 vignette.
+
+.diffExp.DESeq2 <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
-    # DESeq2 -------------------------------------------------------------------
     message("Running DESeq2.")
     message(printString(system.time({
         dds <- DESeqDataSet(
@@ -331,7 +328,7 @@ setMethod(
             minmu = 1e-6,
             minReplicatesForReplace = Inf
         )
-        # We already performed low count filtering.
+        # We have already performed low count filtering.
         res <- results(dds, independentFiltering = FALSE)
     })))
     res
@@ -339,14 +336,18 @@ setMethod(
 
 
 
-.zinbwave.edgeR <- function(object) {  # nolint
+# edgeR is much faster than DESeq2 for large datasets.
+#
+# Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
+# of the `glmLRT()` method, that allows an F-test with adjusted denominator
+# degrees of freedom, to account for the downweighting in the zero-inflation
+# model (which no longer applies here).
+
+.diffExp.edgeR <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
-    # edgeR --------------------------------------------------------------------
     message("Running edgeR.")
-    # Coerce to dense matrix.
+    # Ensure sparseMatrix gets coerced to dense matrix.
     counts <- as.matrix(counts(object))
-    weights <- assay(object, "weights")
-    assert(is.matrix(weights))
     design <- metadata(object)[["design"]]
     assert(is.matrix(design))
     group <- object[["group"]]
@@ -354,15 +355,9 @@ setMethod(
     message(printString(system.time({
         dge <- DGEList(counts, group = group)
         dge <- calcNormFactors(dge)
-        dge[["weights"]] <- weights
         dge <- estimateDisp(dge, design = design)
         fit <- glmFit(dge, design = design)
-        # We already performed low count filtering.
-        lrt <- glmWeightedF(
-            glmfit = fit,
-            coef = 2L,
-            independentFiltering = FALSE
-        )
+        lrt <- glmLRT(glmfit = fit, coef = 2L)
     })))
     lrt
 }
