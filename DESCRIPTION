@@ -73,7 +73,6 @@ Collate:
     'diffExpPerCluster-methods.R'
     'fetchData-internal.R'
     'findMarkers-methods.R'
-    'importMarkers.R'
     'imports.R'
     'package.R'
     'plotCellCountsPerCluster-methods.R'
