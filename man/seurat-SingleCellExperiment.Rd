@@ -73,9 +73,10 @@
 
 \S4method{rowRanges}{seurat,ANY}(x) <- value
 
-\S4method{sampleData}{seurat}(object, blacklist = c("^G2M.Score$",
-  "^Phase$", "^S.Score$", "^ident$", "^old.ident$", "^orig.ident$",
-  "^res[.0-9]+$"))
+\S4method{sampleData}{seurat}(object, clean = TRUE,
+  ignoreCols = c("^description$", "^genomeBuild$", "^qualityFormat$",
+  "^samRef$"), blacklistCols = c("^G2M.Score$", "^Phase$", "^S.Score$",
+  "^ident$", "^old.ident$", "^orig.ident$", "^res[.0-9]+$"))
 
 \S4method{sampleData}{seurat,DataFrame}(object) <- value
 
