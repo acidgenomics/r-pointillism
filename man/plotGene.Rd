@@ -11,39 +11,41 @@
 \alias{plotDot,seurat-method}
 \alias{plotViolin,SingleCellExperiment-method}
 \alias{plotViolin,seurat-method}
-\title{Plot gene expression}
+\title{Deprecated functions}
 \usage{
 \S4method{plotGene}{SingleCellExperiment}(object, genes, geom = c("dot",
   "violin"), perSample = TRUE, legend = getOption("pointillism.legend",
-  TRUE), title = NULL)
+  default = TRUE), title = NULL)
 
 \S4method{plotGene}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, legend = getOption("pointillism.legend", TRUE),
-  title = NULL)
+  perSample = TRUE, legend = getOption("pointillism.legend", default =
+  TRUE), title = NULL)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
   "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  TRUE), title = NULL)
+  default = TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
   "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  TRUE), title = NULL)
+  default = TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  color = getOption("pointillism.discrete.color", default = NULL),
+  legend = getOption("pointillism.legend", default = TRUE),
+  title = NULL)
 
 \S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
   scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", NULL),
-  legend = getOption("pointillism.legend", TRUE), title = NULL)
+  color = getOption("pointillism.discrete.color", default = NULL),
+  legend = getOption("pointillism.legend", default = TRUE),
+  title = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -92,6 +94,9 @@ To set the discrete color palette globally, use:\preformatted{options(basejump.c
 \item{scale}{if "area" (default), all violins have the same area (before trimming
 the tails). If "count", areas are scaled proportionally to the number of
 observations. If "width", all violins have the same maximum width.}
+}
+\value{
+\code{.Deprecated}.
 }
 \description{
 Visualize genes on a dot or violin plot.

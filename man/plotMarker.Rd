@@ -11,25 +11,27 @@
   reducedDim = "TSNE", expression = c("mean", "sum"),
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = TRUE)
+  pointSize = getOption("pointillism.pointSize", default = 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
+  FALSE), label = getOption("pointillism.label", default = TRUE),
+  labelSize = getOption("pointillism.labelSize", default = 6L),
+  dark = getOption("pointillism.dark", default = FALSE),
+  legend = getOption("pointillism.legend", default = TRUE),
+  title = TRUE)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = "TSNE",
   expression = c("mean", "sum"),
   color = getOption("pointillism.continuous.color",
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = TRUE)
+  pointSize = getOption("pointillism.pointSize", default = 0.75),
+  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
+  FALSE), label = getOption("pointillism.label", default = TRUE),
+  labelSize = getOption("pointillism.labelSize", default = 6L),
+  dark = getOption("pointillism.dark", default = FALSE),
+  legend = getOption("pointillism.legend", default = TRUE),
+  title = TRUE)
 }
 \arguments{
 \item{object}{Object.}
