@@ -1,5 +1,5 @@
 # Seurat example data
-# 2018-11-20
+# 2019-03-20
 
 library(pryr)
 library(reticulate)
@@ -13,6 +13,15 @@ library(bcbioSingleCell)
 # We're using this in the `Seurat::RunUMAP` call below.
 # Set `RETICULATE_PYTHON` to conda python binary in `~/.Renviron`.
 # This is not working consistently for me on Linux.
+
+use_condaenv(
+    condaenv = "reticulate",
+    conda = "/usr/local/miniconda3/bin/conda"
+)
+
+# umap-learn via reticulate doesn't work well with conda.
+# https://github.com/satijalab/seurat/issues/486
+
 stopifnot(
     identical(basename(Sys.getenv("RETICULATE_PYTHON")), "python"),
     py_module_available(module = "umap")
@@ -27,9 +36,9 @@ object_size(pbmc_small)
 stopifnot(object_size(pbmc_small) < limit)
 
 # seurat_small =================================================================
-seurat_small <- pbmc_small %>%
-    RunUMAP() %>%
-    runZinbwave()
+seurat_small <- pbmc_small
+# Note that this step requires umap-learn via reticulate.
+seurat_small <- RunUMAP(seurat_small)
 object_size(seurat_small)
 stopifnot(object_size(seurat_small) < limit)
 validObject(seurat_small)
