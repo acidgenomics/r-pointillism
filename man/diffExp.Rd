@@ -54,17 +54,16 @@ We recommend using one of the following:
 Varies depending on the \code{caller} argument:
 \itemize{
 \item \code{caller = "edgeR"}: \code{DEGLRT}.
-\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}. Use \code{lfcShrink} if
-shrunken results are desired.
+\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}.
+Apply \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} if shrunken results are desired.
 }
 }
 \description{
 Differential expression
 }
 \details{
-Perform pairwise differential expression across groups of cells by fitting
-to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
-Currently supports edgeR and DESeq2 as DE callers.
+Perform pairwise differential expression across groups of cells. Currently
+supports edgeR and DESeq2 as DE callers.
 }
 \note{
 We are currently recommending the ZINB-WaVE method over zingeR, since
@@ -90,19 +89,6 @@ refer to these materials:
 }
 }
 
-\section{edgeR}{
-
-
-After estimation of the dispersions and posterior probabilities, the
-\code{\link[zinbwave:glmWeightedF]{zinbwave::glmWeightedF()}} function is used for statistical inference. This
-is an adaptation of \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}}. It uses an F-test for which the
-denominator degrees of freedom are by default adjusted according to the
-downweighting of excess zeros (\code{ZI = TRUE}). Also, independent filtering can
-be performed on the obtained p-values (\code{independentFiltering = TRUE}). We use
-the independent filtering strategy that was originally implemented in DESeq2.
-By default, the average fitted values are used as a filter criterion.
-}
-
 \section{DESeq2}{
 
 
@@ -112,6 +98,25 @@ caller. It is currently considerably slower for large datasets than edgeR.
 We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
 level for the fold change calculations. See \code{\link[DESeq2:results]{DESeq2::results()}} for details.
+
+Van de Berge and Perraudeau and others have shown the LRT may perform better
+for null hypothesis testing, so we use the LRT. In order to use the Wald
+test, it is recommended to set \code{useT = TRUE} (\emph{not currently in use}).
+
+For UMI data, for which the expected counts may be very low, the likelihood
+ratio test implemented in \code{nbinomLRT()} should be used.
+
+Note that DESeq2 supports \code{weights} in assays automatically, if slotted using
+zinbwave, which is no longer recommended for droplet scRNA-seq.
+}
+
+\section{edgeR}{
+
+
+The LRT has been shown to perform better for null hypothesis testing with
+droplet scRNA-seq data. Here we are using \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}} internally.
+
+edgeR is currently significantly faster than DESeq2 for large datasets.
 }
 
 \section{Seurat conventions}{
@@ -124,9 +129,6 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seur
 \examples{
 data(seurat_small)
 object <- seurat_small
-
-## Calculate ZINB weights (already stashed).
-## seurat_small <- runZinbwave(object)
 
 ## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)
@@ -157,5 +159,5 @@ summary(x)
 # summary(x)
 }
 \seealso{
-\code{Seurat::WhichCells}.
+\code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 }
