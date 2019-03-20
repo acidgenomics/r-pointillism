@@ -55,4 +55,20 @@ sanitizeMarkers <- function(...) {
 
 
 
+# v0.2.5 =======================================================================
+#' @rdname defunct
+#' @export
+importCellCycleMarkersFromGoogle <- function(...) {
+    .Defunct()
+}
+
+
+#' @rdname defunct
+#' @export
+importCellTypeMarkersFromGoogle <- function() {
+    .Defunct()
+}
+
+
+
 # nocov end
