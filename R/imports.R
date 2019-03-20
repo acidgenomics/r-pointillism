@@ -50,5 +50,4 @@
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames tibble
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
-#' @importFrom zinbwave glmWeightedF zinbFit zinbwave
 NULL
