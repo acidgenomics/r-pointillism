@@ -100,8 +100,8 @@ plotReducedDim.SingleCellExperiment <-  # nolint
         assert(
             .hasIdent(object),
             isScalar(reducedDim),
-            isIntegerish(dimsUse),
             hasLength(dimsUse, n = 2L),
+            all(isIntegerish(dimsUse)),
             isString(interestingGroups, nullOK = TRUE),
             isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
             isNumber(pointSize),

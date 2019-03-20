@@ -92,8 +92,8 @@ NULL
     assert(
         .hasIdent(object),
         isScalar(reducedDim),
-        isIntegerish(dimsUse),
-        hasLength(dimsUse, n = 2L)
+        hasLength(dimsUse, n = 2L),
+        all(isIntegerish(dimsUse))
     )
 
     # Reduced dimension coordinates.
