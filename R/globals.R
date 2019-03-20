@@ -1,13 +1,11 @@
 globalVariables(".")
 
-# FIXME Make a header function in show.R
 url <- "https://steinbaugh.com/pointillism"
 citation <- "citation(\"pointillism\")"
 
-# FIXME Use the function in call, it's more dynamic.
 separatorBar <- basejump::separator()
 
-# DR marker default color palettes
+# DR marker default color palettes.
 darkMarkerColors <-
     ggplot2::scale_colour_viridis_c(option = "plasma")
 lightMarkerColors <-
@@ -34,20 +32,21 @@ continuousColorPurpleOrange <- quote(getOption(
     )
 ))
 
-discreteColor <- quote(getOption("pointillism.discrete.color", NULL))
+discreteColor <- quote(getOption("pointillism.discrete.color", default = NULL))
 
-dark <- quote(getOption("pointillism.dark", FALSE))
+dark <- quote(getOption("pointillism.dark", default = FALSE))
 # up, down, both (bcbioRNASeq).
 dimsUse <- quote(c(1L, 2L))
 direction <- c("up", "down", "both")
 expression <- c("mean", "sum")
 headerLevel <- 2L
-label <- quote(getOption("pointillism.label", TRUE))
-labelSize <- quote(getOption("pointillism.labelSize", 6L))
-legend <- quote(getOption("pointillism.legend", TRUE))
-pointAlpha <- quote(getOption("pointillism.pointAlpha", 0.85))
-pointSize <- quote(getOption("pointillism.pointSize", 0.75))
-pointsAsNumbers <- quote(getOption("pointillism.pointsAsNumbers", FALSE))
+label <- quote(getOption("pointillism.label", default = TRUE))
+labelSize <- quote(getOption("pointillism.labelSize", default = 6L))
+legend <- quote(getOption("pointillism.legend", default = TRUE))
+pointAlpha <- quote(getOption("pointillism.pointAlpha", default = 0.85))
+pointSize <- quote(getOption("pointillism.pointSize", default = 0.75))
+pointsAsNumbers <-
+    quote(getOption("pointillism.pointsAsNumbers", default = FALSE))
 reducedDim <- "TSNE"
 
 # Set default ggplot2 theme.

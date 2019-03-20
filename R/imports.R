@@ -39,7 +39,6 @@
 #'   hasRownames hasRows isGGScale isAny isCharacter isFlag isHeaderLevel
 #'   isIntegerish isNonEmpty isNumber isPositive isScalar isString isSubset
 #'   validate
-#' @importFrom googlesheets gs_key gs_read
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
