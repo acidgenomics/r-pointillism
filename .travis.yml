@@ -52,14 +52,6 @@ before_install:
   - chmod +x travis_setup.sh
   - ./travis_setup.sh
 
-# External dependencies.
-# These are needed to install zinbwave on Linux.
-addons:
-  apt:
-    packages:
-      - gsl-bin
-      - libgsl-dev
-
 github_packages:
   - steinbaugh/lintr
 
