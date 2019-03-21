@@ -1,40 +1,42 @@
 # Seurat example data
-# 2019-03-20
+# 2019-03-21
 
 library(reticulate)
-library(Seurat)
-
 library(pryr)
-library(splatter)
 library(Matrix)
-library(tidyverse)
+library(splatter)
+library(Seurat)
 library(bcbioSingleCell)
+library(tidyverse)
 
 # Check and make sure Python umap-learn is accessible to run UMAP.
 # We're using this in the `Seurat::RunUMAP()` call below.
-# Set `RETICULATE_PYTHON` to pip virtualenv python binary in `~/.Renviron`.
-
+#
 # umap-learn via reticulate doesn't work well with conda.
+# Set up a Python 3 virtual environment instead.
 # https://github.com/satijalab/seurat/issues/486
-
-# ~/.virtualenvs/reticulate/bin/activate
-# use_virtualenv(virtualenv = "reticulate")
-
-use_virtualenv(virtualenv = "reticulate")
+#
+# Can also set `RETICULATE_PYTHON` to python binary in `~/.Renviron`.
 
 py_config()
+# [Azure VM]
 # python:         /home/mike/.virtualenvs/reticulate/bin/python
-# libpython:      /usr/lib64/python2.7/config/libpython2.7.so
-# pythonhome:     /usr:/usr
-# virtualenv:     /home/mike/.virtualenvs/reticulate/bin/activate_this.py
-# version:        2.7.5 (default, Sep 12 2018, 05:31:16)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
-# numpy:          /home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/numpy
+# libpython:      /usr/local/miniconda3/lib/libpython3.7m.so
+# pythonhome:     /usr/local/miniconda3:/usr/local/miniconda3
+# version:        3.7.1 (default, Dec 14 2018, 19:28:38)  [GCC 7.3.0]
+# numpy:          /home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/numpy
 # numpy_version:  1.16.2
+#
+# python versions found:
+#   /usr/bin/python
+#   /home/mike/.virtualenvs/reticulate/bin/python
+
+use_virtualenv(virtualenv = "reticulate", required = TRUE)
 
 stopifnot(py_module_available(module = "umap"))
 
 # # Restrict object size to 1 MB.
-# Use `pryr::object_size` instead of `utils::object.size`.
+# Use `pryr::object_size()` instead of `utils::object.size()`.
 limit <- structure(1e6, class = "object_size")
 
 data(pbmc_small, package = "Seurat")
@@ -43,27 +45,24 @@ stopifnot(object_size(pbmc_small) < limit)
 
 # seurat_small =================================================================
 seurat_small <- pbmc_small
-# Note that this step requires umap-learn via reticulate.
+seurat_small <- RunUMAP(seurat_small)
 
-# Python 2.7 issue?
-# Error in py_call_impl(callable, dots$args, dots$keywords) :
-#  Evaluation error: Required version of NumPy not available: installation of Numpy >= 1.6 not found.
-# Calls: RunUMAP -> <Anonymous> -> py_call_impl
-
+# Currently seeing this error on Azure:
+#
 # Error in py_call_impl(callable, dots$args, dots$keywords) :
 #   TypingError: Failed in nopython mode pipeline (step: nopython frontend)
 # Unknown attribute 'shape' of type none
 #
-# File "../../../../../home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/umap/umap_.py", line 88:
+# File "../../../../../../home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/umap/umap_.py", line 88:
 # def smooth_knn_dist(distances, k, n_iter=64, local_connectivity=1.0, bandwidth=1.0):
 #     <source elided>
 #     target = np.log2(k) * bandwidth
 #     rho = np.zeros(distances.shape[0])
 #     ^
 #
-# [1] During: typing of get attribute at /home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/umap/umap_.py (88)
+# [1] During: typing of get attribute at /home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/umap/umap_.py (88)
 #
-# File "../../../../../home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/umap/umap_.py", line 88:
+# File "../../../../../../home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/umap/umap_.py", line 88:
 # def smooth_knn_dist(distances, k, n_iter=64, local_connectivity=1.0, bandwidth=1.0):
 #     <source elided>
 #     target = np.log2(k) * bandwidth
@@ -85,19 +84,20 @@ seurat_small <- pbmc_small
 # and traceback, along with a minimal reproducer at:
 # https://github.com/numba/numba/issues/new
 #
+#
 # Detailed traceback:
-#   File "/home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/umap/umap_.py", line 1566, in fit_transform
+#   File "/home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/umap/umap_.py", line 1566, in fit_transform
 #     self.fit(X, y)
-#   File "/home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/umap/umap_.py", line 1398, in fit
+#   File "/home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/umap/umap_.py", line 1398, in fit
 #     self.verbose,
-#   File "/home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/numba/dispatcher.py", line 350, in _compile_for_args
+#   File "/home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/numba/dispatcher.py", line 350, in _compile_for_args
 #     error_rewrite(e, 'typing')
-#   File "/home/mike/.virtualenvs/reticulate/lib/python2.7/site-packages/numba/dispatcher.py", line 317, in error_rewrite
+#   File "/home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/numba/dispatcher.py", line 317, in error_rewrite
 #     reraise(type(e), e, None)
-#   File "<string>", line 2, in reraise
+#   File "/home/mike/.virtualenvs/reticulate/lib/python3.7/site-packages/numba/six.py", line 658, in reraise
+#     raise value.with_traceback(tb)
 # Calls: RunUMAP -> <Anonymous> -> py_call_impl
 
-seurat_small <- RunUMAP(seurat_small)
 object_size(seurat_small)
 stopifnot(object_size(seurat_small) < limit)
 validObject(seurat_small)
