@@ -19,6 +19,23 @@ library(tidyverse)
 # Can also set `RETICULATE_PYTHON` to python binary in `~/.Renviron`.
 
 py_config()
+
+# [macOS]
+# python:         /usr/local/opt/python/libexec/bin/python
+# libpython:      /usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin/libpython3.7.dylib
+# pythonhome:     /usr/local/opt/python/Frameworks/Python.framework/Versions/3.7:/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7
+# version:        3.7.2 (default, Feb 12 2019, 08:15:36)  [Clang 10.0.0 (clang-1000.11.45.5)]
+# numpy:          /usr/local/lib/python3.7/site-packages/numpy
+# numpy_version:  1.16.2
+#
+# python versions found:
+#  /usr/local/opt/python/libexec/bin/python
+#  /usr/bin/python
+#  /usr/local/bin/python
+#  /usr/local/bin/python3
+#  /Users/mike/anaconda3/bin/python
+#  /Users/mike/.virtualenvs/reticulate/bin/python
+
 # [Azure VM]
 # python:         /home/mike/.virtualenvs/reticulate/bin/python
 # libpython:      /usr/local/miniconda3/lib/libpython3.7m.so
@@ -31,8 +48,11 @@ py_config()
 #   /usr/bin/python
 #   /home/mike/.virtualenvs/reticulate/bin/python
 
+# source ~/.virtualenvs/reticulate/bin/activate
 use_virtualenv(virtualenv = "reticulate", required = TRUE)
 
+# This is failing on macOS using virtual environment.
+# Reticulate is a mess across platforms.
 stopifnot(py_module_available(module = "umap"))
 
 # # Restrict object size to 1 MB.
