@@ -51,7 +51,20 @@ py_config()
 # source ~/.virtualenvs/reticulate/bin/activate
 use_virtualenv(virtualenv = "reticulate", required = TRUE)
 
+virtualenv_list()
+# [1] "reticulate"
+virtualenv_create(envname = "xxx")
+# /Users/mike/.virtualenvs/xxx
+virtualenv_install(
+    envname = "xxx",
+    packages = "umap-learn",
+    ignore_installed = FALSE
+)
+
+use_virtualenv(virtualenv = "xxx", required = TRUE)
+
 # This is failing on macOS using virtual environment.
+# Still not working, even with the code above.
 # Reticulate is a mess across platforms.
 stopifnot(py_module_available(module = "umap"))
 
