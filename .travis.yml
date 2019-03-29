@@ -59,8 +59,8 @@ env:
 
 bioc_packages:
   - BiocCheck
-github_packages:
-  - steinbaugh/lintr
+r_github_packages:
+  - acidgenomics/lintr
 
 after_success:
   - R CMD BiocCheck .
