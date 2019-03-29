@@ -26,10 +26,15 @@ sudo: required
 matrix:
   include:
     - os: linux
-      r: release
-    # Disabled until macOS uses BioC 3.8 by default.
-    # - os: osx
-    #   r: release
+      r: bioc-release
+    - os: linux
+      r: bioc-devel
+    - os: osx
+      r: bioc-release
+  allow_failures:
+    - os: osx
+    - r: bioc-devel
+  fast_finish: true
 
 branches:
   only:
@@ -48,25 +53,19 @@ before_install:
   - chmod +x travis_setup.sh
   - ./travis_setup.sh
 
-# External dependencies.
-# These are needed to install zinbwave on Linux.
-addons:
-  apt:
-    packages:
-      - gsl-bin
-      - libgsl-dev
-      # This is too old for hdf5r. Installing from source instead.
-      # - libhdf5-dev
-
 env:
   global:
     - LINTR_COMMENT_BOT=true
 
+bioc_packages:
+  - BiocCheck
 github_packages:
   - steinbaugh/lintr
 
 after_success:
+  - R CMD BiocCheck .
   - Rscript -e 'lintr::lint_package()'
+  - Rscript -e 'covr::codecov()'
 
 notifications:
   email:
