@@ -76,6 +76,7 @@ Collate:
     'findMarkers-methods.R'
     'imports.R'
     'package.R'
+    'params.R'
     'plotCellCountsPerCluster-methods.R'
     'plotCellTypesPerCluster-methods.R'
     'plotCounts-methods.R'
