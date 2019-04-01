@@ -18,99 +18,85 @@
 \usage{
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
   dimsUse = c(1L, 2L), interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
   2L), interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotTSNE}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotUMAP}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotPCA}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotPCA}{seurat}(object, dimsUse = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("pointillism.discrete.color", default = NULL),
-  pointSize = getOption("pointillism.pointSize", default = 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", default =
-  FALSE), label = getOption("pointillism.label", default = TRUE),
-  labelSize = getOption("pointillism.labelSize", default = 6L),
-  dark = getOption("pointillism.dark", default = FALSE),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -134,7 +120,7 @@ Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
 the default ggplot2 color palette will be used. If manual color definitions
 are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
 
-To set the discrete color palette globally, use:\preformatted{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())
+To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
 \item{pointSize}{\code{numeric(1)}.
@@ -154,8 +140,8 @@ Superimpose sample text labels on the plot.}
 Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
-Plot against a dark background using the \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}
-ggplot2 theme.}
+Plot against a dark background using the
+\code{\link[minimalism:theme_midnight]{theme_midnight()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
 Show plot legend.}

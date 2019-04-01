@@ -2,8 +2,11 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
+#'
 #' @inherit bioverbs::plotReducedDim
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @details
 #' Colors using `ident` column defined in
