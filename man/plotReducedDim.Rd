@@ -180,7 +180,7 @@ The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticul
 reliably when setting \code{RETICULATE_PYTHON} to point to your conda python
 binary. Export this variable in  \code{~/.Renviron}.
 
-See \code{base::Sys.getenv} for more information on the R system environment.
+See \code{\link[base:Sys.getenv]{Sys.getenv}} for details on the R system environment.
 }
 
 \examples{
