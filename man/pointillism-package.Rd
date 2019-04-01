@@ -22,6 +22,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Acid Genomics [copyright holder, funder]
   \item Rory Kirchner \email{roryk@alum.mit.edu} (0000-0003-4814-5885) [contributor]
 }
 
