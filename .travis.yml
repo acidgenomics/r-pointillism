@@ -1,27 +1,21 @@
-# Travis-CI configuration for Bioconductor packages
-# https://docs.travis-ci.com/user/languages/r
-
 # Single-cell configuration recommendations:
-# https://github.com/satijalab/seurat/blob/master/.travis.yml
-# https://github.com/satijalab/seurat/blob/release/3.0/.travis.yml
-# https://github.com/drisso/zinbwave/blob/master/.travis.yml
+# - https://github.com/satijalab/seurat/blob/master/.travis.yml
+# - https://github.com/satijalab/seurat/blob/release/3.0/.travis.yml
+# - https://github.com/drisso/zinbwave/blob/master/.travis.yml
 
 # hdf5r 1.0.1 won't install correctly.
-# This package has major compilation issues across platforms.
+# This package has compilation issues across platforms:
+# - https://github.com/hhoeflin/hdf5r/issues/94#issuecomment-442890351
+# - https://github.com/hhoeflin/hdf5r/issues/97
 #
-# https://github.com/hhoeflin/hdf5r/issues/94#issuecomment-442890351
-# https://github.com/hhoeflin/hdf5r/issues/97
-#
-# unable to load shared object '/home/travis/R/Library/hdf5r/libs/hdf5r.so':
-# libhdf5_hl.so.10: cannot open shared object file: No such file or directory
-#
-# Installing 1.0.0 works on Azure Red Hat VM, and should work here too.
-# This is a pain to manage, and switching to BioC 3.8 docker makes sense.
+# You may see this error:
+# > unable to load shared object '/home/travis/R/Library/hdf5r/libs/hdf5r.so':
+# > libhdf5_hl.so.10: cannot open shared object file: No such file or directory
 
 language: r
 cache: packages
 
-# Necessary to build and install hdf5 from source.
+# Required to install hdf5 from source.
 sudo: required
 
 matrix:
@@ -35,12 +29,12 @@ matrix:
   allow_failures:
     - os: osx
     - r: bioc-devel
+  fast_finish: true
 
 branches:
   only:
     - master
 
-# https://docs.travis-ci.com/user/environment-variables/
 env:
   global:
     - HDF5_RELEASE_URL="https://support.hdfgroup.org/ftp/HDF5/releases"
@@ -52,11 +46,15 @@ before_install:
   - chmod +x travis_setup.sh
   - ./travis_setup.sh
 
-github_packages:
-  - steinbaugh/lintr
+bioc_packages:
+  - BiocCheck
+r_github_packages:
+  - acidgenomics/lintr
 
 after_success:
+  - R CMD BiocCheck .
   - Rscript -e 'lintr::lint_package()'
+  - Rscript -e 'covr::codecov()'
 
 notifications:
   email:
