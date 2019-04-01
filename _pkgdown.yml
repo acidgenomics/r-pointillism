@@ -18,7 +18,6 @@ reference:
     contents:
     - starts_with("diffExp")
     - findMarkers
-    - runZinbwave
   - title: Cluster statistics
     contents:
     - cellCountsPerCluster
