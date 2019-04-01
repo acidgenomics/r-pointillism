@@ -87,7 +87,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -105,7 +105,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot top markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotTopMarkers-methods.R'><code>R/plotTopMarkers-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotTopMarkers-methods.R'><code>R/plotTopMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>plotTopMarkers.Rd</code></div>
     </div>
 
@@ -145,7 +145,8 @@ Number to include.</p></td>
     <tr>
       <th>direction</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-Plot "<code>both</code>", "<code>up</code>", or "<code>down</code>" directions.</p></td>
+Whether to include upregulated (<code>"up"</code>; positive LFC), downregulated
+(<code>"down"</code>; negative LFC) or <code>"both"</code> directions of association per cluster.</p></td>
     </tr>
     <tr>
       <th>reducedDim</th>
@@ -166,7 +167,7 @@ Show progress, using progress bars.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='plotMarker.html'>plotMarker()</a></code>.</p></td>
+      <td><p>Passthrough arguments to <code>plotMarker()</code>.</p></td>
     </tr>
     </table>
     
@@ -177,7 +178,7 @@ Show progress, using progress bars.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The number of markers to plot is determined by the output of the
-<code><a href='topMarkers.html'>topMarkers()</a></code> function. If you want to reduce the number of genes to plot,
+<code>topMarkers()</code> function. If you want to reduce the number of genes to plot,
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.</p>
     
@@ -215,7 +216,7 @@ for the number of genes to plot here in a future update.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -87,7 +87,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -105,7 +105,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Find cluster-specific marker genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/findMarkers-methods.R'><code>R/findMarkers-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/findMarkers-methods.R'><code>R/findMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>findMarkers.Rd</code></div>
     </div>
 
@@ -130,7 +130,7 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Passthrough arguments to <code><a href='diffExp.html'>diffExp()</a></code>.</p></td>
+      <td><p>Passthrough arguments to <code>diffExp()</code>.</p></td>
     </tr>
     </table>
     
@@ -150,19 +150,19 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>)</div><div class='output co'>#&gt; <span class='message'>4 clusters detected</span></div><div class='output co'>#&gt; <span class='message'>Cluster 0 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>findMarkers</span>(<span class='no'>seurat_small</span>, <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>)</div><div class='output co'>#&gt; <span class='message'>4 clusters detected</span></div><div class='output co'>#&gt; <span class='message'>Cluster 0 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
 #&gt; <span class='message'>Numerator: 29 cells</span>
-#&gt; <span class='message'>Denominator: 51 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.418   0.001   0.426 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 1 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
+#&gt; <span class='message'>Denominator: 51 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.408   0.003   0.410 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 1 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
 #&gt; <span class='message'>Numerator: 29 cells</span>
-#&gt; <span class='message'>Denominator: 51 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.416   0.000   0.421 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 2 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
+#&gt; <span class='message'>Denominator: 51 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.416   0.000   0.416 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 2 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
 #&gt; <span class='message'>Numerator: 12 cells</span>
-#&gt; <span class='message'>Denominator: 68 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.401   0.001   0.406 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 3 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
+#&gt; <span class='message'>Denominator: 68 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.411   0.000   0.411 </span></div><div class='output co'>#&gt; <span class='message'>Cluster 3 ====</span></div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 80 cells</span>
 #&gt; <span class='message'>Numerator: 10 cells</span>
-#&gt; <span class='message'>Denominator: 70 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.416   0.000   0.423 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; $`0`
+#&gt; <span class='message'>Denominator: 70 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>230 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.392   0.000   0.392 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; $`0`
 #&gt; [1] "DGELRT"
 #&gt; attr(,"package")
 #&gt; [1] "edgeR"
@@ -200,7 +200,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">
