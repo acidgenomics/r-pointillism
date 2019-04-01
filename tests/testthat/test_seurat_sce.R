@@ -1,6 +1,5 @@
 context("Seurat as SingleCellExperiment")
 
-data(seurat_small, envir = environment())
 object <- seurat_small
 
 

@@ -1,11 +1,7 @@
 # FIXME Need to test seurat to SCE.
 # FIXME Need to test Markers to tbl_df.
 
-context("Coercion Methods")
-
-data(sce, package = "basejump", envir = environment())
-
-
+context("Coercion methods")
 
 test_that("SingleCellExperiment to seurat", {
     x <- as(sce, "seurat")
@@ -15,8 +11,6 @@ test_that("SingleCellExperiment to seurat", {
     expect_is(counts, "dgCMatrix")
     expect_identical(dim(counts), dim(sce))
 })
-
-
 
 test_that("SCE-seurat interconversion with subsetting", {
     a <- sce

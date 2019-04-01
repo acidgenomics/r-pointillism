@@ -1,6 +1,5 @@
-context("Differential Expression")
+context("Differential expression")
 
-data(seurat_small, envir = environment())
 sce <- as(seurat_small, "SingleCellExperiment")
 
 # Compare expression in cluster 3 relative to 2.
