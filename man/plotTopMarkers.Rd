@@ -25,7 +25,8 @@ Marker genes, grouped by "\code{cluster}".}
 Number to include.}
 
 \item{direction}{\code{character(1)}.
-Plot "\code{both}", "\code{up}", or "\code{down}" directions.}
+Whether to include upregulated (\code{"up"}; positive LFC), downregulated
+(\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
 \item{reducedDim}{\code{character(1)}.
 Name of reduced dimension matrix slotted in

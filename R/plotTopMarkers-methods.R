@@ -1,7 +1,9 @@
 #' @name plotTopMarkers
 #' @include globals.R
+#'
 #' @inherit bioverbs::plotTopMarkers
 #' @inheritParams basejump::params
+#' @inheritParams params
 #' @inheritParams topMarkers
 #'
 #' @details
