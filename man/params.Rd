@@ -4,6 +4,10 @@
 \alias{params}
 \title{Parameters}
 \arguments{
+\item{alpha}{\code{numeric(1)}.
+Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
+defined in the object.}
+
 \item{reducedDim}{\code{character(1)}.
 Name of reduced dimension matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
