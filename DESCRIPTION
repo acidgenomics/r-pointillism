@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-Cell Clustering Visualization
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.2.4
-Date: 2019-01-24
+Version: 0.2.5
+Date: 2019-04-01
 Authors@R: c(
     person(
         given = "Michael",
@@ -19,32 +19,34 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ))
 URL:
-    https://steinbaugh.com/pointillism/,
-    https://github.com/steinbaugh/pointillism/
-BugReports: https://github.com/steinbaugh/pointillism/issues/
+    https://pointillism.acidgenomics.com/,
+    https://github.com/acidgenomics/pointillism/
+BugReports: https://github.com/acidgenomics/pointillism/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.9.7)
+    basejump (>= 0.10.1)
 Imports:
-    bioverbs (>= 0.1.4), goalie (>= 0.2.6),
+    bioverbs (>= 0.1.8), goalie (>= 0.2.11), minimalism (>= 0.1),
     BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
-        SummarizedExperiment, edgeR (>= 3.24), zinbwave (>= 1.4),
-    Matrix (>= 1.2), Seurat (>= 2.3), cowplot (>= 0.9), dplyr (>= 0.7),
-        ggplot2 (>= 3.1), googlesheets (>= 0.3), magrittr (>= 1.5),
-        pbapply (>= 1.3), rlang (>= 0.3), sessioninfo (>= 1.1), tibble (>= 2.0),
-        tidyr (>= 0.8),
+        SummarizedExperiment, edgeR (>= 3.24),
+    Matrix (>= 1.2), Seurat (== 2.3.4), cowplot (>= 0.9), dplyr (>= 0.8),
+        ggplot2 (>= 3.1), magrittr (>= 1.5), pbapply (>= 1.3), rlang (>= 0.3),
+        sessioninfo (>= 1.1), tibble (>= 2.0), tidyr (>= 0.8),
     methods, scales
 Suggests:
+    acidtest (>= 0.1.1),
     BiocStyle, splatter,
     patrick, roxygen2, testthat
 Remotes:
-    steinbaugh/basejump,
-    steinbaugh/bioverbs,
-    steinbaugh/goalie
+    acidgenomics/acidtest,
+    acidgenomics/basejump,
+    acidgenomics/bioverbs,
+    acidgenomics/goalie,
+    acidgenomics/minimalism
 biocViews:
     DataRepresentation,
     GeneExpression,
@@ -73,19 +75,18 @@ Collate:
     'diffExpPerCluster-methods.R'
     'fetchData-internal.R'
     'findMarkers-methods.R'
-    'importMarkers.R'
     'imports.R'
     'package.R'
+    'params.R'
     'plotCellCountsPerCluster-methods.R'
     'plotCellTypesPerCluster-methods.R'
+    'plotCounts-methods.R'
     'plotFeature-methods.R'
-    'plotGene-methods.R'
     'plotKnownMarkers-methods.R'
     'plotMarker-methods.R'
     'plotPCElbow-methods.R'
     'plotReducedDim-methods.R'
     'plotTopMarkers-methods.R'
-    'runZinbwave-methods.R'
     'seurat-SingleCellExperiment-methods.R'
     'show-methods.R'
     'summary-methods.R'

@@ -1,6 +1,8 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
