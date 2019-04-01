@@ -1,6 +1,8 @@
 authors:
   Michael Steinbaugh:
-    href: /
+    href: https://steinbaugh.com/
+  Acid Genomics:
+    href: https://acidgenomics.com/
 
 reference:
   - title: S4 classes
@@ -25,7 +27,6 @@ reference:
   - title: Marker analysis
     contents:
     - clusterID
-    - importMarkers
     - knownMarkers
     - topMarkers
   - title: Plots
