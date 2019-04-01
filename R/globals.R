@@ -51,9 +51,9 @@ reducedDim <- "TSNE"
 
 # Set default ggplot2 theme.
 if (isTRUE(getOption("pointillism.dark"))) {
-    theme <- basejump::theme_midnight
+    theme <- minimalism::theme_midnight
 } else {
-    theme <- basejump::theme_paperwhite
+    theme <- minimalism::theme_paperwhite
 }
 theme <- theme(base_size = 14L, legend_position = "right")
 ggplot2::theme_set(new = theme)
