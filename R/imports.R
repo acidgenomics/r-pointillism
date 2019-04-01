@@ -23,7 +23,7 @@
 #' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
 #'   import mapGenesToRownames mapGenesToSymbols markdownHeader
 #'   matchArgsToDoCall matchInterestingGroups printString showSlotInfo snake
-#'   theme_midnight upperCamel
+#'   upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
@@ -42,6 +42,7 @@
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
+#' @importFrom minimalism theme_midnight theme_paperwhite
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
