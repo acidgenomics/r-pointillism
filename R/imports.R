@@ -22,8 +22,8 @@
 #'   rowData rowRanges rowRanges<-
 #' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
 #'   import mapGenesToRownames mapGenesToSymbols markdownHeader
-#'   matchArgsToDoCall matchInterestingGroups printString showSlotInfo snake
-#'   upperCamel
+#'   matchArgsToDoCall matchInterestingGroups printString separator showSlotInfo
+#'   snake upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
@@ -33,7 +33,7 @@
 #'   geom_hline geom_jitter geom_line geom_point geom_text geom_violin
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
-#'   theme
+#'   theme theme_set
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
 #'   areDisjointSets areIntersectingSets assert isAlpha isInt hasLength hasNames
 #'   hasRownames hasRows isGGScale isAny isCharacter isFlag isHeaderLevel
