@@ -15,38 +15,35 @@
 \usage{
 \S4method{plotCounts}{SingleCellExperiment}(object, genes,
   geom = c("dot", "violin"), perSample = TRUE,
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotCounts}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, legend = getOption("pointillism.legend", default =
-  TRUE), title = NULL)
+  perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
+  title = NULL)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
-  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  default = TRUE), title = NULL)
+  "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
+  TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
-  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  default = TRUE), title = NULL)
+  "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
+  TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", default = NULL),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
   scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", default = NULL),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
