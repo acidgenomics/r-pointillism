@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-Cell Clustering Visualization
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.2.5
-Date: 2019-03-20
+Date: 2019-04-01
 Authors@R: c(
     person(
         given = "Michael",
@@ -19,18 +19,18 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ))
 URL:
-    https://steinbaugh.com/pointillism/,
-    https://github.com/steinbaugh/pointillism/
-BugReports: https://github.com/steinbaugh/pointillism/issues/
+    https://pointillism.acidgenomics.com/,
+    https://github.com/acidgenomics/pointillism/
+BugReports: https://github.com/acidgenomics/pointillism/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.9.12)
+    basejump (>= 0.10.1)
 Imports:
-    bioverbs (>= 0.1.8), goalie (>= 0.2.11),
+    bioverbs (>= 0.1.8), goalie (>= 0.2.11), minimalism (>= 0.1),
     BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
         SummarizedExperiment, edgeR (>= 3.24),
     Matrix (>= 1.2), Seurat (== 2.3.4), cowplot (>= 0.9), dplyr (>= 0.8),
@@ -42,9 +42,10 @@ Suggests:
     BiocStyle, splatter,
     patrick, roxygen2, testthat
 Remotes:
-    steinbaugh/basejump,
-    steinbaugh/bioverbs,
-    steinbaugh/goalie
+    acidgenomics/basejump,
+    acidgenomics/bioverbs,
+    acidgenomics/goalie,
+    acidgenomics/minimalism
 biocViews:
     DataRepresentation,
     GeneExpression,
