@@ -65,7 +65,13 @@ importCellCycleMarkersFromGoogle <- function(...) {
 
 #' @rdname defunct
 #' @export
-importCellTypeMarkersFromGoogle <- function() {
+importCellTypeMarkersFromGoogle <- function(...) {
+    .Defunct()
+}
+
+#' @rdname defunct
+#' @export
+runZinbwave <- function(...) {
     .Defunct()
 }
 
