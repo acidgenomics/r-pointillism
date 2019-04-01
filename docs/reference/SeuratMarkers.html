@@ -66,7 +66,7 @@ marker analysis and add corresponding gene annotations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ marker analysis and add corresponding gene annotations." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -106,7 +106,7 @@ marker analysis and add corresponding gene annotations." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Seurat markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/SeuratMarkers.R'><code>R/SeuratMarkers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/SeuratMarkers.R'><code>R/SeuratMarkers.R</code></a></small>
     <div class="hidden name"><code>SeuratMarkers.Rd</code></div>
     </div>
 
@@ -126,8 +126,8 @@ marker analysis and add corresponding gene annotations.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p><code>data.frame</code>. Unmodified <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers</a></code> or
-<code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers</a></code> return.</p></td>
+      <td><p><code>data.frame</code>. Unmodified <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers()</a></code> or
+<code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return.</p></td>
     </tr>
     <tr>
       <th>ranges</th>
@@ -149,7 +149,7 @@ defined in the object.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>For <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers</a></code> return, rownames are correctly returned
+    <p>For <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>Seurat::FindAllMarkers()</a></code> return, rownames are correctly returned
 in the <code>gene</code> column.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -165,7 +165,7 @@ in the <code>gene</code> column.</p>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
 <span class='no'>ranges</span> <span class='kw'>&lt;-</span> <span class='fu'>rowRanges</span>(<span class='no'>object</span>)
 
-<span class='co'>## `FindMarkers` return.</span>
+<span class='co'>## `FindMarkers()` return.</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/invisible'>invisible</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/capture.output'>capture.output</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>FindMarkers</a></span>(
         <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
@@ -177,9 +177,9 @@ in the <code>gene</code> column.</p>
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.2.4
-#&gt; date: 2019-01-24</div><div class='input'>
-<span class='co'>## `FindAllMarkers` return.</span>
+#&gt; version: 0.2.5
+#&gt; date: 2019-04-01</div><div class='input'>
+<span class='co'>## `FindAllMarkers()` return.</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/invisible'>invisible</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/capture.output'>capture.output</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindAllMarkers'>FindAllMarkers</a></span>(<span class='no'>object</span>)
 ))
@@ -188,8 +188,8 @@ in the <code>gene</code> column.</p>
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.2.4
-#&gt; date: 2019-01-24</div></pre>
+#&gt; version: 0.2.5
+#&gt; date: 2019-04-01</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -210,7 +210,7 @@ in the <code>gene</code> column.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">

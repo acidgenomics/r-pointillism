@@ -103,7 +103,7 @@ S4 coercion support for creating a \code{tbl_df} from \code{SeuratMarkersPerClus
 }
 
 \examples{
-data(sce, package = "basejump")
+data(sce, package = "acidtest")
 data(seurat_small)
 
 ## SingleCellExperiment to seurat ====
@@ -125,7 +125,7 @@ Chambers, John M. (2016)
 }
 \seealso{
 \itemize{
-\item \code{Seurat::CreateSeuratObject}.
-\item \code{Seurat::Convert}.
+\item \code{Seurat::CreateSeuratObject()}.
+\item \code{Seurat::Convert()}.
 }
 }

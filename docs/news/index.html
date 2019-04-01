@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -102,9 +102,22 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="pointillism-0-2-5-2019-04-01" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-2-5-2019-04-01" class="anchor"></a>pointillism 0.2.5 (2019-04-01)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Migrated code to <a href="https://acidgenomics.com/">Acid Genomics</a>.</li>
+<li>Made <code>runZinbwave</code> defunct. No longer recommending zinbwave calculations for droplet single-cell RNA-seq.</li>
+<li>ggplot2 themes <code>theme_paperwhite</code> and <code>theme_midnight</code> are now imported from minimalism package instead of basejump.</li>
+</ul>
+</div>
+</div>
     <div id="pointillism-0-2-4-2019-01-24" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0-2-4-2019-01-24" class="anchor"></a>pointillism 0.2.4 (2019-01-24)</h2>
@@ -128,9 +141,9 @@
     <div id="pointilism-0-1-3-2018-08-26" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointilism-0-1-3-2018-08-26" class="anchor"></a>pointilism 0.1.3 (2018-08-26)</h2>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>as(seurat, "SingleCellExperiment")</code> now returns <code>scaleData</code> in assays, along with <code>varGenes</code> in <code>metadata()</code> and ensures that <code>colData()</code> and <code>rowRanges()</code> are sanitized into camel case using the <code>camel()</code> function internally.</li>
@@ -174,9 +187,9 @@
 <ul>
 <li>Converted <code>runZinbwave()</code> to an S4 method that works on <code>SingleCellExperiment</code>. For <code>seurat</code> objects, coerce to <code>SingleCellExperiment</code> before calculating weights.</li>
 <li>
-<code>plotDot()</code> now uses default <a href="https://ggplot2.tidyverse.org">ggplot2</a> color scale, unless specified.</li>
+<code>plotDot()</code> now uses default <a href="https://ggplot2.tidyverse.org/">ggplot2</a> color scale, unless specified.</li>
 <li>
-<code>plotReducedDim()</code>, <code>plotMarker()</code>: <code>theme_paperwhite()</code> is no longer used by default. Removed <code>grid</code> and <code>aspectRatio</code> arguments to simplify <a href="https://ggplot2.tidyverse.org">ggplot2</a> code handling.</li>
+<code>plotReducedDim()</code>, <code>plotMarker()</code>: <code>theme_paperwhite()</code> is no longer used by default. Removed <code>grid</code> and <code>aspectRatio</code> arguments to simplify <a href="https://ggplot2.tidyverse.org/">ggplot2</a> code handling.</li>
 </ul>
 </div>
 </div>
@@ -211,6 +224,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pointillism-0-2-5-2019-04-01">0.2.5</a></li>
         <li><a href="#pointillism-0-2-4-2019-01-24">0.2.4</a></li>
         <li><a href="#pointillism-0-2-3-2019-01-08">0.2.3</a></li>
         <li><a href="#pointillism-0-2-2-2018-12-22">0.2.2</a></li>
@@ -228,7 +242,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">

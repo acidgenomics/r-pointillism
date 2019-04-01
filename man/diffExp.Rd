@@ -9,11 +9,11 @@
 \usage{
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 
 \S4method{diffExp}{seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, bpparam = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 }
 \arguments{
 \item{object}{Object.}
@@ -40,69 +40,31 @@ expression filtering.}
 Minimum number of counts per cell for a gene to pass low expression
 filtering. The number of cells is defined by \code{minCellsPerGene}.}
 
-\item{bpparam}{\code{bpparamClass}.
-BiocParallel parameter specifying the back-end to be used for computations.
-
-We recommend using one of the following:
-\itemize{
-\item \link[BiocParallel:bpparam]{bpparam}.
-\item \link[BiocParallel:SerialParam]{SerialParam}.
-\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
-}}
+\item{BPPARAM}{\code{bpparamClass}.
+Back-end method to be used for computations.
+See \code{\link[BiocParallel:bpparam]{bpparam}} for details.
+Currently only used by DESeq2 but not edgeR for calculations here.}
 }
 \value{
 Varies depending on the \code{caller} argument:
 \itemize{
 \item \code{caller = "edgeR"}: \code{DEGLRT}.
-\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}. Use \code{lfcShrink} if
-shrunken results are desired.
+\item \code{caller = "DESeq2"}: Unshrunken \code{DESeqResults}.
+Apply \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} if shrunken results are desired.
 }
 }
 \description{
 Differential expression
 }
 \details{
-Perform pairwise differential expression across groups of cells by fitting
-to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
-Currently supports edgeR and DESeq2 as DE callers.
+Perform pairwise differential expression across groups of cells. Currently
+supports edgeR and DESeq2 as DE callers.
 }
 \note{
 We are currently recommending the ZINB-WaVE method over zingeR, since
 it is faster, and has been show to be more sensitive for most single-cell
 RNA-seq datasets.
 }
-\section{zinbwave}{
-
-
-This function will run a lot faster if you pre-calculate the ZINB weights
-using the \code{\link[=runZinbwave]{runZinbwave()}} function, which will stash the weights into the
-\code{\link[SingleCellExperiment:weights]{SingleCellExperiment::weights()}} slot of the object. Running zinbwave across
-the entire set of filtered cells also has greater sensitivity for weight
-calculations.
-
-We are currently using an epsilon setting of \code{1e12}, as recommended by the
-ZINB-WaVE integration paper. For more information on the zinbwave package,
-refer to these materials:
-\itemize{
-\item \href{https://doi.org/10.1186/s13059-018-1406-4}{zinbwave paper}.
-\item \href{https://bit.ly/2wtDdpS}{zinbwave vignette}.
-\item \href{https://github.com/mikelove/zinbwave-deseq2}{zinbwave-DESeq2 workflow}.
-}
-}
-
-\section{edgeR}{
-
-
-After estimation of the dispersions and posterior probabilities, the
-\code{\link[zinbwave:glmWeightedF]{zinbwave::glmWeightedF()}} function is used for statistical inference. This
-is an adaptation of \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}}. It uses an F-test for which the
-denominator degrees of freedom are by default adjusted according to the
-downweighting of excess zeros (\code{ZI = TRUE}). Also, independent filtering can
-be performed on the obtained p-values (\code{independentFiltering = TRUE}). We use
-the independent filtering strategy that was originally implemented in DESeq2.
-By default, the average fitted values are used as a filter criterion.
-}
-
 \section{DESeq2}{
 
 
@@ -112,6 +74,25 @@ caller. It is currently considerably slower for large datasets than edgeR.
 We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
 level for the fold change calculations. See \code{\link[DESeq2:results]{DESeq2::results()}} for details.
+
+Van de Berge and Perraudeau and others have shown the LRT may perform better
+for null hypothesis testing, so we use the LRT. In order to use the Wald
+test, it is recommended to set \code{useT = TRUE} (\emph{not currently in use}).
+
+For UMI data, for which the expected counts may be very low, the likelihood
+ratio test implemented in \code{nbinomLRT()} should be used.
+
+Note that DESeq2 supports \code{weights} in assays automatically, if slotted using
+zinbwave, which is no longer recommended for droplet scRNA-seq.
+}
+
+\section{edgeR}{
+
+
+The LRT has been shown to perform better for null hypothesis testing with
+droplet scRNA-seq data. Here we are using \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}} internally.
+
+edgeR is currently significantly faster than DESeq2 for large datasets.
 }
 
 \section{Seurat conventions}{
@@ -124,9 +105,6 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seur
 \examples{
 data(seurat_small)
 object <- seurat_small
-
-## Calculate ZINB weights (already stashed).
-## seurat_small <- runZinbwave(object)
 
 ## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)
@@ -157,5 +135,5 @@ summary(x)
 # summary(x)
 }
 \seealso{
-\code{Seurat::WhichCells}.
+\code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
 }

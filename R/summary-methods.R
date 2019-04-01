@@ -3,14 +3,14 @@
 #' @inherit basejump::summary
 #' @inheritParams basejump::params
 #' @examples
-#' data(rse, tx_se)
+#' data(rse, txse, package = "acidtest")
 #'
 #' ## Gene2Symbol ====
 #' x <- Gene2Symbol(rse)
 #' summary(x)
 #'
 #' ## Tx2Gene ====
-#' x <- Tx2Gene(tx_se)
+#' x <- Tx2Gene(txse)
 #' summary(x)
 NULL
 

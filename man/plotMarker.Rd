@@ -9,27 +9,27 @@
 \usage{
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
   reducedDim = "TSNE", expression = c("mean", "sum"),
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = TRUE)
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
 \S4method{plotMarker}{seurat}(object, genes, reducedDim = "TSNE",
   expression = c("mean", "sum"),
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("pointillism.pointSize", 0.75),
-  pointAlpha = getOption("pointillism.pointAlpha", 0.85),
-  pointsAsNumbers = getOption("pointillism.pointsAsNumbers", FALSE),
-  label = getOption("pointillism.label", TRUE),
-  labelSize = getOption("pointillism.labelSize", 6L),
-  dark = getOption("pointillism.dark", FALSE),
-  legend = getOption("pointillism.legend", TRUE), title = TRUE)
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = TRUE)
 }
 \arguments{
 \item{object}{Object.}
@@ -54,7 +54,7 @@ Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
 the default ggplot2 color palette will be used. If manual color definitions
 are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
 
-To set the discrete color palette globally, use:\preformatted{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())
+To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
 \item{pointSize}{\code{numeric(1)}.
@@ -74,8 +74,8 @@ Superimpose sample text labels on the plot.}
 Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
-Plot against a dark background using the \code{\link[basejump:theme_midnight]{basejump::theme_midnight()}}
-ggplot2 theme.}
+Plot against a dark background using the
+\code{\link[minimalism:theme_midnight]{theme_midnight()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
 Show plot legend.}
