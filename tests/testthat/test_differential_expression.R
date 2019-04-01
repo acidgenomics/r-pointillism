@@ -77,17 +77,3 @@ with_parameters_test_that(
         seurat = seurat_small
     )
 )
-
-
-
-# runZinbwave ==================================================================
-with_parameters_test_that(
-    "runZinbwave", {
-        x <- runZinbwave(Y = Y, recalculate = TRUE)
-        expect_is(weights(x), "matrix")
-    },
-    Y = list(
-        SingleCellExperiment = sce,
-        seurat = seurat_small
-    )
-)
