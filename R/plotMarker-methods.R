@@ -1,7 +1,11 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
+#'
 #' @inherit bioverbs::plotMarker
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
+#'
 #' @examples
 #' data(seurat_small)
 #' object <- seurat_small

@@ -1,6 +1,8 @@
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
