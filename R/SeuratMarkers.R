@@ -5,12 +5,14 @@
 #' This generator function is designed to take the original return from a Seurat
 #' marker analysis and add corresponding gene annotations.
 #'
-#' @note For `Seurat::FindAllMarkers` return, rownames are correctly returned
+#' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
 #'
 #' @inheritParams basejump::params
-#' @param object `data.frame`. Unmodified `Seurat::FindMarkers` or
-#'   `Seurat::FindAllMarkers` return.
+#' @inheritParams params
+#'
+#' @param object `data.frame`. Unmodified [Seurat::FindMarkers()] or
+#'   [Seurat::FindAllMarkers()] return.
 #' @param ranges `GRanges`. Gene annotations. Names must correspond to the
 #'   rownames. The function will automatically subset the ranges and arrange
 #'   them alphabetically.
@@ -20,7 +22,7 @@
 #' object <- seurat_small
 #' ranges <- rowRanges(object)
 #'
-#' ## `FindMarkers` return.
+#' ## `FindMarkers()` return.
 #' invisible(capture.output(
 #'     markers <- Seurat::FindMarkers(
 #'         object = object,
@@ -31,7 +33,7 @@
 #' x <- SeuratMarkers(object = markers, ranges = ranges)
 #' summary(x)
 #'
-#' ## `FindAllMarkers` return.
+#' ## `FindAllMarkers()` return.
 #' invisible(capture.output(
 #'     markers <- Seurat::FindAllMarkers(object)
 #' ))

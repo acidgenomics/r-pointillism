@@ -1,9 +1,4 @@
-context("Plot Functions")
-
-data(
-    all_markers_small, seurat_small, known_markers_small,
-    envir = environment()
-)
+context("Plot functions")
 
 sce <- as(seurat_small, "SingleCellExperiment")
 objects <- list(
@@ -42,11 +37,11 @@ with_parameters_test_that(
 
 
 
-# plotGene =====================================================================
+# plotCounts ===================================================================
 with_parameters_test_that(
-    "plotGene", {
+    "plotCounts", {
         # Dot.
-        p <- plotGene(
+        p <- plotCounts(
             object = object,
             genes = genes,
             geom = "dot"
@@ -54,7 +49,7 @@ with_parameters_test_that(
         expect_s3_class(p, "ggplot")
 
         # Violin.
-        p <- plotGene(
+        p <- plotCounts(
             object = object,
             genes = genes,
             geom = "violin"

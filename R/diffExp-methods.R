@@ -255,9 +255,9 @@ diffExp.SingleCellExperiment <-  # nolint
         # Ensure raw counts matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))
 
-        # Perform differential expression (e.g. `.zinbwave.edgeR`).
+        # Perform differential expression.
         fun <- get(
-            x  = paste("diffExp", caller, sep = "."),
+            x  = paste0(".diffExp.", caller),
             envir = asNamespace("pointillism"),
             inherits = FALSE
         )

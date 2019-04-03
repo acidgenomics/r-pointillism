@@ -1,6 +1,8 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @param markers `grouped_df`.
 #'   Marker genes, grouped by `"cellType"`.

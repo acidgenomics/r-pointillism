@@ -1,6 +1,5 @@
-context("Differential Expression")
+context("Differential expression")
 
-data(seurat_small, envir = environment())
 sce <- as(seurat_small, "SingleCellExperiment")
 
 # Compare expression in cluster 3 relative to 2.
@@ -73,20 +72,6 @@ with_parameters_test_that(
         ))
     },
     object = list(
-        SingleCellExperiment = sce,
-        seurat = seurat_small
-    )
-)
-
-
-
-# runZinbwave ==================================================================
-with_parameters_test_that(
-    "runZinbwave", {
-        x <- runZinbwave(Y = Y, recalculate = TRUE)
-        expect_is(weights(x), "matrix")
-    },
-    Y = list(
         SingleCellExperiment = sce,
         seurat = seurat_small
     )

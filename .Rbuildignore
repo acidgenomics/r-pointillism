@@ -5,6 +5,7 @@
 ^\.Rprofile$
 ^\.Rproj\.user$
 ^\.circleci$
+^\.git$
 ^\.httr-oauth$
 ^\.lintr$
 ^\.travis\.yml$

@@ -15,45 +15,46 @@ lightMarkerColors <-
 # This works reliably across platforms, but is slower.
 BPPARAM <- quote(BiocParallel::SerialParam())  # nolint
 
-continuousColor <- quote(getOption(
-    "pointillism.continuous.color",
-    ggplot2::scale_colour_gradient(
-        low = "gray75",
-        high = "purple"
-    )
-))
-continuousColorPurpleOrange <- quote(getOption(
-    "pointillism.continuous.color",
-    ggplot2::scale_colour_gradient2(
-        low = "orange",
-        mid = "gray75",
-        high = "purple",
-        midpoint = 0L
-    )
-))
+continuousColor <-
+    quote(getOption(
+        "acid.continuous.color",
+        default = ggplot2::scale_colour_gradient(
+            low = "gray75",
+            high = "purple"
+        )
+    ))
+continuousColorPurpleOrange <-
+    quote(getOption(
+        "acid.continuous.color",
+        default = ggplot2::scale_colour_gradient2(
+            low = "orange",
+            mid = "gray75",
+            high = "purple",
+            midpoint = 0L
+        )
+    ))
+discreteColor <-
+    quote(getOption("acid.discrete.color", default = NULL))
 
-discreteColor <- quote(getOption("pointillism.discrete.color", default = NULL))
-
-dark <- quote(getOption("pointillism.dark", default = FALSE))
-# up, down, both (bcbioRNASeq).
+dark <- quote(getOption("acid.dark", default = FALSE))
 dimsUse <- quote(c(1L, 2L))
 direction <- c("up", "down", "both")
 expression <- c("mean", "sum")
 headerLevel <- 2L
-label <- quote(getOption("pointillism.label", default = TRUE))
-labelSize <- quote(getOption("pointillism.labelSize", default = 6L))
-legend <- quote(getOption("pointillism.legend", default = TRUE))
-pointAlpha <- quote(getOption("pointillism.pointAlpha", default = 0.85))
-pointSize <- quote(getOption("pointillism.pointSize", default = 0.75))
+label <- quote(getOption("acid.label", default = TRUE))
+labelSize <- quote(getOption("acid.labelSize", default = 6L))
+legend <- quote(getOption("acid.legend", default = TRUE))
+pointAlpha <- quote(getOption("acid.pointAlpha", default = 0.85))
+pointSize <- quote(getOption("acid.pointSize", default = 0.75))
 pointsAsNumbers <-
-    quote(getOption("pointillism.pointsAsNumbers", default = FALSE))
+    quote(getOption("acid.pointsAsNumbers", default = FALSE))
 reducedDim <- "TSNE"
 
 # Set default ggplot2 theme.
-if (isTRUE(getOption("pointillism.dark"))) {
-    theme <- basejump::theme_midnight
+if (isTRUE(getOption("acid.dark"))) {
+    theme <- minimalism::theme_midnight
 } else {
-    theme <- basejump::theme_paperwhite
+    theme <- minimalism::theme_paperwhite
 }
 theme <- theme(base_size = 14L, legend_position = "right")
 ggplot2::theme_set(new = theme)

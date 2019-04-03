@@ -1,6 +1,5 @@
-context("Cluster Statistics")
+context("Cluster statistics")
 
-data(seurat_small, known_markers_small, envir = environment())
 sce <- as(seurat_small, "SingleCellExperiment")
 
 group_vars <- dplyr::group_vars  # nolint

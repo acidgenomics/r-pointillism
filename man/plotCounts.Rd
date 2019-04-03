@@ -15,38 +15,35 @@
 \usage{
 \S4method{plotCounts}{SingleCellExperiment}(object, genes,
   geom = c("dot", "violin"), perSample = TRUE,
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotCounts}{seurat}(object, genes, geom = c("dot", "violin"),
-  perSample = TRUE, legend = getOption("pointillism.legend", default =
-  TRUE), title = NULL)
+  perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
+  title = NULL)
 
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
-  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  default = TRUE), title = NULL)
+  "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
+  TRUE), title = NULL)
 
 \S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
-  color = getOption("pointillism.continuous.color",
+  color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
-  "purple", midpoint = 0L)), legend = getOption("pointillism.legend",
-  default = TRUE), title = NULL)
+  "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
+  TRUE), title = NULL)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", default = NULL),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
   scale = c("count", "width", "area"),
-  color = getOption("pointillism.discrete.color", default = NULL),
-  legend = getOption("pointillism.legend", default = TRUE),
-  title = NULL)
+  color = getOption("acid.discrete.color", default = NULL),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -89,7 +86,7 @@ Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
 the default ggplot2 color palette will be used. If manual color definitions
 are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2::scale_color_manual()}}.
 
-To set the discrete color palette globally, use:\preformatted{options(basejump.color.discrete = ggplot2::scale_color_viridis_d())
+To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
 \item{scale}{if "area" (default), all violins have the same area (before trimming

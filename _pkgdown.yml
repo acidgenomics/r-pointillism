@@ -1,6 +1,8 @@
 authors:
   Michael Steinbaugh:
-    href: /
+    href: https://steinbaugh.com/
+  Acid Genomics:
+    href: https://acidgenomics.com/
 
 reference:
   - title: S4 classes
@@ -16,7 +18,6 @@ reference:
     contents:
     - starts_with("diffExp")
     - findMarkers
-    - runZinbwave
   - title: Cluster statistics
     contents:
     - cellCountsPerCluster
@@ -25,7 +26,6 @@ reference:
   - title: Marker analysis
     contents:
     - clusterID
-    - importMarkers
     - knownMarkers
     - topMarkers
   - title: Plots
