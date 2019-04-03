@@ -7,11 +7,11 @@
 #' @exportMethod coerce
 #'
 #' @seealso
-#' - `Seurat::CreateSeuratObject`.
-#' - `Seurat::Convert`.
+#' - `Seurat::CreateSeuratObject()`.
+#' - `Seurat::Convert()`.
 #'
 #' @examples
-#' data(sce, package = "basejump")
+#' data(sce, package = "acidtest")
 #' data(seurat_small)
 #'
 #' ## SingleCellExperiment to seurat ====

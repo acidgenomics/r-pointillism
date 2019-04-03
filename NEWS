@@ -1,4 +1,13 @@
-## pointillism 0.2.5 (2019-03-20)
+## pointillism 0.2.5 (2019-04-01)
+
+### Major changes
+
+- Migrated code to [Acid Genomics][].
+- Made `runZinbwave` defunct. No longer recommending zinbwave calculations for
+  droplet single-cell RNA-seq.
+- ggplot2 themes `theme_paperwhite` and `theme_midnight` are now imported from
+  minimalism package instead of basejump.
+  
 
 
 
@@ -88,4 +97,7 @@
 
 
 
-[ggplot2]: https://ggplot2.tidyverse.org
+[Acid Genomics]: https://acidgenomics.com/
+[basejump]: https://basejump.acidgenomics.com/
+[ggplot2]: https://ggplot2.tidyverse.org/
+[minimalism]: https://minimalism.acidgenomics.com/

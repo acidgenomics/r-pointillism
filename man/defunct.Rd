@@ -9,6 +9,7 @@
 \alias{sanitizeMarkers}
 \alias{importCellCycleMarkersFromGoogle}
 \alias{importCellTypeMarkersFromGoogle}
+\alias{runZinbwave}
 \title{Defunct functions}
 \usage{
 knownMarkers(...)
@@ -23,7 +24,9 @@ sanitizeMarkers(...)
 
 importCellCycleMarkersFromGoogle(...)
 
-importCellTypeMarkersFromGoogle()
+importCellTypeMarkersFromGoogle(...)
+
+runZinbwave(...)
 }
 \arguments{
 \item{...}{Additional arguments.}

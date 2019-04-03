@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot gene expression — plotGene • pointillism</title>
+<title>Plot counts — plotCounts • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot gene expression — plotGene" />
+<meta property="og:title" content="Plot counts — plotCounts" />
 
 <meta property="og:description" content="Visualize genes on a dot or violin plot." />
 <meta name="twitter:card" content="summary" />
@@ -87,7 +87,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -104,9 +104,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot gene expression</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/plotGene-methods.R'><code>R/plotGene-methods.R</code></a></small>
-    <div class="hidden name"><code>plotGene.Rd</code></div>
+    <h1>Plot counts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCounts-methods.R'><code>R/plotCounts-methods.R</code></a></small>
+    <div class="hidden name"><code>plotCounts.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -116,42 +116,42 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dot"</span>,
-  <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>,
-  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
-<span class='fu'>plotGene</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>),
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
-  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
   <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.continuous.color"</span>,
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
-  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
   <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
   <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.discrete.color"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"pointillism.legend"</span>, <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -216,8 +216,8 @@ Scale the size of the points, similar to <code>cex</code>.</p></td>
       <td><p><code>ScaleDiscrete</code>.
 Desired ggplot2 color scale. Must supply discrete values. When set <code>NULL</code>,
 the default ggplot2 color palette will be used. If manual color definitions
-are desired, we recommend using <code><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>ggplot2::scale_color_manual()</a></code>.</p>
-<p>To set the discrete color palette globally, use:</p><pre>options(basejump.color.discrete = ggplot2::scale_color_viridis_d())
+are desired, we recommend using <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_manual'>ggplot2::scale_color_manual()</a></code>.</p>
+<p>To set the discrete color palette globally, use:</p><pre>options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 </pre></td>
     </tr>
     <tr>
@@ -227,6 +227,10 @@ the tails). If "count", areas are scaled proportionally to the number of
 observations. If "width", all violins have the same maximum width.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>ggplot</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -246,15 +250,17 @@ observations. If "width", all violins have the same maximum width.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>geneIDs</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'><span class='no'>geneNames</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>as.character</a></span>(<span class='fu'>rowRanges</span>(<span class='no'>object</span>)$<span class='no'>geneName</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>geneNames</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'>
 <span class='co'>## Per sample mode enabled.</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotGene-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotGene-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Per sample mode disabled.</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotGene-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotGene-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
@@ -265,7 +271,7 @@ observations. If "width", all violins have the same maximum width.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">

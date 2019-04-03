@@ -1,6 +1,4 @@
-context("Marker Analysis")
-
-data(all_markers_small, seurat_small, envir = environment())
+context("Marker analysis")
 
 
 

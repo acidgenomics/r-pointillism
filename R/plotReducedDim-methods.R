@@ -2,8 +2,11 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
+#'
 #' @inherit bioverbs::plotReducedDim
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @details
 #' Colors using `ident` column defined in
@@ -29,7 +32,7 @@
 #' reliably when setting `RETICULATE_PYTHON` to point to your conda python
 #' binary. Export this variable in  `~/.Renviron`.
 #'
-#' See `base::Sys.getenv` for more information on the R system environment.
+#' See [`Sys.getenv`][base::Sys.getenv] for details on the R system environment.
 #'
 #' [conda]: https://conda.io
 #' [Python]: https://www.python.org

@@ -87,7 +87,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -105,7 +105,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Differential expression</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pointillism/blob/master/R/diffExp-methods.R'><code>R/diffExp-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/diffExp-methods.R'><code>R/diffExp-methods.R</code></a></small>
     <div class="hidden name"><code>diffExp.Rd</code></div>
     </div>
 
@@ -118,12 +118,12 @@
     <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>bpparam</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())
 
 <span class='co'># S4 method for seurat</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>bpparam</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())</pre>
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,14 +167,11 @@ Minimum number of counts per cell for a gene to pass low expression
 filtering. The number of cells is defined by <code>minCellsPerGene</code>.</p></td>
     </tr>
     <tr>
-      <th>bpparam</th>
+      <th>BPPARAM</th>
       <td><p><code>bpparamClass</code>.
-BiocParallel parameter specifying the back-end to be used for computations.</p>
-<p>We recommend using one of the following:</p><ul>
-<li><p><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a>.</p></li>
-<li><p><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a>.</p></li>
-<li><p><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/MulticoreParam-class'>MulticoreParam</a>.</p></li>
-</ul></td>
+Back-end method to be used for computations.
+See <code><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></code> for details.
+Currently only used by DESeq2 but not edgeR for calculations here.</p></td>
     </tr>
     </table>
     
@@ -182,50 +179,21 @@ BiocParallel parameter specifying the back-end to be used for computations.</p>
 
     <p>Varies depending on the <code>caller</code> argument:</p><ul>
 <li><p><code>caller = "edgeR"</code>: <code>DEGLRT</code>.</p></li>
-<li><p><code>caller = "DESeq2"</code>: Unshrunken <code>DESeqResults</code>. Use <code>lfcShrink</code> if
-shrunken results are desired.</p></li>
+<li><p><code>caller = "DESeq2"</code>: Unshrunken <code>DESeqResults</code>.
+Apply <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> if shrunken results are desired.</p></li>
 </ul>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Perform pairwise differential expression across groups of cells by fitting
-to a zero-inflated negative binomial (ZINB) model using the zinbwave package.
-Currently supports edgeR and DESeq2 as DE callers.</p>
+    <p>Perform pairwise differential expression across groups of cells. Currently
+supports edgeR and DESeq2 as DE callers.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>We are currently recommending the ZINB-WaVE method over zingeR, since
 it is faster, and has been show to be more sensitive for most single-cell
 RNA-seq datasets.</p>
-    
-    <h2 class="hasAnchor" id="zinbwave"><a class="anchor" href="#zinbwave"></a>zinbwave</h2>
-
-    
-    <p>This function will run a lot faster if you pre-calculate the ZINB weights
-using the <code><a href='runZinbwave.html'>runZinbwave()</a></code> function, which will stash the weights into the
-<code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays'>SingleCellExperiment::weights()</a></code> slot of the object. Running zinbwave across
-the entire set of filtered cells also has greater sensitivity for weight
-calculations.</p>
-<p>We are currently using an epsilon setting of <code>1e12</code>, as recommended by the
-ZINB-WaVE integration paper. For more information on the zinbwave package,
-refer to these materials:</p><ul>
-<li><p><a href='https://doi.org/10.1186/s13059-018-1406-4'>zinbwave paper</a>.</p></li>
-<li><p><a href='https://bit.ly/2wtDdpS'>zinbwave vignette</a>.</p></li>
-<li><p><a href='https://github.com/mikelove/zinbwave-deseq2'>zinbwave-DESeq2 workflow</a>.</p></li>
-</ul>
-    
-    <h2 class="hasAnchor" id="edger"><a class="anchor" href="#edger"></a>edgeR</h2>
-
-    
-    <p>After estimation of the dispersions and posterior probabilities, the
-<code><a href='https://www.rdocumentation.org/packages/zinbwave/topics/glmWeightedF'>zinbwave::glmWeightedF()</a></code> function is used for statistical inference. This
-is an adaptation of <code><a href='https://www.rdocumentation.org/packages/edgeR/topics/glmfit'>edgeR::glmLRT()</a></code>. It uses an F-test for which the
-denominator degrees of freedom are by default adjusted according to the
-downweighting of excess zeros (<code>ZI = TRUE</code>). Also, independent filtering can
-be performed on the obtained p-values (<code>independentFiltering = TRUE</code>). We use
-the independent filtering strategy that was originally implemented in DESeq2.
-By default, the average fitted values are used as a filter criterion.</p>
     
     <h2 class="hasAnchor" id="deseq-"><a class="anchor" href="#deseq-"></a>DESeq2</h2>
 
@@ -235,6 +203,20 @@ caller. It is currently considerably slower for large datasets than edgeR.</p>
 <p>We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
 level for the fold change calculations. See <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/results'>DESeq2::results()</a></code> for details.</p>
+<p>Van de Berge and Perraudeau and others have shown the LRT may perform better
+for null hypothesis testing, so we use the LRT. In order to use the Wald
+test, it is recommended to set <code>useT = TRUE</code> (<em>not currently in use</em>).</p>
+<p>For UMI data, for which the expected counts may be very low, the likelihood
+ratio test implemented in <code>nbinomLRT()</code> should be used.</p>
+<p>Note that DESeq2 supports <code>weights</code> in assays automatically, if slotted using
+zinbwave, which is no longer recommended for droplet scRNA-seq.</p>
+    
+    <h2 class="hasAnchor" id="edger"><a class="anchor" href="#edger"></a>edgeR</h2>
+
+    
+    <p>The LRT has been shown to perform better for null hypothesis testing with
+droplet scRNA-seq data. Here we are using <code><a href='https://www.rdocumentation.org/packages/edgeR/topics/glmfit'>edgeR::glmLRT()</a></code> internally.</p>
+<p>edgeR is currently significantly faster than DESeq2 for large datasets.</p>
     
     <h2 class="hasAnchor" id="seurat-conventions"><a class="anchor" href="#seurat-conventions"></a>Seurat conventions</h2>
 
@@ -244,22 +226,19 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/WhichCells'>Seurat::WhichCells</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/WhichCells'>Seurat::WhichCells()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>)
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
 
-<span class='co'>## Calculate ZINB weights (already stashed).</span>
-<span class='co'>## seurat_small &lt;- runZinbwave(object)</span>
-
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
-<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
+<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
-<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        10 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
-<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        12 character character </div><div class='input'>
 <span class='co'>## edgeR.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
@@ -267,12 +246,12 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
     <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='no'>numerator</span>,
     <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
     <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with zinbwave-edgeR</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
+)</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
 #&gt; <span class='message'>Numerator: 10 cells</span>
-#&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.218   0.002   0.224 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
+#&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
+#&gt; <span class='message'>  0.218   0.001   0.220 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
 #&gt; attr(,"package")
-#&gt; [1] "edgeR"</div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
+#&gt; [1] "edgeR"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
 #&gt; coefficients           374   -none-           numeric  
 #&gt; fitted.values         4114   -none-           numeric  
 #&gt; deviance               187   -none-           numeric  
@@ -282,12 +261,10 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 #&gt; design                  44   -none-           numeric  
 #&gt; offset                4114   CompressedMatrix numeric  
 #&gt; dispersion             187   -none-           numeric  
-#&gt; weights               4114   -none-           numeric  
 #&gt; prior.count              1   -none-           numeric  
 #&gt; samples                  3   data.frame       list     
 #&gt; prior.df                 1   -none-           numeric  
 #&gt; AveLogCPM              187   -none-           numeric  
-#&gt; df.total               187   -none-           numeric  
 #&gt; table                    4   data.frame       list     
 #&gt; comparison               1   -none-           character
 #&gt; df.test                187   -none-           numeric  </div><div class='input'>
@@ -314,11 +291,9 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 
       <li><a href="#note">Note</a></li>
 
-      <li><a href="#zinbwave">zinbwave</a></li>
+      <li><a href="#deseq-">DESeq2</a></li>
 
       <li><a href="#edger">edgeR</a></li>
-
-      <li><a href="#deseq-">DESeq2</a></li>
 
       <li><a href="#seurat-conventions">Seurat conventions</a></li>
 
@@ -332,7 +307,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
 </div>
 
 <div class="pkgdown">

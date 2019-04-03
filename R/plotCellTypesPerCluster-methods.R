@@ -1,7 +1,10 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
+#'
 #' @inherit bioverbs::plotCellTypesPerCluster
+#' @inheritParams minimalism::params
 #' @inheritParams basejump::params
+#' @inheritParams params
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell

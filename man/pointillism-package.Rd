@@ -11,9 +11,9 @@ R package for for single-cell RNA-seq clustering analysis.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://steinbaugh.com/pointillism/}
-  \item \url{https://github.com/steinbaugh/pointillism/}
-  \item Report bugs at \url{https://github.com/steinbaugh/pointillism/issues/}
+  \item \url{https://pointillism.acidgenomics.com/}
+  \item \url{https://github.com/acidgenomics/pointillism/}
+  \item Report bugs at \url{https://github.com/acidgenomics/pointillism/issues/}
 }
 
 }
@@ -22,6 +22,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Acid Genomics [copyright holder, funder]
   \item Rory Kirchner \email{roryk@alum.mit.edu} (0000-0003-4814-5885) [contributor]
 }
 
