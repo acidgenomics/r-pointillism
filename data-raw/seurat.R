@@ -86,8 +86,7 @@ names(gr) <- table
 stopifnot(all(x %in% table))
 which <- match(x = x, table = table)
 gr <- gr[which]
-# FIXME `rowRanges` method is defined by pointillism.
-# Consider slotting directly into Seurat object here.
+# Note that `rowRanges` method is defined by pointillism.
 rowRanges(seurat_small) <- gr
 
 # all_markers_small ============================================================
@@ -96,6 +95,7 @@ ranges <- rowRanges(seurat_small)
 all_markers_small <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 
 # known_markers_small ==========================================================
+data(cell_type_markers)
 known_markers_small <- KnownMarkers(
     markers = all_markers_small,
     known = cell_type_markers$homoSapiens
