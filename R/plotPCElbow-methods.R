@@ -36,7 +36,7 @@ bioverbs::plotPCElbow
 
 
 
-plotPCElbow.seurat <-  # nolint
+plotPCElbow.Seurat <-  # nolint
     function(
         object,
         minSD = 1L,
@@ -59,7 +59,8 @@ plotPCElbow.seurat <-  # nolint
 
         # dr: dimensional reduction
         # sdev: standard deviation
-        sdev <- object@dr[["pca"]]@sdev
+        # FIXME Add reduction support.
+        sdev <- Stdev(object = object, reduction = "pca")
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)
@@ -171,6 +172,6 @@ plotPCElbow.seurat <-  # nolint
 #' @export
 setMethod(
     f = "plotPCElbow",
-    signature = signature("seurat"),
-    definition = plotPCElbow.seurat
+    signature = signature("Seurat"),
+    definition = plotPCElbow.Seurat
 )
