@@ -1,8 +1,10 @@
+# FIXME This approach is failing
+
 # package_version
-setOldClass(Classes = class(packageVersion("base")))
+# setOldClass(Classes = class(packageVersion("base")))
 
 # session_info
-setOldClass(Classes = "session_info")
+# setOldClass(Classes = "session_info")
 
 
 
