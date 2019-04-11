@@ -15,7 +15,7 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
-#' @importFrom Seurat CreateSeuratObject
+#' @importFrom Seurat CreateSeuratObject as.SingleCellExperiment as.Seurat
 #' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData

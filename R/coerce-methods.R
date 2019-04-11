@@ -73,12 +73,6 @@ setAs(
 
 
 # SingleCellExperiment to Seurat ===============================================
-as.Seurat <- function(from) {
-    UseMethod("as.Seurat")
-}
-
-
-
 # FIXME Seurat 3 now masks this method.
 # Seurat:::as.Seurat.SingleCellExperiment
 .as.Seurat.SingleCellExperiment <- function(from) {
@@ -129,6 +123,8 @@ as.Seurat <- function(from) {
 
 
 
+# FIXME Rethink this
+
 #' @rdname as
 #' @name coerce,SingleCellExperiment,Seurat-method
 #'
@@ -147,12 +143,6 @@ setAs(
 
 
 # Seurat to SingleCellExperiment ===============================================
-as.SingleCellExperiment <- function(from) {
-    UseMethod("as.SingleCellExperiment")
-}
-
-
-
 # Fast internal method, that ensures dimnames are sanitized.
 # Sanitizes legacy Seurat objects that contain Ensembl IDs in names.
 # FIXME This should be safe to deprecate.
