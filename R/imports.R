@@ -3,7 +3,7 @@
 
 
 
-#' @importClassesFrom Seurat seurat
+#' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
 #' @importMethodsFrom basejump coerce
@@ -15,7 +15,7 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
-#' @importFrom Seurat Convert CreateSeuratObject
+#' @importFrom Seurat CreateSeuratObject
 #' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
