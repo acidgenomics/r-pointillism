@@ -1,3 +1,7 @@
+# FIXME Seurat v3 now masks these S3 methods.
+
+
+
 #' Force an object to belong to a class
 #'
 #' @inherit methods::as
@@ -14,14 +18,14 @@
 #' data(sce, package = "acidtest")
 #' data(seurat_small)
 #'
-#' ## SingleCellExperiment to seurat ====
+#' ## SingleCellExperiment to Seurat ====
 #' object <- sce
 #' print(object)
-#' x <- as(object, "seurat")
+#' x <- as(object, "Seurat")
 #' class(x)
 #' print(x)
 #'
-#' ## seurat to SingleCellExperiment ====
+#' ## Seurat to SingleCellExperiment ====
 #' x <- as(seurat_small, "SingleCellExperiment")
 #' print(x)
 NULL
@@ -68,15 +72,17 @@ setAs(
 
 
 
-# SingleCellExperiment to seurat ===============================================
-as.seurat <- function(from) {
-    UseMethod("as.seurat")
+# SingleCellExperiment to Seurat ===============================================
+as.Seurat <- function(from) {
+    UseMethod("as.Seurat")
 }
 
 
 
-as.seurat.SingleCellExperiment <- function(from) {
-    # Create the seurat object.
+# FIXME Seurat 3 now masks this method.
+# Seurat:::as.Seurat.SingleCellExperiment
+.as.Seurat.SingleCellExperiment <- function(from) {
+    # Create the Seurat object.
     args <- list(
         raw.data = counts(from),
         meta.data = as.data.frame(colData(from)),
@@ -124,23 +130,23 @@ as.seurat.SingleCellExperiment <- function(from) {
 
 
 #' @rdname as
-#' @name coerce,SingleCellExperiment,seurat-method
+#' @name coerce,SingleCellExperiment,Seurat-method
 #'
-#' @section `SingleCellExperiment` to `seurat`:
+#' @section `SingleCellExperiment` to `Seurat`:
 #' Interally `Seurat::CreateSeuratObject` is called without applying any
 #' additional filtering cutoffs, since we have already defined them during our
 #' quality control analysis. Here we are passing the raw gene-level counts of
-#' the filtered cells into a new `seurat` class object. Use
+#' the filtered cells into a new `Seurat` class object. Use
 #' `convertGenesToSymbols` to convert gene IDs to names (symbols).
 setAs(
     from = "SingleCellExperiment",
-    to = "seurat",
-    def = as.seurat.SingleCellExperiment
+    to = "Seurat",
+    def = .as.Seurat.SingleCellExperiment
 )
 
 
 
-# seurat to SingleCellExperiment ===============================================
+# Seurat to SingleCellExperiment ===============================================
 as.SingleCellExperiment <- function(from) {
     UseMethod("as.SingleCellExperiment")
 }
@@ -148,8 +154,10 @@ as.SingleCellExperiment <- function(from) {
 
 
 # Fast internal method, that ensures dimnames are sanitized.
-# Sanitizes legacy seurat objects that contain Ensembl IDs in names.
-as.SingleCellExperiment.seurat <- function(from) {  # nolint
+# Sanitizes legacy Seurat objects that contain Ensembl IDs in names.
+# FIXME This should be safe to deprecate.
+# Seurat:::as.SingleCellExperiment.Seurat
+.as.SingleCellExperiment.Seurat <- function(from) {  # nolint
     validObject(from)
     names(rownames(from@raw.data)) <- NULL
     names(rownames(from@data)) <- NULL
@@ -158,19 +166,21 @@ as.SingleCellExperiment.seurat <- function(from) {  # nolint
 
 
 
+# FIXME Rethink this approach
+
 #' @rdname as
-#' @name coerce,seurat,SingleCellExperiment-method
+#' @name coerce,Seurat,SingleCellExperiment-method
 #'
-#' @section `seurat` to `SingleCellExperiment`:
-#' S4 coercion support for creating a `SingleCellExperiment` from a `seurat`
-#' class object. The [Seurat FAQ page](https://satijalab.org/seurat/faq)
-#' explains the `seurat` S4 class structure in detail. Internally, this method
+#' @section `Seurat` to `SingleCellExperiment`:
+#' S4 coercion support for creating a `SingleCellExperiment` from a `Seurat`
+#' class object. The [Seurat FAQ page](https://satijalab.org/Seurat/faq)
+#' explains the `Seurat` S4 class structure in detail. Internally, this method
 #' improves the basic `Seurat::as.SingleCellExperiment` S3 coercion method,
 #' including the `object@scale.data` matrix, and will keep track of stashed
-#' `rowRanges` and `metadata` if the `seurat` object was originally created
+#' `rowRanges` and `metadata` if the `Seurat` object was originally created
 #' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
 setAs(
-    from = "seurat",
+    from = "Seurat",
     to = "SingleCellExperiment",
     def = function(from) {
         to <- as.SingleCellExperiment(from)
@@ -205,15 +215,15 @@ setAs(
 
 
 
-# seurat to SummarizedExperiment ===============================================
+# Seurat to SummarizedExperiment ===============================================
 #' @rdname as
-#' @name coerce,seurat,RangedSummarizedExperiment-method
+#' @name coerce,Seurat,RangedSummarizedExperiment-method
 #'
-#' @section `seurat` to `RangedSummarizedExperiment`:
+#' @section `Seurat` to `RangedSummarizedExperiment`:
 #' S4 coercion support for creating a `RangedSummarizedExperiment` from a
-#' `seurat` class object.
+#' `Seurat` class object.
 setAs(
-    from = "seurat",
+    from = "Seurat",
     to = "RangedSummarizedExperiment",
     def = function(from) {
         sce <- as(from, "SingleCellExperiment")
@@ -225,12 +235,12 @@ setAs(
 
 
 #' @rdname as
-#' @name coerce,seurat,SummarizedExperiment-method
-#' @section `seurat` to `SummarizedExperiment`:
-#' S4 coercion support for creating a `SummarizedExperiment` from a `seurat`
+#' @name coerce,Seurat,SummarizedExperiment-method
+#' @section `Seurat` to `SummarizedExperiment`:
+#' S4 coercion support for creating a `SummarizedExperiment` from a `Seurat`
 #' class object.
 setAs(
-    from = "seurat",
+    from = "Seurat",
     to = "SummarizedExperiment",
     def = function(from) {
         rse <- as(from, "RangedSummarizedExperiment")
