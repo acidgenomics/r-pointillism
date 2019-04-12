@@ -4,12 +4,12 @@
 \name{clusterID}
 \alias{clusterID}
 \alias{clusterID,SingleCellExperiment-method}
-\alias{clusterID,seurat-method}
+\alias{clusterID,Seurat-method}
 \title{Cluster identifier}
 \usage{
 \S4method{clusterID}{SingleCellExperiment}(object)
 
-\S4method{clusterID}{seurat}(object)
+\S4method{clusterID}{Seurat}(object)
 }
 \arguments{
 \item{object}{Object.}

@@ -59,7 +59,8 @@ setMethod(
 
 
 
-cellCountsPerCluster.Seurat <- cellCountsPerCluster.SingleCellExperiment
+cellCountsPerCluster.Seurat <-  # nolint
+    cellCountsPerCluster.SingleCellExperiment
 
 
 

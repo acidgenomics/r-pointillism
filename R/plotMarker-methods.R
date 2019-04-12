@@ -254,10 +254,15 @@ setMethod(
 
 
 
+plotMarker.Seurat <-  # nolint
+    plotMarker.SingleCellExperiment
+
+
+
 #' @rdname plotMarker
 #' @export
 setMethod(
     f = "plotMarker",
-    signature = signature("seurat"),
-    definition = plotMarker.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotMarker.Seurat
 )

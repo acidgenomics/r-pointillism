@@ -145,10 +145,15 @@ setMethod(
 
 
 
+plotCellTypesPerCluster.Seurat <-  # nolint
+    plotCellTypesPerCluster.SingleCellExperiment
+
+
+
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
     f = "plotCellTypesPerCluster",
-    signature = signature("seurat"),
-    definition = plotCellTypesPerCluster.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotCellTypesPerCluster.Seurat
 )

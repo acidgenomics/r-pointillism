@@ -25,7 +25,7 @@ bioverbs::plotKnownMarkers
 
 
 
-plotKnownMarkers.SingleCellExperiment <-  # nolint
+`plotKnownMarkers.SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -91,7 +91,7 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
         invisible(list)
     }
 
-formals(plotKnownMarkers.SingleCellExperiment)[c(
+formals(`plotKnownMarkers.SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -109,8 +109,13 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = plotKnownMarkers.SingleCellExperiment
+    definition = `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
 )
+
+
+
+`plotKnownMarkers.Seurat,KnownMarkers` <-  # nolint
+    `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
 
 
 
@@ -119,8 +124,8 @@ setMethod(
 setMethod(
     f = "plotKnownMarkers",
     signature = signature(
-        object = "seurat",
+        object = "Seurat",
         markers = "KnownMarkers"
     ),
-    definition = plotKnownMarkers.SingleCellExperiment
+    definition = `plotKnownMarkers.Seurat,KnownMarkers`
 )

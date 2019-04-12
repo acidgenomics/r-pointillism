@@ -4,12 +4,12 @@
 \name{findMarkers}
 \alias{findMarkers}
 \alias{findMarkers,SingleCellExperiment-method}
-\alias{findMarkers,seurat-method}
+\alias{findMarkers,Seurat-method}
 \title{Find cluster-specific marker genes}
 \usage{
 \S4method{findMarkers}{SingleCellExperiment}(object, ...)
 
-\S4method{findMarkers}{seurat}(object, ...)
+\S4method{findMarkers}{Seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}

@@ -206,10 +206,15 @@ setMethod(
 
 
 
+plotFeature.Seurat <-  # nolint
+    plotFeature.SingleCellExperiment
+
+
+
 #' @rdname plotFeature
 #' @export
 setMethod(
     f = "plotFeature",
-    signature = signature("seurat"),
-    definition = plotFeature.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotFeature.Seurat
 )

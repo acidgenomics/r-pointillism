@@ -4,13 +4,13 @@
 \name{diffExpPerCluster}
 \alias{diffExpPerCluster}
 \alias{diffExpPerCluster,SingleCellExperiment-method}
-\alias{diffExpPerCluster,seurat-method}
+\alias{diffExpPerCluster,Seurat-method}
 \title{Differential expression per cluster}
 \usage{
 \S4method{diffExpPerCluster}{SingleCellExperiment}(object, group,
   numerator, denominator, ...)
 
-\S4method{diffExpPerCluster}{seurat}(object, group, numerator, denominator,
+\S4method{diffExpPerCluster}{Seurat}(object, group, numerator, denominator,
   ...)
 }
 \arguments{

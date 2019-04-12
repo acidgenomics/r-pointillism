@@ -4,14 +4,14 @@
 \name{diffExp}
 \alias{diffExp}
 \alias{diffExp,SingleCellExperiment-method}
-\alias{diffExp,seurat-method}
+\alias{diffExp,Seurat-method}
 \title{Differential expression}
 \usage{
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
   minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 
-\S4method{diffExp}{seurat}(object, numerator, denominator,
+\S4method{diffExp}{Seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
   minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
 }

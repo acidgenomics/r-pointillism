@@ -6,10 +6,11 @@ NULL
 
 
 
+#' @rdname show
+#' @name show
 #' @importFrom methods show
-#' @aliases NULL
 #' @export
-methods::show
+NULL
 
 
 

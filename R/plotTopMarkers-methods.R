@@ -112,10 +112,15 @@ setMethod(
 
 
 
+plotTopMarkers.Seurat <-  # nolint
+    plotTopMarkers.SingleCellExperiment
+
+
+
 #' @rdname plotTopMarkers
 #' @export
 setMethod(
     f = "plotTopMarkers",
-    signature = signature("seurat"),
-    definition = plotTopMarkers.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotTopMarkers.Seurat
 )

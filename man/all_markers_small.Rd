@@ -4,7 +4,7 @@
 \name{all_markers_small}
 \alias{all_markers_small}
 \title{Sanitized markers example}
-\format{An object of class \code{SeuratMarkersPerCluster} of dimension 43 x 73 x 45 x 47 x 8 x 8 x 8 x 8.}
+\format{An object of class \code{SeuratMarkersPerCluster} of dimension 106 x 76 x 37 x 8 x 8 x 8.}
 \usage{
 all_markers_small
 }

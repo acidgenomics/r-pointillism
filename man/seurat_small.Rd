@@ -4,7 +4,7 @@
 \name{seurat_small}
 \alias{seurat_small}
 \title{Seurat example}
-\format{An object of class \code{seurat} of length 1.}
+\format{An object of class \code{Seurat} with 230 rows and 80 columns.}
 \usage{
 seurat_small
 }

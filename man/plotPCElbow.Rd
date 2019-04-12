@@ -3,14 +3,19 @@
 \docType{methods}
 \name{plotPCElbow}
 \alias{plotPCElbow}
-\alias{plotPCElbow,seurat-method}
+\alias{plotPCElbow,Seurat-method}
 \title{Plot principal component elbow}
 \usage{
-\S4method{plotPCElbow}{seurat}(object, minSD = 1L, minPct = 0.01,
-  maxCumPct = 0.9, trans = c("identity", "sqrt"))
+\S4method{plotPCElbow}{Seurat}(object, reducedDim = "pca", minSD = 1L,
+  minPct = 0.01, maxCumPct = 0.9, trans = c("identity", "sqrt"))
 }
 \arguments{
 \item{object}{Object.}
+
+\item{reducedDim}{\code{character(1)}.
+Name of reduced dimension matrix slotted in
+\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
+Includes TNSE, UMAP, PCA, for example.}
 
 \item{minSD}{\code{numeric(1)}.
 Minimum standard deviation.}
