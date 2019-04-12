@@ -9,3 +9,9 @@ data(
     package = "pointillism",
     envir = environment()
 )
+
+# nolint start
+group_vars <- dplyr::group_vars
+# nolint end
+
+sce <- as(seurat_small, "SingleCellExperiment")

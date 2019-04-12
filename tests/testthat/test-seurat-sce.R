@@ -103,13 +103,15 @@ test_that("metrics", {
         sort(colnames(metrics(object))),
         c(
             "cellID",
+            "groups",
             "ident",
             "interestingGroups",
-            "nGene",
-            "nUMI",
+            "letter.idents",
+            "nCount_RNA",
+            "nFeature_RNA",
             "orig.ident",
-            "res.0.8",
-            "res.1",
+            "RNA_snn_res.0.8",
+            "RNA_snn_res.1",
             "sampleID",
             "sampleName"
         )
