@@ -86,7 +86,7 @@ Plot feature
 }
 \examples{
 data(seurat_small)
-plotFeature(seurat_small, features = c("nUMI", "nGene"))
+plotFeature(seurat_small, features = c("nCount_RNA", "nFeature_RNA"))
 }
 \seealso{
 \code{Seurat::FeaturePlot}.

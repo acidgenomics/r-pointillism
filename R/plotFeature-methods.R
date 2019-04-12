@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' data(seurat_small)
-#' plotFeature(seurat_small, features = c("nUMI", "nGene"))
+#' plotFeature(seurat_small, features = c("nCount_RNA", "nFeature_RNA"))
 NULL
 
 
@@ -49,8 +49,6 @@ plotFeature.SingleCellExperiment <-  # nolint
 
         # Assert checks --------------------------------------------------------
         assert(isCharacter(features))
-        # Sanitize input to camel case.
-        features <- camel(features)
         reducedDim <- match.arg(reducedDim)
         assert(
             isGGScale(
