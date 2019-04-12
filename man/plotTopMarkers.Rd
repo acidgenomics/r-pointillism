@@ -4,14 +4,14 @@
 \name{plotTopMarkers}
 \alias{plotTopMarkers}
 \alias{plotTopMarkers,SingleCellExperiment-method}
-\alias{plotTopMarkers,seurat-method}
+\alias{plotTopMarkers,Seurat-method}
 \title{Plot top markers}
 \usage{
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, progress = FALSE, ...)
 
-\S4method{plotTopMarkers}{seurat}(object, markers, n = 1L,
+\S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, progress = FALSE, ...)
 }

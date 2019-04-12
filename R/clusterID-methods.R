@@ -38,10 +38,14 @@ setMethod(
 
 
 
+clusterID.Seurat <-  # nolint
+    clusterID.SingleCellExperiment
+
+
 #' @rdname clusterID
 #' @export
 setMethod(
     f = "clusterID",
-    signature = signature("seurat"),
-    definition = clusterID.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = clusterID.Seurat
 )

@@ -44,10 +44,15 @@ setMethod(
 
 
 
+clusterCellCountsPerSample.Seurat <-  # nolint
+    clusterCellCountsPerSample.SingleCellExperiment
+
+
+
 #' @rdname clusterCellCountsPerSample
 #' @export
 setMethod(
     f = "clusterCellCountsPerSample",
-    signature = signature("seurat"),
-    definition = clusterCellCountsPerSample.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = clusterCellCountsPerSample.Seurat
 )

@@ -39,12 +39,14 @@ bioverbs::plotPCElbow
 plotPCElbow.Seurat <-  # nolint
     function(
         object,
+        reducedDim = "pca",
         minSD = 1L,
         minPct = 0.01,
         maxCumPct = 0.9,
         trans = c("identity", "sqrt")
     ) {
         assert(
+            isString(reducedDim),
             isNumber(minSD),
             isPositive(minSD),
             isNumber(minPct),
@@ -59,8 +61,7 @@ plotPCElbow.Seurat <-  # nolint
 
         # dr: dimensional reduction
         # sdev: standard deviation
-        # FIXME Add reduction support.
-        sdev <- Stdev(object = object, reduction = "pca")
+        sdev <- Stdev(object = object, reduction = reducedDim)
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)

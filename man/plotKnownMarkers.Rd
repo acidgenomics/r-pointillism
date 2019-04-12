@@ -4,14 +4,14 @@
 \name{plotKnownMarkers}
 \alias{plotKnownMarkers}
 \alias{plotKnownMarkers,SingleCellExperiment,KnownMarkers-method}
-\alias{plotKnownMarkers,seurat,KnownMarkers-method}
+\alias{plotKnownMarkers,Seurat,KnownMarkers-method}
 \title{Plot known markers}
 \usage{
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
   markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
   ...)
 
-\S4method{plotKnownMarkers}{seurat,KnownMarkers}(object, markers,
+\S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
   reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{

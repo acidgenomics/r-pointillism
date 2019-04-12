@@ -4,14 +4,14 @@
 \name{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster,SingleCellExperiment-method}
-\alias{plotCellTypesPerCluster,seurat-method}
+\alias{plotCellTypesPerCluster,Seurat-method}
 \title{Plot cell types per cluster}
 \usage{
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
   min = 1L, max = Inf, reducedDim = "TSNE", expression = c("mean",
   "sum"), headerLevel = 2L, progress = FALSE, ...)
 
-\S4method{plotCellTypesPerCluster}{seurat}(object, markers, min = 1L,
+\S4method{plotCellTypesPerCluster}{Seurat}(object, markers, min = 1L,
   max = Inf, reducedDim = "TSNE", expression = c("mean", "sum"),
   headerLevel = 2L, progress = FALSE, ...)
 }

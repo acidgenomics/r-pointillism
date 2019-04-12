@@ -75,10 +75,15 @@ setMethod(
 
 
 
+findMarkers.Seurat <-  # nolint
+    findMarkers.SingleCellExperiment
+
+
+
 #' @rdname findMarkers
 #' @export
 setMethod(
     f = "findMarkers",
-    signature = signature("seurat"),
-    definition = findMarkers.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = findMarkers.Seurat
 )

@@ -119,10 +119,15 @@ setMethod(
 
 
 
+diffExpPerCluster.Seurat <-  # nolint
+    diffExpPerCluster.SingleCellExperiment
+
+
+
 #' @rdname diffExpPerCluster
 #' @export
 setMethod(
     f = "diffExpPerCluster",
-    signature = signature("seurat"),
-    definition = diffExpPerCluster.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = diffExpPerCluster.Seurat
 )
