@@ -83,7 +83,19 @@ setAs(
     from = "Seurat",
     to = "SingleCellExperiment",
     def = function(from) {
-        as.SingleCellExperiment(x = from, assay = NULL)
+        # Using the Seurat S3 coercion method here.
+        to <- as.SingleCellExperiment(x = from, assay = NULL)
+
+        # Row and column data.
+        rowRanges(to) <- rowRanges(from)
+        colData(to) <- colData(to)
+
+        # Metadata.
+        metadata(to) <- metadata(from)
+        metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
+        metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
+
+        to
     }
 )
 
