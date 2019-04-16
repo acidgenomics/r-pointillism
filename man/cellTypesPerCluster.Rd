@@ -27,9 +27,9 @@ makers per cell type.
 Cell types per cluster
 }
 \examples{
-data(all_markers_small, cell_type_markers)
+data(seurat_all_markers, cell_type_markers)
 markers <- KnownMarkers(
-    markers = all_markers_small,
+    markers = seurat_all_markers,
     known = cell_type_markers$homoSapiens
 )
 x <- cellTypesPerCluster(markers)

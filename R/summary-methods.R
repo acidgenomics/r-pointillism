@@ -16,6 +16,14 @@ NULL
 
 
 
+#' @rdname summary
+#' @name summary
+#' @importFrom S4Vectors summary
+#' @export
+NULL
+
+
+
 summary.SeuratMarkers <-  # nolint
     function(object) {
         # Metadata.

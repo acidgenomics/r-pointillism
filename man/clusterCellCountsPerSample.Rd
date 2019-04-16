@@ -22,7 +22,7 @@ Grouped by \code{sampleName} column, arranged by abundance.
 Cluster cell counts per sample
 }
 \examples{
-data(seurat_small)
-x <- clusterCellCountsPerSample(seurat_small)
+data(seurat)
+x <- clusterCellCountsPerSample(seurat)
 print(x)
 }

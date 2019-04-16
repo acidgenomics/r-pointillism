@@ -72,8 +72,8 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## Compare expression in cluster 3 relative to 2.
 #' ident <- clusterID(object)
@@ -106,10 +106,11 @@ NULL
 
 
 
+#' @rdname diffExp
+#' @name diffExp
 #' @importFrom bioverbs diffExp
-#' @aliases NULL
 #' @export
-bioverbs::diffExp
+NULL
 
 
 

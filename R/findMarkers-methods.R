@@ -11,18 +11,19 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat_small)
-#' x <- findMarkers(seurat_small, caller = "edgeR")
+#' data(seurat)
+#' x <- findMarkers(seurat, caller = "edgeR")
 #' class(x)
 #' lapply(x, class)
 NULL
 
 
 
+#' @rdname findMarkers
+#' @name findMarkers
 #' @importFrom bioverbs findMarkers
-#' @aliases NULL
 #' @export
-bioverbs::findMarkers
+NULL
 
 
 

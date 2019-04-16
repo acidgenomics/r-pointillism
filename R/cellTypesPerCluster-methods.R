@@ -12,9 +12,9 @@
 #' makers per cell type.
 #'
 #' @examples
-#' data(all_markers_small, cell_type_markers)
+#' data(seurat_all_markers, cell_type_markers)
 #' markers <- KnownMarkers(
-#'     markers = all_markers_small,
+#'     markers = seurat_all_markers,
 #'     known = cell_type_markers$homoSapiens
 #' )
 #' x <- cellTypesPerCluster(markers)
@@ -23,10 +23,11 @@ NULL
 
 
 
+#' @rdname cellTypesPerCluster
+#' @name cellTypesPerCluster
 #' @importFrom bioverbs cellTypesPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::cellTypesPerCluster
+NULL
 
 
 
@@ -55,7 +56,7 @@ cellTypesPerCluster.KnownMarkers <-  # nolint
             arrange(!!sym("padj"), .by_group = TRUE) %>%
             # Only positive markers are informative and should be used.
             filter(!!sym("avgLogFC") > 0L) %>%
-            # Use `toString` instead of `aggregate` for R Markdown tables.
+            # Use `toString()` instead of `aggregate()` for R Markdown tables.
             # Genes are arranged by P value.
             summarize(
                 n = n(),

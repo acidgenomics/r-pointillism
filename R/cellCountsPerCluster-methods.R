@@ -1,11 +1,3 @@
-# FIXME The S4 coercion method is failing
-# > x <- cellCountsPerCluster(seurat_small)
-# Error in slot(from, "scale.data") :
-#     no slot of name "scale.data" for this object of class "Seurat"
-# Calls: cellCountsPerCluster ... asMethod -> as -> asMethod -> as -> asMethod -> slot
-
-
-
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
 #' @inheritParams basejump::params
@@ -13,17 +5,18 @@
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' data(seurat_small)
-#' x <- cellCountsPerCluster(seurat_small)
+#' data(seurat)
+#' x <- cellCountsPerCluster(seurat)
 #' print(x)
 NULL
 
 
 
+#' @rdname cellCountsPerCluster
+#' @name cellCountsPerCluster
 #' @importFrom bioverbs cellCountsPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::cellCountsPerCluster
+NULL
 
 
 

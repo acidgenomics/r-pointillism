@@ -56,9 +56,9 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \examples{
-data(seurat_small, known_markers_small)
+data(seurat, seurat_known_markers)
 plotCellTypesPerCluster(
-    object = seurat_small,
-    markers = known_markers_small
+    object = seurat,
+    markers = seurat_known_markers
 )
 }

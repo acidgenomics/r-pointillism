@@ -184,8 +184,8 @@ See \code{\link[base:Sys.getenv]{Sys.getenv}} for details on the R system enviro
 }
 
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 
 ## t-SNE
 plotTSNE(object)

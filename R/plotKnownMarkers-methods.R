@@ -9,19 +9,20 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat_small, known_markers_small)
+#' data(seurat, seurat_known_markers)
 #' plotKnownMarkers(
-#'     object = seurat_small,
-#'     markers = known_markers_small
+#'     object = seurat,
+#'     markers = seurat_known_markers
 #' )
 NULL
 
 
 
+#' @rdname plotKnownMarkers
+#' @name plotKnownMarkers
 #' @importFrom bioverbs plotKnownMarkers
-#' @aliases NULL
 #' @export
-bioverbs::plotKnownMarkers
+NULL
 
 
 

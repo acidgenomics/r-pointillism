@@ -29,10 +29,11 @@ NULL
 
 
 
+#' @rdname plotPCElbow
+#' @name plotPCElbow
 #' @importFrom bioverbs plotPCElbow
-#' @aliases NULL
 #' @export
-bioverbs::plotPCElbow
+NULL
 
 
 

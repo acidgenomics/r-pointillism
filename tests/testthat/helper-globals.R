@@ -4,14 +4,15 @@ data(
     envir = environment()
 )
 data(
-    seurat_small,
-    all_markers_small, known_markers_small,
+    seurat,
+    seurat_all_markers,
+    seurat_known_markers,
     package = "pointillism",
     envir = environment()
 )
 
+sce <- as(seurat, "SingleCellExperiment")
+
 # nolint start
 group_vars <- dplyr::group_vars
 # nolint end
-
-sce <- as(seurat_small, "SingleCellExperiment")
