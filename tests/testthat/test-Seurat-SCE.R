@@ -99,23 +99,8 @@ test_that("metadata", {
 
 
 test_that("metrics", {
-    expect_identical(
-        object = sort(colnames(metrics(object))),
-        expected = c(
-            "cellID",
-            "groups",
-            "ident",
-            "interestingGroups",
-            "letter.idents",
-            "nCount_RNA",
-            "nFeature_RNA",
-            "orig.ident",
-            "RNA_snn_res.0.8",
-            "RNA_snn_res.1",
-            "sampleID",
-            "sampleName"
-        )
-    )
+    x <- metrics(object)
+    expect_is(x, "tbl_df")
 })
 
 
