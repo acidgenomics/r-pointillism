@@ -1,61 +1,14 @@
-# Single-cell configuration recommendations:
-# - https://github.com/satijalab/seurat/blob/master/.travis.yml
-# - https://github.com/satijalab/seurat/blob/release/3.0/.travis.yml
-# - https://github.com/drisso/zinbwave/blob/master/.travis.yml
+language: general
 
-# hdf5r 1.0.1 won't install correctly.
-# This package has compilation issues across platforms:
-# - https://github.com/hhoeflin/hdf5r/issues/94#issuecomment-442890351
-# - https://github.com/hhoeflin/hdf5r/issues/97
-#
-# You may see this error:
-# > unable to load shared object '/home/travis/R/Library/hdf5r/libs/hdf5r.so':
-# > libhdf5_hl.so.10: cannot open shared object file: No such file or directory
-
-script: true
-
-language: r
-cache: packages
-
-# Required to install hdf5 from source.
-sudo: required
-
-matrix:
-  include:
-    - os: osx
-      r: bioc-release
-    - os: linux
-      r: bioc-release
-    - os: linux
-      r: bioc-devel
-  allow_failures:
-    - os: linux
-  fast_finish: true
-
-branches:
-  only:
-    - master
-
-env:
-  global:
-    - HDF5_RELEASE_URL="https://support.hdfgroup.org/ftp/HDF5/releases"
-    - HDF5_VERSION="1.10.4"
-    - LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-    - LINTR_COMMENT_BOT=true
+services:
+  - docker
 
 before_install:
-  - chmod +x travis-setup.sh
-  - ./travis-setup.sh
+  - docker pull acidgenomics/singlecell
+  - docker images
 
-bioc_packages:
-  - BiocCheck
-r_github_packages:
-  - acidgenomics/lintr
-
-after_success:
-  - R CMD BiocCheck .
-  - Rscript -e 'lintr::lint_package()'
-  - Rscript -e 'covr::codecov()'
+script:
+  - docker run -ti --user="bioc" --volume="${PWD}:/pointillism" --workdir="/pointillism" acidgenomics/singlecell Rscript -e 'source("travis-docker.R")'
 
 notifications:
   email:
