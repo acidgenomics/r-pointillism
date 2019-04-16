@@ -34,7 +34,7 @@ Depends:
     SingleCellExperiment (>= 1.4),
     basejump (>= 0.10.3)
 Imports:
-    bioverbs (>= 0.1.11), goalie (>= 0.2.14), minimalism (>= 0.1),
+    bioverbs (>= 0.1.12), goalie (>= 0.2.14), minimalism (>= 0.1),
     BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
         SummarizedExperiment, edgeR (>= 3.24), monocle (>= 2.10),
     Matrix (>= 1.2), Seurat (>= 3.0), cowplot (>= 0.9), dplyr (>= 0.8),
