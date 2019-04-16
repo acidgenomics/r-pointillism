@@ -1,5 +1,5 @@
 # Seurat example data
-# 2019-04-11
+# 2019-04-16
 
 library(pryr)
 library(reticulate)
@@ -61,55 +61,56 @@ stopifnot(py_module_available(module = "umap"))
 # Use `pryr::object_size()` instead of `utils::object.size()`.
 limit <- structure(1e6, class = "object_size")
 
-# seurat_small =================================================================
+# seurat =======================================================================
 data(pbmc_small, package = "Seurat")
 object_size(pbmc_small)
 stopifnot(object_size(pbmc_small) < limit)
 
 # The Seurat wiki describes the changes in v3.0.
 # https://github.com/satijalab/seurat/wiki
-seurat_small <- pbmc_small
+seurat <- pbmc_small
 
 # Add UMAP dimensional reduction to example object.
 # Alternatively, can use `features` here instead.
-seurat_small <- RunUMAP(seurat_small, dims = seq_len(10L))
+seurat <- RunUMAP(seurat, dims = seq_len(10L))
 
-object_size(seurat_small)
-stopifnot(object_size(seurat_small) < limit)
-validObject(seurat_small)
+object_size(seurat)
+stopifnot(object_size(seurat) < limit)
+validObject(seurat)
 
-# `Seurat::pbmc_small` gene symbols map to GRCh37.
+# The pbmc_small gene symbols map to GRCh37.
 gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", genomeBuild = "GRCh37")
-x <- rownames(seurat_small)
+x <- rownames(seurat)
 table <- make.unique(as.character(gr$geneName))
 names(gr) <- table
 stopifnot(all(x %in% table))
 which <- match(x = x, table = table)
 gr <- gr[which]
 # Note that `rowRanges` method is defined by pointillism.
-rowRanges(seurat_small) <- gr
+rowRanges(seurat) <- gr
 
-# all_markers_small ============================================================
-markers <- FindAllMarkers(seurat_small)
-ranges <- rowRanges(seurat_small)
-all_markers_small <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
+# seurat_all_markers ===========================================================
+seurat_all_markers <- SeuratMarkersPerCluster(
+    object = FindAllMarkers(seurat),
+    ranges = rowRanges(seurat)
+)
 
 # known_markers_small ==========================================================
 data(cell_type_markers)
-known_markers_small <- KnownMarkers(
-    markers = all_markers_small,
+seurat_known_markers <- KnownMarkers(
+    markers = seurat_all_markers,
     known = cell_type_markers$homoSapiens
 )
 export(
-    x = known_markers_small,
+    x = seurat_known_markers,
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
 # Save =========================================================================
 usethis::use_data(
-    seurat_small,
-    all_markers_small,
-    known_markers_small,
+    seurat,
+    seurat_all_markers,
+    seurat_known_markers,
     compress = "xz",
     overwrite = TRUE
 )
