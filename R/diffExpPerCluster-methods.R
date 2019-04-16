@@ -20,8 +20,8 @@
 #' object <- seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
-#' x <- suppressMessages(
-#'     diffExpPerCluster(
+#' suppressMessages(
+#'     x <- diffExpPerCluster(
 #'         object = object,
 #'         group = "group",
 #'         numerator = "group2",
