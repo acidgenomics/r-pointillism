@@ -1,6 +1,6 @@
 context("Seurat as SingleCellExperiment")
 
-object <- seurat_small
+object <- seurat
 
 
 
@@ -55,7 +55,7 @@ test_that("counts", {
 
 
 test_that("Gene2Symbol", {
-    x <- Gene2Symbol(seurat_small)
+    x <- Gene2Symbol(seurat)
     expect_is(x, "Gene2Symbol")
 })
 

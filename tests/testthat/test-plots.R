@@ -1,11 +1,11 @@
 context("Plot functions")
 
-sce <- as(seurat_small, "SingleCellExperiment")
+sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
-    seurat = seurat_small
+    seurat = seurat
 )
-genes <- head(rownames(seurat_small))
+genes <- head(rownames(seurat))
 
 
 
@@ -128,14 +128,14 @@ with_parameters_test_that(
 
 
 # plotPCElbow ==================================================================
-# We're testing here to ensure that our seurat_small matches pbmc_small.
+# We're testing here to ensure that our seurat matches pbmc_small.
 with_parameters_test_that(
     "plotPCElbow", {
         x <- plotPCElbow(object)
         expect_identical(x, seq)
     },
     object = list(
-        seurat_small,
+        seurat,
         Seurat::pbmc_small
     ),
     seq = list(
