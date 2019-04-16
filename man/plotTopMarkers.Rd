@@ -4,14 +4,14 @@
 \name{plotTopMarkers}
 \alias{plotTopMarkers}
 \alias{plotTopMarkers,SingleCellExperiment-method}
-\alias{plotTopMarkers,seurat-method}
+\alias{plotTopMarkers,Seurat-method}
 \title{Plot top markers}
 \usage{
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, progress = FALSE, ...)
 
-\S4method{plotTopMarkers}{seurat}(object, markers, n = 1L,
+\S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, progress = FALSE, ...)
 }
@@ -54,6 +54,6 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \examples{
-data(seurat_small, all_markers_small)
-plotTopMarkers(object = seurat_small, markers = all_markers_small)
+data(seurat, seurat_all_markers)
+plotTopMarkers(object = seurat, markers = seurat_all_markers)
 }

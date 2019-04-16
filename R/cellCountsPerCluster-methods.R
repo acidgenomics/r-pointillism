@@ -5,17 +5,18 @@
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' data(seurat_small)
-#' x <- cellCountsPerCluster(seurat_small)
+#' data(seurat)
+#' x <- cellCountsPerCluster(seurat)
 #' print(x)
 NULL
 
 
 
+#' @rdname cellCountsPerCluster
+#' @name cellCountsPerCluster
 #' @importFrom bioverbs cellCountsPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::cellCountsPerCluster
+NULL
 
 
 
@@ -25,8 +26,9 @@ cellCountsPerCluster.SingleCellExperiment <-  # nolint
         assert(.hasIdent(object))
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
+        interestingGroups <- interestingGroups(object)
         data <- metrics(object)
-        cols <- unique(c("ident", interestingGroups))
+        cols <- unique(c("ident", interestingGroups, "interestingGroups"))
         assert(isSubset(cols, colnames(data)))
         data %>%
             as_tibble() %>%
@@ -51,10 +53,15 @@ setMethod(
 
 
 
+cellCountsPerCluster.Seurat <-  # nolint
+    cellCountsPerCluster.SingleCellExperiment
+
+
+
 #' @rdname cellCountsPerCluster
 #' @export
 setMethod(
     f = "cellCountsPerCluster",
-    signature = signature("seurat"),
-    definition = cellCountsPerCluster.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = cellCountsPerCluster.Seurat
 )

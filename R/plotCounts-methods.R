@@ -29,8 +29,8 @@
 #' - `Seurat::RidgePlot()`.
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## Plotting with either gene IDs or gene names (symbols) works.
 #' geneIDs <- head(rownames(object), n = 4L)
@@ -49,20 +49,23 @@ NULL
 
 
 
+#' @rdname plotCounts
+#' @name plotCounts
 #' @importFrom bioverbs plotCounts
-#' @aliases NULL
 #' @export
-bioverbs::plotCounts
+NULL
 
+#' @rdname plotCounts
+#' @name plotDot
 #' @importFrom bioverbs plotDot
-#' @aliases NULL
 #' @export
-bioverbs::plotDot
+NULL
 
+#' @rdname plotCounts
+#' @name plotViolin
 #' @importFrom bioverbs plotViolin
-#' @aliases NULL
 #' @export
-bioverbs::plotViolin
+NULL
 
 
 
@@ -338,11 +341,16 @@ setMethod(
 
 
 
+plotCounts.Seurat <-  # nolint
+    plotCounts.SingleCellExperiment
+
+
+
 #' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotCounts",
-    signature = signature("seurat"),
+    signature = signature("Seurat"),
     definition = plotCounts.SingleCellExperiment
 )
 
@@ -358,12 +366,17 @@ setMethod(
 
 
 
+plotDot.Seurat <-  # nolint
+    plotDot.SingleCellExperiment
+
+
+
 #' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotDot",
-    signature = signature("seurat"),
-    definition = plotDot.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotDot.Seurat
 )
 
 
@@ -378,10 +391,15 @@ setMethod(
 
 
 
+plotViolin.Seurat <-  # nolint
+    plotViolin.SingleCellExperiment
+
+
+
 #' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotViolin",
-    signature = signature("seurat"),
-    definition = plotViolin.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotViolin.Seurat
 )

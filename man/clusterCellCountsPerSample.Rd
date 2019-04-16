@@ -4,12 +4,12 @@
 \name{clusterCellCountsPerSample}
 \alias{clusterCellCountsPerSample}
 \alias{clusterCellCountsPerSample,SingleCellExperiment-method}
-\alias{clusterCellCountsPerSample,seurat-method}
+\alias{clusterCellCountsPerSample,Seurat-method}
 \title{Cluster cell counts per sample}
 \usage{
 \S4method{clusterCellCountsPerSample}{SingleCellExperiment}(object)
 
-\S4method{clusterCellCountsPerSample}{seurat}(object)
+\S4method{clusterCellCountsPerSample}{Seurat}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -22,7 +22,7 @@ Grouped by \code{sampleName} column, arranged by abundance.
 Cluster cell counts per sample
 }
 \examples{
-data(seurat_small)
-x <- clusterCellCountsPerSample(seurat_small)
+data(seurat)
+x <- clusterCellCountsPerSample(seurat)
 print(x)
 }

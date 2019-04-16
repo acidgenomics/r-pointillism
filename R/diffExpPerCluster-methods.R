@@ -16,12 +16,12 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
-#' x <- suppressMessages(
-#'     diffExpPerCluster(
+#' suppressMessages(
+#'     x <- diffExpPerCluster(
 #'         object = object,
 #'         group = "group",
 #'         numerator = "group2",
@@ -35,10 +35,11 @@ NULL
 
 
 
+#' @rdname diffExpPerCluster
+#' @name diffExpPerCluster
 #' @importFrom bioverbs diffExpPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::diffExpPerCluster
+NULL
 
 
 
@@ -119,10 +120,15 @@ setMethod(
 
 
 
+diffExpPerCluster.Seurat <-  # nolint
+    diffExpPerCluster.SingleCellExperiment
+
+
+
 #' @rdname diffExpPerCluster
 #' @export
 setMethod(
     f = "diffExpPerCluster",
-    signature = signature("seurat"),
-    definition = diffExpPerCluster.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = diffExpPerCluster.Seurat
 )

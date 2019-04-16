@@ -1,7 +1,6 @@
 context("Seurat as SingleCellExperiment")
 
-data(seurat_small, envir = environment())
-object <- seurat_small
+object <- seurat
 
 
 
@@ -56,7 +55,7 @@ test_that("counts", {
 
 
 test_that("Gene2Symbol", {
-    x <- Gene2Symbol(seurat_small)
+    x <- Gene2Symbol(seurat)
     expect_is(x, "Gene2Symbol")
 })
 
@@ -104,13 +103,15 @@ test_that("metrics", {
         sort(colnames(metrics(object))),
         c(
             "cellID",
+            "groups",
             "ident",
             "interestingGroups",
-            "nGene",
-            "nUMI",
+            "letter.idents",
+            "nCount_RNA",
+            "nFeature_RNA",
             "orig.ident",
-            "res.0.8",
-            "res.1",
+            "RNA_snn_res.0.8",
+            "RNA_snn_res.1",
             "sampleID",
             "sampleName"
         )

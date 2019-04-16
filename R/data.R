@@ -1,11 +1,3 @@
-#' Sanitized markers example
-#' @examples
-#' data(all_markers_small)
-#' all_markers_small
-"all_markers_small"
-
-
-
 #' Cell-cycle markers
 #' @aliases cellCycleMarkers
 #' @examples
@@ -24,16 +16,23 @@
 
 
 
-#' Known markers example
-#' @examples
-#' data(known_markers_small)
-#' known_markers_small
-"known_markers_small"
-
-
-
 #' Seurat example
 #' @examples
-#' data(seurat_small)
-#' seurat_small
-"seurat_small"
+#' data(seurat)
+#' seurat
+"seurat"
+
+
+
+#' Seurat all markers example
+#' @examples
+#' data(seurat_all_markers)
+#' seurat_all_markers
+"seurat_all_markers"
+
+
+#' Seurat known markers example
+#' @examples
+#' data(seurat_known_markers)
+#' seurat_known_markers
+"seurat_known_markers"

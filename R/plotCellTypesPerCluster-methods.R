@@ -17,19 +17,20 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' data(seurat_small, known_markers_small)
+#' data(seurat, seurat_known_markers)
 #' plotCellTypesPerCluster(
-#'     object = seurat_small,
-#'     markers = known_markers_small
+#'     object = seurat,
+#'     markers = seurat_known_markers
 #' )
 NULL
 
 
 
+#' @rdname plotCellTypesPerCluster
+#' @name plotCellTypesPerCluster
 #' @importFrom bioverbs plotCellTypesPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::plotCellTypesPerCluster
+NULL
 
 
 
@@ -145,10 +146,15 @@ setMethod(
 
 
 
+plotCellTypesPerCluster.Seurat <-  # nolint
+    plotCellTypesPerCluster.SingleCellExperiment
+
+
+
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(
     f = "plotCellTypesPerCluster",
-    signature = signature("seurat"),
-    definition = plotCellTypesPerCluster.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotCellTypesPerCluster.Seurat
 )

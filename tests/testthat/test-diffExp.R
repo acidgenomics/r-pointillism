@@ -1,20 +1,16 @@
-context("Differential Expression")
-
-data(seurat_small, envir = environment())
-sce <- as(seurat_small, "SingleCellExperiment")
-
 # Compare expression in cluster 3 relative to 2.
-object <- seurat_small
+object <- seurat
 ident <- clusterID(object)
-numerator <- names(ident)[ident == "3"]
-denominator <- names(ident)[ident == "2"]
+numerator <- names(ident)[ident == "2"]
+denominator <- names(ident)[ident == "1"]
 expect_true(length(intersect(numerator, colnames(object))) > 0L)
 expect_true(length(intersect(denominator, colnames(object))) > 0L)
 rm(object)
 
 
 
-# diffExp ======================================================================
+context("diffExp")
+
 with_parameters_test_that(
     "diffExp", {
         # edgeR.
@@ -28,8 +24,8 @@ with_parameters_test_that(
 
         # DESeq2. Slow for large datasets.
         # Expecting warning about degenerate design matrix.
-        x <- suppressWarnings(
-            diffExp(
+        suppressWarnings(
+            x <- diffExp(
                 object = object,
                 numerator = numerator,
                 denominator = denominator,
@@ -40,13 +36,14 @@ with_parameters_test_that(
     },
     object = list(
         SingleCellExperiment = sce,
-        seurat = seurat_small
+        seurat = seurat
     )
 )
 
 
 
-# findMarkers ==================================================================
+context("findMarkers")
+
 with_parameters_test_that(
     "findMarkers", {
         # edgeR.
@@ -61,8 +58,8 @@ with_parameters_test_that(
 
         # DESeq2. Slow for large datasets.
         # Expecting warning about degenerate design matrix.
-        x <- suppressWarnings(
-            findMarkers(object, caller = "DESeq2")
+        suppressWarnings(
+            x <- findMarkers(object, caller = "DESeq2")
         )
         expect_is(x, "list")
         invisible(lapply(
@@ -74,20 +71,6 @@ with_parameters_test_that(
     },
     object = list(
         SingleCellExperiment = sce,
-        seurat = seurat_small
-    )
-)
-
-
-
-# runZinbwave ==================================================================
-with_parameters_test_that(
-    "runZinbwave", {
-        x <- runZinbwave(Y = Y, recalculate = TRUE)
-        expect_is(weights(x), "matrix")
-    },
-    Y = list(
-        SingleCellExperiment = sce,
-        seurat = seurat_small
+        seurat = seurat
     )
 )

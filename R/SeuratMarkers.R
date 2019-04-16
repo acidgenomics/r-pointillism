@@ -18,8 +18,8 @@
 #'   them alphabetically.
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #' ranges <- rowRanges(object)
 #'
 #' ## `FindMarkers()` return.

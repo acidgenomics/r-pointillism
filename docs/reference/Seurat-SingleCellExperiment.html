@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment • pointillism</title>
+<title>Extend S4 Methods for <code>Seurat</code> Class — Seurat-SingleCellExperiment • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Extend S4 Methods for <code>seurat</code> Class — seurat-SingleCellExperiment" />
+<meta property="og:title" content="Extend S4 Methods for <code>Seurat</code> Class — Seurat-SingleCellExperiment" />
 
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 <meta name="twitter:card" content="summary" />
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -104,9 +104,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extend S4 Methods for <code>seurat</code> Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/seurat-SingleCellExperiment-methods.R'><code>R/seurat-SingleCellExperiment-methods.R</code></a></small>
-    <div class="hidden name"><code>seurat-SingleCellExperiment.Rd</code></div>
+    <h1>Extend S4 Methods for <code>Seurat</code> Class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/Seurat-SCE-methods.R'><code>R/Seurat-SCE-methods.R</code></a></small>
+    <div class="hidden name"><code>Seurat-SingleCellExperiment.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -115,85 +115,85 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for seurat,ANY</span>
+    <pre class="usage"><span class='co'># S4 method for Seurat,ANY</span>
 <span class='fu'>assay</span>(<span class='no'>x</span>, <span class='no'>i</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>assayNames</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>assays</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>colData</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat,DataFrame</span>
+<span class='co'># S4 method for Seurat,DataFrame</span>
 <span class='fu'>colData</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>x</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>counts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat,character</span>
+<span class='co'># S4 method for Seurat,character</span>
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>mapGenesToIDs</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>mapGenesToRownames</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>mapGenesToSymbols</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>metadata</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>metadata</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>reducedDims</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>rowData</span>(<span class='no'>x</span>, <span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>x</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>)
 
-<span class='co'># S4 method for seurat,ANY</span>
+<span class='co'># S4 method for Seurat,ANY</span>
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ignoreCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>,
   <span class='st'>"^samRef$"</span>), <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"^G2M.Score$"</span>, <span class='st'>"^Phase$"</span>, <span class='st'>"^S.Score$"</span>,
   <span class='st'>"^ident$"</span>, <span class='st'>"^old.ident$"</span>, <span class='st'>"^orig.ident$"</span>, <span class='st'>"^res[.0-9]+$"</span>))
 
-<span class='co'># S4 method for seurat,DataFrame</span>
+<span class='co'># S4 method for Seurat,DataFrame</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>sampleNames</span>(<span class='no'>object</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/weights'>weights</a></span>(<span class='no'>object</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/weights'>weights</a></span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -256,7 +256,7 @@ symbols (e.g. "TSPN6"), if possible.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

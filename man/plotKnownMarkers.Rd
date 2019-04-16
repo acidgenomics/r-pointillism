@@ -4,14 +4,14 @@
 \name{plotKnownMarkers}
 \alias{plotKnownMarkers}
 \alias{plotKnownMarkers,SingleCellExperiment,KnownMarkers-method}
-\alias{plotKnownMarkers,seurat,KnownMarkers-method}
+\alias{plotKnownMarkers,Seurat,KnownMarkers-method}
 \title{Plot known markers}
 \usage{
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
   markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
   ...)
 
-\S4method{plotKnownMarkers}{seurat,KnownMarkers}(object, markers,
+\S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
   reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -40,9 +40,9 @@ Show graphical output. Invisibly return a \code{ggplot} \code{list}.
 Plot known markers
 }
 \examples{
-data(seurat_small, known_markers_small)
+data(seurat, seurat_known_markers)
 plotKnownMarkers(
-    object = seurat_small,
-    markers = known_markers_small
+    object = seurat,
+    markers = seurat_known_markers
 )
 }
