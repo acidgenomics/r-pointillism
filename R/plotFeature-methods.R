@@ -12,16 +12,17 @@
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' data(seurat_small)
-#' plotFeature(seurat_small, features = c("nCount_RNA", "nFeature_RNA"))
+#' data(seurat)
+#' plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
 NULL
 
 
 
+#' @rdname plotFeature
+#' @name plotFeature
 #' @importFrom bioverbs plotFeature
-#' @aliases NULL
 #' @export
-bioverbs::plotFeature
+NULL
 
 
 

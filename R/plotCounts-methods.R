@@ -29,8 +29,8 @@
 #' - `Seurat::RidgePlot()`.
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## Plotting with either gene IDs or gene names (symbols) works.
 #' geneIDs <- head(rownames(object), n = 4L)
@@ -49,20 +49,23 @@ NULL
 
 
 
+#' @rdname plotCounts
+#' @name plotCounts
 #' @importFrom bioverbs plotCounts
-#' @aliases NULL
 #' @export
-bioverbs::plotCounts
+NULL
 
+#' @rdname plotCounts
+#' @name plotDot
 #' @importFrom bioverbs plotDot
-#' @aliases NULL
 #' @export
-bioverbs::plotDot
+NULL
 
+#' @rdname plotCounts
+#' @name plotViolin
 #' @importFrom bioverbs plotViolin
-#' @aliases NULL
 #' @export
-bioverbs::plotViolin
+NULL
 
 
 

@@ -54,6 +54,6 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \examples{
-data(seurat_small, all_markers_small)
-plotTopMarkers(object = seurat_small, markers = all_markers_small)
+data(seurat, seurat_all_markers)
+plotTopMarkers(object = seurat, markers = seurat_all_markers)
 }

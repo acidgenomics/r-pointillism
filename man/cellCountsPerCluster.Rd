@@ -26,7 +26,7 @@ Groups of interest that define the samples. If left unset, defaults to
 Cell counts per cluster
 }
 \examples{
-data(seurat_small)
-x <- cellCountsPerCluster(seurat_small)
+data(seurat)
+x <- cellCountsPerCluster(seurat)
 print(x)
 }

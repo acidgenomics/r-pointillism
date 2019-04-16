@@ -44,8 +44,8 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## t-SNE
 #' plotTSNE(object)
@@ -60,25 +60,29 @@ NULL
 
 
 
+#' @rdname plotReducedDim
+#' @name plotReducedDim
 #' @importFrom bioverbs plotReducedDim
-#' @aliases NULL
 #' @export
-bioverbs::plotReducedDim
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotPCA
 #' @importFrom BiocGenerics plotPCA
-#' @aliases NULL
 #' @export
-BiocGenerics::plotPCA
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotTSNE
 #' @importFrom bioverbs plotTSNE
-#' @aliases NULL
 #' @export
-bioverbs::plotTSNE
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotUMAP
 #' @importFrom bioverbs plotUMAP
-#' @aliases NULL
 #' @export
-bioverbs::plotUMAP
+NULL
 
 
 

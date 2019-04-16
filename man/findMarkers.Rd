@@ -31,8 +31,8 @@ Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
 }
 \examples{
-data(seurat_small)
-x <- findMarkers(seurat_small, caller = "edgeR")
+data(seurat)
+x <- findMarkers(seurat, caller = "edgeR")
 class(x)
 lapply(x, class)
 }

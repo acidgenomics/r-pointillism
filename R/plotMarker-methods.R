@@ -7,8 +7,8 @@
 #' @inheritParams params
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
@@ -35,10 +35,11 @@ NULL
 
 
 
+#' @rdname plotMarker
+#' @name plotMarker
 #' @importFrom bioverbs plotMarker
-#' @aliases NULL
 #' @export
-bioverbs::plotMarker
+NULL
 
 
 

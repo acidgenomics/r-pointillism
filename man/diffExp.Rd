@@ -103,8 +103,8 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seur
 }
 
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 
 ## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)

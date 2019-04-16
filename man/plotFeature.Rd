@@ -85,8 +85,8 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \examples{
-data(seurat_small)
-plotFeature(seurat_small, features = c("nCount_RNA", "nFeature_RNA"))
+data(seurat)
+plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
 }
 \seealso{
 \code{Seurat::FeaturePlot()}.

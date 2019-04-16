@@ -16,8 +16,8 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
 #' x <- suppressMessages(
@@ -35,10 +35,11 @@ NULL
 
 
 
+#' @rdname diffExpPerCluster
+#' @name diffExpPerCluster
 #' @importFrom bioverbs diffExpPerCluster
-#' @aliases NULL
 #' @export
-bioverbs::diffExpPerCluster
+NULL
 
 
 

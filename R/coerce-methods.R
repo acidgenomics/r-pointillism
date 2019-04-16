@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' data(sce, package = "acidtest")
-#' data(seurat_small)
+#' data(seurat)
 #'
 #' ## SingleCellExperiment to Seurat ====
 #' object <- sce
@@ -21,7 +21,7 @@
 #' print(x)
 #'
 #' ## Seurat to SingleCellExperiment ====
-#' x <- as(seurat_small, "SingleCellExperiment")
+#' x <- as(seurat, "SingleCellExperiment")
 #' print(x)
 NULL
 

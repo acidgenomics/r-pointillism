@@ -2,17 +2,18 @@
 #' @inherit bioverbs::clusterCellCountsPerSample
 #' @inheritParams basejump::params
 #' @examples
-#' data(seurat_small)
-#' x <- clusterCellCountsPerSample(seurat_small)
+#' data(seurat)
+#' x <- clusterCellCountsPerSample(seurat)
 #' print(x)
 NULL
 
 
 
+#' @rdname clusterCellCountsPerSample
+#' @name clusterCellCountsPerSample
 #' @importFrom bioverbs clusterCellCountsPerSample
-#' @aliases NULL
 #' @export
-bioverbs::clusterCellCountsPerSample
+NULL
 
 
 

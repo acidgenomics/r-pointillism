@@ -68,7 +68,7 @@ the filtered cells into a new \code{Seurat} class object. Use
 
 \examples{
 data(sce, package = "acidtest")
-data(seurat_small)
+data(seurat)
 
 ## SingleCellExperiment to Seurat ====
 object <- sce
@@ -78,7 +78,7 @@ class(x)
 print(x)
 
 ## Seurat to SingleCellExperiment ====
-x <- as(seurat_small, "SingleCellExperiment")
+x <- as(seurat, "SingleCellExperiment")
 print(x)
 }
 \seealso{

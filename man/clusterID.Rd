@@ -21,8 +21,8 @@
 Cluster identifier
 }
 \examples{
-data(seurat_small)
-x <- clusterID(seurat_small)
+data(seurat)
+x <- clusterID(seurat)
 head(x)
 table(x)
 }

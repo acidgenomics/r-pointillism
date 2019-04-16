@@ -90,8 +90,8 @@ Show graphical output. Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 title <- "most abundant genes"
 genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%

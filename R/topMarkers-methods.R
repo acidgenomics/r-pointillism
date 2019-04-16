@@ -14,17 +14,18 @@
 #' - `dplyr::top_n`.
 #'
 #' @examples
-#' data(all_markers_small)
-#' x <- topMarkers(all_markers_small, n = 2L)
+#' data(seurat_all_markers)
+#' x <- topMarkers(seurat_all_markers, n = 2L)
 #' print(x)
 NULL
 
 
 
+#' @rdname topMarkers
+#' @name topMarkers
 #' @importFrom bioverbs topMarkers
-#' @aliases NULL
 #' @export
-bioverbs::topMarkers
+NULL
 
 
 
