@@ -26,8 +26,9 @@ cellCountsPerCluster.SingleCellExperiment <-  # nolint
         assert(.hasIdent(object))
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
+        interestingGroups <- interestingGroups(object)
         data <- metrics(object)
-        cols <- unique(c("ident", interestingGroups))
+        cols <- unique(c("ident", interestingGroups, "interestingGroups"))
         assert(isSubset(cols, colnames(data)))
         data %>%
             as_tibble() %>%
