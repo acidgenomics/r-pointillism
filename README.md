@@ -18,7 +18,7 @@ if (!require("BiocManager")) {
     install.packages("BiocManager")
 }
 BiocManager::install("remotes")
-BiocManager::install("steinbaugh/pointillism")
+BiocManager::install("acidgenomics/pointillism")
 ```
 
 ## Supported data classes
@@ -65,7 +65,7 @@ The papers and software cited in our workflows are available as a [shared librar
 [Michael Steinbaugh]: https://mike.steinbaugh.com/
 [monocle]: http://cole-trapnell-lab.github.io/monocle-release/
 [Paperpile]: https://paperpile.com/
-[pointillism]: https://steinbaugh.com/pointillism/
+[pointillism]: https://pointillism.acidgenomics.com/
 [R]: https://www.r-project.org/
 [Seurat]: https://satijalab.org/seurat/
 [SingleCellExperiment]: https://bioconductor.org/packages/SingleCellExperiment/
