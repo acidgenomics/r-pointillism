@@ -1,7 +1,30 @@
 ## pointillism 0.3.0 (2019-04-16)
 
-- Updated S4 methods to support [Seurat][] v3 release.
+### Major changes
+
+- Updated S4 methods to support [Seurat][] v3 release. Also updated imports
+  from Seurat to reflect v3 change: `GetAssayData`, `Stdev`, `VariableFeatures`.
+- Now importing S3 coercion methods from Seurat: `as.SingleCellExperiment`.
+  `as.Seurat`, which coerces `SingleCellExperiment`, isn't particularly helpful
+  because it requires `logcounts` slot to be defined in SCE. We're calling
+  `CreateSeuratObject` internally in our S4 coercion method instead, so that
+  any SCE object can be easily coerced to a `Seurat` object.
+- Resaved and renamed example data: `seurat`, `seurat_all_markers`,
+  `seurat_known_markers`.
+
+### Minor changes
+
+- Added preliminary `plotCellTypesPerCluster` method support. Need to test this
+  out on larger datasets with many samples per cluster.
 - Switched Travis CI configuration to use Docker image.
+- Added some additional comments regarding reticulate umap-learn configuration
+  required to run `Seurat::RunUMAP`. Consider putting some information in the
+  README, since there is a lot of misinformation on GitHub regarding proper
+  UMAP configuration.
+- Removed `setOldClass` definitions for `session_info` and `package_version`.
+- Renamed `as-methods.R` to `coerce-methods.R`, matching bsaejump conventions.
+- `cellCountsPerCluster`: Improved internal `interestingGroups` handling.
+- Reworked reexport method for S4 generics imported from [bioverbs][] package.
 
 
 
@@ -19,25 +42,105 @@
 
 ## pointillism 0.2.4 (2019-01-24)
 
+### Minor changes
+
+- `SeuratMarkersPerCluster` to `tbl_df` coerce needed a `decode` call to
+  properly handling gene-to-symbol mappings with run-length encoding (`Rle`).
+
 
 
 ## pointillism 0.2.3 (2019-01-08)
+
+### Minor changes
+
+- Comment out lines to pass lintr checks.
+- Split out imports into a separate `imports.R` file.
+- Added `nullOK` flag in assert checks, where applicable. See `isGGScale`, for
+  example.
 
 
 
 ## pointillism 0.2.2 (2018-12-22)
 
+### Major changes
+
+- Migrated S4 generics to [bioverbs][] package.
+- Finish migrating assert checks to [goalie][] package.
+
+### Minor changes
+
+- Moved S4 validity checks into `setClass` call, rather than using a separate
+  `setValidity` call. Refer to `AllClasses.R` for details.
+- Removed `makeCellTypeMarkersFromGoogle` utility function.
+
 
 
 ## pointillism 0.2.1 (2018-12-01)
+
+### Major changes
+
+- Reworked internal code to use [goalie][] package for assert checks.
+- `SeuratMarkersPerCluster`: Simplified S4 validity checks.
+- Improved `show` methods for S4 classes: `CellCycleMarkers`, `CellTypeMarkers`.
+- Added `summary` method support for `SeuratMarkers`, `SeuratMarkersPerCluster`.
+
+### Minor changes
+
+- Miscellaneous documentation improvements and fixes.
+- Reworked internal code shared between `CellCycleMarkers` and
+  `CellTypeMarkers` S4 generator functions.
+- `SeuratMarkers`: Overhauled internal code, moving from `.seuratMarkers`
+  internal function. Refer to `SeuratMarkers.R` for details.
+- Added AppVeyor CI support.
 
 
 
 ## pointillism 0.2.0 (2018-11-15)
 
+### New functions
+
+- `CellCycleMarkers`, `CellTypeMarkers`, and `KnownMarkers` generator functions.
+- `cellTypesPerCluster` S4 generic.
+- `topMarkers` S4 generic.
+- New functions to import sheets from Google: `importCellCycleMarkersFromGoogle`
+  and `importCellTypeMarkersFromGoogle`. These may be removed in a future
+  update, in favor of simply using CSV files managed in the package. We've also
+  included a helpful `makeCellTypeMarkersFromGoogle` utility function.
+- `SeuratMarkers`: New function for returning sanitized Seurat marker output.
+- `SeuratMarkersPerCluster`: Returns an S4 class split by cluster.
+
+### Major changes
+
+- Improved S4 coercion methods. Added support for `CellCycleMarkers` to
+  `tbl_df`, `CellTypeMarkers` to `tbl_df`, and `SeuratMarkersPerCluster` to
+  `tbl_df`.
+- Reworked internal code for `plotFeature`.
+- `plotKnownMarkers` is now exported instead of `plotKnownMarkersDetected`.
+- Improved formals (and consistency) for dimensional reduction plotting
+  functions. This applies to `plotReducedDim`, `plotTSNE`, `plotPCA`, and
+  `plotUMAP`.
+- `runZinbwave`: Improved internal code and weight handling.
+
+### Minor changes
+
+- Reworked validity checks for S4 classes.
+- Reworked internal assert checks. Refer to `.assertIsBPPARAM`, for example.
+- Broke out S4 methods into internal functions, where applicable. Refer to
+  `cellCountsPerCluster.SingleCellExperiment`, for example.
+- Cleaned up example datasets. Removed `known_markers_detected_small` and
+  `sce_small`.
+- `diffExp`: Reorganized and reworked internal code that uses zinbwave.
+- Reworked and improved Seurat-to-SingleCell interconversion support. Refer
+  to `seurat-SingleCellExperiment-methods` for details.
+  
+### Deprecations
+
+These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
+`plotKnownMarkersDetected`, `readCellTypeMarkers`, `sanitizeMarkers`.
 
 
-## pointilism 0.1.3 (2018-08-26)
+
+## pointilism 0.1.3 (2018-09-19)
 
 ### Major changes
 
@@ -105,6 +208,8 @@
 
 [Acid Genomics]: https://acidgenomics.com/
 [basejump]: https://basejump.acidgenomics.com/
+[bioverbs]: https://bioverbs.acidgenomics.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
+[goalie]: https://goalie.acidgenomics.com/
 [minimalism]: https://minimalism.acidgenomics.com/
 [Seurat]: https://satijalab.org/seurat/
