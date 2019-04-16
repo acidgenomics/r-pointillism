@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>,
   <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>,
   <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
@@ -184,8 +184,8 @@ for the number of genes to plot here in a future update.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>, <span class='no'>all_markers_small</span>)
-<span class='fu'>plotTopMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat_small</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>all_markers_small</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>, <span class='no'>seurat_all_markers</span>)
+<span class='fu'>plotTopMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>seurat_all_markers</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 0 {.tabset}
 #&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
@@ -194,10 +194,7 @@ for the number of genes to plot here in a future update.</p>
 #&gt; </div><div class='img'><img src='plotTopMarkers-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 2 {.tabset}
-#&gt; </div><div class='img'><img src='plotTopMarkers-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ## Cluster 3 {.tabset}
-#&gt; </div><div class='img'><img src='plotTopMarkers-4.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='img'><img src='plotTopMarkers-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -216,7 +213,7 @@ for the number of genes to plot here in a future update.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

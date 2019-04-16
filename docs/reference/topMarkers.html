@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -159,19 +159,17 @@ to the first argument in the <code>character</code> vector.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>all_markers_small</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>all_markers_small</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 8 x 9</span><span>
-#&gt; </span><span style='color: #949494;'># Groups:   cluster [4]</span><span>
-#&gt;   cluster name    avgLogFC  pct1  pct2   pvalue     padj geneID         geneName
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0       LTB         2.50 1     0.333 1.54</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span><span> 3.54</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span> ENSG000002044… LTB     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0       TMEM123     2.09 0.69  0.216 2.16</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span> 4.96</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 4</span><span> ENSG000001525… TMEM123 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 1       TYMP        1.77 0.828 0.196 1.13</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span> 2.59</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span> ENSG000000257… TYMP    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 1       LYZ         2.27 0.862 0.51  4.60</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span> 1.06</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span><span> ENSG000000903… LYZ     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 2       GNLY        3.45 1     0.103 1.36</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-12</span><span> 3.13</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span><span> ENSG000001155… GNLY    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 2       GZMB        3.94 0.917 0.074 1.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-12</span><span> 3.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span><span> ENSG000001004… GZMB    
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> 3       GNG11       6.01 1     0     8.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span> 2.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span> ENSG000001279… GNG11   
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> 3       CLU         5.87 1     0     8.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span> 2.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span> ENSG000001208… CLU     </div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_all_markers</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>seurat_all_markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 9</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   cluster [3]</span><span>
+#&gt;   cluster name     avgLogFC  pct1  pct2   pvalue     padj geneID        geneName
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0       CD7          2.56 0.528 0.091 8.18</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span> 1.88</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 3</span><span> ENSG00000173… CD7     
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0       GNLY         4.78 0.444 0.068 3.27</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span><span> 7.51</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 3</span><span> ENSG00000115… GNLY    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 1       S100A8       4.33 0.96  0.091 1.43</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-14</span><span> 3.30</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-12</span><span> ENSG00000143… S100A8  
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 1       TYMP         2.21 1     0.164 4.77</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-13</span><span> 1.10</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span><span> ENSG00000025… TYMP    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 2       HLA-DPB1     1.75 0.947 0.41  2.67</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span> 6.13</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span> ENSG00000215… HLA-DPB1
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 2       MS4A1        4.53 0.526 0.033 7.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span> 1.73</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 5</span><span> ENSG00000156… MS4A1   </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -190,7 +188,7 @@ to the first argument in the <code>character</code> vector.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

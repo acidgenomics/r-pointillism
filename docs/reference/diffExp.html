@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())
 
-<span class='co'># S4 method for seurat</span>
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())</pre>
@@ -222,7 +222,7 @@ droplet scRNA-seq data. Here we are using <code><a href='https://www.rdocumentat
 
     
     <p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
-and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/DiffExpTest'>Seurat::DiffExpTest()</a></code> for details.</p>
+and <code>cells.2</code> for the denominator. See <code>Seurat::DiffExpTest()</code> for details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -230,44 +230,24 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>)
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_small</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
 <span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;        10 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
+#&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;        12 character character </div><div class='input'>
+#&gt;        19 character character </div><div class='input'>
 <span class='co'>## edgeR.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
     <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='no'>numerator</span>,
     <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
     <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Performing differential expression with edgeR.</span></div><div class='output co'>#&gt; <span class='message'>Total: 22 cells</span>
-#&gt; <span class='message'>Numerator: 10 cells</span>
-#&gt; <span class='message'>Denominator: 12 cells</span></div><div class='output co'>#&gt; <span class='message'>Applying gene expression low pass filter.</span></div><div class='output co'>#&gt; <span class='message'>Requiring at least 1 cells with counts of 1 or more per gene.</span></div><div class='output co'>#&gt; <span class='message'>187 of 230 genes passed filter.</span></div><div class='output co'>#&gt; <span class='message'>Running edgeR.</span></div><div class='output co'>#&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'>  0.218   0.001   0.220 </span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "DGELRT"
-#&gt; attr(,"package")
-#&gt; [1] "edgeR"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;                       Length Class            Mode     
-#&gt; coefficients           374   -none-           numeric  
-#&gt; fitted.values         4114   -none-           numeric  
-#&gt; deviance               187   -none-           numeric  
-#&gt; method                   1   -none-           character
-#&gt; unshrunk.coefficients  374   -none-           numeric  
-#&gt; df.residual            187   -none-           numeric  
-#&gt; design                  44   -none-           numeric  
-#&gt; offset                4114   CompressedMatrix numeric  
-#&gt; dispersion             187   -none-           numeric  
-#&gt; prior.count              1   -none-           numeric  
-#&gt; samples                  3   data.frame       list     
-#&gt; prior.df                 1   -none-           numeric  
-#&gt; AveLogCPM              187   -none-           numeric  
-#&gt; table                    4   data.frame       list     
-#&gt; comparison               1   -none-           character
-#&gt; df.test                187   -none-           numeric  </div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Skipping DE. Underpowered contrast (not enough cells).</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "NULL"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Length  Class   Mode 
+#&gt;      0   NULL   NULL </div><div class='input'>
 ## DESeq2.
 # This will warn about weights with the minimal example.
 # x <- diffExp(
@@ -307,7 +287,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">
