@@ -1,3 +1,10 @@
+## pointillism 0.3.0 (2019-04-16)
+
+- Updated S4 methods to support [Seurat][] v3 release.
+- Switched Travis CI configuration to use Docker image.
+
+
+
 ## pointillism 0.2.5 (2019-04-01)
 
 ### Major changes
@@ -8,7 +15,6 @@
 - ggplot2 themes `theme_paperwhite` and `theme_midnight` are now imported from
   minimalism package instead of basejump.
   
-
 
 
 ## pointillism 0.2.4 (2019-01-24)
@@ -36,19 +42,19 @@
 ### Major changes
 
 - `as(seurat, "SingleCellExperiment")` now returns `scaleData` in assays, along
-  with `varGenes` in `metadata()` and ensures that `colData()` and `rowRanges()`
-  are sanitized into camel case using the `camel()` function internally.
+  with `varGenes` in `metadata` and ensures that `colData` and `rowRanges`
+  are sanitized into camel case using the `camel` function internally.
 
 ### Minor changes
 
-- Removed `convertGenesToSymbols()` support for `seurat` class. Coerce genes
+- Removed `convertGenesToSymbols` support for `seurat` class. Coerce genes
   to symbols manually prior to `seurat` coercion from `SingleCellExperiment`.
-- `clusterID()`: improved consistency between `SingleCellExperiment` and
-  `seurat` methods, which now both work on `colData()`.
+- `clusterID`: improved consistency between `SingleCellExperiment` and
+  `seurat` methods, which now both work on `colData`.
 - Improved internal `fetchData` calls to use camel case for consistency.
-- `plotFeature()` now sanitizes the `features` argument into camel case
+- `plotFeature` now sanitizes the `features` argument into camel case
   internally, for more consistent matching.
-- `plotReducedDim()` now uses camel case formatting for axis labels.
+- `plotReducedDim` now uses camel case formatting for axis labels.
 - Removed unnecessary legacy `.minimalAxis` constructor.
 - `metadata<-` assignment method now stashes directly into `object@misc` for
   `seurat` class.
@@ -60,18 +66,18 @@
 
 ### New functions
 
-- `clusterID()`: S4 generic that returns the cell cluster identity mappings as a
+- `clusterID`: S4 generic that returns the cell cluster identity mappings as a
   `factor` for all cells.
-- `findMarkers()`: Utility function that wraps `diffExp()` to identify cluster-
+- `findMarkers`: Utility function that wraps `diffExp` to identify cluster-
   specific genes across all clusters.
 
 ### Minor changes
 
-- Converted `runZinbwave()` to an S4 method that works on
+- Converted `runZinbwave` to an S4 method that works on
   `SingleCellExperiment`. For `seurat` objects, coerce to `SingleCellExperiment`
   before calculating weights.
-- `plotDot()` now uses default [ggplot2][] color scale, unless specified.
-- `plotReducedDim()`, `plotMarker()`: `theme_paperwhite()` is no longer used by
+- `plotDot` now uses default [ggplot2][] color scale, unless specified.
+- `plotReducedDim`, `plotMarker`: `theme_paperwhite` is no longer used by
   default. Removed `grid` and `aspectRatio` arguments to simplify [ggplot2][]
   code handling.
 
@@ -81,12 +87,12 @@
 
 ### New functions
 
-- Now exporting `runZinbwave()` and `hasZinbwave()`, which were previously
-  internal functions called by `diffExp()`.
+- Now exporting `runZinbwave` and `hasZinbwave`, which were previously internal
+  functions called by `diffExp`.
 
 ### Minor changes
 
-- Improved internal handling of `assays()` for objects that have zinbwave
+- Improved internal handling of `assays` for objects that have zinbwave
   calculations applied. Now it doesn't attempt to keep only the `counts` assay.
 
 
@@ -101,3 +107,4 @@
 [basejump]: https://basejump.acidgenomics.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
 [minimalism]: https://minimalism.acidgenomics.com/
+[Seurat]: https://satijalab.org/seurat/
