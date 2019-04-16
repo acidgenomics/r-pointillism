@@ -7,21 +7,22 @@
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #'
-#' @seealso `Seurat::FeaturePlot`.
+#' @seealso `Seurat::FeaturePlot()`.
 #'
 #' @return `ggplot` or `list`.
 #'
 #' @examples
-#' data(seurat_small)
-#' plotFeature(seurat_small, features = c("nUMI", "nGene"))
+#' data(seurat)
+#' plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
 NULL
 
 
 
+#' @rdname plotFeature
+#' @name plotFeature
 #' @importFrom bioverbs plotFeature
-#' @aliases NULL
 #' @export
-bioverbs::plotFeature
+NULL
 
 
 
@@ -49,8 +50,6 @@ plotFeature.SingleCellExperiment <-  # nolint
 
         # Assert checks --------------------------------------------------------
         assert(isCharacter(features))
-        # Sanitize input to camel case.
-        features <- camel(features)
         reducedDim <- match.arg(reducedDim)
         assert(
             isGGScale(
@@ -206,10 +205,15 @@ setMethod(
 
 
 
+plotFeature.Seurat <-  # nolint
+    plotFeature.SingleCellExperiment
+
+
+
 #' @rdname plotFeature
 #' @export
 setMethod(
     f = "plotFeature",
-    signature = signature("seurat"),
-    definition = plotFeature.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotFeature.Seurat
 )

@@ -9,23 +9,24 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat_small, known_markers_small)
+#' data(seurat, seurat_known_markers)
 #' plotKnownMarkers(
-#'     object = seurat_small,
-#'     markers = known_markers_small
+#'     object = seurat,
+#'     markers = seurat_known_markers
 #' )
 NULL
 
 
 
+#' @rdname plotKnownMarkers
+#' @name plotKnownMarkers
 #' @importFrom bioverbs plotKnownMarkers
-#' @aliases NULL
 #' @export
-bioverbs::plotKnownMarkers
+NULL
 
 
 
-plotKnownMarkers.SingleCellExperiment <-  # nolint
+`plotKnownMarkers.SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -91,7 +92,7 @@ plotKnownMarkers.SingleCellExperiment <-  # nolint
         invisible(list)
     }
 
-formals(plotKnownMarkers.SingleCellExperiment)[c(
+formals(`plotKnownMarkers.SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -109,8 +110,13 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = plotKnownMarkers.SingleCellExperiment
+    definition = `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
 )
+
+
+
+`plotKnownMarkers.Seurat,KnownMarkers` <-  # nolint
+    `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
 
 
 
@@ -119,8 +125,8 @@ setMethod(
 setMethod(
     f = "plotKnownMarkers",
     signature = signature(
-        object = "seurat",
+        object = "Seurat",
         markers = "KnownMarkers"
     ),
-    definition = plotKnownMarkers.SingleCellExperiment
+    definition = `plotKnownMarkers.Seurat,KnownMarkers`
 )

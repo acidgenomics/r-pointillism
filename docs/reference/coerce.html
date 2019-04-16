@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Force an object to belong to a class — as • pointillism</title>
+<title>Force an object to belong to a class — coerce • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Force an object to belong to a class — as" />
+<meta property="og:title" content="Force an object to belong to a class — coerce" />
 
-<meta property="og:description" content="Coerce an object to a given class." />
+<meta property="og:description" content="Force an object to belong to a class" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -105,13 +105,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Force an object to belong to a class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/as-methods.R'><code>R/as-methods.R</code></a></small>
-    <div class="hidden name"><code>as.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/coerce-methods.R'><code>R/coerce-methods.R</code></a></small>
+    <div class="hidden name"><code>coerce.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Coerce an object to a given class.</p>
+    <p>Force an object to belong to a class</p>
     
     </div>
 
@@ -126,36 +126,27 @@
     
     <p>S4 coercion support for creating a <code>tbl_df</code> from <code>CellTypeMarkers</code>.</p>
     
-    <h2 class="hasAnchor" id="singlecellexperiment-to-seurat"><a class="anchor" href="#singlecellexperiment-to-seurat"></a><code>SingleCellExperiment</code> to <code>seurat</code></h2>
+    <h2 class="hasAnchor" id="seurat-to-singlecellexperiment"><a class="anchor" href="#seurat-to-singlecellexperiment"></a><code>Seurat</code> to <code>SingleCellExperiment</code></h2>
 
     
-    <p>Interally <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/CreateSeuratObject'>Seurat::CreateSeuratObject</a></code> is called without applying any
-additional filtering cutoffs, since we have already defined them during our
-quality control analysis. Here we are passing the raw gene-level counts of
-the filtered cells into a new <code>seurat</code> class object. Use
-<code>convertGenesToSymbols</code> to convert gene IDs to names (symbols).</p>
-    
-    <h2 class="hasAnchor" id="seurat-to-singlecellexperiment"><a class="anchor" href="#seurat-to-singlecellexperiment"></a><code>seurat</code> to <code>SingleCellExperiment</code></h2>
-
-    
-    <p>S4 coercion support for creating a <code>SingleCellExperiment</code> from a <code>seurat</code>
-class object. The <a href='https://satijalab.org/seurat/faq'>Seurat FAQ page</a>
-explains the <code>seurat</code> S4 class structure in detail. Internally, this method
-improves the basic <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/Convert'>Seurat::as.SingleCellExperiment</a></code> S3 coercion method,
+    <p>S4 coercion support for creating a <code>SingleCellExperiment</code> from a <code>Seurat</code>
+class object. The <a href='https://satijalab.org/Seurat/faq'>Seurat FAQ page</a>
+explains the <code>Seurat</code> S4 class structure in detail. Internally, this method
+improves the basic <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/as.SingleCellExperiment'>Seurat::as.SingleCellExperiment</a></code> S3 coercion method,
 including the <code>object@scale.data</code> matrix, and will keep track of stashed
-<code>rowRanges</code> and <code>metadata</code> if the <code>seurat</code> object was originally created
+<code>rowRanges</code> and <code>metadata</code> if the <code>Seurat</code> object was originally created
 from a <code>SingleCellExperiment</code> (i.e. from the bcbioSingleCell package).</p>
     
-    <h2 class="hasAnchor" id="seurat-to-rangedsummarizedexperiment"><a class="anchor" href="#seurat-to-rangedsummarizedexperiment"></a><code>seurat</code> to <code>RangedSummarizedExperiment</code></h2>
+    <h2 class="hasAnchor" id="seurat-to-rangedsummarizedexperiment"><a class="anchor" href="#seurat-to-rangedsummarizedexperiment"></a><code>Seurat</code> to <code>RangedSummarizedExperiment</code></h2>
 
     
     <p>S4 coercion support for creating a <code>RangedSummarizedExperiment</code> from a
-<code>seurat</code> class object.</p>
+<code>Seurat</code> class object.</p>
     
-    <h2 class="hasAnchor" id="seurat-to-summarizedexperiment"><a class="anchor" href="#seurat-to-summarizedexperiment"></a><code>seurat</code> to <code>SummarizedExperiment</code></h2>
+    <h2 class="hasAnchor" id="seurat-to-summarizedexperiment"><a class="anchor" href="#seurat-to-summarizedexperiment"></a><code>Seurat</code> to <code>SummarizedExperiment</code></h2>
 
     
-    <p>S4 coercion support for creating a <code>SummarizedExperiment</code> from a <code>seurat</code>
+    <p>S4 coercion support for creating a <code>SummarizedExperiment</code> from a <code>Seurat</code>
 class object.</p>
     
     <h2 class="hasAnchor" id="seuratmarkers-to-tbl-df"><a class="anchor" href="#seuratmarkers-to-tbl-df"></a><code>SeuratMarkers</code> to <code>tbl_df</code></h2>
@@ -168,54 +159,29 @@ class object.</p>
     
     <p>S4 coercion support for creating a <code>tbl_df</code> from <code>SeuratMarkersPerCluster</code>.</p>
     
-    <h2 class="hasAnchor" id="description"><a class="anchor" href="#description"></a>Description</h2>
+    <h2 class="hasAnchor" id="singlecellexperiment-to-seurat"><a class="anchor" href="#singlecellexperiment-to-seurat"></a><code>SingleCellExperiment</code> to <code>Seurat</code></h2>
 
     
-    <p><code>as(object)</code>
-      returns the version of this object coerced to be the given
-      <code>Class</code>.  When used in the replacement form on the left of
-      an assignment, the portion of the object corresponding to
-      <code>Class</code> is replaced by <code>value</code>.</p>
-<p>The operation of <code>as()</code> in either form depends on the
-      definition of coerce methods.  Methods are defined automatically
-      when the two classes are related by inheritance; that is, when
-      one of the classes is a subclass of the other.</p>
-<p>Coerce methods are also predefined for basic classes (including all
-      the types of vectors, functions and a few others).</p>
-<p>Beyond these two sources of methods, further methods are defined
-      by calls to the <code>setAs</code> function.  See that
-      documentation also for details of how coerce methods work. Use
-      <code>showMethods(coerce)</code> for a list of all currently defined methods, as in the
-      example below.</p>
-    
-    <h2 class="hasAnchor" id="basic-coercion-methods"><a class="anchor" href="#basic-coercion-methods"></a>Basic Coercion Methods</h2>
-
-    
-    <p>Methods are pre-defined for coercing any object to one of the basic
-  datatypes.  For example, <code>as(x, "numeric")</code> uses the existing
-  <code>as.numeric</code> function.  These and all other existing methods
-  can be listed as shown in the example.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Chambers, John M. (2016)
- <em>Extending R</em>,
-  Chapman &amp; Hall.
-(Chapters 9 and 10.)</p>
+    <p>Interally <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/CreateSeuratObject'>Seurat::CreateSeuratObject</a></code> is called without applying any
+additional filtering cutoffs, since we have already defined them during our
+quality control analysis. Here we are passing the raw gene-level counts of
+the filtered cells into a new <code>Seurat</code> class object. Use
+<code>convertGenesToSymbols</code> to convert gene IDs to names (symbols).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><ul>
 <li><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/CreateSeuratObject'>Seurat::CreateSeuratObject()</a></code>.</p></li>
-<li><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/Convert'>Seurat::Convert()</a></code>.</p></li>
+<li><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/as.Seurat'>Seurat::as.Seurat()</a></code>.</p></li>
+<li><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/as.SingleCellExperiment'>Seurat::as.SingleCellExperiment()</a></code>.</p></li>
 </ul></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sce</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>)
 
-<span class='co'>## SingleCellExperiment to seurat ====</span>
+<span class='co'>## SingleCellExperiment to Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>sce</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 500 100 
@@ -226,23 +192,24 @@ class object.</p>
 #&gt; colnames(100): cell001 cell002 ... cell099 cell100
 #&gt; colData names(2): expLibSize sampleID
 #&gt; reducedDimNames(0):
-#&gt; spikeNames(0):</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>object</span>, <span class='st'>"seurat"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "seurat"
+#&gt; spikeNames(0):</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>object</span>, <span class='st'>"Seurat"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "Seurat"
 #&gt; attr(,"package")
-#&gt; [1] "Seurat"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; An object of class seurat in project pointillism 
-#&gt;  500 genes across 100 samples.</div><div class='input'>
-<span class='co'>## seurat to SingleCellExperiment ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>seurat_small</span>, <span class='st'>"SingleCellExperiment"</span>)
+#&gt; [1] "Seurat"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; An object of class Seurat 
+#&gt; 500 features across 100 samples within 1 assay 
+#&gt; Active assay: RNA (500 features)</div><div class='input'>
+<span class='co'>## Seurat to SingleCellExperiment ====</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>seurat</span>, <span class='st'>"SingleCellExperiment"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 230 80 
-#&gt; metadata(2): weights varGenes
-#&gt; assays(4): counts logcounts scaleData weights
+#&gt; metadata(2): scaleData variableFeatures
+#&gt; assays(2): counts logcounts
 #&gt; rownames(230): MS4A1 CD79B ... SPON2 S100B
-#&gt; rowData names(10): broadClass entrezID ... gene.dispersion
-#&gt;   gene.dispersion.scaled
+#&gt; rowData names(10): broadClass entrezID ... variance.expected
+#&gt;   variance.standardized
 #&gt; colnames(80): ATGCCAGAACGACT CATGGCCTGTGCAT ... GGAACACTTCAGAC
 #&gt;   CTTGATTGATCTTC
-#&gt; colData names(6): nGene nUMI ... res.1 ident
+#&gt; colData names(8): orig.ident nCount_RNA ... RNA_snn_res.1 ident
 #&gt; reducedDimNames(3): PCA TSNE UMAP
 #&gt; spikeNames(0):</div></pre>
   </div>
@@ -254,23 +221,17 @@ class object.</p>
 
       <li><a href="#celltypemarkers-to-tbl-df"><code>CellTypeMarkers</code> to <code>tbl_df</code></a></li>
 
-      <li><a href="#singlecellexperiment-to-seurat"><code>SingleCellExperiment</code> to <code>seurat</code></a></li>
+      <li><a href="#seurat-to-singlecellexperiment"><code>Seurat</code> to <code>SingleCellExperiment</code></a></li>
 
-      <li><a href="#seurat-to-singlecellexperiment"><code>seurat</code> to <code>SingleCellExperiment</code></a></li>
+      <li><a href="#seurat-to-rangedsummarizedexperiment"><code>Seurat</code> to <code>RangedSummarizedExperiment</code></a></li>
 
-      <li><a href="#seurat-to-rangedsummarizedexperiment"><code>seurat</code> to <code>RangedSummarizedExperiment</code></a></li>
-
-      <li><a href="#seurat-to-summarizedexperiment"><code>seurat</code> to <code>SummarizedExperiment</code></a></li>
+      <li><a href="#seurat-to-summarizedexperiment"><code>Seurat</code> to <code>SummarizedExperiment</code></a></li>
 
       <li><a href="#seuratmarkers-to-tbl-df"><code>SeuratMarkers</code> to <code>tbl_df</code></a></li>
 
       <li><a href="#seuratmarkerspercluster-to-tbl-df"><code>SeuratMarkersPerCluster</code> to <code>tbl_df</code></a></li>
 
-      <li><a href="#description">Description</a></li>
-
-      <li><a href="#basic-coercion-methods">Basic Coercion Methods</a></li>
-
-      <li><a href="#references">References</a></li>
+      <li><a href="#singlecellexperiment-to-seurat"><code>SingleCellExperiment</code> to <code>Seurat</code></a></li>
 
       <li><a href="#see-also">See also</a></li>
       
@@ -282,7 +243,7 @@ class object.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

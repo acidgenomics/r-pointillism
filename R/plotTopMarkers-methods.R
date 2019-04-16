@@ -17,16 +17,17 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat_small, all_markers_small)
-#' plotTopMarkers(object = seurat_small, markers = all_markers_small)
+#' data(seurat, seurat_all_markers)
+#' plotTopMarkers(object = seurat, markers = seurat_all_markers)
 NULL
 
 
 
+#' @rdname plotTopMarkers
+#' @name plotTopMarkers
 #' @importFrom bioverbs plotTopMarkers
-#' @aliases NULL
 #' @export
-bioverbs::plotTopMarkers
+NULL
 
 
 
@@ -112,10 +113,15 @@ setMethod(
 
 
 
+plotTopMarkers.Seurat <-  # nolint
+    plotTopMarkers.SingleCellExperiment
+
+
+
 #' @rdname plotTopMarkers
 #' @export
 setMethod(
     f = "plotTopMarkers",
-    signature = signature("seurat"),
-    definition = plotTopMarkers.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotTopMarkers.Seurat
 )

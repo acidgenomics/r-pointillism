@@ -3,7 +3,7 @@
 
 
 
-#' @importClassesFrom Seurat seurat
+#' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #'
 #' @importMethodsFrom basejump coerce
@@ -15,7 +15,8 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
-#' @importFrom Seurat Convert CreateSeuratObject
+#' @importFrom Seurat CreateSeuratObject as.SingleCellExperiment as.Seurat
+#'   GetAssayData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
@@ -30,7 +31,7 @@
 #'   ungroup vars
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
-#'   geom_hline geom_jitter geom_line geom_point geom_text geom_violin
+#'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set

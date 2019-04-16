@@ -4,7 +4,7 @@
 \name{plotMarker}
 \alias{plotMarker}
 \alias{plotMarker,SingleCellExperiment-method}
-\alias{plotMarker,seurat-method}
+\alias{plotMarker,Seurat-method}
 \title{Plot cell-type-specific gene markers}
 \usage{
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
@@ -19,7 +19,7 @@
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
-\S4method{plotMarker}{seurat}(object, genes, reducedDim = "TSNE",
+\S4method{plotMarker}{Seurat}(object, genes, reducedDim = "TSNE",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
@@ -90,8 +90,8 @@ Show graphical output. Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 title <- "most abundant genes"
 genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%

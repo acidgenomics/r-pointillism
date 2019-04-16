@@ -1,8 +1,8 @@
 Package: pointillism
-Title: Single-Cell Clustering Visualization
+Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.2.5
-Date: 2019-04-01
+Version: 0.3.0
+Date: 2019-04-13
 Authors@R: c(
     person(
         given = "Michael",
@@ -10,6 +10,10 @@ Authors@R: c(
         email = "mike@steinbaugh.com",
         role = c("aut", "cre"),
         comment = c(ORCID = "0000-0002-2403-2221")
+    ),
+    person(
+        given = "Acid Genomics",
+        role = c("cph", "fnd")
     ),
     person(
         given = "Rory",
@@ -28,14 +32,14 @@ LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.10.1)
+    basejump (>= 0.10.3)
 Imports:
-    bioverbs (>= 0.1.8), goalie (>= 0.2.11), minimalism (>= 0.1),
+    bioverbs (>= 0.1.12), goalie (>= 0.2.14), minimalism (>= 0.1),
     BiocGenerics, BiocParallel, DESeq2 (>= 1.22), S4Vectors,
         SummarizedExperiment, edgeR (>= 3.24),
-    Matrix (>= 1.2), Seurat (== 2.3.4), cowplot (>= 0.9), dplyr (>= 0.8),
+    Matrix (>= 1.2), Seurat (>= 3.0), cowplot (>= 0.9), dplyr (>= 0.8),
         ggplot2 (>= 3.1), magrittr (>= 1.5), pbapply (>= 1.3), rlang (>= 0.3),
-        sessioninfo (>= 1.1), tibble (>= 2.0), tidyr (>= 0.8),
+        sessioninfo (>= 1.1), tibble (>= 2.1), tidyr (>= 0.8),
     methods, scales
 Suggests:
     acidtest (>= 0.1.1),
@@ -61,13 +65,14 @@ Collate:
     'AllGenerics.R'
     'CellMarkers.R'
     'KnownMarkers-methods.R'
+    'Seurat-SCE-methods.R'
     'SeuratMarkers.R'
-    'as-methods.R'
     'assertions-internal.R'
     'cellCountsPerCluster-methods.R'
     'cellTypesPerCluster-methods.R'
     'clusterCellCountsPerSample-methods.R'
     'clusterID-methods.R'
+    'coerce-methods.R'
     'data.R'
     'deprecated.R'
     'globals.R'
@@ -87,7 +92,6 @@ Collate:
     'plotPCElbow-methods.R'
     'plotReducedDim-methods.R'
     'plotTopMarkers-methods.R'
-    'seurat-SingleCellExperiment-methods.R'
     'show-methods.R'
     'summary-methods.R'
     'topMarkers-methods.R'

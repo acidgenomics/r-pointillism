@@ -7,13 +7,13 @@
 \alias{plotTSNE}
 \alias{plotUMAP}
 \alias{plotReducedDim,SingleCellExperiment-method}
-\alias{plotReducedDim,seurat-method}
+\alias{plotReducedDim,Seurat-method}
 \alias{plotTSNE,SingleCellExperiment-method}
-\alias{plotTSNE,seurat-method}
+\alias{plotTSNE,Seurat-method}
 \alias{plotUMAP,SingleCellExperiment-method}
-\alias{plotUMAP,seurat-method}
+\alias{plotUMAP,Seurat-method}
 \alias{plotPCA,SingleCellExperiment-method}
-\alias{plotPCA,seurat-method}
+\alias{plotPCA,Seurat-method}
 \title{Plot reduced dimensions}
 \usage{
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
@@ -27,7 +27,7 @@
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotReducedDim}{seurat}(object, reducedDim, dimsUse = c(1L,
+\S4method{plotReducedDim}{Seurat}(object, reducedDim, dimsUse = c(1L,
   2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -48,7 +48,7 @@
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{Seurat}(object, dimsUse = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -68,7 +68,7 @@
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{Seurat}(object, dimsUse = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -88,7 +88,7 @@
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotPCA}{Seurat}(object, dimsUse = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -184,8 +184,8 @@ See \code{\link[base:Sys.getenv]{Sys.getenv}} for details on the R system enviro
 }
 
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 
 ## t-SNE
 plotTSNE(object)
@@ -199,7 +199,7 @@ plotPCA(object)
 }
 \seealso{
 \itemize{
-\item \code{Seurat::DimPlot}.
+\item \code{Seurat::DimPlot()}.
 \item \href{https://satijalab.org/seurat/mca.html}{Seurat Mouse Cell Atlas vignette}.
 }
 }

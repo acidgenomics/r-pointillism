@@ -6,18 +6,18 @@
 \alias{plotDot}
 \alias{plotViolin}
 \alias{plotCounts,SingleCellExperiment-method}
-\alias{plotCounts,seurat-method}
+\alias{plotCounts,Seurat-method}
 \alias{plotDot,SingleCellExperiment-method}
-\alias{plotDot,seurat-method}
+\alias{plotDot,Seurat-method}
 \alias{plotViolin,SingleCellExperiment-method}
-\alias{plotViolin,seurat-method}
+\alias{plotViolin,Seurat-method}
 \title{Plot counts}
 \usage{
 \S4method{plotCounts}{SingleCellExperiment}(object, genes,
   geom = c("dot", "violin"), perSample = TRUE,
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotCounts}{seurat}(object, genes, geom = c("dot", "violin"),
+\S4method{plotCounts}{Seurat}(object, genes, geom = c("dot", "violin"),
   perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
   title = NULL)
 
@@ -28,7 +28,7 @@
   "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
   TRUE), title = NULL)
 
-\S4method{plotDot}{seurat}(object, genes, perSample = TRUE,
+\S4method{plotDot}{Seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
@@ -40,7 +40,7 @@
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotViolin}{seurat}(object, genes, perSample = TRUE,
+\S4method{plotViolin}{Seurat}(object, genes, perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
@@ -100,8 +100,8 @@ observations. If "width", all violins have the same maximum width.}
 Visualize genes on a dot or violin plot.
 }
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 
 ## Plotting with either gene IDs or gene names (symbols) works.
 geneIDs <- head(rownames(object), n = 4L)

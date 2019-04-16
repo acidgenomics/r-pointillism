@@ -4,7 +4,7 @@
 \name{plotFeature}
 \alias{plotFeature}
 \alias{plotFeature,SingleCellExperiment-method}
-\alias{plotFeature,seurat-method}
+\alias{plotFeature,Seurat-method}
 \title{Plot feature}
 \usage{
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
@@ -19,7 +19,7 @@
   legend = getOption("acid.legend", default = TRUE),
   expression = c("mean", "sum"))
 
-\S4method{plotFeature}{seurat}(object, features, reducedDim = "TSNE",
+\S4method{plotFeature}{Seurat}(object, features, reducedDim = "TSNE",
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -85,9 +85,9 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \examples{
-data(seurat_small)
-plotFeature(seurat_small, features = c("nUMI", "nGene"))
+data(seurat)
+plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
 }
 \seealso{
-\code{Seurat::FeaturePlot}.
+\code{Seurat::FeaturePlot()}.
 }

@@ -1,11 +1,3 @@
-# package_version
-setOldClass(Classes = class(packageVersion("base")))
-
-# session_info
-setOldClass(Classes = "session_info")
-
-
-
 .prototypeMetadata <- list(
     version = packageVersion("pointillism"),
     date = Sys.Date()

@@ -4,13 +4,13 @@
 \name{diffExpPerCluster}
 \alias{diffExpPerCluster}
 \alias{diffExpPerCluster,SingleCellExperiment-method}
-\alias{diffExpPerCluster,seurat-method}
+\alias{diffExpPerCluster,Seurat-method}
 \title{Differential expression per cluster}
 \usage{
 \S4method{diffExpPerCluster}{SingleCellExperiment}(object, group,
   numerator, denominator, ...)
 
-\S4method{diffExpPerCluster}{seurat}(object, group, numerator, denominator,
+\S4method{diffExpPerCluster}{Seurat}(object, group, numerator, denominator,
   ...)
 }
 \arguments{
@@ -43,12 +43,12 @@ Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
 }
 \examples{
-data(seurat_small)
-object <- seurat_small
+data(seurat)
+object <- seurat
 group <- factor(c("group1", "group2"))
 colData(object)$group <- group
-x <- suppressMessages(
-    diffExpPerCluster(
+suppressMessages(
+    x <- diffExpPerCluster(
         object = object,
         group = "group",
         numerator = "group2",

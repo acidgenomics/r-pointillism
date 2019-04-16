@@ -4,12 +4,12 @@
 \name{findMarkers}
 \alias{findMarkers}
 \alias{findMarkers,SingleCellExperiment-method}
-\alias{findMarkers,seurat-method}
+\alias{findMarkers,Seurat-method}
 \title{Find cluster-specific marker genes}
 \usage{
 \S4method{findMarkers}{SingleCellExperiment}(object, ...)
 
-\S4method{findMarkers}{seurat}(object, ...)
+\S4method{findMarkers}{Seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -31,8 +31,8 @@ Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
 }
 \examples{
-data(seurat_small)
-x <- findMarkers(seurat_small, caller = "edgeR")
+data(seurat)
+x <- findMarkers(seurat, caller = "edgeR")
 class(x)
 lapply(x, class)
 }

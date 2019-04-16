@@ -29,22 +29,25 @@ NULL
 
 
 
+#' @rdname plotPCElbow
+#' @name plotPCElbow
 #' @importFrom bioverbs plotPCElbow
-#' @aliases NULL
 #' @export
-bioverbs::plotPCElbow
+NULL
 
 
 
-plotPCElbow.seurat <-  # nolint
+plotPCElbow.Seurat <-  # nolint
     function(
         object,
+        reducedDim = "pca",
         minSD = 1L,
         minPct = 0.01,
         maxCumPct = 0.9,
         trans = c("identity", "sqrt")
     ) {
         assert(
+            isString(reducedDim),
             isNumber(minSD),
             isPositive(minSD),
             isNumber(minPct),
@@ -59,7 +62,7 @@ plotPCElbow.seurat <-  # nolint
 
         # dr: dimensional reduction
         # sdev: standard deviation
-        sdev <- object@dr[["pca"]]@sdev
+        sdev <- Stdev(object = object, reduction = reducedDim)
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)
@@ -171,6 +174,6 @@ plotPCElbow.seurat <-  # nolint
 #' @export
 setMethod(
     f = "plotPCElbow",
-    signature = signature("seurat"),
-    definition = plotPCElbow.seurat
+    signature = signature("Seurat"),
+    definition = plotPCElbow.Seurat
 )

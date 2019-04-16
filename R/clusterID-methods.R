@@ -2,18 +2,19 @@
 #' @inherit bioverbs::clusterID
 #' @inheritParams basejump::params
 #' @examples
-#' data(seurat_small)
-#' x <- clusterID(seurat_small)
+#' data(seurat)
+#' x <- clusterID(seurat)
 #' head(x)
 #' table(x)
 NULL
 
 
 
+#' @rdname clusterID
+#' @name clusterID
 #' @importFrom bioverbs clusterID
-#' @aliases NULL
 #' @export
-bioverbs::clusterID
+NULL
 
 
 
@@ -38,10 +39,14 @@ setMethod(
 
 
 
+clusterID.Seurat <-  # nolint
+    clusterID.SingleCellExperiment
+
+
 #' @rdname clusterID
 #' @export
 setMethod(
     f = "clusterID",
-    signature = signature("seurat"),
-    definition = clusterID.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = clusterID.Seurat
 )

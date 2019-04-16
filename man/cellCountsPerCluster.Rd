@@ -4,13 +4,13 @@
 \name{cellCountsPerCluster}
 \alias{cellCountsPerCluster}
 \alias{cellCountsPerCluster,SingleCellExperiment-method}
-\alias{cellCountsPerCluster,seurat-method}
+\alias{cellCountsPerCluster,Seurat-method}
 \title{Cell counts per cluster}
 \usage{
 \S4method{cellCountsPerCluster}{SingleCellExperiment}(object,
   interestingGroups = NULL)
 
-\S4method{cellCountsPerCluster}{seurat}(object, interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{Seurat}(object, interestingGroups = NULL)
 }
 \arguments{
 \item{object}{Object.}
@@ -26,7 +26,7 @@ Groups of interest that define the samples. If left unset, defaults to
 Cell counts per cluster
 }
 \examples{
-data(seurat_small)
-x <- cellCountsPerCluster(seurat_small)
+data(seurat)
+x <- cellCountsPerCluster(seurat)
 print(x)
 }

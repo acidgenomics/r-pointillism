@@ -72,8 +72,8 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## Compare expression in cluster 3 relative to 2.
 #' ident <- clusterID(object)
@@ -106,10 +106,11 @@ NULL
 
 
 
+#' @rdname diffExp
+#' @name diffExp
 #' @importFrom bioverbs diffExp
-#' @aliases NULL
 #' @export
-bioverbs::diffExp
+NULL
 
 
 
@@ -269,26 +270,6 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 
-#' @rdname diffExp
-#' @export
-setMethod(
-    f = "diffExp",
-    signature = signature("SingleCellExperiment"),
-    definition = diffExp.SingleCellExperiment
-)
-
-
-
-#' @rdname diffExp
-#' @export
-setMethod(
-    f = "diffExp",
-    signature = signature("seurat"),
-    definition = diffExp.SingleCellExperiment
-)
-
-
-
 # DESeq2 is slow for large datasets.
 #
 # - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
@@ -352,3 +333,28 @@ setMethod(
     })))
     lrt
 }
+
+
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    f = "diffExp",
+    signature = signature("SingleCellExperiment"),
+    definition = diffExp.SingleCellExperiment
+)
+
+
+
+diffExp.Seurat <-  # nolint
+    diffExp.SingleCellExperiment
+
+
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    f = "diffExp",
+    signature = signature("Seurat"),
+    definition = diffExp.Seurat
+)

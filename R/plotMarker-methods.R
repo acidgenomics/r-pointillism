@@ -7,8 +7,8 @@
 #' @inheritParams params
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
@@ -35,10 +35,11 @@ NULL
 
 
 
+#' @rdname plotMarker
+#' @name plotMarker
 #' @importFrom bioverbs plotMarker
-#' @aliases NULL
 #' @export
-bioverbs::plotMarker
+NULL
 
 
 
@@ -254,10 +255,15 @@ setMethod(
 
 
 
+plotMarker.Seurat <-  # nolint
+    plotMarker.SingleCellExperiment
+
+
+
 #' @rdname plotMarker
 #' @export
 setMethod(
     f = "plotMarker",
-    signature = signature("seurat"),
-    definition = plotMarker.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotMarker.Seurat
 )

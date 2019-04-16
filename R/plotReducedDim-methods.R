@@ -40,12 +40,12 @@
 #' [reticulate]: https://rstudio.github.io/reticulate/
 #'
 #' @seealso
-#' - `Seurat::DimPlot`.
+#' - `Seurat::DimPlot()`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(seurat_small)
-#' object <- seurat_small
+#' data(seurat)
+#' object <- seurat
 #'
 #' ## t-SNE
 #' plotTSNE(object)
@@ -60,25 +60,29 @@ NULL
 
 
 
+#' @rdname plotReducedDim
+#' @name plotReducedDim
 #' @importFrom bioverbs plotReducedDim
-#' @aliases NULL
 #' @export
-bioverbs::plotReducedDim
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotPCA
 #' @importFrom BiocGenerics plotPCA
-#' @aliases NULL
 #' @export
-BiocGenerics::plotPCA
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotTSNE
 #' @importFrom bioverbs plotTSNE
-#' @aliases NULL
 #' @export
-bioverbs::plotTSNE
+NULL
 
+#' @rdname plotReducedDim
+#' @name plotUMAP
 #' @importFrom bioverbs plotUMAP
-#' @aliases NULL
 #' @export
-bioverbs::plotUMAP
+NULL
 
 
 
@@ -314,12 +318,17 @@ setMethod(
 
 
 
+plotReducedDim.Seurat <-  # nolint
+    plotReducedDim.SingleCellExperiment
+
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotReducedDim",
-    signature = signature("seurat"),
-    definition = plotReducedDim.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotReducedDim.Seurat
 )
 
 
@@ -334,12 +343,17 @@ setMethod(
 
 
 
+plotTSNE.Seurat <-  # nolint
+    plotTSNE.SingleCellExperiment
+
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotTSNE",
-    signature = signature("seurat"),
-    definition = plotTSNE.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotTSNE.Seurat
 )
 
 
@@ -354,12 +368,16 @@ setMethod(
 
 
 
+plotUMAP.Seurat <-  # nolint
+    plotUMAP.SingleCellExperiment
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotUMAP",
-    signature = signature("seurat"),
-    definition = plotUMAP.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotUMAP.Seurat
 )
 
 
@@ -374,10 +392,15 @@ setMethod(
 
 
 
+plotPCA.Seurat <-  # nolint
+    plotPCA.SingleCellExperiment
+
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotPCA",
-    signature = signature("seurat"),
-    definition = plotPCA.SingleCellExperiment
+    signature = signature("Seurat"),
+    definition = plotPCA.Seurat
 )
