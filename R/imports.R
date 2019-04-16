@@ -31,7 +31,7 @@
 #'   ungroup vars
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
-#'   geom_hline geom_jitter geom_line geom_point geom_text geom_violin
+#'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set
