@@ -26,88 +26,30 @@ plotCellCountsPerCluster.SingleCellExperiment <-  # nolint
         object,
         interestingGroups = NULL
     ) {
-        # Passthrough: color, dark.
         validObject(object)
-        validObject(markers)
-        assert(isScalar(reducedDim))
-        expression <- match.arg(expression)
-        assert(
-            isHeaderLevel(headerLevel),
-            isFlag(progress)
+        interestingGroups(object) <-
+            matchInterestingGroups(object, interestingGroups)
+        interestingGroups <- interestingGroups(object)
+        data <- cellCountsPerCluster(
+            object = object,
+            interestingGroups = interestingGroups
         )
-        if (isTRUE(progress)) {
-            applyFun <- pblapply
-        } else {
-            applyFun <- lapply
-        }
-
-        markers <- CellCountsPerCluster(
-            object = markers,
-            min = min,
-            max = max
-        )
-        assert(
-            is(markers, "grouped_df"),
-            hasRows(markers)
-        )
-
-        # Output Markdown headers per cluster.
-        clusters <- markers[["cluster"]] %>%
-            as.character() %>%
-            unique()
-        assert(isNonEmpty(clusters))
-
-        return <- applyFun(clusters, function(cluster) {
-            markdownHeader(
-                text = paste("Cluster", cluster),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
+        assert(is(data, "tbl_df"))
+        ggplot(
+            data = data,
+            mapping = aes(
+                x = !!sym("interestingGroups"),
+                y = !!sym("n"),
+                fill = !!sym("interestingGroups")
             )
-            clusterData <- filter(markers, !!sym("cluster") == !!cluster)
-            if (nrow(clusterData) == 0L) {
-                message(paste0("No markers for cluster ", cluster, "."))
-                return(invisible())
-            }
-            assert(hasRows(clusterData))
-            CellCounts <- clusterData[["cellType"]]
-            assert(is.factor(CellCounts))
-            lapply(
-                X = CellCounts,
-                FUN = function(cellType) {
-                    title <- as.character(cellType)
-                    markdownHeader(
-                        text = title,
-                        level = headerLevel + 1L,
-                        asis = TRUE
-                    )
-                    # Modify the title by adding the cluster number.
-                    title <- paste(paste0("Cluster ", cluster, ":"), title)
-                    cellData <-
-                        filter(clusterData, !!sym("cellType") == !!cellType)
-                    assert(nrow(cellData) == 1L)
-                    genes <- cellData %>%
-                        pull("name") %>%
-                        as.character() %>%
-                        strsplit(", ") %>%
-                        .[[1L]]
-                    if (!hasLength(genes)) {
-                        return(invisible())
-                    }
-                    p <- plotMarker(
-                        object = object,
-                        genes = genes,
-                        reducedDim = reducedDim,
-                        expression = expression,
-                        ...
-                    )
-                    show(p)
-                    invisible(p)
-                }
-            )
-        })
-
-        invisible(return)
+        ) +
+            geom_bar(stat = "identity") +
+            labs(
+                x = NULL,
+                y = "n cells",
+                fill = paste(interestingGroups, collapse = ":\n")
+            ) +
+            facet_wrap(facets = sym("ident"))
     }
 
 
