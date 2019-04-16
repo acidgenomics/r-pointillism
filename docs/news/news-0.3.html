@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>News • pointillism</title>
+<title>Version 0.3 • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="News" />
+<meta property="og:title" content="Version 0.3" />
 
 
 
@@ -49,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news-index">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -99,18 +99,51 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Release notes</h1>
+      <h1>Changelog <small>0.3</small></h1>
+      
     </div>
-    <ul>
-    <li><a href="news-0.3.html">Version 0.3</a></li>
-    <li><a href="news-0.2.html">Version 0.2</a></li>
-    <li><a href="news-0.1.html">Version 0.1</a></li>
-    </ul>
-  </div>
-</div>
 
+    <div id="pointillism-0-3-0-2019-04-16" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-3-0-2019-04-16" class="anchor"></a>pointillism 0.3.0 (2019-04-16)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Updated S4 methods to support <a href="https://satijalab.org/seurat/">Seurat</a> v3 release. Also updated imports from Seurat to reflect v3 change: <code>GetAssayData</code>, <code>Stdev</code>, <code>VariableFeatures</code>.</li>
+<li>Now importing S3 coercion methods from Seurat: <code>as.SingleCellExperiment</code>. <code>as.Seurat</code>, which coerces <code>SingleCellExperiment</code>, isn’t particularly helpful because it requires <code>logcounts</code> slot to be defined in SCE. We’re calling <code>CreateSeuratObject</code> internally in our S4 coercion method instead, so that any SCE object can be easily coerced to a <code>Seurat</code> object.</li>
+<li>Resaved and renamed example data: <code>seurat</code>, <code>seurat_all_markers</code>, <code>seurat_known_markers</code>.</li>
+</ul>
+</div>
+<div id="minor-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Added preliminary <code>plotCellTypesPerCluster</code> method support. Need to test this out on larger datasets with many samples per cluster.</li>
+<li>Switched Travis CI configuration to use Docker image.</li>
+<li>Added some additional comments regarding reticulate umap-learn configuration required to run <code><a href="https://www.rdocumentation.org/packages/Seurat/topics/RunUMAP">Seurat::RunUMAP</a></code>. Consider putting some information in the README, since there is a lot of misinformation on GitHub regarding proper UMAP configuration.</li>
+<li>Removed <code>setOldClass</code> definitions for <code>session_info</code> and <code>package_version</code>.</li>
+<li>Renamed <code>as-methods.R</code> to <code>coerce-methods.R</code>, matching bsaejump conventions.</li>
+<li>
+<code>cellCountsPerCluster</code>: Improved internal <code>interestingGroups</code> handling.</li>
+<li>Reworked reexport method for S4 generics imported from <a href="https://bioverbs.acidgenomics.com/">bioverbs</a> package.</li>
+</ul>
+</div>
+</div>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pointillism-0-3-0-2019-04-16">0.3.0</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
 
       <footer>
       <div class="copyright">
