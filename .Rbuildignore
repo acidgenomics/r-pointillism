@@ -14,4 +14,5 @@
 ^data-raw$
 ^docs$
 ^pkgdown$
-^travis_setup\.sh$
+^travis-docker\.R$
+^travis-setup\.sh$
