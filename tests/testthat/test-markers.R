@@ -10,7 +10,7 @@ test_that("CellTypeMarkers", {
     )
     x <- CellTypeMarkers(
         object = as(import(file), "DataFrame"),
-        gene2symbol = Gene2Symbol(seurat_small)
+        gene2symbol = Gene2Symbol(seurat)
     )
     expect_is(x, "CellTypeMarkers")
 })
@@ -19,10 +19,10 @@ test_that("CellTypeMarkers", {
 
 # SeuratMarkers ================================================================
 test_that("SeuratMarkers", {
-    ranges <- rowRanges(seurat_small)
+    ranges <- rowRanges(seurat)
     invisible(capture.output(
         markers <- Seurat::FindMarkers(
-            object = seurat_small,
+            object = seurat,
             ident.1 = "1",
             ident.2 = NULL
         )
@@ -32,9 +32,9 @@ test_that("SeuratMarkers", {
 })
 
 test_that("SeuratMarkersPerCluster", {
-    ranges <- rowRanges(seurat_small)
+    ranges <- rowRanges(seurat)
     invisible(capture.output(
-        markers <- Seurat::FindAllMarkers(seurat_small)
+        markers <- Seurat::FindAllMarkers(seurat)
     ))
     x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
     expect_s4_class(x, "SeuratMarkersPerCluster")

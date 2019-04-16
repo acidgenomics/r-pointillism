@@ -17,6 +17,6 @@ with_parameters_test_that(
     },
     object = list(
         SingleCellExperiment = sce,
-        seurat = seurat_small
+        seurat = seurat
     )
 )

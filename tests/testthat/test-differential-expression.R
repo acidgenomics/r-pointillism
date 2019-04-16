@@ -1,9 +1,9 @@
 context("Differential expression")
 
-sce <- as(seurat_small, "SingleCellExperiment")
+sce <- as(seurat, "SingleCellExperiment")
 
 # Compare expression in cluster 3 relative to 2.
-object <- seurat_small
+object <- seurat
 ident <- clusterID(object)
 numerator <- names(ident)[ident == "3"]
 denominator <- names(ident)[ident == "2"]
@@ -39,7 +39,7 @@ with_parameters_test_that(
     },
     object = list(
         SingleCellExperiment = sce,
-        seurat = seurat_small
+        seurat = seurat
     )
 )
 
@@ -73,6 +73,6 @@ with_parameters_test_that(
     },
     object = list(
         SingleCellExperiment = sce,
-        seurat = seurat_small
+        seurat = seurat
     )
 )
