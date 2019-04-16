@@ -1,9 +1,13 @@
 # FIXME Need to test seurat to SCE.
 # FIXME Need to test Markers to tbl_df.
 
-context("Coercion methods")
+context("coerce")
 
-test_that("SingleCellExperiment to seurat", {
+test_that("Seurat to SingleCellExperiment", {
+    x <- as(seurat
+})
+
+test_that("SingleCellExperiment to Seurat", {
     x <- as(sce, "seurat")
     expect_is(x, "seurat")
     # Check slotted count integrity.
