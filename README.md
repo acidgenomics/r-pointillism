@@ -1,7 +1,6 @@
 # pointillism
 
 [![Travis CI](https://travis-ci.org/steinbaugh/pointillism.svg?branch=master)](https://travis-ci.org/steinbaugh/pointillism)
-[![Codecov](https://codecov.io/gh/steinbaugh/pointillism/branch/master/graph/badge.svg)](https://codecov.io/gh/steinbaugh/pointillism)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 [R][] package for for single-cell RNA-seq clustering analysis.
@@ -27,9 +26,7 @@ BiocManager::install("steinbaugh/pointillism")
 [pointillism][] currently supports these S4 single-cell container classes:
 
 - [SingleCellExperiment][]
-- [Seurat][] (v2)
-
-**Seurat v3:** The current release of [pointillism][] is compatible only with [Seurat][] v2. The forthcoming v3 update introduces many code-breaking changes to the `Seurat` class structure. I'll release an update to [pointillism][] that supports [Seurat][] v3 when it becomes available on [CRAN][].
+- [Seurat][] (v3)
 
 **monocle v3**: Support for the [monocle][] `CellDataSet` class will be added when [monocle][] v3 becomes available on [Bioconductor][].
 
