@@ -5,13 +5,12 @@ test_that("grouped_df", {
     expect_is(x, "grouped_df")
     expect_identical(dplyr::group_vars(x), "cluster")
     expect_identical(
-        lapply(x, class) %>%
-            .[sort(names(.))],
+        lapply(x, class) %>% .[sort(names(.))],
         list(
             avgLogFC = "numeric",
             cluster = "factor",
             geneID = "character",
-            geneName = "character",
+            geneName = "factor",
             name = "character",
             padj = "numeric",
             pct1 = "numeric",
@@ -26,15 +25,13 @@ direction <- formals(topMarkers) %>%
     as.character() %>%
     .[-1L]
 
-test_that("direction", {
-    invisible(lapply(
-        X = direction,
-        FUN = function(direction) {
-            x <- topMarkers(
-                data = seurat_all_markers,
-                direction = direction
-            )
-            expect_is(x, "tbl_df")
-        }
-    ))
-})
+with_parameters_test_that(
+    "direction", {
+        x <- topMarkers(
+            data = seurat_all_markers,
+            direction = direction
+        )
+        expect_is(x, "tbl_df")
+    },
+    direction = direction
+)
