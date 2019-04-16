@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
   <span class='no'>markers</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>)
 
-<span class='co'># S4 method for seurat,KnownMarkers</span>
+<span class='co'># S4 method for Seurat,KnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
   <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
@@ -165,17 +165,17 @@ Show progress, using progress bars.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_small</span>, <span class='no'>known_markers_small</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>, <span class='no'>seurat_known_markers</span>)
 <span class='fu'>plotKnownMarkers</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat_small</span>,
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>known_markers_small</span>
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>seurat</span>,
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>seurat_known_markers</span>
 )</div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; ## T Cell {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
 #&gt; ## Dendritic Cell {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-5.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='img'><img src='plotKnownMarkers-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-8.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ## Macrophage {.tabset}
+#&gt; </div><div class='img'><img src='plotKnownMarkers-9.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -192,7 +192,7 @@ Show progress, using progress bars.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

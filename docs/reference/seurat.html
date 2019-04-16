@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Known markers example — known_markers_small • pointillism</title>
+<title>Seurat example — seurat • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Known markers example — known_markers_small" />
+<meta property="og:title" content="Seurat example — seurat" />
 
-<meta property="og:description" content="Known markers example" />
+<meta property="og:description" content="Seurat example" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -104,48 +104,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Known markers example</h1>
+    <h1>Seurat example</h1>
     <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>known_markers_small.Rd</code></div>
+    <div class="hidden name"><code>seurat.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Known markers example</p>
+    <p>Seurat example</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>known_markers_small</span></pre>
+    <pre class="usage"><span class='no'>seurat</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>KnownMarkers</code> with 5 rows and 10 columns.</p>
+    <p>An object of class <code>Seurat</code> with 230 rows and 80 columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>known_markers_small</span>)
-<span class='no'>known_markers_small</span></div><div class='output co'>#&gt; KnownMarkers with 5 rows and 10 columns
-#&gt;    cluster        name          avgLogFC      pct1      pct2
-#&gt;   &lt;factor&gt; &lt;character&gt;         &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; 1        0        CD3D   2.3127312497169     0.552     0.137
-#&gt; 2        1    HLA-DPB1  1.01913147360322     0.862     0.353
-#&gt; 3        1    HLA-DPA1  1.11066892854515     0.828     0.353
-#&gt; 4        1     HLA-DRA 0.709039144388978     0.897     0.569
-#&gt; 5        2       CD247   1.6444921986612      0.75     0.118
-#&gt;                 pvalue                 padj          geneID    geneName
-#&gt;              &lt;numeric&gt;            &lt;numeric&gt;     &lt;character&gt; &lt;character&gt;
-#&gt; 1 1.93986052321432e-05  0.00446167920339293 ENSG00000167286        CD3D
-#&gt; 2  1.6166805248437e-05  0.00371836520714052 ENSG00000215048    HLA-DPB1
-#&gt; 3 2.43440340874436e-05  0.00559912784011202 ENSG00000168384    HLA-DPA1
-#&gt; 4 0.000191209589650134   0.0439782056195308 ENSG00000204287     HLA-DRA
-#&gt; 5 2.16310297302231e-06 0.000497513683795131 ENSG00000198821       CD247
-#&gt;         cellType
-#&gt;         &lt;factor&gt;
-#&gt; 1         T Cell
-#&gt; 2 Dendritic Cell
-#&gt; 3 Dendritic Cell
-#&gt; 4 Dendritic Cell
-#&gt; 5         T Cell</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>)
+<span class='no'>seurat</span></div><div class='output co'>#&gt; An object of class Seurat 
+#&gt; 230 features across 80 samples within 1 assay 
+#&gt; Active assay: RNA (230 features)
+#&gt;  3 dimensional reductions calculated: pca, tsne, umap</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -161,7 +143,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

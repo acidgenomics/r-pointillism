@@ -4,6 +4,9 @@ authors:
   Acid Genomics:
     href: https://acidgenomics.com/
 
+news:
+  - one_page: false
+
 reference:
   - title: S4 classes
     contents:
@@ -11,7 +14,7 @@ reference:
     - starts_with("CellTypeMarkers")
     - starts_with("KnownMarkers")
     - starts_with("SeuratMarkers")
-    - as
+    - coerce
     - show
     - summary
   - title: Differential expression
