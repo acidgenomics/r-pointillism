@@ -222,7 +222,7 @@ droplet scRNA-seq data. Here we are using <code><a href='https://www.rdocumentat
 
     
     <p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
-and <code>cells.2</code> for the denominator. See <code>Seurat::DiffExpTest()</code> for details.</p>
+and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers()</a></code> for details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -234,11 +234,11 @@ and <code>cells.2</code> for the denominator. See <code>Seurat::DiffExpTest()</c
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
-<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
+<span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
 <span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        19 character character </div><div class='input'>
 <span class='co'>## edgeR.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExp</span>(
@@ -246,7 +246,7 @@ and <code>cells.2</code> for the denominator. See <code>Seurat::DiffExpTest()</c
     <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='no'>numerator</span>,
     <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='no'>denominator</span>,
     <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Skipping DE. Underpowered contrast (not enough cells).</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "NULL"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Length  Class   Mode 
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Skipping DE. Underpowered contrast (not enough cells).</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "NULL"</div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Length  Class   Mode 
 #&gt;      0   NULL   NULL </div><div class='input'>
 ## DESeq2.
 # This will warn about weights with the minimal example.

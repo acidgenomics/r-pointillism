@@ -99,7 +99,7 @@ edgeR is currently significantly faster than DESeq2 for large datasets.
 
 
 Note that Seurat currently uses the convention \code{cells.1} for the numerator
-and \code{cells.2} for the denominator. See \code{\link[Seurat:DiffExpTest]{Seurat::DiffExpTest()}} for details.
+and \code{cells.2} for the denominator. See \code{\link[Seurat:FindMarkers]{Seurat::FindMarkers()}} for details.
 }
 
 \examples{
