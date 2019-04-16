@@ -36,7 +36,7 @@
 #' @section Seurat conventions:
 #'
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
-#' and `cells.2` for the denominator. See [Seurat::DiffExpTest()] for details.
+#' and `cells.2` for the denominator. See [Seurat::FindMarkers()] for details.
 #'
 #' @note We are currently recommending the ZINB-WaVE method over zingeR, since
 #'   it is faster, and has been show to be more sensitive for most single-cell

@@ -100,8 +100,8 @@ test_that("metadata", {
 
 test_that("metrics", {
     expect_identical(
-        sort(colnames(metrics(object))),
-        c(
+        object = sort(colnames(metrics(object))),
+        expected = c(
             "cellID",
             "groups",
             "ident",
