@@ -75,6 +75,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -115,6 +118,7 @@
 <li>Updated S4 methods to support <a href="https://satijalab.org/seurat/">Seurat</a> v3 release. Also updated imports from Seurat to reflect v3 change: <code>GetAssayData</code>, <code>Stdev</code>, <code>VariableFeatures</code>.</li>
 <li>Now importing S3 coercion methods from Seurat: <code>as.SingleCellExperiment</code>. <code>as.Seurat</code>, which coerces <code>SingleCellExperiment</code>, isn’t particularly helpful because it requires <code>logcounts</code> slot to be defined in SCE. We’re calling <code>CreateSeuratObject</code> internally in our S4 coercion method instead, so that any SCE object can be easily coerced to a <code>Seurat</code> object.</li>
 <li>Resaved and renamed example data: <code>seurat</code>, <code>seurat_all_markers</code>, <code>seurat_known_markers</code>.</li>
+<li>Overhauled R Markdown templates.</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level3">

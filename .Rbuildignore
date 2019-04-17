@@ -16,3 +16,5 @@
 ^pkgdown$
 ^travis-docker\.R$
 ^travis-setup\.sh$
+^doc$
+^Meta$

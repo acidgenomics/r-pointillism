@@ -11,6 +11,7 @@
   any SCE object can be easily coerced to a `Seurat` object.
 - Resaved and renamed example data: `seurat`, `seurat_all_markers`,
   `seurat_known_markers`.
+- Overhauled R Markdown templates.
 
 ### Minor changes
 
