@@ -1,7 +1,3 @@
-# FIXME Need to add working examples.
-
-
-
 .cellMarkers <- function(
     object,
     gene2symbol,

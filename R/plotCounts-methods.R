@@ -69,7 +69,7 @@ NULL
 
 
 
-# plotCounts =====================================================================
+# plotCounts ===================================================================
 plotCounts.SingleCellExperiment <-  # nolint
     function(
         object,

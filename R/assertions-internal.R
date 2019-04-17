@@ -1,8 +1,3 @@
-# FIXME Rethink these assert checks, and deprecate if possible.
-
-
-
-# FIXME Add `design()` method for SCE.
 .hasDesignFormula <- function(object) {
     all(
         is(object, "SingleCellExperiment"),
@@ -13,7 +8,6 @@
 
 
 
-# FIXME Add `ident` generic.
 .hasIdent <- function(object) {
     "ident" %in% colnames(colData(object))
 }
@@ -26,9 +20,6 @@
 
 
 
-# FIXME Consider moving this to basejump.
-# Require valid BiocParallel bpparam.
-# FIXME Rename to BPParam?
 .isBPPARAM <- function(object) {
     all(
         identical(
@@ -41,7 +32,6 @@
 
 
 
-# FIXME Deprecate this and use markers S4 validity method instead.
 .isKnownMarkers <- function(object) {
     all(
         # Require a tibble.
@@ -77,7 +67,6 @@
 
 
 
-# FIXME Re/think/rework this approach.
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
