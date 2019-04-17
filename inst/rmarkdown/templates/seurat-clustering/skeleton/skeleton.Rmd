@@ -462,7 +462,7 @@ plotFeatureTSNE(
 )
 ```
 
-```{r plot-feature-umap, eval=params$umap}
+```{r plot-feature-umap, include=has_umap, eval=has_umap}
 plotFeatureUMAP(
     object = seurat,
     features = features,
@@ -487,7 +487,7 @@ plotFeatureTSNE(
 )
 ```
 
-```{r plot-feature-pcs-umap, eval=params$umap}
+```{r plot-feature-pcs-umap, include=has_umap, eval=has_umap}
 plotFeatureUMAP(
     object = seurat,
     features = feature_pcs,
