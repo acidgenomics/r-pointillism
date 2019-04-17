@@ -6,6 +6,8 @@ services:
 before_install:
   - docker pull acidgenomics/singlecell
   - docker images
+    # Prevent BiocCheck > checkCodingPractice > checkLogicalUseFiles error.
+  - touch inst/rmarkdown/templates/*/skeleton/_{footer,header,links}.Rmd
 
 script:
   - docker run -ti --user="bioc" --volume="${PWD}:/pointillism" --workdir="/pointillism" acidgenomics/singlecell Rscript -e 'source("travis-docker.R")'
