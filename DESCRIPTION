@@ -52,6 +52,7 @@ Remotes:
     acidgenomics/goalie,
     acidgenomics/minimalism
 biocViews:
+    Clustering,
     DataRepresentation,
     GeneExpression,
     RNASeq,

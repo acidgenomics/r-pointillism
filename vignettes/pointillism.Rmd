@@ -1,0 +1,34 @@
+---
+title: "pointillism"
+date: "`r BiocStyle::doc_date()`"
+output: BiocStyle::html_document
+bibliography: ../inst/rmarkdown/shared/bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{pointillism}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+abstract: >
+  Todo
+---
+
+```{r setup, include=FALSE, message=FALSE}
+ggplot2::theme_set(minimalism::theme_paperwhite())
+knitr::opts_chunk$set(message = FALSE)
+```
+
+# Introduction
+
+Todo
+
+# R session information
+
+```{r}
+utils::sessionInfo()
+```
+
+# References
+
+The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
+
+[Paperpile]: https://paperpile.com/
+[R]: https://www.r-project.org/
