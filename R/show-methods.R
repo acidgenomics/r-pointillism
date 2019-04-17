@@ -21,7 +21,7 @@ show.CellCycleMarkers <-  # nolint
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
         lengths <- nrow(object)
-        genes <- sapply(
+        genes <- vapply(
             X = object,
             FUN = function(x) {
                 x <- x[["geneName"]]
@@ -29,6 +29,7 @@ show.CellCycleMarkers <-  # nolint
                 x <- c(head(x, n = 2L), "...", tail(x, n = 2L))
                 paste(x, collapse = " ")
             },
+            FUN.VALUE = character(1L),
             USE.NAMES = TRUE
         )
         return <- c(
@@ -61,7 +62,7 @@ show.CellTypeMarkers <-  # nolint
 
         # Include the gene lengths per phase.
         lengths <- nrow(object)
-        genes <- sapply(
+        genes <- vapply(
             X = object,
             FUN = function(x) {
                 x <- x[["geneName"]]
@@ -69,6 +70,7 @@ show.CellTypeMarkers <-  # nolint
                 x <- c(head(x, n = 2L), "...", tail(x, n = 2L))
                 paste(x, collapse = " ")
             },
+            FUN.VALUE = character(1L),
             USE.NAMES = TRUE
         )
 
