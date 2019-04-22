@@ -52,9 +52,9 @@ reducedDim <- "TSNE"
 
 # Set default ggplot2 theme.
 if (isTRUE(getOption("acid.dark"))) {
-    theme <- minimalism::theme_midnight
+    theme <- acidplots::theme_midnight
 } else {
-    theme <- minimalism::theme_paperwhite
+    theme <- acidplots::theme_paperwhite
 }
 theme <- theme(base_size = 14L, legend_position = "right")
 ggplot2::theme_set(new = theme)

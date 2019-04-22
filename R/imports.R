@@ -43,7 +43,7 @@
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
-#' @importFrom minimalism theme_midnight theme_paperwhite
+#' @importFrom acidplots theme_midnight theme_paperwhite
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks

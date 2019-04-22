@@ -1,6 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'

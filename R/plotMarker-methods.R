@@ -2,7 +2,7 @@
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @inherit bioverbs::plotMarker
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'
