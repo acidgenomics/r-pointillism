@@ -1,6 +1,6 @@
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'

@@ -4,7 +4,7 @@
 #' @include globals.R
 #'
 #' @inherit bioverbs::plotReducedDim
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'

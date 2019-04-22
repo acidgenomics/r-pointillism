@@ -2,7 +2,7 @@
 #' @aliases plotDot plotViolin
 #'
 #' @inherit bioverbs::plotCounts
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams ggplot2::geom_violin
 #'
