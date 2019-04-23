@@ -21,6 +21,7 @@
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
+#' @importFrom acidplots acid_theme_dark acid_theme_light
 #' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
 #'   import mapGenesToRownames mapGenesToSymbols markdownHeader
 #'   matchArgsToDoCall matchInterestingGroups printString separator showSlotInfo
@@ -43,7 +44,6 @@
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
-#' @importFrom acidplots theme_midnight theme_paperwhite
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
