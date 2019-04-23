@@ -141,7 +141,7 @@ plotFeature.SingleCellExperiment <-  # nolint
             }
 
             if (isTRUE(dark)) {
-                p <- p + theme_midnight()
+                p <- p + acid_theme_dark()
                 if (is.null(color)) {
                     color <- darkMarkerColors
                 }
