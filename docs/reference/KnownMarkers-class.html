@@ -108,7 +108,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Known markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/KnownMarkers-methods.R'><code>R/KnownMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>KnownMarkers-class.Rd</code></div>
     </div>
 
@@ -118,11 +118,40 @@
     
     </div>
 
-        
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>markers</th>
+      <td><p><code>SeuratMarkers</code> or <code>SeuratMarkersPerCluster</code>.</p></td>
+    </tr>
+    <tr>
+      <th>known</th>
+      <td><p><code>CellTypeMarkers</code>. Grouped by <code>cellType</code> column. Known markers
+<code>data.frame</code> imported by <code>readCellTypeMarkers</code> or pulled from internal
+cell cycle markers data.</p></td>
+    </tr>
+    <tr>
+      <th>promiscuousThreshold</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>. Minimum number of clusters
+required to consider a gene marker promiscuous. Set to <code>0</code> to disable
+promiscuous marker filtering.</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Results are grouped by <code>cellType</code> column and arranged by adjusted
 <em>P</em> value (<code>padj</code>).</p>
+<p><code>KnownMarkers</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Both the <code>markers</code> and <code>known</code> objects must contain Ensembl gene
+identifiers in the <code>geneID</code> column. We must avoid any matching operations
+based on the gene names, since these change often and can mismatch
+easily.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -132,15 +161,27 @@
   <code><a href='SeuratMarkersPerCluster-class.html'>SeuratMarkersPerCluster-class</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat_all_markers</span>, <span class='no'>cell_type_markers</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>KnownMarkers</span>(
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>seurat_all_markers</span>,
+    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>cell_type_markers</span>$<span class='no'>homoSapiens</span>
+)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Grouping by cellType.</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
+#&gt;           10 KnownMarkers           S4 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
