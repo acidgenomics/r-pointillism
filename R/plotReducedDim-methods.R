@@ -4,7 +4,7 @@
 #' @include globals.R
 #'
 #' @inherit bioverbs::plotReducedDim
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'
@@ -210,7 +210,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
 
         # Dark mode.
         if (isTRUE(dark)) {
-            p <- p + theme_midnight()
+            p <- p + acid_theme_dark()
         }
 
         if (is(color, "ScaleDiscrete")) {

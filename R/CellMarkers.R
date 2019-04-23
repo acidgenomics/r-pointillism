@@ -56,7 +56,7 @@
 
 
 
-#' @inherit CellCycleMarkers-class
+#' @rdname CellCycleMarkers-class
 #' @inheritParams basejump::params
 #' @export
 CellCycleMarkers <-  # nolint
@@ -72,7 +72,7 @@ CellCycleMarkers <-  # nolint
 
 
 
-#' @inherit CellTypeMarkers-class
+#' @rdname CellTypeMarkers-class
 #' @inheritParams basejump::params
 #' @export
 CellTypeMarkers <-  # nolint

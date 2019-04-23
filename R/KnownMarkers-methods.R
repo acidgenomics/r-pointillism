@@ -1,4 +1,4 @@
-#' @inherit KnownMarkers-class
+#' @rdname KnownMarkers-class
 #' @name KnownMarkers
 #'
 #' @note Both the `markers` and `known` objects must contain Ensembl gene
@@ -92,7 +92,7 @@ KnownMarkers.SeuratMarkersPerCluster <-  # nolint
 
 
 
-#' @rdname KnownMarkers
+#' @rdname KnownMarkers-class
 #' @export
 setMethod(
     f = "KnownMarkers",

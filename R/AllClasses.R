@@ -14,8 +14,6 @@
 #' @family S4 classes
 #' @export
 #'
-#' @seealso `CellCycleMarkers`.
-#'
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
@@ -48,8 +46,6 @@ setClass(
 #'
 #' @family S4 classes
 #' @export
-#'
-#' @seealso `CellTypeMarkers`.
 #'
 #' @return `CellTypeMarkers`
 setClass(

@@ -1,4 +1,4 @@
-#' @rdname KnownMarkers
+#' @rdname KnownMarkers-class
 #' @export
 setGeneric(
     name = "KnownMarkers",

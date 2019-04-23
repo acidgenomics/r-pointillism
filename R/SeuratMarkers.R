@@ -1,4 +1,4 @@
-#' @inherit SeuratMarkers-class
+#' @rdname SeuratMarkers-class
 #' @export
 #'
 #' @description
@@ -34,9 +34,9 @@
 #' summary(x)
 #'
 #' ## `FindAllMarkers()` return.
-#' invisible(capture.output(
+#' invisible(capture.output(suppressWarnings(
 #'     markers <- Seurat::FindAllMarkers(object)
-#' ))
+#' )))
 #' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
 SeuratMarkers <-  # nolint
@@ -165,6 +165,7 @@ SeuratMarkers <-  # nolint
 
 
 
-#' @rdname SeuratMarkers
+#' @rdname SeuratMarkersPerCluster-class
+#' @inherit SeuratMarkers-class
 #' @export
 SeuratMarkersPerCluster <- SeuratMarkers  # nolint

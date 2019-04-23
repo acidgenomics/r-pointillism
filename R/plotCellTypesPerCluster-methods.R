@@ -2,7 +2,7 @@
 #' @include globals.R
 #'
 #' @inherit bioverbs::plotCellTypesPerCluster
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'
