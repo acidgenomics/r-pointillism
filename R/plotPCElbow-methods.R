@@ -1,6 +1,6 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
-#' @inheritParams minimalism::params
+#' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
 #'

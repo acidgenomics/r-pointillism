@@ -1,7 +1,7 @@
 ^.*\.Rproj$
-^.*\.gz$
-^.*\.pdf$
 ^CONTRIBUTING\.md$
+^Meta$
+^Rplots\.pdf$
 ^\.Rprofile$
 ^\.Rproj\.user$
 ^\.circleci$
@@ -12,9 +12,8 @@
 ^_pkgdown\.yml$
 ^appveyor\.yml$
 ^data-raw$
+^doc$
 ^docs$
 ^pkgdown$
 ^travis-docker\.R$
 ^travis-setup\.sh$
-^doc$
-^Meta$

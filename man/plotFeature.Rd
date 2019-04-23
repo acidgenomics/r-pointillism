@@ -68,7 +68,7 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[minimalism:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
 Show plot legend.}

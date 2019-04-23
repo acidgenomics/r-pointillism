@@ -89,9 +89,9 @@ are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2:
 To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
-\item{scale}{if "area" (default), all violins have the same area (before trimming
-the tails). If "count", areas are scaled proportionally to the number of
-observations. If "width", all violins have the same maximum width.}
+\item{scale}{\code{character(1)}.
+Whether the values should be centered and scaled in either the row or
+column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{none}").}
 }
 \value{
 \code{ggplot}.
