@@ -92,7 +92,7 @@ KnownMarkers.SeuratMarkersPerCluster <-  # nolint
 
 
 
-#' @rdname KnownMarkers
+#' @rdname KnownMarkers-class
 #' @export
 setMethod(
     f = "KnownMarkers",
