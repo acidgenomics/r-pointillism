@@ -1,3 +1,12 @@
+## pointillism 0.3.1 (2019-04-23)
+
+### Minor changes
+
+- Switch to importing ggplot2 code from new [acidplots][] package. Recommended
+  default ggplot2 themes are now named `acid_theme_light` and `acid_theme_dark`.
+
+
+
 ## pointillism 0.3.0 (2019-04-16)
 
 ### Major changes
@@ -207,6 +216,7 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 
 
 
+[acidplots]: https://acidplots.acidgenomics.com/
 [Acid Genomics]: https://acidgenomics.com/
 [basejump]: https://basejump.acidgenomics.com/
 [bioverbs]: https://bioverbs.acidgenomics.com/
