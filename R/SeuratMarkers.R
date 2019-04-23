@@ -1,4 +1,4 @@
-#' @inherit SeuratMarkers-class
+#' @rdname SeuratMarkers-class
 #' @export
 #'
 #' @description

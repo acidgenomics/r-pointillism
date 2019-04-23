@@ -1,4 +1,4 @@
-#' @inherit KnownMarkers-class
+#' @rdname KnownMarkers-class
 #' @name KnownMarkers
 #'
 #' @note Both the `markers` and `known` objects must contain Ensembl gene

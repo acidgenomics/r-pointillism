@@ -10,10 +10,7 @@ news:
 reference:
   - title: S4 classes
     contents:
-    - starts_with("CellCycleMarkers")
-    - starts_with("CellTypeMarkers")
-    - starts_with("KnownMarkers")
-    - starts_with("SeuratMarkers")
+    - ends_with("-class")
     - coerce
     - show
     - summary
@@ -36,7 +33,10 @@ reference:
     - starts_with("plot")
   - title: Cell markers
     contents:
-    - ends_with("_markers")
+    - cell_cycle_markers
+    - cell_type_markers
   - title: Example data
     contents:
-    - ends_with("_small")
+    - seurat
+    - seurat_all_markers
+    - seurat_known_markers
