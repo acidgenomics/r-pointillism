@@ -108,7 +108,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Known markers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/KnownMarkers-methods.R'><code>R/KnownMarkers-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/KnownMarkers-methods.R'><code>R/KnownMarkers-methods.R</code></a></small>
     <div class="hidden name"><code>KnownMarkers-class.Rd</code></div>
     </div>
 
@@ -118,6 +118,11 @@
     
     </div>
 
+    <pre class="usage"><span class='fu'>KnownMarkers</span>(<span class='no'>markers</span>, <span class='no'>known</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SeuratMarkersPerCluster,CellTypeMarkers</span>
+<span class='fu'>KnownMarkers</span>(<span class='no'>markers</span>,
+  <span class='no'>known</span>, <span class='kw'>promiscuousThreshold</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,6 +136,10 @@
       <td><p><code>CellTypeMarkers</code>. Grouped by <code>cellType</code> column. Known markers
 <code>data.frame</code> imported by <code>readCellTypeMarkers</code> or pulled from internal
 cell cycle markers data.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>promiscuousThreshold</th>

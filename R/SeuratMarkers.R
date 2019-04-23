@@ -165,6 +165,7 @@ SeuratMarkers <-  # nolint
 
 
 
-#' @rdname SeuratMarkers
+#' @rdname SeuratMarkersPerCluster-class
+#' @inherit SeuratMarkers-class
 #' @export
 SeuratMarkersPerCluster <- SeuratMarkers  # nolint
