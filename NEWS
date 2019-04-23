@@ -4,6 +4,8 @@
 
 - Switch to importing ggplot2 code from new [acidplots][] package. Recommended
   default ggplot2 themes are now named `acid_theme_light` and `acid_theme_dark`.
+- Consolidated S4 class and generator function documentation into single Rd
+  files, where applicable.
 
 
 
