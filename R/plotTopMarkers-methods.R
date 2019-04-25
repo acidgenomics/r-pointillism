@@ -2,9 +2,11 @@
 #' @include globals.R
 #'
 #' @inherit bioverbs::plotTopMarkers
+#'
 #' @inheritParams basejump::params
 #' @inheritParams params
 #' @inheritParams topMarkers
+#' @param ... Additional arguments.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -26,6 +28,7 @@ NULL
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
 #' @importFrom bioverbs plotTopMarkers
+#' @usage plotTopMarkers(object, ...)
 #' @export
 NULL
 

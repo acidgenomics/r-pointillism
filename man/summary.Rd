@@ -7,12 +7,16 @@
 \alias{summary,SeuratMarkersPerCluster-method}
 \title{Object summaries}
 \usage{
+summary(object, ...)
+
 \S4method{summary}{SeuratMarkers}(object)
 
 \S4method{summary}{SeuratMarkersPerCluster}(object)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Invisible \code{NULL}.

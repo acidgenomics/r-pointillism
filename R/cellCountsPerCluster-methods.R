@@ -1,6 +1,8 @@
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
+#'
 #' @inheritParams basejump::params
+#' @param ... Additional arguments.
 #'
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
@@ -15,6 +17,7 @@ NULL
 #' @rdname cellCountsPerCluster
 #' @name cellCountsPerCluster
 #' @importFrom bioverbs cellCountsPerCluster
+#' @usage cellCountsPerCluster(object, ...)
 #' @export
 NULL
 
