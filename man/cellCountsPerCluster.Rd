@@ -7,6 +7,8 @@
 \alias{cellCountsPerCluster,Seurat-method}
 \title{Cell counts per cluster}
 \usage{
+cellCountsPerCluster(object, ...)
+
 \S4method{cellCountsPerCluster}{SingleCellExperiment}(object,
   interestingGroups = NULL)
 
@@ -18,6 +20,8 @@
 \item{interestingGroups}{\code{character}.
 Groups of interest that define the samples. If left unset, defaults to
 \code{sampleName}.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{tbl_df}. Grouped by \code{ident} column and arranged by \code{n}.

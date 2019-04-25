@@ -16,6 +16,14 @@
 \alias{plotPCA,Seurat-method}
 \title{Plot reduced dimensions}
 \usage{
+plotReducedDim(object, ...)
+
+plotPCA(object, ...)
+
+plotTSNE(object, ...)
+
+plotUMAP(object, ...)
+
 \S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
   dimsUse = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
@@ -148,6 +156,8 @@ Show plot legend.}
 
 \item{title}{\code{character(1)}.
 Plot title.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{ggplot}.

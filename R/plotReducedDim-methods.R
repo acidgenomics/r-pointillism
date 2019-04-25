@@ -4,9 +4,11 @@
 #' @include globals.R
 #'
 #' @inherit bioverbs::plotReducedDim
+#'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @details
 #' Colors using `ident` column defined in
@@ -63,24 +65,28 @@ NULL
 #' @rdname plotReducedDim
 #' @name plotReducedDim
 #' @importFrom bioverbs plotReducedDim
+#' @usage plotReducedDim(object, ...)
 #' @export
 NULL
 
 #' @rdname plotReducedDim
 #' @name plotPCA
 #' @importFrom BiocGenerics plotPCA
+#' @usage plotPCA(object, ...)
 #' @export
 NULL
 
 #' @rdname plotReducedDim
 #' @name plotTSNE
 #' @importFrom bioverbs plotTSNE
+#' @usage plotTSNE(object, ...)
 #' @export
 NULL
 
 #' @rdname plotReducedDim
 #' @name plotUMAP
 #' @importFrom bioverbs plotUMAP
+#' @usage plotUMAP(object, ...)
 #' @export
 NULL
 
