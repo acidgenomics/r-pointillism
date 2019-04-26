@@ -41,8 +41,6 @@ Markdown header level.}
 \item{progress}{\code{logical(1)}.
 Show progress, using progress bars.}
 
-\item{...}{Additional arguments.}
-
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 }
 \value{

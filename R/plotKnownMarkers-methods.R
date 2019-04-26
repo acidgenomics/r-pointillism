@@ -21,7 +21,7 @@ NULL
 #' @rdname plotKnownMarkers
 #' @name plotKnownMarkers
 #' @importFrom bioverbs plotKnownMarkers
-#' @usage plotKnownMarkers(object, ...)
+#' @usage plotKnownMarkers(object, markers, ...)
 #' @export
 NULL
 
