@@ -7,6 +7,8 @@
 \alias{plotCellTypesPerCluster,Seurat-method}
 \title{Plot cell types per cluster}
 \usage{
+plotCellTypesPerCluster(object, ...)
+
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
   min = 1L, max = Inf, reducedDim = "TSNE", expression = c("mean",
   "sum"), headerLevel = 2L, progress = FALSE, ...)

@@ -1,13 +1,12 @@
 #' @name plotCounts
 #' @aliases plotDot plotViolin
-#'
 #' @inherit bioverbs::plotCounts
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams ggplot2::geom_violin
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
+#' @inheritParams acidplots::params
+#' @inheritParams basejump::params
+#' @inheritParams ggplot2::geom_violin
 #' @param colMin `numeric(1)`.
 #'   Minimum scaled average expression threshold. Everything smaller will be
 #'   set to this.
@@ -22,11 +21,12 @@
 #' @param geom `character(1)`.
 #'   Plot type. Uses [`match.arg()`][base::match.arg] to pick the type.
 #'   Currently supports `"dot"` and `"violin"`.
+#' @param ... Additional arguments.
 #'
 #' @seealso
-#' - `Seurat::DotPlot()`.
-#' - `Seurat::VlnPlot()`.
-#' - `Seurat::RidgePlot()`.
+#' - [Seurat::DotPlot()].
+#' - [Seurat::VlnPlot()].
+#' - [Seurat::RidgePlot()].
 #'
 #' @examples
 #' data(seurat)
@@ -52,18 +52,21 @@ NULL
 #' @rdname plotCounts
 #' @name plotCounts
 #' @importFrom bioverbs plotCounts
+#' @usage plotCounts(object, ...)
 #' @export
 NULL
 
 #' @rdname plotCounts
 #' @name plotDot
 #' @importFrom bioverbs plotDot
+#' @usage plotDot(object, ...)
 #' @export
 NULL
 
 #' @rdname plotCounts
 #' @name plotViolin
 #' @importFrom bioverbs plotViolin
+#' @usage plotViolin(object, ...)
 #' @export
 NULL
 

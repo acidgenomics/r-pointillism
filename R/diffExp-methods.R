@@ -1,7 +1,6 @@
 #' @name diffExp
 #' @include globals.R
 #' @inherit bioverbs::diffExp
-#' @inheritParams basejump::params
 #'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
@@ -42,6 +41,7 @@
 #'   it is faster, and has been show to be more sensitive for most single-cell
 #'   RNA-seq datasets.
 #'
+#' @inheritParams basejump::params
 #' @param numerator `character`.
 #'   Cells to use in the numerator of the contrast (e.g. treatment).
 #' @param denominator `character`.
@@ -62,6 +62,7 @@
 #'   Back-end method to be used for computations.
 #'   See [`bpparam`][BiocParallel::bpparam] for details.
 #'   Currently only used by DESeq2 but not edgeR for calculations here.
+#' @param ... Additional arguments.
 #'
 #' @return Varies depending on the `caller` argument:
 #'
@@ -109,6 +110,7 @@ NULL
 #' @rdname diffExp
 #' @name diffExp
 #' @importFrom bioverbs diffExp
+#' @usage diffExp(object, ...)
 #' @export
 NULL
 

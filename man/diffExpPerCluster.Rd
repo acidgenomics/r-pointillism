@@ -7,6 +7,8 @@
 \alias{diffExpPerCluster,Seurat-method}
 \title{Differential expression per cluster}
 \usage{
+diffExpPerCluster(object, ...)
+
 \S4method{diffExpPerCluster}{SingleCellExperiment}(object, group,
   numerator, denominator, ...)
 

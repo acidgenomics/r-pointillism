@@ -7,6 +7,8 @@
 \alias{plotFeature,Seurat-method}
 \title{Plot feature}
 \usage{
+plotFeature(object, ...)
+
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
   reducedDim = "TSNE", color = getOption("acid.continuous.color",
   default = ggplot2::scale_colour_gradient(low = "gray75", high =
@@ -77,9 +79,11 @@ Show plot legend.}
 Calculation to apply.
 Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults to the first
 argument in the \code{character} vector.}
+
+\item{...}{Additional arguments.}
 }
 \value{
-\code{ggplot} or \code{list}.
+\code{ggplot} (1 feature) or \code{list} (multiple features).
 }
 \description{
 Plot feature
@@ -89,5 +93,5 @@ data(seurat)
 plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
 }
 \seealso{
-\code{Seurat::FeaturePlot()}.
+\code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
 }

@@ -7,6 +7,8 @@
 \alias{plotKnownMarkers,Seurat,KnownMarkers-method}
 \title{Plot known markers}
 \usage{
+plotKnownMarkers(object, ...)
+
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
   markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
   ...)
