@@ -2,9 +2,11 @@
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @inherit bioverbs::plotMarker
+#'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(seurat)
@@ -38,6 +40,7 @@ NULL
 #' @rdname plotMarker
 #' @name plotMarker
 #' @importFrom bioverbs plotMarker
+#' @usage plotMarker(object, ...)
 #' @export
 NULL
 

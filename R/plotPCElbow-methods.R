@@ -1,19 +1,20 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
+#' @inheritParams acidplots::params
+#' @inheritParams basejump::params
+#' @inheritParams params
 #' @param minSD `numeric(1)`.
 #'   Minimum standard deviation.
 #' @param minPct `numeric(1)` (`0`-`1`).
 #'   Minimum percent standard deviation.
 #' @param maxCumPct `numeric(1)` (`0`-`1`).
 #'   Maximum cumulative percen standard deviation.
+#' @param ... Additional arguments.
 #'
 #' @return
 #' - Show graphical output of elbow plots.
@@ -32,6 +33,7 @@ NULL
 #' @rdname plotPCElbow
 #' @name plotPCElbow
 #' @importFrom bioverbs plotPCElbow
+#' @usage plotPCElbow(object, ...)
 #' @export
 NULL
 

@@ -1,5 +1,6 @@
 #' @name findMarkers
 #' @inherit bioverbs::findMarkers
+#'
 #' @inheritParams basejump::params
 #' @param ... Passthrough arguments to [diffExp()].
 #'
@@ -22,6 +23,7 @@ NULL
 #' @rdname findMarkers
 #' @name findMarkers
 #' @importFrom bioverbs findMarkers
+#' @usage findMarkers(object, ...)
 #' @export
 NULL
 

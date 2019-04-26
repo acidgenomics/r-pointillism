@@ -7,6 +7,8 @@
 \alias{plotMarker,Seurat-method}
 \title{Plot cell-type-specific gene markers}
 \usage{
+plotMarker(object, ...)
+
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
   reducedDim = "TSNE", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
@@ -82,6 +84,8 @@ Show plot legend.}
 
 \item{title}{\code{character(1)}.
 Plot title.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Show graphical output. Invisibly return a \code{ggplot} \code{list}.

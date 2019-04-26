@@ -7,12 +7,16 @@
 \alias{clusterCellCountsPerSample,Seurat-method}
 \title{Cluster cell counts per sample}
 \usage{
+clusterCellCountsPerSample(object, ...)
+
 \S4method{clusterCellCountsPerSample}{SingleCellExperiment}(object)
 
 \S4method{clusterCellCountsPerSample}{Seurat}(object)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{grouped_df}.

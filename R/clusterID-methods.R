@@ -1,6 +1,9 @@
 #' @name clusterID
 #' @inherit bioverbs::clusterID
+#'
 #' @inheritParams basejump::params
+#' @param ... Additional arguments.
+#'
 #' @examples
 #' data(seurat)
 #' x <- clusterID(seurat)
@@ -13,6 +16,7 @@ NULL
 #' @rdname clusterID
 #' @name clusterID
 #' @importFrom bioverbs clusterID
+#' @usage clusterID(object, ...)
 #' @export
 NULL
 
@@ -41,6 +45,7 @@ setMethod(
 
 clusterID.Seurat <-  # nolint
     clusterID.SingleCellExperiment
+
 
 
 #' @rdname clusterID

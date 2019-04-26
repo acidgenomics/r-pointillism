@@ -1,10 +1,6 @@
 #' @name plotTopMarkers
 #' @include globals.R
-#'
 #' @inherit bioverbs::plotTopMarkers
-#' @inheritParams basejump::params
-#' @inheritParams params
-#' @inheritParams topMarkers
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -12,6 +8,9 @@
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
 #'
+#' @inheritParams basejump::params
+#' @inheritParams params
+#' @inheritParams topMarkers
 #' @param markers `grouped_df`.
 #'   Marker genes, grouped by "`cluster`".
 #' @param ... Passthrough arguments to [plotMarker()].
@@ -26,6 +25,7 @@ NULL
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
 #' @importFrom bioverbs plotTopMarkers
+#' @usage plotTopMarkers(object, ...)
 #' @export
 NULL
 

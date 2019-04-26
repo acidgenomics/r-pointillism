@@ -13,6 +13,12 @@
 \alias{plotViolin,Seurat-method}
 \title{Plot counts}
 \usage{
+plotCounts(object, ...)
+
+plotDot(object, ...)
+
+plotViolin(object, ...)
+
 \S4method{plotCounts}{SingleCellExperiment}(object, genes,
   geom = c("dot", "violin"), perSample = TRUE,
   legend = getOption("acid.legend", default = TRUE), title = NULL)
@@ -92,6 +98,8 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 \item{scale}{\code{character(1)}.
 Whether the values should be centered and scaled in either the row or
 column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{none}").}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{ggplot}.
@@ -119,8 +127,8 @@ plotViolin(object, genes = geneIDs, perSample = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{Seurat::DotPlot()}.
-\item \code{Seurat::VlnPlot()}.
-\item \code{Seurat::RidgePlot()}.
+\item \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
+\item \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
+\item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
 }
 }

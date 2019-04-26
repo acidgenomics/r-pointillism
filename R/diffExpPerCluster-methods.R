@@ -1,8 +1,8 @@
 #' @name diffExpPerCluster
 #' @inherit bioverbs::diffExpPerCluster
+#'
 #' @inheritParams basejump::params
 #' @inheritParams diffExp
-#'
 #' @param group `character(1)`.
 #'   Group of interest for differential expression per cluster. Must be a
 #'   `factor` column in [`colData()`][SummarizedExperiment::colData].
@@ -38,6 +38,7 @@ NULL
 #' @rdname diffExpPerCluster
 #' @name diffExpPerCluster
 #' @importFrom bioverbs diffExpPerCluster
+#' @usage diffExpPerCluster(object, ...)
 #' @export
 NULL
 

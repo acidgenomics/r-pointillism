@@ -6,14 +6,6 @@ NULL
 
 
 
-#' @rdname show
-#' @name show
-#' @importFrom methods show
-#' @export
-NULL
-
-
-
 show.CellCycleMarkers <-  # nolint
     function(object) {
         validObject(object)
