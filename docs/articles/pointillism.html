@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
     <div class="page-header toc-ignore">
       <h1>pointillism</h1>
             
-            <h4 class="date">23 April 2019</h4>
+            <h4 class="date">26 April 2019</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/acidgenomics/pointillism/blob/master/vignettes/pointillism.Rmd"><code>vignettes/pointillism.Rmd</code></a></small>
       <div class="hidden name"><code>pointillism.Rmd</code></div>
@@ -84,7 +84,7 @@
     
         <div class="abstract">
       <p class="abstract">Abstract</p>
-      Todo
+      <p>Todo</p>
     </div>
     
 <div id="introduction" class="section level1">
@@ -95,7 +95,7 @@
 <div id="r-session-information" class="section level1">
 <h1 class="hasAnchor">
 <a href="#r-session-information" class="anchor"></a>R session information</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">utils<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/sessionInfo">sessionInfo</a></span>()</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">utils::<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/sessionInfo">sessionInfo</a></span>()</code></pre>
 <pre><code>## R version 3.5.2 (2018-12-20)
 ## Platform: x86_64-redhat-linux-gnu (64-bit)
 ## Running under: Red Hat Enterprise Linux
@@ -112,79 +112,79 @@
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] datasets  utils     grDevices graphics  stats     methods   base     
 ## 
 ## other attached packages:
 ## [1] BiocStyle_2.10.0
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] colorspace_1.4-1              grr_0.9.5                    
-##   [3] rprojroot_1.3-2               XVector_0.22.0               
-##   [5] GenomicRanges_1.34.0          fs_1.2.7                     
-##   [7] rstudioapi_0.10               roxygen2_6.1.1               
-##   [9] ggrepel_0.8.0                 bit64_0.9-7                  
-##  [11] interactiveDisplayBase_1.20.0 AnnotationDbi_1.44.0         
-##  [13] xml2_1.2.0                    R.methodsS3_1.7.1            
-##  [15] goalie_0.2.15                 knitr_1.22                   
-##  [17] Rsamtools_1.34.1              freerange_0.1.3              
-##  [19] R.oo_1.22.0                   pheatmap_1.0.12              
-##  [21] shiny_1.3.2                   BiocManager_1.30.4           
-##  [23] readr_1.3.1                   compiler_3.5.2               
-##  [25] httr_1.4.0                    backports_1.1.4              
-##  [27] assertthat_0.2.1              Matrix_1.2-17                
-##  [29] lazyeval_0.2.2                cli_1.1.0                    
-##  [31] later_0.8.0                   htmltools_0.3.6              
-##  [33] prettyunits_1.0.2             tools_3.5.2                  
-##  [35] gtable_0.3.0                  glue_1.3.1                   
-##  [37] GenomeInfoDbData_1.2.0        reshape2_1.4.3               
-##  [39] transformer_0.1.9             dplyr_0.8.0.1                
-##  [41] acidplots_0.2.0               Rcpp_1.0.1                   
-##  [43] Biobase_2.42.0                pkgdown_1.3.0                
-##  [45] Biostrings_2.50.2             gdata_2.18.0                 
-##  [47] rtracklayer_1.42.2            xfun_0.6                     
-##  [49] stringr_1.4.0                 brio_0.1.19                  
-##  [51] syntactic_0.1.8               mime_0.6                     
-##  [53] ensembldb_2.6.8               gtools_3.8.1                 
-##  [55] XML_3.98-1.19                 AnnotationHub_2.14.5         
-##  [57] zlibbioc_1.28.0               MASS_7.3-51.3                
-##  [59] scales_1.0.0                  hms_0.4.2                    
-##  [61] promises_1.0.1                ProtGenerics_1.14.0          
-##  [63] parallel_3.5.2                SummarizedExperiment_1.12.0  
-##  [65] AnnotationFilter_1.6.0        RColorBrewer_1.1-2           
-##  [67] SingleCellExperiment_1.4.1    yaml_2.2.0                   
-##  [69] curl_3.3                      memoise_1.1.0                
-##  [71] ggplot2_3.1.1                 Matrix.utils_0.9.7           
-##  [73] biomaRt_2.38.0                stringi_1.4.3                
-##  [75] RSQLite_2.1.1                 S4Vectors_0.20.1             
-##  [77] desc_1.2.0                    GenomicFeatures_1.34.8       
-##  [79] caTools_1.17.1.2              BiocGenerics_0.28.0          
-##  [81] BiocParallel_1.16.6           GenomeInfoDb_1.18.2          
-##  [83] rlang_0.3.4                   pkgconfig_2.0.2              
-##  [85] commonmark_1.7                matrixStats_0.54.0           
-##  [87] bitops_1.0-6                  evaluate_0.13                
-##  [89] lattice_0.20-38               purrr_0.3.2                  
-##  [91] GenomicAlignments_1.18.1      cowplot_0.9.4                
-##  [93] bit_1.1-14                    tidyselect_0.2.5             
-##  [95] plyr_1.8.4                    magrittr_1.5                 
-##  [97] bookdown_0.9                  R6_2.4.0                     
-##  [99] IRanges_2.16.0                gplots_3.0.1.1               
-## [101] DelayedArray_0.8.0            DBI_1.0.0                    
-## [103] pillar_1.3.1                  withr_2.1.2                  
-## [105] RCurl_1.95-4.12               tibble_2.1.1                 
-## [107] crayon_1.3.4                  basejump_0.10.4              
-## [109] KernSmooth_2.23-15            rmarkdown_1.12               
-## [111] progress_1.2.0                grid_3.5.2                   
-## [113] data.table_1.12.2             blob_1.1.1                   
-## [115] bioverbs_0.1.13               digest_0.6.18                
-## [117] xtable_1.8-4                  tidyr_0.8.3                  
-## [119] httpuv_1.5.1                  R.utils_2.8.0                
-## [121] stats4_3.5.2                  munsell_0.5.0                
-## [123] sessioninfo_1.1.1</code></pre>
+##   [1] ProtGenerics_1.14.0           bitops_1.0-6                 
+##   [3] matrixStats_0.54.0            fs_1.2.7                     
+##   [5] bit64_0.9-7                   progress_1.2.0               
+##   [7] RColorBrewer_1.1-2            httr_1.4.0                   
+##   [9] rprojroot_1.3-2               GenomeInfoDb_1.18.2          
+##  [11] syntactic_0.1.8               acidplots_0.2.1              
+##  [13] tools_3.5.2                   backports_1.1.4              
+##  [15] R6_2.4.0                      DBI_1.0.0                    
+##  [17] lazyeval_0.2.2                BiocGenerics_0.28.0          
+##  [19] colorspace_1.4-1              withr_2.1.2                  
+##  [21] prettyunits_1.0.2             tidyselect_0.2.5             
+##  [23] bit_1.1-14                    curl_3.3                     
+##  [25] compiler_3.5.2                cli_1.1.0                    
+##  [27] basejump_0.10.5               Biobase_2.42.0               
+##  [29] xml2_1.2.0                    desc_1.2.0                   
+##  [31] DelayedArray_0.8.0            rtracklayer_1.42.2           
+##  [33] bookdown_0.9                  scales_1.0.0                 
+##  [35] readr_1.3.1                   pkgdown_1.3.0                
+##  [37] commonmark_1.7                stringr_1.4.0                
+##  [39] digest_0.6.18                 Rsamtools_1.34.1             
+##  [41] rmarkdown_1.12                R.utils_2.8.0                
+##  [43] XVector_0.22.0                pkgconfig_2.0.2              
+##  [45] htmltools_0.3.6               sessioninfo_1.1.1            
+##  [47] ensembldb_2.6.8               rlang_0.3.4                  
+##  [49] RSQLite_2.1.1                 shiny_1.3.2                  
+##  [51] BiocParallel_1.16.6           dplyr_0.8.0.1                
+##  [53] R.oo_1.22.0                   RCurl_1.95-4.12              
+##  [55] magrittr_1.5                  GenomeInfoDbData_1.2.0       
+##  [57] Matrix_1.2-17                 Rcpp_1.0.1                   
+##  [59] munsell_0.5.0                 S4Vectors_0.20.1             
+##  [61] R.methodsS3_1.7.1             stringi_1.4.3                
+##  [63] yaml_2.2.0                    MASS_7.3-51.3                
+##  [65] SummarizedExperiment_1.12.0   zlibbioc_1.28.0              
+##  [67] brio_0.1.19                   goalie_0.2.15                
+##  [69] plyr_1.8.4                    AnnotationHub_2.14.5         
+##  [71] grid_3.5.2                    blob_1.1.1                   
+##  [73] ggrepel_0.8.0                 parallel_3.5.2               
+##  [75] transformer_0.1.9             promises_1.0.1               
+##  [77] crayon_1.3.4                  lattice_0.20-38              
+##  [79] cowplot_0.9.4                 Biostrings_2.50.2            
+##  [81] bioverbs_0.1.14               GenomicFeatures_1.34.8       
+##  [83] hms_0.4.2                     knitr_1.22                   
+##  [85] pillar_1.3.1                  GenomicRanges_1.34.0         
+##  [87] reshape2_1.4.3                biomaRt_2.38.0               
+##  [89] stats4_3.5.2                  XML_3.98-1.19                
+##  [91] glue_1.3.1                    evaluate_0.13                
+##  [93] freerange_0.1.3               data.table_1.12.2            
+##  [95] BiocManager_1.30.4            httpuv_1.5.1                 
+##  [97] tidyr_0.8.3                   gtable_0.3.0                 
+##  [99] grr_0.9.5                     purrr_0.3.2                  
+## [101] assertthat_0.2.1              ggplot2_3.1.1                
+## [103] xfun_0.6                      mime_0.6                     
+## [105] xtable_1.8-4                  AnnotationFilter_1.6.0       
+## [107] roxygen2_6.1.1                later_0.8.0                  
+## [109] pheatmap_1.0.12               SingleCellExperiment_1.4.1   
+## [111] tibble_2.1.1                  GenomicAlignments_1.18.1     
+## [113] Matrix.utils_0.9.7            AnnotationDbi_1.44.0         
+## [115] memoise_1.1.0                 IRanges_2.16.0               
+## [117] interactiveDisplayBase_1.20.0</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <p>The papers and software cited in our workflows are available as a <a href="https://paperpile.com/shared/5PLRi1">shared library</a> on <a href="https://paperpile.com/">Paperpile</a>.</p>
+<div class="references">
+
+</div>
 </div>
   </div>
 

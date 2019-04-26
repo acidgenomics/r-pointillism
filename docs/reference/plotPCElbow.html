@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -118,7 +118,9 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for Seurat</span>
+    <pre class="usage"><span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"pca"</span>, <span class='kw'>minSD</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"identity"</span>, <span class='st'>"sqrt"</span>))</pre>
     
@@ -157,6 +159,10 @@ Maximum cumulative percen standard deviation.</p></td>
 Name of the axis scale transformation to apply.</p>
 <p>For more information:</p><pre>help(topic = "scale_x_continuous", package = "ggplot2")
 </pre></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
