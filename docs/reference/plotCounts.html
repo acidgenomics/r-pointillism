@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -118,7 +118,13 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for SingleCellExperiment</span>
+    <pre class="usage"><span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
   <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
@@ -228,6 +234,10 @@ are desired, we recommend using <code><a href='https://www.rdocumentation.org/pa
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Whether the values should be centered and scaled in either the row or
 column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled ("<code>none</code>").</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
