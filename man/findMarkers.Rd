@@ -7,6 +7,8 @@
 \alias{findMarkers,Seurat-method}
 \title{Find cluster-specific marker genes}
 \usage{
+findMarkers(object, ...)
+
 \S4method{findMarkers}{SingleCellExperiment}(object, ...)
 
 \S4method{findMarkers}{Seurat}(object, ...)

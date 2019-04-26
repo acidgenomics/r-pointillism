@@ -1,15 +1,16 @@
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
+#'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
-#'
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
+#' @param ... Additional arguments.
 #'
-#' @seealso `Seurat::FeaturePlot()`.
+#' @seealso [Seurat::FeaturePlot()].
 #'
-#' @return `ggplot` or `list`.
+#' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
 #' data(seurat)
@@ -21,6 +22,7 @@ NULL
 #' @rdname plotFeature
 #' @name plotFeature
 #' @importFrom bioverbs plotFeature
+#' @usage plotFeature(object, ...)
 #' @export
 NULL
 

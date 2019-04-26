@@ -7,12 +7,16 @@
 \alias{clusterID,Seurat-method}
 \title{Cluster identifier}
 \usage{
+clusterID(object, ...)
+
 \S4method{clusterID}{SingleCellExperiment}(object)
 
 \S4method{clusterID}{Seurat}(object)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{factor}.

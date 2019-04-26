@@ -7,6 +7,8 @@
 \alias{diffExp,Seurat-method}
 \title{Differential expression}
 \usage{
+diffExp(object, ...)
+
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
   minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
@@ -44,6 +46,8 @@ filtering. The number of cells is defined by \code{minCellsPerGene}.}
 Back-end method to be used for computations.
 See \code{\link[BiocParallel:bpparam]{bpparam}} for details.
 Currently only used by DESeq2 but not edgeR for calculations here.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Varies depending on the \code{caller} argument:
