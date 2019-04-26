@@ -1,16 +1,15 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
-#'
 #' @inherit bioverbs::plotCellTypesPerCluster
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
 #' type (per unbiased cluster). Cell types with too few (`min` cutoff) or too
 #' many (`max` cutoff) marker genes will be skipped.
 #'
+#' @inheritParams acidplots::params
+#' @inheritParams basejump::params
+#' @inheritParams params
 #' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
@@ -29,6 +28,7 @@ NULL
 #' @rdname plotCellTypesPerCluster
 #' @name plotCellTypesPerCluster
 #' @importFrom bioverbs plotCellTypesPerCluster
+#' @usage plotCellTypesPerCluster(object, ...)
 #' @export
 NULL
 

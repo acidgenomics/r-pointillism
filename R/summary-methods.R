@@ -1,7 +1,10 @@
 #' @name summary
 #' @importFrom S4Vectors summary
 #' @inherit basejump::summary
+#'
 #' @inheritParams basejump::params
+#' @param ... Additional arguments.
+#'
 #' @examples
 #' data(rse, txse, package = "acidtest")
 #'
@@ -19,6 +22,7 @@ NULL
 #' @rdname summary
 #' @name summary
 #' @importFrom S4Vectors summary
+#' @usage summary(object, ...)
 #' @export
 NULL
 

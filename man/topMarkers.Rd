@@ -6,6 +6,8 @@
 \alias{topMarkers,SeuratMarkersPerCluster-method}
 \title{Top markers}
 \usage{
+topMarkers(object, ...)
+
 \S4method{topMarkers}{SeuratMarkersPerCluster}(object, n = 10L,
   direction = c("up", "down", "both"), return = c("tbl_df",
   "DataFrame", "SplitDataFrameList"))
@@ -23,6 +25,8 @@ Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 \item{return}{\code{character(1)}.
 Return type. Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults
 to the first argument in the \code{character} vector.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{grouped_df}.
@@ -37,7 +41,7 @@ print(x)
 }
 \seealso{
 \itemize{
-\item \code{dplyr::slice}.
-\item \code{dplyr::top_n}.
+\item \code{dplyr::slice()}.
+\item \code{dplyr::top_n()}.
 }
 }

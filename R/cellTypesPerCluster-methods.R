@@ -1,11 +1,12 @@
 #' @name cellTypesPerCluster
 #' @inherit bioverbs::cellTypesPerCluster
-#' @inheritParams basejump::params
 #'
+#' @inheritParams basejump::params
 #' @param min `integer(1)`.
 #'   Minimum number of marker genes per cluster.
 #' @param max `integer(1)`.
 #'   Maximum number of marker genes per cluster.
+#' @param ... Additional arguments.
 #'
 #' @return `grouped_df`.
 #' Grouped by `cluster` column, containing the count (`n`) of significant  known
@@ -26,6 +27,7 @@ NULL
 #' @rdname cellTypesPerCluster
 #' @name cellTypesPerCluster
 #' @importFrom bioverbs cellTypesPerCluster
+#' @usage cellTypesPerCluster(object, ...)
 #' @export
 NULL
 

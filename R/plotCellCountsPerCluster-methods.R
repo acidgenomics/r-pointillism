@@ -1,8 +1,10 @@
 #' @name plotCellCountsPerCluster
 #' @inherit bioverbs::plotCellCountsPerCluster
+#'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @return Show graphical output. Invisibly return `ggplot`.
 #'
@@ -16,6 +18,7 @@ NULL
 #' @rdname plotCellCountsPerCluster
 #' @name plotCellCountsPerCluster
 #' @importFrom bioverbs plotCellCountsPerCluster
+#' @usage plotCellCountsPerCluster(object, ...)
 #' @export
 NULL
 

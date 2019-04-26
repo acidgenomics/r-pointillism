@@ -7,6 +7,8 @@
 \alias{plotTopMarkers,Seurat-method}
 \title{Plot top markers}
 \usage{
+plotTopMarkers(object, ...)
+
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
   direction = c("up", "down", "both"), reducedDim = "TSNE",
   headerLevel = 2L, progress = FALSE, ...)

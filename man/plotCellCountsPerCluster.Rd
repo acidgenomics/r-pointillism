@@ -7,6 +7,8 @@
 \alias{plotCellCountsPerCluster,Seurat-method}
 \title{Plot cell counts per cluster}
 \usage{
+plotCellCountsPerCluster(object, ...)
+
 \S4method{plotCellCountsPerCluster}{SingleCellExperiment}(object,
   interestingGroups = NULL)
 
@@ -19,6 +21,8 @@
 \item{interestingGroups}{\code{character}.
 Groups of interest that define the samples. If left unset, defaults to
 \code{sampleName}.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Show graphical output. Invisibly return \code{ggplot}.

@@ -6,6 +6,8 @@
 \alias{cellTypesPerCluster,KnownMarkers-method}
 \title{Cell types per cluster}
 \usage{
+cellTypesPerCluster(object, ...)
+
 \S4method{cellTypesPerCluster}{KnownMarkers}(object, min = 1L,
   max = Inf)
 }
@@ -17,6 +19,8 @@ Minimum number of marker genes per cluster.}
 
 \item{max}{\code{integer(1)}.
 Maximum number of marker genes per cluster.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{grouped_df}.

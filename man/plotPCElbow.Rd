@@ -6,6 +6,8 @@
 \alias{plotPCElbow,Seurat-method}
 \title{Plot principal component elbow}
 \usage{
+plotPCElbow(object, ...)
+
 \S4method{plotPCElbow}{Seurat}(object, reducedDim = "pca", minSD = 1L,
   minPct = 0.01, maxCumPct = 0.9, trans = c("identity", "sqrt"))
 }
@@ -31,6 +33,8 @@ Name of the axis scale transformation to apply.
 
 For more information:\preformatted{help(topic = "scale_x_continuous", package = "ggplot2")
 }}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \itemize{

@@ -1,9 +1,9 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
+#'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
 #' @inheritParams params
-#'
 #' @param markers `grouped_df`.
 #'   Marker genes, grouped by `"cellType"`.
 #' @param ... Passthrough arguments to [plotMarker()].
@@ -21,6 +21,7 @@ NULL
 #' @rdname plotKnownMarkers
 #' @name plotKnownMarkers
 #' @importFrom bioverbs plotKnownMarkers
+#' @usage plotKnownMarkers(object, markers, ...)
 #' @export
 NULL
 
