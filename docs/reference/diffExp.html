@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -73,7 +74,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +92,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,13 +123,13 @@
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
-  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())
+  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a></span>())
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
-  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/SerialParam-class'>SerialParam</a></span>())</pre>
+  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,25 +150,25 @@ Cells to use in the denominator of the contrast (e.g. control).</p></td>
     </tr>
     <tr>
       <th>caller</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
 Package to use for differential expression calling. Defaults to <code>"edgeR"</code>
 (faster for large datasets) but <code>"DESeq2"</code> is also supported.</p></td>
     </tr>
     <tr>
       <th>minCells</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
 Minimum number of cells required to perform the differential expression
 analysis.</p></td>
     </tr>
     <tr>
       <th>minCellsPerGene</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
 The minimum number of cells where a gene is expressed, to pass low
 expression filtering.</p></td>
     </tr>
     <tr>
       <th>minCountsPerCell</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
 Minimum number of counts per cell for a gene to pass low expression
 filtering. The number of cells is defined by <code>minCellsPerGene</code>.</p></td>
     </tr>
@@ -175,7 +176,7 @@ filtering. The number of cells is defined by <code>minCellsPerGene</code>.</p></
       <th>BPPARAM</th>
       <td><p><code>bpparamClass</code>.
 Back-end method to be used for computations.
-See <code><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></code> for details.
+See <code><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></code> for details.
 Currently only used by DESeq2 but not edgeR for calculations here.</p></td>
     </tr>
     <tr>
@@ -189,7 +190,7 @@ Currently only used by DESeq2 but not edgeR for calculations here.</p></td>
     <p>Varies depending on the <code>caller</code> argument:</p><ul>
 <li><p><code>caller = "edgeR"</code>: <code>DEGLRT</code>.</p></li>
 <li><p><code>caller = "DESeq2"</code>: Unshrunken <code>DESeqResults</code>.
-Apply <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> if shrunken results are desired.</p></li>
+Apply <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::lfcShrink()</a></code> if shrunken results are desired.</p></li>
 </ul>
 
     
@@ -211,7 +212,7 @@ RNA-seq datasets.</p>
 caller. It is currently considerably slower for large datasets than edgeR.</p>
 <p>We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
-level for the fold change calculations. See <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/results'>DESeq2::results()</a></code> for details.</p>
+level for the fold change calculations. See <code><a href='https://rdrr.io/pkg/DESeq2/man/results.html'>DESeq2::results()</a></code> for details.</p>
 <p>Van de Berge and Perraudeau and others have shown the LRT may perform better
 for null hypothesis testing, so we use the LRT. In order to use the Wald
 test, it is recommended to set <code>useT = TRUE</code> (<em>not currently in use</em>).</p>
@@ -224,29 +225,29 @@ zinbwave, which is no longer recommended for droplet scRNA-seq.</p>
 
     
     <p>The LRT has been shown to perform better for null hypothesis testing with
-droplet scRNA-seq data. Here we are using <code><a href='https://www.rdocumentation.org/packages/edgeR/topics/glmfit'>edgeR::glmLRT()</a></code> internally.</p>
+droplet scRNA-seq data. Here we are using <code><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>edgeR::glmLRT()</a></code> internally.</p>
 <p>edgeR is currently significantly faster than DESeq2 for large datasets.</p>
     
     <h2 class="hasAnchor" id="seurat-conventions"><a class="anchor" href="#seurat-conventions"></a>Seurat conventions</h2>
 
     
     <p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
-and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdocumentation.org/packages/Seurat/topics/FindMarkers'>Seurat::FindMarkers()</a></code> for details.</p>
+and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io/pkg/Seurat/man/FindMarkers.html'>Seurat::FindMarkers()</a></code> for details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/Seurat/topics/WhichCells'>Seurat::WhichCells()</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/Seurat/man/WhichCells.html'>Seurat::WhichCells()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>seurat</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat</span>)
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
 <span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
-<span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
+<span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
+#&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        19 character character </div><div class='input'>
 ## edgeR
@@ -302,7 +303,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://www.rdo
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>
