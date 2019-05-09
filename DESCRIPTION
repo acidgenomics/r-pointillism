@@ -31,7 +31,7 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
-    SingleCellExperiment (>= 1.4),
+    SingleCellExperiment,
     basejump (>= 0.10.3)
 Imports:
     acidplots (>= 0.2.0),
