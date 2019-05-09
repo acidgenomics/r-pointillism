@@ -31,7 +31,7 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
-    SingleCellExperiment,
+    SingleCellExperiment (>= 1.4),
     basejump (>= 0.10.3)
 Imports:
     acidplots (>= 0.2.0),
@@ -39,10 +39,10 @@ Imports:
     goalie (>= 0.2.15),
     BiocGenerics,
     BiocParallel,
-    DESeq2,
+    DESeq2 (>= 1.22),
     S4Vectors,
     SummarizedExperiment,
-    edgeR,
+    edgeR (>= 3.24),
     Matrix (>= 1.2),
     Seurat (>= 3.0),
     cowplot (>= 0.9),
