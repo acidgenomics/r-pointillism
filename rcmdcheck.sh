@@ -15,15 +15,12 @@ export TZ="America/New_York"
 
 # Get the package version and define the `R CMD build` tarball output.
 PKG_NAME="$(basename "$PWD")"
-PKG_VERSION="$(grep -E "^Version:\s[.0-9a-z]+$" DESCRIPTION | sed "s/^Version:\s//")"
+PKG_VERSION="$(grep -E "^Version:\s[.0-9a-z]+$" DESCRIPTION | sed "s/^Version:[[:space:]]//")"
 PKG_TARBALL="${PKG_NAME}_${PKG_VERSION}.tar.gz"
 
 echo "Session information"
 Rscript -e "utils::sessionInfo()"
 Rscript -e "sessioninfo::session_info()"
-
-echo "Installed packages"
-Rscript -e "installed.packages()[, \"Version\", drop = TRUE]"
 
 echo "R CMD check"
 # Set `--as-cran` flag for extra verbose incoming package checks.
