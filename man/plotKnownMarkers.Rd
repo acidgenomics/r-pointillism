@@ -36,7 +36,8 @@ Show progress, using progress bars.}
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 }
 \value{
-Show graphical output. Invisibly return a \code{ggplot} \code{list}.
+Show graphical output.
+Invisibly return a \code{ggplot} \code{list}.
 }
 \description{
 Plot known markers
