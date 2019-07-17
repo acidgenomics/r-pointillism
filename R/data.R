@@ -16,14 +16,6 @@
 
 
 
-#' Seurat example
-#' @examples
-#' data(seurat)
-#' seurat
-"seurat"
-
-
-
 #' Seurat all markers example
 #' @examples
 #' data(seurat_all_markers)
