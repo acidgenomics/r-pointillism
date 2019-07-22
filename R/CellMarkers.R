@@ -15,15 +15,15 @@
         group <- "cellType"
     }
 
-    # Coerce to tibble and sanitize.
+    ## Coerce to tibble and sanitize.
     data <- object %>%
         as_tibble(rownames = NULL) %>%
         camel() %>%
         select(!!!syms(c(group, "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
 
-    # Warn user about markers that aren't present in the gene2symbol.
-    # This is useful for informing about putative markers that aren't expressed.
+    ## Warn user about markers that aren't present in the gene2symbol.
+    ## This is useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
     if (length(setdiff)) {
         stop(paste(

@@ -30,9 +30,9 @@ NULL
 
 summary.SeuratMarkers <-  # nolint
     function(object) {
-        # Metadata.
+        ## Metadata.
         m <- metadata(object)
-        # Row ranges metadata.
+        ## Row ranges metadata.
         rrm <- metadata(object[["ranges"]])
         showSlotInfo(list(
             alpha = m[["alpha"]],
@@ -60,9 +60,9 @@ summary.SeuratMarkersPerCluster <-  # nolint
     function(object) {
         cat(paste(length(object), "clusters"), sep = "\n")
         data <- do.call(what = rbind, args = object)
-        # Metadata.
+        ## Metadata.
         m <- metadata(data)
-        # Row ranges metadata.
+        ## Row ranges metadata.
         rrm <- metadata(data[["ranges"]])
         showSlotInfo(list(
             alpha = m[["alpha"]],

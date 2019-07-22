@@ -28,7 +28,7 @@ NULL
 
 
 
-# Note: We aren't using `title` argument here.
+## Note: We aren't using `title` argument here.
 plotFeature.SingleCellExperiment <-  # nolint
     function(
         object,
@@ -43,14 +43,14 @@ plotFeature.SingleCellExperiment <-  # nolint
         dark,
         legend
     ) {
-        # Legacy arguments -----------------------------------------------------
-        # color
+        ## Legacy arguments -----------------------------------------------------
+        ## color
         if (identical(color, "auto")) {
             warning("Use `NULL` instead of `\"auto\"` for `color`")
             color <- NULL
         }
 
-        # Assert checks --------------------------------------------------------
+        ## Assert checks --------------------------------------------------------
         assert(isCharacter(features))
         reducedDim <- match.arg(reducedDim)
         assert(
@@ -69,7 +69,7 @@ plotFeature.SingleCellExperiment <-  # nolint
             isFlag(legend)
         )
 
-        # Dark mode setup.
+        ## Dark mode setup.
         if (isTRUE(dark)) {
             fill <- "black"
         } else {
@@ -81,11 +81,11 @@ plotFeature.SingleCellExperiment <-  # nolint
             reducedDim = reducedDim
         )
 
-        # Label the axes.
+        ## Label the axes.
         axes <- colnames(data)[seq_len(2L)]
 
-        # If the features are not defined, attempt to merge all reduced dims
-        # information before stopping
+        ## If the features are not defined, attempt to merge all reduced dims
+        ## information before stopping
         if (!all(features %in% colnames(data))) {
             reducedDimsData <- do.call(
                 what = cbind,
@@ -99,7 +99,7 @@ plotFeature.SingleCellExperiment <-  # nolint
         }
         assert(isSubset(features, colnames(data)))
 
-        # Need to add pointsAsNumbers support.
+        ## Need to add pointsAsNumbers support.
         if (isTRUE(pointsAsNumbers)) {
             stop("pointsAsNumbers isn't supported yet")
         }
@@ -160,7 +160,7 @@ plotFeature.SingleCellExperiment <-  # nolint
             p
         })
 
-        # Return ---------------------------------------------------------------
+        ## Return ---------------------------------------------------------------
         if (length(features) > 1L) {
             plot_grid(plotlist = plotlist) +
                 theme(

@@ -46,7 +46,7 @@ cellTypesPerCluster.KnownMarkers <-  # nolint
             isInt(max)
         )
 
-        # Note that the order is important here.
+        ## Note that the order is important here.
         groupCols <- c("cluster", "cellType")
 
         data <- object %>%
@@ -56,10 +56,10 @@ cellTypesPerCluster.KnownMarkers <-  # nolint
             mutate_at(groupCols, as.factor) %>%
             group_by(!!!syms(groupCols)) %>%
             arrange(!!sym("padj"), .by_group = TRUE) %>%
-            # Only positive markers are informative and should be used.
+            ## Only positive markers are informative and should be used.
             filter(!!sym("avgLogFC") > 0L) %>%
-            # Use `toString()` instead of `aggregate()` for R Markdown tables.
-            # Genes are arranged by P value.
+            ## Use `toString()` instead of `aggregate()` for R Markdown tables.
+            ## Genes are arranged by P value.
             summarize(
                 n = n(),
                 name = toString(!!sym("name")),
@@ -69,7 +69,7 @@ cellTypesPerCluster.KnownMarkers <-  # nolint
             group_by(!!sym("cluster")) %>%
             arrange(desc(!!sym("n")), .by_group = TRUE)
 
-        # Apply minimum and maximum gene cutoffs.
+        ## Apply minimum and maximum gene cutoffs.
         if (is.numeric(min) && min > 1L) {
             data <- filter(data, !!sym("n") >= !!min)
         }

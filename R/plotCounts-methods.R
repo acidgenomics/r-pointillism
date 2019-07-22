@@ -72,7 +72,7 @@ NULL
 
 
 
-# plotCounts ===================================================================
+## plotCounts ===================================================================
 plotCounts.SingleCellExperiment <-  # nolint
     function(
         object,
@@ -98,7 +98,7 @@ formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 
-# plotDot ======================================================================
+## plotDot ======================================================================
 #' Min Max
 #' @seealso `Seurat:::MinMax`.
 #' @noRd
@@ -152,7 +152,7 @@ plotDot.SingleCellExperiment <-  # nolint
             isString(title, nullOK = TRUE)
         )
 
-        # Fetch the gene expression data.
+        ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
@@ -160,14 +160,14 @@ plotDot.SingleCellExperiment <-  # nolint
             metadata = TRUE
         )
 
-        # Prepare data for ggplot.
+        ## Prepare data for ggplot.
         cols <- c("geneName", "sampleName", "ident")
         data <- data %>%
             as_tibble() %>%
             group_by(!!!syms(cols)) %>%
             summarize(
                 avgExp = mean(expm1(!!sym("logcounts"))),
-                # Consider making threshold user definable.
+                ## Consider making threshold user definable.
                 pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
             ) %>%
             ungroup() %>%
@@ -183,7 +183,7 @@ plotDot.SingleCellExperiment <-  # nolint
             ) %>%
             arrange(!!!syms(cols), .by_group = TRUE)
 
-        # Apply our `dotMin` threshold.
+        ## Apply our `dotMin` threshold.
         data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
 
         p <- ggplot(
@@ -206,7 +206,7 @@ plotDot.SingleCellExperiment <-  # nolint
                 y = NULL
             )
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -254,7 +254,7 @@ plotViolin.SingleCellExperiment <-  # nolint
         )
         scale <- match.arg(scale)
 
-        # Fetch the gene expression data.
+        ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
@@ -262,7 +262,7 @@ plotViolin.SingleCellExperiment <-  # nolint
             metadata = TRUE
         )
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -299,10 +299,10 @@ plotViolin.SingleCellExperiment <-  # nolint
                 show.legend = legend,
                 trim = TRUE
             ) +
-            # Note that `scales = free_y` will hide the x-axis for some plots.
+            ## Note that `scales = free_y` will hide the x-axis for some plots.
             labs(title = title, color = colorLabs)
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -333,7 +333,7 @@ formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
 
 
 
-# Methods ======================================================================
+## Methods ======================================================================
 #' @rdname plotCounts
 #' @export
 setMethod(

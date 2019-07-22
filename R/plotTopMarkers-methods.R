@@ -42,7 +42,7 @@ plotTopMarkers.SingleCellExperiment <-  # nolint
         progress = FALSE,
         ...
     ) {
-        # Passthrough: n, direction, coding
+        ## Passthrough: n, direction, coding
         validObject(object)
         markers <- topMarkers(
             object = markers,

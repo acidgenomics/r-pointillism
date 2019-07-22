@@ -34,12 +34,12 @@
 
 .isKnownMarkers <- function(object) {
     all(
-        # Require a tibble.
+        ## Require a tibble.
         is(object, "tbl_df"),
-        # Require grouping by `cellType` column.
-        # Can use `attr` instead of `group_vars` here.
+        ## Require grouping by `cellType` column.
+        ## Can use `attr` instead of `group_vars` here.
         identical(group_vars(object), "cellType"),
-        # Require that there are genes.
+        ## Require that there are genes.
         hasRows(object)
     )
 }
@@ -70,7 +70,7 @@
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
-    # General checks -----------------------------------------------------------
+    ## General checks -----------------------------------------------------------
     if (!is(object, "grouped_df")) {
         return(FALSE)
     } else if (
@@ -82,11 +82,11 @@
         return(FALSE)
     }
 
-    # Package-specific checks --------------------------------------------------
+    ## Package-specific checks --------------------------------------------------
     if (package == "Seurat") {
-        # Check for `Seurat::FindAllMarkers` return.
-        # These columns are output in an inconsistent format, so we'll sanitize
-        # into lowerCamelCase.
+        ## Check for `Seurat::FindAllMarkers` return.
+        ## These columns are output in an inconsistent format, so we'll sanitize
+        ## into lowerCamelCase.
         seuratBlacklist <- c(
             "avg_diff",   # Legacy, now "avg_logFC"
             "avg_logFC",  # Renamed in v2.1

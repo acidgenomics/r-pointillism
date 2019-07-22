@@ -43,11 +43,11 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         direction <- match.arg(direction)
         return <- match.arg(return)
 
-        # Using `Markers` to `tbl_df` coercion method.
+        ## Using `Markers` to `tbl_df` coercion method.
         data <- as(object, "tbl_df")
 
-        # Subset to positive or negative correlation, if desired ("direction")
-        # Note that `avgDiff` has been renamed to `avgLogFC` in Seurat v2.1.
+        ## Subset to positive or negative correlation, if desired ("direction")
+        ## Note that `avgDiff` has been renamed to `avgLogFC` in Seurat v2.1.
         if (direction == "up") {
             message("Including upregulated markers.")
             data <- filter(data, !!sym("avgLogFC") > 0L)
@@ -59,12 +59,12 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         }
 
         data <- data %>%
-            # Arrange by adjusted P value.
+            ## Arrange by adjusted P value.
             arrange(!!sym("padj"), .by_group = TRUE) %>%
-            # Take the top rows by using slice.
+            ## Take the top rows by using slice.
             dplyr::slice(1L:n)
 
-        # Return.
+        ## Return.
         if (return == "tbl_df") {
             message("Returning as tibble.")
             data

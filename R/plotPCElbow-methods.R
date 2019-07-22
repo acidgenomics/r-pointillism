@@ -62,8 +62,8 @@ plotPCElbow.Seurat <-  # nolint
         )
         trans <- match.arg(trans)
 
-        # dr: dimensional reduction
-        # sdev: standard deviation
+        ## dr: dimensional reduction
+        ## sdev: standard deviation
         sdev <- Stdev(object = object, reduction = reducedDim)
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
@@ -86,10 +86,10 @@ plotPCElbow.Seurat <-  # nolint
             .[.[["cumsum"]] <= maxCumPct, "pc"] %>%
             max()
 
-        # Pick the smallest value of the cutoffs
+        ## Pick the smallest value of the cutoffs
         cutoff <- min(minSDCutoff, minPctCutoff, maxCumPctCutoff)
 
-        # Standard deviation ---------------------------------------------------
+        ## Standard deviation ---------------------------------------------------
         ggsd <- ggplot(
             data = data,
             mapping = aes(
@@ -112,7 +112,7 @@ plotPCElbow.Seurat <-  # nolint
             expand_limits(y = 0L) +
             scale_y_continuous(trans = trans)
 
-        # Percent standard deviation -------------------------------------------
+        ## Percent standard deviation -------------------------------------------
         ggpct <- ggplot(
             data = data,
             mapping = aes(
@@ -135,7 +135,7 @@ plotPCElbow.Seurat <-  # nolint
             expand_limits(y = 0L) +
             scale_y_continuous(labels = percent, trans = trans)
 
-        # Cumulative percent standard deviation --------------------------------
+        ## Cumulative percent standard deviation --------------------------------
         ggcumsum <- ggplot(
             data = data,
             mapping = aes(

@@ -1,4 +1,4 @@
-# nocov start
+## nocov start
 
 
 
@@ -14,7 +14,7 @@ NULL
 
 
 
-# v0.2.0 =======================================================================
+## v0.2.0 =======================================================================
 #' @rdname defunct
 #' @export
 knownMarkers <- function(...) {
@@ -55,7 +55,7 @@ sanitizeMarkers <- function(...) {
 
 
 
-# v0.2.5 =======================================================================
+## v0.2.5 =======================================================================
 #' @rdname defunct
 #' @export
 importCellCycleMarkersFromGoogle <- function(...) {
@@ -77,4 +77,4 @@ runZinbwave <- function(...) {
 
 
 
-# nocov end
+## nocov end

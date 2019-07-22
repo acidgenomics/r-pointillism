@@ -18,6 +18,6 @@ objects <- list(
 )
 genes <- head(rownames(seurat))
 
-# nolint start
+## nolint start
 group_vars <- dplyr::group_vars
-# nolint end
+## nolint end

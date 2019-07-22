@@ -5,14 +5,14 @@ citation <- "citation(\"pointillism\")"
 
 separatorBar <- basejump::separator()
 
-# DR marker default color palettes.
+## DR marker default color palettes.
 darkMarkerColors <-
     ggplot2::scale_colour_viridis_c(option = "plasma")
 lightMarkerColors <-
     ggplot2::scale_colour_gradient(low = "gray90", high = "red")
 
-# Recommend serial by default.
-# This works reliably across platforms, but is slower.
+## Recommend serial by default.
+## This works reliably across platforms, but is slower.
 BPPARAM <- quote(BiocParallel::SerialParam())  # nolint
 
 continuousColor <-
@@ -50,7 +50,7 @@ pointsAsNumbers <-
     quote(getOption("acid.pointsAsNumbers", default = FALSE))
 reducedDim <- "TSNE"
 
-# Set default ggplot2 theme.
+## Set default ggplot2 theme.
 if (isTRUE(getOption("acid.dark"))) {
     theme <- acidplots::acid_theme_dark
 } else {

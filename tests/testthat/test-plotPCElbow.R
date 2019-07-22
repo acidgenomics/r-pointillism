@@ -1,6 +1,6 @@
 context("plotPCElbow")
 
-# We're testing here to ensure that our seurat matches pbmc_small.
+## We're testing here to ensure that our seurat matches pbmc_small.
 
 with_parameters_test_that(
     "Seurat", {

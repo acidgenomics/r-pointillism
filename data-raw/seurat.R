@@ -1,5 +1,5 @@
-# Seurat example data
-# Updated 2019-07-16.
+## Seurat example data
+## Updated 2019-07-16.
 
 library(pryr)
 library(reticulate)
@@ -11,13 +11,13 @@ library(tidyverse)
 
 data(seurat, package = "acidtest")
 
-# seurat_all_markers ===========================================================
+## seurat_all_markers ===========================================================
 seurat_all_markers <- SeuratMarkersPerCluster(
     object = FindAllMarkers(seurat),
     ranges = rowRanges(seurat)
 )
 
-# known_markers_small ==========================================================
+## known_markers_small ==========================================================
 data(cell_type_markers)
 seurat_known_markers <- KnownMarkers(
     markers = seurat_all_markers,
@@ -28,7 +28,7 @@ export(
     file = file.path("inst", "extdata", "cell_type_markers.csv")
 )
 
-# Save =========================================================================
+## Save =========================================================================
 usethis::use_data(
     seurat,
     seurat_all_markers,

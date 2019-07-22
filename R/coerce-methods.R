@@ -27,7 +27,7 @@ NULL
 
 
 
-# CellCycleMarkers to tbl_df ===================================================
+## CellCycleMarkers to tbl_df ===================================================
 #' @rdname coerce
 #' @name coerce,CellCycleMarkers,tbl_df-method
 #' @section `CellCycleMarkers` to `tbl_df`:
@@ -47,7 +47,7 @@ setAs(
 
 
 
-# CellTypeMarkers to tbl_df ====================================================
+## CellTypeMarkers to tbl_df ====================================================
 #' @rdname coerce
 #' @name coerce,CellTypeMarkers,tbl_df-method
 #' @section `CellTypeMarkers` to `tbl_df`:
@@ -67,7 +67,7 @@ setAs(
 
 
 
-# Seurat to SingleCellExperiment ===============================================
+## Seurat to SingleCellExperiment ===============================================
 #' @rdname coerce
 #' @name coerce,Seurat,SingleCellExperiment-method
 #'
@@ -83,14 +83,14 @@ setAs(
     from = "Seurat",
     to = "SingleCellExperiment",
     def = function(from) {
-        # Using the Seurat S3 coercion method here.
+        ## Using the Seurat S3 coercion method here.
         to <- as.SingleCellExperiment(x = from, assay = NULL)
 
-        # Row and column data.
+        ## Row and column data.
         rowRanges(to) <- rowRanges(from)
         colData(to) <- colData(to)
 
-        # Metadata.
+        ## Metadata.
         metadata(to) <- metadata(from)
         metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
         metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
@@ -101,7 +101,7 @@ setAs(
 
 
 
-# Seurat to RangedSummarizedExperiment =========================================
+## Seurat to RangedSummarizedExperiment =========================================
 #' @rdname coerce
 #' @name coerce,Seurat,RangedSummarizedExperiment-method
 #'
@@ -121,7 +121,7 @@ setAs(
 
 
 
-# Seurat to SummarizedExperiment ===============================================
+## Seurat to SummarizedExperiment ===============================================
 #' @rdname coerce
 #' @name coerce,Seurat,SummarizedExperiment-method
 #' @section `Seurat` to `SummarizedExperiment`:
@@ -140,7 +140,7 @@ setAs(
 
 
 
-# SeuratMarkers to tbl_df ======================================================
+## SeuratMarkers to tbl_df ======================================================
 #' @rdname coerce
 #' @name coerce,SeuratMarkers,tbl_df-method
 #' @section `SeuratMarkers` to `tbl_df`:
@@ -151,7 +151,7 @@ setAs(
     def = function(from) {
         validObject(from)
 
-        # Get gene2symbol from slotted ranges.
+        ## Get gene2symbol from slotted ranges.
         g2s <- mcols(from[["ranges"]])[c("geneID", "geneName")]
 
         data <- as(from, "DataFrame")
@@ -166,7 +166,7 @@ setAs(
 
 
 
-# SeuratMarkersPerCluster to tbl_df ============================================
+## SeuratMarkersPerCluster to tbl_df ============================================
 #' @rdname coerce
 #' @name coerce,SeuratMarkersPerCluster,tbl_df-method
 #' @section `SeuratMarkersPerCluster` to `tbl_df`:
@@ -178,13 +178,13 @@ setAs(
         validObject(from)
         data <- do.call(what = rbind, args = from)
 
-        # Get gene2symbol from slotted ranges.
+        ## Get gene2symbol from slotted ranges.
         g2s <- mcols(data[["ranges"]])[c("geneID", "geneName")]
         data[["ranges"]] <- NULL
 
         assert(areDisjointSets(colnames(data), colnames(g2s)))
         data <- cbind(data, g2s)
-        # Ensure Rle columns get decoded.
+        ## Ensure Rle columns get decoded.
         data <- decode(data)
         data <- as(data, "tbl_df")
 
@@ -197,7 +197,7 @@ setAs(
 
 
 
-# SingleCellExperiment to Seurat ===============================================
+## SingleCellExperiment to Seurat ===============================================
 #' @rdname coerce
 #' @name coerce,SingleCellExperiment,Seurat-method
 #'
@@ -211,14 +211,14 @@ setAs(
     from = "SingleCellExperiment",
     to = "Seurat",
     def = function(from) {
-        # Create the Seurat object. Note that `as.Seurat()` method requires
-        # `logcounts` to be defined in `assays()`, so we're using
-        # `CreateSeuratObject()` here instead.
+        ## Create the Seurat object. Note that `as.Seurat()` method requires
+        ## `logcounts` to be defined in `assays()`, so we're using
+        ## `CreateSeuratObject()` here instead.
         to <- CreateSeuratObject(
             counts = counts(from),
             project = "pointillism",
             assay = "RNA",
-            # Already applied filtering cutoffs for cells and genes.
+            ## Already applied filtering cutoffs for cells and genes.
             min.cells = 0L,
             min.features = 0L,
             names.field = 1L,
@@ -226,18 +226,18 @@ setAs(
             meta.data = as.data.frame(colData(from))
         )
 
-        # Check that the dimensions match exactly.
+        ## Check that the dimensions match exactly.
         assert(identical(x = dim(from), y = dim(to)))
 
-        # Stash rowRanges.
+        ## Stash rowRanges.
         rowRanges <- rowRanges(from)
 
-        # Stash metadata.
+        ## Stash metadata.
         metadata <- metadata(from)
-        # Update the session information.
+        ## Update the session information.
         metadata[["sessionInfo"]] <- session_info()
 
-        # Seurat v3 still recommends using `misc` slot.
+        ## Seurat v3 still recommends using `misc` slot.
         misc <- list(
             rowRanges = rowRanges,
             metadata = metadata

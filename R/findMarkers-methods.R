@@ -33,25 +33,25 @@ findMarkers.SingleCellExperiment <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
 
-        # Get the cluster identities.
+        ## Get the cluster identities.
         ident <- clusterID(object)
         assert(is.factor(ident), hasNames(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
-        # Loop across the clusters and calculate gene enrichment relative to
-        # all of the other clusters combined.
+        ## Loop across the clusters and calculate gene enrichment relative to
+        ## all of the other clusters combined.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 message(paste("Cluster", cluster, "===="))
-                # Numerator: cells in the current cluster.
+                ## Numerator: cells in the current cluster.
                 numerator <- ident[which(ident == cluster)]
                 assert(all(numerator == cluster))
                 numerator <- sort(names(numerator))
                 assert(isNonEmpty(numerator))
-                # Denominator: cells in all other clusters.
+                ## Denominator: cells in all other clusters.
                 denominator <- sort(setdiff(colnames(object), numerator))
                 assert(isNonEmpty(denominator))
                 diffExp(

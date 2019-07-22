@@ -116,7 +116,7 @@ NULL
 
 
 
-# Internal =====================================================================
+## Internal =====================================================================
 .designFormula <- ~group
 
 
@@ -130,7 +130,7 @@ NULL
 
 
 
-# diffExp ======================================================================
+## diffExp ======================================================================
 diffExp.SingleCellExperiment <-  # nolint
     function(
         object,
@@ -142,7 +142,7 @@ diffExp.SingleCellExperiment <-  # nolint
         minCountsPerCell = 1L,  # 5L
         BPPARAM  # nolint
     ) {
-        # Coerce to standard SCE to ensure fast subsetting.
+        ## Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
 
         assert(
@@ -150,7 +150,7 @@ diffExp.SingleCellExperiment <-  # nolint
             is.character(denominator)
         )
 
-        # Early return `NULL` on an imbalanced contrast.
+        ## Early return `NULL` on an imbalanced contrast.
         if (
             length(numerator) < minCells ||
             length(denominator) < minCells
@@ -169,7 +169,7 @@ diffExp.SingleCellExperiment <-  # nolint
 
         message(paste0("Performing differential expression with ", caller, "."))
 
-        # Subset the SCE object to contain the input cells.
+        ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
         message(paste(
             paste("Total:", length(cells), "cells"),
@@ -179,10 +179,10 @@ diffExp.SingleCellExperiment <-  # nolint
         ))
         object <- object[, cells, drop = FALSE]
 
-        # Ensure we're using a sparse matrix to calculate the logical matrix.
+        ## Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- as(counts(object), "sparseMatrix")
 
-        # Gene filter ----------------------------------------------------------
+        ## Gene filter ----------------------------------------------------------
         message("Applying gene expression low pass filter.")
         message(paste(
             "Requiring at least",
@@ -192,33 +192,33 @@ diffExp.SingleCellExperiment <-  # nolint
             "or more per gene."
         ))
 
-        # Filter the genes based on our expression threshold criteria.
-        # Note that this step generates a logical matrix, and will calculate
-        # a lot faster when using a sparse matrix (see above).
+        ## Filter the genes based on our expression threshold criteria.
+        ## Note that this step generates a logical matrix, and will calculate
+        ## a lot faster when using a sparse matrix (see above).
         genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
         message(paste(
             length(genes), "of", nrow(object), "genes passed filter."
         ))
 
-        # Early return NULL if no genes pass.
+        ## Early return NULL if no genes pass.
         if (!length(genes)) {
             warning("No genes passed the low count filter.", call. = FALSE)
             return(NULL)
         }
 
-        # Now subset the object by applying our low pass expression filter.
+        ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
 
-        # Cell filter ----------------------------------------------------------
-        # Inform the user if any cells have been removed.
+        ## Cell filter ----------------------------------------------------------
+        ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (length(trash)) {
             message(paste("Removed", length(trash), "low quality cells."))
         }
 
-        # Resize the numerator and denominator after our QC filters.
-        # Early return `NULL` if there are less than n cells in either.
+        ## Resize the numerator and denominator after our QC filters.
+        ## Early return `NULL` if there are less than n cells in either.
         numerator <- intersect(numerator, colnames(object))
         denominator <- intersect(denominator, colnames(object))
         if (
@@ -229,7 +229,7 @@ diffExp.SingleCellExperiment <-  # nolint
             return(NULL)
         }
 
-        # Create a cell factor to define the group.
+        ## Create a cell factor to define the group.
         numeratorFactor <- replicate(
             n = length(numerator),
             expr = "numerator"
@@ -247,18 +247,18 @@ diffExp.SingleCellExperiment <-  # nolint
             as.character(denominatorFactor)
         ))
         names(group) <- c(names(numeratorFactor), names(denominatorFactor))
-        # Ensure denominator is set as reference.
+        ## Ensure denominator is set as reference.
         group <- relevel(group, ref = "denominator")
         object[["group"]] <- group
 
-        # Set up the design matrix.
+        ## Set up the design matrix.
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
 
-        # Ensure raw counts matrix is dense before running DE.
+        ## Ensure raw counts matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))
 
-        # Perform differential expression.
+        ## Perform differential expression.
         fun <- get(
             x  = paste0(".diffExp.", caller),
             envir = asNamespace("pointillism"),
@@ -272,14 +272,13 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 
-# DESeq2 is slow for large datasets.
-#
-# - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
-# - `sfType`: Use "poscounts" instead of "ratio" here because we're
-#   expecting genes with zero counts.
-#   See `DESeq2::estimateSizeFactors()` for details.
-# - `minmu`: Set a lower threshold than the default 0.5, as recommended
-#   in Mike Love's zinbwave-DESeq2 vignette.
+## DESeq2 is slow for large datasets.
+## ## - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
+## - `sfType`: Use "poscounts" instead of "ratio" here because we're
+##   expecting genes with zero counts.
+##   See `DESeq2::estimateSizeFactors()` for details.
+## - `minmu`: Set a lower threshold than the default 0.5, as recommended
+##   in Mike Love's zinbwave-DESeq2 vignette.
 
 .diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
     assert(.hasDesignFormula(object))
@@ -298,7 +297,7 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
             minReplicatesForReplace = Inf,
             BPPARAM = BPPARAM
         )
-        # We have already performed low count filtering.
+        ## We have already performed low count filtering.
         res <- results(
             object = dds,
             independentFiltering = FALSE,
@@ -310,17 +309,16 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 
-# edgeR is much faster than DESeq2 for large datasets.
-#
-# Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
-# of the `glmLRT()` method, that allows an F-test with adjusted denominator
-# degrees of freedom, to account for the downweighting in the zero-inflation
-# model (which no longer applies here).
+## edgeR is much faster than DESeq2 for large datasets.
+## ## Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
+## of the `glmLRT()` method, that allows an F-test with adjusted denominator
+## degrees of freedom, to account for the downweighting in the zero-inflation
+## model (which no longer applies here).
 
 .diffExp.edgeR <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
     message("Running edgeR.")
-    # Ensure sparseMatrix gets coerced to dense matrix.
+    ## Ensure sparseMatrix gets coerced to dense matrix.
     counts <- as.matrix(counts(object))
     design <- metadata(object)[["design"]]
     assert(is.matrix(design))
