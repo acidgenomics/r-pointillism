@@ -5,7 +5,7 @@
 
 
 
-# CellCycleMarkers =============================================================
+## CellCycleMarkers =============================================================
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
@@ -38,7 +38,7 @@ setClass(
 
 
 
-# CellTypeMarkers ==============================================================
+## CellTypeMarkers ==============================================================
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
@@ -71,7 +71,7 @@ setClass(
 
 
 
-# Known Markers ================================================================
+## Known Markers ================================================================
 #' Known markers
 #'
 #' Class containing known markers detected.
@@ -108,7 +108,7 @@ setClass(
 
 
 
-# Seurat Markers ===============================================================
+## Seurat Markers ===============================================================
 #' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
@@ -140,7 +140,7 @@ setClass(
 
 
 
-# SeuratMarkersPerCluster ======================================================
+## SeuratMarkersPerCluster ======================================================
 #' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.

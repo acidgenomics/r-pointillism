@@ -9,7 +9,7 @@ NULL
 show.CellCycleMarkers <-  # nolint
     function(object) {
         validObject(object)
-        # Include the organism information.
+        ## Include the organism information.
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
         lengths <- nrow(object)
@@ -48,11 +48,11 @@ show.CellTypeMarkers <-  # nolint
     function(object) {
         validObject(object)
 
-        # Include the organism information.
+        ## Include the organism information.
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
 
-        # Include the gene lengths per phase.
+        ## Include the gene lengths per phase.
         lengths <- nrow(object)
         genes <- vapply(
             X = object,

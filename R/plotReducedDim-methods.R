@@ -92,7 +92,7 @@ NULL
 
 
 
-# Constructors =================================================================
+## Constructors =================================================================
 plotReducedDim.SingleCellExperiment <-  # nolint
     function(
         object,
@@ -127,7 +127,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             isString(title, nullOK = TRUE)
         )
 
-        # Color by `ident` factor by default.
+        ## Color by `ident` factor by default.
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
@@ -145,12 +145,12 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             )
         )
 
-        # Color by `ident` factor by default (see above).
+        ## Color by `ident` factor by default (see above).
         if (interestingGroups == "ident") {
             data[["interestingGroups"]] <- data[["ident"]]
         }
 
-        # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
+        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
         axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
         assert(isSubset(axes, colnames(data)))
 
@@ -169,7 +169,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             )
 
         if (isTRUE(pointsAsNumbers)) {
-            # Increase the size, if necessary.
+            ## Increase the size, if necessary.
             if (pointSize < 4L) {
                 message("Increase pointSize to 4.")
                 pointSize <- 4L
@@ -214,7 +214,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
                 )
         }
 
-        # Dark mode.
+        ## Dark mode.
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
         }
@@ -223,7 +223,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             p <- p + color
         }
 
-        # Improve the axis breaks.
+        ## Improve the axis breaks.
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
@@ -302,8 +302,8 @@ plotUMAP.SingleCellExperiment <-  # nolint
 
 
 
-# Formals ======================================================================
-# Set the formals for the convenience functions.
+## Formals ======================================================================
+## Set the formals for the convenience functions.
 f <- formals(plotReducedDim.SingleCellExperiment)
 f <- f[setdiff(names(f), "reducedDim")]
 formals(plotPCA.SingleCellExperiment) <- f
@@ -313,7 +313,7 @@ rm(f)
 
 
 
-# Methods ======================================================================
+## Methods ======================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(

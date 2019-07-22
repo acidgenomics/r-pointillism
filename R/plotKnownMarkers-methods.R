@@ -50,7 +50,7 @@ NULL
             applyFun <- lapply
         }
 
-        # Safe to remove our nested ranges.
+        ## Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
         markers[["ranges"]] <- NULL
 

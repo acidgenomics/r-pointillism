@@ -46,7 +46,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
         progress = FALSE,
         ...
     ) {
-        # Passthrough: color, dark.
+        ## Passthrough: color, dark.
         validObject(object)
         validObject(markers)
         assert(isScalar(reducedDim))
@@ -71,7 +71,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
             hasRows(markers)
         )
 
-        # Output Markdown headers per cluster.
+        ## Output Markdown headers per cluster.
         clusters <- markers[["cluster"]] %>%
             as.character() %>%
             unique()
@@ -101,7 +101,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                         level = headerLevel + 1L,
                         asis = TRUE
                     )
-                    # Modify the title by adding the cluster number.
+                    ## Modify the title by adding the cluster number.
                     title <- paste(paste0("Cluster ", cluster, ":"), title)
                     cellData <-
                         filter(clusterData, !!sym("cellType") == !!cellType)

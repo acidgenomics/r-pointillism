@@ -1,4 +1,4 @@
-# Require zero weights to be calculated, showing a more informative error.
+## Require zero weights to be calculated, showing a more informative error.
 .weights <- function(object) {
     msg <- paste(
         "Object does not contain zero weights in `weights` slot.",

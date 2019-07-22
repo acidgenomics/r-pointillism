@@ -1,5 +1,5 @@
-# Conflicts:
-# @importFrom Matrix rowMeans rowSums
+## Conflicts:
+## @importFrom Matrix rowMeans rowSums
 
 
 
