@@ -1,8 +1,9 @@
 ---
+## Updated 2019-04-17.
 params:
   title: "Per Cluster Analysis"
   
-  # Use Seurat object file as input.
+  ## Use Seurat object file as input.
   seurat_file: "data/YYYY-MM-DD/seurat.rds"
 
 title: "`r params$title`"
@@ -12,7 +13,6 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-# Last modified 2019-04-17
 library(pointillism)
 prepareTemplate(package = "pointillism")
 source("_setup.R")
