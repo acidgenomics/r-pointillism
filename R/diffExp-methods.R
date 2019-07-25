@@ -125,7 +125,7 @@ NULL
     warning(paste(
         "Skipping DE.",
         "Underpowered contrast (not enough cells)."
-    ), call. = FALSE)
+    ))
 }
 
 
@@ -203,7 +203,7 @@ diffExp.SingleCellExperiment <-  # nolint
 
         ## Early return NULL if no genes pass.
         if (!length(genes)) {
-            warning("No genes passed the low count filter.", call. = FALSE)
+            warning("No genes passed the low count filter.")
             return(NULL)
         }
 
