@@ -8,11 +8,11 @@
     weights <- tryCatch(
         expr = weights(object),
         error = function(e) {
-            stop(msg, call. = FALSE)
+            stop(msg)
         }
     )
     if (is.null(weights)) {
-        stop(msg, call. = FALSE)
+        stop(msg)
     }
     assert(is.matrix(weights))
     weights
