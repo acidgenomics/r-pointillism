@@ -1,11 +1,12 @@
 ---
+## Updated 2019-04-17.
 params:
   title: "Seurat Clustering"
   
-  # Use a filtered SingleCellExperiment object file as input.
+  ## Use a filtered SingleCellExperiment object file as input.
   sce_file: "data/YYYY-MM-DD/sce_filtered.rds"
   
-  # Name to use for Seurat object coerced from SingleCellExperiment.
+  ## Name to use for Seurat object coerced from SingleCellExperiment.
   seurat_name: "seurat"
   
   pc_compute: 20
@@ -16,7 +17,7 @@ params:
   resolution_calc: !r seq(from = 0.2, to = 1.2, by = 0.1)
   resolution_use: 0.6
   
-  # Use dark mode theme (`theme_midnight()`) for plots.
+  ## Use dark mode theme (`theme_midnight()`) for plots.
   dark: FALSE
   
   data_dir: !r file.path("rds", Sys.Date())
@@ -28,32 +29,30 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-# Last modified 2019-04-17
-
 library(Seurat)
 library(pointillism)
 prepareTemplate(package = "pointillism")
 source("_setup.R")
 
-# The reticulate package can check to see if UMAP module is installed.
-# This is required for `Seurat::RunUMAP()`.
+## The reticulate package can check to see if UMAP module is installed.
+## This is required for `Seurat::RunUMAP()`.
 has_umap <- reticulate::py_module_available(module = "umap")
 
-# knitr arguments for `rmarkdown::render()` looping.
-# > opts_chunk$set(
-# >     cache.path = paste(
-# >         params$seurat_name,
-# >         "clustering",
-# >         "cache/",
-# >         sep = "_"
-# >     ),
-# >     fig.path = paste(
-# >         params$seurat_name,
-# >         "clustering",
-# >         "files/",
-# >         sep = "_"
-# >     )
-# > )
+## knitr arguments for `rmarkdown::render()` looping.
+## > opts_chunk$set(
+## >     cache.path = paste(
+## >         params$seurat_name,
+## >         "clustering",
+## >         "cache/",
+## >         sep = "_"
+## >     ),
+## >     fig.path = paste(
+## >         params$seurat_name,
+## >         "clustering",
+## >         "files/",
+## >         sep = "_"
+## >     )
+## > )
 ```
 
 ```{r header, child="_header.Rmd"}
@@ -97,7 +96,7 @@ print(sce)
 organism <- metadata(sce)$organism
 stopifnot(is.character(organism))
 
-# Quality control features to plot.
+## Quality control features to plot.
 features <- c(
     "nUMI",
     "nGene",
@@ -107,7 +106,7 @@ features <- c(
     "G2M.Score"
 )
 
-# Vector to use for dimensional reduction plot looping.
+## Vector to use for dimensional reduction plot looping.
 reduced_dim_groups <- unique(c(
     "ident", "sampleName", interestingGroups(sce), "Phase"
 ))
@@ -173,7 +172,7 @@ seurat <- CellCycleScoring(
     g2m.genes = g2m_genes,
     s.genes = s_genes
 )
-# Cell-cycle `Phase` column should now be added to `seurat@meta.data`
+## Cell-cycle `Phase` column should now be added to `seurat@meta.data`
 assignAndSaveData(
     name = paste(params$seurat_name, "preregress", sep = "_"),
     object = seurat,
@@ -298,7 +297,7 @@ We're using a heuristic approach here, by calculating where the principal compon
 This methodology is also commonly used for PC covariate analysis on bulk RNA-seq samples.
 
 ```{r dims-use}
-# Allow for user-defined PCs to use; otherwise, calculate using a PC elbow plot.
+## Allow for user-defined PCs to use; otherwise, calculate using PC elbow plot.
 dims_use <- params$dims_use
 if (!is.numeric(params$dims_use)) {
     dims_use <- plotPCElbow(seurat)
@@ -316,7 +315,7 @@ The `FindClusters()` function implements the procedure, and contains a `resoluti
 Regarding the value of the `resolution` argument, use a value < 1 if you want to obtain fewer clusters.
 
 ```{r find-clusters}
-# Note that `resolution` argument supports multiple calculations.
+## Note that `resolution` argument supports multiple calculations.
 seurat <- FindClusters(
     object = seurat,
     dims.use = dims_use,
@@ -454,7 +453,7 @@ if (!is.null(params$resolution_use)) {
 Let's look at the variance in the number of UMI counts (`nUMI`), gene detection (`nGene`), and the percentage of mitochondrial gene expression (`mitoRatio`), to see if there are any obvious cluster artefacts. We can also assess cell cycle batch effects (`S.Score`, `G2M.Score`) and any principal component bias toward individual clusters.
 
 ```{r plot-feature-tsne}
-# See also `Seurat::FeaturePlot()`.
+## See also `Seurat::FeaturePlot()`.
 plotFeatureTSNE(
     object = seurat,
     features = features,
@@ -475,7 +474,7 @@ plotFeatureUMAP(
 Let's plot the feature specificity of the top principal components.
 
 ```{r plot-feature-pcs}
-# Limit to 9 PCs.
+## Limit to 9 PCs.
 feature_pcs <- paste0("PC", head(dims_use, 9))
 ```
 
