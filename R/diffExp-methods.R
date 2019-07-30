@@ -273,7 +273,8 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 ## DESeq2 is slow for large datasets.
-## ## - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
+##
+## - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
 ## - `sfType`: Use "poscounts" instead of "ratio" here because we're
 ##   expecting genes with zero counts.
 ##   See `DESeq2::estimateSizeFactors()` for details.
@@ -310,7 +311,8 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 
 
 ## edgeR is much faster than DESeq2 for large datasets.
-## ## Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
+##
+## Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
 ## of the `glmLRT()` method, that allows an F-test with adjusted denominator
 ## degrees of freedom, to account for the downweighting in the zero-inflation
 ## model (which no longer applies here).
