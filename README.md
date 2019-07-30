@@ -39,7 +39,7 @@ Shared [cell-cycle markers][] and [cell-type markers][] are available on [Google
 ### Maximal number of DLLs reached
 
 ```
-Error: package or namespace load failed for 'bcbioSingleCell' in dyn.load(file, DLLpath = DLLpath, ...):
+Error: package or namespace load failed for 'pointillism' in dyn.load(file, DLLpath = DLLpath, ...):
   maximal number of DLLs reached...
 ```
 
