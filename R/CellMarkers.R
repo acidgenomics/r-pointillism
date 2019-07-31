@@ -60,6 +60,7 @@
 #' @rdname CellCycleMarkers-class
 #' @inheritParams basejump::params
 #' @export
+## Updated 2019-07-31.
 CellCycleMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellCycleMarkers"
@@ -76,6 +77,7 @@ CellCycleMarkers <-  # nolint
 #' @rdname CellTypeMarkers-class
 #' @inheritParams basejump::params
 #' @export
+## Updated 2019-07-31.
 CellTypeMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellTypeMarkers"

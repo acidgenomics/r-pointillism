@@ -7,7 +7,8 @@ NULL
 
 
 
-show.CellCycleMarkers <-  # nolint
+## Updated 2019-07-31.
+`show,CellCycleMarkers` <-  # nolint
     function(object) {
         validObject(object)
         ## Include the organism information.
@@ -40,12 +41,13 @@ show.CellCycleMarkers <-  # nolint
 setMethod(
     f = "show",
     signature = signature("CellCycleMarkers"),
-    definition = show.CellCycleMarkers
+    definition = `show,CellCycleMarkers`
 )
 
 
 
-show.CellTypeMarkers <-  # nolint
+## Updated 2019-07-31.
+`show,CellTypeMarkers` <-  # nolint
     function(object) {
         validObject(object)
 
@@ -83,5 +85,5 @@ show.CellTypeMarkers <-  # nolint
 setMethod(
     f = "show",
     signature = signature("CellTypeMarkers"),
-    definition = show.CellTypeMarkers
+    definition = `show,CellTypeMarkers`
 )

@@ -10,11 +10,11 @@
 plotTopMarkers(object, ...)
 
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{

@@ -13,7 +13,7 @@ NULL
 
 
 
-## Internal =====================================================================
+## Internal ====================================================================
 .getSeuratStash <- function(object, name) {
     assert(
         is(object, "Seurat"),
@@ -47,7 +47,7 @@ NULL
 
 
 
-## assay ========================================================================
+## assay =======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
@@ -61,7 +61,7 @@ setMethod(
 
 
 
-## assayNames ===================================================================
+## assayNames ==================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assayNames
 #' @export
@@ -75,7 +75,7 @@ setMethod(
 
 
 
-## assays =======================================================================
+## assays ======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assays
 #' @export
@@ -89,7 +89,7 @@ setMethod(
 
 
 
-## colData ======================================================================
+## colData =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment colData
 #' @export
@@ -121,7 +121,7 @@ setMethod(
 
 
 
-## colnames =====================================================================
+## colnames ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics colnames
 #' @export
@@ -135,7 +135,7 @@ setMethod(
 
 
 
-## counts =======================================================================
+## counts ======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics counts
 #' @export
@@ -149,7 +149,7 @@ setMethod(
 
 
 
-## Gene2Symbol ==================================================================
+## Gene2Symbol =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump Gene2Symbol
 #' @export
@@ -163,7 +163,7 @@ setMethod(
 
 
 
-## interestingGroups ============================================================
+## interestingGroups ===========================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump interestingGroups
 #' @export
@@ -198,7 +198,7 @@ setMethod(
 
 
 
-## mapGenes =====================================================================
+## mapGenes ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump mapGenesToIDs
 #' @export
@@ -250,7 +250,7 @@ setMethod(
 
 
 
-## metadata =====================================================================
+## metadata ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom S4Vectors metadata
 #' @export
@@ -290,7 +290,7 @@ setMethod(
 
 
 
-## metrics ======================================================================
+## metrics =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump metrics
 #' @export
@@ -304,7 +304,7 @@ setMethod(
 
 
 
-## reducedDims ==================================================================
+## reducedDims =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment reducedDims
 #' @export
@@ -318,7 +318,7 @@ setMethod(
 
 
 
-## rowData ======================================================================
+## rowData =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowData
 #' @export
@@ -332,7 +332,7 @@ setMethod(
 
 
 
-## rownames =====================================================================
+## rownames ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics rownames
 #' @export
@@ -346,7 +346,7 @@ setMethod(
 
 
 
-## rowRanges ====================================================================
+## rowRanges ===================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowRanges
 #' @export
@@ -397,7 +397,7 @@ setMethod(
 
 
 
-## sampleData ===================================================================
+## sampleData ==================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump sampleData
 #' @export
@@ -434,7 +434,7 @@ setMethod(
 
 
 
-## sampleNames ==================================================================
+## sampleNames =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump sampleNames
 #' @export
@@ -448,7 +448,7 @@ setMethod(
 
 
 
-## weights ======================================================================
+## weights =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment weights
 #' @export

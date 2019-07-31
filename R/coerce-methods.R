@@ -28,15 +28,9 @@ NULL
 
 
 
-## CellCycleMarkers to tbl_df ===================================================
-#' @rdname coerce
-#' @name coerce,CellCycleMarkers,tbl_df-method
-#' @section `CellCycleMarkers` to `tbl_df`:
-#' S4 coercion support for creating a `tbl_df` from `CellCycleMarkers`.
-setAs(
-    from = "CellCycleMarkers",
-    to = "tbl_df",
-    def = function(from) {
+## Updated 2019-07-31.
+`coerce,CellCycleMarkers,tbl_df` <-  # nolint
+    function(from) {
         validObject(from)
         data <- do.call(what = rbind, args = from)
         data <- as(data, "tbl_df")
@@ -44,19 +38,24 @@ setAs(
         data <- group_by(data, !!sym("phase"))
         data
     }
+
+
+
+#' @rdname coerce
+#' @name coerce,CellCycleMarkers,tbl_df-method
+#' @section `CellCycleMarkers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `CellCycleMarkers`.
+setAs(
+    from = "CellCycleMarkers",
+    to = "tbl_df",
+    def = `coerce,CellCycleMarkers,tbl_df`
 )
 
 
 
-## CellTypeMarkers to tbl_df ====================================================
-#' @rdname coerce
-#' @name coerce,CellTypeMarkers,tbl_df-method
-#' @section `CellTypeMarkers` to `tbl_df`:
-#' S4 coercion support for creating a `tbl_df` from `CellTypeMarkers`.
-setAs(
-    from = "CellTypeMarkers",
-    to = "tbl_df",
-    def = function(from) {
+## Updated 2019-07-31.
+`coerce,CellTypeMarkers,tbl_df` <-  # nolint
+    function(from) {
         validObject(from)
         data <- do.call(what = rbind, args = from)
         data <- as(data, "tbl_df")
@@ -64,11 +63,38 @@ setAs(
         data <- group_by(data, !!sym("cellType"))
         data
     }
+
+
+
+#' @rdname coerce
+#' @name coerce,CellTypeMarkers,tbl_df-method
+#' @section `CellTypeMarkers` to `tbl_df`:
+#' S4 coercion support for creating a `tbl_df` from `CellTypeMarkers`.
+setAs(
+    from = "CellTypeMarkers",
+    to = "tbl_df",
+    def = `coerce,CellTypeMarkers,tbl_df`
 )
 
 
 
-## Seurat to SingleCellExperiment ===============================================
+## Updated 2019-07-31.
+`coerce,Seurat,SingleCellExperiment` <-  # nolint
+    function(from) {
+        ## Using the Seurat S3 coercion method here.
+        to <- as.SingleCellExperiment(x = from, assay = NULL)
+        ## Row and column data.
+        rowRanges(to) <- rowRanges(from)
+        colData(to) <- colData(to)
+        ## Metadata.
+        metadata(to) <- metadata(from)
+        metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
+        metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
+        to
+    }
+
+
+
 #' @rdname coerce
 #' @name coerce,Seurat,SingleCellExperiment-method
 #'
@@ -83,26 +109,22 @@ setAs(
 setAs(
     from = "Seurat",
     to = "SingleCellExperiment",
-    def = function(from) {
-        ## Using the Seurat S3 coercion method here.
-        to <- as.SingleCellExperiment(x = from, assay = NULL)
-
-        ## Row and column data.
-        rowRanges(to) <- rowRanges(from)
-        colData(to) <- colData(to)
-
-        ## Metadata.
-        metadata(to) <- metadata(from)
-        metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
-        metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
-
-        to
-    }
+    def = `coerce,Seurat,SingleCellExperiment`
 )
 
 
 
-## Seurat to RangedSummarizedExperiment =========================================
+## Updated 2019-07-31.
+`coerce,Seurat,RangedSummarizedExperiment` <-  # nolint
+    function(from) {
+        to <- from
+        to <- as(to, "SingleCellExperiment")
+        to <- as(to, "RangedSummarizedExperiment")
+        to
+    }
+
+
+
 #' @rdname coerce
 #' @name coerce,Seurat,RangedSummarizedExperiment-method
 #'
@@ -112,17 +134,22 @@ setAs(
 setAs(
     from = "Seurat",
     to = "RangedSummarizedExperiment",
-    def = function(from) {
-        to <- from
-        to <- as(to, "SingleCellExperiment")
-        to <- as(to, "RangedSummarizedExperiment")
-        to
-    }
+    def = `coerce,Seurat,RangedSummarizedExperiment`
 )
 
 
 
-## Seurat to SummarizedExperiment ===============================================
+## Updated 2019-07-31.
+`coerce,Seurat,SummarizedExperiment` <-  # nolint
+    function(from) {
+        to <- from
+        to <- as(to, "RangedSummarizedExperiment")
+        to <- as(to, "SummarizedExperiment")
+        to
+    }
+
+
+
 #' @rdname coerce
 #' @name coerce,Seurat,SummarizedExperiment-method
 #' @section `Seurat` to `SummarizedExperiment`:
@@ -131,17 +158,27 @@ setAs(
 setAs(
     from = "Seurat",
     to = "SummarizedExperiment",
-    def = function(from) {
-        to <- from
-        to <- as(to, "RangedSummarizedExperiment")
-        to <- as(to, "SummarizedExperiment")
-        to
-    }
+    def = `coerce,Seurat,SummarizedExperiment`
 )
 
 
 
-## SeuratMarkers to tbl_df ======================================================
+## Updated 2019-07-31.
+`coerce,SeuratMarkers,tbl_df` <-  # nolint
+    function(from) {
+        validObject(from)
+        ## Get gene2symbol from slotted ranges.
+        g2s <- mcols(from[["ranges"]])[c("geneID", "geneName")]
+        data <- as(from, "DataFrame")
+        data[["ranges"]] <- NULL
+        assert(areDisjointSets(colnames(data), colnames(g2s)))
+        data <- cbind(data, g2s)
+        data <- as(data, "tbl_df")
+        data
+    }
+
+
+
 #' @rdname coerce
 #' @name coerce,SeuratMarkers,tbl_df-method
 #' @section `SeuratMarkers` to `tbl_df`:
@@ -149,25 +186,31 @@ setAs(
 setAs(
     from = "SeuratMarkers",
     to = "tbl_df",
-    def = function(from) {
-        validObject(from)
-
-        ## Get gene2symbol from slotted ranges.
-        g2s <- mcols(from[["ranges"]])[c("geneID", "geneName")]
-
-        data <- as(from, "DataFrame")
-        data[["ranges"]] <- NULL
-        assert(areDisjointSets(colnames(data), colnames(g2s)))
-        data <- cbind(data, g2s)
-        data <- as(data, "tbl_df")
-
-        data
-    }
+    def = `coerce,SeuratMarkers,tbl_df`
 )
 
 
 
-## SeuratMarkersPerCluster to tbl_df ============================================
+## Updated 2019-07-31.
+`coerce,SeuratMarkersPerCluster,tbl_df` <-  # nolint
+    function(from) {
+        validObject(from)
+        data <- do.call(what = rbind, args = from)
+        ## Get gene2symbol from slotted ranges.
+        g2s <- mcols(data[["ranges"]])[c("geneID", "geneName")]
+        data[["ranges"]] <- NULL
+        assert(areDisjointSets(colnames(data), colnames(g2s)))
+        data <- cbind(data, g2s)
+        ## Ensure Rle columns get decoded.
+        data <- decode(data)
+        data <- as(data, "tbl_df")
+        message("Grouping by cluster.")
+        data <- group_by(data, !!sym("cluster"))
+        data
+    }
+
+
+
 #' @rdname coerce
 #' @name coerce,SeuratMarkersPerCluster,tbl_df-method
 #' @section `SeuratMarkersPerCluster` to `tbl_df`:
@@ -175,43 +218,14 @@ setAs(
 setAs(
     from = "SeuratMarkersPerCluster",
     to = "tbl_df",
-    def = function(from) {
-        validObject(from)
-        data <- do.call(what = rbind, args = from)
-
-        ## Get gene2symbol from slotted ranges.
-        g2s <- mcols(data[["ranges"]])[c("geneID", "geneName")]
-        data[["ranges"]] <- NULL
-
-        assert(areDisjointSets(colnames(data), colnames(g2s)))
-        data <- cbind(data, g2s)
-        ## Ensure Rle columns get decoded.
-        data <- decode(data)
-        data <- as(data, "tbl_df")
-
-        message("Grouping by cluster.")
-        data <- group_by(data, !!sym("cluster"))
-
-        data
-    }
+    def = `coerce,SeuratMarkersPerCluster,tbl_df`
 )
 
 
 
-## SingleCellExperiment to Seurat ===============================================
-#' @rdname coerce
-#' @name coerce,SingleCellExperiment,Seurat-method
-#'
-#' @section `SingleCellExperiment` to `Seurat`:
-#' Interally `Seurat::CreateSeuratObject` is called without applying any
-#' additional filtering cutoffs, since we have already defined them during our
-#' quality control analysis. Here we are passing the raw gene-level counts of
-#' the filtered cells into a new `Seurat` class object. Use
-#' `convertGenesToSymbols` to convert gene IDs to names (symbols).
-setAs(
-    from = "SingleCellExperiment",
-    to = "Seurat",
-    def = function(from) {
+## Updated 2019-07-31.
+`coerce,SingleCellExperiment,Seurat` <-  # nolint
+    function(from) {
         ## Create the Seurat object. Note that `as.Seurat()` method requires
         ## `logcounts` to be defined in `assays()`, so we're using
         ## `CreateSeuratObject()` here instead.
@@ -248,4 +262,20 @@ setAs(
 
         to
     }
+
+
+
+#' @rdname coerce
+#' @name coerce,SingleCellExperiment,Seurat-method
+#'
+#' @section `SingleCellExperiment` to `Seurat`:
+#' Interally `Seurat::CreateSeuratObject` is called without applying any
+#' additional filtering cutoffs, since we have already defined them during our
+#' quality control analysis. Here we are passing the raw gene-level counts of
+#' the filtered cells into a new `Seurat` class object. Use
+#' `convertGenesToSymbols` to convert gene IDs to names (symbols).
+setAs(
+    from = "SingleCellExperiment",
+    to = "Seurat",
+    def = `coerce,SingleCellExperiment,Seurat`
 )

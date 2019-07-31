@@ -23,7 +23,8 @@ NULL
 
 
 
-clusterID.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`clusterID,SingleCellExperiment` <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
@@ -39,13 +40,14 @@ clusterID.SingleCellExperiment <-  # nolint
 setMethod(
     f = "clusterID",
     signature = signature("SingleCellExperiment"),
-    definition = clusterID.SingleCellExperiment
+    definition = `clusterID,SingleCellExperiment`
 )
 
 
 
-clusterID.Seurat <-  # nolint
-    clusterID.SingleCellExperiment
+## Updated 2019-07-31.
+`clusterID,Seurat` <-  # nolint
+    `clusterID,SingleCellExperiment`
 
 
 
@@ -54,5 +56,5 @@ clusterID.Seurat <-  # nolint
 setMethod(
     f = "clusterID",
     signature = signature("Seurat"),
-    definition = clusterID.Seurat
+    definition = `clusterID,Seurat`
 )

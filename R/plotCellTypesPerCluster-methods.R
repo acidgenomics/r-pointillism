@@ -36,7 +36,8 @@ NULL
 
 
 
-plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotCellTypesPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
         markers,
@@ -131,10 +132,9 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
 
         invisible(return)
     }
-formals(plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <-
-    reducedDim
-formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
-    expression
+formals(`plotCellTypesPerCluster,SingleCellExperiment`)[
+    c("reducedDim", "expression")
+] <- list(reducedDim, expression)
 
 
 
@@ -143,13 +143,14 @@ formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = plotCellTypesPerCluster.SingleCellExperiment
+    definition = `plotCellTypesPerCluster,SingleCellExperiment`
 )
 
 
 
-plotCellTypesPerCluster.Seurat <-  # nolint
-    plotCellTypesPerCluster.SingleCellExperiment
+## Updated 2019-07-31.
+`plotCellTypesPerCluster,Seurat` <-  # nolint
+    `plotCellTypesPerCluster,SingleCellExperiment`
 
 
 
@@ -158,5 +159,5 @@ plotCellTypesPerCluster.Seurat <-  # nolint
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("Seurat"),
-    definition = plotCellTypesPerCluster.Seurat
+    definition = `plotCellTypesPerCluster,Seurat`
 )

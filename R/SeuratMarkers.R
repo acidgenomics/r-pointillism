@@ -39,6 +39,7 @@
 #' )))
 #' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
+## Updated 2019-07-31.
 SeuratMarkers <-  # nolint
     function(
         object,
@@ -57,7 +58,7 @@ SeuratMarkers <-  # nolint
             isAlpha(alpha)
         )
 
-        ## Detect function from column names ------------------------------------
+        ## Detect function from column names -----------------------------------
         seuratMarkerCols <-
             c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
         if (identical(
@@ -75,13 +76,13 @@ SeuratMarkers <-  # nolint
         }
         message(paste0("`", fun, "` return detected."))
 
-        ## Sanitize markers -----------------------------------------------------
+        ## Sanitize markers ----------------------------------------------------
         ## Coerce to tibble.
         data <- as_tibble(object, rownames = "rowname")
         ## Standardize with camel case.
         data <- camel(data)
 
-        ## Seurat mode ----------------------------------------------------------
+        ## Seurat mode ---------------------------------------------------------
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
         if (grep("^Seurat", fun)) {
             if (fun == "Seurat::FindMarkers") {
@@ -136,13 +137,13 @@ SeuratMarkers <-  # nolint
                 arrange(!!sym("padj"))
         }
 
-        ## Bind ranges as column ------------------------------------------------
+        ## Bind ranges as column -----------------------------------------------
         data <- as(data, "DataFrame")
         ## Require that all of the markers are defined in ranges.
         assert(isSubset(unique(data[["name"]]), names(ranges)))
         data[["ranges"]] <- ranges[data[["name"]]]
 
-        ## Add metadata and return ----------------------------------------------
+        ## Add metadata and return ---------------------------------------------
         metadata(data) <- c(
             .prototypeMetadata,
             list(

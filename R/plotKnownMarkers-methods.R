@@ -28,7 +28,8 @@ NULL
 
 
 
-`plotKnownMarkers.SingleCellExperiment,KnownMarkers` <-  # nolint
+## Updated 2019-07-31.
+`plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -94,7 +95,7 @@ NULL
         invisible(list)
     }
 
-formals(`plotKnownMarkers.SingleCellExperiment,KnownMarkers`)[c(
+formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -112,13 +113,14 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
+    definition = `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
 )
 
 
 
-`plotKnownMarkers.Seurat,KnownMarkers` <-  # nolint
-    `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
+## Updated 2019-07-31.
+`plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
+    `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
 
 
 
@@ -130,5 +132,5 @@ setMethod(
         object = "Seurat",
         markers = "KnownMarkers"
     ),
-    definition = `plotKnownMarkers.Seurat,KnownMarkers`
+    definition = `plotKnownMarkers,Seurat,KnownMarkers`
 )

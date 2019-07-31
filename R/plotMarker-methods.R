@@ -47,7 +47,8 @@ NULL
 
 
 
-plotMarker.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -63,13 +64,13 @@ plotMarker.SingleCellExperiment <-  # nolint
         legend,
         title = TRUE
     ) {
-        ## Legacy arguments -----------------------------------------------------
+        ## Legacy arguments ----------------------------------------------------
         ## color
         if (identical(color, "auto")) {
             stop("Use `color = NULL` instead of `auto`.")
         }
 
-        ## Assert checks --------------------------------------------------------
+        ## Assert checks -------------------------------------------------------
         object <- as(object, "SingleCellExperiment")
         assert(
             isCharacter(genes),
@@ -223,7 +224,7 @@ plotMarker.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotMarker.SingleCellExperiment)[c(
+formals(`plotMarker,SingleCellExperiment`)[c(
     "color",
     "dark",
     "expression",
@@ -254,13 +255,14 @@ formals(plotMarker.SingleCellExperiment)[c(
 setMethod(
     f = "plotMarker",
     signature = signature("SingleCellExperiment"),
-    definition = plotMarker.SingleCellExperiment
+    definition = `plotMarker,SingleCellExperiment`
 )
 
 
 
-plotMarker.Seurat <-  # nolint
-    plotMarker.SingleCellExperiment
+## Updated 2019-07-31.
+`plotMarker,Seurat` <-  # nolint
+    `plotMarker,SingleCellExperiment`
 
 
 
@@ -269,5 +271,5 @@ plotMarker.Seurat <-  # nolint
 setMethod(
     f = "plotMarker",
     signature = signature("Seurat"),
-    definition = plotMarker.Seurat
+    definition = `plotMarker,Seurat`
 )

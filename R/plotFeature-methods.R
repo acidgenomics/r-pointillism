@@ -30,7 +30,8 @@ NULL
 
 
 ## Note: We aren't using `title` argument here.
-plotFeature.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotFeature,SingleCellExperiment` <-  # nolint
     function(
         object,
         features,
@@ -44,14 +45,14 @@ plotFeature.SingleCellExperiment <-  # nolint
         dark,
         legend
     ) {
-        ## Legacy arguments -----------------------------------------------------
+        ## Legacy arguments ----------------------------------------------------
         ## color
         if (identical(color, "auto")) {
             warning("Use `NULL` instead of `\"auto\"` for `color`")
             color <- NULL
         }
 
-        ## Assert checks --------------------------------------------------------
+        ## Assert checks -------------------------------------------------------
         assert(isCharacter(features))
         reducedDim <- match.arg(reducedDim)
         assert(
@@ -161,7 +162,7 @@ plotFeature.SingleCellExperiment <-  # nolint
             p
         })
 
-        ## Return ---------------------------------------------------------------
+        ## Return --------------------------------------------------------------
         if (length(features) > 1L) {
             plot_grid(plotlist = plotlist) +
                 theme(
@@ -172,7 +173,7 @@ plotFeature.SingleCellExperiment <-  # nolint
         }
     }
 
-formals(plotFeature.SingleCellExperiment)[c(
+formals(`plotFeature,SingleCellExperiment`)[c(
     "color",
     "dark",
     "expression",
@@ -203,13 +204,14 @@ formals(plotFeature.SingleCellExperiment)[c(
 setMethod(
     f = "plotFeature",
     signature = signature("SingleCellExperiment"),
-    definition = plotFeature.SingleCellExperiment
+    definition = `plotFeature,SingleCellExperiment`
 )
 
 
 
-plotFeature.Seurat <-  # nolint
-    plotFeature.SingleCellExperiment
+## Updated 2019-07-31.
+`plotFeature,Seurat` <-  # nolint
+    `plotFeature,SingleCellExperiment`
 
 
 
@@ -218,5 +220,5 @@ plotFeature.Seurat <-  # nolint
 setMethod(
     f = "plotFeature",
     signature = signature("Seurat"),
-    definition = plotFeature.Seurat
+    definition = `plotFeature,Seurat`
 )

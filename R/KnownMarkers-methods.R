@@ -28,7 +28,8 @@ NULL
 
 
 
-KnownMarkers.SeuratMarkersPerCluster <-  # nolint
+## Updated 2019-07-31.
+`KnownMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         markers,
         known,
@@ -100,5 +101,5 @@ setMethod(
         markers = "SeuratMarkersPerCluster",
         known = "CellTypeMarkers"
     ),
-    definition = KnownMarkers.SeuratMarkersPerCluster
+    definition = `KnownMarkers,SeuratMarkersPerCluster`
 )
