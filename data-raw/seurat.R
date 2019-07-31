@@ -1,38 +1,37 @@
-## Seurat example data
-## Updated 2019-07-16.
+## Seurat example markers return data.
+## Updated 2019-07-31.
 
-library(pryr)
-library(reticulate)
-library(Matrix)
-library(splatter)
-library(Seurat)  # 3.0
-library(bcbioSingleCell)
-library(tidyverse)
+library(usethis)
+library(Seurat)  # 3.0.2
 
-data(seurat, package = "acidtest")
+data(cellTypeMarkersList)
+data(Seurat, package = "acidtest")
 
 ## seurat_all_markers ===========================================================
-seurat_all_markers <- SeuratMarkersPerCluster(
-    object = FindAllMarkers(seurat),
-    ranges = rowRanges(seurat)
+seuratAllMarkers <- withCallingHandlers(
+    expr = SeuratMarkersPerCluster(
+        object = FindAllMarkers(Seurat),
+        ranges = rowRanges(Seurat)
+    ),
+    warning = function(w) {
+        if (grepl("cannot compute exact p-value with ties", w)) {
+            invokeRestart("muffleWarning")
+        } else {
+            w
+        }
+    }
 )
 
 ## known_markers_small ==========================================================
-data(cell_type_markers)
-seurat_known_markers <- KnownMarkers(
-    markers = seurat_all_markers,
-    known = cell_type_markers$homoSapiens
-)
-export(
-    x = seurat_known_markers,
-    file = file.path("inst", "extdata", "cell_type_markers.csv")
+seuratKnownMarkers <- KnownMarkers(
+    markers = seuratAllMarkers,
+    known = cellTypeMarkersList[["homoSapiens"]]
 )
 
 ## Save =========================================================================
-usethis::use_data(
-    seurat,
-    seurat_all_markers,
-    seurat_known_markers,
+use_data(
+    seuratAllMarkers,
+    seuratKnownMarkers,
     compress = "xz",
     overwrite = TRUE
 )
