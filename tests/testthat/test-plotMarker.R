@@ -27,7 +27,7 @@ with_parameters_test_that(
         invisible(capture.output(
             p <- plotKnownMarkers(
                 object = object,
-                markers = seurat_known_markers
+                markers = seuratKnownMarkers
             )
         ))
         expect_type(p, "list")
@@ -41,7 +41,7 @@ context("plotTopMarkers")
 
 with_parameters_test_that(
     "plotTopMarkers", {
-        markers <- head(seurat_all_markers, n = 2L)
+        markers <- head(seuratAllMarkers, n = 2L)
         invisible(capture.output(
             x <- plotTopMarkers(
                 object = object,
