@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -50,6 +51,7 @@
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -66,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -103,6 +105,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -201,14 +204,17 @@ supports edgeR and DESeq2 as DE callers.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>We are currently recommending the ZINB-WaVE method over zingeR, since
-it is faster, and has been show to be more sensitive for most single-cell
-RNA-seq datasets.</p>
+    <p>We are no longer recommending the use of software that attempts to
+mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
+single cell RNA-seq data. Simply model the counts directly.</p>
+<p>Updated 2019-07-31.</p>
     
     <h2 class="hasAnchor" id="deseq-"><a class="anchor" href="#deseq-"></a>DESeq2</h2>
 
     
-    <p>We're providing preliminary support for DESeq2 as the differential expression
+
+
+<p>We're providing preliminary support for DESeq2 as the differential expression
 caller. It is currently considerably slower for large datasets than edgeR.</p>
 <p>We're trying to follow the conventions used in DESeq2 for contrasts, defining
 the name of the factor in the design formula, numerator, and denominator
@@ -219,19 +225,23 @@ test, it is recommended to set <code>useT = TRUE</code> (<em>not currently in us
 <p>For UMI data, for which the expected counts may be very low, the likelihood
 ratio test implemented in <code>nbinomLRT()</code> should be used.</p>
 <p>Note that DESeq2 supports <code>weights</code> in assays automatically, if slotted using
-zinbwave, which is no longer recommended for droplet scRNA-seq.</p>
+zinbwave (which is no longer recommended for droplet scRNA-seq).</p>
     
     <h2 class="hasAnchor" id="edger"><a class="anchor" href="#edger"></a>edgeR</h2>
 
     
-    <p>The LRT has been shown to perform better for null hypothesis testing with
+
+
+<p>The LRT has been shown to perform better for null hypothesis testing with
 droplet scRNA-seq data. Here we are using <code><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>edgeR::glmLRT()</a></code> internally.</p>
 <p>edgeR is currently significantly faster than DESeq2 for large datasets.</p>
     
     <h2 class="hasAnchor" id="seurat-conventions"><a class="anchor" href="#seurat-conventions"></a>Seurat conventions</h2>
 
     
-    <p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
+
+
+<p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
 and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io/pkg/Seurat/man/FindMarkers.html'>Seurat::FindMarkers()</a></code> for details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -240,8 +250,8 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat</span>)
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 
 <span class='co'>## Compare expression in cluster 3 relative to 2.</span>
 <span class='no'>ident</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusterID.html'>clusterID</a></span>(<span class='no'>object</span>)
@@ -250,7 +260,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
 #&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>ident</span>)[<span class='no'>ident</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        19 character character </div><div class='input'>
-## edgeR
+## edgeR ====
 # x <- diffExp(
 #     object = object,
 #     numerator = numerator,
@@ -260,7 +270,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
 # class(x)
 # summary(x)
 
-## DESeq2
+## DESeq2 ====
 # This will warn about weights with the minimal example.
 # x <- diffExp(
 #     object = object,
@@ -297,19 +307,23 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
