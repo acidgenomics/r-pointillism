@@ -37,6 +37,7 @@ Imports:
     acidplots (>= 0.2.2),
     bioverbs (>= 0.2),
     goalie (>= 0.3),
+    monocle3 (>= 0.1.2),
     BiocGenerics,
     BiocParallel,
     DESeq2 (>= 1.22),
@@ -71,7 +72,8 @@ Remotes:
     acidgenomics/acidtest,
     acidgenomics/basejump,
     acidgenomics/bioverbs,
-    acidgenomics/goalie
+    acidgenomics/goalie,
+    cole-trapnell-lab/monocle3
 biocViews:
     Clustering,
     DataRepresentation,
