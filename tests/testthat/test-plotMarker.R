@@ -1,19 +1,19 @@
 context("plotMarker")
 
+expression <- eval(formals(`plotMarker,Seurat`)[["expression"]])
 with_parameters_test_that(
     "plotMarker", {
-        expression <- methodFormals("plotMarker", "Seurat") %>%
-            .[["expression"]] %>%
-            as.character() %>%
-            .[-1L]
-        invisible(lapply(expression, function(expression) {
-            p <- plotMarker(
-                object = object,
-                genes = genes,
-                expression = expression
-            )
-            expect_s3_class(p, "ggplot")
-        }))
+        invisible(lapply(
+            X = expression,
+            FUN = function(expression) {
+                p <- plotMarker(
+                    object = object,
+                    genes = genes,
+                    expression = expression
+                )
+                expect_s3_class(p, "ggplot")
+            }
+        ))
     },
     object = objects
 )

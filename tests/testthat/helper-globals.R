@@ -1,3 +1,9 @@
+## Fix for edgeR partial match warning.
+options(
+    warnPartialMatchAttr = FALSE,
+    warnPartialMatchDollar = FALSE
+)
+
 data(
     Seurat,
     package = "acidtest",
@@ -12,7 +18,6 @@ data(
 
 seurat <- Seurat
 rm(Seurat)
-
 genes <- head(rownames(seurat))
 sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
