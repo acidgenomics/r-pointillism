@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.3.3
-Date: 2019-07-16
+Date: 2019-07-31
 Authors@R: c(
     person(
         given = "Michael",
@@ -32,11 +32,11 @@ LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.10.3)
+    basejump (>= 0.11.3)
 Imports:
-    acidplots (>= 0.2.0),
-    bioverbs (>= 0.1.13),
-    goalie (>= 0.2.15),
+    acidplots (>= 0.2.2),
+    bioverbs (>= 0.2),
+    goalie (>= 0.3),
     BiocGenerics,
     BiocParallel,
     DESeq2 (>= 1.22),
@@ -59,7 +59,7 @@ Imports:
     stats,
     utils
 Suggests:
-    acidtest (>= 0.1.4),
+    acidtest (>= 0.2.1),
     BiocStyle,
     splatter,
     knitr,
