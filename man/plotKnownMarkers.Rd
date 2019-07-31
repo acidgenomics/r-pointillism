@@ -10,11 +10,11 @@
 plotKnownMarkers(object, markers, ...)
 
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
-  markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
+  markers, reducedDim = "UMAP", headerLevel = 2L, progress = FALSE,
   ...)
 
 \S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
-  reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
+  reducedDim = "UMAP", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}

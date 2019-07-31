@@ -30,7 +30,8 @@ NULL
 
 
 
-findMarkers.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`findMarkers,SingleCellExperiment` <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
 
@@ -74,13 +75,14 @@ findMarkers.SingleCellExperiment <-  # nolint
 setMethod(
     f = "findMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = findMarkers.SingleCellExperiment
+    definition = `findMarkers,SingleCellExperiment`
 )
 
 
 
-findMarkers.Seurat <-  # nolint
-    findMarkers.SingleCellExperiment
+## Updated 2019-07-31.
+`findMarkers,Seurat` <-  # nolint
+    `findMarkers,SingleCellExperiment`
 
 
 
@@ -89,5 +91,5 @@ findMarkers.Seurat <-  # nolint
 setMethod(
     f = "findMarkers",
     signature = signature("Seurat"),
-    definition = findMarkers.Seurat
+    definition = `findMarkers,Seurat`
 )

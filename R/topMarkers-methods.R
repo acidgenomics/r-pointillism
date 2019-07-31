@@ -32,7 +32,8 @@ NULL
 
 
 
-topMarkers.SeuratMarkersPerCluster <-  # nolint
+## Updated 2019-07-31.
+`topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         n = 10L,
@@ -83,7 +84,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         }
     }
 
-formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
+formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]] <- direction
 
 
 
@@ -92,5 +93,5 @@ formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
 setMethod(
     f = "topMarkers",
     signature = signature("SeuratMarkersPerCluster"),
-    definition = topMarkers.SeuratMarkersPerCluster
+    definition = `topMarkers,SeuratMarkersPerCluster`
 )

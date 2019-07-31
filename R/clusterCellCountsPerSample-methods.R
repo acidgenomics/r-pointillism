@@ -22,7 +22,8 @@ NULL
 
 
 
-clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`clusterCellCountsPerSample,SingleCellExperiment` <-  # nolint
     function(object) {
         assert(.hasIdent(object))
         metrics <- metrics(object)
@@ -45,13 +46,14 @@ clusterCellCountsPerSample.SingleCellExperiment <-  # nolint
 setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("SingleCellExperiment"),
-    definition = clusterCellCountsPerSample.SingleCellExperiment
+    definition = `clusterCellCountsPerSample,SingleCellExperiment`
 )
 
 
 
-clusterCellCountsPerSample.Seurat <-  # nolint
-    clusterCellCountsPerSample.SingleCellExperiment
+## Updated 2019-07-31.
+`clusterCellCountsPerSample,Seurat` <-  # nolint
+    `clusterCellCountsPerSample,SingleCellExperiment`
 
 
 
@@ -60,5 +62,5 @@ clusterCellCountsPerSample.Seurat <-  # nolint
 setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("Seurat"),
-    definition = clusterCellCountsPerSample.Seurat
+    definition = `clusterCellCountsPerSample,Seurat`
 )

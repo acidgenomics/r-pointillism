@@ -10,7 +10,7 @@
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
-  reducedDim = "TSNE", color = getOption("acid.continuous.color",
+  reducedDim = "UMAP", color = getOption("acid.continuous.color",
   default = ggplot2::scale_colour_gradient(low = "gray75", high =
   "purple")), pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -21,7 +21,7 @@ plotFeature(object, ...)
   legend = getOption("acid.legend", default = TRUE),
   expression = c("mean", "sum"))
 
-\S4method{plotFeature}{Seurat}(object, features, reducedDim = "TSNE",
+\S4method{plotFeature}{Seurat}(object, features, reducedDim = "UMAP",
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),

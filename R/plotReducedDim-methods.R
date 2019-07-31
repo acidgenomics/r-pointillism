@@ -93,8 +93,9 @@ NULL
 
 
 
-## Constructors =================================================================
-plotReducedDim.SingleCellExperiment <-  # nolint
+## Constructors ================================================================
+## Updated 2019-07-31.
+`plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
         reducedDim,
@@ -232,7 +233,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotReducedDim.SingleCellExperiment)[c(
+formals(`plotReducedDim,SingleCellExperiment`)[c(
     "color",
     "dark",
     "dimsUse",
@@ -256,7 +257,8 @@ formals(plotReducedDim.SingleCellExperiment)[c(
 
 
 
-plotPCA.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotPCA,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -272,8 +274,8 @@ plotPCA.SingleCellExperiment <-  # nolint
 
 
 
-
-plotTSNE.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotTSNE,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -288,7 +290,8 @@ plotTSNE.SingleCellExperiment <-  # nolint
 
 
 
-plotUMAP.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotUMAP,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -303,30 +306,31 @@ plotUMAP.SingleCellExperiment <-  # nolint
 
 
 
-## Formals ======================================================================
+## Formals =====================================================================
 ## Set the formals for the convenience functions.
-f <- formals(plotReducedDim.SingleCellExperiment)
+f <- formals(`plotReducedDim,SingleCellExperiment`)
 f <- f[setdiff(names(f), "reducedDim")]
-formals(plotPCA.SingleCellExperiment) <- f
-formals(plotTSNE.SingleCellExperiment) <- f
-formals(plotUMAP.SingleCellExperiment) <- f
+formals(`plotPCA,SingleCellExperiment`) <- f
+formals(`plotTSNE,SingleCellExperiment`) <- f
+formals(`plotUMAP,SingleCellExperiment`) <- f
 rm(f)
 
 
 
-## Methods ======================================================================
+## Methods =====================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = plotReducedDim.SingleCellExperiment
+    definition = `plotReducedDim,SingleCellExperiment`
 )
 
 
 
-plotReducedDim.Seurat <-  # nolint
-    plotReducedDim.SingleCellExperiment
+## Updated 2019-07-31.
+`plotReducedDim,Seurat` <-  # nolint
+    `plotReducedDim,SingleCellExperiment`
 
 
 
@@ -335,7 +339,7 @@ plotReducedDim.Seurat <-  # nolint
 setMethod(
     f = "plotReducedDim",
     signature = signature("Seurat"),
-    definition = plotReducedDim.Seurat
+    definition = `plotReducedDim,Seurat`
 )
 
 
@@ -345,13 +349,14 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = plotTSNE.SingleCellExperiment
+    definition = `plotTSNE,SingleCellExperiment`
 )
 
 
 
-plotTSNE.Seurat <-  # nolint
-    plotTSNE.SingleCellExperiment
+## Updated 2019-07-31.
+`plotTSNE,Seurat` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
 
 
 
@@ -360,7 +365,7 @@ plotTSNE.Seurat <-  # nolint
 setMethod(
     f = "plotTSNE",
     signature = signature("Seurat"),
-    definition = plotTSNE.Seurat
+    definition = `plotTSNE,Seurat`
 )
 
 
@@ -370,13 +375,15 @@ setMethod(
 setMethod(
     f = "plotUMAP",
     signature = signature("SingleCellExperiment"),
-    definition = plotUMAP.SingleCellExperiment
+    definition = `plotUMAP,SingleCellExperiment`
 )
 
 
 
-plotUMAP.Seurat <-  # nolint
-    plotUMAP.SingleCellExperiment
+## Updated 2019-07-31.
+`plotUMAP,Seurat` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
 
 
 #' @rdname plotReducedDim
@@ -384,7 +391,7 @@ plotUMAP.Seurat <-  # nolint
 setMethod(
     f = "plotUMAP",
     signature = signature("Seurat"),
-    definition = plotUMAP.Seurat
+    definition = `plotUMAP,Seurat`
 )
 
 
@@ -394,13 +401,14 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = plotPCA.SingleCellExperiment
+    definition = `plotPCA,SingleCellExperiment`
 )
 
 
 
-plotPCA.Seurat <-  # nolint
-    plotPCA.SingleCellExperiment
+## Updated 2019-07-31.
+`plotPCA,Seurat` <-  # nolint
+    `plotPCA,SingleCellExperiment`
 
 
 
@@ -409,5 +417,5 @@ plotPCA.Seurat <-  # nolint
 setMethod(
     f = "plotPCA",
     signature = signature("Seurat"),
-    definition = plotPCA.Seurat
+    definition = `plotPCA,Seurat`
 )

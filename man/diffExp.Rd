@@ -119,7 +119,7 @@ summary(numerator)
 denominator <- names(ident)[ident == "2"]
 summary(denominator)
 
-## edgeR
+## edgeR ====
 # x <- diffExp(
 #     object = object,
 #     numerator = numerator,
@@ -129,7 +129,7 @@ summary(denominator)
 # class(x)
 # summary(x)
 
-## DESeq2
+## DESeq2 ====
 # This will warn about weights with the minimal example.
 # x <- diffExp(
 #     object = object,

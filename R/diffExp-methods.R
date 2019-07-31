@@ -84,7 +84,7 @@
 #' denominator <- names(ident)[ident == "2"]
 #' summary(denominator)
 #'
-#' ## edgeR
+#' ## edgeR ====
 #' # x <- diffExp(
 #' #     object = object,
 #' #     numerator = numerator,
@@ -94,7 +94,7 @@
 #' # class(x)
 #' # summary(x)
 #'
-#' ## DESeq2
+#' ## DESeq2 ====
 #' # This will warn about weights with the minimal example.
 #' # x <- diffExp(
 #' #     object = object,
@@ -122,6 +122,7 @@ NULL
 
 
 
+## Updated 2019-07-31.
 .underpoweredContrast <- function() {
     warning(paste(
         "Skipping DE.",
@@ -132,7 +133,8 @@ NULL
 
 
 ## diffExp ======================================================================
-diffExp.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`diffExp,SingleCellExperiment` <-  # nolint
     function(
         object,
         numerator,
@@ -183,7 +185,7 @@ diffExp.SingleCellExperiment <-  # nolint
         ## Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- as(counts(object), "sparseMatrix")
 
-        ## Gene filter ----------------------------------------------------------
+        ## Gene filter ---------------------------------------------------------
         message("Applying gene expression low pass filter.")
         message(paste(
             "Requiring at least",
@@ -211,7 +213,7 @@ diffExp.SingleCellExperiment <-  # nolint
         ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
 
-        ## Cell filter ----------------------------------------------------------
+        ## Cell filter ---------------------------------------------------------
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (length(trash)) {
@@ -269,7 +271,7 @@ diffExp.SingleCellExperiment <-  # nolint
         fun(object)
     }
 
-formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
+formals(`diffExp,SingleCellExperiment`)[["BPPARAM"]] <- BPPARAM
 
 
 
@@ -281,7 +283,8 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 ##   See `DESeq2::estimateSizeFactors()` for details.
 ## - `minmu`: Set a lower threshold than the default 0.5, as recommended
 ##   in Mike Love's zinbwave-DESeq2 vignette.
-
+##
+## Updated 2019-07-31.
 .diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
     assert(.hasDesignFormula(object))
     message("Running DESeq2.")
@@ -317,7 +320,8 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 ## of the `glmLRT()` method, that allows an F-test with adjusted denominator
 ## degrees of freedom, to account for the downweighting in the zero-inflation
 ## model (which no longer applies here).
-
+##
+## Updated 2019-07-31.
 .diffExp.edgeR <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
     message("Running edgeR.")
@@ -344,13 +348,14 @@ formals(diffExp.SingleCellExperiment)[["BPPARAM"]] <- BPPARAM
 setMethod(
     f = "diffExp",
     signature = signature("SingleCellExperiment"),
-    definition = diffExp.SingleCellExperiment
+    definition = `diffExp,SingleCellExperiment`
 )
 
 
 
-diffExp.Seurat <-  # nolint
-    diffExp.SingleCellExperiment
+## Updated 2019-07-31.
+`diffExp,Seurat` <-  # nolint
+    `diffExp,SingleCellExperiment`
 
 
 
@@ -359,5 +364,5 @@ diffExp.Seurat <-  # nolint
 setMethod(
     f = "diffExp",
     signature = signature("Seurat"),
-    definition = diffExp.Seurat
+    definition = `diffExp,Seurat`
 )

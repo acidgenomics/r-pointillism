@@ -34,7 +34,8 @@ NULL
 
 
 
-cellTypesPerCluster.KnownMarkers <-  # nolint
+## Updated 2019-07-31.
+`cellTypesPerCluster,KnownMarkers` <-  # nolint
     function(
         object,
         min = 1L,
@@ -89,5 +90,5 @@ cellTypesPerCluster.KnownMarkers <-  # nolint
 setMethod(
     f = "cellTypesPerCluster",
     signature = signature("KnownMarkers"),
-    definition = cellTypesPerCluster.KnownMarkers
+    definition = `cellTypesPerCluster,KnownMarkers`
 )

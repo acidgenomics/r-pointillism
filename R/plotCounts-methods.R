@@ -1,3 +1,7 @@
+## FIXME Consolidate to simply use "geom" argument.
+
+
+
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
@@ -73,8 +77,9 @@ NULL
 
 
 
-## plotCounts ===================================================================
-plotCounts.SingleCellExperiment <-  # nolint
+## plotCounts ==================================================================
+## Updated 2019-07-31.
+`plotCounts,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -95,12 +100,13 @@ plotCounts.SingleCellExperiment <-  # nolint
         do.call(what = what, args = args)
     }
 
-formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
+formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
 
 
 
-## plotDot ======================================================================
+## plotDot =====================================================================
 #' Min Max
+#' @note Updated 2019-07-31.
 #' @seealso `Seurat:::MinMax`.
 #' @noRd
 .minMax <- function(data, min, max) {
@@ -113,6 +119,7 @@ formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 #' Percent Above
+#' @note Updated 2019-07-31.
 #' @seealso `Seurat:::PercentAbove`.
 #' @noRd
 .percentAbove <- function(x, threshold) {
@@ -121,7 +128,8 @@ formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 
-plotDot.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotDot,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -225,7 +233,7 @@ plotDot.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotDot.SingleCellExperiment)[c(
+formals(`plotDot,SingleCellExperiment`)[c(
     "color",
     "legend"
 )] <- list(
@@ -235,7 +243,8 @@ formals(plotDot.SingleCellExperiment)[c(
 
 
 
-plotViolin.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotViolin,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -329,24 +338,25 @@ plotViolin.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
+formals(`plotViolin,SingleCellExperiment`)[c("color", "legend")] <-
     list(color = discreteColor, legend = legend)
 
 
 
-## Methods ======================================================================
+## Methods =====================================================================
 #' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotCounts",
     signature = signature("SingleCellExperiment"),
-    definition = plotCounts.SingleCellExperiment
+    definition = `plotCounts,SingleCellExperiment`
 )
 
 
 
-plotCounts.Seurat <-  # nolint
-    plotCounts.SingleCellExperiment
+## Updated 2019-07-31.
+`plotCounts,Seurat` <-  # nolint
+    `plotCounts,SingleCellExperiment`
 
 
 
@@ -355,7 +365,7 @@ plotCounts.Seurat <-  # nolint
 setMethod(
     f = "plotCounts",
     signature = signature("Seurat"),
-    definition = plotCounts.SingleCellExperiment
+    definition = `plotCounts,SingleCellExperiment`
 )
 
 
@@ -365,13 +375,14 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = plotDot.SingleCellExperiment
+    definition = `plotDot,SingleCellExperiment`
 )
 
 
 
-plotDot.Seurat <-  # nolint
-    plotDot.SingleCellExperiment
+## Updated 2019-07-31.
+`plotDot,Seurat` <-  # nolint
+    `plotDot,SingleCellExperiment`
 
 
 
@@ -380,7 +391,7 @@ plotDot.Seurat <-  # nolint
 setMethod(
     f = "plotDot",
     signature = signature("Seurat"),
-    definition = plotDot.Seurat
+    definition = `plotDot,Seurat`
 )
 
 
@@ -390,13 +401,14 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = plotViolin.SingleCellExperiment
+    definition = `plotViolin,SingleCellExperiment`
 )
 
 
 
-plotViolin.Seurat <-  # nolint
-    plotViolin.SingleCellExperiment
+## Updated 2019-07-31.
+`plotViolin,Seurat` <-  # nolint
+    `plotViolin,SingleCellExperiment`
 
 
 
@@ -405,5 +417,5 @@ plotViolin.Seurat <-  # nolint
 setMethod(
     f = "plotViolin",
     signature = signature("Seurat"),
-    definition = plotViolin.Seurat
+    definition = `plotViolin,Seurat`
 )

@@ -32,7 +32,8 @@ NULL
 
 
 
-plotTopMarkers.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotTopMarkers,SingleCellExperiment` <-  # nolint
     function(
         object,
         markers,
@@ -99,8 +100,10 @@ plotTopMarkers.SingleCellExperiment <-  # nolint
 
         invisible(list)
     }
-formals(plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
-formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
+
+formals(`plotTopMarkers,SingleCellExperiment`)[
+    c("direction", "reducedDim")
+] <- list(direction, reducedDim)
 
 
 
@@ -109,13 +112,14 @@ formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
 setMethod(
     f = "plotTopMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = plotTopMarkers.SingleCellExperiment
+    definition = `plotTopMarkers,SingleCellExperiment`
 )
 
 
 
-plotTopMarkers.Seurat <-  # nolint
-    plotTopMarkers.SingleCellExperiment
+## Updated 2019-07-31.
+`plotTopMarkers,Seurat` <-  # nolint
+    `plotTopMarkers,SingleCellExperiment`
 
 
 
@@ -124,5 +128,5 @@ plotTopMarkers.Seurat <-  # nolint
 setMethod(
     f = "plotTopMarkers",
     signature = signature("Seurat"),
-    definition = plotTopMarkers.Seurat
+    definition = `plotTopMarkers,Seurat`
 )
