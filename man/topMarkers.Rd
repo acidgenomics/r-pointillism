@@ -34,9 +34,12 @@ to the first argument in the \code{character} vector.}
 \description{
 Top markers
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat_all_markers)
-x <- topMarkers(seurat_all_markers, n = 2L)
+data(seuratAllMarkers)
+x <- topMarkers(seuratAllMarkers, n = 2L)
 print(x)
 }
 \seealso{

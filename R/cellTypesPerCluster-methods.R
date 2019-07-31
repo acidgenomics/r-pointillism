@@ -1,5 +1,6 @@
 #' @name cellTypesPerCluster
 #' @inherit bioverbs::cellTypesPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param min `integer(1)`.
@@ -13,10 +14,10 @@
 #' makers per cell type.
 #'
 #' @examples
-#' data(cellTypeMarkers, seurat_all_markers)
+#' data(cellTypeMarkersList, seuratAllMarkers)
 #' markers <- KnownMarkers(
-#'     markers = seurat_all_markers,
-#'     known = cellTypeMarkers[["homoSapiens"]]
+#'     markers = seuratAllMarkers,
+#'     known = cellTypeMarkersList[["homoSapiens"]]
 #' )
 #' x <- cellTypesPerCluster(markers)
 #' print(x)

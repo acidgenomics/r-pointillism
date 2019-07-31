@@ -1,3 +1,4 @@
+## Updated 2019-07-31.
 .hasDesignFormula <- function(object) {
     all(
         is(object, "SingleCellExperiment"),
@@ -8,18 +9,22 @@
 
 
 
+## Updated 2019-07-31.
 .hasIdent <- function(object) {
     "ident" %in% colnames(colData(object))
 }
 
 
 
+## Updated 2019-07-31.
 .hasMultipleSamples <- function(object) {
     length(sampleNames(object)) > 1L
 }
 
 
 
+## Consider moving this to goalie package.
+## Updated 2019-07-31.
 .isBPPARAM <- function(object) {
     all(
         identical(
@@ -32,6 +37,7 @@
 
 
 
+## Updated 2019-07-31.
 .isKnownMarkers <- function(object) {
     all(
         ## Require a tibble.
@@ -46,6 +52,7 @@
 
 
 
+## Updated 2019-07-31.
 .isKnownMarkersDetected <- function(object) {
     .isKnownMarkers(object)
     requiredCols <- c(
@@ -61,16 +68,18 @@
 
 
 
+## Updated 2019-07-31.
 .isSanitizedMarkers <- function(object) {
     assert(.isSanitizedMarkers(object))
 }
 
 
 
+## Updated 2019-07-31.
 .isSanitizedMarkers <- function(object, package = "Seurat") {
     package <- match.arg(package)
 
-    ## General checks -----------------------------------------------------------
+    ## General checks ----------------------------------------------------------
     if (!is(object, "grouped_df")) {
         return(FALSE)
     } else if (
@@ -82,7 +91,7 @@
         return(FALSE)
     }
 
-    ## Package-specific checks --------------------------------------------------
+    ## Package-specific checks -------------------------------------------------
     if (package == "Seurat") {
         ## Check for `Seurat::FindAllMarkers` return.
         ## These columns are output in an inconsistent format, so we'll sanitize

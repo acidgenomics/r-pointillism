@@ -1,6 +1,7 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
 #' @inherit bioverbs::plotCellTypesPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -16,10 +17,11 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' data(seurat, seurat_known_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratKnownMarkers)
 #' plotCellTypesPerCluster(
-#'     object = seurat,
-#'     markers = seurat_known_markers
+#'     object = Seurat,
+#'     markers = seuratKnownMarkers
 #' )
 NULL
 

@@ -55,6 +55,9 @@ The number of markers to plot is determined by the output of the
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat, seurat_all_markers)
 plotTopMarkers(object = seurat, markers = seurat_all_markers)

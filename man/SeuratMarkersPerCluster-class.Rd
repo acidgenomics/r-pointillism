@@ -21,11 +21,15 @@ Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 }
 \value{
+\code{SeuratMarkersPerCluster}.
 Results are split per \code{cluster} and arranged by adjusted \emph{P} value
 (\code{padj}).
 }
 \description{
 Class containing essential elements for marker per cluster analysis.
+}
+\note{
+Updated 2019-07-31.
 }
 \examples{
 data(seurat)

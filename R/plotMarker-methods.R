@@ -1,5 +1,6 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
+#' @note Updated 2019-07-31.
 #'
 #' @inherit bioverbs::plotMarker
 #'

@@ -4,6 +4,7 @@
 #'
 #' @name Seurat-SingleCellExperiment
 #' @keywords internal
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #'

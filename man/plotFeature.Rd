@@ -88,6 +88,9 @@ argument in the \code{character} vector.}
 \description{
 Plot feature
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat)
 plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))

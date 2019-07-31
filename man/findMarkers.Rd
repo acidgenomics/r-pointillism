@@ -31,6 +31,8 @@ Find cluster-specific marker genes
 \note{
 Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
+
+Updated 2019-07-31.
 }
 \examples{
 data(seurat)

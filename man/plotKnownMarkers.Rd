@@ -42,6 +42,9 @@ Invisibly return a \code{ggplot} \code{list}.
 \description{
 Plot known markers
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat, seurat_known_markers)
 plotKnownMarkers(

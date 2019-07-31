@@ -18,9 +18,9 @@
 #' @return `KnownMarkers`.
 #'
 #' @examples
-#' data(cellTypeMarkers, seurat_all_markers)
+#' data(cellTypeMarkers, seuratAllMarkers)
 #' x <- KnownMarkers(
-#'     markers = seurat_all_markers,
+#'     markers = seuratAllMarkers,
 #'     known = cellTypeMarkers[["homoSapiens"]]
 #' )
 #' summary(x)

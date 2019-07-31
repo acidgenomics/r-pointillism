@@ -1,6 +1,7 @@
 #' @name topMarkers
 #' @include globals.R
 #' @inherit bioverbs::topMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param n `integer(1)`.
@@ -15,8 +16,8 @@
 #' - `dplyr::top_n()`.
 #'
 #' @examples
-#' data(seurat_all_markers)
-#' x <- topMarkers(seurat_all_markers, n = 2L)
+#' data(seuratAllMarkers)
+#' x <- topMarkers(seuratAllMarkers, n = 2L)
 #' print(x)
 NULL
 

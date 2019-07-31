@@ -1,6 +1,7 @@
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
+#' @note Updated 2019-07-31.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'

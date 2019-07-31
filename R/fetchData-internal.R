@@ -1,10 +1,11 @@
-#' Fetch Data
+#' Fetch data
 #' @include globals.R
 #' @noRd
 NULL
 
 
 
+## Updated 2019-07-31.
 .fetchGeneData <- function(
     object,
     genes,
@@ -82,6 +83,7 @@ NULL
 
 
 
+## Updated 2019-07-31.
 .fetchReducedDimData <- function(
     object,
     reducedDim,
@@ -146,6 +148,7 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
 
 
 
+## Updated 2019-07-31.
 .fetchReducedDimExpressionData <- function(
     object,
     genes,
@@ -192,4 +195,5 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
     assert(is(data, "DataFrame"))
     data
 }
+
 formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim

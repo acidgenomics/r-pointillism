@@ -1,5 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params

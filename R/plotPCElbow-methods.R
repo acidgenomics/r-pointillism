@@ -1,5 +1,6 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,

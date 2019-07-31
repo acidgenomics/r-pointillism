@@ -1,6 +1,7 @@
 #' @name plotTopMarkers
 #' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the

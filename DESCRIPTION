@@ -92,7 +92,7 @@ Collate:
     'KnownMarkers-methods.R'
     'Seurat-SCE-methods.R'
     'SeuratMarkers.R'
-    'assertions-internal.R'
+    'assert-internal.R'
     'cellCountsPerCluster-methods.R'
     'cellTypesPerCluster-methods.R'
     'clusterCellCountsPerSample-methods.R'
