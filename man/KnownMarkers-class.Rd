@@ -42,10 +42,10 @@ based on the gene names, since these change often and can mismatch
 easily.
 }
 \examples{
-data(seurat_all_markers, cell_type_markers)
+data(cellTypeMarkers, seurat_all_markers)
 x <- KnownMarkers(
     markers = seurat_all_markers,
-    known = cell_type_markers$homoSapiens
+    known = cellTypeMarkers[["homoSapiens"]]
 )
 summary(x)
 }

@@ -13,10 +13,10 @@
 #' makers per cell type.
 #'
 #' @examples
-#' data(seurat_all_markers, cell_type_markers)
+#' data(cellTypeMarkers, seurat_all_markers)
 #' markers <- KnownMarkers(
 #'     markers = seurat_all_markers,
-#'     known = cell_type_markers$homoSapiens
+#'     known = cellTypeMarkers[["homoSapiens"]]
 #' )
 #' x <- cellTypesPerCluster(markers)
 #' print(x)
