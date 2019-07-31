@@ -77,7 +77,16 @@ NULL
     assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "tbl_df")
     data <- left_join(data, g2s, by = "rowname")
-
+    ## Always sanitize row names into valid names before DataFrame coercion.
+    data[["rowname"]] <- makeNames(data[["rowname"]])
+    ## Otherwise, you'll intentionally hit this error:
+    ## nolint start
+    ## > └─methods::as(data, "DataFrame")
+    ## >   └─transformer:::asMethod(object)
+    ## >     └─transformer::matchRowNameColumn(to)
+    ## >       └─goalie::assert(validNames(rownames))
+    ##
+    ## nolint end
     as(data, "DataFrame")
 }
 
