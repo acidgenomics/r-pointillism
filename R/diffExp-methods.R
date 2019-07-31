@@ -74,8 +74,8 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#' object <- Seurat
 #'
 #' ## Compare expression in cluster 3 relative to 2.
 #' ident <- clusterID(object)
@@ -117,7 +117,7 @@ NULL
 
 
 
-## Internal =====================================================================
+## Internal ====================================================================
 .designFormula <- ~group
 
 
@@ -132,7 +132,7 @@ NULL
 
 
 
-## diffExp ======================================================================
+## diffExp =====================================================================
 ## Updated 2019-07-31.
 `diffExp,SingleCellExperiment` <-  # nolint
     function(

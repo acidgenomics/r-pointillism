@@ -2,9 +2,8 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
-#' @note Updated 2019-07-31.
-#'
 #' @inherit bioverbs::plotReducedDim
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
@@ -47,15 +46,17 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#'
+#' ## UMAP
+#' plotUMAP(object)
 #'
 #' ## t-SNE
 #' plotTSNE(object)
 #' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-#'
-#' ## UMAP
-#' plotUMAP(object)
 #'
 #' ## PCA
 #' plotPCA(object)

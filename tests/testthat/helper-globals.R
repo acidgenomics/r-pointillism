@@ -1,6 +1,3 @@
-## FIXME SCE_Seurat doesn't contain necessary colData
-## Resave!
-
 data(
     Seurat,
     package = "acidtest",

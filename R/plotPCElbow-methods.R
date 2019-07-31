@@ -25,8 +25,11 @@
 #' @seealso `Seurat::PCElbowPlot()`.
 #'
 #' @examples
-#' data(pbmc_small, package = "Seurat")
-#' plotPCElbow(pbmc_small)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' plotPCElbow(object)
 NULL
 
 

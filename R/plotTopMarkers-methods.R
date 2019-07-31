@@ -17,8 +17,13 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat, seurat_all_markers)
-#' plotTopMarkers(object = seurat, markers = seurat_all_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratAllMarkers)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' markers <- seuratAllMarkers
+#' plotTopMarkers(object = object, markers = markers)
 NULL
 
 

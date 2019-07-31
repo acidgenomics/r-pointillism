@@ -70,18 +70,15 @@ the filtered cells into a new \code{Seurat} class object. Use
 }
 
 \examples{
-data(sce, package = "acidtest")
-data(seurat)
+data(Seurat, SingleCellExperiment, package = "acidtest")
 
 ## SingleCellExperiment to Seurat ====
-object <- sce
-print(object)
-x <- as(object, "Seurat")
+x <- as(SingleCellExperiment, "Seurat")
 class(x)
 print(x)
 
 ## Seurat to SingleCellExperiment ====
-x <- as(seurat, "SingleCellExperiment")
+x <- as(Seurat, "SingleCellExperiment")
 print(x)
 }
 \seealso{

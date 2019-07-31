@@ -8,8 +8,11 @@
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' data(seurat)
-#' x <- cellCountsPerCluster(seurat)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' x <- cellCountsPerCluster(object)
 #' print(x)
 NULL
 

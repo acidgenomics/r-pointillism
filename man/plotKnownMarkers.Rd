@@ -46,9 +46,14 @@ Plot known markers
 Updated 2019-07-31.
 }
 \examples{
-data(seurat, seurat_known_markers)
+data(Seurat, package = "acidtest")
+data(seuratKnownMarkers)
+
+## Seurat ====
+object <- Seurat
+markers <- seuratKnownMarkers
 plotKnownMarkers(
-    object = seurat,
-    markers = seurat_known_markers
+    object = object,
+    markers = markers
 )
 }

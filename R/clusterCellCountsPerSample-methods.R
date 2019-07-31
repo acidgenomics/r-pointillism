@@ -6,8 +6,11 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat)
-#' x <- clusterCellCountsPerSample(seurat)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' x <- clusterCellCountsPerSample(object)
 #' print(x)
 NULL
 

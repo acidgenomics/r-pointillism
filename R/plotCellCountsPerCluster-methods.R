@@ -10,8 +10,11 @@
 #' @return Show graphical output. Invisibly return `ggplot`.
 #'
 #' @examples
-#' data(seurat)
-#' plotCellCountsPerCluster(seurat)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' plotCellCountsPerCluster(object)
 NULL
 
 

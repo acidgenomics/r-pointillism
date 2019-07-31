@@ -13,8 +13,11 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat)
-#' x <- findMarkers(seurat, caller = "edgeR")
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' x <- findMarkers(object, caller = "edgeR")
 #' class(x)
 #' lapply(x, class)
 NULL

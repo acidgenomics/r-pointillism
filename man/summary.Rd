@@ -31,15 +31,12 @@ Invisible \code{NULL}.
 Updated 2019-07-31.
 }
 \examples{
-data(rse, txse, package = "acidtest")
+data(seuratAllMarkers)
 
-## Gene2Symbol ====
-x <- Gene2Symbol(rse)
-summary(x)
-
-## Tx2Gene ====
-x <- Tx2Gene(txse)
-summary(x)
+## SeuratMarkersPerCluster ====
+object <- seuratAllMarkers
+class(object)
+summary(object)
 }
 \references{
 Chambers, J. M. and Hastie, T. J. (1992)

@@ -14,7 +14,7 @@ NULL
 
 
 
-## v0.2.0 =======================================================================
+## v0.2.0 ======================================================================
 #' @rdname defunct
 #' @export
 knownMarkers <- function(...) {
@@ -55,18 +55,18 @@ sanitizeMarkers <- function(...) {
 
 
 
-## v0.2.5 =======================================================================
+## v0.2.5 ======================================================================
 #' @rdname defunct
 #' @export
 importCellCycleMarkersFromGoogle <- function(...) {
-    .Defunct()
+    .Defunct("CellCycleMarkers")
 }
 
 
 #' @rdname defunct
 #' @export
 importCellTypeMarkersFromGoogle <- function(...) {
-    .Defunct()
+    .Defunct("CellTypeMarkers")
 }
 
 #' @rdname defunct

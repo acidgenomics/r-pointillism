@@ -29,7 +29,10 @@ Cluster cell counts per sample
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-x <- clusterCellCountsPerSample(seurat)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+x <- clusterCellCountsPerSample(object)
 print(x)
 }
