@@ -1,6 +1,8 @@
 ## Conflicts:
 ## @importFrom Matrix rowMeans rowSums
 
+## #' @importClassesFrom monocle3 cell_data_set
+
 
 
 #' @importClassesFrom Seurat Seurat

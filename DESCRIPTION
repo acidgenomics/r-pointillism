@@ -37,7 +37,6 @@ Imports:
     acidplots (>= 0.2.2),
     bioverbs (>= 0.2),
     goalie (>= 0.3),
-    monocle3 (>= 0.1.2),
     BiocGenerics,
     BiocParallel,
     DESeq2 (>= 1.22),
@@ -62,6 +61,7 @@ Imports:
 Suggests:
     acidtest (>= 0.2.1),
     BiocStyle,
+    monocle3 (>= 0.1.2),
     splatter,
     knitr,
     patrick,
