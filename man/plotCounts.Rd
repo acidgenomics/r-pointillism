@@ -107,6 +107,9 @@ column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{non
 \description{
 Visualize genes on a dot or violin plot.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat)
 object <- seurat

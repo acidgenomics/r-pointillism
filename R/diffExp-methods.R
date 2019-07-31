@@ -2,6 +2,11 @@
 #' @include globals.R
 #' @inherit bioverbs::diffExp
 #'
+#' @note We are no longer recommending the use of software that attempts to
+#'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
+#'   single cell RNA-seq data. Simply model the counts directly.
+#' @note Updated 2019-07-31.
+#'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
 #' supports edgeR and DESeq2 as DE callers.
@@ -23,7 +28,7 @@
 #' ratio test implemented in `nbinomLRT()` should be used.
 #'
 #' Note that DESeq2 supports `weights` in assays automatically, if slotted using
-#' zinbwave, which is no longer recommended for droplet scRNA-seq.
+#' zinbwave (which is no longer recommended for droplet scRNA-seq).
 #'
 #' @section edgeR:
 #'
@@ -36,10 +41,6 @@
 #'
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::FindMarkers()] for details.
-#'
-#' @note We are currently recommending the ZINB-WaVE method over zingeR, since
-#'   it is faster, and has been show to be more sensitive for most single-cell
-#'   RNA-seq datasets.
 #'
 #' @inheritParams basejump::params
 #' @param numerator `character`.

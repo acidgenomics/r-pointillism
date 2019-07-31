@@ -2,6 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
+#' @note Updated 2019-07-31.
 #'
 #' @inherit bioverbs::plotReducedDim
 #'

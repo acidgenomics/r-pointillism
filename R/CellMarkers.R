@@ -1,3 +1,4 @@
+## Updated 2019-07-31.
 .cellMarkers <- function(
     object,
     gene2symbol,

@@ -1,11 +1,12 @@
 #' @name findMarkers
 #' @inherit bioverbs::findMarkers
 #'
-#' @inheritParams basejump::params
-#' @param ... Passthrough arguments to [diffExp()].
-#'
 #' @note Cluster identity (`ident`) must be defined in
 #'   [`colData()`][SummarizedExperiment::colData] for this function to work.
+#' @note Updated 2019-07-31.
+#'
+#' @inheritParams basejump::params
+#' @param ... Passthrough arguments to [diffExp()].
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.

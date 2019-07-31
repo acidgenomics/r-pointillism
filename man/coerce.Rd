@@ -14,6 +14,9 @@
 \description{
 Force an object to belong to a class
 }
+\note{
+Updated 2019-07-31.
+}
 \section{\code{CellCycleMarkers} to \code{tbl_df}}{
 
 S4 coercion support for creating a \code{tbl_df} from \code{CellCycleMarkers}.

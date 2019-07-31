@@ -30,6 +30,9 @@ Show graphical output. Invisibly return \code{ggplot}.
 \description{
 Plot cell counts per cluster
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat)
 plotCellCountsPerCluster(seurat)

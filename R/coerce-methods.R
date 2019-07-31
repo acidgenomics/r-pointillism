@@ -3,6 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
+#' @note Updated 2019-07-31.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.

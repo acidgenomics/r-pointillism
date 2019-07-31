@@ -22,6 +22,9 @@ Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns.
 Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[S4Vectors:metadata]{metadata()}}.
 }
+\note{
+Updated 2019-07-31.
+}
 \seealso{
 Other S4 classes: \code{\link{CellCycleMarkers-class}},
   \code{\link{KnownMarkers-class}},

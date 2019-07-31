@@ -94,6 +94,9 @@ Invisibly return a \code{ggplot} \code{list}.
 \description{
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(seurat)
 object <- seurat

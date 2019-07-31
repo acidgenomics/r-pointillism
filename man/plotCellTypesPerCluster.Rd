@@ -57,10 +57,14 @@ Plot the geometric mean of the significant marker genes for every known cell
 type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat, seurat_known_markers)
+data(Seurat, package = "acidtest")
+data(seuratKnownMarkers)
 plotCellTypesPerCluster(
-    object = seurat,
-    markers = seurat_known_markers
+    object = Seurat,
+    markers = seuratKnownMarkers
 )
 }

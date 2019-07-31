@@ -1,3 +1,4 @@
+## Updated 2019-07-31.
 .prototypeMetadata <- list(
     version = packageVersion("pointillism"),
     date = Sys.Date()
@@ -12,6 +13,7 @@
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
@@ -45,6 +47,7 @@ setClass(
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
@@ -77,10 +80,12 @@ setClass(
 #' Class containing known markers detected.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are grouped by `cellType` column and arranged by adjusted
-#'   *P* value (`padj`).
+#' @return `KnownMarkers`.
+#'   Results are grouped by `cellType` column and arranged by adjusted *P* value
+#'   (`padj`).
 setClass(
     Class = "KnownMarkers",
     contains = "DataFrame",
@@ -114,9 +119,11 @@ setClass(
 #' Class containing essential elements for marker gene analysis.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are arranged by adjusted *P* value (`padj`).
+#' @return `SeuratMarkers`.
+#'   Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame",
@@ -146,9 +153,11 @@ setClass(
 #' Class containing essential elements for marker per cluster analysis.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are split per `cluster` and arranged by adjusted *P* value
+#' @return `SeuratMarkersPerCluster`.
+#'   Results are split per `cluster` and arranged by adjusted *P* value
 #'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",

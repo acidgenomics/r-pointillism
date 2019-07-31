@@ -1,5 +1,6 @@
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param ... Additional arguments.

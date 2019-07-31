@@ -27,6 +27,9 @@ Invisible \code{NULL}.
   invokes particular \code{\link{methods}} which depend on the
   \code{\link{class}} of the first argument.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
 data(rse, txse, package = "acidtest")
 

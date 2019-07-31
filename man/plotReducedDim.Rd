@@ -169,6 +169,9 @@ Plot reduced dimensions
 Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
+\note{
+Updated 2019-07-31.
+}
 \section{Reduction types}{
 
 \itemize{

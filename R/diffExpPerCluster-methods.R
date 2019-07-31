@@ -1,5 +1,6 @@
 #' @name diffExpPerCluster
 #' @inherit bioverbs::diffExpPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @inheritParams diffExp

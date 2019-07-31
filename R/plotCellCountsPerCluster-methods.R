@@ -1,5 +1,6 @@
 #' @name plotCellCountsPerCluster
 #' @inherit bioverbs::plotCellCountsPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
