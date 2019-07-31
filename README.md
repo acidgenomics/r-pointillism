@@ -32,7 +32,7 @@ BiocManager::install("acidgenomics/pointillism")
 
 ## Markers
 
-Shared [cell-cycle markers][] and [cell-type markers][] are available on [Google Sheets][]. Contact [Michael Steinbaugh][] if you'd like to contribute to this list.
+Cell-cycle and cell-type markers are stored internally inside the package. Refer to `inst/extdata/` for the CSV files.
 
 ## Troubleshooting
 
@@ -55,17 +55,14 @@ For more information on this issue, consult `help("dyn.load")` in the [R][] docu
 
 The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[Bioconductor]: https://bioconductor.org/
 [BiocManager]: https://cran.r-project.org/package=BiocManager
-[Cell-cycle markers]: https://docs.google.com/spreadsheets/d/1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw
-[Cell-type markers]: https://docs.google.com/spreadsheets/d/1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0
-[conda]: https://conda.io/
+[Bioconductor]: https://bioconductor.org/
 [CRAN]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
-[Google Sheets]: https://www.google.com/sheets
 [Michael Steinbaugh]: https://mike.steinbaugh.com/
-[monocle]: http://cole-trapnell-lab.github.io/monocle-release/
 [Paperpile]: https://paperpile.com/
-[pointillism]: https://pointillism.acidgenomics.com/
 [R]: https://www.r-project.org/
 [Seurat]: https://satijalab.org/seurat/
 [SingleCellExperiment]: https://bioconductor.org/packages/SingleCellExperiment/
+[conda]: https://conda.io/
+[monocle]: http://cole-trapnell-lab.github.io/monocle-release/
+[pointillism]: https://pointillism.acidgenomics.com/
