@@ -1,25 +1,27 @@
+## FIXME SCE_Seurat doesn't contain necessary colData
+## Resave!
+
 data(
-    SingleCellExperiment_Seurat,
     Seurat,
     package = "acidtest",
     envir = environment()
 )
-sce <- SingleCellExperiment_Seurat
-seurat <- Seurat
-
-## FIXME Rename these datasets to camel case.
 data(
-    seurat_all_markers,
-    seurat_known_markers,
+    seuratAllMarkers,
+    seuratKnownMarkers,
     package = "pointillism",
     envir = environment()
 )
 
+seurat <- Seurat
+rm(Seurat)
+
+genes <- head(rownames(seurat))
+sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
-    seurat = seurat
+    Seurat = seurat
 )
-genes <- head(rownames(seurat))
 
 ## nolint start
 group_vars <- dplyr::group_vars
