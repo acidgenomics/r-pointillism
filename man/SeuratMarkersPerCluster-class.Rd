@@ -32,8 +32,10 @@ Class containing essential elements for marker per cluster analysis.
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 ranges <- rowRanges(object)
 
 ## `FindMarkers()` return.

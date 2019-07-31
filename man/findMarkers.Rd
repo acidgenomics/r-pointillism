@@ -35,8 +35,11 @@ Cluster identity (\code{ident}) must be defined in
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-x <- findMarkers(seurat, caller = "edgeR")
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+x <- findMarkers(object, caller = "edgeR")
 class(x)
 lapply(x, class)
 }

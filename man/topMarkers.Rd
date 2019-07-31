@@ -39,7 +39,10 @@ Updated 2019-07-31.
 }
 \examples{
 data(seuratAllMarkers)
-x <- topMarkers(seuratAllMarkers, n = 2L)
+
+## SeuratMarkersPerCluster ====
+object <- seuratAllMarkers
+x <- topMarkers(object, n = 2L)
 print(x)
 }
 \seealso{

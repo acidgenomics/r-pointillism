@@ -10,10 +10,15 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat, seurat_known_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratKnownMarkers)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' markers <- seuratKnownMarkers
 #' plotKnownMarkers(
-#'     object = seurat,
-#'     markers = seurat_known_markers
+#'     object = object,
+#'     markers = markers
 #' )
 NULL
 

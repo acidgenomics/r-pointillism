@@ -34,6 +34,9 @@ Plot cell counts per cluster
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-plotCellCountsPerCluster(seurat)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+plotCellCountsPerCluster(object)
 }

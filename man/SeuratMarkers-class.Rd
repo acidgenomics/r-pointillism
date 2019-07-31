@@ -37,8 +37,10 @@ For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownam
 in the \code{gene} column.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 ranges <- rowRanges(object)
 
 ## `FindMarkers()` return.

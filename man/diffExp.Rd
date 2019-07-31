@@ -109,8 +109,8 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:FindMarkers]{Seur
 }
 
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+object <- Seurat
 
 ## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)

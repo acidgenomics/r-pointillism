@@ -7,15 +7,12 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(rse, txse, package = "acidtest")
+#' data(seuratAllMarkers)
 #'
-#' ## Gene2Symbol ====
-#' x <- Gene2Symbol(rse)
-#' summary(x)
-#'
-#' ## Tx2Gene ====
-#' x <- Tx2Gene(txse)
-#' summary(x)
+#' ## SeuratMarkersPerCluster ====
+#' object <- seuratAllMarkers
+#' class(object)
+#' summary(object)
 NULL
 
 

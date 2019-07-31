@@ -17,8 +17,10 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
 #' suppressMessages(

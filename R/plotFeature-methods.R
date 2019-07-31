@@ -14,8 +14,11 @@
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
-#' data(seurat)
-#' plotFeature(seurat, features = c("nCount_RNA", "nFeature_RNA"))
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' plotFeature(object, features = c("nCount_RNA", "nFeature_RNA"))
 NULL
 
 

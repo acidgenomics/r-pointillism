@@ -63,8 +63,13 @@ Updated 2019-07-31.
 \examples{
 data(Seurat, package = "acidtest")
 data(seuratKnownMarkers)
+
+## Seurat ====
+object <- Seurat
+markers <- seuratKnownMarkers
+
 plotCellTypesPerCluster(
-    object = Seurat,
-    markers = seuratKnownMarkers
+    object = object,
+    markers = markers
 )
 }

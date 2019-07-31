@@ -6,8 +6,11 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat)
-#' x <- clusterID(seurat)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' x <- clusterID(object)
 #' head(x)
 #' table(x)
 NULL

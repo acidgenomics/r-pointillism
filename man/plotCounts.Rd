@@ -111,8 +111,10 @@ Visualize genes on a dot or violin plot.
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 
 ## Plotting with either gene IDs or gene names (symbols) works.
 geneIDs <- head(rownames(object), n = 4L)

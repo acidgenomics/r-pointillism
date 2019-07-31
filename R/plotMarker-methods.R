@@ -10,8 +10,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
 #' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%

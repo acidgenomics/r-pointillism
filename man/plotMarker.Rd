@@ -98,8 +98,10 @@ Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 Updated 2019-07-31.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 title <- "most abundant genes"
 genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%

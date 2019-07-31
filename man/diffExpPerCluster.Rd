@@ -47,8 +47,10 @@ Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 group <- factor(c("group1", "group2"))
 colData(object)$group <- group
 suppressMessages(

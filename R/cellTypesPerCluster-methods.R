@@ -15,6 +15,8 @@
 #'
 #' @examples
 #' data(cellTypeMarkersList, seuratAllMarkers)
+#'
+#' ## KnownMarkers ====
 #' markers <- KnownMarkers(
 #'     markers = seuratAllMarkers,
 #'     known = cellTypeMarkersList[["homoSapiens"]]
