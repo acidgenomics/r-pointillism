@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Seurat example — seurat • pointillism</title>
+<title>Seurat known markers example — seuratKnownMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -33,9 +34,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Seurat example — seurat" />
+<meta property="og:title" content="Seurat known markers example — seuratKnownMarkers" />
 
-<meta property="og:description" content="Seurat example" />
+<meta property="og:description" content="Seurat known markers example" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -48,6 +49,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -66,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -103,35 +105,72 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Seurat example</h1>
+    <h1>Seurat known markers example</h1>
     <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>seurat.Rd</code></div>
+    <div class="hidden name"><code>seuratKnownMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Seurat example</p>
+    <p>Seurat known markers example</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>seurat</span></pre>
+    <pre class="usage"><span class='no'>seuratKnownMarkers</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>Seurat</code> with 230 rows and 80 columns.</p>
+    <p>An object of class <code>KnownMarkers</code> with 16 rows and 10 columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat</span>)
-<span class='no'>seurat</span></div><div class='output co'>#&gt; An object of class Seurat 
-#&gt; 230 features across 80 samples within 1 assay 
-#&gt; Active assay: RNA (230 features)
-#&gt;  3 dimensional reductions calculated: pca, tsne, umap</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seuratKnownMarkers</span>)
+<span class='no'>seuratKnownMarkers</span></div><div class='output co'>#&gt; KnownMarkers with 16 rows and 10 columns
+#&gt;      cluster        name          avgLogFC      pct1      pct2
+#&gt;     &lt;factor&gt; &lt;character&gt;         &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1          0    HLA-DPB1 -4.03469149237519     0.083     0.909
+#&gt; 2          0    HLA-DRB1 -3.76097185713251     0.083     0.864
+#&gt; 3          0    HLA-DPA1 -3.03212788647685     0.111     0.864
+#&gt; 4          0     HLA-DRA -2.95497408279157     0.417     0.909
+#&gt; 5          0    HLA-DQB1 -3.00075456880158     0.028     0.659
+#&gt; ...      ...         ...               ...       ...       ...
+#&gt; 12         2    HLA-DRB1  1.65909049459023     0.842      0.41
+#&gt; 13         2     HLA-DRA  1.81241934529497     0.895     0.623
+#&gt; 14         2    HLA-DPA1  1.21232847541956     0.895      0.41
+#&gt; 15         2     HLA-DMB  2.07187123241627     0.632     0.213
+#&gt; 16         2    HLA-DQA1   1.7239908499937     0.632      0.23
+#&gt;                   pvalue                 padj          geneID geneName
+#&gt;                &lt;numeric&gt;            &lt;numeric&gt;     &lt;character&gt; &lt;factor&gt;
+#&gt; 1   9.57277798217116e-13 2.20173893589937e-10 ENSG00000215048 HLA-DPB1
+#&gt; 2   7.67312692302906e-12 1.76481919229668e-09 ENSG00000196126 HLA-DRB1
+#&gt; 3   3.67317230602123e-11 8.44829630384883e-09 ENSG00000168384 HLA-DPA1
+#&gt; 4   1.20911407661642e-10 2.78096237621776e-08 ENSG00000204287  HLA-DRA
+#&gt; 5   3.03519842094915e-08 6.98095636818305e-06 ENSG00000179344 HLA-DQB1
+#&gt; ...                  ...                  ...             ...      ...
+#&gt; 12  1.34188480345497e-06 0.000308633504794642 ENSG00000196126 HLA-DRB1
+#&gt; 13  4.61844548654605e-06  0.00106224246190559 ENSG00000204287  HLA-DRA
+#&gt; 14  1.25859514370406e-05  0.00289476883051935 ENSG00000168384 HLA-DPA1
+#&gt; 15  2.54673813769652e-05    0.005857497716702 ENSG00000226264  HLA-DMB
+#&gt; 16  6.67716322621332e-05   0.0153574754202906 ENSG00000196735 HLA-DQA1
+#&gt;           cellType
+#&gt;           &lt;factor&gt;
+#&gt; 1   Dendritic Cell
+#&gt; 2   Dendritic Cell
+#&gt; 3   Dendritic Cell
+#&gt; 4   Dendritic Cell
+#&gt; 5   Dendritic Cell
+#&gt; ...            ...
+#&gt; 12  Dendritic Cell
+#&gt; 13  Dendritic Cell
+#&gt; 14  Dendritic Cell
+#&gt; 15  Dendritic Cell
+#&gt; 16  Dendritic Cell</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,19 +184,23 @@
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
