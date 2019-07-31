@@ -1,17 +1,20 @@
 data(
-    sce,
+    SingleCellExperiment_Seurat,
+    Seurat,
     package = "acidtest",
     envir = environment()
 )
+sce <- SingleCellExperiment_Seurat
+seurat <- Seurat
+
+## FIXME Rename these datasets to camel case.
 data(
-    seurat,
     seurat_all_markers,
     seurat_known_markers,
     package = "pointillism",
     envir = environment()
 )
 
-sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
     seurat = seurat
