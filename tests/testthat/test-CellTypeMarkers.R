@@ -2,7 +2,7 @@ context("CellTypeMarkers")
 
 test_that("CellTypeMarkers", {
     file <- system.file(
-        "extdata/cell_type_markers.csv",
+        "extdata/markers/cell-type/homo-sapiens.csv",
         package = "pointillism"
     )
     x <- CellTypeMarkers(
