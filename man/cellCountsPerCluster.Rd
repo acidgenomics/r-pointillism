@@ -29,8 +29,14 @@ Groups of interest that define the samples. If left unset, defaults to
 \description{
 Cell counts per cluster
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat)
-x <- cellCountsPerCluster(seurat)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+x <- cellCountsPerCluster(object)
 print(x)
 }

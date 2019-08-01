@@ -1,4 +1,4 @@
-# Compare expression in cluster 3 relative to 2.
+## Compare expression in cluster 3 relative to 2.
 object <- seurat
 ident <- clusterID(object)
 numerator <- names(ident)[ident == "2"]
@@ -13,7 +13,7 @@ context("diffExp")
 
 with_parameters_test_that(
     "diffExp", {
-        # edgeR.
+        ## edgeR.
         x <- diffExp(
             object = object,
             numerator = numerator,
@@ -22,8 +22,8 @@ with_parameters_test_that(
         )
         expect_s4_class(x, "DGELRT")
 
-        # DESeq2. Slow for large datasets.
-        # Expecting warning about degenerate design matrix.
+        ## DESeq2. Slow for large datasets.
+        ## Expecting warning about degenerate design matrix.
         suppressWarnings(
             x <- diffExp(
                 object = object,
@@ -46,7 +46,7 @@ context("findMarkers")
 
 with_parameters_test_that(
     "findMarkers", {
-        # edgeR.
+        ## edgeR.
         x <- findMarkers(object, caller = "edgeR")
         expect_is(x, "list")
         invisible(lapply(
@@ -56,8 +56,8 @@ with_parameters_test_that(
             }
         ))
 
-        # DESeq2. Slow for large datasets.
-        # Expecting warning about degenerate design matrix.
+        ## DESeq2. Slow for large datasets.
+        ## Expecting warning about degenerate design matrix.
         suppressWarnings(
             x <- findMarkers(object, caller = "DESeq2")
         )

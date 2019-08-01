@@ -1,5 +1,6 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
+#' @note Updated 2019-07-31.
 #'
 #' @inherit bioverbs::plotMarker
 #'
@@ -9,8 +10,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
 #' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
@@ -46,7 +49,8 @@ NULL
 
 
 
-plotMarker.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -62,13 +66,13 @@ plotMarker.SingleCellExperiment <-  # nolint
         legend,
         title = TRUE
     ) {
-        # Legacy arguments -----------------------------------------------------
-        # color
+        ## Legacy arguments ----------------------------------------------------
+        ## color
         if (identical(color, "auto")) {
             stop("Use `color = NULL` instead of `auto`.")
         }
 
-        # Assert checks --------------------------------------------------------
+        ## Assert checks -------------------------------------------------------
         object <- as(object, "SingleCellExperiment")
         assert(
             isCharacter(genes),
@@ -94,7 +98,7 @@ plotMarker.SingleCellExperiment <-  # nolint
             assert(isString(title))
         }
 
-        # Fetch reduced dimension data
+        ## Fetch reduced dimension data
         data <- .fetchReducedDimExpressionData(
             object = object,
             genes = genes,
@@ -102,7 +106,7 @@ plotMarker.SingleCellExperiment <-  # nolint
         )
         assert(is(data, "DataFrame"))
 
-        # Get the axis labels.
+        ## Get the axis labels.
         axes <- colnames(data)[seq_len(2L)]
         assert(all(grepl("\\d+$", axes)))
 
@@ -127,7 +131,7 @@ plotMarker.SingleCellExperiment <-  # nolint
             )
         )
 
-        # Titles
+        ## Titles
         subtitle <- NULL
         if (isTRUE(title)) {
             if (isString(geneNames)) {
@@ -135,7 +139,7 @@ plotMarker.SingleCellExperiment <-  # nolint
             } else {
                 title <- NULL
                 subtitle <- geneNames
-                # Limit to the first 5 markers
+                ## Limit to the first 5 markers
                 if (length(subtitle) > 5L) {
                     subtitle <- c(subtitle[1L:5L], "...")
                 }
@@ -152,7 +156,7 @@ plotMarker.SingleCellExperiment <-  # nolint
                 subtitle = subtitle
             )
 
-        # Customize legend.
+        ## Customize legend.
         if (isTRUE(legend)) {
             if (isString(genes)) {
                 guideTitle <- "logcounts"
@@ -207,7 +211,7 @@ plotMarker.SingleCellExperiment <-  # nolint
                 )
         }
 
-        # Dark mode.
+        ## Dark mode.
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
             if (is.null(color)) {
@@ -222,7 +226,7 @@ plotMarker.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotMarker.SingleCellExperiment)[c(
+formals(`plotMarker,SingleCellExperiment`)[c(
     "color",
     "dark",
     "expression",
@@ -253,13 +257,14 @@ formals(plotMarker.SingleCellExperiment)[c(
 setMethod(
     f = "plotMarker",
     signature = signature("SingleCellExperiment"),
-    definition = plotMarker.SingleCellExperiment
+    definition = `plotMarker,SingleCellExperiment`
 )
 
 
 
-plotMarker.Seurat <-  # nolint
-    plotMarker.SingleCellExperiment
+## Updated 2019-07-31.
+`plotMarker,Seurat` <-  # nolint
+    `plotMarker,SingleCellExperiment`
 
 
 
@@ -268,5 +273,5 @@ plotMarker.Seurat <-  # nolint
 setMethod(
     f = "plotMarker",
     signature = signature("Seurat"),
-    definition = plotMarker.Seurat
+    definition = `plotMarker,Seurat`
 )

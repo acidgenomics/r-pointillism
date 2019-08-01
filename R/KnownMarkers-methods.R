@@ -18,17 +18,23 @@
 #' @return `KnownMarkers`.
 #'
 #' @examples
-#' data(seurat_all_markers, cell_type_markers)
+#' data(cellTypeMarkersList, seuratAllMarkers)
+#'
+#' ## SeuratMarkersPerCluster ====
+#' markers <- seuratAllMarkers
+#' known <- cellTypeMarkersList[["homoSapiens"]]
+#'
 #' x <- KnownMarkers(
-#'     markers = seurat_all_markers,
-#'     known = cell_type_markers$homoSapiens
+#'     markers = markers,
+#'     known = known
 #' )
 #' summary(x)
 NULL
 
 
 
-KnownMarkers.SeuratMarkersPerCluster <-  # nolint
+## Updated 2019-07-31.
+`KnownMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         markers,
         known,
@@ -45,24 +51,24 @@ KnownMarkers.SeuratMarkersPerCluster <-  # nolint
         alpha <- metadata(markers)[["alpha"]]
         assert(isAlpha(alpha))
 
-        # Coerce data.
+        ## Coerce data.
         markers <- as(markers, "tbl_df")
         known <- as(known, "tbl_df")
         known[["geneName"]] <- NULL
 
-        # Determine where the known markers are located in the markers data.
-        # Here we have slotted the gene IDs inside a "ranges" column.
+        ## Determine where the known markers are located in the markers data.
+        ## Here we have slotted the gene IDs inside a "ranges" column.
         assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
         keep <- markers[["geneID"]] %in% known[["geneID"]]
         data <- markers[keep, , drop = FALSE]
 
-        # Apply our alpha level cutoff.
+        ## Apply our alpha level cutoff.
         data <- filter(data, !!sym("padj") < !!alpha)
 
-        # Add the `cellType` column.
+        ## Add the `cellType` column.
         data <- left_join(x = data, y = known, by = "geneID")
 
-        # Filter out promiscuous markers present in multiple clusters.
+        ## Filter out promiscuous markers present in multiple clusters.
         if (promiscuousThreshold > 1L) {
             cols <- c("cellType", "geneID")
             promiscuous <- data[, cols] %>%
@@ -100,5 +106,5 @@ setMethod(
         markers = "SeuratMarkersPerCluster",
         known = "CellTypeMarkers"
     ),
-    definition = KnownMarkers.SeuratMarkersPerCluster
+    definition = `KnownMarkers,SeuratMarkersPerCluster`
 )

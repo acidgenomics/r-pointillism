@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -50,6 +51,7 @@
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -66,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -103,6 +105,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -139,7 +142,7 @@
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
   <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
   <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
@@ -147,7 +150,7 @@
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
   <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
   <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
@@ -226,7 +229,7 @@ Scale the size of the points, similar to <code>cex</code>.</p></td>
       <td><p><code>ScaleDiscrete</code>.
 Desired ggplot2 color scale. Must supply discrete values. When set <code>NULL</code>,
 the default ggplot2 color palette will be used. If manual color definitions
-are desired, we recommend using <code><a href='https://rdrr.io/pkg/ggplot2/man/scale_manual.html'>ggplot2::scale_color_manual()</a></code>.</p>
+are desired, we recommend using <code><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>ggplot2::scale_color_manual()</a></code>.</p>
 <p>To set the discrete color palette globally, use:</p><pre>options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 </pre></td>
     </tr>
@@ -246,27 +249,34 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
 
     <p><code>ggplot</code>.</p>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Updated 2019-07-31.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><ul>
+    <div class='dont-index'>
+<ul>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/DotPlot.html'>Seurat::DotPlot()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/VlnPlot.html'>Seurat::VlnPlot()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/RidgePlot.html'>Seurat::RidgePlot()</a></code>.</p></li>
-</ul></div>
+</ul>
+</div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat</span>)
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+
+<span class='co'>## Seurat ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 
 <span class='co'>## Plotting with either gene IDs or gene names (symbols) works.</span>
-<span class='no'>geneIDs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>object</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>geneIDs</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'><span class='no'>geneNames</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'>rowRanges</span>(<span class='no'>object</span>)$<span class='no'>geneName</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>geneNames</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'>
+<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>object</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt; [1] "MS4A1"   "CD79B"   "CD79A"   "HLA-DRA"</div><div class='input'>
 <span class='co'>## Per sample mode enabled.</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneNames</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Per sample mode disabled.</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>geneIDs</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -274,6 +284,8 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
@@ -283,19 +295,23 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

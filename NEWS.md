@@ -1,10 +1,18 @@
+## pointillism 0.4.0 (2019-07-31)
+
+### Major changes
+
+- Reworked internal S4 function names.
+- Updated internal example data.
+- Moved cell-cycle and cell-type markers from Google Sheets here into the
+  package internally at `inst/extdata/markers/`.
+- Working on preliminary support for monocle3 `cell_data_set`.
+
 ## pointillism 0.3.2 (2019-04-25)
 
 ### Minor changes
 
 - S4 generic reexport documentation fixes.
-
-
 
 ## pointillism 0.3.1 (2019-04-23)
 
@@ -14,8 +22,6 @@
   default ggplot2 themes are now named `acid_theme_light` and `acid_theme_dark`.
 - Consolidated S4 class and generator function documentation into single Rd
   files, where applicable.
-
-
 
 ## pointillism 0.3.0 (2019-04-16)
 
@@ -46,8 +52,6 @@
 - `cellCountsPerCluster`: Improved internal `interestingGroups` handling.
 - Reworked reexport method for S4 generics imported from [bioverbs][] package.
 
-
-
 ## pointillism 0.2.5 (2019-04-01)
 
 ### Major changes
@@ -57,8 +61,6 @@
   droplet single-cell RNA-seq.
 - ggplot2 themes `theme_paperwhite` and `theme_midnight` are now imported from
   minimalism package instead of basejump.
-  
-
 
 ## pointillism 0.2.4 (2019-01-24)
 
@@ -66,8 +68,6 @@
 
 - `SeuratMarkersPerCluster` to `tbl_df` coerce needed a `decode` call to
   properly handling gene-to-symbol mappings with run-length encoding (`Rle`).
-
-
 
 ## pointillism 0.2.3 (2019-01-08)
 
@@ -77,8 +77,6 @@
 - Split out imports into a separate `imports.R` file.
 - Added `nullOK` flag in assert checks, where applicable. See `isGGScale`, for
   example.
-
-
 
 ## pointillism 0.2.2 (2018-12-22)
 
@@ -92,8 +90,6 @@
 - Moved S4 validity checks into `setClass` call, rather than using a separate
   `setValidity` call. Refer to `AllClasses.R` for details.
 - Removed `makeCellTypeMarkersFromGoogle` utility function.
-
-
 
 ## pointillism 0.2.1 (2018-12-01)
 
@@ -112,8 +108,6 @@
 - `SeuratMarkers`: Overhauled internal code, moving from `.seuratMarkers`
   internal function. Refer to `SeuratMarkers.R` for details.
 - Added AppVeyor CI support.
-
-
 
 ## pointillism 0.2.0 (2018-11-15)
 
@@ -158,8 +152,6 @@
 These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 `plotKnownMarkersDetected`, `readCellTypeMarkers`, `sanitizeMarkers`.
 
-
-
 ## pointilism 0.1.3 (2018-09-19)
 
 ### Major changes
@@ -183,8 +175,6 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
   `seurat` class.
 - Updated example data script and resaved.
 
-
-
 ## pointillism 0.1.2 (2018-08-22)
 
 ### New functions
@@ -204,8 +194,6 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
   default. Removed `grid` and `aspectRatio` arguments to simplify [ggplot2][]
   code handling.
 
-
-
 ## pointillism 0.1.1 (2018-08-20)
 
 ### New functions
@@ -218,13 +206,9 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 - Improved internal handling of `assays` for objects that have zinbwave
   calculations applied. Now it doesn't attempt to keep only the `counts` assay.
 
-
-
 ## pointillism 0.1.0 (2018-08-10)
 
 - Initial release.
-
-
 
 [acidplots]: https://acidplots.acidgenomics.com/
 [Acid Genomics]: https://acidgenomics.com/

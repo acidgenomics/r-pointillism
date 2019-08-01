@@ -26,7 +26,6 @@ reference:
   - title: Marker analysis
     contents:
     - clusterID
-    - knownMarkers
     - topMarkers
   - title: Plots
     contents:

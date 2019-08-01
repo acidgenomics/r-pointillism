@@ -1,6 +1,7 @@
 #' @name plotTopMarkers
 #' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -16,8 +17,13 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat, seurat_all_markers)
-#' plotTopMarkers(object = seurat, markers = seurat_all_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratAllMarkers)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' markers <- seuratAllMarkers
+#' plotTopMarkers(object = object, markers = markers)
 NULL
 
 
@@ -31,7 +37,8 @@ NULL
 
 
 
-plotTopMarkers.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotTopMarkers,SingleCellExperiment` <-  # nolint
     function(
         object,
         markers,
@@ -42,7 +49,7 @@ plotTopMarkers.SingleCellExperiment <-  # nolint
         progress = FALSE,
         ...
     ) {
-        # Passthrough: n, direction, coding
+        ## Passthrough: n, direction, coding
         validObject(object)
         markers <- topMarkers(
             object = markers,
@@ -98,8 +105,10 @@ plotTopMarkers.SingleCellExperiment <-  # nolint
 
         invisible(list)
     }
-formals(plotTopMarkers.SingleCellExperiment)[["direction"]] <- direction
-formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
+
+formals(`plotTopMarkers,SingleCellExperiment`)[
+    c("direction", "reducedDim")
+] <- list(direction, reducedDim)
 
 
 
@@ -108,13 +117,14 @@ formals(plotTopMarkers.SingleCellExperiment)[["reducedDim"]] <- reducedDim
 setMethod(
     f = "plotTopMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = plotTopMarkers.SingleCellExperiment
+    definition = `plotTopMarkers,SingleCellExperiment`
 )
 
 
 
-plotTopMarkers.Seurat <-  # nolint
-    plotTopMarkers.SingleCellExperiment
+## Updated 2019-07-31.
+`plotTopMarkers,Seurat` <-  # nolint
+    `plotTopMarkers,SingleCellExperiment`
 
 
 
@@ -123,5 +133,5 @@ plotTopMarkers.Seurat <-  # nolint
 setMethod(
     f = "plotTopMarkers",
     signature = signature("Seurat"),
-    definition = plotTopMarkers.Seurat
+    definition = `plotTopMarkers,Seurat`
 )

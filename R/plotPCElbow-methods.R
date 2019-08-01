@@ -1,5 +1,6 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
@@ -24,8 +25,11 @@
 #' @seealso `Seurat::PCElbowPlot()`.
 #'
 #' @examples
-#' data(pbmc_small, package = "Seurat")
-#' plotPCElbow(pbmc_small)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' plotPCElbow(object)
 NULL
 
 
@@ -39,7 +43,8 @@ NULL
 
 
 
-plotPCElbow.Seurat <-  # nolint
+## Updated 2019-07-31.
+`plotPCElbow,Seurat` <-  # nolint
     function(
         object,
         reducedDim = "pca",
@@ -62,8 +67,8 @@ plotPCElbow.Seurat <-  # nolint
         )
         trans <- match.arg(trans)
 
-        # dr: dimensional reduction
-        # sdev: standard deviation
+        ## dr: dimensional reduction
+        ## sdev: standard deviation
         sdev <- Stdev(object = object, reduction = reducedDim)
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
@@ -86,10 +91,10 @@ plotPCElbow.Seurat <-  # nolint
             .[.[["cumsum"]] <= maxCumPct, "pc"] %>%
             max()
 
-        # Pick the smallest value of the cutoffs
+        ## Pick the smallest value of the cutoffs
         cutoff <- min(minSDCutoff, minPctCutoff, maxCumPctCutoff)
 
-        # Standard deviation ---------------------------------------------------
+        ## Standard deviation --------------------------------------------------
         ggsd <- ggplot(
             data = data,
             mapping = aes(
@@ -112,7 +117,7 @@ plotPCElbow.Seurat <-  # nolint
             expand_limits(y = 0L) +
             scale_y_continuous(trans = trans)
 
-        # Percent standard deviation -------------------------------------------
+        ## Percent standard deviation ------------------------------------------
         ggpct <- ggplot(
             data = data,
             mapping = aes(
@@ -135,7 +140,7 @@ plotPCElbow.Seurat <-  # nolint
             expand_limits(y = 0L) +
             scale_y_continuous(labels = percent, trans = trans)
 
-        # Cumulative percent standard deviation --------------------------------
+        ## Cumulative percent standard deviation -------------------------------
         ggcumsum <- ggplot(
             data = data,
             mapping = aes(
@@ -177,5 +182,5 @@ plotPCElbow.Seurat <-  # nolint
 setMethod(
     f = "plotPCElbow",
     signature = signature("Seurat"),
-    definition = plotPCElbow.Seurat
+    definition = `plotPCElbow,Seurat`
 )

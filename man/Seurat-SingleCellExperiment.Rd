@@ -112,6 +112,9 @@ Match \code{SummarizedExperiment} method return.
 \description{
 Provide limited \code{SingleCellExperiment}-like method support.
 }
+\note{
+Updated 2019-07-31.
+}
 \seealso{
 \code{getMethod("metadata<-", "Annotated")}
 }

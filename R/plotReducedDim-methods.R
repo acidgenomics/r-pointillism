@@ -2,8 +2,8 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
-#'
 #' @inherit bioverbs::plotReducedDim
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
@@ -46,15 +46,17 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#'
+#' ## UMAP
+#' plotUMAP(object)
 #'
 #' ## t-SNE
 #' plotTSNE(object)
 #' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-#'
-#' ## UMAP
-#' plotUMAP(object)
 #'
 #' ## PCA
 #' plotPCA(object)
@@ -92,8 +94,9 @@ NULL
 
 
 
-# Constructors =================================================================
-plotReducedDim.SingleCellExperiment <-  # nolint
+## Constructors ================================================================
+## Updated 2019-07-31.
+`plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
         reducedDim,
@@ -127,7 +130,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             isString(title, nullOK = TRUE)
         )
 
-        # Color by `ident` factor by default.
+        ## Color by `ident` factor by default.
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
@@ -145,12 +148,12 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             )
         )
 
-        # Color by `ident` factor by default (see above).
+        ## Color by `ident` factor by default (see above).
         if (interestingGroups == "ident") {
             data[["interestingGroups"]] <- data[["ident"]]
         }
 
-        # Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
+        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
         axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
         assert(isSubset(axes, colnames(data)))
 
@@ -169,7 +172,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             )
 
         if (isTRUE(pointsAsNumbers)) {
-            # Increase the size, if necessary.
+            ## Increase the size, if necessary.
             if (pointSize < 4L) {
                 message("Increase pointSize to 4.")
                 pointSize <- 4L
@@ -214,7 +217,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
                 )
         }
 
-        # Dark mode.
+        ## Dark mode.
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
         }
@@ -223,7 +226,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
             p <- p + color
         }
 
-        # Improve the axis breaks.
+        ## Improve the axis breaks.
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
@@ -231,7 +234,7 @@ plotReducedDim.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotReducedDim.SingleCellExperiment)[c(
+formals(`plotReducedDim,SingleCellExperiment`)[c(
     "color",
     "dark",
     "dimsUse",
@@ -255,7 +258,8 @@ formals(plotReducedDim.SingleCellExperiment)[c(
 
 
 
-plotPCA.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotPCA,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -271,8 +275,8 @@ plotPCA.SingleCellExperiment <-  # nolint
 
 
 
-
-plotTSNE.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotTSNE,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -287,7 +291,8 @@ plotTSNE.SingleCellExperiment <-  # nolint
 
 
 
-plotUMAP.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotUMAP,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
             what = plotReducedDim,
@@ -302,30 +307,31 @@ plotUMAP.SingleCellExperiment <-  # nolint
 
 
 
-# Formals ======================================================================
-# Set the formals for the convenience functions.
-f <- formals(plotReducedDim.SingleCellExperiment)
+## Formals =====================================================================
+## Set the formals for the convenience functions.
+f <- formals(`plotReducedDim,SingleCellExperiment`)
 f <- f[setdiff(names(f), "reducedDim")]
-formals(plotPCA.SingleCellExperiment) <- f
-formals(plotTSNE.SingleCellExperiment) <- f
-formals(plotUMAP.SingleCellExperiment) <- f
+formals(`plotPCA,SingleCellExperiment`) <- f
+formals(`plotTSNE,SingleCellExperiment`) <- f
+formals(`plotUMAP,SingleCellExperiment`) <- f
 rm(f)
 
 
 
-# Methods ======================================================================
+## Methods =====================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = plotReducedDim.SingleCellExperiment
+    definition = `plotReducedDim,SingleCellExperiment`
 )
 
 
 
-plotReducedDim.Seurat <-  # nolint
-    plotReducedDim.SingleCellExperiment
+## Updated 2019-07-31.
+`plotReducedDim,Seurat` <-  # nolint
+    `plotReducedDim,SingleCellExperiment`
 
 
 
@@ -334,7 +340,7 @@ plotReducedDim.Seurat <-  # nolint
 setMethod(
     f = "plotReducedDim",
     signature = signature("Seurat"),
-    definition = plotReducedDim.Seurat
+    definition = `plotReducedDim,Seurat`
 )
 
 
@@ -344,13 +350,14 @@ setMethod(
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = plotTSNE.SingleCellExperiment
+    definition = `plotTSNE,SingleCellExperiment`
 )
 
 
 
-plotTSNE.Seurat <-  # nolint
-    plotTSNE.SingleCellExperiment
+## Updated 2019-07-31.
+`plotTSNE,Seurat` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
 
 
 
@@ -359,7 +366,7 @@ plotTSNE.Seurat <-  # nolint
 setMethod(
     f = "plotTSNE",
     signature = signature("Seurat"),
-    definition = plotTSNE.Seurat
+    definition = `plotTSNE,Seurat`
 )
 
 
@@ -369,13 +376,15 @@ setMethod(
 setMethod(
     f = "plotUMAP",
     signature = signature("SingleCellExperiment"),
-    definition = plotUMAP.SingleCellExperiment
+    definition = `plotUMAP,SingleCellExperiment`
 )
 
 
 
-plotUMAP.Seurat <-  # nolint
-    plotUMAP.SingleCellExperiment
+## Updated 2019-07-31.
+`plotUMAP,Seurat` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
 
 
 #' @rdname plotReducedDim
@@ -383,7 +392,7 @@ plotUMAP.Seurat <-  # nolint
 setMethod(
     f = "plotUMAP",
     signature = signature("Seurat"),
-    definition = plotUMAP.Seurat
+    definition = `plotUMAP,Seurat`
 )
 
 
@@ -393,13 +402,14 @@ setMethod(
 setMethod(
     f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = plotPCA.SingleCellExperiment
+    definition = `plotPCA,SingleCellExperiment`
 )
 
 
 
-plotPCA.Seurat <-  # nolint
-    plotPCA.SingleCellExperiment
+## Updated 2019-07-31.
+`plotPCA,Seurat` <-  # nolint
+    `plotPCA,SingleCellExperiment`
 
 
 
@@ -408,5 +418,5 @@ plotPCA.Seurat <-  # nolint
 setMethod(
     f = "plotPCA",
     signature = signature("Seurat"),
-    definition = plotPCA.Seurat
+    definition = `plotPCA,Seurat`
 )

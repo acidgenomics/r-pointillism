@@ -1,3 +1,4 @@
+## Updated 2019-07-31.
 .prototypeMetadata <- list(
     version = packageVersion("pointillism"),
     date = Sys.Date()
@@ -5,13 +6,14 @@
 
 
 
-# CellCycleMarkers =============================================================
+## CellCycleMarkers ============================================================
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
@@ -38,13 +40,14 @@ setClass(
 
 
 
-# CellTypeMarkers ==============================================================
+## CellTypeMarkers =============================================================
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
@@ -71,16 +74,18 @@ setClass(
 
 
 
-# Known Markers ================================================================
+## Known Markers ===============================================================
 #' Known markers
 #'
 #' Class containing known markers detected.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are grouped by `cellType` column and arranged by adjusted
-#'   *P* value (`padj`).
+#' @return `KnownMarkers`.
+#'   Results are grouped by `cellType` column and arranged by adjusted *P* value
+#'   (`padj`).
 setClass(
     Class = "KnownMarkers",
     contains = "DataFrame",
@@ -108,15 +113,17 @@ setClass(
 
 
 
-# Seurat Markers ===============================================================
+## Seurat Markers ==============================================================
 #' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are arranged by adjusted *P* value (`padj`).
+#' @return `SeuratMarkers`.
+#'   Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame",
@@ -140,15 +147,17 @@ setClass(
 
 
 
-# SeuratMarkersPerCluster ======================================================
+## SeuratMarkersPerCluster =====================================================
 #' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.
 #'
 #' @family S4 classes
+#' @note Updated 2019-07-31.
 #' @export
 #'
-#' @return Results are split per `cluster` and arranged by adjusted *P* value
+#' @return `SeuratMarkersPerCluster`.
+#'   Results are split per `cluster` and arranged by adjusted *P* value
 #'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",

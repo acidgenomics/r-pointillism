@@ -88,7 +88,7 @@ test_that("interestingGroups<-", {
 
 test_that("metadata", {
     expect_is(metadata(object), "list")
-    # Assignment method.
+    ## Assignment method.
     metadata(object)[["testthat"]] <- "XXX"
     expect_identical(
         object = metadata(object)[["testthat"]],

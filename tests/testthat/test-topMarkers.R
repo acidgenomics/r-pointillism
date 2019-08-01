@@ -1,9 +1,9 @@
 context("topMarkers")
 
 test_that("grouped_df", {
-    x <- topMarkers(seurat_all_markers)
+    x <- topMarkers(seuratAllMarkers)
     expect_is(x, "grouped_df")
-    expect_identical(dplyr::group_vars(x), "cluster")
+    expect_identical(group_vars(x), "cluster")
     expect_identical(
         lapply(x, class) %>% .[sort(names(.))],
         list(
@@ -28,7 +28,7 @@ direction <- formals(topMarkers) %>%
 with_parameters_test_that(
     "direction", {
         x <- topMarkers(
-            data = seurat_all_markers,
+            data = seuratAllMarkers,
             direction = direction
         )
         expect_is(x, "tbl_df")

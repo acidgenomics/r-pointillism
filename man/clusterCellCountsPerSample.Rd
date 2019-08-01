@@ -25,8 +25,14 @@ Grouped by \code{sampleName} column, arranged by abundance.
 \description{
 Cluster cell counts per sample
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat)
-x <- clusterCellCountsPerSample(seurat)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+x <- clusterCellCountsPerSample(object)
 print(x)
 }

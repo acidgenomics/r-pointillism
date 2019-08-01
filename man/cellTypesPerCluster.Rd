@@ -30,11 +30,16 @@ makers per cell type.
 \description{
 Cell types per cluster
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat_all_markers, cell_type_markers)
+data(cellTypeMarkersList, seuratAllMarkers)
+
+## KnownMarkers ====
 markers <- KnownMarkers(
-    markers = seurat_all_markers,
-    known = cell_type_markers$homoSapiens
+    markers = seuratAllMarkers,
+    known = cellTypeMarkersList[["homoSapiens"]]
 )
 x <- cellTypesPerCluster(markers)
 print(x)

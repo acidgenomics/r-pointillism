@@ -1,6 +1,7 @@
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
+#' @note Updated 2019-07-31.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
@@ -29,22 +30,20 @@
 #' - [Seurat::RidgePlot()].
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
 #'
 #' ## Plotting with either gene IDs or gene names (symbols) works.
-#' geneIDs <- head(rownames(object), n = 4L)
-#' print(geneIDs)
-#' geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
-#' print(geneNames)
+#' genes <- head(rownames(object), n = 4L)
+#' print(genes)
 #'
 #' ## Per sample mode enabled.
-#' plotDot(object, genes = geneNames, perSample = TRUE)
-#' plotViolin(object, genes = geneNames, perSample = TRUE)
+#' plotCounts(object, genes = genes, perSample = TRUE)
 #'
 #' ## Per sample mode disabled.
-#' plotDot(object, genes = geneIDs, perSample = FALSE)
-#' plotViolin(object, genes = geneIDs, perSample = FALSE)
+#' plotCounts(object, genes = genes, perSample = FALSE)
 NULL
 
 
@@ -72,8 +71,9 @@ NULL
 
 
 
-# plotCounts ===================================================================
-plotCounts.SingleCellExperiment <-  # nolint
+## plotCounts ==================================================================
+## Updated 2019-07-31.
+`plotCounts,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -94,12 +94,13 @@ plotCounts.SingleCellExperiment <-  # nolint
         do.call(what = what, args = args)
     }
 
-formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
+formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
 
 
 
-# plotDot ======================================================================
+## plotDot =====================================================================
 #' Min Max
+#' @note Updated 2019-07-31.
 #' @seealso `Seurat:::MinMax`.
 #' @noRd
 .minMax <- function(data, min, max) {
@@ -112,6 +113,7 @@ formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 #' Percent Above
+#' @note Updated 2019-07-31.
 #' @seealso `Seurat:::PercentAbove`.
 #' @noRd
 .percentAbove <- function(x, threshold) {
@@ -120,7 +122,8 @@ formals(plotCounts.SingleCellExperiment)[["legend"]] <- legend
 
 
 
-plotDot.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotDot,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -152,7 +155,7 @@ plotDot.SingleCellExperiment <-  # nolint
             isString(title, nullOK = TRUE)
         )
 
-        # Fetch the gene expression data.
+        ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
@@ -160,14 +163,14 @@ plotDot.SingleCellExperiment <-  # nolint
             metadata = TRUE
         )
 
-        # Prepare data for ggplot.
+        ## Prepare data for ggplot.
         cols <- c("geneName", "sampleName", "ident")
         data <- data %>%
             as_tibble() %>%
             group_by(!!!syms(cols)) %>%
             summarize(
                 avgExp = mean(expm1(!!sym("logcounts"))),
-                # Consider making threshold user definable.
+                ## Consider making threshold user definable.
                 pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
             ) %>%
             ungroup() %>%
@@ -183,7 +186,7 @@ plotDot.SingleCellExperiment <-  # nolint
             ) %>%
             arrange(!!!syms(cols), .by_group = TRUE)
 
-        # Apply our `dotMin` threshold.
+        ## Apply our `dotMin` threshold.
         data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
 
         p <- ggplot(
@@ -206,7 +209,7 @@ plotDot.SingleCellExperiment <-  # nolint
                 y = NULL
             )
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -224,7 +227,7 @@ plotDot.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotDot.SingleCellExperiment)[c(
+formals(`plotDot,SingleCellExperiment`)[c(
     "color",
     "legend"
 )] <- list(
@@ -234,7 +237,8 @@ formals(plotDot.SingleCellExperiment)[c(
 
 
 
-plotViolin.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotViolin,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -254,7 +258,7 @@ plotViolin.SingleCellExperiment <-  # nolint
         )
         scale <- match.arg(scale)
 
-        # Fetch the gene expression data.
+        ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
@@ -262,7 +266,7 @@ plotViolin.SingleCellExperiment <-  # nolint
             metadata = TRUE
         )
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -299,10 +303,10 @@ plotViolin.SingleCellExperiment <-  # nolint
                 show.legend = legend,
                 trim = TRUE
             ) +
-            # Note that `scales = free_y` will hide the x-axis for some plots.
+            ## Note that `scales = free_y` will hide the x-axis for some plots.
             labs(title = title, color = colorLabs)
 
-        # Handling step for multiple samples, if desired.
+        ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
@@ -328,24 +332,25 @@ plotViolin.SingleCellExperiment <-  # nolint
         p
     }
 
-formals(plotViolin.SingleCellExperiment)[c("color", "legend")] <-
+formals(`plotViolin,SingleCellExperiment`)[c("color", "legend")] <-
     list(color = discreteColor, legend = legend)
 
 
 
-# Methods ======================================================================
+## Methods =====================================================================
 #' @rdname plotCounts
 #' @export
 setMethod(
     f = "plotCounts",
     signature = signature("SingleCellExperiment"),
-    definition = plotCounts.SingleCellExperiment
+    definition = `plotCounts,SingleCellExperiment`
 )
 
 
 
-plotCounts.Seurat <-  # nolint
-    plotCounts.SingleCellExperiment
+## Updated 2019-07-31.
+`plotCounts,Seurat` <-  # nolint
+    `plotCounts,SingleCellExperiment`
 
 
 
@@ -354,7 +359,7 @@ plotCounts.Seurat <-  # nolint
 setMethod(
     f = "plotCounts",
     signature = signature("Seurat"),
-    definition = plotCounts.SingleCellExperiment
+    definition = `plotCounts,SingleCellExperiment`
 )
 
 
@@ -364,13 +369,14 @@ setMethod(
 setMethod(
     f = "plotDot",
     signature = signature("SingleCellExperiment"),
-    definition = plotDot.SingleCellExperiment
+    definition = `plotDot,SingleCellExperiment`
 )
 
 
 
-plotDot.Seurat <-  # nolint
-    plotDot.SingleCellExperiment
+## Updated 2019-07-31.
+`plotDot,Seurat` <-  # nolint
+    `plotDot,SingleCellExperiment`
 
 
 
@@ -379,7 +385,7 @@ plotDot.Seurat <-  # nolint
 setMethod(
     f = "plotDot",
     signature = signature("Seurat"),
-    definition = plotDot.Seurat
+    definition = `plotDot,Seurat`
 )
 
 
@@ -389,13 +395,14 @@ setMethod(
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = plotViolin.SingleCellExperiment
+    definition = `plotViolin,SingleCellExperiment`
 )
 
 
 
-plotViolin.Seurat <-  # nolint
-    plotViolin.SingleCellExperiment
+## Updated 2019-07-31.
+`plotViolin,Seurat` <-  # nolint
+    `plotViolin,SingleCellExperiment`
 
 
 
@@ -404,5 +411,5 @@ plotViolin.Seurat <-  # nolint
 setMethod(
     f = "plotViolin",
     signature = signature("Seurat"),
-    definition = plotViolin.Seurat
+    definition = `plotViolin,Seurat`
 )

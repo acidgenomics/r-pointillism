@@ -1,3 +1,4 @@
+## Updated 2019-07-31.
 .cellMarkers <- function(
     object,
     gene2symbol,
@@ -15,15 +16,15 @@
         group <- "cellType"
     }
 
-    # Coerce to tibble and sanitize.
+    ## Coerce to tibble and sanitize.
     data <- object %>%
         as_tibble(rownames = NULL) %>%
         camel() %>%
         select(!!!syms(c(group, "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
 
-    # Warn user about markers that aren't present in the gene2symbol.
-    # This is useful for informing about putative markers that aren't expressed.
+    ## Warn user about markers that aren't present in the gene2symbol. This is
+    ## useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
     if (length(setdiff)) {
         stop(paste(
@@ -59,6 +60,7 @@
 #' @rdname CellCycleMarkers-class
 #' @inheritParams basejump::params
 #' @export
+## Updated 2019-07-31.
 CellCycleMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellCycleMarkers"
@@ -75,6 +77,7 @@ CellCycleMarkers <-  # nolint
 #' @rdname CellTypeMarkers-class
 #' @inheritParams basejump::params
 #' @export
+## Updated 2019-07-31.
 CellTypeMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellTypeMarkers"

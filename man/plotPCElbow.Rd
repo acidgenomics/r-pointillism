@@ -50,9 +50,15 @@ Calculate the principal component (PC) cutoff using a heuristic approach.
 Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(pbmc_small, package = "Seurat")
-plotPCElbow(pbmc_small)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+plotPCElbow(object)
 }
 \seealso{
 \code{Seurat::PCElbowPlot()}.

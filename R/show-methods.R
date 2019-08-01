@@ -2,14 +2,27 @@
 #' @name show
 #' @author Michael Steinbuagh
 #' @inherit methods::show title description details params
+#' @note Updated 2019-07-31.
+#'
+#' @examples
+#' data(cellCycleMarkersList, cellTypeMarkersList)
+#'
+#' ## CellCycleMarkers ====
+#' object <- cellCycleMarkersList[[1L]]
+#' show(object)
+#'
+#' ## CellTypeMarkers ====
+#' object <- cellTypeMarkersList[[1L]]
+#' show(object)
 NULL
 
 
 
-show.CellCycleMarkers <-  # nolint
+## Updated 2019-07-31.
+`show,CellCycleMarkers` <-  # nolint
     function(object) {
         validObject(object)
-        # Include the organism information.
+        ## Include the organism information.
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
         lengths <- nrow(object)
@@ -39,20 +52,21 @@ show.CellCycleMarkers <-  # nolint
 setMethod(
     f = "show",
     signature = signature("CellCycleMarkers"),
-    definition = show.CellCycleMarkers
+    definition = `show,CellCycleMarkers`
 )
 
 
 
-show.CellTypeMarkers <-  # nolint
+## Updated 2019-07-31.
+`show,CellTypeMarkers` <-  # nolint
     function(object) {
         validObject(object)
 
-        # Include the organism information.
+        ## Include the organism information.
         organism <- metadata(object)[["organism"]]
         release <- metadata(object)[["ensemblRelease"]]
 
-        # Include the gene lengths per phase.
+        ## Include the gene lengths per phase.
         lengths <- nrow(object)
         genes <- vapply(
             X = object,
@@ -82,5 +96,5 @@ show.CellTypeMarkers <-  # nolint
 setMethod(
     f = "show",
     signature = signature("CellTypeMarkers"),
-    definition = show.CellTypeMarkers
+    definition = `show,CellTypeMarkers`
 )

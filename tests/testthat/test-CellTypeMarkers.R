@@ -2,12 +2,17 @@ context("CellTypeMarkers")
 
 test_that("CellTypeMarkers", {
     file <- system.file(
-        "extdata/cell_type_markers.csv",
+        "extdata/markers/cell-type/homo-sapiens.csv",
         package = "pointillism"
     )
+    markers <- as(import(file), "DataFrame")
+    gene2symbol <- Gene2Symbol(seurat)
+    keep <- markers[["geneID"]] %in% gene2symbol[["geneID"]]
+    expect_true(any(keep))
+    markers <- markers[keep, , drop = FALSE]
     x <- CellTypeMarkers(
-        object = as(import(file), "DataFrame"),
-        gene2symbol = Gene2Symbol(seurat)
+        object = markers,
+        gene2symbol = gene2symbol
     )
     expect_is(x, "CellTypeMarkers")
 })

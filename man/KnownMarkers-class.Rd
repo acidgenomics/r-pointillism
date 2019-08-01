@@ -27,8 +27,9 @@ required to consider a gene marker promiscuous. Set to \code{0} to disable
 promiscuous marker filtering.}
 }
 \value{
-Results are grouped by \code{cellType} column and arranged by adjusted
-\emph{P} value (\code{padj}).
+\code{KnownMarkers}.
+Results are grouped by \code{cellType} column and arranged by adjusted \emph{P} value
+(\code{padj}).
 
 \code{KnownMarkers}.
 }
@@ -36,16 +37,23 @@ Results are grouped by \code{cellType} column and arranged by adjusted
 Class containing known markers detected.
 }
 \note{
+Updated 2019-07-31.
+
 Both the \code{markers} and \code{known} objects must contain Ensembl gene
 identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 }
 \examples{
-data(seurat_all_markers, cell_type_markers)
+data(cellTypeMarkersList, seuratAllMarkers)
+
+## SeuratMarkersPerCluster ====
+markers <- seuratAllMarkers
+known <- cellTypeMarkersList[["homoSapiens"]]
+
 x <- KnownMarkers(
-    markers = seurat_all_markers,
-    known = cell_type_markers$homoSapiens
+    markers = markers,
+    known = known
 )
 summary(x)
 }

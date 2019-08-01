@@ -1,15 +1,16 @@
 ---
+## Updated 2019-04-17.
 params:
   title: "Seurat Markers"
   
-  # Use a SingleCellExperiment coerced from Seurat.
+  ## Use a SingleCellExperiment coerced from Seurat.
   sce_file: "data/YYYY-MM-DD/sce.rds"
   
   markers_file: "data/YYYY-MM-DD/markers.rds"
   cell_type_markers_file: NULL
   organism: "Homo sapiens"
   
-  # Use dark mode theme (`theme_midnight()`) for plots.
+  ## Use dark mode theme (`theme_midnight()`) for plots.
   dark: FALSE
   
   data_dir: !r file.path("rds", Sys.Date())
@@ -22,31 +23,29 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-# Last modified 2019-04-17
-
 library(Seurat)
 library(pointillism)
 prepareTemplate(package = "pointillism")
 source("_setup.R")
 
-# Create directories.
+## Create directories.
 dir.create(params$results_dir, recursive = TRUE, showWarnings = FALSE)
 
-# knitr arguments (for `rmarkdown::render()` looping)
-# > opts_chunk$set(
-# >     cache.path = paste(
-# >         sce_name,
-# >         "markers",
-# >         "cache/",
-# >         sep = "_"
-# >     ),
-# >     fig.path = paste(
-# >         sce_name,
-# >         "markers",
-# >         "files/",
-# >         sep = "_"
-# >     )
-# > )
+## knitr arguments (for `rmarkdown::render()` looping)
+## > opts_chunk$set(
+## >     cache.path = paste(
+## >         sce_name,
+## >         "markers",
+## >         "cache/",
+## >         sep = "_"
+## >     ),
+## >     fig.path = paste(
+## >         sce_name,
+## >         "markers",
+## >         "files/",
+## >         sep = "_"
+## >     )
+## > )
 ```
 
 ```{r header, child="_header.Rmd"}
@@ -73,7 +72,7 @@ stopifnot(
 invisible(validObject(sce))
 print(sce)
 
-# Require that the object contains logcounts.
+## Require that the object contains logcounts.
 stopifnot("logcounts" %in% assayNames(sce))
 stopifnot(!is.null(logcounts(sce)))
 ```
@@ -95,12 +94,12 @@ markers_name <- load(params$markers_file)
 markers <- get(markers_name, inherits = FALSE)
 stopifnot(is.data.frame(markers))
 
-# Keep a backup of the original data.frame.
+## Keep a backup of the original data.frame.
 markers_original <- markers
 
-# Default to using our internal cell type markers, managed on Google Sheets.
-# File on issue on the bcbioSingleCell GitHub repo if this list needs to get
-# updated or the desired organism isn't yet supported.
+## Default to using our internal cell type markers, managed on Google Sheets.
+## File on issue on the bcbioSingleCell GitHub repo if this list needs to get
+## updated or the desired organism isn't yet supported.
 if (!is.null(params$cell_type_markers_file)) {
     gene2symbol <- gene2symbol(sce)
     cell_type_markers <- readCellTypeMarkers(
@@ -126,7 +125,7 @@ Here we are sanitizing the markers return, and adding additional metadata.
 rowRanges <- rowRanges(seurat)
 stopifnot("geneName" %in% colnames(mcols(rowRanges)))
 
-# Sanitize the markers data.frame and include gene metadata.
+## Sanitize the markers data.frame and include gene metadata.
 all_markers <- sanitizeSeuratMarkers(
     data = all_markers,
     rowRanges = rowRanges

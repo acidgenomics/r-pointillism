@@ -65,9 +65,11 @@ Perform pairwise differential expression across groups of cells. Currently
 supports edgeR and DESeq2 as DE callers.
 }
 \note{
-We are currently recommending the ZINB-WaVE method over zingeR, since
-it is faster, and has been show to be more sensitive for most single-cell
-RNA-seq datasets.
+We are no longer recommending the use of software that attempts to
+mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
+single cell RNA-seq data. Simply model the counts directly.
+
+Updated 2019-07-31.
 }
 \section{DESeq2}{
 
@@ -87,7 +89,7 @@ For UMI data, for which the expected counts may be very low, the likelihood
 ratio test implemented in \code{nbinomLRT()} should be used.
 
 Note that DESeq2 supports \code{weights} in assays automatically, if slotted using
-zinbwave, which is no longer recommended for droplet scRNA-seq.
+zinbwave (which is no longer recommended for droplet scRNA-seq).
 }
 
 \section{edgeR}{
@@ -107,8 +109,8 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:FindMarkers]{Seur
 }
 
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+object <- Seurat
 
 ## Compare expression in cluster 3 relative to 2.
 ident <- clusterID(object)
@@ -117,7 +119,7 @@ summary(numerator)
 denominator <- names(ident)[ident == "2"]
 summary(denominator)
 
-## edgeR
+## edgeR ====
 # x <- diffExp(
 #     object = object,
 #     numerator = numerator,
@@ -127,7 +129,7 @@ summary(denominator)
 # class(x)
 # summary(x)
 
-## DESeq2
+## DESeq2 ====
 # This will warn about weights with the minimal example.
 # x <- diffExp(
 #     object = object,
