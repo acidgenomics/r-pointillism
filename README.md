@@ -15,7 +15,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 }
 Sys.setenv(R_REMOTES_UPGRADE = "always")
 # Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
-remotes::install_github("acidgenomics/basejump")
+remotes::install_github("acidgenomics/pointillism")
 ```
 
 Here's how to update to the latest version on GitHub:
