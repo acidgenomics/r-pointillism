@@ -10,7 +10,7 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = "TSNE", expression = c("mean", "sum"),
+  reducedDim = "UMAP", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -21,7 +21,7 @@ plotMarker(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
-\S4method{plotMarker}{Seurat}(object, genes, reducedDim = "TSNE",
+\S4method{plotMarker}{Seurat}(object, genes, reducedDim = "UMAP",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
@@ -88,14 +88,20 @@ Plot title.}
 \item{...}{Additional arguments.}
 }
 \value{
-Show graphical output. Invisibly return a \code{ggplot} \code{list}.
+Show graphical output.
+Invisibly return a \code{ggplot} \code{list}.
 }
 \description{
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 title <- "most abundant genes"
 genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%

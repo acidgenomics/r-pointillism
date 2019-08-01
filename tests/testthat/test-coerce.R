@@ -24,7 +24,7 @@ test_that("Seurat to SingleCellExperiment", {
 test_that("SingleCellExperiment to Seurat", {
     x <- as(sce, "Seurat")
     expect_is(x, "Seurat")
-    # Check slotted count integrity.
+    ## Check slotted count integrity.
     counts <- counts(x)
     expect_is(counts, "dgCMatrix")
     expect_identical(dim(counts), dim(sce))
@@ -33,22 +33,22 @@ test_that("SingleCellExperiment to Seurat", {
 test_that("SCE-seurat interconversion with subsetting", {
     a <- sce
 
-    # Coerce to seurat.
+    ## Coerce to seurat.
     b <- as(a, "Seurat")
     expect_s4_class(b, "Seurat")
 
-    # Coerce back to SCE.
+    ## Coerce back to SCE.
     c <- as(b, "SingleCellExperiment")
     expect_s4_class(c, "SingleCellExperiment")
 
-    # Subset to contain n-1 genes, n-1 cells.
+    ## Subset to contain n-1 genes, n-1 cells.
     nr <- nrow(c) - 1L
     nc <- ncol(c) - 1L
     d <- c[seq_len(nr), seq_len(nc)]
     expect_s4_class(d, "SingleCellExperiment")
     expect_identical(dim(d), c(nr, nc))
 
-    # Coerce back to seurat.
+    ## Coerce back to seurat.
     e <- as(d, "Seurat")
     expect_s4_class(e, "Seurat")
     expect_identical(dim(counts(e)), c(nr, nc))

@@ -1,23 +1,30 @@
+## Fix for edgeR partial match warning.
+options(
+    warnPartialMatchAttr = FALSE,
+    warnPartialMatchDollar = FALSE
+)
+
 data(
-    sce,
+    Seurat,
     package = "acidtest",
     envir = environment()
 )
 data(
-    seurat,
-    seurat_all_markers,
-    seurat_known_markers,
+    seuratAllMarkers,
+    seuratKnownMarkers,
     package = "pointillism",
     envir = environment()
 )
 
+seurat <- Seurat
+rm(Seurat)
+genes <- head(rownames(seurat))
 sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
-    seurat = seurat
+    Seurat = seurat
 )
-genes <- head(rownames(seurat))
 
-# nolint start
+## nolint start
 group_vars <- dplyr::group_vars
-# nolint end
+## nolint end

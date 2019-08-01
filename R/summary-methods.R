@@ -1,20 +1,18 @@
 #' @name summary
 #' @importFrom S4Vectors summary
 #' @inherit basejump::summary
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(rse, txse, package = "acidtest")
+#' data(seuratAllMarkers)
 #'
-#' ## Gene2Symbol ====
-#' x <- Gene2Symbol(rse)
-#' summary(x)
-#'
-#' ## Tx2Gene ====
-#' x <- Tx2Gene(txse)
-#' summary(x)
+#' ## SeuratMarkersPerCluster ====
+#' object <- seuratAllMarkers
+#' class(object)
+#' summary(object)
 NULL
 
 
@@ -28,11 +26,12 @@ NULL
 
 
 
-summary.SeuratMarkers <-  # nolint
+## Updated 2019-07-31.
+`summary,SeuratMarkers` <-  # nolint
     function(object) {
-        # Metadata.
+        ## Metadata.
         m <- metadata(object)
-        # Row ranges metadata.
+        ## Row ranges metadata.
         rrm <- metadata(object[["ranges"]])
         showSlotInfo(list(
             alpha = m[["alpha"]],
@@ -51,18 +50,19 @@ summary.SeuratMarkers <-  # nolint
 setMethod(
     f = "summary",
     signature = signature("SeuratMarkers"),
-    definition = summary.SeuratMarkers
+    definition = `summary,SeuratMarkers`
 )
 
 
 
-summary.SeuratMarkersPerCluster <-  # nolint
+## Updated 2019-07-31.
+`summary,SeuratMarkersPerCluster` <-  # nolint
     function(object) {
         cat(paste(length(object), "clusters"), sep = "\n")
         data <- do.call(what = rbind, args = object)
-        # Metadata.
+        ## Metadata.
         m <- metadata(data)
-        # Row ranges metadata.
+        ## Row ranges metadata.
         rrm <- metadata(data[["ranges"]])
         showSlotInfo(list(
             alpha = m[["alpha"]],
@@ -81,5 +81,5 @@ summary.SeuratMarkersPerCluster <-  # nolint
 setMethod(
     f = "summary",
     signature = signature("SeuratMarkersPerCluster"),
-    definition = summary.SeuratMarkersPerCluster
+    definition = `summary,SeuratMarkersPerCluster`
 )

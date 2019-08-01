@@ -1,5 +1,7 @@
-# Conflicts:
-# @importFrom Matrix rowMeans rowSums
+## Conflicts:
+## @importFrom Matrix rowMeans rowSums
+
+## #' @importClassesFrom monocle3 cell_data_set
 
 
 
@@ -23,7 +25,7 @@
 #'   rowData rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
 #' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
-#'   import mapGenesToRownames mapGenesToSymbols markdownHeader
+#'   import makeNames mapGenesToRownames mapGenesToSymbols markdownHeader
 #'   matchArgsToDoCall matchInterestingGroups printString separator showSlotInfo
 #'   snake upperCamel
 #' @importFrom cowplot plot_grid

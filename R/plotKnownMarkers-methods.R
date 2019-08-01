@@ -1,5 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
@@ -9,10 +10,15 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(seurat, seurat_known_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratKnownMarkers)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' markers <- seuratKnownMarkers
 #' plotKnownMarkers(
-#'     object = seurat,
-#'     markers = seurat_known_markers
+#'     object = object,
+#'     markers = markers
 #' )
 NULL
 
@@ -27,7 +33,8 @@ NULL
 
 
 
-`plotKnownMarkers.SingleCellExperiment,KnownMarkers` <-  # nolint
+## Updated 2019-07-31.
+`plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -50,7 +57,7 @@ NULL
             applyFun <- lapply
         }
 
-        # Safe to remove our nested ranges.
+        ## Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
         markers[["ranges"]] <- NULL
 
@@ -93,7 +100,7 @@ NULL
         invisible(list)
     }
 
-formals(`plotKnownMarkers.SingleCellExperiment,KnownMarkers`)[c(
+formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
     "reducedDim"
 )] <- list(
@@ -111,13 +118,14 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
+    definition = `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
 )
 
 
 
-`plotKnownMarkers.Seurat,KnownMarkers` <-  # nolint
-    `plotKnownMarkers.SingleCellExperiment,KnownMarkers`
+## Updated 2019-07-31.
+`plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
+    `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
 
 
 
@@ -129,5 +137,5 @@ setMethod(
         object = "Seurat",
         markers = "KnownMarkers"
     ),
-    definition = `plotKnownMarkers.Seurat,KnownMarkers`
+    definition = `plotKnownMarkers,Seurat,KnownMarkers`
 )

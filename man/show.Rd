@@ -36,6 +36,20 @@ complete, original object, with misleading results.  See the
 \code{simpleInheritanceOnly} argument to \code{\link{setGeneric}} and
 the discussion in \code{\link{setIs}} for the general concept.
 }
+\note{
+Updated 2019-07-31.
+}
+\examples{
+data(cellCycleMarkersList, cellTypeMarkersList)
+
+## CellCycleMarkers ====
+object <- cellCycleMarkersList[[1L]]
+show(object)
+
+## CellTypeMarkers ====
+object <- cellTypeMarkersList[[1L]]
+show(object)
+}
 \author{
 Michael Steinbuagh
 }

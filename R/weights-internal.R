@@ -1,4 +1,5 @@
-# Require zero weights to be calculated, showing a more informative error.
+## Require zero weights to be calculated, showing a more informative error.
+## Updated 2019-07-31.
 .weights <- function(object) {
     msg <- paste(
         "Object does not contain zero weights in `weights` slot.",
@@ -8,11 +9,11 @@
     weights <- tryCatch(
         expr = weights(object),
         error = function(e) {
-            stop(msg, call. = FALSE)
+            stop(msg)
         }
     )
     if (is.null(weights)) {
-        stop(msg, call. = FALSE)
+        stop(msg)
     }
     assert(is.matrix(weights))
     weights

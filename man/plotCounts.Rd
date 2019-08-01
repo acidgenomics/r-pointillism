@@ -107,23 +107,24 @@ column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{non
 \description{
 Visualize genes on a dot or violin plot.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 
 ## Plotting with either gene IDs or gene names (symbols) works.
-geneIDs <- head(rownames(object), n = 4L)
-print(geneIDs)
-geneNames <- head(as.character(rowRanges(object)$geneName), n = 4L)
-print(geneNames)
+genes <- head(rownames(object), n = 4L)
+print(genes)
 
 ## Per sample mode enabled.
-plotDot(object, genes = geneNames, perSample = TRUE)
-plotViolin(object, genes = geneNames, perSample = TRUE)
+plotCounts(object, genes = genes, perSample = TRUE)
 
 ## Per sample mode disabled.
-plotDot(object, genes = geneIDs, perSample = FALSE)
-plotViolin(object, genes = geneIDs, perSample = FALSE)
+plotCounts(object, genes = genes, perSample = FALSE)
 }
 \seealso{
 \itemize{

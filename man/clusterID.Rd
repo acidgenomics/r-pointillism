@@ -24,9 +24,15 @@ clusterID(object, ...)
 \description{
 Cluster identifier
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat)
-x <- clusterID(seurat)
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+x <- clusterID(object)
 head(x)
 table(x)
 }

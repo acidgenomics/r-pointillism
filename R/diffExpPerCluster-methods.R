@@ -1,5 +1,6 @@
 #' @name diffExpPerCluster
 #' @inherit bioverbs::diffExpPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @inheritParams diffExp
@@ -16,8 +17,10 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(seurat)
-#' object <- seurat
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
 #' suppressMessages(
@@ -44,7 +47,8 @@ NULL
 
 
 
-diffExpPerCluster.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`diffExpPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
         group,
@@ -54,7 +58,7 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
     ) {
         object <- as(object, "SingleCellExperiment")
 
-        # group
+        ## group
         assert(
             isString(group),
             isSubset(group, colnames(colData(object)))
@@ -62,38 +66,38 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
         groupings <- colData(object)[[group]]
         assert(is.factor(groupings))
 
-        # numerator
+        ## numerator
         assert(
             isString(numerator),
             isSubset(numerator, levels(groupings))
         )
 
-        # denominator
+        ## denominator
         assert(
             isString(denominator),
             isSubset(denominator, levels(groupings)),
             areDisjointSets(numerator, denominator)
         )
 
-        # Get the cluster identities.
+        ## Get the cluster identities.
         ident <- clusterID(object)
         assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
         message(paste(length(clusters), "clusters detected"))
 
-        # Loop across each cluster and perform pairwise DE based on the single
-        # group of interest defined.
-        # Consider adding a skip step here for clusters with very few cells.
+        ## Loop across each cluster and perform pairwise DE based on the single
+        ## group of interest defined.
+        ## Consider adding a skip step here for clusters with very few cells.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 message(paste("Cluster", cluster, "===="))
-                # Subset the cells by cluster.
+                ## Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
                 assert(isNonEmpty(cells))
                 subset <- object[, cells]
-                # Ensure that both the numerator and denominator are defined.
+                ## Ensure that both the numerator and denominator are defined.
                 groupings <- droplevels(colData(subset)[[group]])
                 numerator <- colnames(subset)[which(groupings == numerator)]
                 denominator <- colnames(subset)[which(groupings == denominator)]
@@ -116,13 +120,14 @@ diffExpPerCluster.SingleCellExperiment <-  # nolint
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = diffExpPerCluster.SingleCellExperiment
+    definition = `diffExpPerCluster,SingleCellExperiment`
 )
 
 
 
-diffExpPerCluster.Seurat <-  # nolint
-    diffExpPerCluster.SingleCellExperiment
+## Updated 2019-07-31.
+`diffExpPerCluster,Seurat` <-  # nolint
+    `diffExpPerCluster,SingleCellExperiment`
 
 
 
@@ -131,5 +136,5 @@ diffExpPerCluster.Seurat <-  # nolint
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("Seurat"),
-    definition = diffExpPerCluster.Seurat
+    definition = `diffExpPerCluster,Seurat`
 )

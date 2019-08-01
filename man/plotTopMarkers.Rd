@@ -10,11 +10,11 @@
 plotTopMarkers(object, ...)
 
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "TSNE",
+  direction = c("up", "down", "both"), reducedDim = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -55,7 +55,15 @@ The number of markers to plot is determined by the output of the
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat, seurat_all_markers)
-plotTopMarkers(object = seurat, markers = seurat_all_markers)
+data(Seurat, package = "acidtest")
+data(seuratAllMarkers)
+
+## Seurat ====
+object <- Seurat
+markers <- seuratAllMarkers
+plotTopMarkers(object = object, markers = markers)
 }

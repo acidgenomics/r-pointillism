@@ -1,90 +1,78 @@
-# Cell Cycle and Cell Type Markers
-# 2018-11-20
+## Cell-cycle and cell-type markers.
+## Updated 2019-07-31.
 
-# This code is derived from:
-# - Tirosh et al, 2015
-# - http://satijalab.org/seurat/cell_cycle_vignette.html
+## Here we're matching the stored Ensembl identifiers (`geneID`) using
+## ensembldb to obtain the latest symbol names from Ensembl.
 
-# Must be interactive, requiring Google Sheets authentication.
-stopifnot(interactive())
+## Cell-cycle markers devied from:
+## - Tirosh et al, 2015
+## - http://satijalab.org/seurat/cell_cycle_vignette.html
 
-library(googlesheets)
-library(tidyverse)
+library(usethis)
+library(stringr)
 
-# Ensembl release version.
-release <- 92L
+# Import as `DataFrame` instead of `tbl_df`.
+options("acid.data.frame") <- "DataFrame"
 
-# Here we're matching the stored Ensembl identifiers (`geneID`) using
-# ensembldb to obtain the latest symbol names from Ensembl.
+markersDir <- system.file(
+    file.path("inst", "extdata", "markers"),
+    package = "pointillism"
+)
+stopifnot(dir.exists(markersDir))
 
-# Generate an OAuth token on an R server using httr.
-# https://support.rstudio.com/hc/en-us/articles/217952868-Generating-OAuth-tokens-for-a-server-using-httr
-# Otherwise you will run into a localhost port 1410 error.
-# Easiest way to fix this is to set `options(httr_oob_default = TRUE)`.
-# You'll get a code that you have to paste back into an R prompt.
+## Ensembl release version.
+release <- as.integer(readLines(file.path(markersDir, "ensembl-release.txt")))
 
-# Allow tidyverse to access Google Sheets.
-# gs_ls()
-
-# Cell cycle markers ===========================================================
-# Download the Google sheet (gs).
-sheet_key <- "1qA5ktYeimNGpZF1UPSQZATbpzEqgyxN6daoMOjv6YYw"
-gs <- gs_key(sheet_key)
-
-# Get a list of the worksheets (ws).
-ws <- gs_ws_ls(gs)
-print(ws)
-
-cell_cycle_markers <- lapply(
-    X = ws,
-    FUN = function(ws) {
-        organism <- gsub("_", " ", ws)
+## Cell-cycle markers ==========================================================
+cellCycleDir <- file.path(markersDir, "cell-cycle")
+stopifnot(dir.exists(cellCycleDir))
+files <- list.files(path = cellCycleDir, pattern = "*.csv", full.names = TRUE)
+cellCycleMarkersList <- lapply(
+    X = files,
+    FUN = function(file) {
+        data <- import(file = file)
+        data <- as(data, "DataFrame")
+        organism <- basenameSansExt(file)
         gene2symbol <- makeGene2SymbolFromEnsembl(
             organism = organism,
             release = release
         )
-        importCellCycleMarkersFromGoogle(
-            gs = sheet_key,
-            ws = ws,
+        CellCycleMarkers(
+            object = data,
             gene2symbol = gene2symbol
         )
     }
 )
-names(cell_cycle_markers) <- camel(ws)
+names <- camel(basenameSansExt(files))
+names(cellCycleMarkersList) <- names
 
-# Cell type markers ============================================================
-# Download the Google sheet (gs).
-sheet_key <- "1vGNU2CCxpaoTCLvzOxK1hf5gjULrf2-CpgCp9bOfGJ0"
-gs <- gs_key(sheet_key)
-
-# Get a list of the worksheets (ws).
-ws <- gs_ws_ls(gs)
-# Remove internal worksheets prefixed with "_".
-ws <- ws[!str_detect(ws, "^_")]
-print(ws)
-
-# FIXME This is breaking because of invalid column classes for Mus musculus...
-cell_type_markers <- lapply(
-    X = ws,
-    FUN = function(ws) {
-        organism <- gsub("_", " ", ws)
+## Cell-type markers ===========================================================
+cellTypeDir <- file.path(markersDir, "cell-type")
+stopifnot(dir.exists(cellTypeDir))
+files <- list.files(path = cellTypeDir, pattern = "*.csv", full.names = TRUE)
+cellTypeMarkersList <- lapply(
+    X = files,
+    FUN = function(file) {
+        data <- import(file = file)
+        data <- as(data, "DataFrame")
+        organism <- basenameSansExt(file)
         gene2symbol <- makeGene2SymbolFromEnsembl(
             organism = organism,
             release = release
         )
-        importCellTypeMarkersFromGoogle(
-            gs = sheet_key,
-            ws = ws,
+        CellTypeMarkers(
+            object = data,
             gene2symbol = gene2symbol
         )
     }
 )
-names(cell_type_markers) <- camel(ws)
+names <- camel(basenameSansExt(files))
+names(cellTypeMarkersList) <- names
 
-# Save R data ==================================================================
-usethis::use_data(
-    cell_cycle_markers,
-    cell_type_markers,
+## Save R data ==================================================================
+use_data(
+    cellCycleMarkersList,
+    cellTypeMarkersList,
     compress = "xz",
     overwrite = TRUE
 )

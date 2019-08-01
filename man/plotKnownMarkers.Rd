@@ -10,11 +10,11 @@
 plotKnownMarkers(object, markers, ...)
 
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
-  markers, reducedDim = "TSNE", headerLevel = 2L, progress = FALSE,
+  markers, reducedDim = "UMAP", headerLevel = 2L, progress = FALSE,
   ...)
 
 \S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
-  reducedDim = "TSNE", headerLevel = 2L, progress = FALSE, ...)
+  reducedDim = "UMAP", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -36,15 +36,24 @@ Show progress, using progress bars.}
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 }
 \value{
-Show graphical output. Invisibly return a \code{ggplot} \code{list}.
+Show graphical output.
+Invisibly return a \code{ggplot} \code{list}.
 }
 \description{
 Plot known markers
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat, seurat_known_markers)
+data(Seurat, package = "acidtest")
+data(seuratKnownMarkers)
+
+## Seurat ====
+object <- Seurat
+markers <- seuratKnownMarkers
 plotKnownMarkers(
-    object = seurat,
-    markers = seurat_known_markers
+    object = object,
+    markers = markers
 )
 }

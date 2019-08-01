@@ -2,7 +2,7 @@ context("plotCounts")
 
 with_parameters_test_that(
     "plotCounts", {
-        # Dot.
+        ## Dot.
         p <- plotCounts(
             object = object,
             genes = genes,
@@ -10,7 +10,7 @@ with_parameters_test_that(
         )
         expect_s3_class(p, "ggplot")
 
-        # Violin.
+        ## Violin.
         p <- plotCounts(
             object = object,
             genes = genes,

@@ -1,6 +1,7 @@
 #' @name topMarkers
 #' @include globals.R
 #' @inherit bioverbs::topMarkers
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param n `integer(1)`.
@@ -15,8 +16,11 @@
 #' - `dplyr::top_n()`.
 #'
 #' @examples
-#' data(seurat_all_markers)
-#' x <- topMarkers(seurat_all_markers, n = 2L)
+#' data(seuratAllMarkers)
+#'
+#' ## SeuratMarkersPerCluster ====
+#' object <- seuratAllMarkers
+#' x <- topMarkers(object, n = 2L)
 #' print(x)
 NULL
 
@@ -31,7 +35,8 @@ NULL
 
 
 
-topMarkers.SeuratMarkersPerCluster <-  # nolint
+## Updated 2019-07-31.
+`topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         n = 10L,
@@ -43,11 +48,11 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         direction <- match.arg(direction)
         return <- match.arg(return)
 
-        # Using `Markers` to `tbl_df` coercion method.
+        ## Using `Markers` to `tbl_df` coercion method.
         data <- as(object, "tbl_df")
 
-        # Subset to positive or negative correlation, if desired ("direction")
-        # Note that `avgDiff` has been renamed to `avgLogFC` in Seurat v2.1.
+        ## Subset to positive or negative correlation, if desired ("direction")
+        ## Note that `avgDiff` has been renamed to `avgLogFC` in Seurat v2.1.
         if (direction == "up") {
             message("Including upregulated markers.")
             data <- filter(data, !!sym("avgLogFC") > 0L)
@@ -59,12 +64,12 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         }
 
         data <- data %>%
-            # Arrange by adjusted P value.
+            ## Arrange by adjusted P value.
             arrange(!!sym("padj"), .by_group = TRUE) %>%
-            # Take the top rows by using slice.
+            ## Take the top rows by using slice.
             dplyr::slice(1L:n)
 
-        # Return.
+        ## Return.
         if (return == "tbl_df") {
             message("Returning as tibble.")
             data
@@ -82,7 +87,7 @@ topMarkers.SeuratMarkersPerCluster <-  # nolint
         }
     }
 
-formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
+formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]] <- direction
 
 
 
@@ -91,5 +96,5 @@ formals(topMarkers.SeuratMarkersPerCluster)[["direction"]] <- direction
 setMethod(
     f = "topMarkers",
     signature = signature("SeuratMarkersPerCluster"),
-    definition = topMarkers.SeuratMarkersPerCluster
+    definition = `topMarkers,SeuratMarkersPerCluster`
 )

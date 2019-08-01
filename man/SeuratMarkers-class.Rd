@@ -21,6 +21,7 @@ Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 }
 \value{
+\code{SeuratMarkers}.
 Results are arranged by adjusted \emph{P} value (\code{padj}).
 }
 \description{
@@ -30,12 +31,16 @@ This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations.
 }
 \note{
+Updated 2019-07-31.
+
 For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
 in the \code{gene} column.
 }
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
 ranges <- rowRanges(object)
 
 ## `FindMarkers()` return.

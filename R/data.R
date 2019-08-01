@@ -1,38 +1,29 @@
-#' Cell-cycle markers
-#' @aliases cellCycleMarkers
+#' Cell-cycle markers list
 #' @examples
-#' data(cell_cycle_markers)
-#' cell_cycle_markers
-"cell_cycle_markers"
+#' data(cellCycleMarkersList)
+#' names(cellCycleMarkersList)
+"cellCycleMarkersList"
 
 
 
-#' Cell-type markers
-#' @aliases cellTypeMarkers
+#' Cell-type markers list
 #' @examples
-#' data(cell_type_markers)
-#' cell_type_markers
-"cell_type_markers"
-
-
-
-#' Seurat example
-#' @examples
-#' data(seurat)
-#' seurat
-"seurat"
+#' data(cellTypeMarkersList)
+#' names(cellTypeMarkersList)
+"cellTypeMarkersList"
 
 
 
 #' Seurat all markers example
 #' @examples
-#' data(seurat_all_markers)
-#' seurat_all_markers
-"seurat_all_markers"
+#' data(seuratAllMarkers)
+#' seuratAllMarkers
+"seuratAllMarkers"
+
 
 
 #' Seurat known markers example
 #' @examples
-#' data(seurat_known_markers)
-#' seurat_known_markers
-"seurat_known_markers"
+#' data(seuratKnownMarkers)
+#' seuratKnownMarkers
+"seuratKnownMarkers"

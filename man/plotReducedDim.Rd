@@ -169,6 +169,9 @@ Plot reduced dimensions
 Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
+\note{
+Updated 2019-07-31.
+}
 \section{Reduction types}{
 
 \itemize{
@@ -194,15 +197,17 @@ See \code{\link[base:Sys.getenv]{Sys.getenv}} for details on the R system enviro
 }
 
 \examples{
-data(seurat)
-object <- seurat
+data(Seurat, package = "acidtest")
+
+## Seurat ====
+object <- Seurat
+
+## UMAP
+plotUMAP(object)
 
 ## t-SNE
 plotTSNE(object)
 plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-
-## UMAP
-plotUMAP(object)
 
 ## PCA
 plotPCA(object)

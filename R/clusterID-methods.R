@@ -1,12 +1,16 @@
 #' @name clusterID
 #' @inherit bioverbs::clusterID
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat)
-#' x <- clusterID(seurat)
+#' data(Seurat, package = "acidtest")
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' x <- clusterID(object)
 #' head(x)
 #' table(x)
 NULL
@@ -22,7 +26,8 @@ NULL
 
 
 
-clusterID.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`clusterID,SingleCellExperiment` <-  # nolint
     function(object) {
         object <- as(object, "SingleCellExperiment")
         x <- colData(object)[["ident"]]
@@ -38,13 +43,14 @@ clusterID.SingleCellExperiment <-  # nolint
 setMethod(
     f = "clusterID",
     signature = signature("SingleCellExperiment"),
-    definition = clusterID.SingleCellExperiment
+    definition = `clusterID,SingleCellExperiment`
 )
 
 
 
-clusterID.Seurat <-  # nolint
-    clusterID.SingleCellExperiment
+## Updated 2019-07-31.
+`clusterID,Seurat` <-  # nolint
+    `clusterID,SingleCellExperiment`
 
 
 
@@ -53,5 +59,5 @@ clusterID.Seurat <-  # nolint
 setMethod(
     f = "clusterID",
     signature = signature("Seurat"),
-    definition = clusterID.Seurat
+    definition = `clusterID,Seurat`
 )

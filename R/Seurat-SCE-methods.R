@@ -4,6 +4,7 @@
 #'
 #' @name Seurat-SingleCellExperiment
 #' @keywords internal
+#' @note Updated 2019-07-31.
 #'
 #' @inheritParams basejump::params
 #'
@@ -12,7 +13,7 @@ NULL
 
 
 
-# Internal =====================================================================
+## Internal ====================================================================
 .getSeuratStash <- function(object, name) {
     assert(
         is(object, "Seurat"),
@@ -21,19 +22,19 @@ NULL
 
     misc <- slot(object, name = "misc")
 
-    # Early return if the `misc` slot is `NULL`.
+    ## Early return if the `misc` slot is `NULL`.
     if (is.null(misc)) {
         return(NULL)
     }
 
-    # Look first directly in `object@misc` slot.
+    ## Look first directly in `object@misc` slot.
     x <- misc[[name]]
     if (!is.null(x)) {
         return(x)
     }
 
-    # Next, handle legacy `bcbio` stash list inside `object@misc`.
-    # As of v0.1.3, stashing directly into `object@misc`.
+    ## Next, handle legacy `bcbio` stash list inside `object@misc`.
+    ## As of v0.1.3, stashing directly into `object@misc`.
     if ("bcbio" %in% names(misc)) {
         x <- misc[["bcbio"]][[name]]
         if (!is.null(x)) {
@@ -46,7 +47,7 @@ NULL
 
 
 
-# assay ========================================================================
+## assay =======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
 #' @export
@@ -60,7 +61,7 @@ setMethod(
 
 
 
-# assayNames ===================================================================
+## assayNames ==================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assayNames
 #' @export
@@ -74,7 +75,7 @@ setMethod(
 
 
 
-# assays =======================================================================
+## assays ======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assays
 #' @export
@@ -88,7 +89,7 @@ setMethod(
 
 
 
-# colData ======================================================================
+## colData =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment colData
 #' @export
@@ -120,7 +121,7 @@ setMethod(
 
 
 
-# colnames =====================================================================
+## colnames ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics colnames
 #' @export
@@ -134,7 +135,7 @@ setMethod(
 
 
 
-# counts =======================================================================
+## counts ======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics counts
 #' @export
@@ -148,7 +149,7 @@ setMethod(
 
 
 
-# Gene2Symbol ==================================================================
+## Gene2Symbol =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump Gene2Symbol
 #' @export
@@ -162,7 +163,7 @@ setMethod(
 
 
 
-# interestingGroups ============================================================
+## interestingGroups ===========================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump interestingGroups
 #' @export
@@ -197,7 +198,7 @@ setMethod(
 
 
 
-# mapGenes =====================================================================
+## mapGenes ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump mapGenesToIDs
 #' @export
@@ -249,7 +250,7 @@ setMethod(
 
 
 
-# metadata =====================================================================
+## metadata ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom S4Vectors metadata
 #' @export
@@ -289,7 +290,7 @@ setMethod(
 
 
 
-# metrics ======================================================================
+## metrics =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump metrics
 #' @export
@@ -303,7 +304,7 @@ setMethod(
 
 
 
-# reducedDims ==================================================================
+## reducedDims =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment reducedDims
 #' @export
@@ -317,7 +318,7 @@ setMethod(
 
 
 
-# rowData ======================================================================
+## rowData =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowData
 #' @export
@@ -331,7 +332,7 @@ setMethod(
 
 
 
-# rownames =====================================================================
+## rownames ====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom BiocGenerics rownames
 #' @export
@@ -345,7 +346,7 @@ setMethod(
 
 
 
-# rowRanges ====================================================================
+## rowRanges ===================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowRanges
 #' @export
@@ -354,13 +355,13 @@ setMethod(
     signature = signature("Seurat"),
     definition = function(x) {
         sce <- as.SingleCellExperiment(x)
-        # Default coercion method will return a GRangesList.
+        ## Default coercion method will return a GRangesList.
         gr <- rowRanges(sce)
-        # Attempt to use stashed rowRanges, if defined.
+        ## Attempt to use stashed rowRanges, if defined.
         stash <- .getSeuratStash(x, "rowRanges")
         if (is(stash, "GRanges")) {
             assert(identical(length(gr), length(stash)))
-            # Handle situation where we've changed from gene IDs to gene names.
+            ## Handle situation where we've changed from gene IDs to gene names.
             if (!identical(names(gr), names(stash))) {
                 names(stash) <- names(gr)
             }
@@ -396,7 +397,7 @@ setMethod(
 
 
 
-# sampleData ===================================================================
+## sampleData ==================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump sampleData
 #' @export
@@ -433,7 +434,7 @@ setMethod(
 
 
 
-# sampleNames ==================================================================
+## sampleNames =================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump sampleNames
 #' @export
@@ -447,7 +448,7 @@ setMethod(
 
 
 
-# weights ======================================================================
+## weights =====================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment weights
 #' @export

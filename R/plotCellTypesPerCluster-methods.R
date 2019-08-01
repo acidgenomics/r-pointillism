@@ -1,6 +1,7 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
 #' @inherit bioverbs::plotCellTypesPerCluster
+#' @note Updated 2019-07-31.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -16,10 +17,16 @@
 #' @return Show graphical output. Invisibly return `list`.
 #'
 #' @examples
-#' data(seurat, seurat_known_markers)
+#' data(Seurat, package = "acidtest")
+#' data(seuratKnownMarkers)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' markers <- seuratKnownMarkers
+#'
 #' plotCellTypesPerCluster(
-#'     object = seurat,
-#'     markers = seurat_known_markers
+#'     object = object,
+#'     markers = markers
 #' )
 NULL
 
@@ -34,7 +41,8 @@ NULL
 
 
 
-plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
+## Updated 2019-07-31.
+`plotCellTypesPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
         markers,
@@ -46,7 +54,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
         progress = FALSE,
         ...
     ) {
-        # Passthrough: color, dark.
+        ## Passthrough: color, dark.
         validObject(object)
         validObject(markers)
         assert(isScalar(reducedDim))
@@ -71,7 +79,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
             hasRows(markers)
         )
 
-        # Output Markdown headers per cluster.
+        ## Output Markdown headers per cluster.
         clusters <- markers[["cluster"]] %>%
             as.character() %>%
             unique()
@@ -101,7 +109,7 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
                         level = headerLevel + 1L,
                         asis = TRUE
                     )
-                    # Modify the title by adding the cluster number.
+                    ## Modify the title by adding the cluster number.
                     title <- paste(paste0("Cluster ", cluster, ":"), title)
                     cellData <-
                         filter(clusterData, !!sym("cellType") == !!cellType)
@@ -129,10 +137,9 @@ plotCellTypesPerCluster.SingleCellExperiment <-  # nolint
 
         invisible(return)
     }
-formals(plotCellTypesPerCluster.SingleCellExperiment)[["reducedDim"]] <-
-    reducedDim
-formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
-    expression
+formals(`plotCellTypesPerCluster,SingleCellExperiment`)[
+    c("reducedDim", "expression")
+] <- list(reducedDim, expression)
 
 
 
@@ -141,13 +148,14 @@ formals(plotCellTypesPerCluster.SingleCellExperiment)[["expression"]] <-
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = plotCellTypesPerCluster.SingleCellExperiment
+    definition = `plotCellTypesPerCluster,SingleCellExperiment`
 )
 
 
 
-plotCellTypesPerCluster.Seurat <-  # nolint
-    plotCellTypesPerCluster.SingleCellExperiment
+## Updated 2019-07-31.
+`plotCellTypesPerCluster,Seurat` <-  # nolint
+    `plotCellTypesPerCluster,SingleCellExperiment`
 
 
 
@@ -156,5 +164,5 @@ plotCellTypesPerCluster.Seurat <-  # nolint
 setMethod(
     f = "plotCellTypesPerCluster",
     signature = signature("Seurat"),
-    definition = plotCellTypesPerCluster.Seurat
+    definition = `plotCellTypesPerCluster,Seurat`
 )

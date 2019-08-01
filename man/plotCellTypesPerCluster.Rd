@@ -10,11 +10,11 @@
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  min = 1L, max = Inf, reducedDim = "TSNE", expression = c("mean",
+  min = 1L, max = Inf, reducedDim = "UMAP", expression = c("mean",
   "sum"), headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotCellTypesPerCluster}{Seurat}(object, markers, min = 1L,
-  max = Inf, reducedDim = "TSNE", expression = c("mean", "sum"),
+  max = Inf, reducedDim = "UMAP", expression = c("mean", "sum"),
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -57,10 +57,19 @@ Plot the geometric mean of the significant marker genes for every known cell
 type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
+\note{
+Updated 2019-07-31.
+}
 \examples{
-data(seurat, seurat_known_markers)
+data(Seurat, package = "acidtest")
+data(seuratKnownMarkers)
+
+## Seurat ====
+object <- Seurat
+markers <- seuratKnownMarkers
+
 plotCellTypesPerCluster(
-    object = seurat,
-    markers = seurat_known_markers
+    object = object,
+    markers = markers
 )
 }
