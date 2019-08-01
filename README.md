@@ -1,24 +1,37 @@
 # pointillism
 
-[![Travis CI](https://travis-ci.com/acidgenomics/pointillism.svg?branch=master)](https://travis-ci.org/acidgenomics/pointillism)
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Travis CI build status](https://travis-ci.com/acidgenomics/pointillism.svg?branch=master)](https://travis-ci.com/acidgenomics/pointillism)
 
 [R][] package for for single-cell RNA-seq clustering analysis.
 
 ## Installation
 
-This is an [R][] package.
-
-### [Bioconductor][]
-
-We recommend installing the package with [BiocManager][].
+### [R][] method
 
 ```r
-if (!require("BiocManager")) {
+if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")
+}
+Sys.setenv(R_REMOTES_UPGRADE = "always")
+# Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
+remotes::install_github("acidgenomics/basejump")
+```
+
+Here's how to update to the latest version on GitHub:
+
+```r
+Sys.setenv(R_REMOTES_UPGRADE = "always")
+remotes::update_packages()
+```
+
+Always check that your Bioconductor installation is valid before proceeding.
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
-BiocManager::install("remotes")
-BiocManager::install("acidgenomics/pointillism")
+BiocManager::valid()
 ```
 
 ## Supported data classes
@@ -28,11 +41,11 @@ BiocManager::install("acidgenomics/pointillism")
 - [SingleCellExperiment][]
 - [Seurat][] (v3)
 
-**monocle v3**: Support for the [monocle][] `CellDataSet` class will be added when [monocle][] v3 becomes available on [Bioconductor][].
+We're working on adding support for monocle3 `cell_data_set` class for all plotting functions in the current v0.4 release series.
 
 ## Markers
 
-Cell-cycle and cell-type markers are stored internally inside the package. Refer to `inst/extdata/` for the CSV files.
+Cell-cycle and cell-type markers are stored internally inside the package. Refer to `inst/extdata/` for the source CSV files.
 
 ## Troubleshooting
 
