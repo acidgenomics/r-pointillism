@@ -1,8 +1,4 @@
-.Rproj.user
-.Rhistory
 .RData
-.Ruserdata
-.httr-oauth
-*.pdf
-doc
-Meta
+.Rcheck
+.Rhistory
+.Rproj.user
