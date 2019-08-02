@@ -10,7 +10,7 @@
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
-  reducedDim = "UMAP", color = getOption("acid.continuous.color",
+  reduction = "UMAP", color = getOption("acid.continuous.color",
   default = ggplot2::scale_colour_gradient(low = "gray75", high =
   "purple")), pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -21,7 +21,7 @@ plotFeature(object, ...)
   legend = getOption("acid.legend", default = TRUE),
   expression = c("mean", "sum"))
 
-\S4method{plotFeature}{Seurat}(object, features, reducedDim = "UMAP",
+\S4method{plotFeature}{Seurat}(object, features, reduction = "UMAP",
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -39,10 +39,10 @@ plotFeature(object, ...)
 \item{features}{\code{character}. Features to plot (e.g. gene expression, PC
 scores, number of genes detected).}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 
 \item{color}{\code{ScaleDiscrete}.
 Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},

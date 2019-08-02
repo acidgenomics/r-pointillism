@@ -10,11 +10,11 @@
 plotCellTypesPerCluster(object, ...)
 
 \S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  min = 1L, max = Inf, reducedDim = "UMAP", expression = c("mean",
+  min = 1L, max = Inf, reduction = "UMAP", expression = c("mean",
   "sum"), headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotCellTypesPerCluster}{Seurat}(object, markers, min = 1L,
-  max = Inf, reducedDim = "UMAP", expression = c("mean", "sum"),
+  max = Inf, reduction = "UMAP", expression = c("mean", "sum"),
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -28,10 +28,10 @@ Recommended minimum value cutoff.}
 \item{max}{\code{numeric(1)}.
 Recommended maximum value cutoff.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.

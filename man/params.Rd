@@ -8,10 +8,10 @@
 Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 }
 \value{
 No value.

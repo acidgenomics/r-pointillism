@@ -10,11 +10,11 @@
 plotTopMarkers(object, ...)
 
 \S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "UMAP",
+  direction = c("up", "down", "both"), reduction = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 
 \S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "UMAP",
+  direction = c("up", "down", "both"), reduction = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -30,10 +30,10 @@ Number to include.}
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
