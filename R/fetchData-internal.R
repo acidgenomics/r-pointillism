@@ -5,7 +5,7 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 .fetchGeneData <- function(
     object,
     genes,
@@ -13,14 +13,13 @@ NULL
     metadata = FALSE
 ) {
     validObject(object)
-    object <- as(object, "SingleCellExperiment")
     assert(
         isString(assay),
         isSubset(assay, assayNames(object)),
         isFlag(metadata)
     )
 
-    rownames <- mapGenesToRownames(object, genes)
+    rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
 
     counts <- assays(object) %>%
@@ -99,7 +98,6 @@ NULL
     dimsUse = seq_len(2L)
 ) {
     validObject(object)
-    object <- as(object, "SingleCellExperiment")
     assert(
         .hasClusters(object),
         isScalar(reducedDim),
@@ -108,13 +106,31 @@ NULL
     )
 
     ## Reduced dimension coordinates.
-    assert(isSubset(reducedDim, reducedDimNames(object)))
-    reducedDimData <- reducedDims(object)[[reducedDim]]
-    ## Coerce to DataFrame, for `cbind` call below.
+    ## Map assay position to name.
+    if (!isString(reducedDim)) {
+        reducedDimName <- reducedDimNames(object)[[reducedDim]]
+    } else {
+        reducedDimName <- reducedDim
+    }
+    if (!isSubset(reducedDimName, reducedDimNames(object))) {
+        stop(sprintf(
+            fmt = "`%s` matrix is not defined in `reducedDims()`.",
+            reducedDimName
+        ))
+    }
+    ## This step will run through on mismatch, unless we check for error above.
+    reducedDimData <- reducedDims(object)[[reducedDimName]]
+    assert(hasLength(reducedDimData))
+    ## Handle undefined column names here, which is currently the case with
+    ## monocle3 UMAP (but not PCA) output.
+    if (!hasColnames(reducedDimData)) {
+        colnames(reducedDimData) <-
+            paste0(reducedDimName, seq_len(ncol(reducedDimData)))
+    }
+    ## Coercing to DataFrame, for `cbind` call below.
     reducedDimData <- as(reducedDimData, "DataFrame")
 
     ## Cellular barcode metrics.
-    ## FIXME Rework metrics return to include ident column for monocle3.
     colData <- metrics(object, return = "DataFrame")
     assert(
         isSubset("ident", colnames(colData)),
@@ -158,7 +174,7 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 .fetchReducedDimExpressionData <- function(
     object,
     genes,
