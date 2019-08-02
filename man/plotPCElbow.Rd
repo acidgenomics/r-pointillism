@@ -9,21 +9,13 @@
 \usage{
 plotPCElbow(object, ...)
 
-\S4method{plotPCElbow}{Seurat}(object, reduction = "PCA", minSD = 1L,
-  minPct = 0.01, maxCumPct = 0.9, trans = c("identity", "sqrt"))
+\S4method{plotPCElbow}{Seurat}(object, minPct = 0.01, maxCumPct = 0.9)
 
-\S4method{plotPCElbow}{cell_data_set}(object)
+\S4method{plotPCElbow}{cell_data_set}(object, minPct = 0.01,
+  maxCumPct = 0.9)
 }
 \arguments{
 \item{object}{Object.}
-
-\item{reduction}{\code{character(1)}.
-Name of dimension reduction matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes UMAP, TSNE, PCA, typically, for example.}
-
-\item{minSD}{\code{numeric(1)}.
-Minimum standard deviation.}
 
 \item{minPct}{\code{numeric(1)} (\code{0}-\code{1}).
 Minimum percent standard deviation.}
@@ -31,11 +23,8 @@ Minimum percent standard deviation.}
 \item{maxCumPct}{\code{numeric(1)} (\code{0}-\code{1}).
 Maximum cumulative percen standard deviation.}
 
-\item{trans}{\code{character(1)}.
-Name of the axis scale transformation to apply.
-
-For more information:\preformatted{help(topic = "scale_x_continuous", package = "ggplot2")
-}}
+\item{minSD}{\code{numeric(1)}.
+Minimum standard deviation.}
 
 \item{...}{Additional arguments.}
 }
