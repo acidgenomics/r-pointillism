@@ -71,13 +71,10 @@ NULL
 
         ## Return.
         if (return == "tbl_df") {
-            message("Returning as tibble.")
             data
         } else if (return == "DataFrame") {
-            message("Returning as DataFrame.")
             as(data, "DataFrame")
         } else if (return == "SplitDataFrameList") {
-            message("Returning as DataFrameList.")
             data <- as(data, "DataFrame")
             assert(isSubset("cluster", colnames(data)))
             data <- split(x = data, f = data[["cluster"]])

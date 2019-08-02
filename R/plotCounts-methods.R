@@ -1,3 +1,11 @@
+## FIXME Rethink this approach using logcounts.
+## FIXME Add cell_data_set support.
+## FIXME Inform the user more clearly about what values we're plotting.
+## FIXME Refer to monocle3:::normalize_expr_data for normalization ideas.
+## FIXME Refer to monocle3::plot_cells for normalization
+
+
+
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
@@ -28,9 +36,14 @@
 #' - [Seurat::DotPlot()].
 #' - [Seurat::VlnPlot()].
 #' - [Seurat::RidgePlot()].
+#' - [monocle3::plot_genes_violin()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -44,6 +57,12 @@
 #'
 #' ## Per sample mode disabled.
 #' plotCounts(object, genes = genes, perSample = FALSE)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' genes <- head(rownames(object), n = 4L)
+#' print(genes)
+#' plotCounts(object, genes = genes)
 NULL
 
 
@@ -156,6 +175,7 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
         )
 
         ## Fetch the gene expression data.
+        ## FIXME Rethink the log counts approach.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
@@ -260,6 +280,7 @@ formals(`plotDot,SingleCellExperiment`)[c(
         scale <- match.arg(scale)
 
         ## Fetch the gene expression data.
+        ## FIXME Rethink the log counts approach.
         data <- .fetchGeneData(
             object = object,
             genes = genes,

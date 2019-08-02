@@ -111,7 +111,11 @@ Visualize genes on a dot or violin plot.
 Updated 2019-07-31.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
@@ -125,11 +129,18 @@ plotCounts(object, genes = genes, perSample = TRUE)
 
 ## Per sample mode disabled.
 plotCounts(object, genes = genes, perSample = FALSE)
+
+## cell_data_set ====
+object <- cell_data_set
+genes <- head(rownames(object), n = 4L)
+print(genes)
+plotCounts(object, genes = genes)
 }
 \seealso{
 \itemize{
 \item \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
 \item \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
 \item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
+\item \code{\link[monocle3:plot_genes_violin]{monocle3::plot_genes_violin()}}.
 }
 }

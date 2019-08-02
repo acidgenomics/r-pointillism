@@ -1,4 +1,4 @@
-## FIXME Define markers in the generic.
+## FIXME Need to add cell_data_set support here.
 
 
 
@@ -12,19 +12,17 @@
 #' [topMarkers()] function. If you want to reduce the number of genes to plot,
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
-#'
+
 #' @inheritParams basejump::params
 #' @inheritParams params
 #' @inheritParams topMarkers
-#' @param markers `grouped_df`.
-#'   Marker genes, grouped by "`cluster`".
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
 #' data(seuratAllMarkers)
 #'
-#' ## Seurat ====
+#' ## Seurat, SeuratMarkersPerCluster ====
 #' object <- Seurat
 #' markers <- seuratAllMarkers
 #' plotTopMarkers(object = object, markers = markers)
@@ -41,8 +39,8 @@ NULL
 
 
 
-## Updated 2019-07-31.
-`plotTopMarkers,SingleCellExperiment` <-  # nolint
+## Updated 2019-08-02.
+`plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         markers,
@@ -55,6 +53,7 @@ NULL
     ) {
         ## Passthrough: n, direction, coding
         validObject(object)
+        validObject(markers)
         markers <- topMarkers(
             object = markers,
             n = n,
@@ -110,7 +109,7 @@ NULL
         invisible(list)
     }
 
-formals(`plotTopMarkers,SingleCellExperiment`)[
+formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
     c("direction", "reduction")
 ] <- list(direction, reduction)
 
@@ -120,22 +119,9 @@ formals(`plotTopMarkers,SingleCellExperiment`)[
 #' @export
 setMethod(
     f = "plotTopMarkers",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotTopMarkers,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotTopMarkers,Seurat` <-  # nolint
-    `plotTopMarkers,SingleCellExperiment`
-
-
-
-#' @rdname plotTopMarkers
-#' @export
-setMethod(
-    f = "plotTopMarkers",
-    signature = signature("Seurat"),
-    definition = `plotTopMarkers,Seurat`
+    signature = signature(
+        object = "Seurat",
+        markers = "SeuratMarkersPerCluster"
+    ),
+    definition = `plotTopMarkers,Seurat,SeuratMarkersPerCluster`
 )

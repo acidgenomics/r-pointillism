@@ -1,3 +1,8 @@
+## FIXME Consider moving this code to basejump.
+## FIXME Support normalized = "true" for SingleCellExperiment
+
+
+
 #' Size factors
 #'
 #' @inheritParams basejump::params
