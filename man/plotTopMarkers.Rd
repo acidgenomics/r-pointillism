@@ -3,25 +3,19 @@
 \docType{methods}
 \name{plotTopMarkers}
 \alias{plotTopMarkers}
-\alias{plotTopMarkers,SingleCellExperiment-method}
-\alias{plotTopMarkers,Seurat-method}
+\alias{plotTopMarkers,Seurat,SeuratMarkersPerCluster-method}
 \title{Plot top markers}
 \usage{
 plotTopMarkers(object, ...)
 
-\S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reduction = "UMAP",
-  headerLevel = 2L, progress = FALSE, ...)
-
-\S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reduction = "UMAP",
+\S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
+  n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{markers}{\code{grouped_df}.
-Marker genes, grouped by "\code{cluster}".}
+\item{markers}{Object containing cell marker expression data.}
 
 \item{n}{\code{integer(1)}.
 Number to include.}
@@ -62,7 +56,7 @@ Updated 2019-07-31.
 data(Seurat, package = "acidtest")
 data(seuratAllMarkers)
 
-## Seurat ====
+## Seurat, SeuratMarkersPerCluster ====
 object <- Seurat
 markers <- seuratAllMarkers
 plotTopMarkers(object = object, markers = markers)

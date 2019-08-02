@@ -31,7 +31,6 @@ NULL
         validObject(from)
         data <- do.call(what = rbind, args = from)
         data <- as(data, "tbl_df")
-        message("Grouping by phase.")
         data <- group_by(data, !!sym("phase"))
         data
     }
@@ -56,7 +55,6 @@ setAs(
         validObject(from)
         data <- do.call(what = rbind, args = from)
         data <- as(data, "tbl_df")
-        message("Grouping by cellType.")
         data <- group_by(data, !!sym("cellType"))
         data
     }
@@ -201,7 +199,6 @@ setAs(
         ## Ensure Rle columns get decoded.
         data <- decode(data)
         data <- as(data, "tbl_df")
-        message("Grouping by cluster.")
         data <- group_by(data, !!sym("cluster"))
         data
     }
