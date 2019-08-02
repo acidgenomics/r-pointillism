@@ -48,7 +48,7 @@ NULL
         markers,
         min = 1L,
         max = Inf,
-        reducedDim,
+        reduction,
         expression,
         headerLevel = 2L,
         progress = FALSE,
@@ -57,7 +57,7 @@ NULL
         ## Passthrough: color, dark.
         validObject(object)
         validObject(markers)
-        assert(isScalar(reducedDim))
+        assert(isScalar(reduction))
         expression <- match.arg(expression)
         assert(
             isHeaderLevel(headerLevel),
@@ -125,7 +125,7 @@ NULL
                     p <- plotMarker(
                         object = object,
                         genes = genes,
-                        reducedDim = reducedDim,
+                        reduction = reduction,
                         expression = expression,
                         ...
                     )
@@ -138,8 +138,8 @@ NULL
         invisible(return)
     }
 formals(`plotCellTypesPerCluster,SingleCellExperiment`)[
-    c("reducedDim", "expression")
-] <- list(reducedDim, expression)
+    c("reduction", "expression")
+] <- list(reduction, expression)
 
 
 

@@ -19,8 +19,11 @@
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "CellCycleMarkers",
+    method = function(object) {
         validate(
             identical(
                 x = lapply(object[[1L]], class),
@@ -53,8 +56,11 @@ setClass(
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellTypeMarkers",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "CellTypeMarkers",
+    method = function(object) {
         validate(
             identical(
                 x = lapply(object[[1L]], class),
@@ -88,8 +94,11 @@ setClass(
 #'   (`padj`).
 setClass(
     Class = "KnownMarkers",
-    contains = "DataFrame",
-    validity = function(object) {
+    contains = "DataFrame"
+)
+setValidity(
+    Class = "KnownMarkers",
+    method = function(object) {
         validate(
             isSubset(
                 x = c(
@@ -126,8 +135,11 @@ setClass(
 #'   Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
-    contains = "DataFrame",
-    validity = function(object) {
+    contains = "DataFrame"
+)
+setValidity(
+    Class = "SeuratMarkers",
+    method = function(object) {
         validate(
             hasRownames(object),
             identical(
@@ -161,8 +173,11 @@ setClass(
 #'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "SeuratMarkersPerCluster",
+    method = function(object) {
         validate(
             all(grepl("^cluster", names(object))),
             identical(

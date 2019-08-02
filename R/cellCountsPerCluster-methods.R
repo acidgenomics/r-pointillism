@@ -8,10 +8,19 @@
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' x <- cellCountsPerCluster(object)
+#' print(x)
+#'
+#' ## cell_data_set ===
+#' object <- cell_data_set
 #' x <- cellCountsPerCluster(object)
 #' print(x)
 NULL
@@ -27,7 +36,6 @@ NULL
 
 
 
-## FIXME Need to rework this for monocle3.
 ## Updated 2019-08-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object, interestingGroups = NULL) {
@@ -36,7 +44,6 @@ NULL
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
-        ## FIXME Rework metrics return to include ident column for monocle3.
         data <- metrics(object)
         cols <- unique(c("ident", interestingGroups, "interestingGroups"))
         assert(isSubset(cols, colnames(data)))
@@ -75,4 +82,20 @@ setMethod(
     f = "cellCountsPerCluster",
     signature = signature("Seurat"),
     definition = `cellCountsPerCluster,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`cellCountsPerCluster,cell_data_set` <-  # nolint
+    `cellCountsPerCluster,SingleCellExperiment`
+
+
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("cell_data_set"),
+    definition = `cellCountsPerCluster,cell_data_set`
 )

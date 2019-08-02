@@ -1,3 +1,7 @@
+## FIXME Define markers in the generic.
+
+
+
 #' @name plotTopMarkers
 #' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
@@ -44,7 +48,7 @@ NULL
         markers,
         n = 1L,
         direction,
-        reducedDim,
+        reduction,
         headerLevel = 2L,
         progress = FALSE,
         ...
@@ -57,7 +61,7 @@ NULL
             direction = direction
         )
         assert(
-            isScalar(reducedDim),
+            isScalar(reduction),
             isHeaderLevel(headerLevel),
             isFlag(progress)
         )
@@ -95,7 +99,7 @@ NULL
                 p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reducedDim = reducedDim,
+                    reduction = reduction,
                     ...
                 )
                 show(p)
@@ -107,8 +111,8 @@ NULL
     }
 
 formals(`plotTopMarkers,SingleCellExperiment`)[
-    c("direction", "reducedDim")
-] <- list(direction, reducedDim)
+    c("direction", "reduction")
+] <- list(direction, reduction)
 
 
 

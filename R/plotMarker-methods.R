@@ -1,6 +1,6 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
 #' @inherit bioverbs::plotMarker
 #'
@@ -49,12 +49,12 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
-        reducedDim,
+        reduction,
         expression,
         color,
         pointSize,
@@ -76,7 +76,7 @@ NULL
         object <- as(object, "SingleCellExperiment")
         assert(
             isCharacter(genes),
-            isScalar(reducedDim),
+            isScalar(reduction),
             isGGScale(
                 x = color,
                 scale = "continuous",
@@ -98,11 +98,12 @@ NULL
             assert(isString(title))
         }
 
-        ## Fetch reduced dimension data
-        data <- .fetchReducedDimExpressionData(
+        ## Fetch reduced dimension data.
+        ## FIXME Consider rethinking this approach / renaming.
+        data <- .fetchReductionExpressionData(
             object = object,
             genes = genes,
-            reducedDim = reducedDim
+            reduction = reduction
         )
         assert(is(data, "DataFrame"))
 
@@ -236,7 +237,7 @@ formals(`plotMarker,SingleCellExperiment`)[c(
     "pointAlpha",
     "pointSize",
     "pointsAsNumbers",
-    "reducedDim"
+    "reduction"
 )] <- list(
     color = continuousColor,
     dark = dark,
@@ -247,7 +248,7 @@ formals(`plotMarker,SingleCellExperiment`)[c(
     pointAlpha = pointAlpha,
     pointSize = pointSize,
     pointsAsNumbers = pointsAsNumbers,
-    reducedDim = reducedDim
+    reduction = reduction
 )
 
 
