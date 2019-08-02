@@ -7,10 +7,13 @@
 \alias{plotViolin}
 \alias{plotCounts,SingleCellExperiment-method}
 \alias{plotCounts,Seurat-method}
+\alias{plotCounts,cell_data_set-method}
 \alias{plotDot,SingleCellExperiment-method}
 \alias{plotDot,Seurat-method}
+\alias{plotDot,cell_data_set-method}
 \alias{plotViolin,SingleCellExperiment-method}
 \alias{plotViolin,Seurat-method}
+\alias{plotViolin,cell_data_set-method}
 \title{Plot counts}
 \usage{
 plotCounts(object, ...)
@@ -27,6 +30,8 @@ plotViolin(object, ...)
   perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
   title = NULL)
 
+\S4method{plotCounts}{cell_data_set}(object, ...)
+
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("acid.continuous.color", default =
@@ -41,6 +46,8 @@ plotViolin(object, ...)
   "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
   TRUE), title = NULL)
 
+\S4method{plotDot}{cell_data_set}(object, ...)
+
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   perSample = TRUE, scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
@@ -50,6 +57,8 @@ plotViolin(object, ...)
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotViolin}{cell_data_set}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -71,6 +80,8 @@ Show plot legend.}
 
 \item{title}{\code{character(1)}.
 Plot title.}
+
+\item{...}{Additional arguments.}
 
 \item{colMin}{\code{numeric(1)}.
 Minimum scaled average expression threshold. Everything smaller will be
@@ -98,8 +109,6 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 \item{scale}{\code{character(1)}.
 Whether the values should be centered and scaled in either the row or
 column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{none}").}
-
-\item{...}{Additional arguments.}
 }
 \value{
 \code{ggplot}.
