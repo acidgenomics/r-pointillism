@@ -4,20 +4,23 @@
 \name{plotPCElbow}
 \alias{plotPCElbow}
 \alias{plotPCElbow,Seurat-method}
+\alias{plotPCElbow,cell_data_set-method}
 \title{Plot principal component elbow}
 \usage{
 plotPCElbow(object, ...)
 
-\S4method{plotPCElbow}{Seurat}(object, reducedDim = "pca", minSD = 1L,
+\S4method{plotPCElbow}{Seurat}(object, reduction = "PCA", minSD = 1L,
   minPct = 0.01, maxCumPct = 0.9, trans = c("identity", "sqrt"))
+
+\S4method{plotPCElbow}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 
 \item{minSD}{\code{numeric(1)}.
 Minimum standard deviation.}
@@ -51,15 +54,26 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-02.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
 plotPCElbow(object)
+
+## cell_data_set ====
+object <- cell_data_set
+plotPCElbow(object)
 }
 \seealso{
-\code{Seurat::PCElbowPlot()}.
+\itemize{
+\item \code{Seurat::PCElbowPlot()}.
+\item \code{monocle3::plot_pc_variance_explained()}.
+}
 }

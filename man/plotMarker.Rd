@@ -10,7 +10,7 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = "UMAP", expression = c("mean", "sum"),
+  reduction = "UMAP", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -21,7 +21,7 @@ plotMarker(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
-\S4method{plotMarker}{Seurat}(object, genes, reducedDim = "UMAP",
+\S4method{plotMarker}{Seurat}(object, genes, reduction = "UMAP",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
@@ -41,10 +41,10 @@ Gene identifiers. It is considered better practice to input the stable gene
 identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
 symbols (e.g. "TSPN6"), if possible.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
+\item{reduction}{\code{character(1)}.
+Name of dimension reduction matrix slotted in
 \code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+Includes UMAP, TSNE, PCA, typically, for example.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.
@@ -95,7 +95,7 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-02.
 }
 \examples{
 data(Seurat, package = "acidtest")
