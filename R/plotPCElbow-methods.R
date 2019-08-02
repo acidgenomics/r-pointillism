@@ -1,6 +1,6 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
@@ -22,13 +22,23 @@
 #' - Invisibly return numeric sequence vector of PCs to include for
 #'   dimensionality reduction analysis.
 #'
-#' @seealso `Seurat::PCElbowPlot()`.
+#' @seealso
+#' - `Seurat::PCElbowPlot()`.
+#' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' plotPCElbow(object)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
 #' plotPCElbow(object)
 NULL
 
@@ -47,14 +57,14 @@ NULL
 `plotPCElbow,Seurat` <-  # nolint
     function(
         object,
-        reducedDim = "pca",
+        reduction = "PCA",
         minSD = 1L,
         minPct = 0.01,
         maxCumPct = 0.9,
         trans = c("identity", "sqrt")
     ) {
         assert(
-            isString(reducedDim),
+            isString(reduction),
             isNumber(minSD),
             isPositive(minSD),
             isNumber(minPct),
@@ -66,10 +76,11 @@ NULL
             )
         )
         trans <- match.arg(trans)
+        xLab <- "PCA component"
 
         ## dr: dimensional reduction
         ## sdev: standard deviation
-        sdev <- Stdev(object = object, reduction = reducedDim)
+        sdev <- Stdev(object = object, reduction = tolower(reduction))
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
         cumsum <- cumsum(pct)
@@ -111,7 +122,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "PC",
+                x = xLab,
                 y = "std dev"
             ) +
             expand_limits(y = 0L) +
@@ -134,7 +145,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "PC",
+                x = xLab,
                 y = "% std dev"
             ) +
             expand_limits(y = 0L) +
@@ -157,7 +168,7 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "PC",
+                x = xLab,
                 y = "cum % std dev"
             ) +
             expand_limits(y = c(0L, 1L)) +
@@ -183,4 +194,23 @@ setMethod(
     f = "plotPCElbow",
     signature = signature("Seurat"),
     definition = `plotPCElbow,Seurat`
+)
+
+
+
+`plotPCElbow,cell_data_set` <-  # nolint
+    function(object) {
+        ## FIXME Rework this to be consistent with Seurat method.
+        ## FIXME Probably need to break out the plot code.
+        monocle3::plot_pc_variance_explained(object)
+    }
+
+
+
+#' @rdname plotPCElbow
+#' @export
+setMethod(
+    f = "plotPCElbow",
+    signature = signature("cell_data_set"),
+    definition = `plotPCElbow,cell_data_set`
 )

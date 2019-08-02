@@ -38,7 +38,7 @@ NULL
     function(
         object,
         features,
-        reducedDim,
+        reduction,
         color,
         pointSize,
         pointAlpha,
@@ -57,7 +57,7 @@ NULL
 
         ## Assert checks -------------------------------------------------------
         assert(isCharacter(features))
-        reducedDim <- match.arg(reducedDim)
+        reduction <- match.arg(reduction)
         assert(
             isGGScale(
                 x = color,
@@ -81,26 +81,27 @@ NULL
             fill <- "white"
         }
 
-        data <- .fetchReducedDimData(
+        data <- .fetchReductionData(
             object = object,
-            reducedDim = reducedDim
+            reduction = reduction
         )
 
         ## Label the axes.
         axes <- colnames(data)[seq_len(2L)]
 
         ## If the features are not defined, attempt to merge all reduced dims
-        ## information before stopping
+        ## information before stopping.
         if (!all(features %in% colnames(data))) {
-            reducedDimsData <- do.call(
+            reductionData <- do.call(
                 what = cbind,
                 args = reducedDims(object)
             )
-            assert(identical(rownames(data), rownames(reducedDimsData)))
-            reducedDimsData <- camel(reducedDimsData)
+            assert(identical(rownames(data), rownames(reductionData)))
+            ## FIXME We need to rethink this approach for monocle3.
+            reductionData <- camel(reductionData)
             data <- data %>%
-                .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%
-                cbind(reducedDimsData)
+                .[, setdiff(colnames(.), colnames(reductionData))] %>%
+                cbind(reductionData)
         }
         assert(isSubset(features, colnames(data)))
 
@@ -186,7 +187,7 @@ formals(`plotFeature,SingleCellExperiment`)[c(
     "pointAlpha",
     "pointSize",
     "pointsAsNumbers",
-    "reducedDim"
+    "reduction"
 )] <- list(
     color = continuousColor,
     dark = dark,
@@ -197,7 +198,7 @@ formals(`plotFeature,SingleCellExperiment`)[c(
     pointAlpha = pointAlpha,
     pointSize = pointSize,
     pointsAsNumbers = pointsAsNumbers,
-    reducedDim = reducedDim
+    reduction = reduction
 )
 
 

@@ -1,9 +1,9 @@
-#' @name plotReducedDim
+#' @name plotReduction
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
-#' @inherit bioverbs::plotReducedDim
-#' @note Updated 2019-07-31.
+#' @inherit bioverbs::plotReduction
+#' @note Updated 2019-08-02.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams basejump::params
@@ -23,26 +23,15 @@
 #' @section UMAP calculation:
 #'
 #' [UMAP][] calculation in R requires the [Python][] module `umap-learn`.
+#' The UMAP module can be loaded in R using [reticulate][].
 #'
-#' We recommend installing this with [conda][]:
-#'
-#' ```
-#' conda install -c conda-forge umap-learn
-#' ```
-#'
-#' The UMAP module can be loaded in R using [reticulate][]. Reticulate works
-#' reliably when setting `RETICULATE_PYTHON` to point to your conda python
-#' binary. Export this variable in  `~/.Renviron`.
-#'
-#' See [`Sys.getenv`][base::Sys.getenv] for details on the R system environment.
-#'
-#' [conda]: https://conda.io
 #' [Python]: https://www.python.org
 #' [UMAP]: https://github.com/lmcinnes/umap
 #' [reticulate]: https://rstudio.github.io/reticulate/
 #'
 #' @seealso
 #' - `Seurat::DimPlot()`.
+#' - `monocle3::plot_cells()`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
@@ -54,37 +43,37 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotReducedDim(object)
+#' plotReduction(object)
 #'
 #' ## cell_data_set ====
 #' object <- cell_data_set
-#' plotReducedDim(object)
+#' plotReduction(object)
 NULL
 
 
 
-#' @rdname plotReducedDim
-#' @name plotReducedDim
-#' @importFrom bioverbs plotReducedDim
-#' @usage plotReducedDim(object, ...)
+#' @rdname plotReduction
+#' @name plotReduction
+#' @importFrom bioverbs plotReduction
+#' @usage plotReduction(object, ...)
 #' @export
 NULL
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @name plotPCA
 #' @importFrom BiocGenerics plotPCA
 #' @usage plotPCA(object, ...)
 #' @export
 NULL
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @name plotTSNE
 #' @importFrom bioverbs plotTSNE
 #' @usage plotTSNE(object, ...)
 #' @export
 NULL
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @name plotUMAP
 #' @importFrom bioverbs plotUMAP
 #' @usage plotUMAP(object, ...)
@@ -94,11 +83,11 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2019-07-31.
-`plotReducedDim,SingleCellExperiment` <-  # nolint
+## Updated 2019-08-02.
+`plotReduction,SingleCellExperiment` <-  # nolint
     function(
         object,
-        reducedDim = 1L,
+        reduction,
         dimsUse,
         interestingGroups = NULL,
         color,
@@ -118,7 +107,7 @@ NULL
         assert(
             .hasClusters(object),
             ## Allow pass in of positional scalar, for looping.
-            isScalar(reducedDim),
+            isScalar(reduction),
             hasLength(dimsUse, n = 2L),
             all(isIntegerish(dimsUse)),
             isString(interestingGroups, nullOK = TRUE),
@@ -133,9 +122,9 @@ NULL
             isString(title, nullOK = TRUE)
         )
 
-        data <- .fetchReducedDimData(
+        data <- .fetchReductionData(
             object = object,
-            reducedDim = reducedDim,
+            reduction = reduction,
             dimsUse = dimsUse
         )
         assert(
@@ -234,7 +223,7 @@ NULL
         p
     }
 
-formals(`plotReducedDim,SingleCellExperiment`)[c(
+formals(`plotReduction,SingleCellExperiment`)[c(
     "color",
     "dark",
     "dimsUse",
@@ -243,7 +232,8 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
     "legend",
     "pointAlpha",
     "pointSize",
-    "pointsAsNumbers"
+    "pointsAsNumbers",
+    "reduction"
 )] <- list(
     color = discreteColor,
     dark = dark,
@@ -253,7 +243,8 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
     legend = legend,
     pointAlpha = pointAlpha,
     pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers
+    pointsAsNumbers = pointsAsNumbers,
+    reduction = reduction
 )
 
 
@@ -262,11 +253,11 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 `plotPCA,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
-            what = plotReducedDim,
+            what = plotReduction,
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "PCA"
+                    reduction = "PCA"
                 )
             )
         )
@@ -279,11 +270,11 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 `plotTSNE,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
-            what = plotReducedDim,
+            what = plotReduction,
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "TSNE"
+                    reduction = "TSNE"
                 )
             )
         )
@@ -295,11 +286,11 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 `plotUMAP,SingleCellExperiment` <-  # nolint
     function() {
         do.call(
-            what = plotReducedDim,
+            what = plotReduction,
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "UMAP"
+                    reduction = "UMAP"
                 )
             )
         )
@@ -309,43 +300,61 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 
 ## Formals =====================================================================
 ## Set the formals for the convenience functions.
-f <- formals(`plotReducedDim,SingleCellExperiment`)
-f <- f[setdiff(names(f), "reducedDim")]
+f <- formals(`plotReduction,SingleCellExperiment`)
+f <- f[setdiff(names(f), "reduction")]
 formals(`plotPCA,SingleCellExperiment`) <- f
 formals(`plotTSNE,SingleCellExperiment`) <- f
 formals(`plotUMAP,SingleCellExperiment`) <- f
 rm(f)
 
+## FIXME Slot reduction here automatically
+
 
 
 ## Methods =====================================================================
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @export
 setMethod(
-    f = "plotReducedDim",
+    f = "plotReduction",
     signature = signature("SingleCellExperiment"),
-    definition = `plotReducedDim,SingleCellExperiment`
+    definition = `plotReduction,SingleCellExperiment`
 )
 
 
 
 ## Updated 2019-07-31.
-`plotReducedDim,Seurat` <-  # nolint
-    `plotReducedDim,SingleCellExperiment`
+`plotReduction,Seurat` <-  # nolint
+    `plotReduction,SingleCellExperiment`
 
 
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @export
 setMethod(
-    f = "plotReducedDim",
+    f = "plotReduction",
     signature = signature("Seurat"),
-    definition = `plotReducedDim,Seurat`
+    definition = `plotReduction,Seurat`
 )
 
 
 
-#' @rdname plotReducedDim
+## Updated 2019-08-02.
+`plotReduction,cell_data_set` <-  # nolint
+    `plotReduction,SingleCellExperiment`
+
+
+
+#' @rdname plotReduction
+#' @export
+setMethod(
+    f = "plotReduction",
+    signature = signature("cell_data_set"),
+    definition = `plotReduction,cell_data_set`
+)
+
+
+
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotTSNE",
@@ -361,7 +370,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotTSNE",
@@ -371,7 +380,23 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+## Updated 2019-08-02.
+`plotTSNE,cell_data_set` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
+
+
+
+#' @rdname plotReduction
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("cell_data_set"),
+    definition = `plotTSNE,cell_data_set`
+)
+
+
+
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotUMAP",
@@ -387,7 +412,7 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotUMAP",
@@ -397,7 +422,23 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+## Updated 2019-08-02.
+`plotUMAP,cell_data_set` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
+
+
+#' @rdname plotReduction
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("cell_data_set"),
+    definition = `plotUMAP,cell_data_set`
+)
+
+
+
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotPCA",
@@ -413,10 +454,26 @@ setMethod(
 
 
 
-#' @rdname plotReducedDim
+#' @rdname plotReduction
 #' @export
 setMethod(
     f = "plotPCA",
     signature = signature("Seurat"),
     definition = `plotPCA,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`plotPCA,cell_data_set` <-  # nolint
+    `plotPCA,SingleCellExperiment`
+
+
+
+#' @rdname plotReduction
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("cell_data_set"),
+    definition = `plotPCA,cell_data_set`
 )

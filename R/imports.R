@@ -38,13 +38,13 @@
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
-#'   areDisjointSets areIntersectingSets assert false isAlpha isInt hasLength
-#'   hasNames hasRownames hasRows isGGScale isAny isCharacter isFlag
+#'   areDisjointSets areIntersectingSets assert false isAlpha isInt hasColnames
+#'   hasLength hasNames hasRownames hasRows isGGScale isAny isCharacter isFlag
 #'   isHeaderLevel isIntegerish isNonEmpty isNumber isPositive isScalar isString
 #'   isSubset validate
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom methods as getMethod is new setAs setClass show slot slot<-
-#'   validObject
+#' @importFrom methods as getMethod is new setAs setClass setValidity show slot
+#'   slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks

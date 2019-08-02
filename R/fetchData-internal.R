@@ -35,7 +35,7 @@ NULL
     assert(identical(class(counts), class(data)))
 
     ## Early return the transposed matrix, if we don't want metadata.
-    ## This return is used by `.fetchReducedDimExpressionData`.
+    ## This return is used by `.fetchReductionExpressionData()`.
     if (!isTRUE(metadata)) {
         return(data)
     }
@@ -92,63 +92,61 @@ NULL
 
 
 ## Updated 2019-08-02.
-.fetchReducedDimData <- function(
+.fetchReductionData <- function(
     object,
-    reducedDim,
+    reduction,
     dimsUse = seq_len(2L)
 ) {
     validObject(object)
     assert(
         .hasClusters(object),
-        isScalar(reducedDim),
+        isScalar(reduction),
         hasLength(dimsUse, n = 2L),
         all(isIntegerish(dimsUse))
     )
 
     ## Reduced dimension coordinates.
     ## Map assay position to name.
-    if (!isString(reducedDim)) {
-        reducedDimName <- reducedDimNames(object)[[reducedDim]]
-    } else {
-        reducedDimName <- reducedDim
+    if (!isString(reduction)) {
+        reduction <- reducedDimNames(object)[[reduction]]
     }
-    if (!isSubset(reducedDimName, reducedDimNames(object))) {
+    if (!isSubset(reduction, reducedDimNames(object))) {
         stop(sprintf(
             fmt = "`%s` matrix is not defined in `reducedDims()`.",
-            reducedDimName
+            reduction
         ))
     }
     ## This step will run through on mismatch, unless we check for error above.
-    reducedDimData <- reducedDims(object)[[reducedDimName]]
-    assert(hasLength(reducedDimData))
+    reductionData <- reducedDims(object)[[reduction]]
+    assert(hasLength(reductionData))
     ## Handle undefined column names here, which is currently the case with
     ## monocle3 UMAP (but not PCA) output.
-    if (!hasColnames(reducedDimData)) {
-        colnames(reducedDimData) <-
-            paste0(reducedDimName, seq_len(ncol(reducedDimData)))
+    if (!hasColnames(reductionData)) {
+        colnames(reductionData) <-
+            paste0(reduction, seq_len(ncol(reductionData)))
     }
     ## Coercing to DataFrame, for `cbind` call below.
-    reducedDimData <- as(reducedDimData, "DataFrame")
+    reductionData <- as(reductionData, "DataFrame")
 
     ## Cellular barcode metrics.
     colData <- metrics(object, return = "DataFrame")
     assert(
         isSubset("ident", colnames(colData)),
         identical(
-            x = rownames(reducedDimData),
+            x = rownames(reductionData),
             y = rownames(colData)
         ),
         areDisjointSets(
-            x = colnames(reducedDimData),
+            x = colnames(reductionData),
             y = colnames(colData)
         )
     )
 
-    dimCols <- colnames(reducedDimData)[dimsUse]
+    dimCols <- colnames(reductionData)[dimsUse]
     assert(is.character(dimCols))
 
     ## Bind the data frames.
-    data <- cbind(reducedDimData, colData)
+    data <- cbind(reductionData, colData)
     assert(is(data, "DataFrame"))
 
     ## Coerce to long format DataFrame.
@@ -169,21 +167,22 @@ NULL
     data
 }
 
-formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
-    list(dimsUse = dimsUse, reducedDim = reducedDim)
+formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
+    list(dimsUse = dimsUse, reduction = reduction)
 
 
 
+## FIXME This is kind of reduant with the above one. Clarify/simplify.
 ## Updated 2019-08-02.
-.fetchReducedDimExpressionData <- function(
+.fetchReductionExpressionData <- function(
     object,
     genes,
-    reducedDim
+    reduction
 ) {
     validObject(object)
     assert(
         is.character(genes),
-        isScalar(reducedDim)
+        isScalar(reduction)
     )
 
     rownames <- mapGenesToRownames(object, genes = genes)
@@ -212,14 +211,14 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
     sum <- rowSums(geneCounts)
 
     ## Fetch reduced dim data.
-    reducedDimData <- .fetchReducedDimData(
+    reductionData <- .fetchReductionData(
         object = object,
-        reducedDim = reducedDim
+        reduction = reduction
     )
 
-    data <- cbind(reducedDimData, mean, sum)
+    data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
     data
 }
 
-formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim
+formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
