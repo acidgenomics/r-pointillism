@@ -1,11 +1,3 @@
-## FIXME Need to add monocle3 support.
-## Unclear how Seurat 3 is calculating these values.
-## FIXME prop_varex <- cds@preprocess_aux$prop_var_expl
-## irlba_res
-## sdev^2 / sum(irlba_res$sdev^2)
-
-
-
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
 #' @note Updated 2019-08-02.
