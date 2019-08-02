@@ -46,20 +46,19 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' plotReducedDim(object)
 #'
-#' ## UMAP
-#' plotUMAP(object)
-#'
-#' ## t-SNE
-#' plotTSNE(object)
-#' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-#'
-#' ## PCA
-#' plotPCA(object)
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' plotReducedDim(object)
 NULL
 
 
@@ -99,7 +98,7 @@ NULL
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
-        reducedDim,
+        reducedDim = 1L,
         dimsUse,
         interestingGroups = NULL,
         color,
@@ -113,8 +112,12 @@ NULL
         title = NULL
     ) {
         validObject(object)
+        if (!is(object, "SingleCellExperiment")) {
+            object <- as(object, "SingleCellExperiment")
+        }
         assert(
             .hasClusters(object),
+            ## Allow pass in of positional scalar, for looping.
             isScalar(reducedDim),
             hasLength(dimsUse, n = 2L),
             all(isIntegerish(dimsUse)),
@@ -130,12 +133,6 @@ NULL
             isString(title, nullOK = TRUE)
         )
 
-        ## Color by `ident` factor by default.
-        if (is.null(interestingGroups)) {
-            interestingGroups <- "ident"
-        }
-
-        ## FIXME Rework metrics return to include ident column for monocle3.
         data <- .fetchReducedDimData(
             object = object,
             reducedDim = reducedDim,
@@ -149,15 +146,17 @@ NULL
             )
         )
 
-        ## Color by `ident` factor by default (see above).
+        ## Color by `ident` factor by default.
+        if (is.null(interestingGroups)) {
+            interestingGroups <- "ident"
+        }
         if (interestingGroups == "ident") {
             data[["interestingGroups"]] <- data[["ident"]]
         }
 
-        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
-        axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-        assert(isSubset(axes, colnames(data)))
-
+        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2). We're setting
+        ## this up internally as the first two columns in the data frame.
+        axes <- colnames(data)[seq_len(2L)]
         p <- ggplot(
             data = as_tibble(data),
             mapping = aes(
