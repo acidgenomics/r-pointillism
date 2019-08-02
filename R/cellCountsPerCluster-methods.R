@@ -27,14 +27,16 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## FIXME Need to rework this for monocle3.
+## Updated 2019-08-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object, interestingGroups = NULL) {
         validObject(object)
-        assert(.hasIdent(object))
+        assert(.hasClusters(object))
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
+        ## FIXME Rework metrics return to include ident column for monocle3.
         data <- metrics(object)
         cols <- unique(c("ident", interestingGroups, "interestingGroups"))
         assert(isSubset(cols, colnames(data)))

@@ -92,7 +92,7 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 .fetchReducedDimData <- function(
     object,
     reducedDim,
@@ -101,7 +101,7 @@ NULL
     validObject(object)
     object <- as(object, "SingleCellExperiment")
     assert(
-        .hasIdent(object),
+        .hasClusters(object),
         isScalar(reducedDim),
         hasLength(dimsUse, n = 2L),
         all(isIntegerish(dimsUse))
@@ -114,6 +114,7 @@ NULL
     reducedDimData <- as(reducedDimData, "DataFrame")
 
     ## Cellular barcode metrics.
+    ## FIXME Rework metrics return to include ident column for monocle3.
     colData <- metrics(object, return = "DataFrame")
     assert(
         isSubset("ident", colnames(colData)),

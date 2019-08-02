@@ -25,10 +25,11 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `clusterCellCountsPerSample,SingleCellExperiment` <-  # nolint
     function(object) {
-        assert(.hasIdent(object))
+        assert(.hasClusters(object))
+        ## FIXME Rework metrics return to include ident column for monocle3.
         metrics <- metrics(object)
         cols <- c("sampleName", "ident")
         assert(isSubset(cols, colnames(metrics)))

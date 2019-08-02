@@ -78,10 +78,10 @@
 #' object <- Seurat
 #'
 #' ## Compare expression in cluster 3 relative to 2.
-#' ident <- clusterID(object)
-#' numerator <- names(ident)[ident == "3"]
+#' clusters <- clusters(object)
+#' numerator <- names(clusters)[clusters == "3"]
 #' summary(numerator)
-#' denominator <- names(ident)[ident == "2"]
+#' denominator <- names(clusters)[clusters == "2"]
 #' summary(denominator)
 #'
 #' ## edgeR ====
