@@ -1,3 +1,7 @@
+## FIXME Need to add monocle3 support.
+
+
+
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
 #' @note Updated 2019-08-02.
@@ -80,6 +84,9 @@ NULL
 
         ## dr: dimensional reduction
         ## sdev: standard deviation
+        ## FIXME Extract the code for this...
+        ## FIXME Seurat:::Stdev.DimReduc
+        ## https://github.com/satijalab/seurat/blob/master/R/objects.R#L3386
         sdev <- Stdev(object = object, reduction = tolower(reduction))
         assert(is.numeric(sdev))
         pct <- sdev ^ 2L / sum(sdev ^ 2L)
