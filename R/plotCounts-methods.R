@@ -1,8 +1,11 @@
-## FIXME Rethink this approach using logcounts.
 ## FIXME Add cell_data_set support.
 ## FIXME Inform the user more clearly about what values we're plotting.
-## FIXME Refer to monocle3:::normalize_expr_data for normalization ideas.
-## FIXME Refer to monocle3::plot_cells for normalization
+
+
+
+.monocle3TODO <- function(object, ...) {
+    stop("Not yet supported for monocle3.")
+}
 
 
 
@@ -386,6 +389,23 @@ setMethod(
 
 
 
+## FIXME
+## Updated 2019-08-02.
+`plotCounts,cell_data_set` <-  # nolint
+    .monocle3TODO
+
+
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotCounts",
+    signature = signature("cell_data_set"),
+    definition = `plotCounts,cell_data_set`
+)
+
+
+
 #' @rdname plotCounts
 #' @export
 setMethod(
@@ -412,6 +432,23 @@ setMethod(
 
 
 
+## FIXME
+## Updated 2019-08-32.
+`plotDot,cell_data_set` <-  # nolint
+    .monocle3TODO
+
+
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotDot",
+    signature = signature("cell_data_set"),
+    definition = `plotDot,cell_data_set`
+)
+
+
+
 #' @rdname plotCounts
 #' @export
 setMethod(
@@ -434,4 +471,21 @@ setMethod(
     f = "plotViolin",
     signature = signature("Seurat"),
     definition = `plotViolin,Seurat`
+)
+
+
+
+## FIXME
+## Updated 2019-08-02.
+`plotViolin,cell_data_set` <-  # nolint
+    .monocle3TODO
+
+
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotViolin",
+    signature = signature("cell_data_set"),
+    definition = `plotViolin,cell_data_set`
 )

@@ -1,3 +1,7 @@
+## Monocle guide mentions using DelayedArray approach for this.
+
+
+
 #' Estimate size factors
 #'
 #' @name estimateSizeFactors
