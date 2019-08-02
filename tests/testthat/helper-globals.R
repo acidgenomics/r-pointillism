@@ -6,6 +6,7 @@ options(
 
 data(
     Seurat,
+    cell_data_set,
     package = "acidtest",
     envir = environment()
 )
@@ -16,8 +17,12 @@ data(
     envir = environment()
 )
 
+cds <- cell_data_set
+rm(cell_data_set)
+
 seurat <- Seurat
 rm(Seurat)
+
 genes <- head(rownames(seurat))
 sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
