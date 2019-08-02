@@ -114,7 +114,7 @@ NULL
     ) {
         validObject(object)
         assert(
-            .hasIdent(object),
+            .hasClusters(object),
             isScalar(reducedDim),
             hasLength(dimsUse, n = 2L),
             all(isIntegerish(dimsUse)),
@@ -135,6 +135,7 @@ NULL
             interestingGroups <- "ident"
         }
 
+        ## FIXME Rework metrics return to include ident column for monocle3.
         data <- .fetchReducedDimData(
             object = object,
             reducedDim = reducedDim,

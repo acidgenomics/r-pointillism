@@ -1,9 +1,6 @@
 #' @name findMarkers
 #' @inherit bioverbs::findMarkers
-#'
-#' @note Cluster identity (`ident`) must be defined in
-#'   [`colData()`][SummarizedExperiment::colData] for this function to work.
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
 #' @inheritParams basejump::params
 #' @param ... Passthrough arguments to [diffExp()].
@@ -33,13 +30,14 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `findMarkers,SingleCellExperiment` <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
 
-        ## Get the cluster identities.
-        ident <- clusterID(object)
+        ## Get the cluster mappings. Following the Seurat nomenclature here of
+        ## using "ident" to denote the cluster identifier mapping factor.
+        ident <- clusters(object)
         assert(is.factor(ident), hasNames(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)

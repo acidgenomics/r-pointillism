@@ -138,7 +138,7 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
     ) {
         validObject(object)
         assert(
-            .hasIdent(object),
+            .hasClusters(object),
             isCharacter(genes),
             isFlag(perSample),
             isNumber(colMin),
@@ -164,6 +164,7 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
         )
 
         ## Prepare data for ggplot.
+        ## FIXME Rework metrics return to include ident column for monocle3.
         cols <- c("geneName", "sampleName", "ident")
         data <- data %>%
             as_tibble() %>%

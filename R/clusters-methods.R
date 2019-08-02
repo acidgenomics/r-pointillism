@@ -1,9 +1,5 @@
-## FIXME Consider renaming to clusters from clusterID.
-
-
-
-#' @name clusterID
-#' @inherit bioverbs::clusterID
+#' @name clusters
+#' @inherit bioverbs::clusters
 #' @note Updated 2019-08-02.
 #'
 #' @inheritParams basejump::params
@@ -14,24 +10,24 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' x <- clusterID(object)
+#' x <- clusters(object)
 #' head(x)
 #' table(x)
 NULL
 
 
 
-#' @rdname clusterID
-#' @name clusterID
-#' @importFrom bioverbs clusterID
-#' @usage clusterID(object, ...)
+#' @rdname clusters
+#' @name clusters
+#' @importFrom bioverbs clusters
+#' @usage clusters(object, ...)
 #' @export
 NULL
 
 
 
 ## Updated 2019-08-02.
-`clusterID,Seurat` <-  # nolint
+`clusters,Seurat` <-  # nolint
     function(object) {
         validObject(object)
         Idents(object)
@@ -39,22 +35,26 @@ NULL
 
 
 
-#' @rdname clusterID
+#' @rdname clusters
 #' @export
 setMethod(
-    f = "clusterID",
+    f = "clusters",
     signature = signature("Seurat"),
-    definition = `clusterID,Seurat`
+    definition = `clusters,Seurat`
 )
 
 
-
+## Note that monocle3 currently defines the generic using "x" instead of
+## "object", and requires "reduction_method" in definition.
+##
 ## For `reductionMethod`, note that positional scalar works.
+##
 ## Updated 2019-08-02.
-`clusterID,cell_data_set` <-  # nolint
+`clusters,cell_data_set` <-  # nolint
     function(object, reductionMethod) {
         validObject(object)
         assert(isScalar(reductionMethod))
+
         monocle3::clusters(
             x = object,
             reduction_method = reductionMethod
@@ -66,24 +66,24 @@ f <- methodFormals(
     signature = signature(x = "cell_data_set"),
     package = "monocle3"
 )
-formals(`clusterID,cell_data_set`)[["reductionMethod"]] <-
+formals(`clusters,cell_data_set`)[["reductionMethod"]] <-
     f[["reduction_method"]]
 
 
 
-#' @rdname clusterID
+#' @rdname clusters
 #' @export
 setMethod(
-    f = "clusterID",
+    f = "clusters",
     signature = signature("cell_data_set"),
-    definition = `clusterID,cell_data_set`
+    definition = `clusters,cell_data_set`
 )
 
 
 
 ## Consider removing this fallback method support.
 ## Updated 2019-08-02.
-`clusterID,SingleCellExperiment` <-  # nolint
+`clusters,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)
 
@@ -114,10 +114,10 @@ setMethod(
 
 
 
-#' @rdname clusterID
+#' @rdname clusters
 #' @export
 setMethod(
-    f = "clusterID",
+    f = "clusters",
     signature = signature("SingleCellExperiment"),
-    definition = `clusterID,SingleCellExperiment`
+    definition = `clusters,SingleCellExperiment`
 )

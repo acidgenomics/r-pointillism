@@ -1,12 +1,11 @@
 ## Conflicts:
 ## @importFrom Matrix rowMeans rowSums
 
-## #' @importClassesFrom monocle3 cell_data_set
-
 
 
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
+#' @importClassesFrom monocle3 cell_data_set
 #'
 #' @importMethodsFrom basejump coerce
 #'
@@ -17,8 +16,8 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq results
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
-#' @importFrom Seurat CreateSeuratObject as.SingleCellExperiment as.Seurat
-#'   GetAssayData Stdev VariableFeatures
+#' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
+#'   as.Seurat GetAssayData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
@@ -39,10 +38,10 @@
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
-#'   areDisjointSets areIntersectingSets assert isAlpha isInt hasLength hasNames
-#'   hasRownames hasRows isGGScale isAny isCharacter isFlag isHeaderLevel
-#'   isIntegerish isNonEmpty isNumber isPositive isScalar isString isSubset
-#'   validate
+#'   areDisjointSets areIntersectingSets assert false isAlpha isInt hasLength
+#'   hasNames hasRownames hasRows isGGScale isAny isCharacter isFlag
+#'   isHeaderLevel isIntegerish isNonEmpty isNumber isPositive isScalar isString
+#'   isSubset validate
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass show slot slot<-
 #'   validObject
