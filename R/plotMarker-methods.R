@@ -1,3 +1,7 @@
+## FIXME Improve count legend label
+
+
+
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @note Updated 2019-08-02.
@@ -73,7 +77,6 @@ NULL
         }
 
         ## Assert checks -------------------------------------------------------
-        object <- as(object, "SingleCellExperiment")
         assert(
             isCharacter(genes),
             isScalar(reduction),

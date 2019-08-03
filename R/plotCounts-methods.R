@@ -3,12 +3,6 @@
 
 
 
-.monocle3TODO <- function(object, ...) {
-    stop("Not yet supported for monocle3.")
-}
-
-
-
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
@@ -144,7 +138,7 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotDot,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -178,16 +172,13 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
         )
 
         ## Fetch the gene expression data.
-        ## FIXME Rethink the log counts approach.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
-            assay = "logcounts",
             metadata = TRUE
         )
 
         ## Prepare data for ggplot.
-        ## FIXME Rework metrics return to include ident column for monocle3.
         cols <- c("geneName", "sampleName", "ident")
         data <- data %>%
             as_tibble() %>%
@@ -251,17 +242,16 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
         p
     }
 
-formals(`plotDot,SingleCellExperiment`)[c(
-    "color",
-    "legend"
-)] <- list(
+formals(`plotDot,SingleCellExperiment`)[
+    c("color","legend")
+] <- list(
     color = continuousColorPurpleOrange,
     legend = legend
 )
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotViolin,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -283,11 +273,9 @@ formals(`plotDot,SingleCellExperiment`)[c(
         scale <- match.arg(scale)
 
         ## Fetch the gene expression data.
-        ## FIXME Rethink the log counts approach.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
-            assay = "logcounts",
             metadata = TRUE
         )
 
@@ -389,10 +377,10 @@ setMethod(
 
 
 
-## FIXME
+## FIXME Check that this works.
 ## Updated 2019-08-02.
 `plotCounts,cell_data_set` <-  # nolint
-    .monocle3TODO
+    `plotCounts,SingleCellExperiment`
 
 
 
@@ -432,10 +420,10 @@ setMethod(
 
 
 
-## FIXME
+## FIXME Check that this works.
 ## Updated 2019-08-32.
 `plotDot,cell_data_set` <-  # nolint
-    .monocle3TODO
+    `plotDot,SingleCellExperiment`
 
 
 
@@ -475,10 +463,10 @@ setMethod(
 
 
 
-## FIXME
+## FIXME Check that this works.
 ## Updated 2019-08-02.
 `plotViolin,cell_data_set` <-  # nolint
-    .monocle3TODO
+    `plotViolin,SingleCellExperiment`
 
 
 

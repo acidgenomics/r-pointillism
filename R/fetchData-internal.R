@@ -5,6 +5,7 @@ NULL
 
 
 
+## FIXME Consider adding `assay = "logcounts"` argument back here.
 ## Updated 2019-08-02.
 .fetchGeneData <- function(
     object,
@@ -20,7 +21,7 @@ NULL
     rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
 
-    counts <- .normalizedCounts(object)
+    counts <- logcounts(object)
     counts <- counts[rownames, , drop = FALSE]
 
     ## Transpose, putting the gene rownames into the columns.

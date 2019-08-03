@@ -1,3 +1,8 @@
+## FIXME Fix handling for reducedDim matrices without names (e.g. UMAP) for
+## monocle3
+
+
+
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
 #' @note Updated 2019-07-31.
