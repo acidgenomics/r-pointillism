@@ -8,9 +8,6 @@
 \alias{assays,Seurat-method}
 \alias{colData,Seurat-method}
 \alias{colData<-,Seurat,DataFrame-method}
-\alias{colnames,Seurat-method}
-\alias{counts,Seurat-method}
-\alias{Gene2Symbol,Seurat-method}
 \alias{interestingGroups,Seurat-method}
 \alias{interestingGroups<-,Seurat,character-method}
 \alias{mapGenesToIDs,Seurat-method}
@@ -21,7 +18,6 @@
 \alias{metrics,Seurat-method}
 \alias{reducedDims,Seurat-method}
 \alias{rowData,Seurat-method}
-\alias{rownames,Seurat-method}
 \alias{rowRanges,Seurat-method}
 \alias{rowRanges<-,Seurat,ANY-method}
 \alias{sampleData,Seurat-method}
@@ -40,12 +36,6 @@
 \S4method{colData}{Seurat}(x, ...)
 
 \S4method{colData}{Seurat,DataFrame}(x) <- value
-
-\S4method{colnames}{Seurat}(x)
-
-\S4method{counts}{Seurat}(object, ...)
-
-\S4method{Gene2Symbol}{Seurat}(object, ...)
 
 \S4method{interestingGroups}{Seurat}(object, ...)
 
@@ -66,8 +56,6 @@
 \S4method{reducedDims}{Seurat}(x, ...)
 
 \S4method{rowData}{Seurat}(x, use.names = TRUE, ...)
-
-\S4method{rownames}{Seurat}(x)
 
 \S4method{rowRanges}{Seurat}(x)
 

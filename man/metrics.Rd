@@ -8,7 +8,7 @@
 \usage{
 metrics(object, ...)
 
-\S4method{metrics}{cell_data_set}(object, return = c("tbl_df",
+\S4method{metrics}{cell_data_set}(object, return = c("tibble",
   "DataFrame"))
 }
 \arguments{
@@ -22,8 +22,8 @@ to the first argument in the \code{character} vector.}
 }
 \value{
 \itemize{
-\item \code{"tbl_df"}: \code{grouped_df}.
-Tibble grouped by \code{sampleID} column.
+\item \code{"tibble"}: \code{grouped_df}.
+Grouped by \code{sampleID} column.
 \item \code{"DataFrame"}: \code{DataFrame}.
 Row names are identical to the column names of the object, like
 \code{\link[SummarizedExperiment:colData]{colData()}}.
