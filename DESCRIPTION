@@ -110,7 +110,6 @@ Collate:
     'findMarkers-methods.R'
     'imports.R'
     'metrics-methods.R'
-    'normalizedCounts-internal.R'
     'package.R'
     'params.R'
     'plotCellCountsPerCluster-methods.R'
