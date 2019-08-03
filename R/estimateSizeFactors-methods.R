@@ -32,12 +32,17 @@ NULL
 
 
 
+## FIXME Need to reexport generic
+
+
+
 ## Consider porting some of the DESeqDataSet method code here.
 ## Updated 2019-08-02.
 `estimateSizeFactors,SingleCellExperiment` <-  # nolint
     function(object) {
         colData(object)[["sizeFactor"]] <- NULL
         cds <- as(object, "cell_data_set")
+        ## FIXME Internalize this code rather than relying on monocle3 here.
         cds <- estimateSizeFactors(cds)
         assert(
             is(cds, "cell_data_set"),
