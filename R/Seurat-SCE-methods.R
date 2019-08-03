@@ -13,40 +13,6 @@ NULL
 
 
 
-## Internal ====================================================================
-.getSeuratStash <- function(object, name) {
-    assert(
-        is(object, "Seurat"),
-        isString(name)
-    )
-
-    misc <- slot(object, name = "misc")
-
-    ## Early return if the `misc` slot is `NULL`.
-    if (is.null(misc)) {
-        return(NULL)
-    }
-
-    ## Look first directly in `object@misc` slot.
-    x <- misc[[name]]
-    if (!is.null(x)) {
-        return(x)
-    }
-
-    ## Next, handle legacy `bcbio` stash list inside `object@misc`.
-    ## As of v0.1.3, stashing directly into `object@misc`.
-    if ("bcbio" %in% names(misc)) {
-        x <- misc[["bcbio"]][[name]]
-        if (!is.null(x)) {
-            return(x)
-        }
-    }
-
-    NULL
-}
-
-
-
 ## assay =======================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assay
@@ -76,6 +42,7 @@ setMethod(
 
 
 ## assays ======================================================================
+## Alternative: `GetAssayData()`.
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment assays
 #' @export
@@ -121,48 +88,6 @@ setMethod(
 
 
 
-## colnames ====================================================================
-#' @rdname Seurat-SingleCellExperiment
-#' @importFrom BiocGenerics colnames
-#' @export
-setMethod(
-    f = "colnames",
-    signature = signature("Seurat"),
-    definition = function(x) {
-        colnames(as.SingleCellExperiment(x))
-    }
-)
-
-
-
-## counts ======================================================================
-#' @rdname Seurat-SingleCellExperiment
-#' @importFrom BiocGenerics counts
-#' @export
-setMethod(
-    f = "counts",
-    signature = signature("Seurat"),
-    definition = function(object, ...) {
-        counts(as.SingleCellExperiment(object), ...)
-    }
-)
-
-
-
-## Gene2Symbol =================================================================
-#' @rdname Seurat-SingleCellExperiment
-#' @importFrom basejump Gene2Symbol
-#' @export
-setMethod(
-    f = "Gene2Symbol",
-    signature = signature("Seurat"),
-    definition = function(object, ...) {
-        Gene2Symbol(as(object, "SummarizedExperiment"), ...)
-    }
-)
-
-
-
 ## interestingGroups ===========================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom basejump interestingGroups
@@ -195,6 +120,10 @@ setMethod(
         where = asNamespace("basejump")
     )
 )
+
+
+
+# FIXME logcounts
 
 
 
@@ -332,20 +261,6 @@ setMethod(
 
 
 
-## rownames ====================================================================
-#' @rdname Seurat-SingleCellExperiment
-#' @importFrom BiocGenerics rownames
-#' @export
-setMethod(
-    f = "rownames",
-    signature = signature("Seurat"),
-    definition = function(x) {
-        rownames(as.SingleCellExperiment(x))
-    }
-)
-
-
-
 ## rowRanges ===================================================================
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SummarizedExperiment rowRanges
@@ -449,6 +364,7 @@ setMethod(
 
 
 ## weights =====================================================================
+## Consider removing support for this in a future update.
 #' @rdname Seurat-SingleCellExperiment
 #' @importFrom SingleCellExperiment weights
 #' @export

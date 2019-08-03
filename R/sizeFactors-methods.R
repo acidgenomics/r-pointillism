@@ -18,6 +18,10 @@ NULL
 
 
 
+## FIXME Need to reexport generic
+
+
+
 ## Updated 2019-08-02.
 `sizeFactors,SingleCellExperiment` <-  # nolint
     methodFunction(

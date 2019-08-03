@@ -9,22 +9,19 @@ NULL
 .fetchGeneData <- function(
     object,
     genes,
-    assay = "logcounts",
     metadata = FALSE
 ) {
     validObject(object)
     assert(
-        isString(assay),
-        isSubset(assay, assayNames(object)),
+        isCharacter(genes),
         isFlag(metadata)
     )
 
     rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
 
-    counts <- assays(object) %>%
-        .[[assay]] %>%
-        .[rownames, , drop = FALSE]
+    counts <- .normalizedCounts(object)
+    counts <- counts[rownames, , drop = FALSE]
 
     ## Transpose, putting the gene rownames into the columns.
     if (is(counts, "sparseMatrix")) {
@@ -66,7 +63,7 @@ NULL
         as_tibble(rownames = "rowname") %>%
         gather(
             key = "rowname",
-            value = !!sym(assay),
+            value = !!sym("counts"),
             !!rownames
         ) %>%
         group_by(!!sym("rowname"))
@@ -76,16 +73,8 @@ NULL
     assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "tbl_df")
     data <- left_join(data, g2s, by = "rowname")
-    ## Always sanitize row names into valid names before DataFrame coercion.
-    data[["rowname"]] <- makeNames(data[["rowname"]])
-    ## Otherwise, you'll intentionally hit this error:
-    ## nolint start
-    ## > └─methods::as(data, "DataFrame")
-    ## >   └─transformer:::asMethod(object)
-    ## >     └─transformer::matchRowNameColumn(to)
-    ## >       └─goalie::assert(validNames(rownames))
-    ##
-    ## nolint end
+    data[["rowname"]] <- NULL
+    data <- data[, sort(colnames(data))]
     as(data, "DataFrame")
 }
 
@@ -191,7 +180,6 @@ formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
     geneCounts <- .fetchGeneData(
         object = object,
         genes = rownames,
-        assay = "logcounts",
         metadata = FALSE
     )
     assert(identical(
@@ -222,3 +210,37 @@ formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
 }
 
 formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
+
+
+
+## Updated 2019-08-03.
+.getSeuratStash <- function(object, name) {
+    assert(
+        is(object, "Seurat"),
+        isString(name)
+    )
+
+    misc <- slot(object, name = "misc")
+
+    ## Early return if the `misc` slot is `NULL`.
+    if (is.null(misc)) {
+        return(NULL)
+    }
+
+    ## Look first directly in `object@misc` slot.
+    x <- misc[[name]]
+    if (!is.null(x)) {
+        return(x)
+    }
+
+    ## Next, handle legacy `bcbio` stash list inside `object@misc`.
+    ## As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(misc)) {
+        x <- misc[["bcbio"]][[name]]
+        if (!is.null(x)) {
+            return(x)
+        }
+    }
+
+    NULL
+}
