@@ -1,6 +1,23 @@
+## FIXME Add cpm support
+
+## FIXME Seurat Relative Counts
+## cpm = NormalizeData(, normalization.method = "RC", scale.factor = 1e6)
+
+## FIXME Add unit tests to check the return on these for coerced data sets.
+
+## cpm = size factor adjusted / 1e6
+
+
+
 #' @name counts
 #' @inherit SingleCellExperiment::counts
+#' @inheritParams Seurat::GetAssayData
 #' @param ... Additional arguments.
+#'
+#' @seealso
+#' - `Seurat::GetAssayData()`.
+#' - `Seurat::NormalizeData()`.
+#' - `Seurat::ScaleData()`.
 NULL
 
 
@@ -9,6 +26,13 @@ NULL
 #' @name counts
 #' @importFrom SingleCellExperiment counts
 #' @usage counts(object, ...)
+#' @export
+NULL
+
+#' @rdname counts
+#' @name counts
+#' @importFrom SingleCellExperiment cpm
+#' @usage cpm(object, ...)
 #' @export
 NULL
 
@@ -33,9 +57,9 @@ NULL
 ## > object[["RNA"]]@counts
 ## nolint end
 
-## Updated 2019-08-03.
+## Updated 2019-08-04.
 `counts,Seurat` <-  # nolint
-    function(object, assay = "RNA") {
+    function(object, assay = NULL) {
         GetAssayData(
             object = object,
             assay = assay,
@@ -55,14 +79,39 @@ setMethod(
 
 
 
+## FIXME Confirm this is correct.
+## Updated 2019-08-04.
+`cpm,Seurat` <-  # nolint
+    function(object, assay = NULL) {
+        NormalizeData(
+            object = object,
+            assay = assay,
+            ## Relative counts.
+            normalization.method = "RC",
+            scale.factor = 1e6L
+        )
+    }
+
+
+
+#' @rdname counts
+#' @export
+setMethod(
+    f = "cpm",
+    signature = signature("Seurat"),
+    definition = `cpm,Seurat`
+)
+
+
+
 ## nolint start
 ## > Seurat:::as.SingleCellExperiment.Seurat
 ## > object[["RNA"]]@data
 ## nolint end
 
-## Updated 2019-08-03.
+## Updated 2019-08-04.
 `logcounts,Seurat` <-  # nolint
-    function(object, assay = "RNA") {
+    function(object, assay = NULL) {
         Seurat::GetAssayData(
             object = object,
             assay = assay,
@@ -108,8 +157,11 @@ setMethod(
 ## (i.e. `scale.data`) here.
 ## Updated 2019-08-03
 `normcounts,Seurat` <-  # nolint
-    function(object, assay = "RNA") {
+    function(object, assay = NULL) {
         stop("Not yet supported")
+        counts <- counts(object, assay = assay)
+        ## Apply size factors.
+        ## FIXME Rework this step.
     }
 
 

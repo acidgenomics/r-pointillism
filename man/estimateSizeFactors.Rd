@@ -3,16 +3,50 @@
 \docType{methods}
 \name{estimateSizeFactors}
 \alias{estimateSizeFactors}
+\alias{estimateSizeFactors,Matrix-method}
 \alias{estimateSizeFactors,SingleCellExperiment-method}
 \alias{estimateSizeFactors,cell_data_set-method}
 \title{Estimate size factors}
 \usage{
-\S4method{estimateSizeFactors}{SingleCellExperiment}(object)
+estimateSizeFactors(object, ...)
 
-\S4method{estimateSizeFactors}{cell_data_set}(object)
+\S4method{estimateSizeFactors}{Matrix}(object, roundExprs = FALSE,
+  method = c("mean-geometric-mean-total",
+  "mean-geometric-mean-log-total"))
+
+\S4method{estimateSizeFactors}{SingleCellExperiment}(object,
+  colname = "sizeFactor")
+
+\S4method{estimateSizeFactors}{cell_data_set}(object,
+  colname = "Size_Factor")
+}
+\arguments{
+\item{roundExprs}{\code{logical(1)}.
+Round expression values to integer counts, prior to calculation.}
+
+\item{method}{\code{character(1)}.
+Size factor normalization method.}
+
+\item{colname}{\code{character(1)}.
+Column name where to define size factor values in
+\code{\link[SummarizedExperiment:colData]{colData()}}.}
+
+\item{...}{Additional arguments.}
+}
+\value{
+\itemize{
+\item \code{Matrix}: Named \code{numeric}, containing size factor values.
+\item \code{SingleCellExperiment}: Modified object, containing size factor values
+as \code{sizeFactor} column in \code{\link[SummarizedExperiment:colData]{colData()}}.
+\item \code{cell_data_set}: Modified object, containing size factor values
+as \code{Size_Factor} column in \code{\link[SummarizedExperiment:colData]{colData()}}.
+}
 }
 \description{
 Estimate size factors
+}
+\note{
+Updated 2019-08-04.
 }
 \examples{
 data(
