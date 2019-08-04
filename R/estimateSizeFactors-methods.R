@@ -1,12 +1,3 @@
-## Monocle3 mentions using DelayedArray approach for this. Consider adapting
-## code to use this package, which is capable of handling millions of cells.
-
-## FIXME Refer to DESeqDataSet approach here for ideas.
-## FIXME Consider not exporting colData for Seurat...use internally?
-## FIXME Cover that this returns identical values as monocle3 function.
-
-
-
 #' Estimate size factors
 #'
 #' @name estimateSizeFactors
@@ -16,15 +7,35 @@
 #' @param colname `character(1)`.
 #'   Column name where to define size factor values in
 #'   [`colData()`][SummarizedExperiment::colData].
-#' @param roundExprs `logical(1)`.
-#'   Round expression values to integer counts, prior to calculation.
-#' @param method `character(1)`.
-#'   Size factor normalization method.
+#' @param type `character(1)`.
+#'   Method for estimation:
+#'   ```
+#'   libSize <- colSums(counts(object))
+#'   ```
+#'   - `mean-ratio`: From scater.
+#'     ```
+#'     libSize / mean(libSize)
+#'     ```
+#'   - `geometric-mean-ratio`: From monocle3.
+#'     ```
+#'     libSize / geometricMean(libSize)
+#'     ```
+#'   - `mean-geometric-mean-log-total`: From monocle3.
+#'     ```
+#'     log(libSize) / geometricMean(log(libSize))
+#'     ```
+#'   - `median-ratio`: From DESeq2.
+#'     The size factor is a median ratio of the sample over a "pseudosample":
+#'     for each feature (i.e. gene), the geometric mean of all samples.
+#'
 #' @param ... Additional arguments.
 #'
 #' @seealso
-#' - `DESeq2::estimateSizeFactors()`.
+#' - `scater::librarySizeFactors()`.
 #' - `monocle3::estimate_size_factors()`.
+#' - `monocle3:::estimate_sf_sparse()`.
+#' - `DESeq2::estimateSizeFactors()`.
+#' - `DESeq2::estimateSizeFactorsForMatrix().`
 #'
 #' @return
 #' - `Matrix`: Named `numeric`, containing size factor values.
@@ -63,40 +74,26 @@ NULL
 
 
 
-## Modified version from monocle3:
-## - `monocle3::estimate_size_factors()`.
-## - `monocle3:::estimate_sf_dense()`.
-## - `monocle3:::estimate_sf_sparse()`.
 ## Updated 2019-08-04.
-`estimateSizeFactors,Matrix`  <-  # nolint
+`estimateSizeFactors,DelayedArray`  <-  # nolint
     function(
         object,
-        roundExprs = FALSE,
-        method = c(
-            "mean-geometric-mean-total",
-            "mean-geometric-mean-log-total"
+        type = c(
+            "mean-ratio",
+            "geometric-mean-ratio",
+            "log-geometric-mean-ratio",
+            "deseq2-median-ratio"
         )
     ) {
-        assert(
-            !anyNA(object),
-            isFlag(roundExprs)
-        )
-        method <- match.arg(method)
-        message(sprintf(
-            fmt = "Calculating size factors using %s method.",
-            method
-        ))
-
-        ## Round the counts to integer values, if desired.
-        if (isTRUE(roundExprs)) {
-            object <- round(object, digits = 0L)
-        }
+        assert(!anyNA(object))
+        type <- match.arg(type)
+        message(sprintf("Calculating size factors using %s method.", type))
 
         ## Get the sum of expression per cell.
-        sum <- Matrix::colSums(object)
+        libSizes <- colSums2(object)
 
-        ## Check for zero count cells and inform the user where in matrix.
-        zero <- sum == 0L
+        ## Error on detection of cells without any expression.
+        zero <- libSizes == 0L
         if (isTRUE(any(zero))) {
             stop(sprintf(
                 fmt = "Cells with no expression detected: %s",
@@ -109,15 +106,24 @@ NULL
 
         ## Calculate the size factors per cell.
         sf <- switch(
-            EXPR = method,
-            "mean-geometric-mean-total" = {
-                sum / exp(mean(log(sum)))
+            EXPR = type,
+            "mean-ratio" = {
+                libSizes / mean(libSizes)
             },
-            "mean-geometric-mean-log-total" = {
-                log(sum) / exp(mean(log(log(sum))))
+            "geometric-mean-ratio" = {
+                libSizes / geometricMean(libSizes)
+            },
+            "log-geometric-mean-ratio" = {
+                log(libSizes) / geometricMean(log(libSizes))
+            },
+            "deseq2-median-ratio" = {
+                estimateSizeFactorsForMatrix(object)
             }
         )
-        sf[is.na(sf)] <- 1L
+
+        assert(!anyNA(sf))
+        names(sf) <- colnames(object)
+
         sf
     }
 
@@ -127,8 +133,8 @@ NULL
 #' @export
 setMethod(
     f = "estimateSizeFactors",
-    signature = signature("Matrix"),
-    definition = `estimateSizeFactors,Matrix`
+    signature = signature("DelayedArray"),
+    definition = `estimateSizeFactors,DelayedArray`
 )
 
 
@@ -148,7 +154,7 @@ setMethod(
                 colname
             ))
         }
-        counts <- counts(object)
+        counts <- DelayedArray(counts(object))
         sf <- estimateSizeFactors(counts)
         colData(object)[[colname]] <- unname(sf)
         object
