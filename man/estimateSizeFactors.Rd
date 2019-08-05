@@ -3,16 +3,16 @@
 \docType{methods}
 \name{estimateSizeFactors}
 \alias{estimateSizeFactors}
-\alias{estimateSizeFactors,Matrix-method}
+\alias{estimateSizeFactors,DelayedArray-method}
 \alias{estimateSizeFactors,SingleCellExperiment-method}
 \alias{estimateSizeFactors,cell_data_set-method}
 \title{Estimate size factors}
 \usage{
 estimateSizeFactors(object, ...)
 
-\S4method{estimateSizeFactors}{Matrix}(object, roundExprs = FALSE,
-  method = c("mean-geometric-mean-total",
-  "mean-geometric-mean-log-total"))
+\S4method{estimateSizeFactors}{DelayedArray}(object,
+  type = c("mean-ratio", "geometric-mean-ratio",
+  "log-geometric-mean-ratio", "deseq2-median-ratio"))
 
 \S4method{estimateSizeFactors}{SingleCellExperiment}(object,
   colname = "sizeFactor")
@@ -21,11 +21,20 @@ estimateSizeFactors(object, ...)
   colname = "Size_Factor")
 }
 \arguments{
-\item{roundExprs}{\code{logical(1)}.
-Round expression values to integer counts, prior to calculation.}
-
-\item{method}{\code{character(1)}.
-Size factor normalization method.}
+\item{type}{\code{character(1)}.
+Method for estimation:\preformatted{libSize <- colSums(counts(object))
+}
+\itemize{
+\item \code{mean-ratio}: From scater.\preformatted{libSize / mean(libSize)
+}
+\item \code{geometric-mean-ratio}: From monocle3.\preformatted{libSize / geometricMean(libSize)
+}
+\item \code{mean-geometric-mean-log-total}: From monocle3.\preformatted{log(libSize) / geometricMean(log(libSize))
+}
+\item \code{median-ratio}: From DESeq2.
+The size factor is a median ratio of the sample over a "pseudosample":
+for each feature (i.e. gene), the geometric mean of all samples.
+}}
 
 \item{colname}{\code{character(1)}.
 Column name where to define size factor values in
@@ -68,7 +77,10 @@ sizeFactors(object)
 }
 \seealso{
 \itemize{
-\item \code{DESeq2::estimateSizeFactors()}.
+\item \code{scater::librarySizeFactors()}.
 \item \code{monocle3::estimate_size_factors()}.
+\item \code{monocle3:::estimate_sf_sparse()}.
+\item \code{DESeq2::estimateSizeFactors()}.
+\item \code{DESeq2::estimateSizeFactorsForMatrix().}
 }
 }

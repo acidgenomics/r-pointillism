@@ -13,7 +13,9 @@
 #'   rowSums sapply
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
-#' @importFrom DESeq2 DESeqDataSet DESeq results
+#' @importFrom DelayedArray DelayedArray
+#' @importFrom DelayedMatrixStats colSums2 rowSums2
+#' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
@@ -24,9 +26,9 @@
 #'   rowData rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
 #' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
-#'   import makeNames mapGenesToRownames mapGenesToSymbols markdownHeader
-#'   matchArgsToDoCall matchInterestingGroups printString separator showSlotInfo
-#'   snake upperCamel
+#'   geometricMean import makeNames mapGenesToRownames mapGenesToSymbols
+#'   markdownHeader matchArgsToDoCall matchInterestingGroups printString
+#'   separator showSlotInfo snake upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
