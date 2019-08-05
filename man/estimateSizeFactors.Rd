@@ -3,22 +3,19 @@
 \docType{methods}
 \name{estimateSizeFactors}
 \alias{estimateSizeFactors}
-\alias{estimateSizeFactors,DelayedArray-method}
 \alias{estimateSizeFactors,SingleCellExperiment-method}
 \alias{estimateSizeFactors,cell_data_set-method}
 \title{Estimate size factors}
 \usage{
 estimateSizeFactors(object, ...)
 
-\S4method{estimateSizeFactors}{DelayedArray}(object,
-  type = c("mean-ratio", "geometric-mean-ratio",
-  "log-geometric-mean-ratio", "deseq2-median-ratio"))
-
 \S4method{estimateSizeFactors}{SingleCellExperiment}(object,
-  colname = "sizeFactor")
+  type = c("mean-ratio", "geometric-mean-ratio",
+  "log-geometric-mean-ratio", "deseq2-median-ratio"), center = 1L)
 
 \S4method{estimateSizeFactors}{cell_data_set}(object,
-  colname = "Size_Factor")
+  type = c("mean-ratio", "geometric-mean-ratio",
+  "log-geometric-mean-ratio", "deseq2-median-ratio"), center = 1L)
 }
 \arguments{
 \item{type}{\code{character(1)}.
@@ -36,26 +33,36 @@ The size factor is a median ratio of the sample over a "pseudosample":
 for each feature (i.e. gene), the geometric mean of all samples.
 }}
 
-\item{colname}{\code{character(1)}.
-Column name where to define size factor values in
-\code{\link[SummarizedExperiment:colData]{colData()}}.}
+\item{center}{\code{numeric(1)}.
+If non-zero, scales all size factors so that the average size factor across
+cells is equal to the value defined. Set to \code{0} to disable centering.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\itemize{
-\item \code{Matrix}: Named \code{numeric}, containing size factor values.
-\item \code{SingleCellExperiment}: Modified object, containing size factor values
-as \code{sizeFactor} column in \code{\link[SummarizedExperiment:colData]{colData()}}.
-\item \code{cell_data_set}: Modified object, containing size factor values
-as \code{Size_Factor} column in \code{\link[SummarizedExperiment:colData]{colData()}}.
-}
+Modified object.
+Use `\code{\link[=sizeFactors]{sizeFactors()}} to access the computed size factor numeric.
 }
 \description{
-Estimate size factors
+Define size factors from the library sizes, and then apply centering at
+unity. This ensures that the library size adjustment yields values comparable
+to those generated after normalization with other sets of size factors.
+}
+\details{
+Centering of size factors at unity ensures that division by size factors
+yields values on the same scale as the raw counts. This is important for the
+interpretation of the normalized values, as well as comaprisons between
+features normalized with different size factors (e.g., spike-ins).
+
+The estimated size factors computed by this function can be accessed using
+the accessor function \code{\link[=sizeFactors]{sizeFactors()}}. Alternative library size estimators
+can also be supplied using the assignment function \code{\link[=sizeFactors<-]{sizeFactors<-()}}.
 }
 \note{
-Updated 2019-08-04.
+We're computing internally on the count matrix as a DelayedArray, so we
+can handle millions of cells without the calculations blowing up in memory.
+
+Updated 2019-08-05.
 }
 \examples{
 data(
@@ -76,11 +83,22 @@ object <- estimateSizeFactors(cell_data_set)
 sizeFactors(object)
 }
 \seealso{
+From DESeq2:
 \itemize{
-\item \code{scater::librarySizeFactors()}.
-\item \code{monocle3::estimate_size_factors()}.
-\item \code{monocle3:::estimate_sf_sparse()}.
 \item \code{DESeq2::estimateSizeFactors()}.
 \item \code{DESeq2::estimateSizeFactorsForMatrix().}
+}
+
+From scater:
+\itemize{
+\item \code{scater::librarySizeFactors()}.
+\item \code{scater::centreSizeFactors()}.
+\item \code{scater::normalizeSCE()}.
+}
+
+From monocle3:
+\itemize{
+\item \code{monocle3::estimate_size_factors()}.
+\item \code{monocle3:::estimate_sf_sparse()}.
 }
 }
