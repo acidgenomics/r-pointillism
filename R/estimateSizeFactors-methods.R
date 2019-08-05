@@ -1,12 +1,21 @@
 #' Estimate size factors
 #'
+#' Define size factors from the library sizes, and then apply centering at
+#' unity. This ensures that the library size adjustment yields values comparable
+#' to those generated after normalization with other sets of size factors.
+#'
+#' The estimated size factors computed by this function can be accessed using
+#' the accessor function [sizeFactors()]. Alternatively library size estimators
+#' can also be supplied using the assignment function [sizeFactors<-()].
+#'
+## Note that we're computing internally on the count matrix as a DelayedArray,
+## so we can handle millions of cells without the calculations blowing up in
+## memory.
+#'
 #' @name estimateSizeFactors
-#' @note Updated 2019-08-04.
+#' @note Updated 2019-08-05.
 #'
 #' @inheritParams params
-#' @param colname `character(1)`.
-#'   Column name where to define size factor values in
-#'   [`colData()`][SummarizedExperiment::colData].
 #' @param type `character(1)`.
 #'   Method for estimation:
 #'   ```
@@ -27,22 +36,28 @@
 #'   - `median-ratio`: From DESeq2.
 #'     The size factor is a median ratio of the sample over a "pseudosample":
 #'     for each feature (i.e. gene), the geometric mean of all samples.
+#' @param center `numeric(1)`.
+#'   If non-zero, scales all size factors so that the average size factor across
+#'   cells is equal to the value defined. Set to `0` to disable centering.
 #'
 #' @param ... Additional arguments.
 #'
 #' @seealso
-#' - `scater::librarySizeFactors()`.
-#' - `monocle3::estimate_size_factors()`.
-#' - `monocle3:::estimate_sf_sparse()`.
+#' From DESeq2:
 #' - `DESeq2::estimateSizeFactors()`.
 #' - `DESeq2::estimateSizeFactorsForMatrix().`
 #'
-#' @return
-#' - `Matrix`: Named `numeric`, containing size factor values.
-#' - `SingleCellExperiment`: Modified object, containing size factor values
-#'   as `sizeFactor` column in [`colData()`][SummarizedExperiment::colData].
-#' - `cell_data_set`: Modified object, containing size factor values
-#'   as `Size_Factor` column in [`colData()`][SummarizedExperiment::colData].
+#' From scater:
+#' - `scater::librarySizeFactors()`.
+#' - `scater::centreSizeFactors()`.
+#' - `scater::normalizeSCE()`.
+#'
+#' From monocle3:
+#' - `monocle3::estimate_size_factors()`.
+#' - `monocle3:::estimate_sf_sparse()`.
+#'
+#' @return Modified object.
+#'   Use `[sizeFactors()] to access the computed size factor numeric.
 #'
 #' @examples
 #' data(
@@ -74,10 +89,10 @@ NULL
 
 
 
-## Updated 2019-08-04.
-`estimateSizeFactors,DelayedArray`  <-  # nolint
+## Updated 2019-08-05.
+.librarySizeFactors <-  # nolint
     function(
-        object,
+        counts,
         type = c(
             "mean-ratio",
             "geometric-mean-ratio",
@@ -85,12 +100,18 @@ NULL
             "deseq2-median-ratio"
         )
     ) {
-        assert(!anyNA(object))
+        assert(
+            is(counts, "DelayedArray"),
+            !anyNA(counts)
+        )
         type <- match.arg(type)
-        message(sprintf("Calculating size factors using %s method.", type))
+        message(sprintf(
+            fmt = "Calculating library size factors using %s method.",
+            type
+        ))
 
         ## Get the sum of expression per cell.
-        libSizes <- colSums2(object)
+        libSizes <- colSums2(counts)
 
         ## Error on detection of cells without any expression.
         zero <- libSizes == 0L
@@ -117,48 +138,61 @@ NULL
                 log(libSizes) / geometricMean(log(libSizes))
             },
             "deseq2-median-ratio" = {
-                estimateSizeFactorsForMatrix(object)
+                DESeq2::estimateSizeFactorsForMatrix(counts)
             }
         )
 
         assert(!anyNA(sf))
-        names(sf) <- colnames(object)
+        names(sf) <- colnames(counts)
 
         sf
     }
 
 
 
-#' @rdname estimateSizeFactors
-#' @export
-setMethod(
-    f = "estimateSizeFactors",
-    signature = signature("DelayedArray"),
-    definition = `estimateSizeFactors,DelayedArray`
-)
+## Updated 2019-08-05.
+.centerSizeFactors <- function(sf, center = 1L) {
+    assert(
+        is.numeric(sf),
+        hasNames(sf),
+        isScalarNumeric(center),
+        isPositive(center)
+    )
+    message(sprintf("Centering size factors at %d.", center))
+    sf <- sf / mean(sf) * center
+    assert(mean(sf) == center)
+    sf
+}
 
 
 
-## Consider porting some of the DESeqDataSet method code here.
-## Updated 2019-08-04.
+## Updated 2019-08-05.
 `estimateSizeFactors,SingleCellExperiment` <-  # nolint
-    function(object, colname = "sizeFactor") {
+    function(object, type, center
+    ) {
         validObject(object)
-        assert(isString(colname))
-        if (isSubset(colname, colnames(colData(object)))) {
-            message(sprintf(
-                fmt = paste(
-                    "Replacing size factor values defined in",
-                    "`%s` column of `colData()`."
-                ),
-                colname
-            ))
-        }
+        assert(
+            isScalarNumeric(center),
+            isNonNegative(center)
+        )
+        type <- match.arg(type)
         counts <- DelayedArray(counts(object))
-        sf <- estimateSizeFactors(counts)
-        colData(object)[[colname]] <- unname(sf)
+        assert(is(counts, "DelayedMatrix"))
+        sf <- .librarySizeFactors(counts = counts, type = type)
+        if (center > 0L) {
+            sf <- .centerSizeFactors(sf = sf, center = center)
+        }
+        assert(is.numeric(sf), hasNames(sf))
+        sizeFactors(object, type = NULL) <- sf
         object
     }
+
+formals(`estimateSizeFactors,SingleCellExperiment`)[
+    c("type", "center")
+] <- list(
+    type = formals(.librarySizeFactors)[["type"]],
+    center = formals(.centerSizeFactors)[["center"]]
+)
 
 
 
@@ -172,11 +206,9 @@ setMethod(
 
 
 
-## Updated 2019-08-04.
+## Updated 2019-08-05.
 `estimateSizeFactors,cell_data_set` <-  # nolint
     `estimateSizeFactors,SingleCellExperiment`
-
-formals(`estimateSizeFactors,cell_data_set`)[["colname"]] <- "Size_Factor"
 
 
 
