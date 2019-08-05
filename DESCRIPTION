@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.4.0
-Date: 2019-08-04
+Date: 2019-08-05
 Authors@R: c(
     person(
         given = "Michael",
@@ -93,15 +93,14 @@ Collate:
     'AllGenerics.R'
     'CellMarkers.R'
     'KnownMarkers-methods.R'
-    'Seurat-SCE-methods.R'
     'SeuratMarkers.R'
     'assert-internal.R'
     'base-Gene2Symbol-methods.R'
+    'base-Seurat-SCE-methods.R'
     'base-counts-methods.R'
     'base-cpm-methods.R'
     'base-logcounts-methods.R'
     'base-normcounts-methods.R'
-    'base-tpm-methods.R'
     'cellCountsPerCluster-methods.R'
     'cellTypesPerCluster-methods.R'
     'clusterCellCountsPerSample-methods.R'
@@ -126,7 +125,7 @@ Collate:
     'plotKnownMarkers-methods.R'
     'plotMarker-methods.R'
     'plotPCElbow-methods.R'
-    'plotReduction-methods.R'
+    'plotReducedDim-methods.R'
     'plotTopMarkers-methods.R'
     'show-methods.R'
     'sizeFactors-methods.R'
