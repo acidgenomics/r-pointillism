@@ -14,8 +14,7 @@ sizeFactors(object, ...) <- value
 
 \S4method{sizeFactors}{cell_data_set}(object, type = NULL)
 
-\S4method{sizeFactors}{cell_data_set,numeric}(object,
-  type = NULL) <- value
+\S4method{sizeFactors}{cell_data_set,numeric}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
