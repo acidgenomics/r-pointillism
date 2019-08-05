@@ -1,46 +1,89 @@
-## FIXME Add cpm support
-## FIXME Check that these return same value on coerced objects.
-## FIXME Seurat Relative Counts
-## cpm = NormalizeData(object, normalization.method = "RC", scale.factor = 1e6)
-## cpm = size factor adjusted / 1e6
-## FIXME Explain: Counts-per-million. This is the read count for each gene in each cell, divided by the library size of each cell in millions.
-## FIXME `scater::calculateCPM()`.
-
-
-
-#' @rdname counts
-#' @name counts
-#' @importFrom SingleCellExperiment cpm
-#' @usage cpm(object, ...)
+#' @name cpm
+#' @inherit bioverbs::cpm
+#'
 #' @seealso
 #' - `SingleCellExperiment::cpm()`.
-#' - `edgeR::cpm()`.
 #' - `scater::calculateCPM()`.
+#' - `edgeR::cpm()`.
+#'
+#' @examples
+#' data(
+#'     SingleCellExperiment,
+#'     Seurat,
+#'     package = "acidtest"
+#' )
+#'
+#' ## SingleCellExperiment ====
+#' object <- SingleCellExperiment
+#' object <- estimateSizeFactors(object)
+#' x <- cpm(object)
+#' class(x)
+#' mean(x)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' cpm(object)
+NULL
+
+
+
+#' @rdname cpm
+#' @name cpm
+#' @importFrom bioverbs cpm
+#' @usage cpm(object, ...)
 #' @export
 NULL
 
 
 
-## FIXME `edgeR::cpm()`.
+## Updated 2019-08-05.
+`cpm,SingleCellExperiment` <-  # nolint
+    function(object) {
+        ## Early return if cpm assay is defined.
+        if (isSubset("cpm", assayNames(object))) {
+            return(assay(x = object, i = "cpm"))
+        }
 
-
-
-## FIXME Confirm this is correct.
-## Updated 2019-08-04.
-`cpm,Seurat` <-  # nolint
-    function(object, assay = NULL) {
-        NormalizeData(
+        ## Otherwise, calculate on the fly.
+        assert(is.numeric(sizeFactors(object)))
+        calculateCPM(
             object = object,
-            assay = assay,
-            ## Relative counts.
-            normalization.method = "RC",
-            scale.factor = 1e6L
+            exprs_values = "counts",
+            use_size_factors = TRUE
         )
     }
 
 
 
-#' @rdname counts
+#' @rdname cpm
+#' @export
+setMethod(
+    f = "cpm",
+    signature = signature("SingleCellExperiment"),
+    definition = `cpm,SingleCellExperiment`
+)
+
+
+
+## Updated 2019-08-05.
+`cpm,Seurat` <-  # nolint
+    function(object, assay = NULL) {
+        object <- NormalizeData(
+            object = object,
+            assay = assay,
+            normalization.method = "RC",  # Relative counts.
+            scale.factor = 1e6L
+        )
+        GetAssayData(
+            object = object,
+            slot = "data",
+            assay = assay
+        )
+    }
+
+
+
+#' @rdname cpm
 #' @export
 setMethod(
     f = "cpm",
