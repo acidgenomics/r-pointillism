@@ -1,6 +1,4 @@
-## FIXME clearSizeFactors
-## FIXME sizeFactorNames
-## FIXME Need to add `type` argument support.
+## Consider adding support for: `clearSizeFactors()`, `sizeFactorNames()`.
 
 
 
