@@ -1,8 +1,47 @@
-## FIXME Check that these return same value on coerced objects.
+#' Log normalized counts
+#'
+#' @name logcounts
+#' @note Updated 2019-08-05.
+#'
+#' @inheritParams params
+#'
+#' @return `sparseMatrix`.
+#'
+#' @seealso
+#' - [normalize()].
+#' - `scater::normalizeSCE()`.
+#' - `Seurat::NormalizeData()`.
+#' - `monocle3::prepare_cds()`.
+#'
+#' @examples
+#' data(
+#'     Seurat,
+#'     SingleCellExperiment,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
+#'
+#' ## SingleCellExperiment ===
+#' object <- SingleCellExperiment
+#' object <- normalize(object)
+#' logcounts <- logcounts(object)
+#' class(logcounts)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' logcounts <- logcounts(object)
+#' class(logcounts)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' object <- normalize(object)
+#' logcounts <- logcounts(object)
+#' class(logcounts)
+NULL
 
 
 
-#' @rdname counts
+#' @rdname logcounts
 #' @name logcounts
 #' @importFrom SingleCellExperiment logcounts
 #' @usage logcounts(object, ...)
@@ -11,17 +50,19 @@ NULL
 
 
 
-## FIXME Consistently return log2 with pseudocount of 1.
-
-## nolint start
-## > Seurat:::as.SingleCellExperiment.Seurat
-## > object[["RNA"]]@data
-## nolint end
-
 ## Updated 2019-08-04.
 `logcounts,Seurat` <-  # nolint
     function(object, assay = NULL) {
-        Seurat::GetAssayData(
+        message(paste(
+            "Getting log normalized counts with",
+            "`Seurat::NormalizeData()`."
+        ))
+        object <- NormalizeData(
+            object = object,
+            normalization.method = "LogNormalize",
+            verbose = TRUE
+        )
+        GetAssayData(
             object = object,
             assay = assay,
             slot = "data"
@@ -40,8 +81,13 @@ setMethod(
 
 
 
+## Updated 2019-08-04.
 `logcounts,cell_data_set` <-  # nolint
     function(object) {
+        message(paste(
+            "Getting log normalized counts with",
+            "`monocle3::normalized_counts()`."
+        ))
         monocle3::normalized_counts(
             cds = object,
             norm_method = "log",
