@@ -1,6 +1,9 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
 #'
+#' @inheritParams basejump::params
+#' @inheritParams params
+#'
 #' @seealso
 #' - `SingleCellExperiment::cpm()`.
 #' - `edgeR::cpm()`.
@@ -8,21 +11,30 @@
 #'
 #' @examples
 #' data(
-#'     SingleCellExperiment,
 #'     Seurat,
+#'     SingleCellExperiment,
+#'     cell_data_set,
 #'     package = "acidtest"
 #' )
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
 #' object <- estimateSizeFactors(object)
-#' x <- cpm(object)
-#' class(x)
-#' mean(x)
+#' cpm <- cpm(object)
+#' class(cpm)
+#' mean(cpm)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' cpm(object)
+#' cpm <- cpm(object)
+#' class(cpm)
+#' mean(cpm)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' cpm <- cpm(object)
+#' class(cpm)
+#' mean(cpm)
 NULL
 
 
@@ -38,14 +50,20 @@ NULL
 
 ## Updated 2019-08-05.
 `cpm,SingleCellExperiment` <-  # nolint
-    function(object) {
+    function(object, verbose = FALSE) {
+        assert(isFlag(verbose))
         ## Early return if cpm assay is defined.
         if (isSubset("cpm", assayNames(object))) {
+            if (isTRUE(verbose)) {
+                message("Returning CPM from pre-calculated `cpm` assay.")
+            }
             return(assay(x = object, i = "cpm"))
         }
-
         ## Otherwise, calculate on the fly.
         assert(is.numeric(sizeFactors(object)))
+        if (isTRUE(verbose)) {
+            message("Calculating CPM with `scater::calculateCPM()`.")
+        }
         calculateCPM(
             object = object,
             exprs_values = "counts",
@@ -67,19 +85,27 @@ setMethod(
 
 ## Updated 2019-08-05.
 `cpm,Seurat` <-  # nolint
-    function(object, assay = NULL) {
-        object <- NormalizeData(
-            object = object,
-            assay = assay,
-            normalization.method = "RC",
-            scale.factor = 1e6L,
-            verbose = TRUE
-        )
-        GetAssayData(
-            object = object,
-            slot = "data",
-            assay = assay
-        )
+    function(object, assay = NULL, verbose = FALSE) {
+        assert(isFlag(verbose))
+        ## Check for pre-calculated CPM (not typical).
+        method <- .seuratNormalizationMethod(object, assay = assay)
+        scaleFactor <- .seuratScaleFactor(object, assay = assay)
+        if (!(method == "RC" && scaleFactor == 1e6L)) {
+            if (isTRUE(verbose)) {
+                message("Generating CPM with `Seurat::NormalizeData()`.")
+            }
+            object <- NormalizeData(
+                object = object,
+                assay = assay,
+                normalization.method = "RC",
+                scale.factor = 1e6L,
+                verbose = verbose
+            )
+        }
+        if (isTRUE(verbose)) {
+            message("Returning CPM with `Seurat::GetAssayData()`.")
+        }
+        GetAssayData(object = object, slot = "data", assay = assay)
     }
 
 

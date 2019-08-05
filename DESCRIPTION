@@ -93,6 +93,7 @@ Collate:
     'AllGenerics.R'
     'CellMarkers.R'
     'KnownMarkers-methods.R'
+    'Seurat-internal.R'
     'SeuratMarkers.R'
     'assert-internal.R'
     'base-Gene2Symbol-methods.R'
