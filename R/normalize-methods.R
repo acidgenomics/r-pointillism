@@ -48,13 +48,24 @@
 #' - `monocle3::normalized_counts()`.
 #'
 #' @examples
-#' data(SingleCellExperiment, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     SingleCellExperiment,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
 #' object <- normalize(object)
-#' class(normcounts(object))
-#' class(logcounts(object))
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' object <- normalize(object)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' object <- normalize(object)
 NULL
 
 
@@ -138,12 +149,8 @@ setMethod(
 ## Updated 2019-08-05.
 `normalize,Seurat` <-  # nolint
     function(object) {
-        NormalizeData(
-            object = object,
-            normalization.method = "LogNormalize",
-            scale.factor = 1E4L,
-            verbose = TRUE
-        )
+        message("Normalizing with `Seurat::NormalizeData()`.")
+        NormalizeData(object = object, verbose = TRUE)
     }
 
 
@@ -161,6 +168,7 @@ setMethod(
 ## Updated 2019-08-05.
 `normalize,cell_data_set` <-  # nolint
     function(object) {
+        message("Normalizing with `monocle3::preprocess_cds()`.")
         preprocess_cds(
             cds = object,
             method = "PCA",
