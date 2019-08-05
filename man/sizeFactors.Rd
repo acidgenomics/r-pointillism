@@ -3,16 +3,26 @@
 \docType{methods}
 \name{sizeFactors}
 \alias{sizeFactors}
-\alias{sizeFactors,SingleCellExperiment-method}
+\alias{sizeFactors<-}
 \alias{sizeFactors,cell_data_set-method}
+\alias{sizeFactors<-,cell_data_set,numeric-method}
 \title{Size factors}
 \usage{
-\S4method{sizeFactors}{SingleCellExperiment}(object)
+sizeFactors(object, ...)
 
-\S4method{sizeFactors}{cell_data_set}(object)
+sizeFactors(object, ...) <- value
+
+\S4method{sizeFactors}{cell_data_set}(object, type = NULL)
+
+\S4method{sizeFactors}{cell_data_set,numeric}(object,
+  type = NULL) <- value
 }
 \arguments{
 \item{object}{Object.}
+
+\item{value}{Value to be assigned to corresponding components of object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{numeric}.
@@ -21,6 +31,9 @@ Named numeric vector, corresponding to cells.
 \description{
 Size factors
 }
+\note{
+Updated 2019-08-05.
+}
 \examples{
 data(SingleCellExperiment, package = "acidtest")
 
@@ -28,4 +41,9 @@ data(SingleCellExperiment, package = "acidtest")
 object <- SingleCellExperiment
 object <- estimateSizeFactors(object)
 head(sizeFactors(object))
+}
+\seealso{
+\itemize{
+\item \code{monocle3::size_factors()}.
+}
 }
