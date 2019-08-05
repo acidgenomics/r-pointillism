@@ -3,6 +3,9 @@
 #' @name normcounts
 #' @note Updated 2019-08-05.
 #'
+#' @inheritParams basejump::params
+#' @inheritParams params
+#'
 #' @inheritParams params
 #'
 #' @return `sparseMatrix`.
@@ -52,24 +55,34 @@ NULL
 
 
 
-## Updated 2019-08-03
+## Updated 2019-08-05.
 `normcounts,Seurat` <-  # nolint
-    function(object, assay = NULL) {
-        message(paste(
-            "Getting normalized counts with",
-            "`Seurat::NormalizeData()`."
-        ))
-        object <- NormalizeData(
-            object = object,
-            normalization.method = "RC",
-            scale.factor = 1L,
-            verbose = TRUE
-        )
-        GetAssayData(
-            object = object,
-            assay = assay,
-            slot = "data"
-        )
+    function(object, assay = NULL, verbose = FALSE) {
+        assert(isFlag(verbose))
+        ## Check for pre-calculated relative counts (not typical).
+        method <- .seuratNormalizationMethod(object, assay = assay)
+        scaleFactor <- .seuratScaleFactor(object, assay = assay)
+        if (!(method == "RC" && scaleFactor == 1L)) {
+            if (isTRUE(verbose)) {
+                message(paste(
+                    "Generating normalized counts with",
+                    "`Seurat::NormalizeData()`."
+                ))
+            }
+            object <- NormalizeData(
+                object = object,
+                normalization.method = "RC",
+                scale.factor = 1L,
+                verbose = verbose
+            )
+        }
+        if (isTRUE(verbose)) {
+            message(paste(
+                "Returning normalized counts with",
+                "`Seurat::GetAssayData()`."
+            ))
+        }
+        GetAssayData(object = object, assay = assay, slot = "data")
     }
 
 
@@ -84,12 +97,16 @@ setMethod(
 
 
 
+## Updated 2019-08-05.
 `normcounts,cell_data_set` <-  # nolint
-    function(object) {
-        message(paste(
-            "Getting normalized counts with",
-            "`monocle3::normalized_counts()`."
-        ))
+    function(object, verbose = FALSE) {
+        assert(isFlag(verbose))
+        if (isTRUE(verbose)) {
+            message(paste(
+                "Getting normalized counts with",
+                "`monocle3::normalized_counts()`."
+            ))
+        }
         monocle3::normalized_counts(
             cds = object,
             norm_method = "size_only",
