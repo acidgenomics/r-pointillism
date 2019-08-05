@@ -6,3 +6,14 @@ setGeneric(
         standardGeneric("KnownMarkers")
     }
 )
+
+
+
+#' @rdname normalize
+#' @export
+setGeneric(
+    name = "normalize",
+    def = function(object, ...) {
+        standardGeneric("normalize")
+    }
+)

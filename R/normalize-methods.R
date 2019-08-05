@@ -1,9 +1,3 @@
-## Improve spike-in control handling support here, similar to scater.
-
-## FIXME `log_exprs_offset`
-
-
-
 #' Normalize expression using pre-computed size factors
 #'
 #' This function calculates size factor normalized and log normalized counts
@@ -50,6 +44,7 @@
 #' - `SingleCellExperiment::logcounts()`.
 #' - `scater::normalizeSCE()`.
 #' - `Seurat::NormalizeData()`.
+#' - `monocle3::preprocess_cds()`.
 #' - `monocle3::normalized_counts()`.
 #'
 #' @examples
@@ -64,11 +59,13 @@ NULL
 
 
 
+## Use `scater::normalizeSCE()` instead when working with spike-ins or more
+## complex, non-standard size factor calculations.
 ## Updated 2019-08-05.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)
-        ## Use `scater::normalizeSCE()` instead when working with spike-ins.
+
         assert(!hasLength(spikeNames(object)))
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(object)
@@ -134,4 +131,52 @@ setMethod(
     f = "normalize",
     signature = signature("SingleCellExperiment"),
     definition = `normalize,SingleCellExperiment`
+)
+
+
+
+## Updated 2019-08-05.
+`normalize,Seurat` <-  # nolint
+    function(object) {
+        NormalizeData(
+            object = object,
+            normalization.method = "LogNormalize",
+            scale.factor = 1E4L,
+            verbose = TRUE
+        )
+    }
+
+
+
+#' @rdname normalize
+#' @export
+setMethod(
+    f = "normalize",
+    signature = signature("Seurat"),
+    definition = `normalize,Seurat`
+)
+
+
+
+## Updated 2019-08-05.
+`normalize,cell_data_set` <-  # nolint
+    function(object) {
+        preprocess_cds(
+            cds = object,
+            method = "PCA",
+            norm_method = "log",
+            pseudo_count = 1L,
+            scaling = TRUE,
+            verbose = TRUE
+        )
+    }
+
+
+
+#' @rdname normalize
+#' @export
+setMethod(
+    f = "normalize",
+    signature = signature("cell_data_set"),
+    definition = `normalize,cell_data_set`
 )
