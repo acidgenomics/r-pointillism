@@ -3,8 +3,8 @@
 #'
 #' @seealso
 #' - `SingleCellExperiment::cpm()`.
-#' - `scater::calculateCPM()`.
 #' - `edgeR::cpm()`.
+#' - `scater::calculateCPM()`.
 #'
 #' @examples
 #' data(
@@ -71,8 +71,9 @@ setMethod(
         object <- NormalizeData(
             object = object,
             assay = assay,
-            normalization.method = "RC",  # Relative counts.
-            scale.factor = 1e6L
+            normalization.method = "RC",
+            scale.factor = 1e6L,
+            verbose = TRUE
         )
         GetAssayData(
             object = object,
