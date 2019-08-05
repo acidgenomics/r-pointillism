@@ -1,5 +1,6 @@
 ## Conflicts:
 ## @importFrom Matrix rowMeans rowSums
+## Use colSums2 and rowSums2 with DelayedMatrix.
 
 
 
@@ -19,8 +20,9 @@
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
-#'   as.Seurat GetAssayData Stdev VariableFeatures
-#' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
+#'   as.Seurat GetAssayData NormalizeData Stdev VariableFeatures
+#' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
+#'   normcounts<- reducedDimNames reducedDims sizeFactors sizeFactors<- weights
 #'   weights<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
@@ -42,14 +44,15 @@
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
 #'   areDisjointSets areIntersectingSets assert false isAlpha isInt hasColnames
 #'   hasLength hasNames hasRownames hasRows isGGScale isAny isCharacter isFlag
-#'   isHeaderLevel isIntegerish isNonEmpty isNumber isPositive isScalar isString
-#'   isSubset validate
+#'   isHeaderLevel isIntegerish isNonEmpty isNonNegative isNumber isPositive
+#'   isScalar isScalarNumeric isString isSubset validate
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom methods as getMethod is new setAs setClass setValidity show slot
-#'   slot<- validObject
+#' @importFrom methods as getMethod is new setAs setClass setMethod
+#'   setReplaceMethod setValidity show slot slot<- validObject
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
+#' @importFrom scater calculateCPM normalizeSCE
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames tibble
