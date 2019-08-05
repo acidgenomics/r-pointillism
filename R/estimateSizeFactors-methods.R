@@ -4,13 +4,17 @@
 #' unity. This ensures that the library size adjustment yields values comparable
 #' to those generated after normalization with other sets of size factors.
 #'
+#' Centering of size factors at unity ensures that division by size factors
+#' yields values on the same scale as the raw counts. This is important for the
+#' interpretation of the normalized values, as well as comaprisons between
+#' features normalized with different size factors (e.g., spike-ins).
+#'
 #' The estimated size factors computed by this function can be accessed using
-#' the accessor function [sizeFactors()]. Alternatively library size estimators
+#' the accessor function [sizeFactors()]. Alternative library size estimators
 #' can also be supplied using the assignment function [sizeFactors<-()].
 #'
-## Note that we're computing internally on the count matrix as a DelayedArray,
-## so we can handle millions of cells without the calculations blowing up in
-## memory.
+#' @note We're computing internally on the count matrix as a DelayedArray, so we
+#'   can handle millions of cells without the calculations blowing up in memory.
 #'
 #' @name estimateSizeFactors
 #' @note Updated 2019-08-05.
