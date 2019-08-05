@@ -1,51 +1,75 @@
-## FIXME Check that these return same value on coerced objects.
+#' Size factor adjusted normalized counts
+#'
+#' @name normcounts
+#' @note Updated 2019-08-05.
+#'
+#' @inheritParams params
+#'
+#' @return `sparseMatrix`.
+#'
+#' @seealso
+#' - [normalize()].
+#' - `scater::normalizeSCE()`.
+#' - `scater::normalizeCounts()`.
+#' - `Seurat::NormalizeData()`.
+#' - `monocle3::prepare_cds()`.
+#' - `monocle3::normalized_counts()`.
+#'
+#' @examples
+#' data(
+#'     Seurat,
+#'     SingleCellExperiment,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
+#'
+#' ## SingleCellExperiment ===
+#' object <- SingleCellExperiment
+#' object <- normalize(object)
+#' normcounts <- normcounts(object)
+#' class(normcounts)
+#'
+#' ## Seurat ====
+#' object <- Seurat
+#' normcounts <- normcounts(object)
+#' class(normcounts)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' object <- normalize(object)
+#' normcounts <- normcounts(object)
+#' class(normcounts)
+NULL
 
 
 
-#' @rdname counts
+#' @rdname normcounts
 #' @name normcounts
 #' @importFrom SingleCellExperiment normcounts
 #' @usage normcounts(object, ...)
-#' @seealso
-#' - `scater::normalizeCounts()`.
 #' @export
 NULL
 
 
 
-## FIXME Need to center at unity?
-## Updated 2019-08-04.
-`normcounts,SingleCellExperiment` <-  # nolint
-    function(object) {
-        validObject(object)
-        ## Return `normcounts` assay if slotted.
-        if (isSubset("normcounts", assayNames(object))) {
-            return(assay(x = object, i = "normcounts"))
-        }
-        ## Otherwise, calculate on the fly using size factors.
-        counts <- counts(object)
-        sizeFactors <- sizeFactors(object)
-        if (is.null(sizeFactors)) {
-            stop(paste(
-                "Size factors are not defined.",
-                "Calculate using `estimateSizeFactors()`."
-            ))
-        }
-        t(t(counts) / sizeFactors)
-    }
-
-
-
-## FIXME
-## This should return size factor adjusted counts, not Seurat's scaled counts
-## (i.e. `scale.data`) here.
 ## Updated 2019-08-03
 `normcounts,Seurat` <-  # nolint
     function(object, assay = NULL) {
-        stop("Not yet supported")
-        counts <- counts(object, assay = assay)
-        ## Apply size factors.
-        ## FIXME Rework this step.
+        message(paste(
+            "Getting normalized counts with",
+            "`Seurat::NormalizeData()`."
+        ))
+        object <- NormalizeData(
+            object = object,
+            normalization.method = "RC",
+            scale.factor = 1L,
+            verbose = TRUE
+        )
+        GetAssayData(
+            object = object,
+            assay = assay,
+            slot = "data"
+        )
     }
 
 
@@ -62,6 +86,10 @@ setMethod(
 
 `normcounts,cell_data_set` <-  # nolint
     function(object) {
+        message(paste(
+            "Getting normalized counts with",
+            "`monocle3::normalized_counts()`."
+        ))
         monocle3::normalized_counts(
             cds = object,
             norm_method = "size_only",
