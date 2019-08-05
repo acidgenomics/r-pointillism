@@ -1,3 +1,7 @@
+## FIXME Go back to plotReducedDim. Matches convention in scater.
+
+
+
 #' @name plotReduction
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
