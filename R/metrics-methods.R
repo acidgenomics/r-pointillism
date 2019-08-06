@@ -32,12 +32,12 @@ NULL
 
 
 ## This method will automatically add "ident" column and strip "cell" column.
-## Updated 2019-08-02.
+## Updated 2019-08-06.
 `metrics,cell_data_set` <-  # nolint
     function(object, return) {
         validObject(object)
         ## Strip invalid columns from column data.
-        colData(object)[c("cell", "ident")] <- NULL
+        colData(object)[c("cell", "ident", "Size_Factor")] <- NULL
         data <- metrics(
             object = as(object, "SingleCellExperiment"),
             return = return
