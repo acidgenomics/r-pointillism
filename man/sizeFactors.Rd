@@ -25,12 +25,15 @@ sizeFactors(object, ...) <- value
 }
 \value{
 \code{numeric}.
-Named numeric vector, corresponding to cells.
+Names correspond to object column names.
 }
 \description{
 Size factors
 }
 \note{
+For \code{Seurat} objects, use the \code{Seurat::NormalizeData()} function or the
+sctransform package to normalize counts, rather than using size factors.
+
 Updated 2019-08-06.
 }
 \examples{
@@ -44,11 +47,13 @@ data(
 object <- SingleCellExperiment
 object <- estimateSizeFactors(object)
 head(sizeFactors(object))
+mean(sizeFactors(object))
 
 ## cell_data_set ====
 object <- cell_data_set
 object <- estimateSizeFactors(object)
 head(sizeFactors(object))
+mean(sizeFactors(object))
 }
 \seealso{
 \itemize{

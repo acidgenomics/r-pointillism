@@ -10,11 +10,19 @@
 \usage{
 normalize(object, ...)
 
-\S4method{normalize}{SingleCellExperiment}(object)
+\S4method{normalize}{SingleCellExperiment}(object, verbose = TRUE)
 
-\S4method{normalize}{Seurat}(object)
+\S4method{normalize}{Seurat}(object, verbose = TRUE)
 
-\S4method{normalize}{cell_data_set}(object)
+\S4method{normalize}{cell_data_set}(object, verbose = TRUE)
+}
+\arguments{
+\item{object}{Object.}
+
+\item{...}{Additional arguments.}
+
+\item{verbose}{\code{logical(1)}.
+Run the function with verbose output.}
 }
 \description{
 This function calculates size factor normalized and log normalized counts

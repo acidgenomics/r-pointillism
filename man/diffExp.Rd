@@ -88,7 +88,7 @@ test, it is recommended to set \code{useT = TRUE} (\emph{not currently in use}).
 For UMI data, for which the expected counts may be very low, the likelihood
 ratio test implemented in \code{nbinomLRT()} should be used.
 
-Note that DESeq2 supports \code{weights} in assays automatically, if slotted using
+Note that DESeq2 supports \code{weights()} values automatically, if slotted using
 zinbwave (which is no longer recommended for droplet scRNA-seq).
 }
 
