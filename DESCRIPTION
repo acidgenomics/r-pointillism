@@ -98,7 +98,6 @@ Collate:
     'assert-internal.R'
     'base-Gene2Symbol-methods.R'
     'base-Seurat-SCE-methods.R'
-    'base-counts-methods.R'
     'base-cpm-methods.R'
     'base-logcounts-methods.R'
     'base-normcounts-methods.R'
