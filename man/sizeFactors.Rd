@@ -5,7 +5,7 @@
 \alias{sizeFactors}
 \alias{sizeFactors<-}
 \alias{sizeFactors,cell_data_set-method}
-\alias{sizeFactors<-,cell_data_set,numeric-method}
+\alias{sizeFactors<-,cell_data_set,ANY-method}
 \title{Size factors}
 \usage{
 sizeFactors(object, ...)
@@ -14,12 +14,12 @@ sizeFactors(object, ...) <- value
 
 \S4method{sizeFactors}{cell_data_set}(object)
 
-\S4method{sizeFactors}{cell_data_set,numeric}(object) <- value
+\S4method{sizeFactors}{cell_data_set,ANY}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
 
-\item{value}{Value to be assigned to corresponding components of object.}
+\item{value}{Value to assign.}
 
 \item{...}{Additional arguments.}
 }
