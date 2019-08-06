@@ -16,8 +16,8 @@
 #' @importFrom SummarizedExperiment assay assayNames assays colData colData<-
 #'   rowData rowRanges rowRanges<-
 #' @importFrom basejump interestingGroups interestingGroups<- mapGenesToIDs
-#'   mapGenesToRownames mapGenesToSymbols metrics reducedDims sampleData
-#'   sampleData<- sampleNames
+#'   mapGenesToRownames mapGenesToSymbols metrics organism organism<-
+#'   reducedDims sampleData sampleData<- sampleNames
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -326,6 +326,43 @@ setMethod(
     f = "metrics",
     signature = signature("Seurat"),
     definition = `metrics,Seurat`
+)
+
+
+
+## Updated 2019-08-06.
+`organism,Seurat` <-  # nolint
+    function(object) {
+        object <- as(object, "SingleCellExperiment")
+        organism(object)
+    }
+
+
+
+#' @rdname Seurat-SingleCellExperiment
+#' @export
+setMethod(
+    f = "organism",
+    signature = signature("Seurat"),
+    definition = `organism,Seurat`
+)
+
+
+
+## Updated 2019-08-06.
+`organism<-,Seurat,character` <-  # nolint
+    function(object, value) {
+        metadata(object)[["organism"]] <- value
+    }
+
+
+
+#' @rdname Seurat-SingleCellExperiment
+#' @export
+setReplaceMethod(
+    f = "organism",
+    signature = "Seurat",
+    definition = `organism<-,Seurat,character`
 )
 
 
