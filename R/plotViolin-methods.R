@@ -12,6 +12,7 @@ NULL
     function(
         object,
         genes,
+        value = c("logcounts", "normcounts"),
         perSample = TRUE,
         scale = c("count", "width", "area"),
         color,
@@ -26,12 +27,14 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
+        value <- match.arg(value)
         scale <- match.arg(scale)
 
         ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
+            value = value,
             metadata = TRUE
         )
 
@@ -53,14 +56,14 @@ NULL
         } else {
             x <- "ident"
             colorMapping <- x
-            colorLabs <- x
+            colorLabs <- "cluster"
         }
 
         p <- ggplot(
             data = as_tibble(data),
             mapping = aes(
                 x = !!sym(x),
-                y = !!sym("logcounts"),
+                y = !!sym(value),
                 color = !!sym(colorMapping)
             )
         ) +
@@ -73,7 +76,11 @@ NULL
                 trim = TRUE
             ) +
             ## Note that `scales = free_y` will hide the x-axis for some plots.
-            labs(title = title, color = colorLabs)
+            labs(
+                x = NULL,
+                color = colorLabs,
+                title = title
+            )
 
         ## Handling step for multiple samples, if desired.
         if (
@@ -101,8 +108,12 @@ NULL
         p
     }
 
-formals(`plotViolin,SingleCellExperiment`)[c("color", "legend")] <-
-    list(color = discreteColor, legend = legend)
+formals(`plotViolin,SingleCellExperiment`)[
+    c("color", "legend")] <-
+    list(
+        color = discreteColor,
+        legend = legend
+    )
 
 
 
