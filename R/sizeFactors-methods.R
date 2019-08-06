@@ -83,14 +83,17 @@ setMethod(
 
 
 ## Updated 2019-08-06.
-`sizeFactors<-,cell_data_set,numeric` <-  # nolint
+`sizeFactors<-,cell_data_set,ANY` <-  # nolint
     function(object, value) {
-        assert(
-            all(!is.na(value)),
-            all(is.finite(value)),
-            all(value > 0L)
-        )
-        colData(object)[["Size_Factor"]] <- unname(value)
+        if (!is.null(value)) {
+            assert(
+                all(!is.na(value)),
+                all(is.finite(value)),
+                all(value > 0L)
+            )
+            value <- unname(value)
+        }
+        colData(object)[["Size_Factor"]] <- value
         object
     }
 
@@ -102,7 +105,7 @@ setReplaceMethod(
     f = "sizeFactors",
     signature = signature(
         object = "cell_data_set",
-        value = "numeric"
+        value = "ANY"
     ),
-    definition = `sizeFactors<-,cell_data_set,numeric`
+    definition = `sizeFactors<-,cell_data_set,ANY`
 )
