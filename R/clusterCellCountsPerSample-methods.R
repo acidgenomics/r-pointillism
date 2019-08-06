@@ -2,14 +2,23 @@
 #' @inherit bioverbs::clusterCellCountsPerSample
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' x <- clusterCellCountsPerSample(object)
+#' print(x)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
 #' x <- clusterCellCountsPerSample(object)
 #' print(x)
 NULL
@@ -29,7 +38,6 @@ NULL
 `clusterCellCountsPerSample,SingleCellExperiment` <-  # nolint
     function(object) {
         assert(.hasClusters(object))
-        ## FIXME Rework metrics return to include ident column for monocle3.
         metrics <- metrics(object)
         cols <- c("sampleName", "ident")
         assert(isSubset(cols, colnames(metrics)))
@@ -67,4 +75,20 @@ setMethod(
     f = "clusterCellCountsPerSample",
     signature = signature("Seurat"),
     definition = `clusterCellCountsPerSample,Seurat`
+)
+
+
+
+## Updated 2019-08-05.
+`clusterCellCountsPerSample,cell_data_set` <-  # nolint
+    `clusterCellCountsPerSample,SingleCellExperiment`
+
+
+
+#' @rdname clusterCellCountsPerSample
+#' @export
+setMethod(
+    f = "clusterCellCountsPerSample",
+    signature = signature("cell_data_set"),
+    definition = `clusterCellCountsPerSample,cell_data_set`
 )
