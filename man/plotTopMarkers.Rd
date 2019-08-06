@@ -6,7 +6,7 @@
 \alias{plotTopMarkers,Seurat,SeuratMarkersPerCluster-method}
 \title{Plot top markers}
 \usage{
-plotTopMarkers(object, ...)
+plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
   n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
