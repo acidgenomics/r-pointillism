@@ -84,20 +84,20 @@
 <div id="r-method" class="section level3">
 <h3 class="hasAnchor">
 <a href="#r-method" class="anchor"></a><a href="https://www.r-project.org/">R</a> method</h3>
-<pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
-    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-}
-<span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">R_REMOTES_UPGRADE =</span> <span class="st">"always"</span>)
-<span class="co"># Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.</span>
-remotes::<span class="kw">install_github</span>(<span class="st">"acidgenomics/pointillism"</span>)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">R_REMOTES_UPGRADE =</span> <span class="st">"always"</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"acidgenomics/pointillism"</span>)</a></code></pre></div>
 <p>Here’s how to update to the latest version on GitHub:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">R_REMOTES_UPGRADE =</span> <span class="st">"always"</span>)
-remotes::<span class="kw">update_packages</span>()</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">R_REMOTES_UPGRADE =</span> <span class="st">"always"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/update_packages.html">update_packages</a></span>()</a></code></pre></div>
 <p>Always check that your Bioconductor installation is valid before proceeding.</p>
-<pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
-    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
-}
-BiocManager::<span class="kw">valid</span>()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">BiocManager<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span>()</a></code></pre></div>
 </div>
 </div>
 <div id="supported-data-classes" class="section level2">
@@ -106,10 +106,11 @@ BiocManager::<span class="kw">valid</span>()</code></pre>
 <p><a href="https://pointillism.acidgenomics.com/">pointillism</a> currently supports these S4 single-cell container classes:</p>
 <ul>
 <li><a href="https://bioconductor.org/packages/SingleCellExperiment/">SingleCellExperiment</a></li>
+<li><a href="https://satijalab.org/seurat/">Seurat</a></li>
 <li>
-<a href="https://satijalab.org/seurat/">Seurat</a> (v3)</li>
+<a href="https://cole-trapnell-lab.github.io/monocle3/">monocle3</a> <code>cell_data_set</code>
+</li>
 </ul>
-<p>We’re working on adding support for monocle3 <code>cell_data_set</code> class for all plotting functions in the current v0.4 release series.</p>
 </div>
 <div id="markers" class="section level2">
 <h2 class="hasAnchor">
@@ -176,7 +177,7 @@ BiocManager::<span class="kw">valid</span>()</code></pre>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Repo status: active"></a></li>
-<li><a href="https://travis-ci.com/acidgenomics/pointillism"><embed src="https://travis-ci.com/acidgenomics/pointillism.svg?branch=master"></embed></a></li>
+<li><a href="https://travis-ci.com/acidgenomics/pointillism"><img src="https://travis-ci.com/acidgenomics/pointillism.svg?branch=master" alt="Travis CI build status"></a></li>
 </ul>
 </div>
 </div>
