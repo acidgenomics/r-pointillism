@@ -2,22 +2,15 @@
 ## Updated 2019-08-06.
 params:
   title: "Seurat clustering"
-  seurat_file: "data/YYYY-MM-DD/sce_filtered.rds"
-  
-  ## Name to use for Seurat object coerced from SingleCellExperiment.
+  seurat_file: "rds/YYYY-MM-DD/sce_filtered.rds"
   seurat_name: "seurat"
-  
   pc_compute: 20
   dims: FALSE
-  
   vars_to_regress: !r c("nUMI", "mitoRatio", "S.Score", "G2M.Score")
-  
   resolution_calc: !r seq(from = 0.2, to = 1.2, by = 0.1)
   resolution_use: 0.6
-  
-  ## Use dark mode theme (`acid_theme_dark()`) for plots.
+  ## Use dark mode theme (i.e. `acidplots::acid_theme_dark()`).
   dark: FALSE
-  
   data_dir: !r file.path("rds", Sys.Date())
 
 title: "`r params$title`"
@@ -59,8 +52,8 @@ stopifnot(reticulate::py_module_available(module = "umap"))
 
 This workflow is adapted from the following sources:
 
-- Satija Lab: [Seurat v2 Guided Clustering Tutorial](http://satijalab.org/seurat/pbmc3k_tutorial.html)
-- Paul Hoffman: [Cell-Cycle Scoring and Regression](http://satijalab.org/seurat/cell_cycle_vignette.html)
+- [Seurat guided clustering tutorial](https://satijalab.org/seurat/v3.0/pbmc3k_tutorial.html)
+- [Seurat cell-cycle scoring and regression](https://satijalab.org/seurat/v3.0/cell_cycle_vignette.html)
 
 To identify clusters, the following steps will be performed:
 
@@ -72,10 +65,10 @@ To identify clusters, the following steps will be performed:
 
 * * *
 
-# Load SingleCellExperiment object
+# Load Seurat object
 
 ```{r load-object}
-file <- params$bcb_file
+file <- params$seurat_file
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
@@ -101,7 +94,10 @@ features <- c(
 
 ## Vector to use for dimensional reduction plot looping.
 reduced_dim_groups <- unique(c(
-    "ident", "sampleName", interestingGroups(object), "Phase"
+    "ident",
+    "sampleName",
+    "Phase",
+    interestingGroups(object)
 ))
 ```
 
