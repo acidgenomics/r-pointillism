@@ -124,14 +124,9 @@
 
     <pre class="usage"><span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+<span class='co'># S4 method for Seurat,SeuratMarkersPerCluster</span>
+<span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
   <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -143,13 +138,12 @@
     </tr>
     <tr>
       <th>markers</th>
-      <td><p><code>grouped_df</code>.
-Marker genes, grouped by "<code>cluster</code>".</p></td>
+      <td><p>Object containing cell marker expression data.</p></td>
     </tr>
     <tr>
       <th>n</th>
       <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Number to include.</p></td>
+Number of genes per cluster.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -158,11 +152,9 @@ Whether to include upregulated (<code>"up"</code>; positive LFC), downregulated
 (<code>"down"</code>; negative LFC) or <code>"both"</code> directions of association per cluster.</p></td>
     </tr>
     <tr>
-      <th>reducedDim</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of reduced dimension matrix slotted in
-<code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-reducedDims.html'>reducedDims()</a></code>.
-Includes TNSE, UMAP, PCA, for example.</p></td>
+      <th>reduction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
+Dimension reduction name or index position.</p></td>
     </tr>
     <tr>
       <th>headerLevel</th>
@@ -200,10 +192,10 @@ for the number of genes to plot here in a future update.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seuratAllMarkers</span>)
 
-<span class='co'>## Seurat ====</span>
+<span class='co'>## Seurat, SeuratMarkersPerCluster ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
-<span class='fu'>plotTopMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>)</div><div class='output co'>#&gt; <span class='message'>Grouping by cluster.</span></div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; <span class='message'>Returning as tibble.</span></div><div class='output co'>#&gt; 
+<span class='fu'>plotTopMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>, <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>)</div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 0 {.tabset}
 #&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 

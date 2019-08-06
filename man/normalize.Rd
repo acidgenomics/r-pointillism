@@ -10,11 +10,11 @@
 \usage{
 normalize(object, ...)
 
-\S4method{normalize}{SingleCellExperiment}(object, verbose = TRUE)
+\S4method{normalize}{SingleCellExperiment}(object, verbose = FALSE)
 
-\S4method{normalize}{Seurat}(object, verbose = TRUE)
+\S4method{normalize}{Seurat}(object, verbose = FALSE)
 
-\S4method{normalize}{cell_data_set}(object, verbose = TRUE)
+\S4method{normalize}{cell_data_set}(object, verbose = FALSE)
 }
 \arguments{
 \item{object}{Object.}

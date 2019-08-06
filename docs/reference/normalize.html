@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot cell counts per cluster — plotCellCountsPerCluster • pointillism</title>
+<title>Normalize expression using pre-computed size factors — normalize • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,9 +34,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot cell counts per cluster — plotCellCountsPerCluster" />
+<meta property="og:title" content="Normalize expression using pre-computed size factors — normalize" />
 
-<meta property="og:description" content="Plot cell counts per cluster" />
+<meta property="og:description" content="This function calculates size factor normalized and log normalized counts
+from the raw count matrix defined in counts(). These matrices are stored in
+normcounts() and logcounts() slots in assays(), respectively." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,30 +113,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot cell counts per cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCellCountsPerCluster-methods.R'><code>R/plotCellCountsPerCluster-methods.R</code></a></small>
-    <div class="hidden name"><code>plotCellCountsPerCluster.Rd</code></div>
+    <h1>Normalize expression using pre-computed size factors</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/normalize-methods.R'><code>R/normalize-methods.R</code></a></small>
+    <div class="hidden name"><code>normalize.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot cell counts per cluster</p>
+    <p>This function calculates size factor normalized and log normalized counts
+from the raw count matrix defined in <code>counts()</code>. These matrices are stored in
+<code><a href='normcounts.html'>normcounts()</a></code> and <code><a href='logcounts.html'>logcounts()</a></code> slots in <code>assays()</code>, respectively.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,48 +145,111 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>interestingGroups</th>
-      <td><p><code>character</code>.
-Groups of interest that define the samples. If left unset, defaults to
-<code>sampleName</code>.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Run the function with verbose output.</p></td>
+    </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Show graphical output. Invisibly return <code>ggplot</code>.</p>
+    <p>If no library size factors are defined in <code><a href='sizeFactors.html'>sizeFactors()</a></code>, these values will
+be computed internally automatically using <code>estimateSizeFactors()</code> with the
+recommended default settings.</p>
+<p>For complex normalizations involving custom size factors or spike-ins (i.e.
+when <code>spikeNames()</code>) is defined, call <code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code> directly
+instead.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-02.</p>
+    <p>Updated 2019-08-05.</p>
+    
+    <h2 class="hasAnchor" id="normalized-counts"><a class="anchor" href="#normalized-counts"></a>Normalized counts</h2>
+
+    
+
+
+<p>Normalized counts are computed by dividing the counts for each cell by the
+size factor for that cell. This aims to remove cell-specific scaling biases,
+due to differences in sequencing coverage or capture efficiency.</p>
+    
+    <h2 class="hasAnchor" id="log-normalized-counts"><a class="anchor" href="#log-normalized-counts"></a>Log normalized counts</h2>
+
+    
+
+
+<p>Log-normalized values are calculated by adding a pseudocount offset of 1 to
+the normalized count and performing a <code><a href='https://rdrr.io/r/base/Log.html'>log2()</a></code> transformation.</p>
+    
+    <h2 class="hasAnchor" id="centering-at-unity"><a class="anchor" href="#centering-at-unity"></a>Centering at unity</h2>
+
+    
+
+
+<p>When centering is applied to the size factors (recommended by default), all
+sets of size factors will be adjusted to have the same mean prior to
+calculation of normalized expression values. This ensures that abundances are
+roughly comparable between features normalized with different sets of size
+factors. By default, the center mean is unity, which means that the computed
+expression values can be interpreted as being on the same scale as the
+log2-counts. It also means that the added offset (i.e. <code>1</code>) added to the
+normalized counts during the log transformation step can be interpreted as a
+pseudo-count (i.e., on the same scale as the counts).</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p><code>estimateSizeFactors()</code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-assays.html'>SingleCellExperiment::normcounts()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-assays.html'>SingleCellExperiment::logcounts()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/Seurat/man/NormalizeData.html'>Seurat::NormalizeData()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/preprocess_cds.html'>monocle3::preprocess_cds()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/normalized_counts.html'>monocle3::normalized_counts()</a></code>.</p></li>
+</ul>
+</div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
     <span class='no'>Seurat</span>,
+    <span class='no'>SingleCellExperiment</span>,
     <span class='no'>cell_data_set</span>,
     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
 )
 
+<span class='co'>## SingleCellExperiment ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using mean-ratio method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='input'>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotCellCountsPerCluster-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)
+
 <span class='co'>## cell_data_set ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotCellCountsPerCluster-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#normalized-counts">Normalized counts</a></li>
+
+      <li><a href="#log-normalized-counts">Log normalized counts</a></li>
+
+      <li><a href="#centering-at-unity">Centering at unity</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

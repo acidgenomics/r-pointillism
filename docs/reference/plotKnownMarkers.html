@@ -126,12 +126,12 @@
 
 <span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>,
-  <span class='no'>markers</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>markers</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat,KnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,11 +146,9 @@
 Marker genes, grouped by <code>"cellType"</code>.</p></td>
     </tr>
     <tr>
-      <th>reducedDim</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of reduced dimension matrix slotted in
-<code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-reducedDims.html'>reducedDims()</a></code>.
-Includes TNSE, UMAP, PCA, for example.</p></td>
+      <th>reduction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
+Dimension reduction name or index position.</p></td>
     </tr>
     <tr>
       <th>headerLevel</th>
@@ -175,7 +173,7 @@ Invisibly return a <code>ggplot</code> <code>list</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
+    <p>Updated 2019-08-02.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
