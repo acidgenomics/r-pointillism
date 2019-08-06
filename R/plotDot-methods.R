@@ -137,7 +137,7 @@ NULL
     }
 
 formals(`plotDot,SingleCellExperiment`)[
-    c("color","legend")] <- list(
+    c("color", "legend")] <- list(
         color = continuousColorPurpleOrange,
         legend = legend
     )

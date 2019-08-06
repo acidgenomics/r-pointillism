@@ -306,8 +306,6 @@ formals(`plotTSNE,SingleCellExperiment`) <- f
 formals(`plotUMAP,SingleCellExperiment`) <- f
 rm(f)
 
-## FIXME Slot reduction here automatically
-
 
 
 ## Methods =====================================================================
