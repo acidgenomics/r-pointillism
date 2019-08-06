@@ -29,10 +29,8 @@ Minimum standard deviation.}
 \item{...}{Additional arguments.}
 }
 \value{
-\itemize{
-\item Show graphical output of elbow plots.
-\item Invisibly return recommended PC cutoff threshold.
-}
+\code{ggplot}.
+Elbow point is saved in \code{attr(object, "elbow")}.
 }
 \description{
 Calculate the principal component (PC) cutoff using a heuristic approach.

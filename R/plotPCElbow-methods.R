@@ -16,9 +16,8 @@
 #'   Maximum cumulative percen standard deviation.
 #' @param ... Additional arguments.
 #'
-#' @return
-#' - Show graphical output of elbow plots.
-#' - Invisibly return recommended PC cutoff threshold.
+#' @return `ggplot`.
+#'   Elbow point is saved in `attr(object, "elbow")`.
 #'
 #' @seealso
 #' - `Seurat::PCElbowPlot()`.
@@ -133,9 +132,8 @@ NULL
     )
 
     p <- plot_grid(plotlist = plotlist)
-    show(p)
-
-    invisible(cutoff)
+    attr(p, "elbow") <- cutoff
+    p
 }
 
 
