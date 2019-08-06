@@ -1,12 +1,13 @@
-#' @rdname SeuratMarkers-class
-#' @name SeuratMarkers
+#' Sanitize Seurat markers
 #'
-#' @description
 #' This generator function is designed to take the original return from a Seurat
 #' marker analysis and add corresponding gene annotations.
 #'
+#' @name SeuratMarkers
+#'
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
+#' @note Updated 2019-08-06.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -172,7 +173,7 @@ NULL
 
 
 
-#' @rdname SeuratMarkers-class
+#' @rdname SeuratMarkers
 #' @export
 setMethod(
     f = "SeuratMarkers",
@@ -188,7 +189,7 @@ setMethod(
 
 
 
-#' @rdname SeuratMarkersPerCluster-class
+#' @rdname SeuratMarkers
 #' @export
 setMethod(
     f = "SeuratMarkersPerCluster",
