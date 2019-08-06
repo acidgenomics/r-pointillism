@@ -179,7 +179,7 @@ Run the function with verbose output.</p></td>
 
 <span class='co'>## SingleCellExperiment ===</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using mean-ratio method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>Computing normcounts and logcounts using `scater::normalizeSCE()`.</span></div><div class='input'><span class='no'>logcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>logcounts</span>(<span class='no'>object</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using mean-ratio method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='input'><span class='no'>logcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>logcounts</span>(<span class='no'>object</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>logcounts</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
 #&gt; attr(,"package")
 #&gt; [1] "Matrix"</div><div class='input'>
@@ -191,7 +191,8 @@ Run the function with verbose output.</p></td>
 #&gt; [1] "Matrix"</div><div class='input'>
 <span class='co'>## cell_data_set ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Normalizing with `monocle3::preprocess_cds()`.</span></div><div class='output co'>#&gt; <span class='message'>Remove noise by PCA ...</span></div><div class='input'><span class='no'>logcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>logcounts</span>(<span class='no'>object</span>)
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)
+<span class='no'>logcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>logcounts</span>(<span class='no'>object</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>logcounts</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
 #&gt; attr(,"package")
 #&gt; [1] "Matrix"</div></pre>
