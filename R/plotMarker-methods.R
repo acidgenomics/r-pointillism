@@ -1,7 +1,3 @@
-## FIXME Improve count legend label
-
-
-
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @note Updated 2019-08-02.
@@ -13,32 +9,31 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()
-#' str(genes)
+#' print(genes)
+#' plotMarker(object, genes = genes)
 #'
-#' ## Default appearance.
-#' plotMarker(object, genes = genes[[1L]])
-#'
-#' ## Dark mode with viridis palette.
-#' plotMarker(
-#'     object = object,
-#'     genes = genes,
-#'     expression = "mean",
-#'     pointsAsNumbers = TRUE,
-#'     color = ggplot2::scale_color_viridis_c(),
-#'     dark = TRUE,
-#'     label = FALSE,
-#'     title = title
-#' )
+#' ## cell_data_set ====
+#' object = cell_data_set
+#' genes <- counts(object) %>%
+#'     Matrix::rowSums(.) %>%
+#'     sort(decreasing = TRUE) %>%
+#'     head(n = 4L) %>%
+#'     names()
+#' print(genes)
+#' plotMarker(object, genes = genes)
 NULL
 
 
@@ -101,7 +96,6 @@ NULL
         }
 
         ## Fetch reduced dimension data.
-        ## FIXME Consider rethinking this approach / renaming.
         data <- .fetchReductionExpressionData(
             object = object,
             genes = genes,
