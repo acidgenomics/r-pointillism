@@ -10,7 +10,6 @@
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'

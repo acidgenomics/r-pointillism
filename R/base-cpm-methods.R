@@ -1,8 +1,8 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
+#' @note Updated 2019-08-06.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #'
 #' @seealso
 #' - `SingleCellExperiment::cpm()`.

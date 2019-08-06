@@ -28,6 +28,9 @@ Assay name or index position.}
 \description{
 Counts per million
 }
+\note{
+Updated 2019-08-06.
+}
 \examples{
 data(
     Seurat,

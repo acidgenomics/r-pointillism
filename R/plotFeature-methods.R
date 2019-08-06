@@ -9,7 +9,6 @@
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #' @param ... Additional arguments.
