@@ -128,7 +128,7 @@ setValidity(
 #' Class containing essential elements for marker gene analysis.
 #'
 #' @family S4 classes
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkers`.
@@ -165,7 +165,7 @@ setValidity(
 #' Class containing essential elements for marker per cluster analysis.
 #'
 #' @family S4 classes
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkersPerCluster`.

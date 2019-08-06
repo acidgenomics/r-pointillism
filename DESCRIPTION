@@ -94,7 +94,7 @@ Collate:
     'CellMarkers.R'
     'KnownMarkers-methods.R'
     'Seurat-internal.R'
-    'SeuratMarkers.R'
+    'SeuratMarkers-methods.R'
     'assert-internal.R'
     'base-Gene2Symbol-methods.R'
     'base-Seurat-SCE-methods.R'
