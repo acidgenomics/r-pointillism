@@ -1,5 +1,5 @@
 #' @rdname SeuratMarkers-class
-#' @export
+#' @name SeuratMarkers
 #'
 #' @description
 #' This generator function is designed to take the original return from a Seurat
@@ -9,10 +9,9 @@
 #'   in the `gene` column.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #'
-#' @param object `data.frame`. Unmodified [Seurat::FindMarkers()] or
-#'   [Seurat::FindAllMarkers()] return.
+#' @param object
+#'   Unmodified [Seurat::FindMarkers()] or [Seurat::FindAllMarkers()] return.
 #' @param ranges `GRanges`. Gene annotations. Names must correspond to the
 #'   rownames. The function will automatically subset the ranges and arrange
 #'   them alphabetically.
@@ -41,14 +40,18 @@
 #' )))
 #' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
-SeuratMarkers <-  # nolint
+NULL
+
+
+
+## Updated 2019-08-06.
+`SeuratMarkers,data.frame` <-  # nolint
     function(
         object,
         ranges,
         alpha = 0.05
     ) {
         assert(
-            is.data.frame(object),
             hasRows(object),
             hasRownames(object),
             is(ranges, "GRanges"),
@@ -167,7 +170,26 @@ SeuratMarkers <-  # nolint
 
 
 
-#' @rdname SeuratMarkersPerCluster-class
-#' @inherit SeuratMarkers-class
+#' @rdname SeuratMarkers-class
 #' @export
-SeuratMarkersPerCluster <- SeuratMarkers  # nolint
+setMethod(
+    f = "SeuratMarkers",
+    signature = signature("data.frame"),
+    definition = `SeuratMarkers,data.frame`
+)
+
+
+
+## Updated 2019-08-06.
+`SeuratMarkersPerCluster,data.frame` <-  # nolint
+    `SeuratMarkers,data.frame`
+
+
+
+#' @rdname SeuratMarkersPerCluster-class
+#' @export
+setMethod(
+    f = "SeuratMarkersPerCluster",
+    signature = signature("data.frame"),
+    definition = `SeuratMarkersPerCluster,data.frame`
+)
