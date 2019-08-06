@@ -98,19 +98,13 @@ NULL
         all(isIntegerish(dimsUse))
     )
 
-    ## Reduced dimension coordinates.
-    ## Map assay position to name.
+    ## Get reduced dimension coordinates. Map assay position to name, which
+    ## we're using below to fix the naming inconsistencies in monocle3.
     if (!isString(reduction)) {
         reduction <- reducedDimNames(object)[[reduction]]
     }
-    if (!isSubset(reduction, reducedDimNames(object))) {
-        stop(sprintf(
-            fmt = "`%s` matrix is not defined in `reducedDims()`.",
-            reduction
-        ))
-    }
     ## This step will run through on mismatch, unless we check for error above.
-    reductionData <- reducedDims(object)[[reduction]]
+    reductionData <- reducedDim(object, type = reduction)
     assert(hasLength(reductionData))
     ## Handle undefined column names here, which is currently the case with
     ## monocle3 UMAP (but not PCA) output.
@@ -165,7 +159,6 @@ formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
 
 
 
-## FIXME This is kind of reduant with the above one. Clarify/simplify.
 ## Updated 2019-08-02.
 .fetchReductionExpressionData <- function(
     object,
@@ -184,6 +177,7 @@ formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
     geneCounts <- .fetchGeneData(
         object = object,
         genes = rownames,
+        value = "logcounts",
         metadata = FALSE
     )
     assert(identical(
