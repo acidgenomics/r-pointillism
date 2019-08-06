@@ -39,6 +39,7 @@
 #' @note Updated 2019-08-05.
 #'
 #' @inheritParams acidroxygen::params
+#' @param ... Additional arguments.
 #'
 #' @seealso
 #' - `estimateSizeFactors()`.
@@ -68,6 +69,15 @@
 #' ## cell_data_set ====
 #' object <- cell_data_set
 #' object <- normalize(object)
+NULL
+
+
+
+#' @rdname normalize
+#' @name normalize
+#' @importFrom BiocGenerics normalize
+#' @usage normalize(object, ...)
+#' @export
 NULL
 
 
