@@ -8,8 +8,6 @@
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
-#' @param minSD `numeric(1)`.
-#'   Minimum standard deviation.
 #' @param minPct `numeric(1)` (`0`-`1`).
 #'   Minimum percent standard deviation.
 #' @param maxCumPct `numeric(1)` (`0`-`1`).
@@ -51,90 +49,95 @@ NULL
 
 
 ## Updated 2019-08-02.
-.plotPCElbow <- function(pctStdDev, minPct = 0.01, maxCumPct = 0.9) {
-    assert(
-        is.numeric(pctStdDev),
-        isNumber(minPct),
-        allAreInLeftOpenRange(
-            x = c(minPct, maxCumPct),
-            lower = 0L,
-            upper = 1L
+.plotPCElbow <-
+    function(
+        pctStdDev,
+        minPct = 0.01,
+        maxCumPct = 0.9
+    ) {
+        assert(
+            is.numeric(pctStdDev),
+            isNumber(minPct),
+            allAreInLeftOpenRange(
+                x = c(minPct, maxCumPct),
+                lower = 0L,
+                upper = 1L
+            )
         )
-    )
-    cumsum <- cumsum(pctStdDev)
-    xLab <- "PCA component"
+        cumsum <- cumsum(pctStdDev)
+        xLab <- "PCA component"
 
-    data <- tibble(
-        pc = seq_along(pctStdDev),
-        pct = pctStdDev,
-        cumsum = cumsum
-    )
-
-    minPctCutoff <- data %>%
-        .[.[["pct"]] >= minPct, "pc"] %>%
-        max()
-    maxCumPctCutoff <- data %>%
-        .[.[["cumsum"]] <= maxCumPct, "pc"] %>%
-        max()
-
-    ## Pick the smallest value of the cutoffs
-    cutoff <- min(minPctCutoff, maxCumPctCutoff)
-
-    ## Percent standard deviation ----------------------------------------------
-    ggpct <- ggplot(
-        data = data,
-        mapping = aes(
-            x = !!sym("pc"),
-            y = !!sym("pct")
+        data <- tibble(
+            pc = seq_along(pctStdDev),
+            pct = pctStdDev,
+            cumsum = cumsum
         )
-    ) +
-        geom_hline(
-            color = "orange",
-            size = 1L,
-            yintercept = minPct
-        ) +
-        geom_line() +
-        geom_point() +
-        geom_vline(xintercept = cutoff) +
-        labs(
-            x = xLab,
-            y = "% std dev"
-        ) +
-        expand_limits(y = 0L) +
-        scale_y_continuous(labels = percent)
 
-    ## Cumulative percent standard deviation -----------------------------------
-    ggcumsum <- ggplot(
-        data = data,
-        mapping = aes(
-            x = !!sym("pc"),
-            y = !!sym("cumsum")
+        minPctCutoff <- data %>%
+            .[.[["pct"]] >= minPct, "pc"] %>%
+            max()
+        maxCumPctCutoff <- data %>%
+            .[.[["cumsum"]] <= maxCumPct, "pc"] %>%
+            max()
+
+        ## Pick the smallest value of the cutoffs
+        cutoff <- min(minPctCutoff, maxCumPctCutoff)
+
+        ## Percent standard deviation ------------------------------------------
+        ggpct <- ggplot(
+            data = data,
+            mapping = aes(
+                x = !!sym("pc"),
+                y = !!sym("pct")
+            )
+        ) +
+            geom_hline(
+                color = "orange",
+                size = 1L,
+                yintercept = minPct
+            ) +
+            geom_line() +
+            geom_point() +
+            geom_vline(xintercept = cutoff) +
+            labs(
+                x = xLab,
+                y = "% std dev"
+            ) +
+            expand_limits(y = 0L) +
+            scale_y_continuous(labels = percent)
+
+        ## Cumulative percent standard deviation -------------------------------
+        ggcumsum <- ggplot(
+            data = data,
+            mapping = aes(
+                x = !!sym("pc"),
+                y = !!sym("cumsum")
+            )
+        ) +
+            geom_hline(
+                color = "orange",
+                size = 1L,
+                yintercept = maxCumPct
+            ) +
+            geom_line() +
+            geom_point() +
+            geom_vline(xintercept = cutoff) +
+            labs(
+                x = xLab,
+                y = "cum % std dev"
+            ) +
+            expand_limits(y = c(0L, 1L)) +
+            scale_y_continuous(labels = percent)
+
+        plotlist <- list(
+            pct = ggpct,
+            cumsum = ggcumsum
         )
-    ) +
-        geom_hline(
-            color = "orange",
-            size = 1L,
-            yintercept = maxCumPct
-        ) +
-        geom_line() +
-        geom_point() +
-        geom_vline(xintercept = cutoff) +
-        labs(
-            x = xLab,
-            y = "cum % std dev"
-        ) +
-        expand_limits(y = c(0L, 1L)) +
-        scale_y_continuous(labels = percent)
 
-    plotlist <- list(
-        pct = ggpct,
-        cumsum = ggcumsum
-    )
-
-    p <- plot_grid(plotlist = plotlist)
-    attr(p, "elbow") <- cutoff
-    p
-}
+        p <- plot_grid(plotlist = plotlist)
+        attr(p, "elbow") <- cutoff
+        p
+    }
 
 
 

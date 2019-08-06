@@ -32,7 +32,7 @@ NULL
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
 #' @importFrom bioverbs plotTopMarkers
-#' @usage plotTopMarkers(object, ...)
+#' @usage plotTopMarkers(object, markers, ...)
 #' @export
 NULL
 
