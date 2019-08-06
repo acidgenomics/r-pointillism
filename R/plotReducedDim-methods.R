@@ -109,7 +109,7 @@ NULL
             isScalar(reduction),
             hasLength(dims, n = 2L),
             all(isIntegerish(dims)),
-            isString(interestingGroups, nullOK = TRUE),
+            isCharacter(interestingGroups, nullOK = TRUE),
             isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
             isNumber(pointSize),
             isNumber(pointAlpha),
@@ -120,6 +120,9 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
+        if (is.null(interestingGroups)) {
+            interestingGroups <- "ident"
+        }
 
         data <- .fetchReductionData(
             object = object,
@@ -134,12 +137,40 @@ NULL
             )
         )
 
-        ## Color by `ident` factor by default.
-        if (is.null(interestingGroups)) {
-            interestingGroups <- "ident"
+        ## Check if interesting groups input is supported.
+        supported <- bapply(data, is.factor)
+        supported <- names(supported)[supported]
+        blacklist <- c("interestingGroups", "orig.ident", "sampleID")
+        supported <- setdiff(supported, blacklist)
+        if (!isSubset(interestingGroups, supported)) {
+            setdiff <- setdiff(interestingGroups, supported)
+            stop(sprintf(
+                fmt = paste0(
+                    "%s ",
+                    ngettext(
+                        n = length(setdiff),
+                        msg1 = "interesting group",
+                        msg2 = "interesting groups"
+                    ),
+                    " not defined: %s\n",
+                    "Available:\n%s"
+                ),
+                length(setdiff),
+                toString(setdiff, width = 200L),
+                printString(supported)
+            ))
         }
-        assert(isString(interestingGroups))
-        data[["interestingGroups"]] <- data[[interestingGroups]]
+
+        if (isString(interestingGroups)) {
+            data[["interestingGroups"]] <- data[[interestingGroups]]
+        } else {
+            data[["interestingGroups"]] <- apply(
+                X = data[ , interestingGroups],
+                MARGIN = 1L,
+                FUN = paste ,
+                collapse = ":"
+            )
+        }
 
         ## Turn off labeling if there's only 1 cluster.
         if (hasLength(levels(data[["ident"]]), n = 1L)) {
