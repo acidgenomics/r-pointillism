@@ -12,7 +12,7 @@ sizeFactors(object, ...)
 
 sizeFactors(object, ...) <- value
 
-\S4method{sizeFactors}{cell_data_set}(object, type = NULL)
+\S4method{sizeFactors}{cell_data_set}(object)
 
 \S4method{sizeFactors}{cell_data_set,numeric}(object) <- value
 }
@@ -31,13 +31,22 @@ Named numeric vector, corresponding to cells.
 Size factors
 }
 \note{
-Updated 2019-08-05.
+Updated 2019-08-06.
 }
 \examples{
-data(SingleCellExperiment, package = "acidtest")
+data(
+    SingleCellExperiment,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## SingleCellExperiment ====
 object <- SingleCellExperiment
+object <- estimateSizeFactors(object)
+head(sizeFactors(object))
+
+## cell_data_set ====
+object <- cell_data_set
 object <- estimateSizeFactors(object)
 head(sizeFactors(object))
 }
