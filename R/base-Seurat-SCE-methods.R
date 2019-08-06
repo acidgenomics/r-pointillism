@@ -11,7 +11,8 @@
 #' @note Updated 2019-08-05.
 #'
 #' @importFrom S4Vectors metadata metadata<-
-#' @importFrom SingleCellExperiment reducedDims reducedDimNames
+#' @importFrom SingleCellExperiment reducedDim reducedDim<- reducedDims
+#'   reducedDimNames
 #' @importFrom SummarizedExperiment assay assayNames assays colData colData<-
 #'   rowData rowRanges rowRanges<-
 #' @importFrom basejump interestingGroups interestingGroups<- mapGenesToIDs
