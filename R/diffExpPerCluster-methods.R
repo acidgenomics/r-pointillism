@@ -2,7 +2,7 @@
 #' @inherit bioverbs::diffExpPerCluster
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams diffExp
 #' @param group `character(1)`.
 #'   Group of interest for differential expression per cluster. Must be a

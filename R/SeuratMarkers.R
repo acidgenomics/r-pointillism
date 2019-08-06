@@ -8,7 +8,7 @@
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #'
 #' @param object `data.frame`. Unmodified [Seurat::FindMarkers()] or

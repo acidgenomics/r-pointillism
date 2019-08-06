@@ -2,7 +2,7 @@
 #' @inherit bioverbs::cellCountsPerCluster
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.

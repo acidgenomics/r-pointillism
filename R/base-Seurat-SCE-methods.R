@@ -18,7 +18,7 @@
 #'   mapGenesToRownames mapGenesToSymbols metrics reducedDims sampleData
 #'   sampleData<- sampleNames
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #'
 #' @seealso
 #' - `Seurat::GetAssayData()`.

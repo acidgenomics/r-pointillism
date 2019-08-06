@@ -7,7 +7,7 @@
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
 #' @inheritParams acidplots::params
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param minSD `numeric(1)`.
 #'   Minimum standard deviation.

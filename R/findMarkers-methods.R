@@ -2,7 +2,7 @@
 #' @inherit bioverbs::findMarkers
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Passthrough arguments to [diffExp()].
 #'
 #' @return `list` containing:

@@ -3,7 +3,7 @@
 #' @inherit bioverbs::topMarkers
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param n `integer(1)`.
 #'   Number of genes per cluster.
 #' @param direction `character(1)`.
