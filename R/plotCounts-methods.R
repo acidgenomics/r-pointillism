@@ -76,7 +76,7 @@ NULL
         object,
         genes,
         value = c("logcounts", "normcounts"),
-        geom = c("dot", "violin"),
+        geom = c("violin", "dot"),
         perSample = TRUE,
         legend,
         title = NULL
