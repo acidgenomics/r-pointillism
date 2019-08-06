@@ -1,5 +1,6 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
+#' @keywords internal
 #' @note Updated 2019-08-06.
 #'
 #' @inheritParams acidroxygen::params

@@ -1,6 +1,7 @@
 #' Size factor adjusted normalized counts
 #'
 #' @name normcounts
+#' @keywords internal
 #' @note Updated 2019-08-05.
 #'
 #' @inheritParams acidroxygen::params

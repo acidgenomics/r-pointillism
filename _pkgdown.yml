@@ -10,32 +10,35 @@ news:
 reference:
   - title: S4 classes
     contents:
-    - ends_with("-class")
-    - coerce
-    - show
-    - summary
+      - ends_with("-class")
+      - coerce
+      - show
+      - summary
+  - title: Counts
+    contents:
+      - cpm
+  - title: Clustering
+    contents:
+      - cellCountsPerCluster
+      - cellTypesPerCluster
+      - clusterCellCountsPerSample
+      - clusters
+      - clusterID
+      - normalize
   - title: Differential expression
     contents:
-    - starts_with("diffExp")
-    - findMarkers
-  - title: Cluster statistics
+      - SeuratMarkers
+      - starts_with("diffExp")
+      - findMarkers
+      - topMarkers
+  - title: Cell marker data
     contents:
-    - cellCountsPerCluster
-    - cellTypesPerCluster
-    - clusterCellCountsPerSample
-  - title: Marker analysis
-    contents:
-    - clusterID
-    - topMarkers
+      - cellCycleMarkersList
+      - cellTypeMarkersList
   - title: Plots
     contents:
-    - starts_with("plot")
-  - title: Cell markers
-    contents:
-    - cell_cycle_markers
-    - cell_type_markers
+      - starts_with("plot")
   - title: Example data
     contents:
-    - seurat
-    - seurat_all_markers
-    - seurat_known_markers
+      - seuratAllMarkers
+      - seuratKnownMarkers

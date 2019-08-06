@@ -59,3 +59,4 @@ table(x)
 \seealso{
 \code{\link[=makeGene2Symbol]{makeGene2Symbol()}}.
 }
+\keyword{internal}

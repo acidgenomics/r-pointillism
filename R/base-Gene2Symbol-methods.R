@@ -1,5 +1,6 @@
 #' @name Gene2Symbol
 #' @inherit basejump::Gene2Symbol
+#' @keywords internal
 #' @note Updated 2019-08-02.
 #'
 #' @param ... Additional arguments.

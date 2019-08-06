@@ -66,3 +66,4 @@ class(normcounts)
 \item \code{monocle3::normalized_counts()}.
 }
 }
+\keyword{internal}

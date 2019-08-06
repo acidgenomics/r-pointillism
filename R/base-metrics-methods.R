@@ -1,5 +1,6 @@
 #' @name metrics
 #' @inherit basejump::metrics
+#' @keywords internal
 #' @note Updated 2019-08-02.
 #'
 #' @inheritParams acidroxygen::params
