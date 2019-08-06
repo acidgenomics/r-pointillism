@@ -96,6 +96,7 @@ setClass(
     Class = "KnownMarkers",
     contains = "DataFrame"
 )
+## Consider requiring "avgLogFC" column.
 setValidity(
     Class = "KnownMarkers",
     method = function(object) {

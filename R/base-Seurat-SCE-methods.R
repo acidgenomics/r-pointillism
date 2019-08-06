@@ -329,6 +329,25 @@ setMethod(
 
 
 
+## Updated 2019-08-06.
+`reducedDim,Seurat` <-  # nolint
+    function(x, type = 1L, withDimnames = TRUE) {
+        x <- as.SingleCellExperiment(x)
+        reducedDim(x = x, type = type, withDimnames = withDimnames)
+    }
+
+
+
+#' @rdname Seurat-SingleCellExperiment
+#' @export
+setMethod(
+    f = "reducedDim",
+    signature = signature("Seurat"),
+    definition = `reducedDim,Seurat`
+)
+
+
+
 ## Updated 2019-08-05.
 `reducedDimNames,Seurat` <-  # nolint
     function(x) {
