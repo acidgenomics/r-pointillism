@@ -8,6 +8,7 @@
 \alias{assays,Seurat-method}
 \alias{colData,Seurat-method}
 \alias{colData<-,Seurat,DataFrame-method}
+\alias{counts,Seurat-method}
 \alias{interestingGroups,Seurat-method}
 \alias{interestingGroups<-,Seurat,character-method}
 \alias{mapGenesToIDs,Seurat-method}
@@ -35,6 +36,8 @@
 \S4method{colData}{Seurat}(x, ...)
 
 \S4method{colData}{Seurat,DataFrame}(x) <- value
+
+\S4method{counts}{Seurat}(object, assay = NULL)
 
 \S4method{interestingGroups}{Seurat}(object, ...)
 
@@ -85,6 +88,9 @@ For more information:\preformatted{help(topic = "Extract", package = "base")
 \item{value}{Value to assign.}
 
 \item{object}{Object.}
+
+\item{assay}{\code{vector(1)}.
+Assay name or index position.}
 
 \item{genes}{\code{character}.
 Gene identifiers. It is considered better practice to input the stable gene
