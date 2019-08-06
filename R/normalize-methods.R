@@ -38,6 +38,9 @@
 #' @name normalize
 #' @note Updated 2019-08-05.
 #'
+#' @inheritParams acidroxygen::params
+#' @inheritParams params
+#'
 #' @seealso
 #' - `estimateSizeFactors()`.
 #' - `SingleCellExperiment::normcounts()`.
@@ -74,18 +77,22 @@ NULL
 ## complex, non-standard size factor calculations.
 ## Updated 2019-08-05.
 `normalize,SingleCellExperiment` <-  # nolint
-    function(object) {
+    function(object, verbose = TRUE) {
         validObject(object)
+        assert(isFlag(verbose))
 
         assert(!hasLength(spikeNames(object)))
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(object)
         }
         assert(!is.null(sizeFactors(object)))
-        message(paste(
-            "Computing normcounts and logcounts using",
-            "`scater::normalizeSCE()`."
-        ))
+
+        if (isTRUE(verbose)) {
+            message(paste(
+                "Computing normcounts and logcounts using",
+                "`scater::normalizeSCE()`."
+            ))
+        }
 
         ## Shared arguments for `normalizeSCE()` calls.
         args <- list(
@@ -148,9 +155,12 @@ setMethod(
 
 ## Updated 2019-08-05.
 `normalize,Seurat` <-  # nolint
-    function(object) {
-        message("Normalizing with `Seurat::NormalizeData()`.")
-        NormalizeData(object = object, verbose = TRUE)
+    function(object, verbose = TRUE) {
+        assert(isFlag(verbose))
+        if (isTRUE(verbose)) {
+            message("Normalizing with `Seurat::NormalizeData()`.")
+        }
+        NormalizeData(object = object, verbose = verbose)
     }
 
 
@@ -167,15 +177,18 @@ setMethod(
 
 ## Updated 2019-08-05.
 `normalize,cell_data_set` <-  # nolint
-    function(object) {
-        message("Normalizing with `monocle3::preprocess_cds()`.")
+    function(object, verbose = TRUE) {
+        assert(isFlag(verbose))
+        if (isTRUE(verbose)) {
+            message("Normalizing with `monocle3::preprocess_cds()`.")
+        }
         preprocess_cds(
             cds = object,
             method = "PCA",
             norm_method = "log",
             pseudo_count = 1L,
             scaling = TRUE,
-            verbose = TRUE
+            verbose = verbose
         )
     }
 
