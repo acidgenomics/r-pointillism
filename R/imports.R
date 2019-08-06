@@ -17,12 +17,13 @@
 #' @importFrom DelayedArray DelayedArray
 #' @importFrom DelayedMatrixStats colSums2 rowSums2
 #' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
-#' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
-#'   mcols<- metadata metadata<- na.omit split tail
+#' @importFrom S4Vectors DataFrame as.data.frame as.matrix complete.cases head
+#'   mcols mcols<- metadata metadata<- na.omit split tail
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
 #'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
 #'   normcounts<- reducedDimNames reducedDims sizeFactors sizeFactors<-
+#'   spikeNames
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
@@ -48,7 +49,7 @@
 #'   isString isSubset validate
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass setMethod
-#'   setReplaceMethod setValidity show slot slot<- validObject
+#'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks

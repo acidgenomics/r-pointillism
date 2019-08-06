@@ -17,6 +17,8 @@
 \alias{metadata,Seurat-method}
 \alias{metadata<-,Seurat-method}
 \alias{metrics,Seurat-method}
+\alias{organism,Seurat-method}
+\alias{organism<-,Seurat-method}
 \alias{reducedDim,Seurat-method}
 \alias{reducedDimNames,Seurat-method}
 \alias{reducedDims,Seurat-method}
@@ -55,6 +57,10 @@
 \S4method{metadata}{Seurat}(x) <- value
 
 \S4method{metrics}{Seurat}(object, ...)
+
+\S4method{organism}{Seurat}(object)
+
+\S4method{organism}{Seurat}(object) <- value
 
 \S4method{reducedDim}{Seurat}(x, type = 1L, withDimnames = TRUE)
 
