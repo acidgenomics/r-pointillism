@@ -2,7 +2,7 @@
 #' @inherit bioverbs::cellTypesPerCluster
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param min `integer(1)`.
 #'   Minimum number of marker genes per cluster.
 #' @param max `integer(1)`.

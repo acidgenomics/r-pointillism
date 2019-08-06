@@ -11,7 +11,7 @@
 #' @description Visualize genes on a dot or violin plot.
 #'
 #' @inheritParams acidplots::params
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams ggplot2::geom_violin
 #' @param colMin `numeric(1)`.
 #'   Minimum scaled average expression threshold. Everything smaller will be

@@ -3,7 +3,7 @@
 #' @name logcounts
 #' @note Updated 2019-08-05.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #'
 #' @return `sparseMatrix`.

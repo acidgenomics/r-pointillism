@@ -1,7 +1,7 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #'
 #' @seealso

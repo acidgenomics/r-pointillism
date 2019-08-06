@@ -2,7 +2,7 @@
 #' @inherit bioverbs::clusters
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples

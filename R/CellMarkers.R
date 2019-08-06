@@ -58,7 +58,7 @@
 
 
 #' @rdname CellCycleMarkers-class
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @export
 ## Updated 2019-07-31.
 CellCycleMarkers <-  # nolint
@@ -75,7 +75,7 @@ CellCycleMarkers <-  # nolint
 
 
 #' @rdname CellTypeMarkers-class
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @export
 ## Updated 2019-07-31.
 CellTypeMarkers <-  # nolint

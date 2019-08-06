@@ -9,7 +9,7 @@
 #' many (`max` cutoff) marker genes will be skipped.
 #'
 #' @inheritParams acidplots::params
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param markers `KnownMarkers`.
 #' @param ... Passthrough arguments to [plotMarker()].

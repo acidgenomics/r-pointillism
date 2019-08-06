@@ -6,7 +6,7 @@
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
 #'   `data.frame` imported by `readCellTypeMarkers` or pulled from internal

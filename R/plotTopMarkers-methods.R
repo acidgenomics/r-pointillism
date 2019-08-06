@@ -13,7 +13,7 @@
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
 
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @inheritParams topMarkers
 #' @param ... Passthrough arguments to [plotMarker()].

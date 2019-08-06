@@ -20,17 +20,16 @@
 #' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
 #'   mcols<- metadata metadata<- na.omit split tail
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
-#'   as.Seurat GetAssayData NormalizeData Stdev VariableFeatures
+#'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
-#'   normcounts<- reducedDimNames reducedDims sizeFactors sizeFactors<- weights
-#'   weights<-
+#'   normcounts<- reducedDimNames reducedDims sizeFactors sizeFactors<-
 #' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
 #'   rowData rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
-#' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
-#'   geometricMean import makeNames mapGenesToRownames mapGenesToSymbols
-#'   markdownHeader matchArgsToDoCall matchInterestingGroups printString
-#'   separator showSlotInfo snake upperCamel
+#' @importFrom basejump camel coerce convertGenesToSymbols decode
+#'   estimateSizeFactors gene2symbol geometricMean import makeNames
+#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
+#'   matchInterestingGroups printString separator showSlotInfo snake upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
