@@ -8,7 +8,6 @@
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #' @param minSD `numeric(1)`.
 #'   Minimum standard deviation.
 #' @param minPct `numeric(1)` (`0`-`1`).

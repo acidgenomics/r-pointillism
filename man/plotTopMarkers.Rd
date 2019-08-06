@@ -18,7 +18,7 @@ plotTopMarkers(object, ...)
 \item{markers}{Object containing cell marker expression data.}
 
 \item{n}{\code{integer(1)}.
-Number to include.}
+Number of genes per cluster.}
 
 \item{direction}{\code{character(1)}.
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated

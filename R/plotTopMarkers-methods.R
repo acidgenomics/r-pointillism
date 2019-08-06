@@ -12,10 +12,9 @@
 #' [topMarkers()] function. If you want to reduce the number of genes to plot,
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
-
-#' @inheritParams acidroxygen::params
-#' @inheritParams params
+#'
 #' @inheritParams topMarkers
+#' @inheritParams acidroxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
