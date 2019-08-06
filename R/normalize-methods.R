@@ -76,7 +76,7 @@ NULL
 ## complex, non-standard size factor calculations.
 ## Updated 2019-08-05.
 `normalize,SingleCellExperiment` <-  # nolint
-    function(object, verbose = TRUE) {
+    function(object, verbose = FALSE) {
         validObject(object)
         assert(isFlag(verbose))
 
@@ -154,7 +154,7 @@ setMethod(
 
 ## Updated 2019-08-05.
 `normalize,Seurat` <-  # nolint
-    function(object, verbose = TRUE) {
+    function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
             message("Normalizing with `Seurat::NormalizeData()`.")
@@ -176,7 +176,7 @@ setMethod(
 
 ## Updated 2019-08-05.
 `normalize,cell_data_set` <-  # nolint
-    function(object, verbose = TRUE) {
+    function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
             message("Normalizing with `monocle3::preprocess_cds()`.")
