@@ -9,7 +9,7 @@
 plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
-  n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
+  n = 1L, direction = c("up", "down", "both"), reduction = 1L,
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{

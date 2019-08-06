@@ -28,8 +28,8 @@ plotTSNE(object, ...)
 
 plotUMAP(object, ...)
 
-\S4method{plotReducedDim}{SingleCellExperiment}(object,
-  reduction = "UMAP", dimsUse = c(1L, 2L), interestingGroups = NULL,
+\S4method{plotReducedDim}{SingleCellExperiment}(object, reduction = 1L,
+  dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -39,8 +39,8 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotReducedDim}{Seurat}(object, reduction = "UMAP",
-  dimsUse = c(1L, 2L), interestingGroups = NULL,
+\S4method{plotReducedDim}{Seurat}(object, reduction = 1L, dims = c(1L,
+  2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -50,8 +50,8 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotReducedDim}{cell_data_set}(object, reduction = "UMAP",
-  dimsUse = c(1L, 2L), interestingGroups = NULL,
+\S4method{plotReducedDim}{cell_data_set}(object, reduction = 1L,
+  dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -61,7 +61,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -71,7 +71,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -81,7 +81,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{cell_data_set}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -91,7 +91,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -101,7 +101,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -111,7 +111,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{cell_data_set}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -121,7 +121,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotPCA}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -131,7 +131,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotPCA}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -141,7 +141,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{cell_data_set}(object, dimsUse = c(1L, 2L),
+\S4method{plotPCA}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -156,11 +156,6 @@ plotUMAP(object, ...)
 
 \item{reduction}{\code{vector(1)}.
 Dimension reduction name or index position.}
-
-\item{dimsUse}{\code{integer}.
-Vector of length 2 that denotes the columns from the reduced dimension
-matrix to use for \code{centerX} and \code{centerY} column calculations. Defaults the
-first and second dimensions.}
 
 \item{interestingGroups}{\code{character}.
 Groups of interest that define the samples. If left unset, defaults to
