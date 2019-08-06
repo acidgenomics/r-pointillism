@@ -23,9 +23,6 @@ Minimum percent standard deviation.}
 \item{maxCumPct}{\code{numeric(1)} (\code{0}-\code{1}).
 Maximum cumulative percen standard deviation.}
 
-\item{minSD}{\code{numeric(1)}.
-Minimum standard deviation.}
-
 \item{...}{Additional arguments.}
 }
 \value{

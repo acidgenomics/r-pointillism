@@ -3,21 +3,24 @@
 \docType{methods}
 \name{clusters}
 \alias{clusters}
+\alias{clusters,SingleCellExperiment-method}
 \alias{clusters,Seurat-method}
 \alias{clusters,cell_data_set-method}
-\alias{clusters,SingleCellExperiment-method}
 \title{Cluster identifiers}
 \usage{
 clusters(object, ...)
 
+\S4method{clusters}{SingleCellExperiment}(object)
+
 \S4method{clusters}{Seurat}(object)
 
-\S4method{clusters}{cell_data_set}(object, reductionMethod = "UMAP")
-
-\S4method{clusters}{SingleCellExperiment}(object)
+\S4method{clusters}{cell_data_set}(object, reduction = "UMAP")
 }
 \arguments{
 \item{object}{Object.}
+
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{...}{Additional arguments.}
 }
@@ -38,4 +41,10 @@ object <- Seurat
 x <- clusters(object)
 head(x)
 table(x)
+}
+\seealso{
+\itemize{
+\item \code{Seurat::Idents()}.
+\item \code{monocle3::clusters()}.
+}
 }
