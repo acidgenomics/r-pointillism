@@ -24,12 +24,3 @@ setGeneric(
         standardGeneric("SeuratMarkersPerCluster")
     }
 )
-
-#' @rdname normalize
-#' @export
-setGeneric(
-    name = "normalize",
-    def = function(object, ...) {
-        standardGeneric("normalize")
-    }
-)
