@@ -79,7 +79,7 @@ NULL
 
 
 
-#' @rdname counts
+#' @rdname logcounts
 #' @export
 setMethod(
     f = "logcounts",
@@ -108,7 +108,7 @@ setMethod(
 
 
 
-#' @rdname counts
+#' @rdname logcounts
 #' @export
 setMethod(
     f = "logcounts",
