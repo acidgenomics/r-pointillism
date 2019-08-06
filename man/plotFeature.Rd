@@ -39,10 +39,8 @@ plotFeature(object, ...)
 \item{features}{\code{character}. Features to plot (e.g. gene expression, PC
 scores, number of genes detected).}
 
-\item{reduction}{\code{character(1)}.
-Name of dimension reduction matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes UMAP, TSNE, PCA, typically, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{color}{\code{ScaleDiscrete}.
 Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},

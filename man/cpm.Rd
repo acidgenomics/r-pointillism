@@ -20,10 +20,7 @@ cpm(object, ...)
 Run the function with verbose output.}
 
 \item{assay}{\code{vector(1)}.
-Name or index of count matrix slotted in
-\code{\link[SummarizedExperiment:assays]{assays()}}. When passing in a string, the
-name must be defined in
-\code{\link[SummarizedExperiment:assayNames]{assayNames()}}.}
+Assay name or index position.}
 }
 \value{
 \code{matrix}
