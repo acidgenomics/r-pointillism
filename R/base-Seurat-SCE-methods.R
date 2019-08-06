@@ -353,6 +353,7 @@ setMethod(
 `organism<-,Seurat,character` <-  # nolint
     function(object, value) {
         metadata(object)[["organism"]] <- value
+        object
     }
 
 
