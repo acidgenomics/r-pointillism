@@ -84,7 +84,7 @@ NULL
 
 
 
-#' @rdname counts
+#' @rdname normcounts
 #' @export
 setMethod(
     f = "normcounts",
@@ -113,7 +113,7 @@ setMethod(
 
 
 
-#' @rdname counts
+#' @rdname normcounts
 #' @export
 setMethod(
     f = "normcounts",
