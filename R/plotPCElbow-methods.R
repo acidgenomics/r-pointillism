@@ -18,8 +18,7 @@
 #'
 #' @return
 #' - Show graphical output of elbow plots.
-#' - Invisibly return numeric sequence vector of PCs to include for
-#'   dimensionality reduction analysis.
+#' - Invisibly return recommended PC cutoff threshold.
 #'
 #' @seealso
 #' - `Seurat::PCElbowPlot()`.
@@ -136,7 +135,7 @@ NULL
     p <- plot_grid(plotlist = plotlist)
     show(p)
 
-    invisible(seq_len(cutoff))
+    invisible(cutoff)
 }
 
 
