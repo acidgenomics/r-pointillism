@@ -7,7 +7,23 @@ setGeneric(
     }
 )
 
+#' @rdname SeuratMarkers-class
+#' @export
+setGeneric(
+    name = "SeuratMarkers",
+    def = function(object, ...) {
+        standardGeneric("SeuratMarkers")
+    }
+)
 
+#' @rdname SeuratMarkersPerCluster-class
+#' @export
+setGeneric(
+    name = "SeuratMarkersPerCluster",
+    def = function(object, ...) {
+        standardGeneric("SeuratMarkersPerCluster")
+    }
+)
 
 #' @rdname normalize
 #' @export
