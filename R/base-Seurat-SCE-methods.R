@@ -128,6 +128,25 @@ setReplaceMethod(
 
 
 
+## Upated 2019-08-06.
+`counts,Seurat` <-  # nolint
+    function(object, assay = NULL) {
+        object <- as.SingleCellExperiment(object, assay = assay)
+        counts(object)
+    }
+
+
+
+#' @rdname Seurat-SingleCellExperiment
+#' @export
+setMethod(
+    f = "counts",
+    signature = signature("Seurat"),
+    definition = `counts,Seurat`
+)
+
+
+
 ## Updated 2019-08-05.
 `interestingGroups,Seurat` <-  # nolint
     function(object, ...) {
