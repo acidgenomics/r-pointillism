@@ -90,11 +90,15 @@ Plot feature
 Updated 2019-07-31.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
-plotFeature(object, features = c("nCount_RNA", "nFeature_RNA"))
+plotFeature(object, features = c("nCount_RNA", "nFeature_RNA", "PC1", "PC2"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
