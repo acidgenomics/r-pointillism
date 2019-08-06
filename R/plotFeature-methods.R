@@ -66,9 +66,9 @@ NULL
         }
 
         ## Assert checks -------------------------------------------------------
-        assert(isCharacter(features))
-        reduction <- match.arg(reduction)
         assert(
+            isCharacter(features),
+            isScalar(reduction),
             isGGScale(
                 x = color,
                 scale = "continuous",

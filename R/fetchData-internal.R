@@ -122,14 +122,14 @@ NULL
 .fetchReductionData <- function(
     object,
     reduction,
-    dimsUse = seq_len(2L)
+    dims = seq_len(2L)
 ) {
     validObject(object)
     assert(
         .hasClusters(object),
         isScalar(reduction),
-        hasLength(dimsUse, n = 2L),
-        all(isIntegerish(dimsUse))
+        hasLength(dims, n = 2L),
+        all(isIntegerish(dims))
     )
 
     ## Get reduced dimension coordinates. Map assay position to name, which
@@ -163,7 +163,7 @@ NULL
         )
     )
 
-    dimCols <- colnames(reductionData)[dimsUse]
+    dimCols <- colnames(reductionData)[dims]
     assert(is.character(dimCols))
 
     ## Bind the data frames.
@@ -188,8 +188,8 @@ NULL
     data
 }
 
-formals(.fetchReductionData)[c("dimsUse", "reduction")] <-
-    list(dimsUse = dimsUse, reduction = reduction)
+formals(.fetchReductionData)[c("dims", "reduction")] <-
+    list(dims = dims, reduction = reduction)
 
 
 
