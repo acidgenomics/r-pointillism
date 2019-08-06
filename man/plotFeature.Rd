@@ -87,7 +87,7 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-06.
 }
 \examples{
 data(
@@ -98,7 +98,14 @@ data(
 
 ## Seurat ====
 object <- Seurat
-plotFeature(object, features = c("nCount_RNA", "nFeature_RNA", "PC1", "PC2"))
+plotFeature(
+    object = object,
+    features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2")
+)
+
+## cell_data_set ====
+object <- cell_data_set
+plotFeature(object, features = c("PC1", "PC2"))
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.

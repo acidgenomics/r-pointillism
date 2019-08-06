@@ -1,11 +1,6 @@
-## FIXME Fix handling for reducedDim matrices without names (e.g. UMAP) for
-## monocle3
-
-
-
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-06.
 #'
 #' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
@@ -18,11 +13,22 @@
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotFeature(object, features = c("nCount_RNA", "nFeature_RNA"))
+#' plotFeature(
+#'     object = object,
+#'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2")
+#' )
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' plotFeature(object, features = c("PC1", "PC2"))
 NULL
 
 
@@ -37,7 +43,7 @@ NULL
 
 
 ## Note: We aren't using `title` argument here.
-## Updated 2019-07-31.
+## Updated 2019-08-06.
 `plotFeature,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -96,22 +102,34 @@ NULL
         ## If the features are not defined, attempt to merge all reduced dims
         ## information before stopping.
         if (!all(features %in% colnames(data))) {
-            reductionData <- do.call(
-                what = cbind,
-                args = reducedDims(object)
-            )
-            assert(identical(rownames(data), rownames(reductionData)))
-            ## FIXME We need to rethink this approach for monocle3.
-            reductionData <- camel(reductionData)
-            data <- data %>%
-                .[, setdiff(colnames(.), colnames(reductionData))] %>%
-                cbind(reductionData)
+            reductionData <- .bindReducedDims(object)
+            data <- data[, setdiff(colnames(data), colnames(reductionData))]
+            data <- cbind(data, reductionData)
         }
-        assert(isSubset(features, colnames(data)))
 
-        ## Need to add pointsAsNumbers support.
-        if (isTRUE(pointsAsNumbers)) {
-            stop("pointsAsNumbers isn't supported yet")
+        ## Only supporting visualization of numeric column metadata.
+        supported <- bapply(X = data, FUN = is.numeric)
+        supported <- names(supported)[supported]
+        ## These values are required for dim reduction labeling.
+        blacklist <- c("centerX", "centerY", "x", "y")
+        supported <- setdiff(supported, blacklist)
+        if (!isSubset(features, supported)) {
+            setdiff <- setdiff(features, supported)
+            stop(sprintf(
+                fmt = paste0(
+                    "%s ",
+                    ngettext(
+                        n = length(setdiff),
+                        msg1 = "feature",
+                        msg2 = "features"
+                    ),
+                    " not defined: %s\n",
+                    "Available:\n%s"
+                ),
+                length(setdiff),
+                toString(setdiff, width = 200L),
+                printString(supported)
+            ))
         }
 
         plotlist <- lapply(features, function(feature) {
@@ -120,14 +138,34 @@ NULL
                 mapping = aes(
                     x = !!sym("x"),
                     y = !!sym("y"),
-                    color = !!sym(feature)
+                    colour = !!sym(feature)
                 )
-            ) +
-                geom_point(
-                    alpha = pointAlpha,
-                    size = pointSize
-                ) +
+            )
+
+            if (isTRUE(pointsAsNumbers)) {
+                if (pointSize < 4L) pointSize <- 4L
+                p <- p +
+                    geom_text(
+                        mapping = aes(
+                            x = !!sym("x"),
+                            y = !!sym("y"),
+                            label = !!sym("ident"),
+                            color = !!sym(feature)
+                        ),
+                        alpha = pointAlpha,
+                        size = pointSize
+                    )
+            } else {
+                p <- p +
+                    geom_point(
+                        alpha = pointAlpha,
+                        size = pointSize
+                    )
+            }
+
+            p <- p +
                 labs(
+                    colour = NULL,
                     x = axes[[1L]],
                     y = axes[[2L]],
                     title = feature
@@ -146,7 +184,7 @@ NULL
                             y = !!sym("centerY"),
                             label = !!sym("ident")
                         ),
-                        color = labelColor,
+                        colour = labelColor,
                         size = labelSize,
                         fontface = "bold"
                     )
