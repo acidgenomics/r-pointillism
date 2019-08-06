@@ -1,13 +1,9 @@
-## Consider adding support for: `clearSizeFactors()`, `sizeFactorNames()`.
-
-
-
 #' Size factors
 #'
 #' @name sizeFactors
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-06.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param value Value to be assigned to corresponding components of object.
 #' @param ... Additional arguments.
 #'
@@ -18,10 +14,19 @@
 #' - `monocle3::size_factors()`.
 #'
 #' @examples
-#' data(SingleCellExperiment, package = "acidtest")
+#' data(
+#'     SingleCellExperiment,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
+#' object <- estimateSizeFactors(object)
+#' head(sizeFactors(object))
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
 #' object <- estimateSizeFactors(object)
 #' head(sizeFactors(object))
 NULL
@@ -44,20 +49,9 @@ NULL
 
 
 
-## Updated 2019-08-02.
-`sizeFactors,SingleCellExperiment` <-  # nolint
-    methodFunction(
-        f = "sizeFactors",
-        signature = "DESeqDataSet",
-        package = "DESeq2"
-    )
-
-
-
-## Updated 2019-08-05.
+## Updated 2019-08-06.
 `sizeFactors,cell_data_set` <-  # nolint
-    function(object, type = NULL) {
-        assert(is.null(type))
+    function(object) {
         colData(object)[["Size_Factor"]]
     }
 
@@ -73,11 +67,30 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## nolint start
+##
+## > getMethod(
+## >     f = "sizeFactors<-",
+## >     signature = signature(
+## >         object = "SummarizedExperiment",
+## >         value = "numeric"
+## >     ),
+## >     where = asNamespace("basejump")
+## > )
+##
+## nolint end
+
+
+
+## Updated 2019-08-06.
 `sizeFactors<-,cell_data_set,numeric` <-  # nolint
     function(object, value) {
-        value <- unname(value)
-        colData(object)[["Size_Factor"]] <- value
+        assert(
+            all(!is.na(value)),
+            all(is.finite(value)),
+            all(value > 0)
+        )
+        colData(object)[["Size_Factor"]] <- unname(value)
         object
     }
 
