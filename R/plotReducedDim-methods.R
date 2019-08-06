@@ -87,7 +87,7 @@ NULL
     function(
         object,
         reduction,
-        dimsUse,
+        dims,
         interestingGroups = NULL,
         color,
         pointSize,
@@ -107,8 +107,8 @@ NULL
             .hasClusters(object),
             ## Allow pass in of positional scalar, for looping.
             isScalar(reduction),
-            hasLength(dimsUse, n = 2L),
-            all(isIntegerish(dimsUse)),
+            hasLength(dims, n = 2L),
+            all(isIntegerish(dims)),
             isString(interestingGroups, nullOK = TRUE),
             isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
             isNumber(pointSize),
@@ -124,7 +124,7 @@ NULL
         data <- .fetchReductionData(
             object = object,
             reduction = reduction,
-            dimsUse = dimsUse
+            dims = dims
         )
         assert(
             is(data, "DataFrame"),
@@ -138,8 +138,12 @@ NULL
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
-        if (interestingGroups == "ident") {
-            data[["interestingGroups"]] <- data[["ident"]]
+        assert(isString(interestingGroups))
+        data[["interestingGroups"]] <- data[[interestingGroups]]
+
+        ## Turn off labeling if there's only 1 cluster.
+        if (hasLength(levels(data[["ident"]]), n = 1L)) {
+            label = FALSE
         }
 
         ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2). We're setting
@@ -225,7 +229,7 @@ NULL
 formals(`plotReducedDim,SingleCellExperiment`)[c(
     "color",
     "dark",
-    "dimsUse",
+    "dims",
     "label",
     "labelSize",
     "legend",
@@ -236,7 +240,7 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 )] <- list(
     color = discreteColor,
     dark = dark,
-    dimsUse = dimsUse,
+    dims = dims,
     label = label,
     labelSize = labelSize,
     legend = legend,
