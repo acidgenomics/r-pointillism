@@ -31,8 +31,7 @@ Minimum standard deviation.}
 \value{
 \itemize{
 \item Show graphical output of elbow plots.
-\item Invisibly return numeric sequence vector of PCs to include for
-dimensionality reduction analysis.
+\item Invisibly return recommended PC cutoff threshold.
 }
 }
 \description{

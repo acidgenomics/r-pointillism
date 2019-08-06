@@ -12,7 +12,7 @@ with_parameters_test_that(
         Seurat::pbmc_small
     ),
     seq = list(
-        seq_len(5L),
-        seq_len(5L)
+        10L,
+        10L
     )
 )
