@@ -5,6 +5,40 @@ NULL
 
 
 
+#' Bind all dimension reduction matrices into a single data frame.
+#' @note Updated 2019-08-06.
+#' @noRd
+.bindReducedDims <- function(object) {
+    reducedDims <- reducedDims(object)
+    assert(hasNames(reducedDims))
+
+    ## Handle undefined column names here, which is currently the case with
+    ## monocle3 UMAP (but not PCA) output.
+    if (!isTRUE(all(bapply(X = reducedDims, FUN = hasColnames)))) {
+        list <- mapply(
+            name = names(reducedDims),
+            assay = reducedDims,
+            FUN = function(name, assay) {
+                if (!hasColnames(assay)) {
+                    colnames(assay) <- paste0(name, seq_len(ncol(assay)))
+                }
+                assay
+            }
+        )
+        reducedDims <- as(list, "SimpleList")
+    }
+
+    out <- do.call(what = cbind, args = reducedDims)
+    out <- as(out, "DataFrame")
+    assert(
+        hasValidDimnames(out),
+        identical(x = colnames(object), y = rownames(out))
+    )
+    out
+}
+
+
+
 ## Updated 2019-08-05.
 .fetchGeneData <- function(
     object,
