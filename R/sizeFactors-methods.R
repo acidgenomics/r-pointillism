@@ -1,14 +1,16 @@
-#' Size factors
-#'
+## FIXME SingleCellExperiment is currently putting in colData instead of intColData...
+
+
+
 #' @name sizeFactors
+#' @inherit basejump::sizeFactors
+#'
+#' @note For `Seurat` objects, use the `Seurat::NormalizeData()` function or the
+#'   sctransform package to normalize counts, rather than using size factors.
 #' @note Updated 2019-08-06.
 #'
 #' @inheritParams acidroxygen::params
-#' @param value Value to be assigned to corresponding components of object.
 #' @param ... Additional arguments.
-#'
-#' @return `numeric`.
-#'   Named numeric vector, corresponding to cells.
 #'
 #' @seealso
 #' - `monocle3::size_factors()`.
