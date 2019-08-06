@@ -154,10 +154,8 @@ plotUMAP(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{reduction}{\code{character(1)}.
-Name of dimension reduction matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes UMAP, TSNE, PCA, typically, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{dimsUse}{\code{integer}.
 Vector of length 2 that denotes the columns from the reduced dimension

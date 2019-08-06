@@ -28,10 +28,8 @@ Recommended minimum value cutoff.}
 \item{max}{\code{numeric(1)}.
 Recommended maximum value cutoff.}
 
-\item{reduction}{\code{character(1)}.
-Name of dimension reduction matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes UMAP, TSNE, PCA, typically, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.
