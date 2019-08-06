@@ -1,7 +1,3 @@
-## FIXME SingleCellExperiment is currently putting in colData instead of intColData...
-
-
-
 #' @name sizeFactors
 #' @inherit basejump::sizeFactors
 #'
@@ -26,11 +22,13 @@
 #' object <- SingleCellExperiment
 #' object <- estimateSizeFactors(object)
 #' head(sizeFactors(object))
+#' mean(sizeFactors(object))
 #'
 #' ## cell_data_set ====
 #' object <- cell_data_set
 #' object <- estimateSizeFactors(object)
 #' head(sizeFactors(object))
+#' mean(sizeFactors(object))
 NULL
 
 
@@ -90,7 +88,7 @@ setMethod(
         assert(
             all(!is.na(value)),
             all(is.finite(value)),
-            all(value > 0)
+            all(value > 0L)
         )
         colData(object)[["Size_Factor"]] <- unname(value)
         object
