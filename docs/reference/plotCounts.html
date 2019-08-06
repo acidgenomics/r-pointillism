@@ -112,7 +112,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot counts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCounts-methods.R'><code>R/plotCounts-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCounts-methods.R'><code>R/plotCounts-methods.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotDot-methods.R'><code>R/plotDot-methods.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotViolin-methods.R'><code>R/plotViolin-methods.R</code></a></small>
     <div class="hidden name"><code>plotCounts.Rd</code></div>
     </div>
 
@@ -124,44 +124,67 @@
 
     <pre class="usage"><span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>, <span class='st'>"normcounts"</span>), <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"violin"</span>, <span class='st'>"dot"</span>),
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>,
+  <span class='st'>"normcounts"</span>), <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"violin"</span>, <span class='st'>"dot"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>, <span class='st'>"normcounts"</span>), <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"violin"</span>, <span class='st'>"dot"</span>),
+  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
 <span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
+  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
+  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dot"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
-  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colMin</span> <span class='kw'>=</span> -<span class='fl'>2.5</span>, <span class='kw'>colMax</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='kw'>dotMin</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>dotScale</span> <span class='kw'>=</span> <span class='fl'>6L</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"orange"</span>, <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
-  <span class='st'>"purple"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0L</span>)), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-  <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
-  <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>, <span class='st'>"normcounts"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>,
+  <span class='st'>"normcounts"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>plotViolin</span>(<span class='no'>object</span>, <span class='no'>genes</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"logcounts"</span>, <span class='st'>"normcounts"</span>), <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"width"</span>, <span class='st'>"area"</span>),
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -179,6 +202,10 @@
 Gene identifiers. It is considered better practice to input the stable gene
 identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
 symbols (e.g. "TSPN6"), if possible.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>Value to assign.</p></td>
     </tr>
     <tr>
       <th>geom</th>
@@ -251,7 +278,8 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
+    <p>Dot geom currently only supports logcounts.</p>
+<p>Updated 2019-08-06.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -260,12 +288,17 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/DotPlot.html'>Seurat::DotPlot()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/VlnPlot.html'>Seurat::VlnPlot()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/RidgePlot.html'>Seurat::RidgePlot()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/plot_genes_violin.html'>monocle3::plot_genes_violin()</a></code>.</p></li>
 </ul>
 </div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
+    <span class='no'>Seurat</span>,
+    <span class='no'>cell_data_set</span>,
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
+)
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
@@ -276,7 +309,11 @@ column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled
 <span class='co'>## Per sample mode enabled.</span>
 <span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotCounts-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Per sample mode disabled.</span>
-<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>, <span class='kw'>perSample</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotCounts-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## cell_data_set ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
+<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>object</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt; [1] "WBGene00006436" "WBGene00006789" "WBGene00001168" "WBGene00010964"</div><div class='input'><span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>)</div><div class='img'><img src='plotCounts-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

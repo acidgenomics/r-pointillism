@@ -178,33 +178,21 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-differential-expression" class="hasAnchor"><a href="#section-differential-expression" class="anchor"></a>Differential expression</h2>
+          <h2 id="section-counts" class="hasAnchor"><a href="#section-counts" class="anchor"></a>Counts</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="diffExp.html">diffExp()</a></code> </p>
+          <p><code><a href="cpm.html">cpm()</a></code> </p>
         </td>
-        <td><p>Differential expression</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="diffExpPerCluster.html">diffExpPerCluster()</a></code> </p>
-        </td>
-        <td><p>Differential expression per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="findMarkers.html">findMarkers()</a></code> </p>
-        </td>
-        <td><p>Find cluster-specific marker genes</p></td>
+        <td><p>Counts per million</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-cluster-statistics" class="hasAnchor"><a href="#section-cluster-statistics" class="anchor"></a>Cluster statistics</h2>
+          <h2 id="section-clustering" class="hasAnchor"><a href="#section-clustering" class="anchor"></a>Clustering</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -226,26 +214,82 @@
           <p><code><a href="clusterCellCountsPerSample.html">clusterCellCountsPerSample()</a></code> </p>
         </td>
         <td><p>Cluster cell counts per sample</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clusters.html">clusters()</a></code> </p>
+        </td>
+        <td><p>Cluster identifiers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="deprecated.html">clusterID()</a></code> </p>
+        </td>
+        <td><p>Deprecated functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="normalize.html">normalize()</a></code> </p>
+        </td>
+        <td><p>Normalize expression using pre-computed size factors</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-marker-analysis" class="hasAnchor"><a href="#section-marker-analysis" class="anchor"></a>Marker analysis</h2>
+          <h2 id="section-differential-expression" class="hasAnchor"><a href="#section-differential-expression" class="anchor"></a>Differential expression</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="clusterID.html">clusterID()</a></code> </p>
+          <p><code><a href="SeuratMarkers.html">SeuratMarkers(<i>&lt;data.frame&gt;</i>)</a></code> <code><a href="SeuratMarkers.html">SeuratMarkersPerCluster(<i>&lt;data.frame&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Cluster identifier</p></td>
+        <td><p>Sanitize Seurat markers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="diffExp.html">diffExp()</a></code> </p>
+        </td>
+        <td><p>Differential expression</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="diffExpPerCluster.html">diffExpPerCluster()</a></code> </p>
+        </td>
+        <td><p>Differential expression per cluster</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="findMarkers.html">findMarkers()</a></code> </p>
+        </td>
+        <td><p>Find cluster-specific marker genes</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="topMarkers.html">topMarkers()</a></code> </p>
         </td>
         <td><p>Top markers</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-cell-marker-data" class="hasAnchor"><a href="#section-cell-marker-data" class="anchor"></a>Cell marker data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="cellCycleMarkersList.html">cellCycleMarkersList</a></code> </p>
+        </td>
+        <td><p>Cell-cycle markers list</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cellTypeMarkersList.html">cellTypeMarkersList</a></code> </p>
+        </td>
+        <td><p>Cell-type markers list</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -312,188 +356,6 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-cell-markers" class="hasAnchor"><a href="#section-cell-markers" class="anchor"></a>Cell markers</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="CellCycleMarkers-class.html">CellCycleMarkers()</a></code> </p>
-        </td>
-        <td><p>Cell-cycle markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="CellTypeMarkers-class.html">CellTypeMarkers()</a></code> </p>
-        </td>
-        <td><p>Cell-type markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KnownMarkers-class.html">KnownMarkers()</a></code> </p>
-        </td>
-        <td><p>Known markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="SeuratMarkers-class.html">SeuratMarkers()</a></code> </p>
-        </td>
-        <td><p>Seurat markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="SeuratMarkersPerCluster-class.html">SeuratMarkersPerCluster()</a></code> </p>
-        </td>
-        <td><p>Seurat markers per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellCountsPerCluster.html">cellCountsPerCluster()</a></code> </p>
-        </td>
-        <td><p>Cell counts per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellCycleMarkersList.html">cellCycleMarkersList</a></code> </p>
-        </td>
-        <td><p>Cell-cycle markers list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellTypeMarkersList.html">cellTypeMarkersList</a></code> </p>
-        </td>
-        <td><p>Cell-type markers list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellTypesPerCluster.html">cellTypesPerCluster()</a></code> </p>
-        </td>
-        <td><p>Cell types per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clusterCellCountsPerSample.html">clusterCellCountsPerSample()</a></code> </p>
-        </td>
-        <td><p>Cluster cell counts per sample</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clusterID.html">clusterID()</a></code> </p>
-        </td>
-        <td><p>Cluster identifier</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="coerce.html">coerce</a></code> </p>
-        </td>
-        <td><p>Force an object to belong to a class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="diffExp.html">diffExp()</a></code> </p>
-        </td>
-        <td><p>Differential expression</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="diffExpPerCluster.html">diffExpPerCluster()</a></code> </p>
-        </td>
-        <td><p>Differential expression per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="findMarkers.html">findMarkers()</a></code> </p>
-        </td>
-        <td><p>Find cluster-specific marker genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCellCountsPerCluster.html">plotCellCountsPerCluster()</a></code> </p>
-        </td>
-        <td><p>Plot cell counts per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCellTypesPerCluster.html">plotCellTypesPerCluster()</a></code> </p>
-        </td>
-        <td><p>Plot cell types per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCounts.html">plotCounts()</a></code> <code><a href="plotCounts.html">plotDot()</a></code> <code><a href="plotCounts.html">plotViolin()</a></code> </p>
-        </td>
-        <td><p>Plot counts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotFeature.html">plotFeature()</a></code> </p>
-        </td>
-        <td><p>Plot feature</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotKnownMarkers.html">plotKnownMarkers()</a></code> </p>
-        </td>
-        <td><p>Plot known markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotMarker.html">plotMarker()</a></code> </p>
-        </td>
-        <td><p>Plot cell-type-specific gene markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotPCElbow.html">plotPCElbow()</a></code> </p>
-        </td>
-        <td><p>Plot principal component elbow</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotReducedDim.html">plotReducedDim()</a></code> <code><a href="plotReducedDim.html">plotPCA()</a></code> <code><a href="plotReducedDim.html">plotTSNE()</a></code> <code><a href="plotReducedDim.html">plotUMAP()</a></code> </p>
-        </td>
-        <td><p>Plot reduced dimensions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotTopMarkers.html">plotTopMarkers()</a></code> </p>
-        </td>
-        <td><p>Plot top markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="seuratAllMarkers.html">seuratAllMarkers</a></code> </p>
-        </td>
-        <td><p>Seurat all markers example</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="seuratKnownMarkers.html">seuratKnownMarkers</a></code> </p>
-        </td>
-        <td><p>Seurat known markers example</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="show.html">show(<i>&lt;CellCycleMarkers&gt;</i>)</a></code> <code><a href="show.html">show(<i>&lt;CellTypeMarkers&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Show an object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.html">summary()</a></code> </p>
-        </td>
-        <td><p>Object summaries</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="topMarkers.html">topMarkers()</a></code> </p>
-        </td>
-        <td><p>Top markers</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
           <h2 id="section-example-data" class="hasAnchor"><a href="#section-example-data" class="anchor"></a>Example data</h2>
           <p class="section-desc"></p>
         </th>
@@ -501,150 +363,6 @@
       <tr>
         
         <td>
-          <p><code><a href="CellCycleMarkers-class.html">CellCycleMarkers()</a></code> </p>
-        </td>
-        <td><p>Cell-cycle markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="CellTypeMarkers-class.html">CellTypeMarkers()</a></code> </p>
-        </td>
-        <td><p>Cell-type markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KnownMarkers-class.html">KnownMarkers()</a></code> </p>
-        </td>
-        <td><p>Known markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="SeuratMarkers-class.html">SeuratMarkers()</a></code> </p>
-        </td>
-        <td><p>Seurat markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="SeuratMarkersPerCluster-class.html">SeuratMarkersPerCluster()</a></code> </p>
-        </td>
-        <td><p>Seurat markers per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellCountsPerCluster.html">cellCountsPerCluster()</a></code> </p>
-        </td>
-        <td><p>Cell counts per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellCycleMarkersList.html">cellCycleMarkersList</a></code> </p>
-        </td>
-        <td><p>Cell-cycle markers list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellTypeMarkersList.html">cellTypeMarkersList</a></code> </p>
-        </td>
-        <td><p>Cell-type markers list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cellTypesPerCluster.html">cellTypesPerCluster()</a></code> </p>
-        </td>
-        <td><p>Cell types per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clusterCellCountsPerSample.html">clusterCellCountsPerSample()</a></code> </p>
-        </td>
-        <td><p>Cluster cell counts per sample</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clusterID.html">clusterID()</a></code> </p>
-        </td>
-        <td><p>Cluster identifier</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="coerce.html">coerce</a></code> </p>
-        </td>
-        <td><p>Force an object to belong to a class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="diffExp.html">diffExp()</a></code> </p>
-        </td>
-        <td><p>Differential expression</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="diffExpPerCluster.html">diffExpPerCluster()</a></code> </p>
-        </td>
-        <td><p>Differential expression per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="findMarkers.html">findMarkers()</a></code> </p>
-        </td>
-        <td><p>Find cluster-specific marker genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCellCountsPerCluster.html">plotCellCountsPerCluster()</a></code> </p>
-        </td>
-        <td><p>Plot cell counts per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCellTypesPerCluster.html">plotCellTypesPerCluster()</a></code> </p>
-        </td>
-        <td><p>Plot cell types per cluster</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotCounts.html">plotCounts()</a></code> <code><a href="plotCounts.html">plotDot()</a></code> <code><a href="plotCounts.html">plotViolin()</a></code> </p>
-        </td>
-        <td><p>Plot counts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotFeature.html">plotFeature()</a></code> </p>
-        </td>
-        <td><p>Plot feature</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotKnownMarkers.html">plotKnownMarkers()</a></code> </p>
-        </td>
-        <td><p>Plot known markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotMarker.html">plotMarker()</a></code> </p>
-        </td>
-        <td><p>Plot cell-type-specific gene markers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotPCElbow.html">plotPCElbow()</a></code> </p>
-        </td>
-        <td><p>Plot principal component elbow</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotReducedDim.html">plotReducedDim()</a></code> <code><a href="plotReducedDim.html">plotPCA()</a></code> <code><a href="plotReducedDim.html">plotTSNE()</a></code> <code><a href="plotReducedDim.html">plotUMAP()</a></code> </p>
-        </td>
-        <td><p>Plot reduced dimensions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plotTopMarkers.html">plotTopMarkers()</a></code> </p>
-        </td>
-        <td><p>Plot top markers</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="seuratAllMarkers.html">seuratAllMarkers</a></code> </p>
         </td>
         <td><p>Seurat all markers example</p></td>
@@ -654,24 +372,6 @@
           <p><code><a href="seuratKnownMarkers.html">seuratKnownMarkers</a></code> </p>
         </td>
         <td><p>Seurat known markers example</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="show.html">show(<i>&lt;CellCycleMarkers&gt;</i>)</a></code> <code><a href="show.html">show(<i>&lt;CellTypeMarkers&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Show an object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.html">summary()</a></code> </p>
-        </td>
-        <td><p>Object summaries</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="topMarkers.html">topMarkers()</a></code> </p>
-        </td>
-        <td><p>Top markers</p></td>
       </tr>
     </tbody>
     </table>
@@ -681,11 +381,11 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-s-classes">S4 classes</a></li>
+      <li><a href="#section-counts">Counts</a></li>
+      <li><a href="#section-clustering">Clustering</a></li>
       <li><a href="#section-differential-expression">Differential expression</a></li>
-      <li><a href="#section-cluster-statistics">Cluster statistics</a></li>
-      <li><a href="#section-marker-analysis">Marker analysis</a></li>
+      <li><a href="#section-cell-marker-data">Cell marker data</a></li>
       <li><a href="#section-plots">Plots</a></li>
-      <li><a href="#section-cell-markers">Cell markers</a></li>
       <li><a href="#section-example-data">Example data</a></li>
     </ul>
   </div>

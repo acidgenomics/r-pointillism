@@ -125,8 +125,11 @@
     <pre class="usage"><span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"pca"</span>, <span class='kw'>minSD</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"identity"</span>, <span class='st'>"sqrt"</span>))</pre>
+<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,18 +137,6 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>reducedDim</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of reduced dimension matrix slotted in
-<code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-reducedDims.html'>reducedDims()</a></code>.
-Includes TNSE, UMAP, PCA, for example.</p></td>
-    </tr>
-    <tr>
-      <th>minSD</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Minimum standard deviation.</p></td>
     </tr>
     <tr>
       <th>minPct</th>
@@ -158,11 +149,9 @@ Minimum percent standard deviation.</p></td>
 Maximum cumulative percen standard deviation.</p></td>
     </tr>
     <tr>
-      <th>trans</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of the axis scale transformation to apply.</p>
-<p>For more information:</p><pre>help(topic = "scale_x_continuous", package = "ggplot2")
-</pre></td>
+      <th>minSD</th>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
+Minimum standard deviation.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -172,13 +161,8 @@ Name of the axis scale transformation to apply.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<ul>
-<li><p>Show graphical output of elbow plots.</p></li>
-<li><p>Invisibly return numeric sequence vector of PCs to include for
-dimensionality reduction analysis.</p></li>
-</ul>
-
+    <p><code>ggplot</code>.
+Elbow point is saved in <code><a href='https://rdrr.io/r/base/attr.html'>attr(object, "elbow")</a></code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -187,19 +171,31 @@ dimensionality reduction analysis.</p></li>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
+    <p>Updated 2019-08-02.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>Seurat::PCElbowPlot()</code>.</p></div>
+    <div class='dont-index'>
+<ul>
+<li><p><code>Seurat::PCElbowPlot()</code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/plot_pc_variance_explained.html'>monocle3::plot_pc_variance_explained()</a></code>.</p></li>
+</ul>
+</div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
+    <span class='no'>Seurat</span>,
+    <span class='no'>cell_data_set</span>,
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
+)
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotPCElbow-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotPCElbow-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## cell_data_set ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
+<span class='fu'>plotPCElbow</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotPCElbow-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -126,7 +126,7 @@
 
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>features</span>,
-  <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>,
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>,
   <span class='kw'>default</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span>
   <span class='st'>"purple"</span>)), <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
   <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
@@ -138,7 +138,7 @@
   <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>))
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>features</span>, <span class='kw'>reducedDim</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='no'>features</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.continuous.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"gray75"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"purple"</span>)),
   <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
@@ -163,11 +163,9 @@
 scores, number of genes detected).</p></td>
     </tr>
     <tr>
-      <th>reducedDim</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of reduced dimension matrix slotted in
-<code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-reducedDims.html'>reducedDims()</a></code>.
-Includes TNSE, UMAP, PCA, for example.</p></td>
+      <th>reduction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
+Dimension reduction name or index position.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -234,7 +232,7 @@ argument in the <code>character</code> vector.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
+    <p>Updated 2019-08-06.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -242,11 +240,21 @@ argument in the <code>character</code> vector.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
+    <span class='no'>Seurat</span>,
+    <span class='no'>cell_data_set</span>,
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
+)
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"nCount_RNA"</span>, <span class='st'>"nFeature_RNA"</span>))</div><div class='img'><img src='plotFeature-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotFeature</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
+    <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"nCount_RNA"</span>, <span class='st'>"nFeature_RNA"</span>, <span class='st'>"PC_1"</span>, <span class='st'>"PC_2"</span>)
+)</div><div class='img'><img src='plotFeature-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## cell_data_set ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
+<span class='fu'>plotFeature</span>(<span class='no'>object</span>, <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>))</div><div class='img'><img src='plotFeature-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -129,7 +129,11 @@
   <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>,
+  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,7 +164,11 @@ Groups of interest that define the samples. If left unset, defaults to
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
+    <span class='no'>Seurat</span>,
+    <span class='no'>cell_data_set</span>,
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
+)
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
@@ -171,7 +179,18 @@ Groups of interest that define the samples. If left unset, defaults to
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0     unknown    unknown              36     1
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> 1     unknown    unknown              25     1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 2     unknown    unknown              19     1</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 2     unknown    unknown              19     1</div><div class='input'>
+<span class='co'>## cell_data_set ===</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 5</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   ident [4]</span><span>
+#&gt;   ident sampleName interestingGroups     n ratio
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1     unknown    unknown              81     1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2     unknown    unknown              57     1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3     unknown    unknown              35     1
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 4     unknown    unknown              27     1</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

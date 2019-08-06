@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version 0.3 • pointillism</title>
+<title>Cluster identifiers — clusters • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,7 +34,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Version 0.3" />
+<meta property="og:title" content="Cluster identifiers — clusters" />
+
+<meta property="og:description" content="Cluster identifiers" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -52,7 +55,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,74 +111,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small>0.3</small></h1>
-      
+    <h1>Cluster identifiers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/clusters-methods.R'><code>R/clusters-methods.R</code></a></small>
+    <div class="hidden name"><code>clusters.Rd</code></div>
     </div>
 
-    <div id="pointillism-0-3-0-2019-04-16" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pointillism-0-3-0-2019-04-16" class="anchor"></a>pointillism 0.3.0 (2019-04-16)</h2>
-<div id="major-changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
-<ul>
-<li>Updated S4 methods to support <a href="https://satijalab.org/seurat/">Seurat</a> v3 release. Also updated imports from Seurat to reflect v3 change: <code>GetAssayData</code>, <code>Stdev</code>, <code>VariableFeatures</code>.</li>
-<li>Now importing S3 coercion methods from Seurat: <code>as.SingleCellExperiment</code>. <code>as.Seurat</code>, which coerces <code>SingleCellExperiment</code>, isn’t particularly helpful because it requires <code>logcounts</code> slot to be defined in SCE. We’re calling <code>CreateSeuratObject</code> internally in our S4 coercion method instead, so that any SCE object can be easily coerced to a <code>Seurat</code> object.</li>
-<li>Resaved and renamed example data: <code>seurat</code>, <code>seurat_all_markers</code>, <code>seurat_known_markers</code>.</li>
-<li>Overhauled R Markdown templates.</li>
-</ul>
-</div>
-<div id="minor-changes-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>Added preliminary <code>plotCellTypesPerCluster</code> method support. Need to test this out on larger datasets with many samples per cluster.</li>
-<li>Switched Travis CI configuration to use Docker image.</li>
-<li>Added some additional comments regarding reticulate umap-learn configuration required to run <code><a href="https://rdrr.io/pkg/Seurat/man/RunUMAP.html">Seurat::RunUMAP</a></code>. Consider putting some information in the README, since there is a lot of misinformation on GitHub regarding proper UMAP configuration.</li>
-<li>Removed <code>setOldClass</code> definitions for <code>session_info</code> and <code>package_version</code>.</li>
-<li>Renamed <code>as-methods.R</code> to <code>coerce-methods.R</code>, matching bsaejump conventions.</li>
-<li>
-<code>cellCountsPerCluster</code>: Improved internal <code>interestingGroups</code> handling.</li>
-<li>Reworked reexport method for S4 generics imported from <a href="https://bioverbs.acidgenomics.com/">bioverbs</a> package.</li>
-</ul>
-</div>
-</div>
-    <div id="pointillism-0-3-1-2019-04-23" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pointillism-0-3-1-2019-04-23" class="anchor"></a>pointillism 0.3.1 (2019-04-23)</h2>
-<div id="minor-changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>Switch to importing ggplot2 code from new <a href="https://acidplots.acidgenomics.com/">acidplots</a> package. Recommended default ggplot2 themes are now named <code>acid_theme_light</code> and <code>acid_theme_dark</code>.</li>
-<li>Consolidated S4 class and generator function documentation into single Rd files, where applicable.</li>
-</ul>
-</div>
-</div>
-    <div id="pointillism-0-3-2-2019-04-25" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pointillism-0-3-2-2019-04-25" class="anchor"></a>pointillism 0.3.2 (2019-04-25)</h2>
-<div id="minor-changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>S4 generic reexport documentation fixes.</li>
-</ul>
-</div>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Cluster identifiers</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>clusters</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>, <span class='kw'>reductionMethod</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>factor</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Updated 2019-08-02.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+
+<span class='co'>## Seurat ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>clusters</span>(<span class='no'>object</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; ATGCCAGAACGACT CATGGCCTGTGCAT GAACCTGATGAACC TGACTGGATTCTCA AGTCAGACTGCACA 
+#&gt;              0              0              0              0              0 
+#&gt; TCTGATACACGTGT 
+#&gt;              0 
+#&gt; Levels: 0 1 2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; x
+#&gt;  0  1  2 
+#&gt; 36 25 19 </div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#pointillism-0-3-0-2019-04-16">0.3.0</a></li>
-        <li><a href="#pointillism-0-3-1-2019-04-23">0.3.1</a></li>
-        <li><a href="#pointillism-0-3-2-2019-04-25">0.3.2</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
 
+      <li><a href="#note">Note</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
+  </div>
 </div>
 
 

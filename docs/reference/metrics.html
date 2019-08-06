@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot cell counts per cluster — plotCellCountsPerCluster • pointillism</title>
+<title>Quality control metrics — metrics • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,9 +34,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot cell counts per cluster — plotCellCountsPerCluster" />
+<meta property="og:title" content="Quality control metrics — metrics" />
 
-<meta property="og:description" content="Plot cell counts per cluster" />
+<meta property="og:description" content="Quality control metrics" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,30 +111,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot cell counts per cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCellCountsPerCluster-methods.R'><code>R/plotCellCountsPerCluster-methods.R</code></a></small>
-    <div class="hidden name"><code>plotCellCountsPerCluster.Rd</code></div>
+    <h1>Quality control metrics</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/base-metrics-methods.R'><code>R/base-metrics-methods.R</code></a></small>
+    <div class="hidden name"><code>metrics.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot cell counts per cluster</p>
+    <p>Quality control metrics</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>,
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>,
+  <span class='st'>"DataFrame"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,10 +136,10 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>interestingGroups</th>
-      <td><p><code>character</code>.
-Groups of interest that define the samples. If left unset, defaults to
-<code>sampleName</code>.</p></td>
+      <th>return</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Return type. Uses <code><a href='https://rdrr.io/r/base/match.arg.html'>match.arg()</a></code> internally and defaults
+to the first argument in the <code>character</code> vector.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -157,26 +149,70 @@ Groups of interest that define the samples. If left unset, defaults to
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Show graphical output. Invisibly return <code>ggplot</code>.</p>
+    
+<ul>
+<li><p><code>"tbl_df"</code>: <code>grouped_df</code>.
+Tibble grouped by <code>sampleID</code> column.</p></li>
+<li><p><code>"DataFrame"</code>: <code>DataFrame</code>.
+Row names are identical to the column names of the object, like
+<code><a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>colData()</a></code>.</p></li>
+</ul>
+
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>metrics()</code> takes data stored in <code><a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>colData()</a></code>
+and consistently returns a tibble grouped by sample by default (<code>sampleID</code>).
+It always returns <code>sampleName</code> and <code>interestingGroups</code> columns, even when
+these columns are not defined in <code>colData</code>. This is designed to integrate
+with plotting functions that use ggplot2 internally.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-08-02.</p>
     
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+
+    
+
+<ul>
+<li><p><code>SummarizedExperiment</code>: Metrics are sample level. <code>sampleID</code> column corresponds
+to <code>colnames</code>.</p></li>
+<li><p><code>SingleCellExperiment</code>: Metrics are cell level. <code>cellID</code> column corresponds to
+<code>colnames</code>. Tibble is returned grouped by sample (<code>sampleID</code> column).</p></li>
+</ul>
+
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
-    <span class='no'>Seurat</span>,
     <span class='no'>cell_data_set</span>,
     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
 )
 
-<span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotCellCountsPerCluster-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## cell_data_set ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='fu'>plotCellCountsPerCluster</span>(<span class='no'>object</span>)</div><div class='img'><img src='plotCellCountsPerCluster-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>metrics</span>(<span class='no'>object</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 200 x 5</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   sampleID [1]</span><span>
+#&gt;    cellID                  sampleID sampleName interestingGroups ident
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> cele_009_002_AATATTCGAA unknown  unknown    unknown           1    
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> cele_005_091_TCTAGAACTA unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> cele_007_083_ATCTGCCAAT unknown  unknown    unknown           1    
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> cele_010_091_TGAACGGTAA unknown  unknown    unknown           1    
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> cele_008_092_TGACCGAATC unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> cele_005_089_AATACCAGTT unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> cele_007_044_TGACCGAATC unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> cele_010_091_TATCCTCAAT unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> cele_007_082_TTATTAGTAG unknown  unknown    unknown           1    
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> cele_010_060_ATTCAGGTAC unknown  unknown    unknown           2    
+#&gt; </span><span style='color: #949494;'># … with 190 more rows</span><span></div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>metricsPerSample</span>(<span class='no'>object</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"mean"</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating mean per sample.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 3</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   sampleID [1]</span><span>
+#&gt;   sampleID sampleName interestingGroups
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>            
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> unknown  unknown    unknown          </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -185,7 +221,11 @@ Groups of interest that define the samples. If left unset, defaults to
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

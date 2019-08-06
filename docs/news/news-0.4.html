@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cluster identifier — clusterID • pointillism</title>
+<title>Version 0.4 • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,10 +34,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Cluster identifier — clusterID" />
-
-<meta property="og:description" content="Cluster identifier" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Version 0.4" />
 
 
 
@@ -55,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -111,74 +108,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cluster identifier</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/clusterID-methods.R'><code>R/clusterID-methods.R</code></a></small>
-    <div class="hidden name"><code>clusterID.Rd</code></div>
+      <h1>Changelog <small>0.4</small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    
-    <p>Cluster identifier</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>clusterID</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>clusterID</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>clusterID</span>(<span class='no'>object</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>factor</code>.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Updated 2019-07-31.</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-
-<span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>clusterID</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; ATGCCAGAACGACT CATGGCCTGTGCAT GAACCTGATGAACC TGACTGGATTCTCA AGTCAGACTGCACA 
-#&gt;              0              0              0              0              0 
-#&gt; TCTGATACACGTGT 
-#&gt;              0 
-#&gt; Levels: 0 1 2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; x
-#&gt;  0  1  2 
-#&gt; 36 25 19 </div></pre>
+    <div id="pointillism-0-4-0-2019-08-06" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-4-0-2019-08-06" class="anchor"></a>pointillism 0.4.0 (2019-08-06)</h2>
+<p>Initial support for monocle3 <code>cell_data_set</code> class.</p>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Reworked internal S4 function names.</li>
+<li>Updated internal example data.</li>
+<li>Moved cell-cycle and cell-type markers from Google Sheets here into the package internally at <code>inst/extdata/markers/</code>.</li>
+<li>Working on preliminary support for monocle3 <code>cell_data_set</code>.</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pointillism-0-4-0-2019-08-06">0.4.0</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
 
