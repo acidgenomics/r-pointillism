@@ -114,17 +114,19 @@ NULL
                 show.legend = legend
             ) +
             scale_radius(range = c(0L, dotScale)) +
-            labs(x = "gene", y = "cluster")
+            labs(
+                title = title,
+                subtitle = value,
+                x = "gene",
+                y = "cluster"
+            )
 
         ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
             isTRUE(.hasMultipleSamples(object))
         ) {
-            p <- p +
-                facet_wrap(
-                    facets = vars(!!sym("sampleName"))
-                )
+            p <- p + facet_wrap(facets = vars(!!sym("sampleName")))
         }
 
         if (is(color, "ScaleContinuous")) {
@@ -135,8 +137,7 @@ NULL
     }
 
 formals(`plotDot,SingleCellExperiment`)[
-    c("color","legend")
-    ] <- list(
+    c("color","legend")] <- list(
         color = continuousColorPurpleOrange,
         legend = legend
     )

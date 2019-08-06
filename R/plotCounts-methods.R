@@ -1,11 +1,8 @@
-## FIXME Add cell_data_set support.
-## FIXME Inform the user more clearly about what values we're plotting.
-
-
-
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
+#'
+#' @note Dot geom currently only supports logcounts.
 #' @note Updated 2019-08-06.
 #'
 #' @description Visualize genes on a dot or violin plot.
