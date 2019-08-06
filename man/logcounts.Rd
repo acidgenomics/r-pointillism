@@ -64,3 +64,4 @@ class(logcounts)
 \item \code{monocle3::prepare_cds()}.
 }
 }
+\keyword{internal}

@@ -1,6 +1,7 @@
 #' Log normalized counts
 #'
 #' @name logcounts
+#' @keywords internal
 #' @note Updated 2019-08-05.
 #'
 #' @inheritParams acidroxygen::params

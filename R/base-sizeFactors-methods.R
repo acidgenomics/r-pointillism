@@ -1,6 +1,6 @@
 #' @name sizeFactors
 #' @inherit basejump::sizeFactors
-#'
+#' @keywords internal
 #' @note For `Seurat` objects, use the `Seurat::NormalizeData()` function or the
 #'   sctransform package to normalize counts, rather than using size factors.
 #' @note Updated 2019-08-06.
