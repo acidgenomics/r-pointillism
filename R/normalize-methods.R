@@ -181,7 +181,7 @@ setMethod(
         if (isTRUE(verbose)) {
             message("Normalizing with `monocle3::preprocess_cds()`.")
         }
-        preprocess_cds(
+        monocle3::preprocess_cds(
             cds = object,
             method = "PCA",
             norm_method = "log",
