@@ -11,10 +11,12 @@
 #' @inheritParams acidroxygen::params
 #'
 #' @param object
-#'   Unmodified [Seurat::FindMarkers()] or [Seurat::FindAllMarkers()] return.
-#' @param ranges `GRanges`. Gene annotations. Names must correspond to the
-#'   rownames. The function will automatically subset the ranges and arrange
-#'   them alphabetically.
+#'   Unmodified Seurat marker return `data.frame`.
+#'   - `SeuratMarkers()`: [Seurat::FindMarkers()].
+#'   - `SeuratMarkersPerCluster()`: [Seurat::FindAllMarkers()].
+#' @param ranges `GRanges`.
+#'   Gene annotations. Names must correspond to the rownames. The function will
+#'   automatically subset the ranges and arrange them alphabetically.
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
