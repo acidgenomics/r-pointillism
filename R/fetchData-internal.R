@@ -8,7 +8,7 @@ NULL
 ## Updated 2019-08-05.
 .fetchGeneData <- function(
     object,
-    type = c("logcounts", "normcounts"),
+    value = c("logcounts", "normcounts"),
     genes,
     metadata = FALSE
 ) {
@@ -17,12 +17,12 @@ NULL
         isCharacter(genes),
         isFlag(metadata)
     )
-    type <- match.arg(type)
+    value <- match.arg(value)
 
     rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
 
-    fun <- get(type, inherits = TRUE)
+    fun <- get(value, inherits = TRUE)
     assert(is.function(fun))
     counts <- fun(object)
     counts <- counts[rownames, , drop = FALSE]
@@ -67,7 +67,7 @@ NULL
         as_tibble(rownames = "rowname") %>%
         gather(
             key = "rowname",
-            value = !!sym("counts"),
+            value = !!sym(value),
             !!rownames
         ) %>%
         group_by(!!sym("rowname"))
