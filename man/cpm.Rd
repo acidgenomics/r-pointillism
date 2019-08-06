@@ -9,12 +9,21 @@
 \usage{
 cpm(object, ...)
 
-\S4method{cpm}{SingleCellExperiment}(object)
+\S4method{cpm}{SingleCellExperiment}(object, verbose = FALSE)
 
-\S4method{cpm}{Seurat}(object, assay = NULL)
+\S4method{cpm}{Seurat}(object, assay = NULL, verbose = FALSE)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{verbose}{\code{logical(1)}.
+Run the function with verbose output.}
+
+\item{assay}{\code{vector(1)}.
+Name or index of count matrix slotted in
+\code{\link[SummarizedExperiment:assays]{assays()}}. When passing in a string, the
+name must be defined in
+\code{\link[SummarizedExperiment:assayNames]{assayNames()}}.}
 }
 \value{
 \code{matrix}
@@ -24,21 +33,30 @@ Counts per million
 }
 \examples{
 data(
-    SingleCellExperiment,
     Seurat,
+    SingleCellExperiment,
+    cell_data_set,
     package = "acidtest"
 )
 
 ## SingleCellExperiment ====
 object <- SingleCellExperiment
 object <- estimateSizeFactors(object)
-x <- cpm(object)
-class(x)
-mean(x)
+cpm <- cpm(object)
+class(cpm)
+mean(cpm)
 
 ## Seurat ====
 object <- Seurat
-cpm(object)
+cpm <- cpm(object)
+class(cpm)
+mean(cpm)
+
+## cell_data_set ====
+object <- cell_data_set
+cpm <- cpm(object)
+class(cpm)
+mean(cpm)
 }
 \seealso{
 \itemize{

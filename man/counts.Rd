@@ -15,13 +15,13 @@ counts(object, ...)
 
 \S4method{counts}{Seurat}(object, assay = NULL)
 
-\S4method{logcounts}{Seurat}(object, assay = NULL)
+\S4method{logcounts}{Seurat}(object, assay = NULL, verbose = FALSE)
 
-\S4method{logcounts}{cell_data_set}(object)
+\S4method{logcounts}{cell_data_set}(object, verbose = FALSE)
 
-\S4method{normcounts}{Seurat}(object, assay = NULL)
+\S4method{normcounts}{Seurat}(object, assay = NULL, verbose = FALSE)
 
-\S4method{normcounts}{cell_data_set}(object)
+\S4method{normcounts}{cell_data_set}(object, verbose = FALSE)
 }
 \arguments{
 \item{object}{A SingleCellExperiment object.}
