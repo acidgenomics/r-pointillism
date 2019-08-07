@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Size factor adjusted normalized counts — normcounts • pointillism</title>
+<title>Known markers — KnownMarkers • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,9 +34,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Size factor adjusted normalized counts — normcounts" />
+<meta property="og:title" content="Known markers — KnownMarkers" />
 
-<meta property="og:description" content="Size factor adjusted normalized counts" />
+<meta property="og:description" content="Known markers" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,93 +111,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Size factor adjusted normalized counts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/base-normcounts-methods.R'><code>R/base-normcounts-methods.R</code></a></small>
-    <div class="hidden name"><code>normcounts.Rd</code></div>
+    <h1>Known markers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerators.R'><code>R/AllGenerators.R</code></a></small>
+    <div class="hidden name"><code>KnownMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Size factor adjusted normalized counts</p>
+    <p>Known markers</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>KnownMarkers</span>(<span class='no'>markers</span>, <span class='no'>known</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='co'># S4 method for SeuratMarkersPerCluster,CellTypeMarkers</span>
+<span class='fu'>KnownMarkers</span>(<span class='no'>markers</span>,
+  <span class='no'>known</span>, <span class='kw'>promiscuousThreshold</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>markers</th>
+      <td><p><code>SeuratMarkers</code> or <code>SeuratMarkersPerCluster</code>.</p></td>
     </tr>
     <tr>
-      <th>assay</th>
-      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
-Assay name or index position.</p></td>
+      <th>known</th>
+      <td><p><code>CellTypeMarkers</code>. Grouped by <code>cellType</code> column. Known markers
+<code>data.frame</code> imported by <code>readCellTypeMarkers</code> or pulled from internal
+cell cycle markers data.</p></td>
     </tr>
     <tr>
-      <th>verbose</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Run the function with verbose output.</p></td>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
+      <th>promiscuousThreshold</th>
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>. Minimum number of clusters
+required to consider a gene marker promiscuous. Set to <code>0</code> to disable
+promiscuous marker filtering.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>sparseMatrix</code>.</p>
+    <p><code>KnownMarkers</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-05.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'>
-<ul>
-<li><p><code><a href='normalize.html'>normalize()</a></code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/scater/man/normalizeCounts.html'>scater::normalizeCounts()</a></code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/Seurat/man/NormalizeData.html'>Seurat::NormalizeData()</a></code>.</p></li>
-<li><p><code>monocle3::prepare_cds()</code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/normalized_counts.html'>monocle3::normalized_counts()</a></code>.</p></li>
-</ul>
-</div>
+    <p>Both the <code>markers</code> and <code>known</code> objects must contain Ensembl gene
+identifiers in the <code>geneID</code> column. We must avoid any matching operations
+based on the gene names, since these change often and can mismatch
+easily.</p>
+<p>Updated 2019-08-07.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
-    <span class='no'>Seurat</span>,
-    <span class='no'>SingleCellExperiment</span>,
-    <span class='no'>cell_data_set</span>,
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
-)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cellTypeMarkersList</span>, <span class='no'>seuratAllMarkers</span>)
 
-<span class='co'>## SingleCellExperiment ===</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using mean-ratio method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='input'><span class='no'>normcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>normcounts</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>normcounts</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
-#&gt; attr(,"package")
-#&gt; [1] "Matrix"</div><div class='input'>
-<span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>normcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>normcounts</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>normcounts</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
-#&gt; attr(,"package")
-#&gt; [1] "Matrix"</div><div class='input'>
-<span class='co'>## cell_data_set ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='normalize.html'>normalize</a></span>(<span class='no'>object</span>)
-<span class='no'>normcounts</span> <span class='kw'>&lt;-</span> <span class='fu'>normcounts</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>normcounts</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
-#&gt; attr(,"package")
-#&gt; [1] "Matrix"</div></pre>
+<span class='co'>## SeuratMarkersPerCluster ====</span>
+<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
+<span class='no'>known</span> <span class='kw'>&lt;-</span> <span class='no'>cellTypeMarkersList</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
+
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>KnownMarkers</span>(
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>,
+    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>known</span>
+)
+<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       Length        Class         Mode 
+#&gt;           10 KnownMarkers           S4 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -207,8 +188,6 @@ Run the function with verbose output.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
