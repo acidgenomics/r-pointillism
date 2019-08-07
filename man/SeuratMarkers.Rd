@@ -23,7 +23,7 @@
 Gene annotations. Names must correspond to the rownames. The function will
 automatically subset the ranges and arrange them alphabetically.}
 
-\item{alpha}{\code{numeric(1)}.
+\item{alpha}{\code{numeric(1)} or \code{NULL}.
 Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 }

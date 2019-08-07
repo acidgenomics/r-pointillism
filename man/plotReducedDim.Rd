@@ -157,9 +157,14 @@ plotUMAP(object, ...)
 \item{reduction}{\code{vector(1)}.
 Dimension reduction name or index position.}
 
+\item{dims}{\code{integer}.
+Vector of length 2 that denotes the columns from the reduced dimension
+matrix to use for \code{centerX} and \code{centerY} column calculations. Defaults the
+first and second dimensions.}
+
 \item{interestingGroups}{\code{character}.
-Groups of interest that define the samples. If left unset, defaults to
-\code{sampleName}.}
+Groups of interest to use for visualization.
+Corresponds to factors describing the columns of the object.}
 
 \item{color}{\code{ScaleDiscrete}.
 Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
@@ -170,11 +175,11 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 }}
 
 \item{pointSize}{\code{numeric(1)}.
-Point size for dots in the plot.}
+Point size for dots in the plot.
+In the range of 1-3 is generally recommended.}
 
 \item{pointAlpha}{\code{numeric(1)} (\code{0}-\code{1}).
-Alpha transparency level. Useful when there many points in the dataset
-(e.g. single-cell data), and some points can be masked.}
+Alpha transparency level.}
 
 \item{pointsAsNumbers}{\code{logical(1)}.
 Plot the points as numbers (\code{TRUE}) or dots (\code{FALSE}).}
@@ -187,13 +192,13 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{title}{\code{character(1)}.
-Plot title.}
+Title.}
 
 \item{...}{Additional arguments.}
 }

@@ -37,9 +37,7 @@ plotMarker(object, ...)
 \item{object}{Object.}
 
 \item{genes}{\code{character}.
-Gene identifiers. It is considered better practice to input the stable gene
-identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
-symbols (e.g. "TSPN6"), if possible.}
+Gene identifiers.}
 
 \item{reduction}{\code{vector(1)}.
 Dimension reduction name or index position.}
@@ -58,11 +56,11 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 }}
 
 \item{pointSize}{\code{numeric(1)}.
-Point size for dots in the plot.}
+Point size for dots in the plot.
+In the range of 1-3 is generally recommended.}
 
 \item{pointAlpha}{\code{numeric(1)} (\code{0}-\code{1}).
-Alpha transparency level. Useful when there many points in the dataset
-(e.g. single-cell data), and some points can be masked.}
+Alpha transparency level.}
 
 \item{pointsAsNumbers}{\code{logical(1)}.
 Plot the points as numbers (\code{TRUE}) or dots (\code{FALSE}).}
@@ -75,13 +73,13 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{title}{\code{character(1)}.
-Plot title.}
+Title.}
 
 \item{...}{Additional arguments.}
 }

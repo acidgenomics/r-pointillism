@@ -22,8 +22,8 @@ cellCountsPerCluster(object, ...)
 \item{object}{Object.}
 
 \item{interestingGroups}{\code{character}.
-Groups of interest that define the samples. If left unset, defaults to
-\code{sampleName}.}
+Groups of interest to use for visualization.
+Corresponds to factors describing the columns of the object.}
 
 \item{...}{Additional arguments.}
 }
