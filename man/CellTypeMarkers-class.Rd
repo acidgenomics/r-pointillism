@@ -25,10 +25,3 @@ defined in \code{\link[S4Vectors:metadata]{metadata()}}.
 \note{
 Updated 2019-07-31.
 }
-\seealso{
-Other S4 classes: \code{\link{CellCycleMarkers-class}},
-  \code{\link{KnownMarkers-class}},
-  \code{\link{SeuratMarkers-class}},
-  \code{\link{SeuratMarkersPerCluster-class}}
-}
-\concept{S4 classes}

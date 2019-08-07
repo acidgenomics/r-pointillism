@@ -6,13 +6,11 @@
 
 
 
-## CellCycleMarkers ============================================================
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @family S4 classes
 #' @note Updated 2019-07-31.
 #' @export
 #'
@@ -43,13 +41,11 @@ setValidity(
 
 
 
-## CellTypeMarkers =============================================================
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @family S4 classes
 #' @note Updated 2019-07-31.
 #' @export
 #'
@@ -80,12 +76,10 @@ setValidity(
 
 
 
-## Known Markers ===============================================================
 #' Known markers
 #'
 #' Class containing known markers detected.
 #'
-#' @family S4 classes
 #' @note Updated 2019-07-31.
 #' @export
 #'
@@ -123,12 +117,10 @@ setValidity(
 
 
 
-## Seurat Markers ==============================================================
 #' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
-#' @family S4 classes
 #' @note Updated 2019-08-06.
 #' @export
 #'
@@ -160,12 +152,10 @@ setValidity(
 
 
 
-## SeuratMarkersPerCluster =====================================================
 #' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.
 #'
-#' @family S4 classes
 #' @note Updated 2019-08-06.
 #' @export
 #'
