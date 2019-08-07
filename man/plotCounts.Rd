@@ -79,9 +79,7 @@ plotViolin(object, ...)
 \item{object}{Object.}
 
 \item{genes}{\code{character}.
-Gene identifiers. It is considered better practice to input the stable gene
-identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
-symbols (e.g. "TSPN6"), if possible.}
+Gene identifiers.}
 
 \item{value}{Value to assign.}
 
@@ -93,10 +91,10 @@ Currently supports \code{"dot"} and \code{"violin"}.}
 Visualize the distributions per sample.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{title}{\code{character(1)}.
-Plot title.}
+Title.}
 
 \item{colMin}{\code{numeric(1)}.
 Minimum scaled average expression threshold. Everything smaller will be
@@ -121,9 +119,9 @@ are desired, we recommend using \code{\link[ggplot2:scale_color_manual]{ggplot2:
 To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
-\item{scale}{\code{character(1)}.
-Whether the values should be centered and scaled in either the row or
-column direction ("\code{row}", "\code{column}"), or remain unscaled ("\code{none}").}
+\item{scale}{if "area" (default), all violins have the same area (before trimming
+the tails). If "count", areas are scaled proportionally to the number of
+observations. If "width", all violins have the same maximum width.}
 
 \item{...}{Additional arguments.}
 }
