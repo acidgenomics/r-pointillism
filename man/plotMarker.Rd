@@ -10,7 +10,7 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reduction = 1L, expression = c("mean", "sum"),
+  reduction = "UMAP", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -21,7 +21,7 @@ plotMarker(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
-\S4method{plotMarker}{Seurat}(object, genes, reduction = 1L,
+\S4method{plotMarker}{Seurat}(object, genes, reduction = "UMAP",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
@@ -108,7 +108,11 @@ genes <- counts(object) \%>\%
     head(n = 4L) \%>\%
     names()
 print(genes)
-plotMarker(object, genes = genes)
+plotMarker(
+    object = object,
+    genes = genes,
+    reduction = "UMAP"
+)
 
 ## cell_data_set ====
 object = cell_data_set
@@ -118,7 +122,11 @@ genes <- counts(object) \%>\%
     head(n = 4L) \%>\%
     names()
 print(genes)
-plotMarker(object, genes = genes)
+plotMarker(
+    object = object,
+    genes = genes,
+    reduction = "UMAP"
+)
 }
 \author{
 Michael Steinbaugh, Rory Kirchner

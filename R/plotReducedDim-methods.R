@@ -5,7 +5,6 @@
 #' @inherit bioverbs::plotReducedDim
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
@@ -42,11 +41,11 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotReducedDim(object)
+#' plotReducedDim(object, reduction = "UMAP")
 #'
 #' ## cell_data_set ====
 #' object <- cell_data_set
-#' plotReducedDim(object)
+#' plotReducedDim(object, reduction = "UMAP")
 NULL
 
 

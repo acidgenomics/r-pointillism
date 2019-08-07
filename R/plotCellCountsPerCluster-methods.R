@@ -2,7 +2,6 @@
 #' @inherit bioverbs::plotCellCountsPerCluster
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'

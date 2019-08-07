@@ -28,7 +28,18 @@ plotTSNE(object, ...)
 
 plotUMAP(object, ...)
 
-\S4method{plotReducedDim}{SingleCellExperiment}(object, reduction = 1L,
+\S4method{plotReducedDim}{SingleCellExperiment}(object,
+  reduction = "UMAP", dims = c(1L, 2L), interestingGroups = NULL,
+  color = getOption("acid.discrete.color", default = NULL),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotReducedDim}{Seurat}(object, reduction = "UMAP",
   dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -39,18 +50,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotReducedDim}{Seurat}(object, reduction = 1L, dims = c(1L,
-  2L), interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default = NULL),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE), title = NULL)
-
-\S4method{plotReducedDim}{cell_data_set}(object, reduction = 1L,
+\S4method{plotReducedDim}{cell_data_set}(object, reduction = "UMAP",
   dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -240,11 +240,11 @@ data(
 
 ## Seurat ====
 object <- Seurat
-plotReducedDim(object)
+plotReducedDim(object, reduction = "UMAP")
 
 ## cell_data_set ====
 object <- cell_data_set
-plotReducedDim(object)
+plotReducedDim(object, reduction = "UMAP")
 }
 \seealso{
 \itemize{
