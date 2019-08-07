@@ -199,9 +199,7 @@
     <tr>
       <th>genes</th>
       <td><p><code>character</code>.
-Gene identifiers. It is considered better practice to input the stable gene
-identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
-symbols (e.g. "TSPN6"), if possible.</p></td>
+Gene identifiers.</p></td>
     </tr>
     <tr>
       <th>value</th>
@@ -221,12 +219,12 @@ Visualize the distributions per sample.</p></td>
     <tr>
       <th>legend</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Show plot legend.</p></td>
+Include plot legend.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Plot title.</p></td>
+Title.</p></td>
     </tr>
     <tr>
       <th>colMin</th>
@@ -262,9 +260,9 @@ are desired, we recommend using <code><a href='https://ggplot2.tidyverse.org/ref
     </tr>
     <tr>
       <th>scale</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Whether the values should be centered and scaled in either the row or
-column direction ("<code>row</code>", "<code>column</code>"), or remain unscaled ("<code>none</code>").</p></td>
+      <td><p>if "area" (default), all violins have the same area (before trimming
+the tails). If "count", areas are scaled proportionally to the number of
+observations. If "width", all violins have the same maximum width.</p></td>
     </tr>
     <tr>
       <th>...</th>

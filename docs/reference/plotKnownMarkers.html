@@ -126,11 +126,12 @@
 
 <span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>,
-  <span class='no'>markers</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+  <span class='no'>markers</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat,KnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,8 +142,7 @@
     </tr>
     <tr>
       <th>markers</th>
-      <td><p><code>grouped_df</code>.
-Marker genes, grouped by <code>"cellType"</code>.</p></td>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
       <th>reduction</th>
@@ -184,7 +184,8 @@ Invisibly return a <code>ggplot</code> <code>list</code>.</p>
 <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seuratKnownMarkers</span>
 <span class='fu'>plotKnownMarkers</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>,
+    <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
 )</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Dendritic Cell {.tabset}
