@@ -5,6 +5,7 @@
 \alias{cellCountsPerCluster}
 \alias{cellCountsPerCluster,SingleCellExperiment-method}
 \alias{cellCountsPerCluster,Seurat-method}
+\alias{cellCountsPerCluster,cell_data_set-method}
 \title{Cell counts per cluster}
 \usage{
 cellCountsPerCluster(object, ...)
@@ -13,13 +14,16 @@ cellCountsPerCluster(object, ...)
   interestingGroups = NULL)
 
 \S4method{cellCountsPerCluster}{Seurat}(object, interestingGroups = NULL)
+
+\S4method{cellCountsPerCluster}{cell_data_set}(object,
+  interestingGroups = NULL)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{interestingGroups}{\code{character}.
-Groups of interest that define the samples. If left unset, defaults to
-\code{sampleName}.}
+Groups of interest to use for visualization.
+Corresponds to factors describing the columns of the object.}
 
 \item{...}{Additional arguments.}
 }
@@ -33,10 +37,19 @@ Cell counts per cluster
 Updated 2019-07-31.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
+x <- cellCountsPerCluster(object)
+print(x)
+
+## cell_data_set ===
+object <- cell_data_set
 x <- cellCountsPerCluster(object)
 print(x)
 }

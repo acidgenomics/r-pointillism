@@ -5,27 +5,61 @@ NULL
 
 
 
-## Updated 2019-07-31.
+#' Bind all dimension reduction matrices into a single data frame.
+#' @note Updated 2019-08-06.
+#' @noRd
+.bindReducedDims <- function(object) {
+    reducedDims <- reducedDims(object)
+    assert(hasNames(reducedDims))
+
+    ## Handle undefined column names here, which is currently the case with
+    ## monocle3 UMAP (but not PCA) output.
+    if (!isTRUE(all(bapply(X = reducedDims, FUN = hasColnames)))) {
+        list <- mapply(
+            name = names(reducedDims),
+            assay = reducedDims,
+            FUN = function(name, assay) {
+                if (!hasColnames(assay)) {
+                    colnames(assay) <- paste0(name, seq_len(ncol(assay)))
+                }
+                assay
+            }
+        )
+        reducedDims <- as(list, "SimpleList")
+    }
+
+    out <- do.call(what = cbind, args = reducedDims)
+    out <- as(out, "DataFrame")
+    assert(
+        hasValidDimnames(out),
+        identical(x = colnames(object), y = rownames(out))
+    )
+    out
+}
+
+
+
+## Updated 2019-08-05.
 .fetchGeneData <- function(
     object,
+    value = c("logcounts", "normcounts"),
     genes,
-    assay = "logcounts",
     metadata = FALSE
 ) {
     validObject(object)
-    object <- as(object, "SingleCellExperiment")
     assert(
-        isString(assay),
-        isSubset(assay, assayNames(object)),
+        isCharacter(genes),
         isFlag(metadata)
     )
+    value <- match.arg(value)
 
-    rownames <- mapGenesToRownames(object, genes)
+    rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
 
-    counts <- assays(object) %>%
-        .[[assay]] %>%
-        .[rownames, , drop = FALSE]
+    fun <- get(value, inherits = TRUE)
+    assert(is.function(fun))
+    counts <- fun(object)
+    counts <- counts[rownames, , drop = FALSE]
 
     ## Transpose, putting the gene rownames into the columns.
     if (is(counts, "sparseMatrix")) {
@@ -36,7 +70,7 @@ NULL
     assert(identical(class(counts), class(data)))
 
     ## Early return the transposed matrix, if we don't want metadata.
-    ## This return is used by `.fetchReducedDimExpressionData`.
+    ## This return is used by `.fetchReductionExpressionData()`.
     if (!isTRUE(metadata)) {
         return(data)
     }
@@ -67,7 +101,7 @@ NULL
         as_tibble(rownames = "rowname") %>%
         gather(
             key = "rowname",
-            value = !!sym(assay),
+            value = !!sym(value),
             !!rownames
         ) %>%
         group_by(!!sym("rowname"))
@@ -77,61 +111,63 @@ NULL
     assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "tbl_df")
     data <- left_join(data, g2s, by = "rowname")
-    ## Always sanitize row names into valid names before DataFrame coercion.
-    data[["rowname"]] <- makeNames(data[["rowname"]])
-    ## Otherwise, you'll intentionally hit this error:
-    ## nolint start
-    ## > └─methods::as(data, "DataFrame")
-    ## >   └─transformer:::asMethod(object)
-    ## >     └─transformer::matchRowNameColumn(to)
-    ## >       └─goalie::assert(validNames(rownames))
-    ##
-    ## nolint end
+    data[["rowname"]] <- NULL
+    data <- data[, sort(colnames(data))]
     as(data, "DataFrame")
 }
 
 
 
-## Updated 2019-07-31.
-.fetchReducedDimData <- function(
+## Updated 2019-08-02.
+.fetchReductionData <- function(
     object,
-    reducedDim,
-    dimsUse = seq_len(2L)
+    reduction,
+    dims = seq_len(2L)
 ) {
     validObject(object)
-    object <- as(object, "SingleCellExperiment")
     assert(
-        .hasIdent(object),
-        isScalar(reducedDim),
-        hasLength(dimsUse, n = 2L),
-        all(isIntegerish(dimsUse))
+        .hasClusters(object),
+        isScalar(reduction),
+        hasLength(dims, n = 2L),
+        all(isIntegerish(dims))
     )
 
-    ## Reduced dimension coordinates.
-    assert(isSubset(reducedDim, reducedDimNames(object)))
-    reducedDimData <- reducedDims(object)[[reducedDim]]
-    ## Coerce to DataFrame, for `cbind` call below.
-    reducedDimData <- as(reducedDimData, "DataFrame")
+    ## Get reduced dimension coordinates. Map assay position to name, which
+    ## we're using below to fix the naming inconsistencies in monocle3.
+    if (!isString(reduction)) {
+        reduction <- reducedDimNames(object)[[reduction]]
+    }
+    ## This step will run through on mismatch, unless we check for error above.
+    reductionData <- reducedDim(object, type = reduction)
+    assert(hasLength(reductionData))
+    ## Handle undefined column names here, which is currently the case with
+    ## monocle3 UMAP (but not PCA) output.
+    if (!hasColnames(reductionData)) {
+        colnames(reductionData) <-
+            paste0(reduction, seq_len(ncol(reductionData)))
+    }
+    ## Coercing to DataFrame, for `cbind` call below.
+    reductionData <- as(reductionData, "DataFrame")
 
     ## Cellular barcode metrics.
     colData <- metrics(object, return = "DataFrame")
     assert(
         isSubset("ident", colnames(colData)),
         identical(
-            x = rownames(reducedDimData),
+            x = rownames(reductionData),
             y = rownames(colData)
         ),
         areDisjointSets(
-            x = colnames(reducedDimData),
+            x = colnames(reductionData),
             y = colnames(colData)
         )
     )
 
-    dimCols <- colnames(reducedDimData)[dimsUse]
+    dimCols <- colnames(reductionData)[dims]
     assert(is.character(dimCols))
 
     ## Bind the data frames.
-    data <- cbind(reducedDimData, colData)
+    data <- cbind(reductionData, colData)
     assert(is(data, "DataFrame"))
 
     ## Coerce to long format DataFrame.
@@ -152,21 +188,21 @@ NULL
     data
 }
 
-formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
-    list(dimsUse = dimsUse, reducedDim = reducedDim)
+formals(.fetchReductionData)[c("dims", "reduction")] <-
+    list(dims = dims, reduction = reduction)
 
 
 
-## Updated 2019-07-31.
-.fetchReducedDimExpressionData <- function(
+## Updated 2019-08-02.
+.fetchReductionExpressionData <- function(
     object,
     genes,
-    reducedDim
+    reduction
 ) {
     validObject(object)
     assert(
         is.character(genes),
-        isScalar(reducedDim)
+        isScalar(reduction)
     )
 
     rownames <- mapGenesToRownames(object, genes = genes)
@@ -175,7 +211,7 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
     geneCounts <- .fetchGeneData(
         object = object,
         genes = rownames,
-        assay = "logcounts",
+        value = "logcounts",
         metadata = FALSE
     )
     assert(identical(
@@ -195,14 +231,48 @@ formals(.fetchReducedDimData)[c("dimsUse", "reducedDim")] <-
     sum <- rowSums(geneCounts)
 
     ## Fetch reduced dim data.
-    reducedDimData <- .fetchReducedDimData(
+    reductionData <- .fetchReductionData(
         object = object,
-        reducedDim = reducedDim
+        reduction = reduction
     )
 
-    data <- cbind(reducedDimData, mean, sum)
+    data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
     data
 }
 
-formals(.fetchReducedDimExpressionData)[["reducedDim"]] <- reducedDim
+formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
+
+
+
+## Updated 2019-08-03.
+.getSeuratStash <- function(object, name) {
+    assert(
+        is(object, "Seurat"),
+        isString(name)
+    )
+
+    misc <- slot(object, name = "misc")
+
+    ## Early return if the `misc` slot is `NULL`.
+    if (is.null(misc)) {
+        return(NULL)
+    }
+
+    ## Look first directly in `object@misc` slot.
+    x <- misc[[name]]
+    if (!is.null(x)) {
+        return(x)
+    }
+
+    ## Next, handle legacy `bcbio` stash list inside `object@misc`.
+    ## As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(misc)) {
+        x <- misc[["bcbio"]][[name]]
+        if (!is.null(x)) {
+            return(x)
+        }
+    }
+
+    NULL
+}

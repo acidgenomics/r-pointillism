@@ -1,18 +1,21 @@
 context("plotPCElbow")
 
-## We're testing here to ensure that our seurat matches pbmc_small.
+objects <- list(
+    Seurat = seurat,
+    cell_data_set = cds
+)
 
 with_parameters_test_that(
-    "Seurat", {
+    "plotPCElbow", {
         x <- plotPCElbow(object)
-        expect_identical(x, seq)
+        expect_identical(
+            object = attr(x, "elbow"),
+            expected = elbow
+        )
     },
-    object = list(
-        seurat,
-        Seurat::pbmc_small
-    ),
-    seq = list(
-        seq_len(5L),
-        seq_len(5L)
+    object = objects,
+    elbow = list(
+        Seurat = 10L,
+        cell_data_set = 16L
     )
 )

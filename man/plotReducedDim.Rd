@@ -8,12 +8,16 @@
 \alias{plotUMAP}
 \alias{plotReducedDim,SingleCellExperiment-method}
 \alias{plotReducedDim,Seurat-method}
+\alias{plotReducedDim,cell_data_set-method}
 \alias{plotTSNE,SingleCellExperiment-method}
 \alias{plotTSNE,Seurat-method}
+\alias{plotTSNE,cell_data_set-method}
 \alias{plotUMAP,SingleCellExperiment-method}
 \alias{plotUMAP,Seurat-method}
+\alias{plotUMAP,cell_data_set-method}
 \alias{plotPCA,SingleCellExperiment-method}
 \alias{plotPCA,Seurat-method}
+\alias{plotPCA,cell_data_set-method}
 \title{Plot reduced dimensions}
 \usage{
 plotReducedDim(object, ...)
@@ -24,8 +28,8 @@ plotTSNE(object, ...)
 
 plotUMAP(object, ...)
 
-\S4method{plotReducedDim}{SingleCellExperiment}(object, reducedDim,
-  dimsUse = c(1L, 2L), interestingGroups = NULL,
+\S4method{plotReducedDim}{SingleCellExperiment}(object,
+  reduction = "UMAP", dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -35,8 +39,8 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotReducedDim}{Seurat}(object, reducedDim, dimsUse = c(1L,
-  2L), interestingGroups = NULL,
+\S4method{plotReducedDim}{Seurat}(object, reduction = "UMAP",
+  dims = c(1L, 2L), interestingGroups = NULL,
   color = getOption("acid.discrete.color", default = NULL),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -46,7 +50,18 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotReducedDim}{cell_data_set}(object, reduction = "UMAP",
+  dims = c(1L, 2L), interestingGroups = NULL,
+  color = getOption("acid.discrete.color", default = NULL),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotTSNE}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -56,7 +71,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotTSNE}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -66,7 +81,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotTSNE}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -76,7 +91,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotUMAP}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -86,7 +101,7 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{SingleCellExperiment}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -96,7 +111,37 @@ plotUMAP(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotPCA}{Seurat}(object, dimsUse = c(1L, 2L),
+\S4method{plotUMAP}{cell_data_set}(object, dims = c(1L, 2L),
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotPCA}{SingleCellExperiment}(object, dims = c(1L, 2L),
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotPCA}{Seurat}(object, dims = c(1L, 2L),
+  interestingGroups = NULL, color = getOption("acid.discrete.color",
+  default = NULL), pointSize = getOption("acid.pointSize", default =
+  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
+  label = getOption("acid.label", default = TRUE),
+  labelSize = getOption("acid.labelSize", default = 6L),
+  dark = getOption("acid.dark", default = FALSE),
+  legend = getOption("acid.legend", default = TRUE), title = NULL)
+
+\S4method{plotPCA}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
   default = NULL), pointSize = getOption("acid.pointSize", default =
   0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -109,19 +154,17 @@ plotUMAP(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
-\item{dimsUse}{\code{integer}.
+\item{dims}{\code{integer}.
 Vector of length 2 that denotes the columns from the reduced dimension
 matrix to use for \code{centerX} and \code{centerY} column calculations. Defaults the
 first and second dimensions.}
 
 \item{interestingGroups}{\code{character}.
-Groups of interest that define the samples. If left unset, defaults to
-\code{sampleName}.}
+Groups of interest to use for visualization.
+Corresponds to factors describing the columns of the object.}
 
 \item{color}{\code{ScaleDiscrete}.
 Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
@@ -132,11 +175,11 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 }}
 
 \item{pointSize}{\code{numeric(1)}.
-Point size for dots in the plot.}
+Point size for dots in the plot.
+In the range of 1-3 is generally recommended.}
 
 \item{pointAlpha}{\code{numeric(1)} (\code{0}-\code{1}).
-Alpha transparency level. Useful when there many points in the dataset
-(e.g. single-cell data), and some points can be masked.}
+Alpha transparency level.}
 
 \item{pointsAsNumbers}{\code{logical(1)}.
 Plot the points as numbers (\code{TRUE}) or dots (\code{FALSE}).}
@@ -149,13 +192,13 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{title}{\code{character(1)}.
-Plot title.}
+Title.}
 
 \item{...}{Additional arguments.}
 }
@@ -163,14 +206,14 @@ Plot title.}
 \code{ggplot}.
 }
 \description{
-Plot reduced dimensions
+Plot cell-level dimensionality reduction.
 }
 \details{
 Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-02.
 }
 \section{Reduction types}{
 
@@ -185,36 +228,28 @@ Updated 2019-07-31.
 
 
 \href{https://github.com/lmcinnes/umap}{UMAP} calculation in R requires the \href{https://www.python.org}{Python} module \code{umap-learn}.
-
-We recommend installing this with \href{https://conda.io}{conda}:\preformatted{conda install -c conda-forge umap-learn
-}
-
-The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticulate/}{reticulate}. Reticulate works
-reliably when setting \code{RETICULATE_PYTHON} to point to your conda python
-binary. Export this variable in  \code{~/.Renviron}.
-
-See \code{\link[base:Sys.getenv]{Sys.getenv}} for details on the R system environment.
+The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticulate/}{reticulate}.
 }
 
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
+plotReducedDim(object, reduction = "UMAP")
 
-## UMAP
-plotUMAP(object)
-
-## t-SNE
-plotTSNE(object)
-plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-
-## PCA
-plotPCA(object)
+## cell_data_set ====
+object <- cell_data_set
+plotReducedDim(object, reduction = "UMAP")
 }
 \seealso{
 \itemize{
 \item \code{Seurat::DimPlot()}.
+\item \code{monocle3::plot_cells()}.
 \item \href{https://satijalab.org/seurat/mca.html}{Seurat Mouse Cell Atlas vignette}.
 }
 }

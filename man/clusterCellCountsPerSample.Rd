@@ -5,6 +5,7 @@
 \alias{clusterCellCountsPerSample}
 \alias{clusterCellCountsPerSample,SingleCellExperiment-method}
 \alias{clusterCellCountsPerSample,Seurat-method}
+\alias{clusterCellCountsPerSample,cell_data_set-method}
 \title{Cluster cell counts per sample}
 \usage{
 clusterCellCountsPerSample(object, ...)
@@ -12,6 +13,8 @@ clusterCellCountsPerSample(object, ...)
 \S4method{clusterCellCountsPerSample}{SingleCellExperiment}(object)
 
 \S4method{clusterCellCountsPerSample}{Seurat}(object)
+
+\S4method{clusterCellCountsPerSample}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -29,10 +32,19 @@ Cluster cell counts per sample
 Updated 2019-07-31.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
+x <- clusterCellCountsPerSample(object)
+print(x)
+
+## cell_data_set ====
+object <- cell_data_set
 x <- clusterCellCountsPerSample(object)
 print(x)
 }

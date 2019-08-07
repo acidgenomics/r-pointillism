@@ -1,10 +1,8 @@
 #' @name plotFeature
 #' @inherit bioverbs::plotFeature
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-06.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
+#' @inheritParams acidroxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #' @param ... Additional arguments.
@@ -14,11 +12,27 @@
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotFeature(object, features = c("nCount_RNA", "nFeature_RNA"))
+#' plotFeature(
+#'     object = object,
+#'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
+#'     reduction = "UMAP"
+#' )
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' plotFeature(
+#'     object = object,
+#'     features = c("PC1", "PC2"),
+#'     reduction = "UMAP"
+#' )
 NULL
 
 
@@ -33,12 +47,12 @@ NULL
 
 
 ## Note: We aren't using `title` argument here.
-## Updated 2019-07-31.
+## Updated 2019-08-06.
 `plotFeature,SingleCellExperiment` <-  # nolint
     function(
         object,
         features,
-        reducedDim,
+        reduction,
         color,
         pointSize,
         pointAlpha,
@@ -56,9 +70,9 @@ NULL
         }
 
         ## Assert checks -------------------------------------------------------
-        assert(isCharacter(features))
-        reducedDim <- match.arg(reducedDim)
         assert(
+            isCharacter(features),
+            isScalar(reduction),
             isGGScale(
                 x = color,
                 scale = "continuous",
@@ -81,32 +95,45 @@ NULL
             fill <- "white"
         }
 
-        data <- .fetchReducedDimData(
+        data <- .fetchReductionData(
             object = object,
-            reducedDim = reducedDim
+            reduction = reduction
         )
 
         ## Label the axes.
         axes <- colnames(data)[seq_len(2L)]
 
         ## If the features are not defined, attempt to merge all reduced dims
-        ## information before stopping
+        ## information before stopping.
         if (!all(features %in% colnames(data))) {
-            reducedDimsData <- do.call(
-                what = cbind,
-                args = reducedDims(object)
-            )
-            assert(identical(rownames(data), rownames(reducedDimsData)))
-            reducedDimsData <- camel(reducedDimsData)
-            data <- data %>%
-                .[, setdiff(colnames(.), colnames(reducedDimsData))] %>%
-                cbind(reducedDimsData)
+            reductionData <- .bindReducedDims(object)
+            data <- data[, setdiff(colnames(data), colnames(reductionData))]
+            data <- cbind(data, reductionData)
         }
-        assert(isSubset(features, colnames(data)))
 
-        ## Need to add pointsAsNumbers support.
-        if (isTRUE(pointsAsNumbers)) {
-            stop("pointsAsNumbers isn't supported yet")
+        ## Only supporting visualization of numeric column metadata.
+        supported <- bapply(X = data, FUN = is.numeric)
+        supported <- names(supported)[supported]
+        ## These values are required for dim reduction labeling.
+        blacklist <- c("centerX", "centerY", "x", "y")
+        supported <- setdiff(supported, blacklist)
+        if (!isSubset(features, supported)) {
+            setdiff <- setdiff(features, supported)
+            stop(sprintf(
+                fmt = paste0(
+                    "%s ",
+                    ngettext(
+                        n = length(setdiff),
+                        msg1 = "feature",
+                        msg2 = "features"
+                    ),
+                    " not defined: %s\n",
+                    "Available:\n%s"
+                ),
+                length(setdiff),
+                toString(setdiff, width = 200L),
+                printString(supported)
+            ))
         }
 
         plotlist <- lapply(features, function(feature) {
@@ -115,14 +142,34 @@ NULL
                 mapping = aes(
                     x = !!sym("x"),
                     y = !!sym("y"),
-                    color = !!sym(feature)
+                    colour = !!sym(feature)
                 )
-            ) +
-                geom_point(
-                    alpha = pointAlpha,
-                    size = pointSize
-                ) +
+            )
+
+            if (isTRUE(pointsAsNumbers)) {
+                if (pointSize < 4L) pointSize <- 4L
+                p <- p +
+                    geom_text(
+                        mapping = aes(
+                            x = !!sym("x"),
+                            y = !!sym("y"),
+                            label = !!sym("ident"),
+                            color = !!sym(feature)
+                        ),
+                        alpha = pointAlpha,
+                        size = pointSize
+                    )
+            } else {
+                p <- p +
+                    geom_point(
+                        alpha = pointAlpha,
+                        size = pointSize
+                    )
+            }
+
+            p <- p +
                 labs(
+                    colour = NULL,
                     x = axes[[1L]],
                     y = axes[[2L]],
                     title = feature
@@ -141,7 +188,7 @@ NULL
                             y = !!sym("centerY"),
                             label = !!sym("ident")
                         ),
-                        color = labelColor,
+                        colour = labelColor,
                         size = labelSize,
                         fontface = "bold"
                     )
@@ -186,7 +233,7 @@ formals(`plotFeature,SingleCellExperiment`)[c(
     "pointAlpha",
     "pointSize",
     "pointsAsNumbers",
-    "reducedDim"
+    "reduction"
 )] <- list(
     color = continuousColor,
     dark = dark,
@@ -197,7 +244,7 @@ formals(`plotFeature,SingleCellExperiment`)[c(
     pointAlpha = pointAlpha,
     pointSize = pointSize,
     pointsAsNumbers = pointsAsNumbers,
-    reducedDim = reducedDim
+    reduction = reduction
 )
 
 

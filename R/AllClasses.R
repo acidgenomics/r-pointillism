@@ -6,21 +6,22 @@
 
 
 
-## CellCycleMarkers ============================================================
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @family S4 classes
 #' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellCycleMarkers",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "CellCycleMarkers",
+    method = function(object) {
         validate(
             identical(
                 x = lapply(object[[1L]], class),
@@ -40,21 +41,22 @@ setClass(
 
 
 
-## CellTypeMarkers =============================================================
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @family S4 classes
 #' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `CellTypeMarkers`
 setClass(
     Class = "CellTypeMarkers",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "CellTypeMarkers",
+    method = function(object) {
         validate(
             identical(
                 x = lapply(object[[1L]], class),
@@ -74,22 +76,25 @@ setClass(
 
 
 
-## Known Markers ===============================================================
 #' Known markers
 #'
 #' Class containing known markers detected.
 #'
-#' @family S4 classes
+#' Results are grouped by `cellType` column and arranged by adjusted *P* value
+#' (`padj`).
+#'
 #' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `KnownMarkers`.
-#'   Results are grouped by `cellType` column and arranged by adjusted *P* value
-#'   (`padj`).
 setClass(
     Class = "KnownMarkers",
-    contains = "DataFrame",
-    validity = function(object) {
+    contains = "DataFrame"
+)
+## Consider requiring "avgLogFC" column.
+setValidity(
+    Class = "KnownMarkers",
+    method = function(object) {
         validate(
             isSubset(
                 x = c(
@@ -113,21 +118,23 @@ setClass(
 
 
 
-## Seurat Markers ==============================================================
 #' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
-#' @family S4 classes
-#' @note Updated 2019-07-31.
+#' Results are arranged by adjusted *P* value (`padj`).
+#'
+#' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkers`.
-#'   Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
-    contains = "DataFrame",
-    validity = function(object) {
+    contains = "DataFrame"
+)
+setValidity(
+    Class = "SeuratMarkers",
+    method = function(object) {
         validate(
             hasRownames(object),
             identical(
@@ -147,22 +154,23 @@ setClass(
 
 
 
-## SeuratMarkersPerCluster =====================================================
 #' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.
 #'
-#' @family S4 classes
-#' @note Updated 2019-07-31.
+#' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
+#'
+#' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkersPerCluster`.
-#'   Results are split per `cluster` and arranged by adjusted *P* value
-#'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",
-    contains = "CompressedSplitDataFrameList",
-    validity = function(object) {
+    contains = "CompressedSplitDataFrameList"
+)
+setValidity(
+    Class = "SeuratMarkersPerCluster",
+    method = function(object) {
         validate(
             all(grepl("^cluster", names(object))),
             identical(

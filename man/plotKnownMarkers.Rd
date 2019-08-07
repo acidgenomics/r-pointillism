@@ -10,22 +10,19 @@
 plotKnownMarkers(object, markers, ...)
 
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
-  markers, reducedDim = "UMAP", headerLevel = 2L, progress = FALSE,
+  markers, reduction = "UMAP", headerLevel = 2L, progress = FALSE,
   ...)
 
 \S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
-  reducedDim = "UMAP", headerLevel = 2L, progress = FALSE, ...)
+  reduction = "UMAP", headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{markers}{\code{grouped_df}.
-Marker genes, grouped by \code{"cellType"}.}
+\item{markers}{Object.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
@@ -43,7 +40,7 @@ Invisibly return a \code{ggplot} \code{list}.
 Plot known markers
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-02.
 }
 \examples{
 data(Seurat, package = "acidtest")
@@ -54,6 +51,7 @@ object <- Seurat
 markers <- seuratKnownMarkers
 plotKnownMarkers(
     object = object,
-    markers = markers
+    markers = markers,
+    reduction = "UMAP"
 )
 }

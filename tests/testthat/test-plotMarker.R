@@ -22,28 +22,11 @@ with_parameters_test_that(
 
 context("plotKnownMarkers")
 
+markers <- head(seuratKnownMarkers, n = 2L)
 with_parameters_test_that(
     "plotKnownMarkers", {
         invisible(capture.output(
-            p <- plotKnownMarkers(
-                object = object,
-                markers = seuratKnownMarkers
-            )
-        ))
-        expect_type(p, "list")
-    },
-    object = objects
-)
-
-
-
-context("plotTopMarkers")
-
-with_parameters_test_that(
-    "plotTopMarkers", {
-        markers <- head(seuratAllMarkers, n = 2L)
-        invisible(capture.output(
-            x <- plotTopMarkers(
+            x <- plotKnownMarkers(
                 object = object,
                 markers = markers
             )
@@ -53,3 +36,20 @@ with_parameters_test_that(
     },
     object = objects
 )
+
+
+
+context("plotTopMarkers")
+
+test_that("Seurat", {
+    object <- seurat
+    markers <- head(seuratAllMarkers, n = 2L)
+    invisible(capture.output(
+        x <- plotTopMarkers(
+            object = object,
+            markers = markers
+        )
+    ))
+    expect_type(x, "list")
+    expect_s3_class(x[[1L]][[1L]], "ggplot")
+})

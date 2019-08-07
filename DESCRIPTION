@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.4.0
-Date: 2019-07-31
+Date: 2019-08-07
 Authors@R: c(
     person(
         given = "Michael",
@@ -32,19 +32,23 @@ LazyData: false
 Depends:
     R (>= 3.5),
     SingleCellExperiment (>= 1.4),
-    basejump (>= 0.11.3)
+    basejump (>= 0.11.4)
 Imports:
-    acidplots (>= 0.2.2),
-    bioverbs (>= 0.2),
-    goalie (>= 0.3),
+    acidplots (>= 0.2.10),
+    bioverbs (>= 0.2.2),
+    goalie (>= 0.3.1),
+    monocle3 (>= 0.1.2),
     BiocGenerics,
     BiocParallel,
+    DelayedArray,
+    DelayedMatrixStats,
     DESeq2 (>= 1.22),
     S4Vectors,
     SummarizedExperiment,
     edgeR (>= 3.24),
+    scater,
     Matrix (>= 1.2),
-    Seurat (>= 3.0),
+    Seurat (>= 3.0.2),
     cowplot (>= 0.9),
     dplyr (>= 0.8),
     ggplot2 (>= 3.1),
@@ -59,9 +63,9 @@ Imports:
     stats,
     utils
 Suggests:
-    acidtest (>= 0.2.1),
+    acidroxygen (>= 0.0.1),
+    acidtest (>= 0.2.2),
     BiocStyle,
-    monocle3 (>= 0.1.2),
     splatter,
     knitr,
     patrick,
@@ -69,6 +73,7 @@ Suggests:
     testthat
 Remotes:
     acidgenomics/acidplots,
+    acidgenomics/acidroxygen,
     acidgenomics/acidtest,
     acidgenomics/basejump,
     acidgenomics/bioverbs,
@@ -88,16 +93,17 @@ VignetteBuilder: knitr
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
-    'CellMarkers.R'
-    'KnownMarkers-methods.R'
-    'Seurat-SCE-methods.R'
-    'SeuratMarkers.R'
+    'AllGenerators.R'
+    'Seurat-internal.R'
     'assert-internal.R'
+    'base-Seurat-methods.R'
+    'base-cell_data_set-methods.R'
     'cellCountsPerCluster-methods.R'
     'cellTypesPerCluster-methods.R'
     'clusterCellCountsPerSample-methods.R'
-    'clusterID-methods.R'
+    'clusters-methods.R'
     'coerce-methods.R'
+    'cpm-methods.R'
     'data.R'
     'deprecated.R'
     'globals.R'
@@ -106,18 +112,19 @@ Collate:
     'fetchData-internal.R'
     'findMarkers-methods.R'
     'imports.R'
+    'normalize-methods.R'
     'package.R'
-    'params.R'
     'plotCellCountsPerCluster-methods.R'
     'plotCellTypesPerCluster-methods.R'
     'plotCounts-methods.R'
+    'plotDot-methods.R'
     'plotFeature-methods.R'
     'plotKnownMarkers-methods.R'
     'plotMarker-methods.R'
     'plotPCElbow-methods.R'
     'plotReducedDim-methods.R'
     'plotTopMarkers-methods.R'
+    'plotViolin-methods.R'
     'show-methods.R'
     'summary-methods.R'
     'topMarkers-methods.R'
-    'weights-internal.R'

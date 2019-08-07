@@ -27,7 +27,7 @@
 #' For UMI data, for which the expected counts may be very low, the likelihood
 #' ratio test implemented in `nbinomLRT()` should be used.
 #'
-#' Note that DESeq2 supports `weights` in assays automatically, if slotted using
+#' Note that DESeq2 supports `weights()` values automatically, if slotted using
 #' zinbwave (which is no longer recommended for droplet scRNA-seq).
 #'
 #' @section edgeR:
@@ -42,7 +42,7 @@
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::FindMarkers()] for details.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param numerator `character`.
 #'   Cells to use in the numerator of the contrast (e.g. treatment).
 #' @param denominator `character`.
@@ -78,10 +78,10 @@
 #' object <- Seurat
 #'
 #' ## Compare expression in cluster 3 relative to 2.
-#' ident <- clusterID(object)
-#' numerator <- names(ident)[ident == "3"]
+#' clusters <- clusters(object)
+#' numerator <- names(clusters)[clusters == "3"]
 #' summary(numerator)
-#' denominator <- names(ident)[ident == "2"]
+#' denominator <- names(clusters)[clusters == "2"]
 #' summary(denominator)
 #'
 #' ## edgeR ====

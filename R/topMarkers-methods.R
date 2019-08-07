@@ -3,7 +3,7 @@
 #' @inherit bioverbs::topMarkers
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param n `integer(1)`.
 #'   Number of genes per cluster.
 #' @param direction `character(1)`.
@@ -71,13 +71,10 @@ NULL
 
         ## Return.
         if (return == "tbl_df") {
-            message("Returning as tibble.")
             data
         } else if (return == "DataFrame") {
-            message("Returning as DataFrame.")
             as(data, "DataFrame")
         } else if (return == "SplitDataFrameList") {
-            message("Returning as DataFrameList.")
             data <- as(data, "DataFrame")
             assert(isSubset("cluster", colnames(data)))
             data <- split(x = data, f = data[["cluster"]])

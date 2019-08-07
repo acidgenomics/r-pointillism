@@ -1,17 +1,20 @@
 ## Updated 2019-07-31.
-.hasDesignFormula <- function(object) {
-    all(
-        is(object, "SingleCellExperiment"),
-        is.factor(object[["group"]]),
-        is.matrix(metadata(object)[["design"]])
+.hasClusters <- function(object) {
+    tryCatch(
+        expr = is.factor(clusters(object)),
+        error = function(e) FALSE
     )
 }
 
 
 
 ## Updated 2019-07-31.
-.hasIdent <- function(object) {
-    "ident" %in% colnames(colData(object))
+.hasDesignFormula <- function(object) {
+    all(
+        is(object, "SingleCellExperiment"),
+        is.factor(object[["group"]]),
+        is.matrix(metadata(object)[["design"]])
+    )
 }
 
 

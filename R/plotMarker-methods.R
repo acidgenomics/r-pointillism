@@ -1,40 +1,44 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @note Updated 2019-07-31.
-#'
 #' @inherit bioverbs::plotMarker
+#' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' title <- "most abundant genes"
 #' genes <- counts(object) %>%
 #'     Matrix::rowSums(.) %>%
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()
-#' str(genes)
-#'
-#' ## Default appearance.
-#' plotMarker(object, genes = genes[[1L]])
-#'
-#' ## Dark mode with viridis palette.
+#' print(genes)
 #' plotMarker(
 #'     object = object,
 #'     genes = genes,
-#'     expression = "mean",
-#'     pointsAsNumbers = TRUE,
-#'     color = ggplot2::scale_color_viridis_c(),
-#'     dark = TRUE,
-#'     label = FALSE,
-#'     title = title
+#'     reduction = "UMAP"
+#' )
+#'
+#' ## cell_data_set ====
+#' object = cell_data_set
+#' genes <- counts(object) %>%
+#'     Matrix::rowSums(.) %>%
+#'     sort(decreasing = TRUE) %>%
+#'     head(n = 4L) %>%
+#'     names()
+#' print(genes)
+#' plotMarker(
+#'     object = object,
+#'     genes = genes,
+#'     reduction = "UMAP"
 #' )
 NULL
 
@@ -49,12 +53,12 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
-        reducedDim,
+        reduction,
         expression,
         color,
         pointSize,
@@ -73,10 +77,9 @@ NULL
         }
 
         ## Assert checks -------------------------------------------------------
-        object <- as(object, "SingleCellExperiment")
         assert(
             isCharacter(genes),
-            isScalar(reducedDim),
+            isScalar(reduction),
             isGGScale(
                 x = color,
                 scale = "continuous",
@@ -98,11 +101,11 @@ NULL
             assert(isString(title))
         }
 
-        ## Fetch reduced dimension data
-        data <- .fetchReducedDimExpressionData(
+        ## Fetch reduced dimension data.
+        data <- .fetchReductionExpressionData(
             object = object,
             genes = genes,
-            reducedDim = reducedDim
+            reduction = reduction
         )
         assert(is(data, "DataFrame"))
 
@@ -236,7 +239,7 @@ formals(`plotMarker,SingleCellExperiment`)[c(
     "pointAlpha",
     "pointSize",
     "pointsAsNumbers",
-    "reducedDim"
+    "reduction"
 )] <- list(
     color = continuousColor,
     dark = dark,
@@ -247,7 +250,7 @@ formals(`plotMarker,SingleCellExperiment`)[c(
     pointAlpha = pointAlpha,
     pointSize = pointSize,
     pointsAsNumbers = pointsAsNumbers,
-    reducedDim = reducedDim
+    reduction = reduction
 )
 
 

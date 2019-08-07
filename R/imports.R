@@ -1,33 +1,37 @@
 ## Conflicts:
-## @importFrom Matrix rowMeans rowSums
-
-## #' @importClassesFrom monocle3 cell_data_set
+## #' @importFrom Matrix rowMeans rowSums
 
 
 
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
+#' @importClassesFrom monocle3 cell_data_set
 #'
 #' @importMethodsFrom basejump coerce
 #'
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply rowMeans
-#'   rowSums sapply
+#'   rowSums sapply sizeFactors sizeFactors<-
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
-#' @importFrom DESeq2 DESeqDataSet DESeq results
-#' @importFrom S4Vectors as.data.frame as.matrix complete.cases head mcols
-#'   mcols<- metadata metadata<- na.omit split tail
-#' @importFrom Seurat CreateSeuratObject as.SingleCellExperiment as.Seurat
-#'   GetAssayData Stdev VariableFeatures
-#' @importFrom SingleCellExperiment reducedDimNames reducedDims weights
-#'   weights<-
-#' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
-#'   rowData rowRanges rowRanges<-
+#' @importFrom DelayedArray DelayedArray
+#' @importFrom DelayedMatrixStats colSums2 rowSums2
+#' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
+#' @importFrom S4Vectors DataFrame as.data.frame as.matrix complete.cases head
+#'   mcols mcols<- metadata metadata<- na.omit split tail
+#' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
+#'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
+#' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
+#'   normcounts<- reducedDim reducedDim<- reducedDimNames reducedDims
+#'   sizeFactors sizeFactors<- spikeNames
+#' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
+#'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
-#' @importFrom basejump camel coerce convertGenesToSymbols decode gene2symbol
-#'   import makeNames mapGenesToRownames mapGenesToSymbols markdownHeader
-#'   matchArgsToDoCall matchInterestingGroups printString separator showSlotInfo
-#'   snake upperCamel
+#' @importFrom basejump Gene2Symbol camel coerce convertGenesToSymbols decode
+#'   estimateSizeFactors gene2symbol geometricMean import interestingGroups
+#'   interestingGroups<- makeNames mapGenesToIDs mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
+#'   metrics organism organism<- printString sampleData sampleData<- sampleNames
+#'   separator showSlotInfo snake upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
@@ -39,16 +43,18 @@
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
-#'   areDisjointSets areIntersectingSets assert isAlpha isInt hasLength hasNames
-#'   hasRownames hasRows isGGScale isAny isCharacter isFlag isHeaderLevel
-#'   isIntegerish isNonEmpty isNumber isPositive isScalar isString isSubset
-#'   validate
+#'   areDisjointSets areIntersectingSets assert bapply false isAlpha isInt
+#'   hasColnames hasLength hasNames hasRownames hasRows hasValidDimnames
+#'   hasValidNames isGGScale isAny isCharacter isFlag isHeaderLevel isIntegerish
+#'   isNonEmpty isNonNegative isNumber isPositive isScalar isScalarNumeric
+#'   isString isSubset validate
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom methods as getMethod is new setAs setClass show slot slot<-
-#'   validObject
+#' @importFrom methods as getMethod is new setAs setClass setMethod
+#'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
 #' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
+#' @importFrom scater calculateCPM normalizeSCE
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames tibble
