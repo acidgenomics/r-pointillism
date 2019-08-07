@@ -80,12 +80,13 @@ setValidity(
 #'
 #' Class containing known markers detected.
 #'
+#' Results are grouped by `cellType` column and arranged by adjusted *P* value
+#' (`padj`).
+#'
 #' @note Updated 2019-07-31.
 #' @export
 #'
 #' @return `KnownMarkers`.
-#'   Results are grouped by `cellType` column and arranged by adjusted *P* value
-#'   (`padj`).
 setClass(
     Class = "KnownMarkers",
     contains = "DataFrame"
@@ -121,11 +122,12 @@ setValidity(
 #'
 #' Class containing essential elements for marker gene analysis.
 #'
+#' Results are arranged by adjusted *P* value (`padj`).
+#'
 #' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkers`.
-#'   Results are arranged by adjusted *P* value (`padj`).
 setClass(
     Class = "SeuratMarkers",
     contains = "DataFrame"
@@ -156,12 +158,12 @@ setValidity(
 #'
 #' Class containing essential elements for marker per cluster analysis.
 #'
+#' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
+#'
 #' @note Updated 2019-08-06.
 #' @export
 #'
 #' @return `SeuratMarkersPerCluster`.
-#'   Results are split per `cluster` and arranged by adjusted *P* value
-#'   (`padj`).
 setClass(
     Class = "SeuratMarkersPerCluster",
     contains = "CompressedSplitDataFrameList"
