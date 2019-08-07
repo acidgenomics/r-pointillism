@@ -6,26 +6,38 @@
 #'
 #' Provide limited `SingleCellExperiment`-like method support.
 #'
-#' @name Seurat-SingleCellExperiment
+#' @name base-Seurat
 #' @keywords internal
 #' @note Updated 2019-08-05.
-#'
-#' @importFrom S4Vectors metadata metadata<-
-#' @importFrom SingleCellExperiment reducedDim reducedDim<- reducedDims
-#'   reducedDimNames
-#' @importFrom SummarizedExperiment assay assayNames assays colData colData<-
-#'   rowData rowRanges rowRanges<-
-#' @importFrom basejump interestingGroups interestingGroups<- mapGenesToIDs
-#'   mapGenesToRownames mapGenesToSymbols metrics organism organism<-
-#'   reducedDims sampleData sampleData<- sampleNames
 #'
 #' @inheritParams acidroxygen::params
 #'
 #' @seealso
 #' - `Seurat::GetAssayData()`.
 #'
-#' @return Match `SingleCellExperiment` method return.
+#' @return Varies, depending on the generic.
 NULL
+
+
+
+## Updated 2019-08-02.
+`Gene2Symbol,Seurat` <-  # nolint
+    function(object, ...) {
+        Gene2Symbol(
+            object = as(object, "SummarizedExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "Gene2Symbol",
+    signature = signature("Seurat"),
+    definition = `Gene2Symbol,Seurat`
+)
 
 
 
@@ -38,7 +50,7 @@ NULL
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assay",
@@ -57,7 +69,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assayNames",
@@ -76,7 +88,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assays",
@@ -95,7 +107,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "colData",
@@ -116,7 +128,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "colData",
@@ -138,7 +150,7 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "counts",
@@ -157,7 +169,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "interestingGroups",
@@ -180,7 +192,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "interestingGroups",
@@ -189,6 +201,45 @@ setReplaceMethod(
         value = "character"
     ),
     definition = `interestingGroups<-,Seurat,character`
+)
+
+
+
+## Updated 2019-08-05.
+`logcounts,Seurat` <-  # nolint
+    function(object, assay = NULL, verbose = FALSE) {
+        assert(isFlag(verbose))
+        norm <- .seuratNormalizationMethod(object, assay = assay)
+        if (norm != "LogNormalize") {
+            if (isTRUE(verbose)) {
+                message(paste(
+                    "Generating log normalized counts with",
+                    "`Seurat::NormalizeData()`."
+                ))
+            }
+            object <- NormalizeData(
+                object = object,
+                normalization.method = "LogNormalize",
+                verbose = verbose
+            )
+        }
+        if (isTRUE(verbose)) {
+            message(paste(
+                "Returning log normalized counts with",
+                "`Seurat::GetAssayData()`."
+            ))
+        }
+        GetAssayData(object = object, assay = assay, slot = "data")
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "logcounts",
+    signature = signature("Seurat"),
+    definition = `logcounts,Seurat`
 )
 
 
@@ -206,7 +257,7 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToIDs",
@@ -229,7 +280,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToRownames",
@@ -252,7 +303,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToSymbols",
@@ -275,7 +326,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "metadata",
@@ -298,7 +349,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "metadata",
@@ -320,12 +371,54 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "metrics",
     signature = signature("Seurat"),
     definition = `metrics,Seurat`
+)
+
+
+
+## Updated 2019-08-05.
+`normcounts,Seurat` <-  # nolint
+    function(object, assay = NULL, verbose = FALSE) {
+        assert(isFlag(verbose))
+        ## Check for pre-calculated relative counts (not typical).
+        method <- .seuratNormalizationMethod(object, assay = assay)
+        scaleFactor <- .seuratScaleFactor(object, assay = assay)
+        if (!(method == "RC" && scaleFactor == 1L)) {
+            if (isTRUE(verbose)) {
+                message(paste(
+                    "Generating normalized counts with",
+                    "`Seurat::NormalizeData()`."
+                ))
+            }
+            object <- NormalizeData(
+                object = object,
+                normalization.method = "RC",
+                scale.factor = 1L,
+                verbose = verbose
+            )
+        }
+        if (isTRUE(verbose)) {
+            message(paste(
+                "Returning normalized counts with",
+                "`Seurat::GetAssayData()`."
+            ))
+        }
+        GetAssayData(object = object, assay = assay, slot = "data")
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "normcounts",
+    signature = signature("Seurat"),
+    definition = `normcounts,Seurat`
 )
 
 
@@ -339,7 +432,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "organism",
@@ -358,7 +451,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "organism",
@@ -377,7 +470,7 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDim",
@@ -396,7 +489,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDimNames",
@@ -415,7 +508,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDims",
@@ -434,7 +527,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "rowData",
@@ -474,7 +567,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "rowRanges",
@@ -494,7 +587,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "rowRanges",
@@ -517,7 +610,7 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "sampleData",
@@ -540,7 +633,7 @@ setMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setReplaceMethod(
     f = "sampleData",
@@ -562,7 +655,7 @@ setReplaceMethod(
 
 
 
-#' @rdname Seurat-SingleCellExperiment
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "sampleNames",
