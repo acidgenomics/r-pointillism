@@ -18,10 +18,3 @@ Class containing essential elements for marker gene analysis.
 \note{
 Updated 2019-08-06.
 }
-\seealso{
-Other S4 classes: \code{\link{CellCycleMarkers-class}},
-  \code{\link{CellTypeMarkers-class}},
-  \code{\link{KnownMarkers-class}},
-  \code{\link{SeuratMarkersPerCluster-class}}
-}
-\concept{S4 classes}

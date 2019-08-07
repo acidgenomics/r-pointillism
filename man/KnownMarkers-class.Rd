@@ -57,10 +57,3 @@ x <- KnownMarkers(
 )
 summary(x)
 }
-\seealso{
-Other S4 classes: \code{\link{CellCycleMarkers-class}},
-  \code{\link{CellTypeMarkers-class}},
-  \code{\link{SeuratMarkers-class}},
-  \code{\link{SeuratMarkersPerCluster-class}}
-}
-\concept{S4 classes}
