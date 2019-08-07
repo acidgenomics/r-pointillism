@@ -115,9 +115,9 @@
     <div id="pointillism-0-3-0-2019-04-16" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0-3-0-2019-04-16" class="anchor"></a>pointillism 0.3.0 (2019-04-16)</h2>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Updated S4 methods to support <a href="https://satijalab.org/seurat/">Seurat</a> v3 release. Also updated imports from Seurat to reflect v3 change: <code>GetAssayData</code>, <code>Stdev</code>, <code>VariableFeatures</code>.</li>
 <li>Now importing S3 coercion methods from Seurat: <code>as.SingleCellExperiment</code>. <code>as.Seurat</code>, which coerces <code>SingleCellExperiment</code>, isn’t particularly helpful because it requires <code>logcounts</code> slot to be defined in SCE. We’re calling <code>CreateSeuratObject</code> internally in our S4 coercion method instead, so that any SCE object can be easily coerced to a <code>Seurat</code> object.</li>

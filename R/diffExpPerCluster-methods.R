@@ -1,8 +1,8 @@
 #' @name diffExpPerCluster
 #' @inherit bioverbs::diffExpPerCluster
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-06.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams diffExp
 #' @param group `character(1)`.
 #'   Group of interest for differential expression per cluster. Must be a
@@ -80,7 +80,7 @@ NULL
         )
 
         ## Get the cluster identities.
-        ident <- clusterID(object)
+        ident <- clusters(object)
         assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)

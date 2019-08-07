@@ -1,34 +1,38 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
-#' @param minSD `numeric(1)`.
-#'   Minimum standard deviation.
+#' @inheritParams acidroxygen::params
 #' @param minPct `numeric(1)` (`0`-`1`).
 #'   Minimum percent standard deviation.
 #' @param maxCumPct `numeric(1)` (`0`-`1`).
 #'   Maximum cumulative percen standard deviation.
 #' @param ... Additional arguments.
 #'
-#' @return
-#' - Show graphical output of elbow plots.
-#' - Invisibly return numeric sequence vector of PCs to include for
-#'   dimensionality reduction analysis.
+#' @return `ggplot`.
+#'   Elbow point is saved in `attr(object, "elbow")`.
 #'
-#' @seealso `Seurat::PCElbowPlot()`.
+#' @seealso
+#' - `Seurat::PCElbowPlot()`.
+#' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' plotPCElbow(object)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
 #' plotPCElbow(object)
 NULL
 
@@ -43,47 +47,31 @@ NULL
 
 
 
-## Updated 2019-07-31.
-`plotPCElbow,Seurat` <-  # nolint
+## Updated 2019-08-02.
+.plotPCElbow <-
     function(
-        object,
-        reducedDim = "pca",
-        minSD = 1L,
+        pctStdDev,
         minPct = 0.01,
-        maxCumPct = 0.9,
-        trans = c("identity", "sqrt")
+        maxCumPct = 0.9
     ) {
         assert(
-            isString(reducedDim),
-            isNumber(minSD),
-            isPositive(minSD),
+            is.numeric(pctStdDev),
             isNumber(minPct),
-            isNumber(maxCumPct),
             allAreInLeftOpenRange(
                 x = c(minPct, maxCumPct),
                 lower = 0L,
                 upper = 1L
             )
         )
-        trans <- match.arg(trans)
-
-        ## dr: dimensional reduction
-        ## sdev: standard deviation
-        sdev <- Stdev(object = object, reduction = reducedDim)
-        assert(is.numeric(sdev))
-        pct <- sdev ^ 2L / sum(sdev ^ 2L)
-        cumsum <- cumsum(pct)
+        cumsum <- cumsum(pctStdDev)
+        xLab <- "PCA component"
 
         data <- tibble(
-            pc = seq_along(sdev),
-            sdev = sdev,
-            pct = pct,
+            pc = seq_along(pctStdDev),
+            pct = pctStdDev,
             cumsum = cumsum
         )
 
-        minSDCutoff <- data %>%
-            .[.[["sdev"]] >= minSD, "pc"] %>%
-            max()
         minPctCutoff <- data %>%
             .[.[["pct"]] >= minPct, "pc"] %>%
             max()
@@ -92,30 +80,7 @@ NULL
             max()
 
         ## Pick the smallest value of the cutoffs
-        cutoff <- min(minSDCutoff, minPctCutoff, maxCumPctCutoff)
-
-        ## Standard deviation --------------------------------------------------
-        ggsd <- ggplot(
-            data = data,
-            mapping = aes(
-                x = !!sym("pc"),
-                y = !!sym("sdev")
-            )
-        ) +
-            geom_hline(
-                color = "orange",
-                size = 1L,
-                yintercept = minSD
-            ) +
-            geom_line() +
-            geom_point() +
-            geom_vline(xintercept = cutoff) +
-            labs(
-                x = "PC",
-                y = "std dev"
-            ) +
-            expand_limits(y = 0L) +
-            scale_y_continuous(trans = trans)
+        cutoff <- min(minPctCutoff, maxCumPctCutoff)
 
         ## Percent standard deviation ------------------------------------------
         ggpct <- ggplot(
@@ -134,11 +99,11 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "PC",
+                x = xLab,
                 y = "% std dev"
             ) +
             expand_limits(y = 0L) +
-            scale_y_continuous(labels = percent, trans = trans)
+            scale_y_continuous(labels = percent)
 
         ## Cumulative percent standard deviation -------------------------------
         ggcumsum <- ggplot(
@@ -157,23 +122,39 @@ NULL
             geom_point() +
             geom_vline(xintercept = cutoff) +
             labs(
-                x = "PC",
+                x = xLab,
                 y = "cum % std dev"
             ) +
             expand_limits(y = c(0L, 1L)) +
-            scale_y_continuous(labels = percent, trans = trans)
+            scale_y_continuous(labels = percent)
 
         plotlist <- list(
-            sd = ggsd,
             pct = ggpct,
             cumsum = ggcumsum
         )
 
         p <- plot_grid(plotlist = plotlist)
-        show(p)
-
-        invisible(seq_len(cutoff))
+        attr(p, "elbow") <- cutoff
+        p
     }
+
+
+
+## Updated 2019-08-02.
+`plotPCElbow,Seurat` <-  # nolint
+    function(object, minPct, maxCumPct) {
+        stdDev <- Stdev(object = object, reduction = "pca")
+        assert(is.numeric(stdDev))
+        pctStdDev <- stdDev ^ 2L / sum(stdDev ^ 2L)
+        .plotPCElbow(
+            pctStdDev = pctStdDev,
+            minPct = minPct,
+            maxCumPct = maxCumPct
+        )
+    }
+
+args <- c("minPct", "maxCumPct")
+formals(`plotPCElbow,Seurat`)[args] <- formals(.plotPCElbow)[args]
 
 
 
@@ -183,4 +164,30 @@ setMethod(
     f = "plotPCElbow",
     signature = signature("Seurat"),
     definition = `plotPCElbow,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`plotPCElbow,cell_data_set` <-  # nolint
+    function(object, minPct, maxCumPct) {
+        pctStdDev <- slot(object, "preprocess_aux")[["prop_var_expl"]]
+        .plotPCElbow(
+            pctStdDev = pctStdDev,
+            minPct = minPct,
+            maxCumPct = maxCumPct
+        )
+    }
+
+args <- c("minPct", "maxCumPct")
+formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
+
+
+
+#' @rdname plotPCElbow
+#' @export
+setMethod(
+    f = "plotPCElbow",
+    signature = signature("cell_data_set"),
+    definition = `plotPCElbow,cell_data_set`
 )

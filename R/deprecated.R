@@ -77,4 +77,14 @@ runZinbwave <- function(...) {
 
 
 
+# v0.4.0 =======================================================================
+#' @rdname deprecated
+#' @export
+clusterID <- function(...) {
+    .Deprecated("clusters")
+    clusters(...)
+}
+
+
+
 ## nocov end

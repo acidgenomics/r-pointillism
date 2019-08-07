@@ -3,7 +3,7 @@
 #' @inherit basejump::summary
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples

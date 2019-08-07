@@ -3,37 +3,29 @@
 \docType{methods}
 \name{plotTopMarkers}
 \alias{plotTopMarkers}
-\alias{plotTopMarkers,SingleCellExperiment-method}
-\alias{plotTopMarkers,Seurat-method}
+\alias{plotTopMarkers,Seurat,SeuratMarkersPerCluster-method}
 \title{Plot top markers}
 \usage{
-plotTopMarkers(object, ...)
+plotTopMarkers(object, markers, ...)
 
-\S4method{plotTopMarkers}{SingleCellExperiment}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "UMAP",
-  headerLevel = 2L, progress = FALSE, ...)
-
-\S4method{plotTopMarkers}{Seurat}(object, markers, n = 1L,
-  direction = c("up", "down", "both"), reducedDim = "UMAP",
+\S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
+  n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{markers}{\code{grouped_df}.
-Marker genes, grouped by "\code{cluster}".}
+\item{markers}{Object containing cell marker expression data.}
 
 \item{n}{\code{integer(1)}.
-Number to include.}
+Number of genes per cluster.}
 
 \item{direction}{\code{character(1)}.
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
@@ -62,8 +54,12 @@ Updated 2019-07-31.
 data(Seurat, package = "acidtest")
 data(seuratAllMarkers)
 
-## Seurat ====
+## Seurat, SeuratMarkersPerCluster ====
 object <- Seurat
 markers <- seuratAllMarkers
-plotTopMarkers(object = object, markers = markers)
+plotTopMarkers(
+    object = object,
+    markers = markers,
+    reduction = "UMAP"
+)
 }

@@ -1,17 +1,14 @@
 #' @name plotCellTypesPerCluster
 #' @include globals.R
 #' @inherit bioverbs::plotCellTypesPerCluster
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-07.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
 #' type (per unbiased cluster). Cell types with too few (`min` cutoff) or too
 #' many (`max` cutoff) marker genes will be skipped.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
-#' @param markers `KnownMarkers`.
+#' @inheritParams acidroxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
@@ -26,7 +23,8 @@
 #'
 #' plotCellTypesPerCluster(
 #'     object = object,
-#'     markers = markers
+#'     markers = markers,
+#'     reduction = "UMAP"
 #' )
 NULL
 
@@ -35,20 +33,20 @@ NULL
 #' @rdname plotCellTypesPerCluster
 #' @name plotCellTypesPerCluster
 #' @importFrom bioverbs plotCellTypesPerCluster
-#' @usage plotCellTypesPerCluster(object, ...)
+#' @usage plotCellTypesPerCluster(object, markers, ...)
 #' @export
 NULL
 
 
 
-## Updated 2019-07-31.
-`plotCellTypesPerCluster,SingleCellExperiment` <-  # nolint
+## Updated 2019-08-07.
+`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
         min = 1L,
         max = Inf,
-        reducedDim,
+        reduction,
         expression,
         headerLevel = 2L,
         progress = FALSE,
@@ -57,7 +55,7 @@ NULL
         ## Passthrough: color, dark.
         validObject(object)
         validObject(markers)
-        assert(isScalar(reducedDim))
+        assert(isScalar(reduction))
         expression <- match.arg(expression)
         assert(
             isHeaderLevel(headerLevel),
@@ -125,7 +123,7 @@ NULL
                     p <- plotMarker(
                         object = object,
                         genes = genes,
-                        reducedDim = reducedDim,
+                        reduction = reduction,
                         expression = expression,
                         ...
                     )
@@ -137,9 +135,9 @@ NULL
 
         invisible(return)
     }
-formals(`plotCellTypesPerCluster,SingleCellExperiment`)[
-    c("reducedDim", "expression")
-] <- list(reducedDim, expression)
+formals(`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`)[
+    c("reduction", "expression")
+] <- list(reduction, expression)
 
 
 
@@ -147,15 +145,18 @@ formals(`plotCellTypesPerCluster,SingleCellExperiment`)[
 #' @export
 setMethod(
     f = "plotCellTypesPerCluster",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotCellTypesPerCluster,SingleCellExperiment`
+    signature = signature(
+        object = "SingleCellExperiment",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`
 )
 
 
 
-## Updated 2019-07-31.
-`plotCellTypesPerCluster,Seurat` <-  # nolint
-    `plotCellTypesPerCluster,SingleCellExperiment`
+## Updated 2019-08-07.
+`plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
+    `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`
 
 
 
@@ -163,6 +164,9 @@ setMethod(
 #' @export
 setMethod(
     f = "plotCellTypesPerCluster",
-    signature = signature("Seurat"),
-    definition = `plotCellTypesPerCluster,Seurat`
+    signature = signature(
+        object = "Seurat",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotCellTypesPerCluster,Seurat,KnownMarkers`
 )

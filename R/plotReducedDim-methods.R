@@ -3,11 +3,9 @@
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @include globals.R
 #' @inherit bioverbs::plotReducedDim
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @details
@@ -23,43 +21,31 @@
 #' @section UMAP calculation:
 #'
 #' [UMAP][] calculation in R requires the [Python][] module `umap-learn`.
+#' The UMAP module can be loaded in R using [reticulate][].
 #'
-#' We recommend installing this with [conda][]:
-#'
-#' ```
-#' conda install -c conda-forge umap-learn
-#' ```
-#'
-#' The UMAP module can be loaded in R using [reticulate][]. Reticulate works
-#' reliably when setting `RETICULATE_PYTHON` to point to your conda python
-#' binary. Export this variable in  `~/.Renviron`.
-#'
-#' See [`Sys.getenv`][base::Sys.getenv] for details on the R system environment.
-#'
-#' [conda]: https://conda.io
 #' [Python]: https://www.python.org
 #' [UMAP]: https://github.com/lmcinnes/umap
 #' [reticulate]: https://rstudio.github.io/reticulate/
 #'
 #' @seealso
 #' - `Seurat::DimPlot()`.
+#' - `monocle3::plot_cells()`.
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' plotReducedDim(object, reduction = "UMAP")
 #'
-#' ## UMAP
-#' plotUMAP(object)
-#'
-#' ## t-SNE
-#' plotTSNE(object)
-#' plotTSNE(object, pointsAsNumbers = TRUE, dark = TRUE, label = FALSE)
-#'
-#' ## PCA
-#' plotPCA(object)
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' plotReducedDim(object, reduction = "UMAP")
 NULL
 
 
@@ -95,12 +81,12 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
-        reducedDim,
-        dimsUse,
+        reduction,
+        dims,
         interestingGroups = NULL,
         color,
         pointSize,
@@ -113,12 +99,16 @@ NULL
         title = NULL
     ) {
         validObject(object)
+        if (!is(object, "SingleCellExperiment")) {
+            object <- as(object, "SingleCellExperiment")
+        }
         assert(
-            .hasIdent(object),
-            isScalar(reducedDim),
-            hasLength(dimsUse, n = 2L),
-            all(isIntegerish(dimsUse)),
-            isString(interestingGroups, nullOK = TRUE),
+            .hasClusters(object),
+            ## Allow pass in of positional scalar, for looping.
+            isScalar(reduction),
+            hasLength(dims, n = 2L),
+            all(isIntegerish(dims)),
+            isCharacter(interestingGroups, nullOK = TRUE),
             isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
             isNumber(pointSize),
             isNumber(pointAlpha),
@@ -129,16 +119,14 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
-
-        ## Color by `ident` factor by default.
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
 
-        data <- .fetchReducedDimData(
+        data <- .fetchReductionData(
             object = object,
-            reducedDim = reducedDim,
-            dimsUse = dimsUse
+            reduction = reduction,
+            dims = dims
         )
         assert(
             is(data, "DataFrame"),
@@ -148,15 +136,49 @@ NULL
             )
         )
 
-        ## Color by `ident` factor by default (see above).
-        if (interestingGroups == "ident") {
-            data[["interestingGroups"]] <- data[["ident"]]
+        ## Check if interesting groups input is supported.
+        supported <- bapply(data, is.factor)
+        supported <- names(supported)[supported]
+        blacklist <- c("interestingGroups", "orig.ident", "sampleID")
+        supported <- setdiff(supported, blacklist)
+        if (!isSubset(interestingGroups, supported)) {
+            setdiff <- setdiff(interestingGroups, supported)
+            stop(sprintf(
+                fmt = paste0(
+                    "%s ",
+                    ngettext(
+                        n = length(setdiff),
+                        msg1 = "interesting group",
+                        msg2 = "interesting groups"
+                    ),
+                    " not defined: %s\n",
+                    "Available:\n%s"
+                ),
+                length(setdiff),
+                toString(setdiff, width = 200L),
+                printString(supported)
+            ))
         }
 
-        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2).
-        axes <- colnames(reducedDims(object)[[reducedDim]])[dimsUse]
-        assert(isSubset(axes, colnames(data)))
+        if (isString(interestingGroups)) {
+            data[["interestingGroups"]] <- data[[interestingGroups]]
+        } else {
+            data[["interestingGroups"]] <- apply(
+                X = data[ , interestingGroups],
+                MARGIN = 1L,
+                FUN = paste ,
+                collapse = ":"
+            )
+        }
 
+        ## Turn off labeling if there's only 1 cluster.
+        if (hasLength(levels(data[["ident"]]), n = 1L)) {
+            label = FALSE
+        }
+
+        ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2). We're setting
+        ## this up internally as the first two columns in the data frame.
+        axes <- colnames(data)[seq_len(2L)]
         p <- ggplot(
             data = as_tibble(data),
             mapping = aes(
@@ -237,23 +259,25 @@ NULL
 formals(`plotReducedDim,SingleCellExperiment`)[c(
     "color",
     "dark",
-    "dimsUse",
+    "dims",
     "label",
     "labelSize",
     "legend",
     "pointAlpha",
     "pointSize",
-    "pointsAsNumbers"
+    "pointsAsNumbers",
+    "reduction"
 )] <- list(
     color = discreteColor,
     dark = dark,
-    dimsUse = dimsUse,
+    dims = dims,
     label = label,
     labelSize = labelSize,
     legend = legend,
     pointAlpha = pointAlpha,
     pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers
+    pointsAsNumbers = pointsAsNumbers,
+    reduction = reduction
 )
 
 
@@ -266,7 +290,7 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "PCA"
+                    reduction = "PCA"
                 )
             )
         )
@@ -283,7 +307,7 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "TSNE"
+                    reduction = "TSNE"
                 )
             )
         )
@@ -299,7 +323,7 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
             args = matchArgsToDoCall(
                 args = list(
                     object = object,
-                    reducedDim = "UMAP"
+                    reduction = "UMAP"
                 )
             )
         )
@@ -310,7 +334,7 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 ## Formals =====================================================================
 ## Set the formals for the convenience functions.
 f <- formals(`plotReducedDim,SingleCellExperiment`)
-f <- f[setdiff(names(f), "reducedDim")]
+f <- f[setdiff(names(f), "reduction")]
 formals(`plotPCA,SingleCellExperiment`) <- f
 formals(`plotTSNE,SingleCellExperiment`) <- f
 formals(`plotUMAP,SingleCellExperiment`) <- f
@@ -345,6 +369,22 @@ setMethod(
 
 
 
+## Updated 2019-08-02.
+`plotReducedDim,cell_data_set` <-  # nolint
+    `plotReducedDim,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotReducedDim",
+    signature = signature("cell_data_set"),
+    definition = `plotReducedDim,cell_data_set`
+)
+
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
@@ -367,6 +407,22 @@ setMethod(
     f = "plotTSNE",
     signature = signature("Seurat"),
     definition = `plotTSNE,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`plotTSNE,cell_data_set` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("cell_data_set"),
+    definition = `plotTSNE,cell_data_set`
 )
 
 
@@ -397,6 +453,22 @@ setMethod(
 
 
 
+## Updated 2019-08-02.
+`plotUMAP,cell_data_set` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("cell_data_set"),
+    definition = `plotUMAP,cell_data_set`
+)
+
+
+
 #' @rdname plotReducedDim
 #' @export
 setMethod(
@@ -419,4 +491,20 @@ setMethod(
     f = "plotPCA",
     signature = signature("Seurat"),
     definition = `plotPCA,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`plotPCA,cell_data_set` <-  # nolint
+    `plotPCA,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("cell_data_set"),
+    definition = `plotPCA,cell_data_set`
 )

@@ -2,16 +2,25 @@
 #' @inherit bioverbs::cellCountsPerCluster
 #' @note Updated 2019-07-31.
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
+#' x <- cellCountsPerCluster(object)
+#' print(x)
+#'
+#' ## cell_data_set ===
+#' object <- cell_data_set
 #' x <- cellCountsPerCluster(object)
 #' print(x)
 NULL
@@ -27,11 +36,11 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object, interestingGroups = NULL) {
         validObject(object)
-        assert(.hasIdent(object))
+        assert(.hasClusters(object))
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
@@ -73,4 +82,20 @@ setMethod(
     f = "cellCountsPerCluster",
     signature = signature("Seurat"),
     definition = `cellCountsPerCluster,Seurat`
+)
+
+
+
+## Updated 2019-08-02.
+`cellCountsPerCluster,cell_data_set` <-  # nolint
+    `cellCountsPerCluster,SingleCellExperiment`
+
+
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("cell_data_set"),
+    definition = `cellCountsPerCluster,cell_data_set`
 )

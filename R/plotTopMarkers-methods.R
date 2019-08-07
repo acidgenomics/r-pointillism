@@ -1,3 +1,7 @@
+## Need to add `cell_data_set` support.
+
+
+
 #' @name plotTopMarkers
 #' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
@@ -9,21 +13,22 @@
 #' simply reassign first using that function. If necessary, we can add support
 #' for the number of genes to plot here in a future update.
 #'
-#' @inheritParams basejump::params
-#' @inheritParams params
 #' @inheritParams topMarkers
-#' @param markers `grouped_df`.
-#'   Marker genes, grouped by "`cluster`".
+#' @inheritParams acidroxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
 #' data(seuratAllMarkers)
 #'
-#' ## Seurat ====
+#' ## Seurat, SeuratMarkersPerCluster ====
 #' object <- Seurat
 #' markers <- seuratAllMarkers
-#' plotTopMarkers(object = object, markers = markers)
+#' plotTopMarkers(
+#'     object = object,
+#'     markers = markers,
+#'     reduction = "UMAP"
+#' )
 NULL
 
 
@@ -31,33 +36,34 @@ NULL
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
 #' @importFrom bioverbs plotTopMarkers
-#' @usage plotTopMarkers(object, ...)
+#' @usage plotTopMarkers(object, markers, ...)
 #' @export
 NULL
 
 
 
-## Updated 2019-07-31.
-`plotTopMarkers,SingleCellExperiment` <-  # nolint
+## Updated 2019-08-02.
+`plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         markers,
         n = 1L,
         direction,
-        reducedDim,
+        reduction,
         headerLevel = 2L,
         progress = FALSE,
         ...
     ) {
         ## Passthrough: n, direction, coding
         validObject(object)
+        validObject(markers)
         markers <- topMarkers(
             object = markers,
             n = n,
             direction = direction
         )
         assert(
-            isScalar(reducedDim),
+            isScalar(reduction),
             isHeaderLevel(headerLevel),
             isFlag(progress)
         )
@@ -95,7 +101,7 @@ NULL
                 p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reducedDim = reducedDim,
+                    reduction = reduction,
                     ...
                 )
                 show(p)
@@ -106,9 +112,9 @@ NULL
         invisible(list)
     }
 
-formals(`plotTopMarkers,SingleCellExperiment`)[
-    c("direction", "reducedDim")
-] <- list(direction, reducedDim)
+formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
+    c("direction", "reduction")
+] <- list(direction, reduction)
 
 
 
@@ -116,22 +122,9 @@ formals(`plotTopMarkers,SingleCellExperiment`)[
 #' @export
 setMethod(
     f = "plotTopMarkers",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotTopMarkers,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotTopMarkers,Seurat` <-  # nolint
-    `plotTopMarkers,SingleCellExperiment`
-
-
-
-#' @rdname plotTopMarkers
-#' @export
-setMethod(
-    f = "plotTopMarkers",
-    signature = signature("Seurat"),
-    definition = `plotTopMarkers,Seurat`
+    signature = signature(
+        object = "Seurat",
+        markers = "SeuratMarkersPerCluster"
+    ),
+    definition = `plotTopMarkers,Seurat,SeuratMarkersPerCluster`
 )

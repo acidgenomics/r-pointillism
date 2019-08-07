@@ -1,12 +1,9 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
-#' @inheritParams params
-#' @param markers `grouped_df`.
-#'   Marker genes, grouped by `"cellType"`.
+#' @inheritParams acidroxygen::params
+#' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
@@ -18,7 +15,8 @@
 #' markers <- seuratKnownMarkers
 #' plotKnownMarkers(
 #'     object = object,
-#'     markers = markers
+#'     markers = markers,
+#'     reduction = "UMAP"
 #' )
 NULL
 
@@ -33,12 +31,12 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-02.
 `plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
-        reducedDim,
+        reduction,
         headerLevel,
         progress = FALSE,
         ...
@@ -47,7 +45,7 @@ NULL
         validObject(markers)
         assert(
             isSubset(unique(markers[["name"]]), rownames(object)),
-            isScalar(reducedDim),
+            isScalar(reduction),
             isHeaderLevel(headerLevel),
             isFlag(progress)
         )
@@ -89,7 +87,7 @@ NULL
                 p <- plotMarker(
                     object = object,
                     genes = gene,
-                    reducedDim = reducedDim,
+                    reduction = reduction,
                     ...
                 )
                 show(p)
@@ -102,10 +100,10 @@ NULL
 
 formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
-    "reducedDim"
+    "reduction"
 )] <- list(
     headerLevel = headerLevel,
-    reducedDim = reducedDim
+    reduction = reduction
 )
 
 

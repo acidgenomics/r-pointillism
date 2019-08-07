@@ -39,9 +39,8 @@ BiocManager::valid()
 [pointillism][] currently supports these S4 single-cell container classes:
 
 - [SingleCellExperiment][]
-- [Seurat][] (v3)
-
-We're working on adding support for monocle3 `cell_data_set` class for all plotting functions in the current v0.4 release series.
+- [Seurat][]
+- [monocle3][] `cell_data_set`
 
 ## Markers
 
@@ -77,5 +76,5 @@ The papers and software cited in our workflows are available as a [shared librar
 [Seurat]: https://satijalab.org/seurat/
 [SingleCellExperiment]: https://bioconductor.org/packages/SingleCellExperiment/
 [conda]: https://conda.io/
-[monocle]: http://cole-trapnell-lab.github.io/monocle-release/
+[monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [pointillism]: https://pointillism.acidgenomics.com/

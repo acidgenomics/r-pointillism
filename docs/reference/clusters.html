@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parameters — params • pointillism</title>
+<title>Cluster identifiers — clusters • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,9 +34,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Parameters — params" />
+<meta property="og:title" content="Cluster identifiers — clusters" />
 
-<meta property="og:description" content="Parameters" />
+<meta property="og:description" content="Cluster identifiers" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,41 +111,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/params.R'><code>R/params.R</code></a></small>
-    <div class="hidden name"><code>params.Rd</code></div>
+    <h1>Cluster identifiers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/clusters-methods.R'><code>R/clusters-methods.R</code></a></small>
+    <div class="hidden name"><code>clusters.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Parameters</p>
+    <p>Cluster identifiers</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>clusters</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for cell_data_set</span>
+<span class='fu'>clusters</span>(<span class='no'>object</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Adjusted P value ("alpha") cutoff. If left <code>NULL</code>, will use the cutoff
-defined in the object.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>reducedDim</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name of reduced dimension matrix slotted in
-<code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-reducedDims.html'>reducedDims()</a></code>.
-Includes TNSE, UMAP, PCA, for example.</p></td>
+      <th>reduction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
+Dimension reduction name or index position.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>No value.</p>
+    <p><code>factor</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Updated 2019-08-02.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://rdrr.io/pkg/Seurat/man/Idents.html'>Seurat::Idents()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/clusters.html'>monocle3::clusters()</a></code>.</p></li>
+</ul>
+</div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+
+<span class='co'>## Seurat ====</span>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>clusters</span>(<span class='no'>object</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; ATGCCAGAACGACT CATGGCCTGTGCAT GAACCTGATGAACC TGACTGGATTCTCA AGTCAGACTGCACA 
+#&gt;              0              0              0              0              0 
+#&gt; TCTGATACACGTGT 
+#&gt;              0 
+#&gt; Levels: 0 1 2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; x
+#&gt;  0  1  2 
+#&gt; 36 25 19 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -153,7 +189,13 @@ Includes TNSE, UMAP, PCA, for example.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

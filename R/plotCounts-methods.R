@@ -1,12 +1,13 @@
 #' @name plotCounts
 #' @aliases plotDot plotViolin
 #' @inherit bioverbs::plotCounts
-#' @note Updated 2019-07-31.
+#'
+#' @note Dot geom currently only supports logcounts.
+#' @note Updated 2019-08-06.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
-#' @inheritParams acidplots::params
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @inheritParams ggplot2::geom_violin
 #' @param colMin `numeric(1)`.
 #'   Minimum scaled average expression threshold. Everything smaller will be
@@ -28,9 +29,14 @@
 #' - [Seurat::DotPlot()].
 #' - [Seurat::VlnPlot()].
 #' - [Seurat::RidgePlot()].
+#' - [monocle3::plot_genes_violin()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(
+#'     Seurat,
+#'     cell_data_set,
+#'     package = "acidtest"
+#' )
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -44,6 +50,12 @@
 #'
 #' ## Per sample mode disabled.
 #' plotCounts(object, genes = genes, perSample = FALSE)
+#'
+#' ## cell_data_set ====
+#' object <- cell_data_set
+#' genes <- head(rownames(object), n = 4L)
+#' print(genes)
+#' plotCounts(object, genes = genes)
 NULL
 
 
@@ -55,42 +67,31 @@ NULL
 #' @export
 NULL
 
-#' @rdname plotCounts
-#' @name plotDot
-#' @importFrom bioverbs plotDot
-#' @usage plotDot(object, ...)
-#' @export
-NULL
-
-#' @rdname plotCounts
-#' @name plotViolin
-#' @importFrom bioverbs plotViolin
-#' @usage plotViolin(object, ...)
-#' @export
-NULL
 
 
-
-## plotCounts ==================================================================
-## Updated 2019-07-31.
+## Updated 2019-08-06.
 `plotCounts,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
-        geom = c("dot", "violin"),
+        value = c("logcounts", "normcounts"),
+        geom = c("violin", "dot"),
         perSample = TRUE,
         legend,
         title = NULL
     ) {
         validObject(object)
+        value <- match.arg(value)
         geom <- match.arg(geom)
+        args <- as.list(sys.call(which = -1L))[-1L]
+        args[["geom"]] <- NULL
         if (geom == "dot") {
+            assert(identical(value, "logcounts"))
+            args[["value"]] <- NULL
             what <- plotDot
         } else if (geom == "violin") {
             what <- plotViolin
         }
-        args <- as.list(sys.call(which = -1L))[-1L]
-        args[["geom"]] <- NULL
         do.call(what = what, args = args)
     }
 
@@ -98,246 +99,6 @@ formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
 
 
 
-## plotDot =====================================================================
-#' Min Max
-#' @note Updated 2019-07-31.
-#' @seealso `Seurat:::MinMax`.
-#' @noRd
-.minMax <- function(data, min, max) {
-    data2 <- data
-    data2[data2 > max] <- max
-    data2[data2 < min] <- min
-    data2
-}
-
-
-
-#' Percent Above
-#' @note Updated 2019-07-31.
-#' @seealso `Seurat:::PercentAbove`.
-#' @noRd
-.percentAbove <- function(x, threshold) {
-    length(x[x > threshold]) / length(x)
-}
-
-
-
-## Updated 2019-07-31.
-`plotDot,SingleCellExperiment` <-  # nolint
-    function(
-        object,
-        genes,
-        perSample = TRUE,
-        colMin = -2.5,
-        colMax = 2.5,
-        dotMin = 0L,
-        dotScale = 6L,
-        color,
-        legend,
-        title = NULL
-    ) {
-        validObject(object)
-        assert(
-            .hasIdent(object),
-            isCharacter(genes),
-            isFlag(perSample),
-            isNumber(colMin),
-            isNumber(colMax),
-            isNumber(dotMin),
-            isNumber(dotScale),
-            isGGScale(
-                x = color,
-                scale = "continuous",
-                aes = "colour",
-                nullOK = TRUE
-            ),
-            isFlag(legend),
-            isString(title, nullOK = TRUE)
-        )
-
-        ## Fetch the gene expression data.
-        data <- .fetchGeneData(
-            object = object,
-            genes = genes,
-            assay = "logcounts",
-            metadata = TRUE
-        )
-
-        ## Prepare data for ggplot.
-        cols <- c("geneName", "sampleName", "ident")
-        data <- data %>%
-            as_tibble() %>%
-            group_by(!!!syms(cols)) %>%
-            summarize(
-                avgExp = mean(expm1(!!sym("logcounts"))),
-                ## Consider making threshold user definable.
-                pctExp = .percentAbove(!!sym("logcounts"), threshold = 0L)
-            ) %>%
-            ungroup() %>%
-            mutate(geneName = as.factor(!!sym("geneName"))) %>%
-            group_by(!!sym("geneName")) %>%
-            mutate(
-                avgExpScale = scale(!!sym("avgExp")),
-                avgExpScale = .minMax(
-                    !!sym("avgExpScale"),
-                    max = colMax,
-                    min = colMin
-                )
-            ) %>%
-            arrange(!!!syms(cols), .by_group = TRUE)
-
-        ## Apply our `dotMin` threshold.
-        data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
-
-        p <- ggplot(
-            data = data,
-            mapping = aes(
-                x = !!sym("geneName"),
-                y = !!sym("ident")
-            )
-        ) +
-            geom_point(
-                mapping = aes(
-                    color = !!sym("avgExpScale"),
-                    size = !!sym("pctExp")
-                ),
-                show.legend = legend
-            ) +
-            scale_radius(range = c(0L, dotScale)) +
-            labs(
-                x = NULL,
-                y = NULL
-            )
-
-        ## Handling step for multiple samples, if desired.
-        if (
-            isTRUE(perSample) &&
-            isTRUE(.hasMultipleSamples(object))
-        ) {
-            p <- p +
-                facet_wrap(
-                    facets = vars(!!sym("sampleName"))
-                )
-        }
-
-        if (is(color, "ScaleContinuous")) {
-            p <- p + color
-        }
-
-        p
-    }
-
-formals(`plotDot,SingleCellExperiment`)[c(
-    "color",
-    "legend"
-)] <- list(
-    color = continuousColorPurpleOrange,
-    legend = legend
-)
-
-
-
-## Updated 2019-07-31.
-`plotViolin,SingleCellExperiment` <-  # nolint
-    function(
-        object,
-        genes,
-        perSample = TRUE,
-        scale = c("count", "width", "area"),
-        color,
-        legend,
-        title = NULL
-    ) {
-        validObject(object)
-        assert(
-            isCharacter(genes),
-            isFlag(perSample),
-            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
-            isFlag(legend),
-            isString(title, nullOK = TRUE)
-        )
-        scale <- match.arg(scale)
-
-        ## Fetch the gene expression data.
-        data <- .fetchGeneData(
-            object = object,
-            genes = genes,
-            assay = "logcounts",
-            metadata = TRUE
-        )
-
-        ## Handling step for multiple samples, if desired.
-        if (
-            isTRUE(perSample) &&
-            isTRUE(.hasMultipleSamples(object))
-        ) {
-            x <- "sampleName"
-            interestingGroups <- interestingGroups(object)
-            if (
-                is.null(interestingGroups) ||
-                interestingGroups == "ident"
-            ) {
-                interestingGroups <- "sampleName"
-            }
-            colorMapping <- "interestingGroups"
-            colorLabs <- paste(interestingGroups, collapse = ":\n")
-        } else {
-            x <- "ident"
-            colorMapping <- x
-            colorLabs <- x
-        }
-
-        p <- ggplot(
-            data = as_tibble(data),
-            mapping = aes(
-                x = !!sym(x),
-                y = !!sym("logcounts"),
-                color = !!sym(colorMapping)
-            )
-        ) +
-            geom_jitter(show.legend = legend) +
-            geom_violin(
-                fill = NA,
-                scale = scale,
-                adjust = 1L,
-                show.legend = legend,
-                trim = TRUE
-            ) +
-            ## Note that `scales = free_y` will hide the x-axis for some plots.
-            labs(title = title, color = colorLabs)
-
-        ## Handling step for multiple samples, if desired.
-        if (
-            isTRUE(perSample) &&
-            isTRUE(.hasMultipleSamples(object))
-        ) {
-            p <- p +
-                facet_grid(
-                    rows = vars(!!sym("ident")),
-                    cols = vars(!!sym("geneName")),
-                    scales = "free_y"
-                )
-        } else {
-            p <- p +
-                facet_wrap(
-                    facets = vars(!!sym("geneName")),
-                    scales = "free_y"
-                )
-        }
-
-        if (is(color, "ScaleDiscrete")) {
-            p <- p + color
-        }
-
-        p
-    }
-
-formals(`plotViolin,SingleCellExperiment`)[c("color", "legend")] <-
-    list(color = discreteColor, legend = legend)
-
-
-
-## Methods =====================================================================
 #' @rdname plotCounts
 #' @export
 setMethod(
@@ -364,52 +125,16 @@ setMethod(
 
 
 
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotDot",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotDot,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotDot,Seurat` <-  # nolint
-    `plotDot,SingleCellExperiment`
+## Updated 2019-08-02.
+`plotCounts,cell_data_set` <-  # nolint
+    `plotCounts,SingleCellExperiment`
 
 
 
 #' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotDot",
-    signature = signature("Seurat"),
-    definition = `plotDot,Seurat`
-)
-
-
-
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotViolin",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotViolin,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotViolin,Seurat` <-  # nolint
-    `plotViolin,SingleCellExperiment`
-
-
-
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotViolin",
-    signature = signature("Seurat"),
-    definition = `plotViolin,Seurat`
+    f = "plotCounts",
+    signature = signature("cell_data_set"),
+    definition = `plotCounts,cell_data_set`
 )

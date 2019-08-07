@@ -37,7 +37,7 @@ discreteColor <-
     quote(getOption("acid.discrete.color", default = NULL))
 
 dark <- quote(getOption("acid.dark", default = FALSE))
-dimsUse <- quote(c(1L, 2L))
+dims <- quote(c(1L, 2L))
 direction <- c("up", "down", "both")
 expression <- c("mean", "sum")
 headerLevel <- 2L
@@ -48,7 +48,7 @@ pointAlpha <- quote(getOption("acid.pointAlpha", default = 0.85))
 pointSize <- quote(getOption("acid.pointSize", default = 0.75))
 pointsAsNumbers <-
     quote(getOption("acid.pointsAsNumbers", default = FALSE))
-reducedDim <- "UMAP"  # "TSNE"
+reduction <- "UMAP"  # 1L
 
 ## Set default ggplot2 theme.
 if (isTRUE(getOption("acid.dark"))) {

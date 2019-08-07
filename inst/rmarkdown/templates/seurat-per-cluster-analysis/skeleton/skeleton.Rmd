@@ -1,10 +1,8 @@
 ---
-## Updated 2019-04-17.
+## Updated 2019-08-06.
 params:
-  title: "Per Cluster Analysis"
-  
-  ## Use Seurat object file as input.
-  seurat_file: "data/YYYY-MM-DD/seurat.rds"
+  title: "Per cluster analysis"
+  seurat_file: "rds/YYYY-MM-DD/seurat.rds"
 
 title: "`r params$title`"
 author: "`r getOption('author')`"
@@ -23,50 +21,45 @@ source("_setup.R")
 
 # Load Seurat object
 
-```{r load-seurat}
-stopifnot(file.exists(params$seurat_file))
-if (fileExt(params$seurat_file) == "rds") {
-    seurat <- readRDS(file = params$seurat_file)
-    name <- basenameSansExt(params$seurat_file)
-} else if (fileExt(params$seurat_file) == "rda") {
-    name <- load(file = params$seurat_file)
-    seurat <- get(x = name, inherits = FALSE)
-}
+```{r load-object}
+file <- params$seurat_file
+object <- import(file)
+name <- basenameSansExt(file)
+rm(file)
 stopifnot(
-    is(seurat, "Seurat"),
+    is(object, "Seurat"),
     is.character(name)
 )
-invisible(validObject(seurat))
-print(seurat)
+invisible(validObject(object))
+print(object)
 ```
 
 ```{r metadata}
-idents <- levels(seurat@ident)
-interesting_groups <- interestingGroups(seurat)
+idents <- levels(Idents(object))
+interesting_groups <- interestingGroups(object)
 ```
 
-# tSNE (all clusters) {.tabset}
+# UMAP (all clusters) {.tabset}
 
 ```{r plot-tsne-all-clusters, results="asis"}
 groups <- unique(c("ident", "sampleName", interesting_groups))
 invisible(lapply(groups, function(group) {
-    markdownHeader(group, level = 2, asis = TRUE)
-    plotTSNE(seurat, interestingGroups = group) %>%
-        show()
+    markdownHeader(group, level = 2L, asis = TRUE)
+    show(plotUMAP(object, interestingGroups = group))
 }))
 rm(groups)
 ```
 
-# tSNE per cluster {.tabset}
+# UMAP per cluster {.tabset}
 
 ```{r plot-tsne-per-cluster, results="asis"}
 groups <- unique(c("sampleName", interesting_groups))
 invisible(lapply(idents, function(ident) {
-    subset <- SubsetData(seurat, ident.use = ident)
-    markdownHeader(ident, level = 2, asis = TRUE, tabset = TRUE)
+    subset <- subset(object, idents = ident)
+    markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
     invisible(lapply(groups, function(group) {
-        markdownHeader(group, level = 3, asis = TRUE)
-        plotTSNE(subset, interestingGroups = group) %>% show()
+        markdownHeader(group, level = 3L, asis = TRUE)
+        show(plotUMAP(subset, interestingGroups = group))
     }))
 }))
 rm(groups)
@@ -76,9 +69,12 @@ rm(groups)
 
 ```{r cell-counts-per-cluster, results="asis"}
 invisible(lapply(idents, function(ident) {
-    subset <- SubsetData(seurat, ident.use = ident)
-    markdownHeader(ident, level = 2, asis = TRUE, tabset = TRUE)
-    master <- subset@meta.data %>%
+    subset <- subset(object, idents = ident)
+    markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
+    master <- as_tibble(subset[[]])
+    stopifnot("sampleName" %in% colnames(master))
+    master[["ident"]] <- Idents(subset)
+    master %<>%
         uniteInterestingGroups(interestingGroups) %>%
         select(sampleName, interestingGroups)
     sampleStats <- master %>%
@@ -94,22 +90,6 @@ invisible(lapply(idents, function(ident) {
     kable(sampleStats, digits = 2) %>% show()
     kable(intgroupStats, digits = 2) %>% show()
 }))
-```
-
-# Seurat parameters {.tabset}
-
-```{r seurat-diagnostics}
-markdownHeader("PrintPCAParams", level = 2)
-PrintPCAParams(seurat)
-
-markdownHeader("PrintFindClustersParams", level = 2)
-PrintFindClustersParams(seurat)
-
-markdownHeader("PrintTSNEParams", level = 2)
-PrintTSNEParams(seurat)
-
-markdownHeader("PrintSNNParams", level = 2)
-PrintSNNParams(seurat)
 ```
 
 ```{r footer, child="_footer.Rmd"}

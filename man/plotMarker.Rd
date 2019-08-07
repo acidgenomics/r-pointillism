@@ -10,7 +10,7 @@
 plotMarker(object, ...)
 
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
-  reducedDim = "UMAP", expression = c("mean", "sum"),
+  reduction = "UMAP", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -21,7 +21,7 @@ plotMarker(object, ...)
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE), title = TRUE)
 
-\S4method{plotMarker}{Seurat}(object, genes, reducedDim = "UMAP",
+\S4method{plotMarker}{Seurat}(object, genes, reduction = "UMAP",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
@@ -37,14 +37,10 @@ plotMarker(object, ...)
 \item{object}{Object.}
 
 \item{genes}{\code{character}.
-Gene identifiers. It is considered better practice to input the stable gene
-identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
-symbols (e.g. "TSPN6"), if possible.}
+Gene identifiers.}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.
@@ -60,11 +56,11 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 }}
 
 \item{pointSize}{\code{numeric(1)}.
-Point size for dots in the plot.}
+Point size for dots in the plot.
+In the range of 1-3 is generally recommended.}
 
 \item{pointAlpha}{\code{numeric(1)} (\code{0}-\code{1}).
-Alpha transparency level. Useful when there many points in the dataset
-(e.g. single-cell data), and some points can be masked.}
+Alpha transparency level.}
 
 \item{pointsAsNumbers}{\code{logical(1)}.
 Plot the points as numbers (\code{TRUE}) or dots (\code{FALSE}).}
@@ -77,13 +73,13 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{title}{\code{character(1)}.
-Plot title.}
+Title.}
 
 \item{...}{Additional arguments.}
 }
@@ -95,34 +91,41 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-02.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
-title <- "most abundant genes"
 genes <- counts(object) \%>\%
     Matrix::rowSums(.) \%>\%
     sort(decreasing = TRUE) \%>\%
     head(n = 4L) \%>\%
     names()
-str(genes)
-
-## Default appearance.
-plotMarker(object, genes = genes[[1L]])
-
-## Dark mode with viridis palette.
+print(genes)
 plotMarker(
     object = object,
     genes = genes,
-    expression = "mean",
-    pointsAsNumbers = TRUE,
-    color = ggplot2::scale_color_viridis_c(),
-    dark = TRUE,
-    label = FALSE,
-    title = title
+    reduction = "UMAP"
+)
+
+## cell_data_set ====
+object = cell_data_set
+genes <- counts(object) \%>\%
+    Matrix::rowSums(.) \%>\%
+    sort(decreasing = TRUE) \%>\%
+    head(n = 4L) \%>\%
+    names()
+print(genes)
+plotMarker(
+    object = object,
+    genes = genes,
+    reduction = "UMAP"
 )
 }
 \author{

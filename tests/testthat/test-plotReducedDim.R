@@ -4,7 +4,6 @@ with_parameters_test_that(
     "plotReducedDim", {
         p <- plotReducedDim(
             object = object,
-            reducedDim = "TSNE",
             pointsAsNumbers = TRUE,
             dark = TRUE,
             label = FALSE
@@ -14,38 +13,17 @@ with_parameters_test_that(
     object = objects
 )
 
-
-
-context("plotPCA")
+funs <- list(plotPCA, plotTSNE, plotUMAP)
 
 with_parameters_test_that(
-    "plotPCA", {
-        p <- plotPCA(object)
-        expect_s3_class(p, "ggplot")
+    "Aliases", {
+        lapply(
+            X = objects,
+            FUN = function(object) {
+                p <- fun(object)
+                expect_s3_class(p, "ggplot")
+            }
+        )
     },
-    object = objects
-)
-
-
-
-context("plotTSNE")
-
-with_parameters_test_that(
-    "plotTSNE", {
-        p <- plotTSNE(object)
-        expect_s3_class(p, "ggplot")
-    },
-    object = objects
-)
-
-
-
-context("plotUMAP")
-
-with_parameters_test_that(
-    "plotUMAP", {
-        p <- plotTSNE(object)
-        expect_s3_class(p, "ggplot")
-    },
-    object = objects
+    fun = funs
 )

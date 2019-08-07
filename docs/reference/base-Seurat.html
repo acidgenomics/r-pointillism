@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend S4 Methods for <code>Seurat</code> Class — Seurat-SingleCellExperiment • pointillism</title>
+<title>Extend base S4 methods for <code>Seurat</code> class — base-Seurat • pointillism</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Extend S4 Methods for <code>Seurat</code> Class — Seurat-SingleCellExperiment" />
+<meta property="og:title" content="Extend base S4 methods for <code>Seurat</code> class — base-Seurat" />
 
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 <meta name="twitter:card" content="summary" />
@@ -111,9 +111,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extend S4 Methods for <code>Seurat</code> Class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/Seurat-SCE-methods.R'><code>R/Seurat-SCE-methods.R</code></a></small>
-    <div class="hidden name"><code>Seurat-SingleCellExperiment.Rd</code></div>
+    <h1>Extend base S4 methods for <code>Seurat</code> class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/base-Seurat-methods.R'><code>R/base-Seurat-methods.R</code></a></small>
+    <div class="hidden name"><code>base-Seurat.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -122,7 +122,10 @@
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for Seurat,ANY</span>
+    <pre class="usage"><span class='co'># S4 method for Seurat</span>
+<span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for Seurat,ANY</span>
 <span class='fu'>assay</span>(<span class='no'>x</span>, <span class='no'>i</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
@@ -138,19 +141,16 @@
 <span class='fu'>colData</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>counts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>counts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat,character</span>
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>logcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>mapGenesToIDs</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
@@ -171,13 +171,25 @@
 <span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
+<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>organism</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>organism</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>reducedDim</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>reducedDimNames</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for Seurat</span>
 <span class='fu'>reducedDims</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>rowData</span>(<span class='no'>x</span>, <span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>x</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>)
@@ -195,17 +207,19 @@
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>sampleNames</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/weights.html'>weights</a></span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for Seurat</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/weights.html'>weights</a></span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>sampleNames</span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
     <tr>
       <th>x</th>
       <td><p>Object.</p></td>
@@ -218,37 +232,41 @@
 </pre></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    <tr>
       <th>value</th>
       <td><p>Value to assign.</p></td>
     </tr>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>assay</th>
+      <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
+Assay name or index position.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Run the function with verbose output.</p></td>
     </tr>
     <tr>
       <th>genes</th>
       <td><p><code>character</code>.
-Gene identifiers. It is considered better practice to input the stable gene
-identifiers from Ensembl (e.g. "ENSG00000000003") and not the (HGNC) gene
-symbols (e.g. "TSPN6"), if possible.</p></td>
+Gene identifiers.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Match <code>SummarizedExperiment</code> method return.</p>
+    <p>Varies, depending on the generic.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
+    <p>Updated 2019-08-05.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>getMethod("metadata&lt;-", "Annotated")</code></p></div>
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://rdrr.io/pkg/Seurat/man/GetAssayData.html'>Seurat::GetAssayData()</a></code>.</p></li>
+</ul>
+</div>
     
 
   </div>

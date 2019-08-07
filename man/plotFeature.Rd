@@ -10,7 +10,7 @@
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
-  reducedDim = "UMAP", color = getOption("acid.continuous.color",
+  reduction = "UMAP", color = getOption("acid.continuous.color",
   default = ggplot2::scale_colour_gradient(low = "gray75", high =
   "purple")), pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
@@ -21,7 +21,7 @@ plotFeature(object, ...)
   legend = getOption("acid.legend", default = TRUE),
   expression = c("mean", "sum"))
 
-\S4method{plotFeature}{Seurat}(object, features, reducedDim = "UMAP",
+\S4method{plotFeature}{Seurat}(object, features, reduction = "UMAP",
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -39,10 +39,8 @@ plotFeature(object, ...)
 \item{features}{\code{character}. Features to plot (e.g. gene expression, PC
 scores, number of genes detected).}
 
-\item{reducedDim}{\code{character(1)}.
-Name of reduced dimension matrix slotted in
-\code{\link[SingleCellExperiment:reducedDims]{reducedDims()}}.
-Includes TNSE, UMAP, PCA, for example.}
+\item{reduction}{\code{vector(1)}.
+Dimension reduction name or index position.}
 
 \item{color}{\code{ScaleDiscrete}.
 Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
@@ -53,11 +51,11 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 }}
 
 \item{pointSize}{\code{numeric(1)}.
-Point size for dots in the plot.}
+Point size for dots in the plot.
+In the range of 1-3 is generally recommended.}
 
 \item{pointAlpha}{\code{numeric(1)} (\code{0}-\code{1}).
-Alpha transparency level. Useful when there many points in the dataset
-(e.g. single-cell data), and some points can be masked.}
+Alpha transparency level.}
 
 \item{pointsAsNumbers}{\code{logical(1)}.
 Plot the points as numbers (\code{TRUE}) or dots (\code{FALSE}).}
@@ -70,10 +68,10 @@ Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
 Plot against a dark background using the
-\code{\link[acidplots:theme_midnight]{theme_midnight()}} ggplot2 theme.}
+\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
 
 \item{legend}{\code{logical(1)}.
-Show plot legend.}
+Include plot legend.}
 
 \item{expression}{\code{character(1)}.
 Calculation to apply.
@@ -89,14 +87,30 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-06.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(
+    Seurat,
+    cell_data_set,
+    package = "acidtest"
+)
 
 ## Seurat ====
 object <- Seurat
-plotFeature(object, features = c("nCount_RNA", "nFeature_RNA"))
+plotFeature(
+    object = object,
+    features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
+    reduction = "UMAP"
+)
+
+## cell_data_set ====
+object <- cell_data_set
+plotFeature(
+    object = object,
+    features = c("PC1", "PC2"),
+    reduction = "UMAP"
+)
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.
