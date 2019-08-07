@@ -93,7 +93,7 @@ VignetteBuilder: knitr
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
-    'CellMarkers.R'
+    'AllGenerators.R'
     'KnownMarkers-methods.R'
     'Seurat-internal.R'
     'SeuratMarkers-methods.R'

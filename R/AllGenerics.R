@@ -1,4 +1,4 @@
-#' @rdname KnownMarkers-class
+#' @rdname KnownMarkers
 #' @export
 setGeneric(
     name = "KnownMarkers",
@@ -7,7 +7,9 @@ setGeneric(
     }
 )
 
-#' @rdname SeuratMarkers-class
+
+
+#' @rdname SeuratMarkers
 #' @export
 setGeneric(
     name = "SeuratMarkers",
@@ -16,7 +18,9 @@ setGeneric(
     }
 )
 
-#' @rdname SeuratMarkersPerCluster-class
+
+
+#' @rdname SeuratMarkers
 #' @export
 setGeneric(
     name = "SeuratMarkersPerCluster",
