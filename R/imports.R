@@ -1,6 +1,5 @@
 ## Conflicts:
-## @importFrom Matrix rowMeans rowSums
-## Use colSums2 and rowSums2 with DelayedMatrix.
+## #' @importFrom Matrix rowMeans rowSums
 
 
 
@@ -11,7 +10,7 @@
 #' @importMethodsFrom basejump coerce
 #'
 #' @importFrom BiocGenerics cbind counts counts<- do.call lapply rowMeans
-#'   rowSums sapply
+#'   rowSums sapply sizeFactors sizeFactors<-
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
 #' @importFrom DelayedArray DelayedArray
@@ -22,15 +21,17 @@
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
 #'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
-#'   normcounts<- reducedDimNames reducedDims sizeFactors sizeFactors<-
-#'   spikeNames
-#' @importFrom SummarizedExperiment assay assayNames assays assays<- colData
-#'   rowData rowRanges rowRanges<-
+#'   normcounts<- reducedDim reducedDim<- reducedDimNames reducedDims
+#'   sizeFactors sizeFactors<- spikeNames
+#' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
+#'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
-#' @importFrom basejump camel coerce convertGenesToSymbols decode
-#'   estimateSizeFactors gene2symbol geometricMean import makeNames
-#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
-#'   matchInterestingGroups printString separator showSlotInfo snake upperCamel
+#' @importFrom basejump Gene2Symbol camel coerce convertGenesToSymbols decode
+#'   estimateSizeFactors gene2symbol geometricMean import interestingGroups
+#'   interestingGroups<- makeNames mapGenesToIDs mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
+#'   metrics organism organism<- printString sampleData sampleData<- sampleNames
+#'   separator showSlotInfo snake upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
