@@ -2,10 +2,8 @@
 #' @inherit bioverbs::plotKnownMarkers
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
-#' @param markers `grouped_df`.
-#'   Marker genes, grouped by `"cellType"`.
+#' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
@@ -17,7 +15,8 @@
 #' markers <- seuratKnownMarkers
 #' plotKnownMarkers(
 #'     object = object,
-#'     markers = markers
+#'     markers = markers,
+#'     reduction = "UMAP"
 #' )
 NULL
 

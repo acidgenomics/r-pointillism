@@ -6,7 +6,6 @@
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
 #' @param minPct `numeric(1)` (`0`-`1`).
 #'   Minimum percent standard deviation.

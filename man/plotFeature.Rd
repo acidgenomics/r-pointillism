@@ -10,9 +10,9 @@
 plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
-  reduction = 1L, color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("acid.pointSize", default = 0.75),
+  reduction = "UMAP", color = getOption("acid.continuous.color",
+  default = ggplot2::scale_colour_gradient(low = "gray75", high =
+  "purple")), pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
@@ -21,7 +21,7 @@ plotFeature(object, ...)
   legend = getOption("acid.legend", default = TRUE),
   expression = c("mean", "sum"))
 
-\S4method{plotFeature}{Seurat}(object, features, reduction = 1L,
+\S4method{plotFeature}{Seurat}(object, features, reduction = "UMAP",
   color = getOption("acid.continuous.color", default =
   ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
@@ -100,12 +100,17 @@ data(
 object <- Seurat
 plotFeature(
     object = object,
-    features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2")
+    features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
+    reduction = "UMAP"
 )
 
 ## cell_data_set ====
 object <- cell_data_set
-plotFeature(object, features = c("PC1", "PC2"))
+plotFeature(
+    object = object,
+    features = c("PC1", "PC2"),
+    reduction = "UMAP"
+)
 }
 \seealso{
 \code{\link[Seurat:FeaturePlot]{Seurat::FeaturePlot()}}.

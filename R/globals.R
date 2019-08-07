@@ -48,7 +48,7 @@ pointAlpha <- quote(getOption("acid.pointAlpha", default = 0.85))
 pointSize <- quote(getOption("acid.pointSize", default = 0.75))
 pointsAsNumbers <-
     quote(getOption("acid.pointsAsNumbers", default = FALSE))
-reduction <- 1L  # "UMAP", "TSNE"
+reduction <- "UMAP"  # 1L
 
 ## Set default ggplot2 theme.
 if (isTRUE(getOption("acid.dark"))) {

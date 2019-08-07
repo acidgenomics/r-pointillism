@@ -24,7 +24,11 @@
 #' ## Seurat, SeuratMarkersPerCluster ====
 #' object <- Seurat
 #' markers <- seuratAllMarkers
-#' plotTopMarkers(object = object, markers = markers)
+#' plotTopMarkers(
+#'     object = object,
+#'     markers = markers,
+#'     reduction = "UMAP"
+#' )
 NULL
 
 

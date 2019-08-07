@@ -3,24 +3,26 @@
 \docType{methods}
 \name{plotCellTypesPerCluster}
 \alias{plotCellTypesPerCluster}
-\alias{plotCellTypesPerCluster,SingleCellExperiment-method}
-\alias{plotCellTypesPerCluster,Seurat-method}
+\alias{plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers-method}
+\alias{plotCellTypesPerCluster,Seurat,KnownMarkers-method}
 \title{Plot cell types per cluster}
 \usage{
-plotCellTypesPerCluster(object, ...)
+plotCellTypesPerCluster(object, markers, ...)
 
-\S4method{plotCellTypesPerCluster}{SingleCellExperiment}(object, markers,
-  min = 1L, max = Inf, reduction = 1L, expression = c("mean",
+
+  \S4method{plotCellTypesPerCluster}{SingleCellExperiment,KnownMarkers}(object,
+  markers, min = 1L, max = Inf, reduction = "UMAP",
+  expression = c("mean", "sum"), headerLevel = 2L, progress = FALSE,
+  ...)
+
+\S4method{plotCellTypesPerCluster}{Seurat,KnownMarkers}(object, markers,
+  min = 1L, max = Inf, reduction = "UMAP", expression = c("mean",
   "sum"), headerLevel = 2L, progress = FALSE, ...)
-
-\S4method{plotCellTypesPerCluster}{Seurat}(object, markers, min = 1L,
-  max = Inf, reduction = 1L, expression = c("mean", "sum"),
-  headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{markers}{\code{KnownMarkers}.}
+\item{markers}{Object containing gene markers.}
 
 \item{min}{\code{numeric(1)}.
 Recommended minimum value cutoff.}
@@ -56,7 +58,7 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-08-07.
 }
 \examples{
 data(Seurat, package = "acidtest")
@@ -68,6 +70,7 @@ markers <- seuratKnownMarkers
 
 plotCellTypesPerCluster(
     object = object,
-    markers = markers
+    markers = markers,
+    reduction = "UMAP"
 )
 }

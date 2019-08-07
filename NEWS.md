@@ -1,4 +1,4 @@
-## pointillism 0.4.0 (2019-08-06)
+## pointillism 0.4.0 (2019-08-07)
 
 Initial support for monocle3 `cell_data_set` class.
 

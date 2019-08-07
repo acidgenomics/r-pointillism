@@ -2,7 +2,6 @@
 #' @inherit bioverbs::plotFeature
 #' @note Updated 2019-08-06.
 #'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
@@ -23,12 +22,17 @@
 #' object <- Seurat
 #' plotFeature(
 #'     object = object,
-#'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2")
+#'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
+#'     reduction = "UMAP"
 #' )
 #'
 #' ## cell_data_set ====
 #' object <- cell_data_set
-#' plotFeature(object, features = c("PC1", "PC2"))
+#' plotFeature(
+#'     object = object,
+#'     features = c("PC1", "PC2"),
+#'     reduction = "UMAP"
+#' )
 NULL
 
 

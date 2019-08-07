@@ -9,7 +9,7 @@
 plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
-  n = 1L, direction = c("up", "down", "both"), reduction = 1L,
+  n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
   headerLevel = 2L, progress = FALSE, ...)
 }
 \arguments{
@@ -57,5 +57,9 @@ data(seuratAllMarkers)
 ## Seurat, SeuratMarkersPerCluster ====
 object <- Seurat
 markers <- seuratAllMarkers
-plotTopMarkers(object = object, markers = markers)
+plotTopMarkers(
+    object = object,
+    markers = markers,
+    reduction = "UMAP"
+)
 }

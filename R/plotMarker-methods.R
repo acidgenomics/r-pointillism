@@ -1,10 +1,8 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
+#' @inherit bioverbs::plotMarker
 #' @note Updated 2019-08-02.
 #'
-#' @inherit bioverbs::plotMarker
-#'
-#' @inheritParams acidplots::params
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
@@ -23,7 +21,11 @@
 #'     head(n = 4L) %>%
 #'     names()
 #' print(genes)
-#' plotMarker(object, genes = genes)
+#' plotMarker(
+#'     object = object,
+#'     genes = genes,
+#'     reduction = "UMAP"
+#' )
 #'
 #' ## cell_data_set ====
 #' object = cell_data_set
@@ -33,7 +35,11 @@
 #'     head(n = 4L) %>%
 #'     names()
 #' print(genes)
-#' plotMarker(object, genes = genes)
+#' plotMarker(
+#'     object = object,
+#'     genes = genes,
+#'     reduction = "UMAP"
+#' )
 NULL
 
 
