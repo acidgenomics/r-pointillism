@@ -84,7 +84,7 @@ NULL
         assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
-        message(paste(length(clusters), "clusters detected"))
+        message(sprintf("%d clusters detected.", length(clusters)))
 
         ## Loop across each cluster and perform pairwise DE based on the single
         ## group of interest defined.
@@ -92,7 +92,10 @@ NULL
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
-                message(paste("Cluster", cluster, "===="))
+                message(sprintf(
+                    "Cluster %s ====",
+                    as.character(cluster)
+                ))
                 ## Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
                 assert(isNonEmpty(cells))

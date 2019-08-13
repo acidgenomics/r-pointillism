@@ -41,14 +41,17 @@ NULL
         assert(is.factor(ident), hasNames(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
-        message(paste(length(clusters), "clusters detected"))
+        message(sprintf("%d clusters detected.", length(clusters)))
 
         ## Loop across the clusters and calculate gene enrichment relative to
         ## all of the other clusters combined.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
-                message(paste("Cluster", cluster, "===="))
+                message(sprintf(
+                    "Cluster %s ====",
+                    as.character(cluster)
+                ))
                 ## Numerator: cells in the current cluster.
                 numerator <- ident[which(ident == cluster)]
                 assert(all(numerator == cluster))
