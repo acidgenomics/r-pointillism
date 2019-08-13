@@ -185,22 +185,22 @@ in the <code>gene</code> column.</p>
         <span class='kw'>ident.2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
     )
 ))
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>SeuratMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>markers</span>, <span class='kw'>ranges</span> <span class='kw'>=</span> <span class='no'>ranges</span>)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindMarkers` return detected.</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; alpha: 0.05
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>SeuratMarkers</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>markers</span>, <span class='kw'>ranges</span> <span class='kw'>=</span> <span class='no'>ranges</span>)</div><div class='output co'>#&gt; <span class='message'>'Seurat::FindMarkers()' return detected.</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; alpha: 0.05
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.4.0
-#&gt; date: 2019-08-07</div><div class='input'>
+#&gt; version: 0.4.1
+#&gt; date: 2019-08-12</div><div class='input'>
 <span class='co'>## `FindAllMarkers()` return.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Seurat/man/FindAllMarkers.html'>FindAllMarkers</a></span>(<span class='no'>object</span>)
-)))</div><div class='output co'>#&gt; <span class='message'>Calculating cluster 0</span></div><div class='output co'>#&gt; <span class='message'>Calculating cluster 1</span></div><div class='output co'>#&gt; <span class='message'>Calculating cluster 2</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>SeuratMarkersPerCluster</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>markers</span>, <span class='kw'>ranges</span> <span class='kw'>=</span> <span class='no'>ranges</span>)</div><div class='output co'>#&gt; <span class='message'>`Seurat::FindAllMarkers` return detected.</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 3 clusters
+)))</div><div class='output co'>#&gt; <span class='message'>Calculating cluster 0</span></div><div class='output co'>#&gt; <span class='message'>Calculating cluster 1</span></div><div class='output co'>#&gt; <span class='message'>Calculating cluster 2</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>SeuratMarkersPerCluster</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>markers</span>, <span class='kw'>ranges</span> <span class='kw'>=</span> <span class='no'>ranges</span>)</div><div class='output co'>#&gt; <span class='message'>'Seurat::FindAllMarkers()' return detected.</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 3 clusters
 #&gt; alpha: 0.05
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.4.0
-#&gt; date: 2019-08-07</div></pre>
+#&gt; version: 0.4.1
+#&gt; date: 2019-08-12</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
