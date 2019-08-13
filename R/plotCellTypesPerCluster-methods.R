@@ -92,7 +92,7 @@ NULL
             )
             clusterData <- filter(markers, !!sym("cluster") == !!cluster)
             if (nrow(clusterData) == 0L) {
-                message(paste0("No markers for cluster ", cluster, "."))
+                message(sprintf("No markers for cluster %s.", cluster))
                 return(invisible())
             }
             assert(hasRows(clusterData))
