@@ -39,13 +39,11 @@ NULL
 
 
 
-## FIXME This is now breaking on the example data.
-
-## Updated 2019-08-05.
+## Updated 2019-08-12.
 .fetchGeneData <- function(
     object,
-    value = c("logcounts", "normcounts"),
     genes,
+    value = c("logcounts", "normcounts"),
     metadata = FALSE
 ) {
     validObject(object)
@@ -97,22 +95,29 @@ NULL
 
     ## Gather into long format. Here we're putting the genes into a "rowname"
     ## column. Note that this step can attempt to sanitize gene symbols (e.g.
-    ## "HLA-DRA" to "HLA.DRA") here in the `as_tibble()` call, if we're not
-    ## careful.
+    ## "HLA-DRA" to "HLA.DRA") here either during an `as.data.frame()` or
+    ## `as_tibble()` call. To get around this, we're coercing the S4 DataFrame
+    ## using `as()` and then coercing to a tibble later in the chain.
     data <- data %>%
-        as_tibble(rownames = "rowname") %>%
+        as("data.frame") %>%
+        rownames_to_column("rowname") %>%
         gather(
             key = "rowname",
             value = !!sym(value),
             !!rownames
         ) %>%
+        as_tibble() %>%
         group_by(!!sym("rowname"))
+    ## Double checking here for accidental base R sanitization of symbols.
+    assert(isSubset(rownames, data[["rowname"]]))
 
     ## Join the geneID and geneName columns by the "rowname" column.
     g2s <- Gene2Symbol(object)
     assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "tbl_df")
     data <- left_join(data, g2s, by = "rowname")
+
+    ## Return as DataFrame.
     data[["rowname"]] <- NULL
     data <- data[, sort(colnames(data))]
     as(data, "DataFrame")
