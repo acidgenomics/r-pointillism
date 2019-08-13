@@ -2,13 +2,14 @@ context("Seurat as SingleCellExperiment")
 
 object <- seurat
 
-
+test_that("Gene2Symbol", {
+    x <- Gene2Symbol(seurat)
+    expect_is(x, "Gene2Symbol")
+})
 
 test_that("assay", {
     expect_s4_class(assay(object), "sparseMatrix")
 })
-
-
 
 test_that("assayNames", {
     expect_identical(
@@ -17,19 +18,13 @@ test_that("assayNames", {
     )
 })
 
-
-
 test_that("assays", {
     expect_s4_class(assays(object), "SimpleList")
 })
 
-
-
 test_that("colData", {
     expect_s4_class(colData(object), "DataFrame")
 })
-
-
 
 test_that("colData<-", {
     x <- object
@@ -40,32 +35,17 @@ test_that("colData<-", {
     )
 })
 
-
-
 test_that("colnames", {
     expect_is(colnames(object), "character")
 })
-
-
 
 test_that("counts", {
     expect_identical(counts(object), assay(object))
 })
 
-
-
-test_that("Gene2Symbol", {
-    x <- Gene2Symbol(seurat)
-    expect_is(x, "Gene2Symbol")
-})
-
-
-
 test_that("interestingGroups", {
     expect_null(interestingGroups(object))
 })
-
-
 
 test_that("interestingGroups<-", {
     expect_silent(
@@ -84,8 +64,6 @@ test_that("interestingGroups<-", {
     )
 })
 
-
-
 test_that("metadata", {
     expect_is(metadata(object), "list")
     ## Assignment method.
@@ -96,14 +74,10 @@ test_that("metadata", {
     )
 })
 
-
-
 test_that("metrics", {
     x <- metrics(object)
     expect_is(x, "tbl_df")
 })
-
-
 
 test_that("reducedDims", {
     x <- reducedDims(object)
@@ -111,25 +85,17 @@ test_that("reducedDims", {
     expect_identical(names(x), c("PCA", "TSNE", "UMAP"))
 })
 
-
-
 test_that("rowData", {
     expect_s4_class(rowData(object), "DataFrame")
 })
-
-
 
 test_that("rownames", {
     expect_type(rownames(object), "character")
 })
 
-
-
 test_that("rowRanges", {
     expect_s4_class(rowRanges(object), "GRanges")
 })
-
-
 
 test_that("sampleData", {
     expect_identical(
@@ -141,8 +107,6 @@ test_that("sampleData", {
         )
     )
 })
-
-
 
 test_that("sampleNames", {
     expect_identical(
