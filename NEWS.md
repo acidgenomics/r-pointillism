@@ -2,6 +2,9 @@
 
 ### Minor changes
 
+- Bug fix for gene symbols being sanitized by `as.data.frame` or `as_tibble`
+  coercion inconsitently across R versions. Switched to using `as` coercion
+  from `DataFrame` to `data.frame` instead.
 - Improved message consistency, removing use of backticks in favor of single
   quotes, which is now the convention across basejump.
 - Lintr check fixes.

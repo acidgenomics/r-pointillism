@@ -134,6 +134,7 @@
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
+<li>Bug fix for gene symbols being sanitized by <code>as.data.frame</code> or <code>as_tibble</code> coercion inconsitently across R versions. Switched to using <code>as</code> coercion from <code>DataFrame</code> to <code>data.frame</code> instead.</li>
 <li>Improved message consistency, removing use of backticks in favor of single quotes, which is now the convention across basejump.</li>
 <li>Lintr check fixes.</li>
 </ul>
