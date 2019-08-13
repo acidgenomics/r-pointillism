@@ -170,7 +170,7 @@ NULL
         )
         caller <- match.arg(caller)
 
-        message(paste0("Performing differential expression with ", caller, "."))
+        message(sprintf("Performing differential expression with %s.", caller))
 
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)

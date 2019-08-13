@@ -83,11 +83,11 @@ NULL
                 filter(cluster == !!cluster) %>%
                 pull("name")
             if (!length(genes)) {
-                message(paste0("No genes for cluster ", cluster, "."))
+                message(sprintf("No genes for cluster %s.", cluster))
                 return(invisible())
             }
             if (length(genes) > 10L) {
-                warning("Maximum of 10 genes per cluster is recommended")
+                warning("Maximum of 10 genes per cluster is recommended.")
             }
 
             markdownHeader(
