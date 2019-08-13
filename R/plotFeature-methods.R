@@ -65,7 +65,7 @@ NULL
         ## Legacy arguments ----------------------------------------------------
         ## color
         if (identical(color, "auto")) {
-            warning("Use `NULL` instead of `\"auto\"` for `color`")
+            warning("Use 'NULL' instead of '\"auto\"' for 'color'")
             color <- NULL
         }
 

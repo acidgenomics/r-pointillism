@@ -56,14 +56,14 @@ NULL
         ## Early return if cpm assay is defined.
         if (isSubset("cpm", assayNames(object))) {
             if (isTRUE(verbose)) {
-                message("Returning CPM from pre-calculated `cpm` assay.")
+                message("Returning CPM from pre-calculated 'cpm' assay.")
             }
             return(assay(x = object, i = "cpm"))
         }
         ## Otherwise, calculate on the fly.
         assert(is.numeric(sizeFactors(object)))
         if (isTRUE(verbose)) {
-            message("Calculating CPM with `scater::calculateCPM()`.")
+            message("Calculating CPM with 'scater::calculateCPM()'.")
         }
         calculateCPM(
             object = object,
@@ -93,7 +93,7 @@ setMethod(
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1e6L)) {
             if (isTRUE(verbose)) {
-                message("Generating CPM with `Seurat::NormalizeData()`.")
+                message("Generating CPM with 'Seurat::NormalizeData()'.")
             }
             object <- NormalizeData(
                 object = object,
@@ -104,7 +104,7 @@ setMethod(
             )
         }
         if (isTRUE(verbose)) {
-            message("Returning CPM with `Seurat::GetAssayData()`.")
+            message("Returning CPM with 'Seurat::GetAssayData()'.")
         }
         GetAssayData(object = object, slot = "data", assay = assay)
     }

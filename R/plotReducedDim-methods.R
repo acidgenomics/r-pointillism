@@ -164,16 +164,16 @@ NULL
             data[["interestingGroups"]] <- data[[interestingGroups]]
         } else {
             data[["interestingGroups"]] <- apply(
-                X = data[ , interestingGroups],
+                X = data[, interestingGroups],
                 MARGIN = 1L,
-                FUN = paste ,
+                FUN = paste,
                 collapse = ":"
             )
         }
 
         ## Turn off labeling if there's only 1 cluster.
         if (hasLength(levels(data[["ident"]]), n = 1L)) {
-            label = FALSE
+            label <- FALSE
         }
 
         ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2). We're setting

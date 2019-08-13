@@ -294,7 +294,7 @@ NULL
             perCluster <- TRUE
             fun <- "Seurat::FindAllMarkers"
         }
-        message(paste0("`", fun, "` return detected."))
+        message(sprintf("'%s()' return detected.", fun))
 
         ## Sanitize markers ----------------------------------------------------
         ## Coerce to tibble.

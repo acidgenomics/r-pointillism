@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -173,24 +173,24 @@ Corresponds to factors describing the columns of the object.</p></td>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 5</span><span>
-#&gt; </span><span style='color: #949494;'># Groups:   ident [3]</span><span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   ident [3]</span><span>
 #&gt;   ident sampleName interestingGroups     n ratio
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0     unknown    unknown              36     1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 1     unknown    unknown              25     1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 2     unknown    unknown              19     1</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 0     unknown    unknown              36     1
+#&gt; </span><span style='color: #555555;'>2</span><span> 1     unknown    unknown              25     1
+#&gt; </span><span style='color: #555555;'>3</span><span> 2     unknown    unknown              19     1</div><div class='input'>
 <span class='co'>## cell_data_set ===</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 5</span><span>
-#&gt; </span><span style='color: #949494;'># Groups:   ident [4]</span><span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   ident [4]</span><span>
 #&gt;   ident sampleName interestingGroups     n ratio
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1     unknown    unknown              81     1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2     unknown    unknown              57     1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3     unknown    unknown              35     1
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 4     unknown    unknown              27     1</div></span></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 1     unknown    unknown              81     1
+#&gt; </span><span style='color: #555555;'>2</span><span> 2     unknown    unknown              57     1
+#&gt; </span><span style='color: #555555;'>3</span><span> 3     unknown    unknown              35     1
+#&gt; </span><span style='color: #555555;'>4</span><span> 4     unknown    unknown              27     1</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
