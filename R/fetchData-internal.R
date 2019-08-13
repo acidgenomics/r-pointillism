@@ -39,6 +39,8 @@ NULL
 
 
 
+## FIXME This is now breaking on the example data.
+
 ## Updated 2019-08-05.
 .fetchGeneData <- function(
     object,
