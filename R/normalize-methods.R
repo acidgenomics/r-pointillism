@@ -97,10 +97,10 @@ NULL
         assert(!is.null(sizeFactors(object)))
 
         if (isTRUE(verbose)) {
-            message(paste(
-                "Computing 'normcounts' and 'logcounts' assays using",
+            message(
+                "Computing 'normcounts' and 'logcounts' assays using ",
                 "'scater::normalizeSCE()'."
-            ))
+            )
         }
 
         ## Shared arguments for `normalizeSCE()` calls.

@@ -122,12 +122,9 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-08-13.
 .underpoweredContrast <- function() {
-    warning(paste(
-        "Skipping DE.",
-        "Underpowered contrast (not enough cells)."
-    ))
+    warning("Skipping DE. Underpowered contrast (not enough cells).")
 }
 
 
@@ -174,11 +171,20 @@ NULL
 
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
-        message(paste(
-            paste("Total:", length(cells), "cells"),
-            paste("Numerator:", length(numerator), "cells"),
-            paste("Denominator:", length(denominator), "cells"),
-            sep = "\n"
+        message(sprintf(
+            fmt = paste(
+                "  - Total: %d %s",
+                "  - Numerator: %d %s",
+                "  - Denominator: %d %s",
+                sep = "\n"
+            ),
+            length(cells),
+            ngettext(length(cells), "cell", "cells"),
+            length(numerator),
+            ngettext(length(numerator), "cell", "cells"),
+            length(denominator),
+            ngettext(length(denominator), "cell", "cells"),
+            
         ))
         object <- object[, cells, drop = FALSE]
 
@@ -187,12 +193,15 @@ NULL
 
         ## Gene filter ---------------------------------------------------------
         message("Applying gene expression low pass filter.")
-        message(paste(
-            "Requiring at least",
+        message(sprintf(
+            "Requiring at least %d %s with counts of %d or more per gene.",
             minCellsPerGene,
-            "cells with counts of",
-            minCountsPerCell,
-            "or more per gene."
+            ngettext(
+                n = minCellsPerGene,
+                msg1 = "cell",
+                msg2 = "cells"
+            ),
+            minCountsPerCell
         ))
 
         ## Filter the genes based on our expression threshold criteria.
@@ -200,8 +209,15 @@ NULL
         ## a lot faster when using a sparse matrix (see above).
         genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
-        message(paste(
-            length(genes), "of", nrow(object), "genes passed filter."
+        message(sprintf(
+            "%d of %d %s passed filter."
+            length(genes),
+            nrow(object),
+            ngettext(
+                n = nrow(object),
+                msg1 = "gene",
+                msg2 = "genes"
+            )
         ))
 
         ## Early return NULL if no genes pass.
@@ -217,7 +233,15 @@ NULL
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (length(trash)) {
-            message(paste("Removed", length(trash), "low quality cells."))
+            message(sprintf(
+                "Removed %d low quality %s.",
+                length(trash),
+                ngettext(
+                    n = length(trash),
+                    msg1 = "cell",
+                    msg2 = "cells"
+                )
+            ))
         }
 
         ## Resize the numerator and denominator after our QC filters.

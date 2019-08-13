@@ -34,10 +34,9 @@ NULL
     ## useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
     if (length(setdiff)) {
-        stop(paste(
-            "Markers missing from gene2symbol:",
-            printString(setdiff),
-            sep = "\n"
+        stop(sprintf(
+            "Markers missing from gene2symbol: %s.",
+            toString(setdiff, width = 200L)
         ))
     }
     intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
@@ -180,8 +179,9 @@ NULL
                 filter(!!sym("n") >= !!promiscuousThreshold) %>%
                 pull("geneID")
             if (length(promiscuous)) {
-                message(paste(
-                    "Removing promiscuous markers:", toString(promiscuous)
+                message(sprintf(
+                    "Removing promiscuous markers: %s.",
+                    toString(promiscuous, width = 100L)
                 ))
                 keep <- !data[["geneID"]] %in% promiscuous
                 data <- data[keep, , drop = FALSE]
@@ -315,10 +315,10 @@ NULL
 
             ## Update legacy columns.
             if ("avgDiff" %in% colnames(data)) {
-                message(paste(
-                    "Renaming legacy `avgDiff` column to `avgLogFC`",
+                message(
+                    "Renaming legacy 'avgDiff' column to 'avgLogFC' ",
                     "(changed in Seurat v2.1)."
-                ))
+                )
                 data[["avgLogFC"]] <- data[["avgDiff"]]
                 data[["avgDiff"]] <- NULL
             }
