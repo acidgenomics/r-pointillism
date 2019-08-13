@@ -1,3 +1,11 @@
+## pointillism 0.4.1 (2019-08-12)
+
+### Minor changes
+
+- Improved message consistency, removing use of backticks in favor of single
+  quotes, which is now the convention across basejump.
+- Lintr check fixes.
+
 ## pointillism 0.4.0 (2019-08-07)
 
 Initial support for monocle3 `cell_data_set` class.
