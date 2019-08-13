@@ -214,7 +214,7 @@ setReplaceMethod(
             if (isTRUE(verbose)) {
                 message(paste(
                     "Generating log normalized counts with",
-                    "`Seurat::NormalizeData()`."
+                    "'Seurat::NormalizeData()'."
                 ))
             }
             object <- NormalizeData(
@@ -226,7 +226,7 @@ setReplaceMethod(
         if (isTRUE(verbose)) {
             message(paste(
                 "Returning log normalized counts with",
-                "`Seurat::GetAssayData()`."
+                "'Seurat::GetAssayData()'."
             ))
         }
         GetAssayData(object = object, assay = assay, slot = "data")
@@ -392,7 +392,7 @@ setMethod(
             if (isTRUE(verbose)) {
                 message(paste(
                     "Generating normalized counts with",
-                    "`Seurat::NormalizeData()`."
+                    "'Seurat::NormalizeData()'."
                 ))
             }
             object <- NormalizeData(
@@ -405,7 +405,7 @@ setMethod(
         if (isTRUE(verbose)) {
             message(paste(
                 "Returning normalized counts with",
-                "`Seurat::GetAssayData()`."
+                "'Seurat::GetAssayData()'."
             ))
         }
         GetAssayData(object = object, assay = assay, slot = "data")

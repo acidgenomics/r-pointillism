@@ -42,7 +42,7 @@ setMethod(
         if (isTRUE(verbose)) {
             message(paste(
                 "Returning log normalized counts with",
-                "`monocle3::normalized_counts()`."
+                "'monocle3::normalized_counts()'."
             ))
         }
         monocle3::normalized_counts(
@@ -111,7 +111,7 @@ setMethod(
         if (isTRUE(verbose)) {
             message(paste(
                 "Getting normalized counts with",
-                "`monocle3::normalized_counts()`."
+                "'monocle3::normalized_counts()'."
             ))
         }
         monocle3::normalized_counts(

@@ -98,8 +98,8 @@ NULL
 
         if (isTRUE(verbose)) {
             message(paste(
-                "Computing normcounts and logcounts using",
-                "`scater::normalizeSCE()`."
+                "Computing 'normcounts' and 'logcounts' assays using",
+                "'scater::normalizeSCE()'."
             ))
         }
 
@@ -167,7 +167,7 @@ setMethod(
     function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
-            message("Normalizing with `Seurat::NormalizeData()`.")
+            message("Normalizing with 'Seurat::NormalizeData()'.")
         }
         NormalizeData(object = object, verbose = verbose)
     }
@@ -189,7 +189,7 @@ setMethod(
     function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
-            message("Normalizing with `monocle3::preprocess_cds()`.")
+            message("Normalizing with 'monocle3::preprocess_cds()'.")
         }
         monocle3::preprocess_cds(
             cds = object,

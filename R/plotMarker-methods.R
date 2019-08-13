@@ -73,7 +73,7 @@ NULL
         ## Legacy arguments ----------------------------------------------------
         ## color
         if (identical(color, "auto")) {
-            stop("Use `color = NULL` instead of `auto`.")
+            stop("Use 'color = NULL' instead of 'auto'.")
         }
 
         ## Assert checks -------------------------------------------------------
