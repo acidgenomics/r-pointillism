@@ -1,5 +1,4 @@
 #' @name diffExp
-#' @include globals.R
 #' @inherit bioverbs::diffExp
 #'
 #' @note We are no longer recommending the use of software that attempts to
