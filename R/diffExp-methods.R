@@ -184,7 +184,7 @@ NULL
             ngettext(length(numerator), "cell", "cells"),
             length(denominator),
             ngettext(length(denominator), "cell", "cells"),
-            
+
         ))
         object <- object[, cells, drop = FALSE]
 
@@ -210,7 +210,7 @@ NULL
         genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
         message(sprintf(
-            "%d of %d %s passed filter."
+            "%d of %d %s passed filter.",
             length(genes),
             nrow(object),
             ngettext(
