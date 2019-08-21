@@ -33,9 +33,6 @@
 #'   metrics organism organism<- printString sampleData sampleData<- sampleNames
 #'   separator showSlotInfo snake upperCamel
 #' @importFrom cowplot plot_grid
-#' @importFrom dplyr arrange desc everything filter group_by group_vars
-#'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
-#'   ungroup vars
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
@@ -48,17 +45,23 @@
 #'   hasValidNames isGGScale isAny isCharacter isFlag isHeaderLevel isIntegerish
 #'   isNonEmpty isNonNegative isNumber isPositive isScalar isScalarNumeric
 #'   isString isSubset validate
-#' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
-#' @importFrom pbapply pblapply
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom scales percent pretty_breaks
 #' @importFrom scater calculateCPM normalizeSCE
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
+#' @importFrom utils capture.output globalVariables packageVersion
+#'
+#'
+#'
+#' @importFrom dplyr arrange desc everything filter group_by group_vars
+#'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
+#'   ungroup vars
+#' @importFrom magrittr %>% set_names set_rownames
+#' @importFrom pbapply pblapply
+#' @importFrom tidyr gather
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
-#' @importFrom tidyr gather
-#' @importFrom utils capture.output globalVariables packageVersion
 NULL
