@@ -144,7 +144,7 @@ NULL
                 subtitle <- geneNames
                 ## Limit to the first 5 markers
                 if (length(subtitle) > 5L) {
-                    subtitle <- c(subtitle[1L:5L], "...")
+                    subtitle <- c(subtitle[seq_len(5L)], "...")
                 }
                 subtitle <- toString(subtitle)
             }

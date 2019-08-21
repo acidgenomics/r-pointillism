@@ -1,5 +1,4 @@
 #' @name topMarkers
-#' @include globals.R
 #' @inherit bioverbs::topMarkers
 #' @note Updated 2019-07-31.
 #'
@@ -67,7 +66,7 @@ NULL
             ## Arrange by adjusted P value.
             arrange(!!sym("padj"), .by_group = TRUE) %>%
             ## Take the top rows by using slice.
-            dplyr::slice(1L:n)
+            dplyr::slice(seq_len(n))
 
         ## Return.
         if (return == "tbl_df") {

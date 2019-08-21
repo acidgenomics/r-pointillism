@@ -3,7 +3,6 @@
 
 
 #' @name plotTopMarkers
-#' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
 #' @note Updated 2019-07-31.
 #'

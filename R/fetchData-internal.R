@@ -1,10 +1,3 @@
-#' Fetch data
-#' @include globals.R
-#' @noRd
-NULL
-
-
-
 #' Bind all dimension reduction matrices into a single data frame.
 #' @note Updated 2019-08-06.
 #' @noRd

@@ -1,5 +1,4 @@
 #' @name plotCellTypesPerCluster
-#' @include globals.R
 #' @inherit bioverbs::plotCellTypesPerCluster
 #' @note Updated 2019-08-07.
 #'
