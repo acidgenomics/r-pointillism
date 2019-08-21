@@ -26,7 +26,7 @@ NULL
     ## Coerce to tibble and sanitize.
     data <- object %>%
         as_tibble(rownames = NULL) %>%
-        camel() %>%
+        camelCase() %>%
         select(!!!syms(c(group, "geneID"))) %>%
         .[complete.cases(.), , drop = FALSE]
 
@@ -56,7 +56,7 @@ NULL
 
     out <- data %>%
         split(f = .[[group]], drop = FALSE) %>%
-        snake()
+        snakeCase()
     metadata(out) <- metadata(gene2symbol)
     out
 }
@@ -300,7 +300,7 @@ NULL
         ## Coerce to tibble.
         data <- as_tibble(object, rownames = "rowname")
         ## Standardize with camel case.
-        data <- camel(data)
+        data <- camelCase(data)
 
         ## Seurat mode ---------------------------------------------------------
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
