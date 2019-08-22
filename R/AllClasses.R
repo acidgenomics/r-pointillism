@@ -11,8 +11,8 @@
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-07-31.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -46,8 +46,8 @@ setValidity(
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-07-31.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -83,8 +83,8 @@ setValidity(
 #' Results are grouped by `cellType` column and arranged by adjusted *P* value
 #' (`padj`).
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-07-31.
 #'
 #' @return `KnownMarkers`.
 setClass(
@@ -124,8 +124,8 @@ setValidity(
 #'
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
-#' @note Updated 2019-08-06.
 #' @export
+#' @note Updated 2019-08-06.
 #'
 #' @return `SeuratMarkers`.
 setClass(
@@ -160,8 +160,8 @@ setValidity(
 #'
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
-#' @note Updated 2019-08-06.
 #' @export
+#' @note Updated 2019-08-06.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
