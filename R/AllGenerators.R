@@ -5,7 +5,8 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## FIXME Remove dplyr code.
+## Updated 2019-08-21.
 .cellMarkers <- function(
     object,
     gene2symbol,
@@ -16,12 +17,11 @@ NULL
         is(gene2symbol, "Gene2Symbol")
     )
     class <- match.arg(class)
-
-    if (class == "CellCycleMarkers") {
-        group <- "phase"
-    } else if (class == "CellTypeMarkers") {
-        group <- "cellType"
-    }
+    group <- switch(
+        EXPR = class,
+        "CellCycleMarkers" = "phase",
+        "CellTypeMarkers" = "cellType"
+    )
 
     ## Coerce to tibble and sanitize.
     data <- object %>%
@@ -133,6 +133,7 @@ NULL
 
 
 
+## FIXME Remove dplyr code.
 ## Updated 2019-07-31.
 `KnownMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
@@ -260,6 +261,7 @@ NULL
 
 
 
+## FIXME Remove dplyr code.
 ## Updated 2019-08-06.
 `SeuratMarkers,data.frame` <-  # nolint
     function(
