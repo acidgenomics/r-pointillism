@@ -3,7 +3,6 @@
 #' @note Updated 2019-08-23.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams BiocParallel::bplapply
 #' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'

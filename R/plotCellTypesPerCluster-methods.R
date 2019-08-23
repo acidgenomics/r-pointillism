@@ -8,7 +8,6 @@
 #' many (`max` cutoff) marker genes will be skipped.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams BiocParallel::bplapply
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @return Show graphical output. Invisibly return `list`.
