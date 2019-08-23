@@ -4,7 +4,7 @@
 
 #' @name plotTopMarkers
 #' @inherit bioverbs::plotTopMarkers
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-08-23.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -14,6 +14,7 @@
 #'
 #' @inheritParams topMarkers
 #' @inheritParams acidroxygen::params
+#' @inheritParams BiocParallel::bplapply
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
@@ -41,7 +42,7 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-23.
 `plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
@@ -50,7 +51,7 @@ NULL
         direction,
         reduction,
         headerLevel = 2L,
-        progress = FALSE,
+        BPPARAM = BiocParallel::SerialParam(),  # nolint
         ...
     ) {
         ## Passthrough: n, direction, coding
@@ -63,51 +64,43 @@ NULL
         )
         assert(
             isScalar(reduction),
-            isHeaderLevel(headerLevel),
-            isFlag(progress)
+            isHeaderLevel(headerLevel)
         )
-        if (isTRUE(progress)) {
-            applyFun <- pblapply
-        } else {
-            applyFun <- lapply
-        }
-
         assert(isSubset("cluster", colnames(markers)))
         clusters <- levels(markers[["cluster"]])
-
-
-        list <- applyFun(clusters, function(cluster) {
-            genes <- markers %>%
-                ungroup() %>%
-                filter(cluster == !!cluster) %>%
-                pull("name")
-            if (!length(genes)) {
-                message(sprintf("No genes for cluster %s.", cluster))
-                return(invisible())
-            }
-            if (length(genes) > 10L) {
-                warning("Maximum of 10 genes per cluster is recommended.")
-            }
-
-            markdownHeader(
-                text = paste("Cluster", cluster),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reduction = reduction,
-                    ...
+        list <- bplapply(
+            X = clusters,
+            FUN = function(cluster) {
+                genes <- markers %>%
+                    ungroup() %>%
+                    filter(cluster == !!cluster) %>%
+                    pull("name")
+                if (!length(genes)) {
+                    message(sprintf("No genes for cluster %s.", cluster))
+                    return(invisible())
+                }
+                if (length(genes) > 10L) {
+                    warning("Maximum of 10 genes per cluster is recommended.")
+                }
+                markdownHeader(
+                    text = paste("Cluster", cluster),
+                    level = headerLevel,
+                    tabset = TRUE,
+                    asis = TRUE
                 )
-                show(p)
-                invisible(p)
-            })
-        })
-
+                lapply(genes, function(gene) {
+                    p <- plotMarker(
+                        object = object,
+                        genes = gene,
+                        reduction = reduction,
+                        ...
+                    )
+                    show(p)
+                    invisible(p)
+                })
+            },
+            BPPARAM = BPPARAM
+        )
         invisible(list)
     }
 
