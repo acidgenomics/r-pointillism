@@ -43,6 +43,7 @@ Imports:
     DelayedArray,
     DelayedMatrixStats,
     DESeq2 (>= 1.22),
+    IRanges,
     S4Vectors,
     SummarizedExperiment,
     edgeR (>= 3.24),
