@@ -76,13 +76,21 @@
     ## Bind the counts and interesting groups columns.
     assert(areDisjointSets(colnames(data), colnames(colData)))
     data <- cbind(data, colData)
-    ## Gather into long format. Here we're putting the genes into a "rowname"
-    ## column. Note that this step can attempt to sanitize gene symbols (e.g.
-    ## "HLA-DRA" to "HLA.DRA") here either during an `as.data.frame()` or
-    ## `as_tibble()` call. To get around this, we're coercing the S4 DataFrame
-    ## using `as()` and then coercing to a tibble later in the chain.
+    ## Gather into long format.
+    ##
+    ## Is there a base R / Bioconductor way to perform this step? If so, we can
+    ## remove the tidyr dependency from the package.
+    ##
+    ## `reshape2::melt()` is also worth a look as an alternative.
+    ##
+    ## Here we're putting the genes into a "rowname" column. Note that this step
+    ## can attempt to sanitize gene symbols (e.g. "HLA-DRA" to "HLA.DRA") here
+    ## either during an `as.data.frame()` or `as_tibble()` call. To get around
+    ## this, we're coercing the S4 DataFrame using `as()` and then coercing to a
+    ## tibble later in the chain.
     data <- as(data, "data.frame")
     data[["rowname"]] <- rownames(data)
+
     data <- gather(
             data = data,
             key = "rowname",
@@ -180,7 +188,7 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-23.
 .fetchReductionExpressionData <- function(
     object,
     genes,
@@ -191,9 +199,7 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
         is.character(genes),
         isScalar(reduction)
     )
-
     rownames <- mapGenesToRownames(object, genes = genes)
-
     ## Transposed log counts matrix, with genes in the columns.
     geneCounts <- .fetchGeneData(
         object = object,
@@ -205,24 +211,20 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
         x = colnames(geneCounts),
         y = as.character(rownames)
     ))
-
     ## Keep the supported operations sparse.
     if (is(geneCounts, "sparseMatrix")) {
         rowMeans <- Matrix::rowMeans
         rowSums <- Matrix::rowSums
     }
-
     ## Calculate the expression summary columns.
     ## Note that `rowMedians` currently isn't supported for sparse data.
     mean <- rowMeans(geneCounts)
     sum <- rowSums(geneCounts)
-
     ## Fetch reduced dim data.
     reductionData <- .fetchReductionData(
         object = object,
         reduction = reduction
     )
-
     data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
     data
@@ -232,26 +234,22 @@ formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
 
 
 
-## Updated 2019-08-03.
+## Updated 2019-08-23.
 .getSeuratStash <- function(object, name) {
     assert(
         is(object, "Seurat"),
         isString(name)
     )
-
     misc <- slot(object, name = "misc")
-
     ## Early return if the `misc` slot is `NULL`.
     if (is.null(misc)) {
         return(NULL)
     }
-
     ## Look first directly in `object@misc` slot.
     x <- misc[[name]]
     if (!is.null(x)) {
         return(x)
     }
-
     ## Next, handle legacy `bcbio` stash list inside `object@misc`.
     ## As of v0.1.3, stashing directly into `object@misc`.
     if ("bcbio" %in% names(misc)) {
@@ -260,6 +258,5 @@ formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
             return(x)
         }
     }
-
     NULL
 }
