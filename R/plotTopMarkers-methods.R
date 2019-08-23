@@ -14,7 +14,6 @@
 #'
 #' @inheritParams topMarkers
 #' @inheritParams acidroxygen::params
-#' @inheritParams BiocParallel::bplapply
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
