@@ -60,7 +60,6 @@
 #'   left_join mutate mutate_at mutate_if n pull rename select slice summarize
 #'   ungroup vars
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom pbapply pblapply
 #' @importFrom tidyr gather
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
