@@ -55,15 +55,17 @@
 #' @importFrom stats median model.matrix relevel
 #' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
-#'
-#'
-#'
+NULL
+
+
+
+## FIXME Remove these methods
+
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   mutate mutate_at mutate_if n pull rename select slice summarize
 #'   ungroup vars
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom rlang !!! := syms
-
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
 NULL
