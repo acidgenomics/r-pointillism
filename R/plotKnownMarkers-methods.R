@@ -1,8 +1,9 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-08-23.
 #'
 #' @inheritParams acidroxygen::params
+#' @inheritParams BiocParallel::bplapply
 #' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
@@ -31,14 +32,14 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-23.
 `plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
         reduction,
         headerLevel,
-        progress = FALSE,
+        BPPARAM = BiocParallel::SerialParam(),  # nolint
         ...
     ) {
         validObject(object)
@@ -46,55 +47,47 @@ NULL
         assert(
             isSubset(unique(markers[["name"]]), rownames(object)),
             isScalar(reduction),
-            isHeaderLevel(headerLevel),
-            isFlag(progress)
+            isHeaderLevel(headerLevel)
         )
-        if (isTRUE(progress)) {
-            applyFun <- pblapply
-        } else {
-            applyFun <- lapply
-        }
-
         ## Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
         markers[["ranges"]] <- NULL
-
         cellTypes <- markers %>%
             .[["cellType"]] %>%
             as.character() %>%
             na.omit() %>%
             unique()
         assert(isNonEmpty(cellTypes))
-
-        list <- applyFun(cellTypes, function(cellType) {
-            genes <- markers %>%
-                as_tibble() %>%
-                filter(cellType == !!cellType) %>%
-                pull("name") %>%
-                as.character() %>%
-                na.omit() %>%
-                unique()
-            assert(isNonEmpty(genes))
-
-            markdownHeader(
-                text = as.character(cellType),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reduction = reduction,
-                    ...
+        list <- bplapply(
+            X = cellTypes,
+            FUN = function(cellType) {
+                genes <- markers %>%
+                    as_tibble() %>%
+                    filter(cellType == !!cellType) %>%
+                    pull("name") %>%
+                    as.character() %>%
+                    na.omit() %>%
+                    unique()
+                assert(isNonEmpty(genes))
+                markdownHeader(
+                    text = as.character(cellType),
+                    level = headerLevel,
+                    tabset = TRUE,
+                    asis = TRUE
                 )
-                show(p)
-                invisible(p)
-            })
-        })
-
+                lapply(genes, function(gene) {
+                    p <- plotMarker(
+                        object = object,
+                        genes = gene,
+                        reduction = reduction,
+                        ...
+                    )
+                    show(p)
+                    invisible(p)
+                })
+            },
+            BPPARAM = BPPARAM
+        )
         invisible(list)
     }
 
