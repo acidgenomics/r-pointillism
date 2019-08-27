@@ -42,11 +42,12 @@ NULL
     intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
     assert(isNonEmpty(intersect))
 
+    ## FIXME Remove pipe here.
     data <- data %>%
         filter(!!sym("geneID") %in% !!intersect) %>%
         mutate(!!sym(group) := as.factor(!!sym(group))) %>%
         unique() %>%
-        left_join(
+        leftJoin(
             y = as_tibble(gene2symbol, rownames = NULL),
             by = "geneID"
         ) %>%
@@ -167,9 +168,10 @@ NULL
         data <- filter(data, !!sym("padj") < !!alpha)
 
         ## Add the `cellType` column.
-        data <- left_join(x = data, y = known, by = "geneID")
+        data <- leftJoin(x = data, y = known, by = "geneID")
 
         ## Filter out promiscuous markers present in multiple clusters.
+        ## FIXME Remove pipe here.
         if (promiscuousThreshold > 1L) {
             cols <- c("cellType", "geneID")
             promiscuous <- data[, cols] %>%
