@@ -91,7 +91,8 @@
     data <- as(data, "data.frame")
     data[["rowname"]] <- rownames(data)
 
-    data <- gather(
+    ## FIXME Update to use our `melt()` function instead.
+    data <- tidyr::gather(
             data = data,
             key = "rowname",
             value = !!sym(value),
@@ -106,7 +107,7 @@
     assert(isNonEmpty(g2s), hasRownames(g2s))
     g2s <- as(g2s, "DataFrame")
     g2s[["rowname"]] <- rownames(g2s)
-    data <- left_join(data, g2s, by = "rowname")
+    data <- leftJoin(data, g2s, by = "rowname")
     data <- data[, unique(c("rowname", sort(colnames(data))))]
     data
 }

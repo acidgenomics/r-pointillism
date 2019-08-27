@@ -29,7 +29,7 @@
 #' @importFrom acidplots acid_theme_dark acid_theme_light
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
 #'   decode estimateSizeFactors gene2symbol geometricMean import
-#'   interestingGroups interestingGroups<- left_join makeNames mapGenesToIDs
+#'   interestingGroups interestingGroups<- leftJoin makeNames mapGenesToIDs
 #'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
 #'   matchInterestingGroups metrics organism organism<- printString sampleData
 #'   sampleData<- sampleNames separator showSlotInfo snakeCase upperCamel
@@ -58,6 +58,7 @@
 NULL
 
 
+## FIXME Take out tidyr dependency
 
 ## FIXME Remove these methods
 
