@@ -7,7 +7,7 @@
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #' @importClassesFrom monocle3 cell_data_set
 #'
-#' @importMethodsFrom basejump coerce unsplit
+#' @importMethodsFrom basejump coerce
 #'
 #' @importFrom BiocGenerics counts counts<- sizeFactors sizeFactors<-
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
@@ -28,11 +28,11 @@
 #'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
-#'   decode estimateSizeFactors gene2symbol geometricMean import
-#'   interestingGroups interestingGroups<- leftJoin makeNames mapGenesToIDs
-#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
-#'   matchInterestingGroups metrics organism organism<- printString sampleData
-#'   sampleData<- sampleNames separator showSlotInfo snakeCase upperCamel
+#'   decode estimateSizeFactors geometricMean import interestingGroups
+#'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
+#'   metrics organism organism<- printString sampleData sampleData<- sampleNames
+#'   separator showSlotInfo snakeCase upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
@@ -53,13 +53,12 @@
 #' @importFrom scater calculateCPM normalizeSCE
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
-#' @importFrom tidyr gather
 #' @importFrom utils capture.output globalVariables packageVersion
 NULL
 
 
-## FIXME Take out tidyr dependency
 
+## FIXME Take out tidyr dependency
 ## FIXME Remove these methods
 
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
@@ -67,6 +66,7 @@ NULL
 #'   ungroup vars
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom rlang !!! := syms
+#' @importFrom tidyr gather
 #' @importFrom tibble as_tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
 NULL
