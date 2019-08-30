@@ -36,7 +36,7 @@ identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 
-Updated 2019-08-07.
+Updated 2019-08-29.
 }
 \examples{
 data(cellTypeMarkersList, seuratAllMarkers)
@@ -44,10 +44,6 @@ data(cellTypeMarkersList, seuratAllMarkers)
 ## SeuratMarkersPerCluster ====
 markers <- seuratAllMarkers
 known <- cellTypeMarkersList[["homoSapiens"]]
-
-x <- KnownMarkers(
-    markers = markers,
-    known = known
-)
+x <- KnownMarkers(markers = markers, known = known)
 summary(x)
 }
