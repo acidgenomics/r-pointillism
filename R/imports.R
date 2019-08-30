@@ -62,7 +62,7 @@ NULL
 ## FIXME Remove these methods
 
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
-#'   mutate mutate_at mutate_if n pull rename select slice summarize
+#'   mutate mutate_at n pull rename select slice summarize
 #'   ungroup vars
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom rlang !!! := syms

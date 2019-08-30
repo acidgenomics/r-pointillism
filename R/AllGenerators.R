@@ -49,6 +49,44 @@ NULL
 
 
 
+## Using approach in `uniteInterestingGroups()` to generate the
+## factor grouping column to apply split.
+## Updated 2019-08-30.
+.filterPromiscuousMarkers <- function(x, n) {
+    assert(
+        is(x, "DataFrame"),
+        isInt(n),
+        isTRUE(n > 1L)
+    )
+    cols <- c("cellType", "geneID")
+    df <- x[, cols, drop = FALSE]
+    ## Generate the grouping factor necessary to perform split.
+    f <- apply(
+        X = as.data.frame(df),
+        MARGIN = 1L,
+        FUN = paste,
+        collapse = "."
+    )
+    f <- as.factor(make.names(f, unique = FALSE))
+    split <- split(df, f = f)
+    n <- vapply(X = split, FUN = nrow, FUN.VALUE = integer(1L))
+    which <- which(n >= promiscuousThreshold)
+    genes <- split[, "geneID"][which]
+    genes <- unlist(genes, use.names = FALSE)
+    genes <- sort(unique(genes))
+    if (hasLength(genes)) {
+        message(sprintf(
+            "Filtering promiscuous marker genes: %s.",
+            toString(gene, width = 100L)
+        ))
+        keep <- !(x[["geneID"]] %in% genes)
+        x <- x[keep, , drop = FALSE]
+    }
+    x
+}
+
+
+
 #' Cell-cycle markers
 #' @inheritParams acidroxygen::params
 #' @note Updated 2019-07-31.
@@ -90,16 +128,16 @@ CellTypeMarkers <-  # nolint
 #'   identifiers in the `geneID` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2019-08-07.
+#' @note Updated 2019-08-29.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
-#' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
-#'   `data.frame` imported by `readCellTypeMarkers` or pulled from internal
-#'   cell cycle markers data.
-#' @param promiscuousThreshold `integer(1)`. Minimum number of clusters
-#'   required to consider a gene marker promiscuous. Set to `0` to disable
-#'   promiscuous marker filtering.
+#' @param known `CellTypeMarkers`.
+#'   Grouped by `cellType` column. Known markers `data.frame` imported by
+#'   `readCellTypeMarkers` or pulled from internal cell cycle markers data.
+#' @param promiscuousThreshold `integer(1)`.
+#'   Minimum number of clusters required to consider a gene marker promiscuous.
+#'   Set to `0` to disable promiscuous marker filtering.
 #'
 #' @return `KnownMarkers`.
 #'
@@ -109,19 +147,14 @@ CellTypeMarkers <-  # nolint
 #' ## SeuratMarkersPerCluster ====
 #' markers <- seuratAllMarkers
 #' known <- cellTypeMarkersList[["homoSapiens"]]
-#'
-#' x <- KnownMarkers(
-#'     markers = markers,
-#'     known = known
-#' )
+#' x <- KnownMarkers(markers = markers, known = known)
 #' summary(x)
 NULL
 
 
 
-## FIXME Remove dplyr code.
-## Updated 2019-07-31.
-`KnownMarkers,SeuratMarkersPerCluster` <-  # nolint
+## Updated 2019-08-30.
+`KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <-  # nolint
     function(
         markers,
         known,
@@ -134,55 +167,34 @@ NULL
             allAreNonNegative(promiscuousThreshold)
         )
         promiscuousThreshold <- as.integer(promiscuousThreshold)
-
         alpha <- metadata(markers)[["alpha"]]
         assert(isAlpha(alpha))
-
-        ## Coerce data.
-        markers <- as(markers, "tbl_df")
-        known <- as(known, "tbl_df")
+        markers <- unlist(markers, recursive = FALSE, use.names = FALSE)
+        ranges <- markers[["ranges"]]
+        markers[["ranges"]] <- NULL
+        markers[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        known <- unlist(known, recursive = FALSE, use.names = FALSE)
         known[["geneName"]] <- NULL
-
         ## Determine where the known markers are located in the markers data.
         ## Here we have slotted the gene IDs inside a "ranges" column.
         assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
         keep <- markers[["geneID"]] %in% known[["geneID"]]
-        data <- markers[keep, , drop = FALSE]
-
+        x <- markers[keep, , drop = FALSE]
         ## Apply our alpha level cutoff.
-        data <- filter(data, !!sym("padj") < !!alpha)
-
+        keep <- x[["padj"]] < alpha
+        x <- x[keep, , drop = FALSE]
         ## Add the `cellType` column.
-        data <- leftJoin(x = data, y = known, by = "geneID")
-
+        x <- leftJoin(x, known, by = "geneID")
         ## Filter out promiscuous markers present in multiple clusters.
-        ## FIXME Remove pipe here.
-        if (promiscuousThreshold > 1L) {
-            cols <- c("cellType", "geneID")
-            promiscuous <- data[, cols] %>%
-                as_tibble() %>%
-                ungroup() %>%
-                group_by(!!!syms(cols)) %>%
-                summarize(n = n()) %>%
-                filter(!!sym("n") >= !!promiscuousThreshold) %>%
-                pull("geneID")
-            if (length(promiscuous)) {
-                message(sprintf(
-                    "Removing promiscuous markers: %s.",
-                    toString(promiscuous, width = 100L)
-                ))
-                keep <- !data[["geneID"]] %in% promiscuous
-                data <- data[keep, , drop = FALSE]
-            }
+        if (isTRUE(promiscuousThreshold > 1L)) {
+            x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)
         }
-
-        data <- as(data, "DataFrame")
-        metadata(data) <- list(
+        metadata(x) <- list(
             alpha = alpha,
             version = packageVersion("pointillism"),
             date = Sys.Date()
         )
-        new(Class = "KnownMarkers", data)
+        new(Class = "KnownMarkers", x)
     }
 
 
@@ -195,7 +207,7 @@ setMethod(
         markers = "SeuratMarkersPerCluster",
         known = "CellTypeMarkers"
     ),
-    definition = `KnownMarkers,SeuratMarkersPerCluster`
+    definition = `KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers`
 )
 
 
