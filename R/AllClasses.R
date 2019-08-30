@@ -174,15 +174,15 @@ setValidity(
         validate(
             all(grepl("^cluster", names(object))),
             identical(
-                x = colnames(object)[[1L]],
+                x = sort(colnames(object)[[1L]]),
                 y = c(
+                    "avgLogFC",
                     "cluster",
                     "name",
-                    "avgLogFC",
+                    "padj",
                     "pct1",
                     "pct2",
                     "pvalue",
-                    "padj",
                     "ranges"
                 )
             )
