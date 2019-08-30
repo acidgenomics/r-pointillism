@@ -323,22 +323,17 @@ NULL
             "pvalue"     # Renamed from `p_val`.
         )
         assert(isSubset(requiredCols, colnames(x)))
-        if (isTRUE(perCluster)) {
-            ## FIXME Switch to using a split here instead.
-            ## `cluster` is only present in `FindAllMarkers() return`.
-            x <- x %>%
-                select(!!!syms(c("cluster", "name")), everything()) %>%
-                group_by(!!sym("cluster")) %>%
-                arrange(!!sym("padj"), .by_group = TRUE)
-        } else {
-            x <- x[, sort(colnames(x)), drop = FALSE]
-            x <- x[order(x[["padj"]]), , drop = FALSE]
-        }
         ## Bind ranges as column.
         assert(isSubset(unique(x[["name"]]), names(ranges)))
         x[["ranges"]] <- ranges[x[["name"]]]
+        ## Arrange by adjusted P value.
+        x <- x[order(x[["padj"]]), sort(colnames(x)), drop = FALSE]
+        ## Split by cluster, if applicable.
+        if (isTRUE(perCluster)) {
+            x <- split(x, f = x[["cluster"]])
+        }
         ## Add metadata and return.
-        metadata <- c(
+        metadata(x) <- c(
             .prototypeMetadata,
             list(
                 alpha = alpha,
@@ -346,13 +341,9 @@ NULL
             )
         )
         if (isTRUE(perCluster)) {
-            ## FIXME Move this code up....
-            out <- split(x = x, f = x[["cluster"]], drop = FALSE)
-            names(out) <- paste0("cluster", names(out))
-            metadata(out) <- metadata
-            new(Class = "SeuratMarkersPerCluster", out)
+            names(x) <- paste0("cluster", names(x))
+            new(Class = "SeuratMarkersPerCluster", x)
         } else {
-            metadata(x) <- metadata
             rownames(x) <- x[["name"]]
             x[["name"]] <- NULL
             new(Class = "SeuratMarkers", x)
