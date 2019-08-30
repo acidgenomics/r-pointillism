@@ -5,8 +5,7 @@ NULL
 
 
 
-## FIXME Remove dplyr code.
-## Updated 2019-08-21.
+## Updated 2019-08-29.
 .cellMarkers <- function(
     object,
     gene2symbol,
@@ -22,44 +21,30 @@ NULL
         "CellCycleMarkers" = "phase",
         "CellTypeMarkers" = "cellType"
     )
-
-    ## Coerce to tibble and sanitize.
-    data <- object %>%
-        as_tibble(rownames = NULL) %>%
-        camelCase() %>%
-        select(!!!syms(c(group, "geneID"))) %>%
-        .[complete.cases(.), , drop = FALSE]
-
+    x <- unlist(object, recursive = FALSE, use.names = FALSE)
+    x <- camelCase(x)
+    x <- x[, c(group, "geneID")]
+    x <- x[complete.cases(x), , drop = FALSE]
+    x <- unique(x)
     ## Warn user about markers that aren't present in the gene2symbol. This is
     ## useful for informing about putative markers that aren't expressed.
-    setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
-    if (length(setdiff)) {
+    setdiff <- setdiff(x[["geneID"]], gene2symbol[["geneID"]])
+    if (hasLength(setdiff)) {
         stop(sprintf(
             "Markers missing from gene2symbol: %s.",
             toString(setdiff, width = 200L)
         ))
     }
-    intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
+    intersect <- intersect(x[["geneID"]], gene2symbol[["geneID"]])
     assert(isNonEmpty(intersect))
-
-    ## FIXME Remove pipe here.
-    data <- data %>%
-        filter(!!sym("geneID") %in% !!intersect) %>%
-        mutate(!!sym(group) := as.factor(!!sym(group))) %>%
-        unique() %>%
-        leftJoin(
-            y = as_tibble(gene2symbol, rownames = NULL),
-            by = "geneID"
-        ) %>%
-        group_by(!!sym(group)) %>%
-        arrange(!!sym("geneName"), .by_group = TRUE) %>%
-        as("DataFrame")
-
-    out <- data %>%
-        split(f = .[[group]], drop = FALSE) %>%
-        snakeCase()
-    metadata(out) <- metadata(gene2symbol)
-    out
+    keep <- x[["geneID"]] %in% intersect
+    x <- x[keep, , drop = FALSE]
+    x <- leftJoin(x, gene2symbol, by = "geneID")
+    x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
+    x <- split(x, f = x[[group]])
+    x <- snakeCase(x)
+    metadata(x) <- metadata(gene2symbol)
+    x
 }
 
 
