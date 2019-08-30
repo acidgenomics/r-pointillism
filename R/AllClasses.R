@@ -138,13 +138,13 @@ setValidity(
         validate(
             hasRownames(object),
             identical(
-                x = colnames(object),
+                x = sort(colnames(object)),
                 y = c(
                     "avgLogFC",
+                    "padj",
                     "pct1",
                     "pct2",
                     "pvalue",
-                    "padj",
                     "ranges"
                 )
             )

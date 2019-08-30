@@ -261,7 +261,7 @@ NULL
 
 
 ## FIXME Remove dplyr code.
-## Updated 2019-08-06.
+## Updated 2019-08-30.
 `SeuratMarkers,data.frame` <-  # nolint
     function(
         object,
@@ -278,110 +278,84 @@ NULL
             ),
             isAlpha(alpha)
         )
-
-        ## Detect function from column names -----------------------------------
-        seuratMarkerCols <-
-            c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
-        if (identical(
-            colnames(object),
-            seuratMarkerCols
-        )) {
+        ## Detect function from column names.
+        cols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
+        if (identical(colnames(object), cols)) {
             perCluster <- FALSE
             fun <- "Seurat::FindMarkers"
-        } else if (identical(
-            colnames(object),
-            c(seuratMarkerCols, "cluster", "gene")
-        )) {
+        } else if (identical(colnames(object), c(cols, "cluster", "gene"))) {
             perCluster <- TRUE
             fun <- "Seurat::FindAllMarkers"
         }
         message(sprintf("'%s()' return detected.", fun))
-
-        ## Sanitize markers ----------------------------------------------------
-        ## Coerce to tibble.
-        data <- as_tibble(object, rownames = "rowname")
-        ## Standardize with camel case.
-        data <- camelCase(data)
-
-        ## Seurat mode ---------------------------------------------------------
+        ## Sanitize markers.
+        x <- as(object, "DataFrame")
+        x <- camelCase(x)
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
-        if (grep("^Seurat", fun)) {
-            if (fun == "Seurat::FindMarkers") {
-                data <- rename(data, name = !!sym("rowname"))
-            } else if (fun == "Seurat::FindAllMarkers") {
-                data <- data %>%
-                    mutate(rowname = NULL) %>%
-                    rename(name = !!sym("gene"))
-            }
-
-            ## Update legacy columns.
-            if ("avgDiff" %in% colnames(data)) {
-                message(
-                    "Renaming legacy 'avgDiff' column to 'avgLogFC' ",
-                    "(changed in Seurat v2.1)."
-                )
-                data[["avgLogFC"]] <- data[["avgDiff"]]
-                data[["avgDiff"]] <- NULL
-            }
-
-            ## Rename P value columns to match DESeq2 conventions.
-            if ("pVal" %in% colnames(data)) {
-                data[["pvalue"]] <- data[["pVal"]]
-                data[["pVal"]] <- NULL
-            }
-            if ("pValAdj" %in% colnames(data)) {
-                data[["padj"]] <- data[["pValAdj"]]
-                data[["pValAdj"]] <- NULL
-            }
+        if (identical(fun, "Seurat::FindMarkers")) {
+            x[["name"]] <- rownames(x)
+        } else if (identical(fun, "Seurat::FindAllMarkers")) {
+            colnames(x)[colnames(x) == "gene"] <- "name"
         }
-
+        rownames(x) <- NULL
+        ## Update legacy columns.
+        if (isSubset("avgDiff", colnames(x))) {
+            message(
+                "Renaming legacy 'avgDiff' column to 'avgLogFC' ",
+                "(changed in Seurat v2.1)."
+            )
+            colnames(x)[colnames(x) == "avgDiff"] <- "avgLogFC"
+        }
+        ## Rename P value columns to match DESeq2 conventions.
+        if (isSubset("pVal", colnames(x))) {
+            colnames(x)[colnames(x) == "pVal"] <- "pvalue"
+        }
+        if (isSubset("pValAdj", colnames(x))) {
+            colnames(x)[colnames(x) == "pValAdj"] <- "padj"
+        }
         ## Ensure that required columns are present.
         requiredCols <- c(
             "name",
             "pct1",
             "pct2",
-            "avgLogFC",     # Seurat v2.1.
+            "avgLogFC",  # Seurat v2.1.
             "padj",
-            "pvalue"        # Renamed from `p_val`.
+            "pvalue"     # Renamed from `p_val`.
         )
-        assert(isSubset(requiredCols, colnames(data)))
-
+        assert(isSubset(requiredCols, colnames(x)))
         if (isTRUE(perCluster)) {
+            ## FIXME Switch to using a split here instead.
             ## `cluster` is only present in `FindAllMarkers() return`.
-            data <- data %>%
+            x <- x %>%
                 select(!!!syms(c("cluster", "name")), everything()) %>%
                 group_by(!!sym("cluster")) %>%
                 arrange(!!sym("padj"), .by_group = TRUE)
         } else {
-            data <- data %>%
-                select(!!sym("name"), everything()) %>%
-                arrange(!!sym("padj"))
+            x <- x[, sort(colnames(x)), drop = FALSE]
+            x <- x[order(x[["padj"]]), , drop = FALSE]
         }
-
-        ## Bind ranges as column -----------------------------------------------
-        data <- as(data, "DataFrame")
-        ## Require that all of the markers are defined in ranges.
-        assert(isSubset(unique(data[["name"]]), names(ranges)))
-        data[["ranges"]] <- ranges[data[["name"]]]
-
-        ## Add metadata and return ---------------------------------------------
-        metadata(data) <- c(
+        ## Bind ranges as column.
+        assert(isSubset(unique(x[["name"]]), names(ranges)))
+        x[["ranges"]] <- ranges[x[["name"]]]
+        ## Add metadata and return.
+        metadata <- c(
             .prototypeMetadata,
             list(
                 alpha = alpha,
                 sessionInfo = session_info(include_base = TRUE)
             )
         )
-
         if (isTRUE(perCluster)) {
-            out <- split(x = data, f = data[["cluster"]], drop = FALSE)
+            ## FIXME Move this code up....
+            out <- split(x = x, f = x[["cluster"]], drop = FALSE)
             names(out) <- paste0("cluster", names(out))
-            metadata(out) <- metadata(data)
+            metadata(out) <- metadata
             new(Class = "SeuratMarkersPerCluster", out)
         } else {
-            rownames(data) <- data[["name"]]
-            data[["name"]] <- NULL
-            new(Class = "SeuratMarkers", data)
+            metadata(x) <- metadata
+            rownames(x) <- x[["name"]]
+            x[["name"]] <- NULL
+            new(Class = "SeuratMarkers", x)
         }
     }
 
