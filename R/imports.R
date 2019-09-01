@@ -58,7 +58,6 @@ NULL
 
 
 
-## FIXME Take out tidyr dependency
 ## FIXME Remove these methods
 
 #' @importFrom dplyr arrange desc everything filter group_by group_vars

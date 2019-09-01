@@ -151,21 +151,6 @@ setMethod(
 
 
 
-## nolint start
-##
-## > getMethod(
-## >     f = "sizeFactors<-",
-## >     signature = signature(
-## >         object = "SummarizedExperiment",
-## >         value = "numeric"
-## >     ),
-## >     where = asNamespace("basejump")
-## > )
-##
-## nolint end
-
-
-
 ## Updated 2019-08-06.
 `sizeFactors<-,cell_data_set,ANY` <-  # nolint
     function(object, value) {
