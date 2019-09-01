@@ -57,48 +57,27 @@ NULL
 
 ## Updated 2019-09-01.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
-    function(object, interestingGroups = NULL) {
+    function(object) {
         validObject(object)
         assert(.hasClusters(object))
-        interestingGroups(object) <-
-            matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
         x <- metrics(object, return = "DataFrame")
-        ## Generate a cluster/sample contingency table from the metrics.
-        tbl <- table(x[["ident"]], x[["sampleName"]])
-
-
+        ## Generate a melted cluster/sample contingency table from the metrics.
+        tbl <- table(x[["ident"]], x[["sampleID"]])
+        tbl <- melt(tbl, colnames = c("ident", "sampleID", "n"))
+        ## Get cluster/sample-level metadata.
         cols <- unique(c(
-            "ident", "sampleName",
+            "ident", "sampleID", "sampleName",
             interestingGroups, "interestingGroups"
         ))
-        assert(isSubset(cols, colnames(x)))
-        x <- x[, cols, drop = FALSE]
-        f <- .group(x)
-        split <- split(x = x, f = f)
-        n <- vapply(
-            X = split,
-            FUN = nrow,
-            FUN.VALUE = integer(1L),
-            USE.NAMES = FALSE
-        )
-        ## Sample-level data.
-        sl <- unique(x)
+        sl <- unique(x[, cols, drop = FALSE])
         rownames(sl) <- NULL
-        sl <- sl
-        ## Arrange by cluster then sample.
-        sl <- sl[order(sl[["ident"]], sl[["sampleName"]]), , drop = FALSE]
-
-        ## FIXME Rethink this approach...
-
-        ## Generate the contingency table.
-        tbl <- table(sl[["ident"]], sl[["sampleName"]])
-
-
-
-        x <- arrange(x, !!!syms(cols))
-        x <- group_by(x, !!sym("ident"))
-        x <- mutate(x, ratio = !!sym("n") / sum(!!sym("n")))
+        sl <- sl[order(sl[["ident"]], sl[["sampleID"]]), , drop = FALSE]
+        out <- leftJoin(sl, tbl, by = c("ident", "sampleID"))
+        ## FIXME Need to figure out how to calculate sample ratio.
+        ## > x <- arrange(x, !!!syms(cols))
+        ## > x <- group_by(x, !!sym("ident"))
+        ## > x <- mutate(x, ratio = !!sym("n") / sum(!!sym("n")))
         as(x, "DataFrame")
     }
 
