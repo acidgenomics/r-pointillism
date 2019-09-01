@@ -61,13 +61,7 @@ NULL
     cols <- c("cellType", "geneID")
     df <- x[, cols, drop = FALSE]
     ## Generate the grouping factor necessary to perform split.
-    f <- apply(
-        X = as.data.frame(df),
-        MARGIN = 1L,
-        FUN = paste,
-        collapse = "."
-    )
-    f <- as.factor(make.names(f, unique = FALSE))
+    f <- .group(df)
     split <- split(df, f = f)
     n <- vapply(X = split, FUN = nrow, FUN.VALUE = integer(1L))
     which <- which(n >= promiscuousThreshold)
@@ -128,7 +122,7 @@ CellTypeMarkers <-  # nolint
 #'   identifiers in the `geneID` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2019-08-29.
+#' @note Updated 2019-09-01.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
@@ -153,7 +147,7 @@ NULL
 
 
 
-## Updated 2019-08-30.
+## Updated 2019-09-01.
 `KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <-  # nolint
     function(
         markers,
@@ -173,6 +167,7 @@ NULL
         ranges <- markers[["ranges"]]
         markers[["ranges"]] <- NULL
         markers[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        markers[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
         known <- unlist(known, recursive = FALSE, use.names = FALSE)
         known[["geneName"]] <- NULL
         ## Determine where the known markers are located in the markers data.
