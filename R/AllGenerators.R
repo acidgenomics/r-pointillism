@@ -6,7 +6,7 @@ NULL
 
 
 ## Updated 2019-08-29.
-.cellMarkers <- function(
+.CellMarkers <- function(  # nolint
     object,
     gene2symbol,
     class = c("CellCycleMarkers", "CellTypeMarkers")
@@ -94,7 +94,7 @@ NULL
 CellCycleMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellCycleMarkers"
-        data <- .cellMarkers(
+        data <- .CellMarkers(
             object = object,
             gene2symbol = gene2symbol,
             class = class
@@ -111,7 +111,7 @@ CellCycleMarkers <-  # nolint
 CellTypeMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellTypeMarkers"
-        data <- .cellMarkers(
+        data <- .CellMarkers(
             object = object,
             gene2symbol = gene2symbol,
             class = class
@@ -260,7 +260,6 @@ NULL
 
 
 
-## FIXME Remove dplyr code.
 ## Updated 2019-08-30.
 `SeuratMarkers,data.frame` <-  # nolint
     function(

@@ -1,4 +1,4 @@
-## Consider adding `rowData<-` assignment support.
+## Consider adding `rowData<-` assignment method.
 
 
 
