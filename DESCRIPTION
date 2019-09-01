@@ -111,6 +111,7 @@ Collate:
     'diffExpPerCluster-methods.R'
     'fetchData-internal.R'
     'findMarkers-methods.R'
+    'group-internal.R'
     'imports.R'
     'normalize-methods.R'
     'package.R'
