@@ -9,7 +9,7 @@
 #'
 #' @importMethodsFrom basejump coerce
 #'
-#' @importFrom BiocGenerics counts counts<- sizeFactors sizeFactors<-
+#' @importFrom BiocGenerics counts counts<- sizeFactors sizeFactors<- table
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
 #' @importFrom DelayedArray DelayedArray
