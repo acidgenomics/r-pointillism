@@ -1,10 +1,6 @@
-## FIXME Need to improve working example to include 2 samples.
-
-
-
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
-#' @note Updated 2019-09-01.
+#' @note Updated 2019-09-02.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -55,30 +51,37 @@ NULL
 
 
 
-## Updated 2019-09-01.
+## Updated 2019-09-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)
         assert(.hasClusters(object))
         interestingGroups <- interestingGroups(object)
         x <- metrics(object, return = "DataFrame")
-        ## Generate a melted cluster/sample contingency table from the metrics.
+        ## Contingency table.
         tbl <- table(x[["ident"]], x[["sampleID"]])
-        tbl <- melt(tbl, colnames = c("ident", "sampleID", "n"))
-        ## Get cluster/sample-level metadata.
+        ## Get the number of cells per ident.
+        ## We'll use this in a join below to calculate ratio.
+        nPerIdent <- rowSums(tbl)
+        nPerIdent <- DataFrame(
+            ident = names(nPerIdent),
+            nPerIdent = nPerIdent
+        )
+        ## Summarize to cluster/sample-level metadata.
         cols <- unique(c(
             "ident", "sampleID", "sampleName",
             interestingGroups, "interestingGroups"
         ))
-        sl <- unique(x[, cols, drop = FALSE])
-        rownames(sl) <- NULL
-        sl <- sl[order(sl[["ident"]], sl[["sampleID"]]), , drop = FALSE]
-        out <- leftJoin(sl, tbl, by = c("ident", "sampleID"))
-        ## FIXME Need to figure out how to calculate sample ratio.
-        ## > x <- arrange(x, !!!syms(cols))
-        ## > x <- group_by(x, !!sym("ident"))
-        ## > x <- mutate(x, ratio = !!sym("n") / sum(!!sym("n")))
-        as(x, "DataFrame")
+        x <- unique(x[, cols, drop = FALSE])
+        rownames(x) <- NULL
+        x <- x[order(x[["ident"]], x[["sampleID"]]), , drop = FALSE]
+        ## Melt the contingency table into long format.
+        melt <- melt(tbl, colnames = c("ident", "sampleID", "n"))
+        ## Join and calculate ratio.
+        x <- leftJoin(x, melt, by = c("ident", "sampleID"))
+        x <- leftJoin(x, nPerIdent, by = "ident")
+        x[["ratio"]] <- x[["n"]] / x[["nPerIdent"]]
+        x
     }
 
 
