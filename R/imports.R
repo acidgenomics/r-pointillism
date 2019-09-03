@@ -63,7 +63,6 @@ NULL
 #' @importFrom dplyr arrange desc everything filter group_by group_vars
 #'   mutate mutate_at n pull rename select slice summarize
 #'   ungroup vars
-#' @importFrom rlang !!! := syms
 #' @importFrom tidyr gather
 #' @importFrom tibble column_to_rownames remove_rownames
 #'   rownames_to_column tibble
