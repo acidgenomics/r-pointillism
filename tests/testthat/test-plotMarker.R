@@ -41,9 +41,6 @@ with_parameters_test_that(
 
 context("plotTopMarkers")
 
-## FIXME This doesn't seem to be subsetting correctly.
-## FIXME Tighten up the `topMarkers()` unit test, based on this example data.
-
 test_that("Seurat", {
     object <- seurat
     markers <- head(seuratAllMarkers, n = 2L)
