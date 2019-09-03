@@ -13,11 +13,11 @@ plotCellTypesPerCluster(object, markers, ...)
   \S4method{plotCellTypesPerCluster}{SingleCellExperiment,KnownMarkers}(object,
   markers, min = 1L, max = Inf, reduction = "UMAP",
   expression = c("mean", "sum"), headerLevel = 2L,
-  BPPARAM = BiocParallel::SerialParam(), ...)
+  BPPARAM = BiocParallel::bpparam(), ...)
 
 \S4method{plotCellTypesPerCluster}{Seurat,KnownMarkers}(object, markers,
   min = 1L, max = Inf, reduction = "UMAP", expression = c("mean",
-  "sum"), headerLevel = 2L, BPPARAM = BiocParallel::SerialParam(), ...)
+  "sum"), headerLevel = 2L, BPPARAM = BiocParallel::bpparam(), ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -64,7 +64,7 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \note{
-Updated 2019-08-23.
+Updated 2019-09-03.
 }
 \examples{
 data(Seurat, package = "acidtest")
