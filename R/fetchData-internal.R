@@ -6,7 +6,7 @@
     assert(hasNames(reducedDims))
     ## Handle undefined column names here, which is currently the case with
     ## monocle3 UMAP (but not PCA) output.
-    if (!isTRUE(all(bapply(X = reducedDims, FUN = hasColnames)))) {
+    if (!isTRUE(all(bapply(reducedDims, hasColnames)))) {
         list <- mapply(
             name = names(reducedDims),
             assay = reducedDims,
@@ -30,7 +30,7 @@
 
 
 
-## Updated 2019-08-12.
+## Updated 2019-09-03.
 .fetchGeneData <- function(
     object,
     genes,
@@ -49,59 +49,25 @@
     assert(is.function(fun))
     counts <- fun(object)
     counts <- counts[rownames, , drop = FALSE]
-    ## Transpose, putting genes into the columns.
-    if (is(counts, "sparseMatrix")) {
-        t <- Matrix::t
-    }
-    data <- t(counts)
-    ## Ensure we're not accidentally coercing the matrix to a different class.
-    assert(identical(class(counts), class(data)))
     ## Early return the transposed matrix, if we don't want metadata.
     ## This return is used by `.fetchReductionExpressionData()`.
     if (!isTRUE(metadata)) {
-        return(data)
+        ## Transpose, putting genes into the columns.
+        if (is(counts, "Matrix")) {
+            t <- Matrix::t
+        }
+        out <- t(counts)
+        assert(identical(class(counts), class(out)))
+        return(out)
     }
-    ## Coerce the counts matrix to a DataFrame.
-    data <- as(as.matrix(data), "DataFrame")
-    ## Always include "ident" and "sampleName" using `metrics` here.
-    ## This ensures `sampleName` and `interestingGroups` are always defined.
+    ## Melt counts to long format data frame.
+    data <- melt(counts)
+    ## Join cell-level metrics. Always include "ident" and "sampleName" using
+    ## `metrics` here. This ensures `sampleName` and `interestingGroups` are
+    ## always defined.
     colData <- metrics(object, return = "DataFrame")
-    assert(
-        identical(rownames(data), rownames(colData)),
-        isSubset(
-            x = c("ident", "interestingGroups", "sampleName"),
-            y = colnames(colData)
-        )
-    )
-    ## Bind the counts and interesting groups columns.
-    assert(areDisjointSets(colnames(data), colnames(colData)))
-    data <- cbind(data, colData)
-    ## Gather into long format.
-    ##
-    ## Is there a base R / Bioconductor way to perform this step? If so, we can
-    ## remove the tidyr dependency from the package.
-    ##
-    ## `reshape2::melt()` is also worth a look as an alternative.
-    ##
-    ## Here we're putting the genes into a "rowname" column. Note that this step
-    ## can attempt to sanitize gene symbols (e.g. "HLA-DRA" to "HLA.DRA") here
-    ## either during an `as.data.frame()` or `as_tibble()` call. To get around
-    ## this, we're coercing the S4 DataFrame using `as()` and then coercing to a
-    ## tibble later in the chain.
-    data <- as(data, "data.frame")
-    data[["rowname"]] <- rownames(data)
-
-    ## FIXME Update to use our `melt()` function instead.
-    data <- tidyr::gather(
-            data = data,
-            key = "rowname",
-            value = !!sym(value),
-            !!rownames,
-            factor_key = TRUE
-    )
-    data <- as(data, "DataFrame")
-    ## Double checking here for accidental base R sanitization of symbols.
-    assert(isSubset(rownames, data[["rowname"]]))
+    colData[["colname"]] <- rownames(colData)
+    data <- leftJoin(data, colData, by = "colname")
     ## Join the geneID and geneName columns by the "rowname" column.
     g2s <- Gene2Symbol(object)
     assert(isNonEmpty(g2s), hasRownames(g2s))
@@ -114,7 +80,7 @@
 
 
 
-## Updated 2019-08-23.
+## Updated 2019-09-03.
 .fetchReductionData <- function(
     object,
     reduction = 1L,
@@ -162,7 +128,6 @@
     assert(is(data, "DataFrame"))
     ## Split by cluster.
     f <- data[["ident"]]
-    names(f) <- rownames(data)
     split <- split(x = data, f = f)
     split <- SplitDataFrameList(lapply(
         X = split,
@@ -174,13 +139,12 @@
             x
         }
     ))
-    ## Note that this is using S4 `unsplit()` method defined in basejump.
-    ## Method support for `SplitDataFrameList` needs to be improved in IRanges.
     data <- unsplit(value = split, f = f)
     assert(
         hasRownames(data),
-        identical(rownames(data), colnames(object))
+        areSetEqual(rownames(data), colnames(object))
     )
+    data <- data[colnames(object), , drop = FALSE]
     data
 }
 
