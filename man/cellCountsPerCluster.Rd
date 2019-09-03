@@ -28,13 +28,13 @@ Corresponds to factors describing the columns of the object.}
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tbl_df}. Grouped by \code{ident} column and arranged by \code{n}.
+\code{DataFrame}.
 }
 \description{
 Cell counts per cluster
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-01.
 }
 \examples{
 data(
@@ -45,6 +45,9 @@ data(
 
 ## Seurat ====
 object <- Seurat
+## Simulate a multi-sample dataset.
+colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
+colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 x <- cellCountsPerCluster(object)
 print(x)
 
