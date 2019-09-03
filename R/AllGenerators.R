@@ -21,7 +21,7 @@ NULL
         "CellCycleMarkers" = "phase",
         "CellTypeMarkers" = "cellType"
     )
-    x <- unlist(object, recursive = FALSE, use.names = FALSE)
+    x <- object
     x <- camelCase(x)
     x <- x[, c(group, "geneID")]
     x <- x[complete.cases(x), , drop = FALSE]
