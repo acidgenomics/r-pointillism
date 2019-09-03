@@ -1,11 +1,6 @@
-## FIXME Rename column from "cluster" to "ident" for consistency?
-## FIXME Simulate multiple samples here.
-
-
-
 #' @name cellTypesPerCluster
 #' @inherit bioverbs::cellTypesPerCluster
-#' @note Updated 2019-09-02.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param min `integer(1)`.
@@ -39,7 +34,7 @@ NULL
 
 
 
-## Updated 2019-09-02.
+## Updated 2019-09-03.
 `cellTypesPerCluster,KnownMarkers` <-  # nolint
     function(
         object,
@@ -76,14 +71,7 @@ NULL
                 )
             }
         ))
-
-        ## FIXME
-        stop("IN PROGRESS")
-
-
-
-
-
+        x <- unlist(split, recursive = FALSE, use.names = FALSE)
         ## Apply minimum and maximum gene cutoffs.
         if (
             isTRUE(is.numeric(min)) &&
@@ -99,15 +87,9 @@ NULL
             keep <- x[["n"]] <= max
             x <- x[keep, , drop = FALSE]
         }
-
-
-        x <- group_by(x, !!sym("cluster"))
-        x <- arrange(x, desc(!!sym("n")), .by_group = TRUE)
-
-
-
         assert(hasRows(x))
-        as(x, "DataFrame")
+        x <- x[order(x[["cluster"]], -x[["n"]]), , drop = FALSE]
+        x
     }
 
 
