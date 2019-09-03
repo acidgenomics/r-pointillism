@@ -23,15 +23,13 @@ Maximum number of marker genes per cluster.}
 \item{...}{Additional arguments.}
 }
 \value{
-\code{grouped_df}.
-Grouped by \code{cluster} column, containing the count (\code{n}) of significant  known
-makers per cell type.
+\code{DataFrame}.
 }
 \description{
 Cell types per cluster
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-01.
 }
 \examples{
 data(cellTypeMarkersList, seuratAllMarkers)

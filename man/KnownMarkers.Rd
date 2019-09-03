@@ -14,15 +14,15 @@ KnownMarkers(markers, known, ...)
 \arguments{
 \item{markers}{\code{SeuratMarkers} or \code{SeuratMarkersPerCluster}.}
 
-\item{known}{\code{CellTypeMarkers}. Grouped by \code{cellType} column. Known markers
-\code{data.frame} imported by \code{readCellTypeMarkers} or pulled from internal
-cell cycle markers data.}
+\item{known}{\code{CellTypeMarkers}.
+Grouped by \code{cellType} column. Known markers \code{data.frame} imported by
+\code{readCellTypeMarkers} or pulled from internal cell cycle markers data.}
 
 \item{...}{Additional arguments.}
 
-\item{promiscuousThreshold}{\code{integer(1)}. Minimum number of clusters
-required to consider a gene marker promiscuous. Set to \code{0} to disable
-promiscuous marker filtering.}
+\item{promiscuousThreshold}{\code{integer(1)}.
+Minimum number of clusters required to consider a gene marker promiscuous.
+Set to \code{0} to disable promiscuous marker filtering.}
 }
 \value{
 \code{KnownMarkers}.
@@ -36,7 +36,7 @@ identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 
-Updated 2019-08-29.
+Updated 2019-09-01.
 }
 \examples{
 data(cellTypeMarkersList, seuratAllMarkers)
