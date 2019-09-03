@@ -52,6 +52,7 @@ Imports:
     Seurat (>= 3.1),
     cowplot (>= 0.9),
     ggplot2 (>= 3.1),
+    rlang (>= 0.4),
     sessioninfo (>= 1.1),
     methods,
     scales,
