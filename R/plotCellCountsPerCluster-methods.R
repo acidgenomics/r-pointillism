@@ -59,9 +59,8 @@ NULL
             xLab <- "cluster"
         }
         ## Plot.
-        data <- as_tibble(data, rownames = NULL)
         p <- ggplot(
-            data = data,
+            data = as_tibble(data, rownames = NULL),
             mapping = aes(
                 x = !!sym(col),
                 y = !!sym("n"),
