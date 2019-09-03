@@ -91,7 +91,7 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2019-08-02.
+Updated 2019-08-03.
 }
 \examples{
 data(

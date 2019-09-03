@@ -20,16 +20,16 @@
 plotCounts(object, ...)
 
 \S4method{plotCounts}{SingleCellExperiment}(object, genes,
-  value = c("logcounts", "normcounts"), geom = c("violin", "dot"),
+  assay = c("logcounts", "normcounts"), geom = c("violin", "dot"),
   perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
   title = NULL)
 
-\S4method{plotCounts}{Seurat}(object, genes, value = c("logcounts",
+\S4method{plotCounts}{Seurat}(object, genes, assay = c("logcounts",
   "normcounts"), geom = c("violin", "dot"), perSample = TRUE,
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotCounts}{cell_data_set}(object, genes,
-  value = c("logcounts", "normcounts"), geom = c("violin", "dot"),
+  assay = c("logcounts", "normcounts"), geom = c("violin", "dot"),
   perSample = TRUE, legend = getOption("acid.legend", default = TRUE),
   title = NULL)
 
@@ -59,18 +59,18 @@ plotDot(object, ...)
 plotViolin(object, ...)
 
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
-  value = c("logcounts", "normcounts"), perSample = TRUE,
+  assay = c("logcounts", "normcounts"), perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
-\S4method{plotViolin}{Seurat}(object, genes, value = c("logcounts",
+\S4method{plotViolin}{Seurat}(object, genes, assay = c("logcounts",
   "normcounts"), perSample = TRUE, scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotViolin}{cell_data_set}(object, genes,
-  value = c("logcounts", "normcounts"), perSample = TRUE,
+  assay = c("logcounts", "normcounts"), perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default = NULL),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
@@ -81,7 +81,8 @@ plotViolin(object, ...)
 \item{genes}{\code{character}.
 Gene identifiers.}
 
-\item{value}{Value to assign.}
+\item{assay}{\code{vector(1)}.
+Assay name or index position.}
 
 \item{geom}{\code{character(1)}.
 Plot type. Uses \code{\link[base:match.arg]{match.arg()}} to pick the type.

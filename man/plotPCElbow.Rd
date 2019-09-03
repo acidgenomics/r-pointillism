@@ -37,7 +37,7 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \note{
-Updated 2019-08-02.
+Updated 2019-09-03.
 }
 \examples{
 data(
