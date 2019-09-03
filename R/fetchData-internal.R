@@ -61,7 +61,10 @@
         return(out)
     }
     ## Melt counts to long format data frame.
-    data <- melt(counts)
+    data <- melt(
+        object = counts,
+        colnames = c("rowname", "colname", assay)
+    )
     ## Join cell-level metrics. Always include "ident" and "sampleName" using
     ## `metrics` here. This ensures `sampleName` and `interestingGroups` are
     ## always defined.
