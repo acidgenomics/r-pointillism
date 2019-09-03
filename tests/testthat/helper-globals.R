@@ -34,7 +34,3 @@ objects <- list(
     SingleCellExperiment = sce,
     Seurat = seurat
 )
-
-## nolint start
-group_vars <- dplyr::group_vars
-## nolint end

@@ -20,9 +20,6 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' ## Simulate a multi-sample dataset.
-#' colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
-#' colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 #' x <- cellCountsPerCluster(object)
 #' print(x)
 #'
@@ -53,11 +50,10 @@ NULL
         ## Contingency table.
         tbl <- table(x[["ident"]], x[["sampleID"]])
         ## Get the number of cells per ident.
-        ## We'll use this in a join below to calculate ratio.
         nPerIdent <- rowSums(tbl)
         nPerIdent <- DataFrame(
             ident = names(nPerIdent),
-            nPerIdent = nPerIdent
+            nPerIdent = as.integer(nPerIdent)
         )
         ## Summarize to cluster/sample-level metadata.
         cols <- unique(c(
