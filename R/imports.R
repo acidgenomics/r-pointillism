@@ -27,12 +27,12 @@
 #' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
 #'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light
-#' @importFrom basejump Gene2Symbol as_tibble camelCase coerce
-#'   convertGenesToSymbols decode estimateSizeFactors geometricMean import
-#'   interestingGroups interestingGroups<- leftJoin makeNames mapGenesToIDs
-#'   mapGenesToRownames mapGenesToSymbols markdownHeader matchArgsToDoCall
-#'   matchInterestingGroups metrics organism organism<- printString sampleData
-#'   sampleData<- sampleNames separator showSlotInfo snakeCase upperCamel
+#' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
+#'   decode estimateSizeFactors geometricMean import interestingGroups
+#'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
+#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
+#'   metrics organism organism<- printString sampleData sampleData<- sampleNames
+#'   separator showSlotInfo snakeCase upperCamel
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
