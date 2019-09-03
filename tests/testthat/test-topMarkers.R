@@ -1,12 +1,10 @@
-## FIXME Double check that this unit test is performing as expected.
-
 context("topMarkers")
 
 test_that("Default", {
     object <- topMarkers(seuratAllMarkers, direction = "up", n = 2L)
     expect_s4_class(object, "DataFrame")
     expect_identical(
-        object %>% lapply(class) %>% .[sort(names(.))],
+        lapply(object, class) %>% .[sort(names(.))],
         list(
             avgLogFC = "numeric",
             cluster = "factor",
