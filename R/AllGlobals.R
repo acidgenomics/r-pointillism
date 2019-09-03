@@ -32,6 +32,8 @@ continuousColorPurpleOrange <-
 discreteColor <-
     quote(getOption("acid.discrete.color", default = NULL))
 
+## FIXME Work on improving consistency here with acidplots.
+
 dark <- quote(getOption("acid.dark", default = FALSE))
 dims <- quote(c(1L, 2L))
 direction <- c("up", "down", "both")
