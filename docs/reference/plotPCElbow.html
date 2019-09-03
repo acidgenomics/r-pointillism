@@ -8,11 +8,13 @@
 
 <title>Plot principal component elbow — plotPCElbow • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,10 +36,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot principal component elbow — plotPCElbow" />
 
+<meta property="og:title" content="Plot principal component elbow — plotPCElbow" />
 <meta property="og:description" content="Calculate the principal component (PC) cutoff using a heuristic approach." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -90,7 +93,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -117,9 +119,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Calculate the principal component (PC) cutoff using a heuristic approach.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='no'>...</span>)
@@ -130,7 +130,7 @@
 <span class='co'># S4 method for cell_data_set</span>
 <span class='fu'>plotPCElbow</span>(<span class='no'>object</span>, <span class='kw'>minPct</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
   <span class='kw'>maxCumPct</span> <span class='kw'>=</span> <span class='fl'>0.9</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -153,21 +153,18 @@ Maximum cumulative percen standard deviation.</p></td>
       <td><p>Additional arguments.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>ggplot</code>.
 Elbow point is saved in <code><a href='https://rdrr.io/r/base/attr.html'>attr(object, "elbow")</a></code>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Automatically return the smallest number of PCs that match the <code>minSD</code>,
 <code>minPct</code>, and <code>maxCumPct</code> cutoffs.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-02.</p>
-    
+    <p>Updated 2019-09-03.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -176,7 +173,6 @@ Elbow point is saved in <code><a href='https://rdrr.io/r/base/attr.html'>attr(ob
 <li><p><code><a href='https://rdrr.io/pkg/monocle3/man/plot_pc_variance_explained.html'>monocle3::plot_pc_variance_explained()</a></code>.</p></li>
 </ul>
 </div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
@@ -196,15 +192,10 @@ Elbow point is saved in <code><a href='https://rdrr.io/r/base/attr.html'>attr(ob
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
