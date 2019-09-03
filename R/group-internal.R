@@ -1,8 +1,6 @@
-## FIXME Consider a `groupAndSplit()` type function
-
-
-
 #' Generate a grouping factor
+#'
+#' Use this internal function to define grouping factor for `split()` call.
 #'
 #' Use `[` subsetting to request specific columns.
 #'
