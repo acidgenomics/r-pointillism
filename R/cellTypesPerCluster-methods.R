@@ -62,7 +62,7 @@ NULL
         ## Summarize the data per split.
         ## Using `toString()` instead of `aggregate()` for markdown tables.
         ## Genes are arranged by adjusted P value.
-        split <- DataFrameList(lapply(
+        split <- SplitDataFrameList(lapply(
             X = split,
             FUN = function(x) {
                 DataFrame(
