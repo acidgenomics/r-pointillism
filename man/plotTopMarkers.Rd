@@ -10,7 +10,7 @@ plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
   n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
-  headerLevel = 2L, BPPARAM = BiocParallel::SerialParam(), ...)
+  headerLevel = 2L, BPPARAM = BiocParallel::bpparam(), ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -54,7 +54,7 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \note{
-Updated 2019-08-23.
+Updated 2019-09-03.
 }
 \examples{
 data(Seurat, package = "acidtest")
