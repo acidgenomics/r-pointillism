@@ -34,7 +34,6 @@ NULL
 `findMarkers,SingleCellExperiment` <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
-
         ## Get the cluster mappings. Following the Seurat nomenclature here of
         ## using "ident" to denote the cluster identifier mapping factor.
         ident <- clusters(object)
@@ -42,7 +41,6 @@ NULL
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
         message(sprintf("%d clusters detected.", length(clusters)))
-
         ## Loop across the clusters and calculate gene enrichment relative to
         ## all of the other clusters combined.
         list <- lapply(

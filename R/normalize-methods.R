@@ -88,21 +88,20 @@ NULL
 `normalize,SingleCellExperiment` <-  # nolint
     function(object, verbose = FALSE) {
         validObject(object)
-        assert(isFlag(verbose))
-
-        assert(!hasLength(spikeNames(object)))
+        assert(
+            isFlag(verbose),
+            !hasLength(spikeNames(object))
+        )
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(object)
         }
         assert(!is.null(sizeFactors(object)))
-
         if (isTRUE(verbose)) {
             message(
                 "Computing 'normcounts' and 'logcounts' assays using ",
                 "'scater::normalizeSCE()'."
             )
         }
-
         ## Shared arguments for `normalizeSCE()` calls.
         args <- list(
             object = object,
@@ -110,7 +109,6 @@ NULL
             centre_size_factors = TRUE,
             preserve_zeroes = FALSE
         )
-
         ## Get normcounts assay.
         sce <- do.call(
             what = normalizeSCE,
@@ -124,7 +122,6 @@ NULL
             !isSubset("logcounts", assayNames(sce))
         )
         normcounts <- normcounts(sce)
-
         ## Get logcounts assay.
         sce <- do.call(
             what = normalizeSCE,
@@ -139,14 +136,11 @@ NULL
             !isSubset("normcounts", assayNames(sce))
         )
         logcounts <- logcounts(sce)
-
         ## Slot the normalized counts in object.
         normcounts(object) <- normcounts
         logcounts(object) <- logcounts
-
         ## Stash scater package version in metadata.
         metadata(object)[["scater"]] <- packageVersion("scater")
-
         object
     }
 
