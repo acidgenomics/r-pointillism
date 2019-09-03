@@ -12,7 +12,7 @@
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @export
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -23,13 +23,9 @@ setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
         validate(
-            identical(
-                x = lapply(object[[1L]], class),
-                y = list(
-                    phase = "factor",
-                    geneID = "character",
-                    geneName = "character"
-                )
+            areSetEqual(
+                x = colnames(object[[1L]]),
+                y = c("geneID", "geneName", "phase")
             ),
             isSubset(
                 x = c("version", "organism", "ensemblRelease", "date"),
@@ -47,7 +43,7 @@ setValidity(
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @export
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -58,16 +54,12 @@ setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
         validate(
-            identical(
-                x = lapply(object[[1L]], class),
-                y = list(
-                    cellType = "factor",
-                    geneID = "character",
-                    geneName = "character"
-                )
+            areSetEqual(
+                x = colnames(object[[1L]]),
+                y = c("cellType", "geneID", "geneName")
             ),
             isSubset(
-                x = c("version", "organism", "ensemblRelease", "date"),
+                x = c("date", "ensemblRelease", "organism", "version"),
                 y = names(metadata(object))
             )
         )

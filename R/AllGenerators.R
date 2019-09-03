@@ -40,7 +40,9 @@ NULL
     keep <- x[["geneID"]] %in% intersect
     x <- x[keep, , drop = FALSE]
     x <- leftJoin(x, gene2symbol, by = "geneID")
+    x <- x[, sort(colnames(x)), drop = FALSE]
     x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
+    x <- mutateIf(x, is.character, as.factor)
     x <- split(x, f = x[[group]])
     x <- snakeCase(x)
     metadata(x) <- metadata(gene2symbol)
