@@ -87,7 +87,7 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \note{
-Updated 2019-08-06.
+Updated 2019-09-03.
 }
 \examples{
 data(

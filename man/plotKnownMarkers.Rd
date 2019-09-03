@@ -11,11 +11,11 @@ plotKnownMarkers(object, markers, ...)
 
 \S4method{plotKnownMarkers}{SingleCellExperiment,KnownMarkers}(object,
   markers, reduction = "UMAP", headerLevel = 2L,
-  BPPARAM = BiocParallel::SerialParam(), ...)
+  BPPARAM = BiocParallel::bpparam(), ...)
 
 \S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers,
   reduction = "UMAP", headerLevel = 2L,
-  BPPARAM = BiocParallel::SerialParam(), ...)
+  BPPARAM = BiocParallel::bpparam(), ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -47,7 +47,7 @@ Invisibly return a \code{ggplot} \code{list}.
 Plot known markers
 }
 \note{
-Updated 2019-08-23.
+Updated 2019-09-03.
 }
 \examples{
 data(Seurat, package = "acidtest")
