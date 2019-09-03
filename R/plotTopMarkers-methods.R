@@ -4,7 +4,7 @@
 
 #' @name plotTopMarkers
 #' @inherit bioverbs::plotTopMarkers
-#' @note Updated 2019-08-23.
+#' @note Updated 2019-09-03.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -50,7 +50,7 @@ NULL
         direction,
         reduction,
         headerLevel = 2L,
-        BPPARAM = BiocParallel::SerialParam(),  # nolint
+        BPPARAM,  # nolint
         ...
     ) {
         ## Passthrough: n, direction, coding
@@ -62,6 +62,7 @@ NULL
             direction = direction
         )
         assert(
+            is(markers, "DataFrame"),
             isScalar(reduction),
             isHeaderLevel(headerLevel)
         )
@@ -70,15 +71,15 @@ NULL
         list <- bplapply(
             X = clusters,
             FUN = function(cluster) {
-                genes <- markers %>%
-                    ungroup() %>%
-                    filter(cluster == !!cluster) %>%
-                    pull("name")
-                if (!length(genes)) {
+                genes <- markers[
+                    markers[["cluster"]] == cluster,
+                    "name",
+                    drop = TRUE
+                    ]
+                if (!hasLength(genes)) {
                     message(sprintf("No genes for cluster %s.", cluster))
                     return(invisible())
-                }
-                if (length(genes) > 10L) {
+                } else if (length(genes) > 10L) {
                     warning("Maximum of 10 genes per cluster is recommended.")
                 }
                 markdownHeader(
@@ -104,8 +105,8 @@ NULL
     }
 
 formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
-    c("direction", "reduction")
-] <- list(direction, reduction)
+    c("direction", "reduction", "BPPARAM")
+] <- list(direction, reduction, BPPARAM)
 
 
 
