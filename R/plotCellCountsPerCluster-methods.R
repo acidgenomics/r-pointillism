@@ -1,6 +1,6 @@
 #' @name plotCellCountsPerCluster
 #' @inherit bioverbs::plotCellCountsPerCluster
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-08-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -34,7 +34,7 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-03.
 `plotCellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -44,14 +44,8 @@ NULL
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
-
-        data <- cellCountsPerCluster(
-            object = object,
-            interestingGroups = interestingGroups
-        )
-        assert(is(data, "tbl_df"))
-
-        if (length(levels(data[["sampleName"]])) > 1L) {
+        data <- cellCountsPerCluster(object = object)
+        if (isTRUE(length(levels(data[["sampleName"]])) > 1L)) {
             multipleSamples <- TRUE
             col <- "interestingGroups"
             legendTitle <- paste(interestingGroups, collapse = ":\n")
@@ -64,7 +58,8 @@ NULL
             showLegend <- FALSE
             xLab <- "cluster"
         }
-
+        ## Plot.
+        data <- as_tibble(data, rownames = NULL)
         p <- ggplot(
             data = data,
             mapping = aes(
@@ -82,12 +77,11 @@ NULL
                 y = "n cells",
                 fill = legendTitle
             )
-
         ## Wrap for multiple samples.
         if (isTRUE(multipleSamples)) {
             p <- p + facet_wrap(facets = sym("ident"))
         }
-
+        ## Return.
         p
     }
 
