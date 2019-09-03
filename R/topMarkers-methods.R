@@ -74,8 +74,9 @@ NULL
         x <- unlist(x, recursive = FALSE, use.names = FALSE)
         ranges <- x[["ranges"]]
         x[["ranges"]] <- NULL
-        x[["geneID"]] <- mcols(ranges)[["geneID"]]
-        x[["geneName"]] <- mcols(ranges)[["geneName"]]
+        x[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        x[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
+        x <- mutateIf(x, is.character, as.factor)
         x
     }
 
