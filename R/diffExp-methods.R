@@ -84,25 +84,25 @@
 #' summary(denominator)
 #'
 #' ## edgeR ====
-#' # x <- diffExp(
-#' #     object = object,
-#' #     numerator = numerator,
-#' #     denominator = denominator,
-#' #     caller = "edgeR"
-#' # )
-#' # class(x)
-#' # summary(x)
+#' ## > x <- diffExp(
+#' ## >     object = object,
+#' ## >     numerator = numerator,
+#' ## >     denominator = denominator,
+#' ## >     caller = "edgeR"
+#' ## > )
+#' ## > class(x)
+#' ## > summary(x)
 #'
 #' ## DESeq2 ====
-#' # This will warn about weights with the minimal example.
-#' # x <- diffExp(
-#' #     object = object,
-#' #     numerator = numerator,
-#' #     denominator = denominator,
-#' #     caller = "DESeq2"
-#' # )
-#' # class(x)
-#' # summary(x)
+#' ## This will warn about weights with the minimal example.
+#' ## > x <- diffExp(
+#' ## >     object = object,
+#' ## >     numerator = numerator,
+#' ## >     denominator = denominator,
+#' ## >     caller = "DESeq2"
+#' ## > )
+#' ## > class(x)
+#' ## > summary(x)
 NULL
 
 
