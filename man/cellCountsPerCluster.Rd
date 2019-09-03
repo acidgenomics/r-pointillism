@@ -10,20 +10,14 @@
 \usage{
 cellCountsPerCluster(object, ...)
 
-\S4method{cellCountsPerCluster}{SingleCellExperiment}(object,
-  interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{SingleCellExperiment}(object)
 
-\S4method{cellCountsPerCluster}{Seurat}(object, interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{Seurat}(object)
 
-\S4method{cellCountsPerCluster}{cell_data_set}(object,
-  interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
-
-\item{interestingGroups}{\code{character}.
-Groups of interest to use for visualization.
-Corresponds to factors describing the columns of the object.}
 
 \item{...}{Additional arguments.}
 }
@@ -34,7 +28,7 @@ Corresponds to factors describing the columns of the object.}
 Cell counts per cluster
 }
 \note{
-Updated 2019-09-01.
+Updated 2019-09-02.
 }
 \examples{
 data(

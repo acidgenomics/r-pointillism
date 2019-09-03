@@ -29,7 +29,7 @@ Grouped by \code{sampleName} column, arranged by abundance.
 Cluster cell counts per sample
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \examples{
 data(
@@ -40,6 +40,8 @@ data(
 
 ## Seurat ====
 object <- Seurat
+colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
+colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 x <- clusterCellCountsPerSample(object)
 print(x)
 
