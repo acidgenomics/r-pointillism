@@ -37,6 +37,7 @@ NULL
 
 
 
+## Note that the validity method checks for sorting by adjusted P value.
 ## Updated 2019-09-03.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
@@ -47,24 +48,30 @@ NULL
         validObject(object)
         assert(isInt(n))
         direction <- match.arg(direction)
+        msg <- switch(
+            EXPR = direction,
+            "both" = "Including both up- and down-regulated markers.",
+            "down" = "Including downregulated markers.",
+            "up" = "Including upregulated markers."
+        )
+        message(msg)
         x <- object
-        ## Subset the split to only include the top markers.
-        ## Note that the validity method checks for sorting by adjusted P value.
-        x <- SplitDataFrameList(lapply(X = x, FUN = head, n = n))
+        x <- SplitDataFrameList(lapply(
+            X = x,
+            FUN = function(x) {
+                ## Subset to positive or negative correlation, if desired.
+                if (identical(direction, "up")) {
+                    keep <- x[["avgLogFC"]] > 0L
+                    x <- x[keep, , drop = FALSE]
+                } else if (identical(direction, "down")) {
+                    keep <- x[["avgLogFC"]] < 0L
+                    x <- x[keep, , drop = FALSE]
+                }
+                x <- head(x, n = n)
+                x
+            }
+        ))
         x <- unlist(x, recursive = FALSE, use.names = FALSE)
-        ## Subset to positive or negative correlation, if desired.
-        if (identical(direction, "up")) {
-            message("Including upregulated markers.")
-            keep <- x[["avgLogFC"]] > 0L
-            x <- x[keep, , drop = FALSE]
-        } else if (identical(direction, "down")) {
-            message("Including downregulated markers.")
-            keep <- x[["avgLogFC"]] < 0L
-            x <- x[keep, , drop = FALSE]
-        } else {
-            message("Including both up- and down-regulated markers.")
-        }
-        ## Extract geneID and geneName columns from ranges.
         ranges <- x[["ranges"]]
         x[["ranges"]] <- NULL
         x[["geneID"]] <- mcols(ranges)[["geneID"]]
