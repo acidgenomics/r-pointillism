@@ -70,13 +70,13 @@ NULL
             metadata = TRUE
         )
         cols <- c("geneName", "sampleName", "ident")
-        assert(isSubset(cols, colnames(x)))
+        assert(isSubset(c(cols, assay), colnames(x)))
         f <- .group(x[, cols])
         x <- split(x = x, f = f)
         x <- SplitDataFrameList(lapply(
             X = x,
             FUN = function(x) {
-                value <- x[["value"]]
+                value <- x[[assay]]
                 ## Assuming use of logcounts here.
                 avgExp <- mean(expm1(value))
                 ## Consider making the threshold user definable.
