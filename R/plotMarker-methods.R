@@ -1,7 +1,7 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit bioverbs::plotMarker
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-08-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -53,7 +53,7 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-03.
 `plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -70,13 +70,6 @@ NULL
         legend,
         title = TRUE
     ) {
-        ## Legacy arguments ----------------------------------------------------
-        ## color
-        if (identical(color, "auto")) {
-            stop("Use 'color = NULL' instead of 'auto'.")
-        }
-
-        ## Assert checks -------------------------------------------------------
         assert(
             isCharacter(genes),
             isScalar(reduction),
@@ -100,19 +93,17 @@ NULL
         if (is.character(title)) {
             assert(isString(title))
         }
-
         ## Fetch reduced dimension data.
+        assay <- "logcounts"
         data <- .fetchReductionExpressionData(
             object = object,
             genes = genes,
-            reduction = reduction
+            reduction = reduction,
+            assay = assay
         )
-        assert(is(data, "DataFrame"))
-
         ## Get the axis labels.
         axes <- colnames(data)[seq_len(2L)]
-        assert(all(grepl("\\d+$", axes)))
-
+        assert(allAreMatchingRegex(x = axes, pattern = "\\d+$"))
         requiredCols <- c(
             axes,
             "centerX",
@@ -124,17 +115,16 @@ NULL
             "y"
         )
         assert(isSubset(requiredCols, colnames(data)))
-
+        ## Plot.
         p <- ggplot(
-            data = as_tibble(data),
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("x"),
                 y = !!sym("y"),
                 color = !!sym(expression)
             )
         )
-
-        ## Titles
+        ## Titles.
         subtitle <- NULL
         if (isTRUE(title)) {
             if (isString(geneNames)) {
@@ -158,22 +148,18 @@ NULL
                 title = title,
                 subtitle = subtitle
             )
-
         ## Customize legend.
         if (isTRUE(legend)) {
             if (isString(genes)) {
-                guideTitle <- "logcounts"
+                guideTitle <- assay
             } else {
-                guideTitle <- paste0(
-                    "logcounts", "\n",
-                    "(", expression, ")"
-                )
+                guideTitle <- sprintf("%s\n(%s)", assay, expression)
             }
             p <- p + guides(color = guide_colorbar(title = guideTitle))
         } else {
             p <- p + guides(color = "none")
         }
-
+        ## Points as numbers.
         if (isTRUE(pointsAsNumbers)) {
             if (pointSize < 4L) pointSize <- 4L
             p <- p +
@@ -194,7 +180,7 @@ NULL
                     size = pointSize
                 )
         }
-
+        ## Label clusters.
         if (isTRUE(label)) {
             if (isTRUE(dark)) {
                 labelColor <- "white"
@@ -213,7 +199,6 @@ NULL
                     fontface = "bold"
                 )
         }
-
         ## Dark mode.
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
@@ -221,11 +206,11 @@ NULL
                 color <- darkMarkerColors
             }
         }
-
+        ## Color.
         if (is(color, "ScaleContinuous")) {
             p <- p + color
         }
-
+        ## Return.
         p
     }
 

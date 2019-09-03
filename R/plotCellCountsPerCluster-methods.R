@@ -60,7 +60,7 @@ NULL
         }
         ## Plot.
         p <- ggplot(
-            data = as_tibble(data, rownames = NULL),
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym(col),
                 y = !!sym("n"),

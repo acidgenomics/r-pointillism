@@ -123,12 +123,11 @@ NULL
                 printString(supported)
             ))
         }
-        data <- as_tibble(data, rownames = NULL)
         plotlist <- lapply(
             X = features,
             FUN = function(feature) {
                 p <- ggplot(
-                    data = data,
+                    data = as.data.frame(data),
                     mapping = aes(
                         x = !!sym("x"),
                         y = !!sym("y"),
