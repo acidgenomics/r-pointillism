@@ -14,5 +14,5 @@ Class containing essential elements for marker gene analysis.
 Results are arranged by adjusted \emph{P} value (\code{padj}).
 }
 \note{
-Updated 2019-08-06.
+Updated 2019-09-03.
 }
