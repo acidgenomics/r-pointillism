@@ -2,7 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit bioverbs::plotReducedDim
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -80,7 +80,7 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2019-08-02.
+## Updated 2019-09-03.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -121,7 +121,6 @@ NULL
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
-
         data <- .fetchReductionData(
             object = object,
             reduction = reduction,
@@ -134,7 +133,6 @@ NULL
                 y = colnames(data)
             )
         )
-
         ## Check if interesting groups input is supported.
         supported <- bapply(data, is.factor)
         supported <- names(supported)[supported]
@@ -158,28 +156,26 @@ NULL
                 printString(supported)
             ))
         }
-
         if (isString(interestingGroups)) {
             data[["interestingGroups"]] <- data[[interestingGroups]]
         } else {
+            ## FIXME Switch to calling `uniteInterestingGroups()`.
             data[["interestingGroups"]] <- apply(
-                X = data[, interestingGroups],
+                X = data[, interestingGroups, drop = FALSE],
                 MARGIN = 1L,
                 FUN = paste,
                 collapse = ":"
             )
         }
-
         ## Turn off labeling if there's only 1 cluster.
         if (hasLength(levels(data[["ident"]]), n = 1L)) {
             label <- FALSE
         }
-
         ## Set the x- and y-axis labels (e.g. t_SNE1, t_SNE2). We're setting
         ## this up internally as the first two columns in the data frame.
         axes <- colnames(data)[seq_len(2L)]
         p <- ggplot(
-            data = as_tibble(data),
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("x"),
                 y = !!sym("y"),
@@ -191,7 +187,7 @@ NULL
                 y = axes[[2L]],
                 color = paste(interestingGroups, collapse = ":\n")
             )
-
+        ## Points as numbers.
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
             if (pointSize < 4L) {
@@ -218,7 +214,7 @@ NULL
                     show.legend = legend
                 )
         }
-
+        ## Label.
         if (isTRUE(label)) {
             if (isTRUE(dark)) {
                 labelColor <- "white"
@@ -237,21 +233,18 @@ NULL
                     fontface = "bold"
                 )
         }
-
         ## Dark mode.
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
         }
-
+        ## Color.
         if (is(color, "ScaleDiscrete")) {
             p <- p + color
         }
-
         ## Improve the axis breaks.
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
-
         p
     }
 
