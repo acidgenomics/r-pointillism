@@ -1,6 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
-#' @note Updated 2019-08-23.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers Object.
@@ -31,14 +31,14 @@ NULL
 
 
 
-## Updated 2019-08-23.
+## Updated 2019-09-03.
 `plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
         reduction,
         headerLevel,
-        BPPARAM = BiocParallel::SerialParam(),  # nolint
+        BPPARAM,  # nolint
         ...
     ) {
         validObject(object)
@@ -48,28 +48,22 @@ NULL
             isScalar(reduction),
             isHeaderLevel(headerLevel)
         )
-        ## Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
-        markers[["ranges"]] <- NULL
-        cellTypes <- markers %>%
-            .[["cellType"]] %>%
-            as.character() %>%
-            na.omit() %>%
-            unique()
+        cellTypes <- markers[["cellType"]]
+        cellTypes <- unique(na.omit(as.character(cellTypes)))
         assert(isNonEmpty(cellTypes))
         list <- bplapply(
             X = cellTypes,
             FUN = function(cellType) {
-                genes <- markers %>%
-                    as_tibble() %>%
-                    filter(cellType == !!cellType) %>%
-                    pull("name") %>%
-                    as.character() %>%
-                    na.omit() %>%
-                    unique()
+                genes <- markers[
+                    markers[["cellType"]] == cellType,
+                    "name",
+                    drop = TRUE
+                ]
+                genes <- unique(na.omit(as.character(genes)))
                 assert(isNonEmpty(genes))
                 markdownHeader(
-                    text = as.character(cellType),
+                    text = cellType,
                     level = headerLevel,
                     tabset = TRUE,
                     asis = TRUE
@@ -92,10 +86,12 @@ NULL
 
 formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
-    "reduction"
+    "reduction",
+    "BPPARAM"
 )] <- list(
     headerLevel = headerLevel,
-    reduction = reduction
+    reduction = reduction,
+    BPPARAM = BPPARAM
 )
 
 
