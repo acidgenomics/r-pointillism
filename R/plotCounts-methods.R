@@ -74,20 +74,20 @@ NULL
     function(
         object,
         genes,
-        value = c("logcounts", "normcounts"),
+        assay = c("logcounts", "normcounts"),
         geom = c("violin", "dot"),
         perSample = TRUE,
         legend,
         title = NULL
     ) {
         validObject(object)
-        value <- match.arg(value)
+        assay <- match.arg(assay)
         geom <- match.arg(geom)
         args <- as.list(sys.call(which = -1L))[-1L]
         args[["geom"]] <- NULL
         if (geom == "dot") {
-            assert(identical(value, "logcounts"))
-            args[["value"]] <- NULL
+            assert(identical(assay, "logcounts"))
+            args[["assay"]] <- NULL
             what <- plotDot
         } else if (geom == "violin") {
             what <- plotViolin
