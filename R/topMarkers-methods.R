@@ -1,3 +1,8 @@
+## FIXME Take out the return option?
+## FIXME Improve return in bioverbs.
+
+
+
 #' @name topMarkers
 #' @inherit bioverbs::topMarkers
 #' @note Updated 2019-07-31.
@@ -10,9 +15,7 @@
 #'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
 #' @param ... Additional arguments.
 #'
-#' @seealso
-#' - `dplyr::slice()`.
-#' - `dplyr::top_n()`.
+#' @return `DataFrame`.
 #'
 #' @examples
 #' data(seuratAllMarkers)
@@ -34,53 +37,39 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-09-03.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         n = 10L,
-        direction,
-        return = c("tbl_df", "DataFrame", "SplitDataFrameList")
+        direction
     ) {
         validObject(object)
         assert(isInt(n))
         direction <- match.arg(direction)
-        return <- match.arg(return)
-
-        ## Using `Markers` to `tbl_df` coercion method.
-        data <- as(object, "tbl_df")
-
-        ## Subset to positive or negative correlation, if desired ("direction")
-        ## Note that `avgDiff` has been renamed to `avgLogFC` in Seurat v2.1.
-        if (direction == "up") {
+        x <- object
+        ## Subset the split to only include the top markers.
+        ## Note that the validity method checks for sorting by adjusted P value.
+        x <- SplitDataFrameList(lapply(X = x, FUN = head, n = n))
+        x <- unlist(x, recursive = FALSE, use.names = FALSE)
+        ## Subset to positive or negative correlation, if desired.
+        if (identical(direction, "up")) {
             message("Including upregulated markers.")
-            data <- filter(data, !!sym("avgLogFC") > 0L)
-        } else if (direction == "down") {
-            message("Including upregulated markers.")
-            data <- filter(data, !!sym("avgLogFC") < 0L)
+            keep <- x[["avgLogFC"]] > 0L
+            x <- x[keep, , drop = FALSE]
+        } else if (identical(direction, "down")) {
+            message("Including downregulated markers.")
+            keep <- x[["avgLogFC"]] < 0L
+            x <- x[keep, , drop = FALSE]
         } else {
             message("Including both up- and down-regulated markers.")
         }
-
-        data <- data %>%
-            ## Arrange by adjusted P value.
-            arrange(!!sym("padj"), .by_group = TRUE) %>%
-            ## Take the top rows by using slice.
-            dplyr::slice(seq_len(n))
-
-        ## Return.
-        if (return == "tbl_df") {
-            data
-        } else if (return == "DataFrame") {
-            as(data, "DataFrame")
-        } else if (return == "SplitDataFrameList") {
-            data <- as(data, "DataFrame")
-            assert(isSubset("cluster", colnames(data)))
-            data <- split(x = data, f = data[["cluster"]])
-            names(data) <- paste0("cluster", names(data))
-            assert(is(data, "SplitDataFrameList"))
-            data
-        }
+        ## Extract geneID and geneName columns from ranges.
+        ranges <- x[["ranges"]]
+        x[["ranges"]] <- NULL
+        x[["geneID"]] <- mcols(ranges)[["geneID"]]
+        x[["geneName"]] <- mcols(ranges)[["geneName"]]
+        x
     }
 
 formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]] <- direction
