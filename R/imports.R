@@ -39,7 +39,7 @@
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
-#'   theme theme_set
+#'   theme theme_set vars
 #' @importFrom goalie allAreInLeftOpenRange allAreMatchingRegex
 #'   allAreNonNegative allArePositive areDisjointSets areIntersectingSets
 #'   areSetEqual assert bapply false isAlpha isInt hasColnames hasLength
