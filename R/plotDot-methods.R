@@ -61,12 +61,12 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
-        value <- "logcounts"
+        assay <- "logcounts"
         ## Fetch the gene expression data.
         x <- .fetchGeneData(
             object = object,
             genes = genes,
-            value = value,
+            assay = assay,
             metadata = TRUE
         )
         cols <- c("geneName", "sampleName", "ident")
@@ -111,7 +111,7 @@ NULL
         x[["pctExp"]][x[["pctExp"]] < dotMin] <- NA
         ## Plot.
         p <- ggplot(
-            data = as_tibble(x, rownames = NULL),
+            data = as.data.frame(x),
             mapping = aes(
                 x = !!sym("geneName"),
                 y = !!sym("ident")
@@ -127,7 +127,7 @@ NULL
             scale_radius(range = c(0L, dotScale)) +
             labs(
                 title = title,
-                subtitle = value,
+                subtitle = assay,
                 x = "gene",
                 y = "cluster"
             )
