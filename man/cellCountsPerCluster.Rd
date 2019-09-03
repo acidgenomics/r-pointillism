@@ -39,9 +39,6 @@ data(
 
 ## Seurat ====
 object <- Seurat
-## Simulate a multi-sample dataset.
-colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
-colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 x <- cellCountsPerCluster(object)
 print(x)
 
