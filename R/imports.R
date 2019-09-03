@@ -41,8 +41,8 @@
 #'   scale_color_viridis_c scale_radius scale_x_continuous scale_y_continuous
 #'   theme theme_set
 #' @importFrom goalie allAreInLeftOpenRange allAreNonNegative allArePositive
-#'   areDisjointSets areIntersectingSets assert bapply false isAlpha isInt
-#'   hasColnames hasLength hasNames hasRownames hasRows hasValidDimnames
+#'   areDisjointSets areIntersectingSets areSetEqual assert bapply false isAlpha
+#'   isInt hasColnames hasLength hasNames hasRownames hasRows hasValidDimnames
 #'   hasValidNames isGGScale isAny isCharacter isFlag isHeaderLevel isIntegerish
 #'   isNonEmpty isNonNegative isNumber isPositive isScalar isScalarNumeric
 #'   isString isSubset validate
