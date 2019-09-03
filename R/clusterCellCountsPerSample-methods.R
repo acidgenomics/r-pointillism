@@ -51,11 +51,10 @@ NULL
         x <- x[, cols, drop = FALSE]
         tbl <- table(x)
         ## Get the number of cells per ident.
-        ## We'll use this in a join below to calculate ratio.
         nPerIdent <- rowSums(tbl)
         nPerIdent <- DataFrame(
             ident = names(nPerIdent),
-            nPerIdent = nPerIdent
+            nPerIdent = as.integer(nPerIdent)
         )
         x <- melt(tbl, colnames = c(cols, "n"))
         x <- leftJoin(x, nPerIdent, by = "ident")
