@@ -74,6 +74,7 @@
     g2s <- as(g2s, "DataFrame")
     g2s[["rowname"]] <- rownames(g2s)
     data <- leftJoin(data, g2s, by = "rowname")
+    data <- mutateIf(data, is.character, as.factor)
     data <- data[, unique(c("rowname", sort(colnames(data))))]
     data
 }
