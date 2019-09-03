@@ -8,11 +8,13 @@
 
 <title>Top markers — topMarkers • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,10 +36,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Top markers — topMarkers" />
 
+<meta property="og:title" content="Top markers — topMarkers" />
 <meta property="og:description" content="Top markers" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -90,7 +93,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -117,18 +119,15 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Top markers</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SeuratMarkersPerCluster</span>
 <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>,
-  <span class='st'>"DataFrame"</span>, <span class='st'>"SplitDataFrameList"</span>))</pre>
-    
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>))</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -148,62 +147,47 @@ Whether to include upregulated (<code>"up"</code>; positive LFC), downregulated
 (<code>"down"</code>; negative LFC) or <code>"both"</code> directions of association per cluster.</p></td>
     </tr>
     <tr>
-      <th>return</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Return type. Uses <code><a href='https://rdrr.io/r/base/match.arg.html'>match.arg()</a></code> internally and defaults
-to the first argument in the <code>character</code> vector.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>grouped_df</code>.</p>
-    
+    <p><code>DataFrame</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-07-31.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'>
-<ul>
-<li><p><code><a href='https://dplyr.tidyverse.org/reference/slice.html'>dplyr::slice()</a></code>.</p></li>
-<li><p><code><a href='https://dplyr.tidyverse.org/reference/top_n.html'>dplyr::top_n()</a></code>.</p></li>
-</ul>
-</div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seuratAllMarkers</span>)
 
 <span class='co'>## SeuratMarkersPerCluster ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 9</span><span>
-#&gt; </span><span style='color: #555555;'># Groups:   cluster [3]</span><span>
-#&gt;   cluster name     avgLogFC  pct1  pct2   pvalue     padj geneID        geneName
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   
-#&gt; </span><span style='color: #555555;'>1</span><span> 0       CD7          2.56 0.528 0.091 8.18</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span> 1.88</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> ENSG00000173… CD7     
-#&gt; </span><span style='color: #555555;'>2</span><span> 0       GNLY         4.78 0.444 0.068 3.27</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span> 7.51</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> ENSG00000115… GNLY    
-#&gt; </span><span style='color: #555555;'>3</span><span> 1       S100A8       4.33 0.96  0.091 1.43</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-14</span><span> 3.30</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-12</span><span> ENSG00000143… S100A8  
-#&gt; </span><span style='color: #555555;'>4</span><span> 1       TYMP         2.21 1     0.164 4.77</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-13</span><span> 1.10</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span> ENSG00000025… TYMP    
-#&gt; </span><span style='color: #555555;'>5</span><span> 2       HLA-DPB1     1.75 0.947 0.41  2.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span> 6.13</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span> ENSG00000215… HLA-DPB1
-#&gt; </span><span style='color: #555555;'>6</span><span> 2       MS4A1        4.53 0.526 0.033 7.53</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span> 1.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span> ENSG00000156… MS4A1   </div></span></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 6 rows and 9 columns
+#&gt;    cluster     name         avgLogFC      pct1      pct2               pvalue
+#&gt;   &lt;factor&gt; &lt;factor&gt;        &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;            &lt;numeric&gt;
+#&gt; 1        0      CD7 2.55597346986167     0.528     0.091 8.17877467459745e-06
+#&gt; 2        0     GNLY 4.78418517067847     0.444     0.068 3.26567195655177e-05
+#&gt; 3        1   S100A8  4.3281839079057      0.96     0.091 1.43329136712276e-14
+#&gt; 4        1     TYMP 2.21103115611057         1     0.164 4.77301463121415e-13
+#&gt; 5        2 HLA-DPB1 1.74909415488556     0.947      0.41 2.66705578454703e-08
+#&gt; 6        2    MS4A1   4.533789508485     0.526     0.033 7.53228953498949e-08
+#&gt;                   padj          geneID geneName
+#&gt;              &lt;numeric&gt;        &lt;factor&gt; &lt;factor&gt;
+#&gt; 1  0.00188111817515741 ENSG00000173762      CD7
+#&gt; 2  0.00751104550006906 ENSG00000115523     GNLY
+#&gt; 3 3.29657014438234e-12 ENSG00000143546   S100A8
+#&gt; 4 1.09779336517925e-10 ENSG00000025708     TYMP
+#&gt; 5 6.13422830445816e-06 ENSG00000215048 HLA-DPB1
+#&gt; 6 1.73242659304758e-05 ENSG00000156738    MS4A1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
