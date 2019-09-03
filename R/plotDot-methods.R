@@ -110,9 +110,8 @@ NULL
         ## Apply our `dotMin` threshold.
         x[["pctExp"]][x[["pctExp"]] < dotMin] <- NA
         ## Plot.
-        data <- as_tibble(x, rownames = NULL)
         p <- ggplot(
-            data = data,
+            data = as_tibble(x, rownames = NULL),
             mapping = aes(
                 x = !!sym("geneName"),
                 y = !!sym("ident")
