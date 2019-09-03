@@ -43,18 +43,6 @@ NULL
 
 
 
-## nolint start
-## dplyr approach:
-## > x <- group_by(x, !!!syms(cols))
-## > x <- summarize(x, n = n())
-## > x <- ungroup(x)
-## > x <- arrange(x, !!!syms(cols))
-## > x <- group_by(x, !!sym("ident"))
-## > x <- mutate(x, ratio = !!sym("n") / sum(!!sym("n")))
-## nolint end
-
-
-
 ## Updated 2019-09-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object) {

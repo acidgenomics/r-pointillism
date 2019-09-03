@@ -41,20 +41,6 @@ NULL
 
 
 
-## nolint start
-## dplyr approach:
-## > x <- metrics(object)
-## > x <- arrange(x, !!!syms(cols))
-## > x <- group_by(x, !!!syms(cols))
-## > x <- summarize(x, n = n())
-## > x <- ungroup(x)
-## > x <- arrange(x, !!!syms(cols))
-## > x <- group_by(x, !!sym("sampleName"))
-## > x <- mutate(x, ratio = !!sym("n") / sum(!!sym("n")))
-## nolint end
-
-
-
 ## Updated 2019-08-03.
 `clusterCellCountsPerSample,SingleCellExperiment` <-  # nolint
     function(object) {
