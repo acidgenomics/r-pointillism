@@ -4,7 +4,7 @@
 #' @note We are no longer recommending the use of software that attempts to
 #'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 #'   single cell RNA-seq data. Simply model the counts directly.
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
@@ -76,11 +76,11 @@
 #' data(Seurat, package = "acidtest")
 #' object <- Seurat
 #'
-#' ## Compare expression in cluster 3 relative to 2.
+#' ## Compare expression in cluster 2 relative to 1.
 #' clusters <- clusters(object)
-#' numerator <- names(clusters)[clusters == "3"]
+#' numerator <- names(clusters)[clusters == "2"]
 #' summary(numerator)
-#' denominator <- names(clusters)[clusters == "2"]
+#' denominator <- names(clusters)[clusters == "1"]
 #' summary(denominator)
 #'
 #' ## edgeR ====
@@ -116,12 +116,8 @@ NULL
 
 
 
-## Internal ====================================================================
 .designFormula <- ~group
 
-
-
-## Updated 2019-08-13.
 .underpoweredContrast <- function() {
     warning("Skipping DE. Underpowered contrast (not enough cells).")
 }
@@ -129,7 +125,7 @@ NULL
 
 
 ## diffExp =====================================================================
-## Updated 2019-07-31.
+## Updated 2019-09-03.
 `diffExp,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -143,12 +139,10 @@ NULL
     ) {
         ## Coerce to standard SCE to ensure fast subsetting.
         object <- as(object, "SingleCellExperiment")
-
         assert(
             is.character(numerator),
             is.character(denominator)
         )
-
         ## Early return `NULL` on an imbalanced contrast.
         if (
             length(numerator) < minCells ||
@@ -165,9 +159,7 @@ NULL
             .isBPPARAM(BPPARAM)
         )
         caller <- match.arg(caller)
-
         message(sprintf("Performing differential expression with %s.", caller))
-
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
         message(sprintf(
@@ -182,13 +174,12 @@ NULL
             length(numerator),
             ngettext(length(numerator), "cell", "cells"),
             length(denominator),
-            ngettext(length(denominator), "cell", "cells"),
-
+            ngettext(length(denominator), "cell", "cells")
         ))
         object <- object[, cells, drop = FALSE]
-
         ## Ensure we're using a sparse matrix to calculate the logical matrix.
-        counts <- as(counts(object), "sparseMatrix")
+        counts <- counts(object)
+        counts <- as(counts, "sparseMatrix")
 
         ## Gene filter ---------------------------------------------------------
         message("Applying gene expression low pass filter.")
@@ -202,7 +193,6 @@ NULL
             ),
             minCountsPerCell
         ))
-
         ## Filter the genes based on our expression threshold criteria.
         ## Note that this step generates a logical matrix, and will calculate
         ## a lot faster when using a sparse matrix (see above).
@@ -218,20 +208,18 @@ NULL
                 msg2 = "genes"
             )
         ))
-
         ## Early return NULL if no genes pass.
-        if (!length(genes)) {
+        if (!hasLength(genes)) {
             warning("No genes passed the low count filter.")
             return(NULL)
         }
-
         ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
 
         ## Cell filter ---------------------------------------------------------
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
-        if (length(trash)) {
+        if (hasLength(trash)) {
             message(sprintf(
                 "Removed %d low quality %s.",
                 length(trash),
@@ -242,7 +230,6 @@ NULL
                 )
             ))
         }
-
         ## Resize the numerator and denominator after our QC filters.
         ## Early return `NULL` if there are less than n cells in either.
         numerator <- intersect(numerator, colnames(object))
@@ -255,19 +242,18 @@ NULL
             return(NULL)
         }
 
+        ## Design formula ------------------------------------------------------
         ## Create a cell factor to define the group.
-        numeratorFactor <- replicate(
+        numeratorFactor <- as.factor(replicate(
             n = length(numerator),
             expr = "numerator"
-        ) %>%
-            as.factor() %>%
-            set_names(numerator)
-        denominatorFactor <- replicate(
+        ))
+        names(numeratorFactor) <- numerator
+        denominatorFactor <- as.factor(replicate(
             n = length(denominator),
             expr = "denominator"
-        ) %>%
-            as.factor() %>%
-            set_names(denominator)
+        ))
+        names(denominatorFactor) <- denominator
         group <- factor(c(
             as.character(numeratorFactor),
             as.character(denominatorFactor)
@@ -276,14 +262,13 @@ NULL
         ## Ensure denominator is set as reference.
         group <- relevel(group, ref = "denominator")
         object[["group"]] <- group
-
         ## Set up the design matrix.
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
 
-        ## Ensure raw counts matrix is dense before running DE.
+        ## Run differential expression -----------------------------------------
+        ## Ensure count matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))
-
         ## Perform differential expression.
         fun <- get(
             x  = paste0(".diffExp.", caller),
