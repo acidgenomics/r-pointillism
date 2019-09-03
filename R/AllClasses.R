@@ -125,7 +125,7 @@ setValidity(
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-08-06.
+#' @note Updated 2019-09-03.
 #'
 #' @return `SeuratMarkers`.
 setClass(
@@ -147,7 +147,9 @@ setValidity(
                     "pvalue",
                     "ranges"
                 )
-            )
+            ),
+            ## Ensure sorting by adjusted P value.
+            identical(object[["padj"]], sort(object[["padj"]]))
         )
     }
 )
@@ -161,7 +163,7 @@ setValidity(
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-08-06.
+#' @note Updated 2019-09-03.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
@@ -185,7 +187,14 @@ setValidity(
                     "pvalue",
                     "ranges"
                 )
-            )
+            ),
+            ## Ensure sorting by adjusted P value.
+            all(bapply(
+                X = object,
+                FUN = function(x) {
+                    identical(x[["padj"]], sort(x[["padj"]]))
+                }
+            ))
         )
     }
 )
