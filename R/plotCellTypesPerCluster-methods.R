@@ -1,6 +1,6 @@
 #' @name plotCellTypesPerCluster
 #' @inherit bioverbs::plotCellTypesPerCluster
-#' @note Updated 2019-08-23.
+#' @note Updated 2019-09-03.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -38,7 +38,7 @@ NULL
 
 
 
-## Updated 2019-08-23.
+## Updated 2019-09-03.
 `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
@@ -48,28 +48,20 @@ NULL
         reduction,
         expression,
         headerLevel = 2L,
-        BPPARAM = BiocParallel::SerialParam(),  # nolint
+        BPPARAM,  # nolint
         ...
     ) {
         ## Passthrough: color, dark.
         validObject(object)
         validObject(markers)
-        assert(isScalar(reduction))
-        expression <- match.arg(expression)
-        assert(isHeaderLevel(headerLevel))
-        markers <- cellTypesPerCluster(
-            object = markers,
-            min = min,
-            max = max
-        )
         assert(
-            is(markers, "grouped_df"),
-            hasRows(markers)
+            isScalar(reduction),
+            isHeaderLevel(headerLevel)
         )
+        expression <- match.arg(expression)
+        markers <- cellTypesPerCluster(markers, min = min, max = max)
         ## Output Markdown headers per cluster.
-        clusters <- markers[["cluster"]] %>%
-            as.character() %>%
-            unique()
+        clusters <- unique(as.character(markers[["cluster"]]))
         assert(isNonEmpty(clusters))
         return <- bplapply(
             X = clusters,
@@ -80,12 +72,12 @@ NULL
                     tabset = TRUE,
                     asis = TRUE
                 )
-                clusterData <- filter(markers, !!sym("cluster") == !!cluster)
-                if (nrow(clusterData) == 0L) {
+                keep <- markers[["cluster"]] == cluster
+                clusterData <- markers[keep, , drop = FALSE]
+                if (!hasRows(clusterData)) {
                     message(sprintf("No markers for cluster %s.", cluster))
                     return(invisible())
                 }
-                assert(hasRows(clusterData))
                 cellTypes <- clusterData[["cellType"]]
                 assert(is.factor(cellTypes))
                 lapply(
@@ -99,14 +91,15 @@ NULL
                         )
                         ## Modify the title by adding the cluster number.
                         title <- paste(paste0("Cluster ", cluster, ":"), title)
-                        cellData <-
-                            filter(clusterData, !!sym("cellType") == !!cellType)
-                        assert(nrow(cellData) == 1L)
-                        genes <- cellData %>%
-                            pull("name") %>%
-                            as.character() %>%
-                            strsplit(", ") %>%
-                            .[[1L]]
+                        cellData <- clusterData[
+                            clusterData[["cellType"]] == cellType,
+                            ,
+                            drop = FALSE
+                            ]
+                        assert(identical(nrow(cellData), 1L))
+                        genes <- cellData[["name"]]
+                        genes <- as.character(genes)
+                        genes <- strsplit(genes, split = ", ")[[1L]]
                         if (!hasLength(genes)) {
                             return(invisible())
                         }
@@ -128,8 +121,8 @@ NULL
     }
 
 formals(`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`)[
-    c("reduction", "expression")
-] <- list(reduction, expression)
+    c("reduction", "expression", "BPPARAM")
+] <- list(reduction, expression, BPPARAM)
 
 
 
