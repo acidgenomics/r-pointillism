@@ -34,7 +34,7 @@
 .fetchGeneData <- function(
     object,
     genes,
-    value = c("logcounts", "normcounts"),
+    assay = c("logcounts", "normcounts"),
     metadata = FALSE
 ) {
     validObject(object)
@@ -42,10 +42,10 @@
         isCharacter(genes),
         isFlag(metadata)
     )
-    value <- match.arg(value)
+    assay <- match.arg(assay)
     rownames <- mapGenesToRownames(object = object, genes = genes)
     assert(isSubset(rownames, rownames(object)))
-    fun <- get(value, inherits = TRUE)
+    fun <- get(assay, inherits = TRUE)
     assert(is.function(fun))
     counts <- fun(object)
     counts <- counts[rownames, , drop = FALSE]
@@ -140,7 +140,7 @@
             x
         }
     ))
-    data <- unsplit(value = split, f = f)
+    data <- unsplit(split, f = f)
     assert(
         hasRownames(data),
         areSetEqual(rownames(data), colnames(object))
@@ -154,23 +154,25 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
 
 
 
-## Updated 2019-08-23.
+## Updated 2019-09-03.
 .fetchReductionExpressionData <- function(
     object,
     genes,
-    reduction
+    reduction,
+    assay = "logcounts"
 ) {
     validObject(object)
     assert(
         is.character(genes),
-        isScalar(reduction)
+        isScalar(reduction),
+        isString(assay)
     )
     rownames <- mapGenesToRownames(object, genes = genes)
-    ## Transposed log counts matrix, with genes in the columns.
+    ## Transposed count matrix, with genes in the columns.
     geneCounts <- .fetchGeneData(
         object = object,
         genes = rownames,
-        value = "logcounts",
+        assay = assay,
         metadata = FALSE
     )
     assert(identical(
