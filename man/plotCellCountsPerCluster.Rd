@@ -35,7 +35,7 @@ Show graphical output. Invisibly return \code{ggplot}.
 Plot cell counts per cluster
 }
 \note{
-Updated 2019-08-02.
+Updated 2019-08-03.
 }
 \examples{
 data(
