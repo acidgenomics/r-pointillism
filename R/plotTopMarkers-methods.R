@@ -76,6 +76,7 @@ NULL
                     "name",
                     drop = TRUE
                     ]
+                genes <- as.character(genes)
                 if (!hasLength(genes)) {
                     message(sprintf("No genes for cluster %s.", cluster))
                     return(invisible())
