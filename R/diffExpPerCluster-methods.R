@@ -1,6 +1,6 @@
 #' @name diffExpPerCluster
 #' @inherit bioverbs::diffExpPerCluster
-#' @note Updated 2019-08-06.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams diffExp
@@ -47,7 +47,7 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2019-09-03.
 `diffExpPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -57,7 +57,6 @@ NULL
         ...
     ) {
         object <- as(object, "SingleCellExperiment")
-
         ## group
         assert(
             isString(group),
@@ -65,34 +64,33 @@ NULL
         )
         groupings <- colData(object)[[group]]
         assert(is.factor(groupings))
-
         ## numerator
         assert(
             isString(numerator),
             isSubset(numerator, levels(groupings))
         )
-
         ## denominator
         assert(
             isString(denominator),
             isSubset(denominator, levels(groupings)),
             areDisjointSets(numerator, denominator)
         )
-
         ## Get the cluster identities.
         ident <- clusters(object)
         assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
-        message(paste(length(clusters), "clusters detected"))
-
+        message(sprintf("%d clusters detected.", length(clusters)))
         ## Loop across each cluster and perform pairwise DE based on the single
         ## group of interest defined.
         ## Consider adding a skip step here for clusters with very few cells.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
-                message(paste("Cluster", cluster, "===="))
+                message(sprintf(
+                    "Cluster %s ====",
+                    as.character(cluster)
+                ))
                 ## Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
                 assert(isNonEmpty(cells))

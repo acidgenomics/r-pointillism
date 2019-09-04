@@ -1,11 +1,11 @@
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
-#' @return `tbl_df`. Grouped by `ident` column and arranged by `n`.
+#' @return `DataFrame`.
 #'
 #' @examples
 #' data(
@@ -36,26 +36,36 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-09-02.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
-    function(object, interestingGroups = NULL) {
+    function(object) {
         validObject(object)
         assert(.hasClusters(object))
-        interestingGroups(object) <-
-            matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
-        data <- metrics(object)
-        cols <- unique(c("ident", interestingGroups, "interestingGroups"))
-        assert(isSubset(cols, colnames(data)))
-        data %>%
-            as_tibble() %>%
-            arrange(!!!syms(cols)) %>%
-            group_by(!!!syms(cols)) %>%
-            summarize(n = n()) %>%
-            ungroup() %>%
-            arrange(!!!syms(cols)) %>%
-            group_by(!!sym("ident")) %>%
-            mutate(ratio = !!sym("n") / sum(!!sym("n")))
+        x <- metrics(object, return = "DataFrame")
+        ## Contingency table.
+        tbl <- table(x[["ident"]], x[["sampleID"]])
+        ## Get the number of cells per ident.
+        nPerIdent <- rowSums(tbl)
+        nPerIdent <- DataFrame(
+            ident = names(nPerIdent),
+            nPerIdent = as.integer(nPerIdent)
+        )
+        ## Summarize to cluster/sample-level metadata.
+        cols <- unique(c(
+            "ident", "sampleID", "sampleName",
+            interestingGroups, "interestingGroups"
+        ))
+        x <- unique(x[, cols, drop = FALSE])
+        rownames(x) <- NULL
+        x <- x[order(x[["ident"]], x[["sampleID"]]), , drop = FALSE]
+        ## Melt the contingency table into long format.
+        melt <- melt(tbl, colnames = c("ident", "sampleID", "n"))
+        ## Join and calculate ratio.
+        x <- leftJoin(x, melt, by = c("ident", "sampleID"))
+        x <- leftJoin(x, nPerIdent, by = "ident")
+        x[["ratio"]] <- x[["n"]] / x[["nPerIdent"]]
+        x
     }
 
 

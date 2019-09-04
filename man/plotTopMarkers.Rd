@@ -10,7 +10,7 @@ plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
   n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
-  headerLevel = 2L, progress = FALSE, ...)
+  headerLevel = 2L, ..., BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{object}{Object.}
@@ -30,10 +30,16 @@ Dimension reduction name or index position.}
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
 
-\item{progress}{\code{logical(1)}.
-Show progress, using progress bars.}
-
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:bpparam]{bpparam}.
+\item \link[BiocParallel:SerialParam]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
+}}
 }
 \value{
 Show graphical output. Invisibly return a \code{ggplot} \code{list}.
@@ -48,7 +54,7 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \examples{
 data(Seurat, package = "acidtest")

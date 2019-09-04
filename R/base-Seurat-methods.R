@@ -1,4 +1,4 @@
-## Consider adding `rowData<-` assignment support.
+## Consider adding `rowData<-` assignment method.
 
 
 
@@ -212,10 +212,10 @@ setReplaceMethod(
         norm <- .seuratNormalizationMethod(object, assay = assay)
         if (norm != "LogNormalize") {
             if (isTRUE(verbose)) {
-                message(paste(
-                    "Generating log normalized counts with",
+                message(
+                    "Generating log normalized counts with ",
                     "'Seurat::NormalizeData()'."
-                ))
+                )
             }
             object <- NormalizeData(
                 object = object,
@@ -224,10 +224,10 @@ setReplaceMethod(
             )
         }
         if (isTRUE(verbose)) {
-            message(paste(
-                "Returning log normalized counts with",
+            message(
+                "Returning log normalized counts with ",
                 "'Seurat::GetAssayData()'."
-            ))
+            )
         }
         GetAssayData(object = object, assay = assay, slot = "data")
     }
@@ -390,10 +390,10 @@ setMethod(
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1L)) {
             if (isTRUE(verbose)) {
-                message(paste(
-                    "Generating normalized counts with",
+                message(
+                    "Generating normalized counts with ",
                     "'Seurat::NormalizeData()'."
-                ))
+                )
             }
             object <- NormalizeData(
                 object = object,
@@ -403,10 +403,10 @@ setMethod(
             )
         }
         if (isTRUE(verbose)) {
-            message(paste(
-                "Returning normalized counts with",
+            message(
+                "Returning normalized counts with ",
                 "'Seurat::GetAssayData()'."
-            ))
+            )
         }
         GetAssayData(object = object, assay = assay, slot = "data")
     }

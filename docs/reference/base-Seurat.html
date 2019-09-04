@@ -8,11 +8,13 @@
 
 <title>Extend base S4 methods for <code>Seurat</code> class — base-Seurat • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,10 +36,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Extend base S4 methods for <code>Seurat</code> class — base-Seurat" />
 
+<meta property="og:title" content="Extend base S4 methods for <code>Seurat</code> class — base-Seurat" />
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -90,7 +93,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -117,9 +119,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Provide limited <code>SingleCellExperiment</code>-like method support.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S4 method for Seurat</span>
@@ -200,15 +200,15 @@
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ignoreCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>,
-  <span class='st'>"^samRef$"</span>), <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^G2M.Score$"</span>, <span class='st'>"^Phase$"</span>, <span class='st'>"^S.Score$"</span>,
-  <span class='st'>"^ident$"</span>, <span class='st'>"^old.ident$"</span>, <span class='st'>"^orig.ident$"</span>, <span class='st'>"^res[.0-9]+$"</span>))
+  <span class='st'>"^samRef$"</span>), <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^ident$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^sScore$"</span>,
+  <span class='st'>"^phase$"</span>, <span class='st'>"^oldIdent$"</span>, <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[0-9]+"</span>))
 
 <span class='co'># S4 method for Seurat,DataFrame</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>sampleNames</span>(<span class='no'>object</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -251,15 +251,13 @@ Run the function with verbose output.</p></td>
 Gene identifiers.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Varies, depending on the generic.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-08-05.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -267,20 +265,16 @@ Gene identifiers.</p></td>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/GetAssayData.html'>Seurat::GetAssayData()</a></code>.</p></li>
 </ul>
 </div>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>
@@ -292,7 +286,7 @@ Gene identifiers.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

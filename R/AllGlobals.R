@@ -3,17 +3,13 @@ globalVariables(".")
 url <- "https://steinbaugh.com/pointillism"
 citation <- "citation(\"pointillism\")"
 
-separatorBar <- basejump::separator()
+BPPARAM <- quote(BiocParallel::bpparam())  # nolint
 
 ## DR marker default color palettes.
 darkMarkerColors <-
     ggplot2::scale_colour_viridis_c(option = "plasma")
 lightMarkerColors <-
     ggplot2::scale_colour_gradient(low = "gray90", high = "red")
-
-## Recommend serial by default.
-## This works reliably across platforms, but is slower.
-BPPARAM <- quote(BiocParallel::SerialParam())  # nolint
 
 continuousColor <-
     quote(getOption(
@@ -34,7 +30,10 @@ continuousColorPurpleOrange <-
         )
     ))
 discreteColor <-
-    quote(getOption("acid.discrete.color", default = NULL))
+    quote(getOption(
+        "acid.discrete.color",
+        default = acidplots::scale_color_synesthesia_d()
+    ))
 
 dark <- quote(getOption("acid.dark", default = FALSE))
 dims <- quote(c(1L, 2L))

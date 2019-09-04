@@ -11,11 +11,11 @@ diffExp(object, ...)
 
 \S4method{diffExp}{SingleCellExperiment}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::bpparam())
 
 \S4method{diffExp}{Seurat}(object, numerator, denominator,
   caller = c("edgeR", "DESeq2"), minCells = 2L, minCellsPerGene = 1L,
-  minCountsPerCell = 1L, BPPARAM = BiocParallel::SerialParam())
+  minCountsPerCell = 1L, BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{object}{Object.}
@@ -69,7 +69,7 @@ We are no longer recommending the use of software that attempts to
 mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 single cell RNA-seq data. Simply model the counts directly.
 
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \section{DESeq2}{
 
@@ -112,33 +112,33 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:FindMarkers]{Seur
 data(Seurat, package = "acidtest")
 object <- Seurat
 
-## Compare expression in cluster 3 relative to 2.
+## Compare expression in cluster 2 relative to 1.
 clusters <- clusters(object)
-numerator <- names(clusters)[clusters == "3"]
+numerator <- names(clusters)[clusters == "2"]
 summary(numerator)
-denominator <- names(clusters)[clusters == "2"]
+denominator <- names(clusters)[clusters == "1"]
 summary(denominator)
 
 ## edgeR ====
-# x <- diffExp(
-#     object = object,
-#     numerator = numerator,
-#     denominator = denominator,
-#     caller = "edgeR"
-# )
-# class(x)
-# summary(x)
+## > x <- diffExp(
+## >     object = object,
+## >     numerator = numerator,
+## >     denominator = denominator,
+## >     caller = "edgeR"
+## > )
+## > class(x)
+## > summary(x)
 
 ## DESeq2 ====
-# This will warn about weights with the minimal example.
-# x <- diffExp(
-#     object = object,
-#     numerator = numerator,
-#     denominator = denominator,
-#     caller = "DESeq2"
-# )
-# class(x)
-# summary(x)
+## This will warn about weights with the minimal example.
+## > x <- diffExp(
+## >     object = object,
+## >     numerator = numerator,
+## >     denominator = denominator,
+## >     caller = "DESeq2"
+## > )
+## > class(x)
+## > summary(x)
 }
 \seealso{
 \code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.

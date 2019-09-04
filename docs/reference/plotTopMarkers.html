@@ -8,11 +8,13 @@
 
 <title>Plot top markers — plotTopMarkers • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,10 +36,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot top markers — plotTopMarkers" />
 
+<meta property="og:title" content="Plot top markers — plotTopMarkers" />
 <meta property="og:description" content="Plot top markers" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -90,7 +93,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -117,9 +119,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Plot top markers</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='no'>...</span>)
@@ -127,8 +127,8 @@
 <span class='co'># S4 method for Seurat,SeuratMarkersPerCluster</span>
 <span class='fu'>plotTopMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"up"</span>, <span class='st'>"down"</span>, <span class='st'>"both"</span>), <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
-    
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -162,31 +162,33 @@ Dimension reduction name or index position.</p></td>
 Markdown header level.</p></td>
     </tr>
     <tr>
-      <th>progress</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Show progress, using progress bars.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Passthrough arguments to <code><a href='plotMarker.html'>plotMarker()</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>BPPARAM</th>
+      <td><p><code>bpparamClass</code>.
+BiocParallel parameter to specify the desired processor configuration.<br />
+We recommend using one of the following:</p><ul>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a>.</p></li>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a>.</p></li>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/MulticoreParam-class.html'>MulticoreParam</a>.</p></li>
+</ul></td>
+    </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Show graphical output. Invisibly return a <code>ggplot</code> <code>list</code>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The number of markers to plot is determined by the output of the
 <code><a href='topMarkers.html'>topMarkers()</a></code> function. If you want to reduce the number of genes to plot,
 simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-07-31.</p>
-    
+    <p>Updated 2019-09-03.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
@@ -214,13 +216,9 @@ for the number of genes to plot here in a future update.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -234,7 +232,7 @@ for the number of genes to plot here in a future update.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

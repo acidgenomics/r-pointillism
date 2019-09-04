@@ -1,17 +1,16 @@
 context("topMarkers")
 
-test_that("grouped_df", {
-    x <- topMarkers(seuratAllMarkers)
-    expect_is(x, "grouped_df")
-    expect_identical(group_vars(x), "cluster")
+test_that("Default", {
+    object <- topMarkers(seuratAllMarkers, direction = "up", n = 2L)
+    expect_s4_class(object, "DataFrame")
     expect_identical(
-        lapply(x, class) %>% .[sort(names(.))],
+        lapply(object, class) %>% .[sort(names(.))],
         list(
             avgLogFC = "numeric",
             cluster = "factor",
-            geneID = "character",
+            geneID = "factor",
             geneName = "factor",
-            name = "character",
+            name = "factor",
             padj = "numeric",
             pct1 = "numeric",
             pct2 = "numeric",
@@ -20,18 +19,14 @@ test_that("grouped_df", {
     )
 })
 
-direction <- formals(topMarkers) %>%
-    .[["direction"]] %>%
-    as.character() %>%
-    .[-1L]
-
+direction <- formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]]
 with_parameters_test_that(
     "direction", {
-        x <- topMarkers(
-            data = seuratAllMarkers,
+        object <- topMarkers(
+            object = seuratAllMarkers,
             direction = direction
         )
-        expect_is(x, "tbl_df")
+        expect_s4_class(object, "DataFrame")
     },
     direction = direction
 )

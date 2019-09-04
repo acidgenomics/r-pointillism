@@ -9,8 +9,7 @@
 topMarkers(object, ...)
 
 \S4method{topMarkers}{SeuratMarkersPerCluster}(object, n = 10L,
-  direction = c("up", "down", "both"), return = c("tbl_df",
-  "DataFrame", "SplitDataFrameList"))
+  direction = c("up", "down", "both"))
 }
 \arguments{
 \item{object}{Object.}
@@ -22,20 +21,16 @@ Number of genes per cluster.}
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
-\item{return}{\code{character(1)}.
-Return type. Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults
-to the first argument in the \code{character} vector.}
-
 \item{...}{Additional arguments.}
 }
 \value{
-\code{grouped_df}.
+\code{DataFrame}.
 }
 \description{
 Top markers
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \examples{
 data(seuratAllMarkers)
@@ -44,10 +39,4 @@ data(seuratAllMarkers)
 object <- seuratAllMarkers
 x <- topMarkers(object, n = 2L)
 print(x)
-}
-\seealso{
-\itemize{
-\item \code{dplyr::slice()}.
-\item \code{dplyr::top_n()}.
-}
 }

@@ -10,31 +10,25 @@
 \usage{
 cellCountsPerCluster(object, ...)
 
-\S4method{cellCountsPerCluster}{SingleCellExperiment}(object,
-  interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{SingleCellExperiment}(object)
 
-\S4method{cellCountsPerCluster}{Seurat}(object, interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{Seurat}(object)
 
-\S4method{cellCountsPerCluster}{cell_data_set}(object,
-  interestingGroups = NULL)
+\S4method{cellCountsPerCluster}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{interestingGroups}{\code{character}.
-Groups of interest to use for visualization.
-Corresponds to factors describing the columns of the object.}
-
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tbl_df}. Grouped by \code{ident} column and arranged by \code{n}.
+\code{DataFrame}.
 }
 \description{
 Cell counts per cluster
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \examples{
 data(

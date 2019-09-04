@@ -7,4 +7,5 @@
 ^doc(s)?$
 ^Meta$
 ^pkgdown$
+^tests/testthat/cache$
 ^vignettes/\.$

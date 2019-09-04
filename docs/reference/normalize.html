@@ -8,11 +8,13 @@
 
 <title>Normalize expression using pre-computed size factors — normalize • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,12 +36,13 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Normalize expression using pre-computed size factors — normalize" />
 
+<meta property="og:title" content="Normalize expression using pre-computed size factors — normalize" />
 <meta property="og:description" content="This function calculates size factor normalized and log normalized counts
 from the raw count matrix defined in counts(). These matrices are stored in
 normcounts() and logcounts() slots in assays(), respectively." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -70,7 +73,7 @@ normcounts() and logcounts() slots in assays(), respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -92,7 +95,6 @@ normcounts() and logcounts() slots in assays(), respectively." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -119,11 +121,9 @@ normcounts() and logcounts() slots in assays(), respectively." />
     </div>
 
     <div class="ref-description">
-    
     <p>This function calculates size factor normalized and log normalized counts
 from the raw count matrix defined in <code>counts()</code>. These matrices are stored in
 <code>normcounts()</code> and <code>logcounts()</code> slots in <code>assays()</code>, respectively.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='no'>...</span>)
@@ -136,7 +136,7 @@ from the raw count matrix defined in <code>counts()</code>. These matrices are s
 
 <span class='co'># S4 method for cell_data_set</span>
 <span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -154,7 +154,7 @@ Run the function with verbose output.</p></td>
       <td><p>Additional arguments.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If no library size factors are defined in <code>sizeFactors()</code>, these values will
@@ -163,11 +163,9 @@ recommended default settings.</p>
 <p>For complex normalizations involving custom size factors or spike-ins (i.e.
 when <code>spikeNames()</code>) is defined, call <code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code> directly
 instead.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-08-05.</p>
-    
     <h2 class="hasAnchor" id="normalized-counts"><a class="anchor" href="#normalized-counts"></a>Normalized counts</h2>
 
     
@@ -176,7 +174,6 @@ instead.</p>
 <p>Normalized counts are computed by dividing the counts for each cell by the
 size factor for that cell. This aims to remove cell-specific scaling biases,
 due to differences in sequencing coverage or capture efficiency.</p>
-    
     <h2 class="hasAnchor" id="log-normalized-counts"><a class="anchor" href="#log-normalized-counts"></a>Log normalized counts</h2>
 
     
@@ -184,7 +181,6 @@ due to differences in sequencing coverage or capture efficiency.</p>
 
 <p>Log-normalized values are calculated by adding a pseudocount offset of 1 to
 the normalized count and performing a <code><a href='https://rdrr.io/r/base/Log.html'>log2()</a></code> transformation.</p>
-    
     <h2 class="hasAnchor" id="centering-at-unity"><a class="anchor" href="#centering-at-unity"></a>Centering at unity</h2>
 
     
@@ -199,7 +195,6 @@ expression values can be interpreted as being on the same scale as the
 log2-counts. It also means that the added offset (i.e. <code>1</code>) added to the
 normalized counts during the log transformation step can be interpreted as a
 pseudo-count (i.e., on the same scale as the counts).</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -213,7 +208,6 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 <li><p><code><a href='https://rdrr.io/pkg/monocle3/man/normalized_counts.html'>monocle3::normalized_counts()</a></code>.</p></li>
 </ul>
 </div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
@@ -238,19 +232,12 @@ pseudo-count (i.e., on the same scale as the counts).</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#normalized-counts">Normalized counts</a></li>
-
       <li><a href="#log-normalized-counts">Log normalized counts</a></li>
-
       <li><a href="#centering-at-unity">Centering at unity</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -264,7 +251,7 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>
