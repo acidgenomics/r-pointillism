@@ -60,7 +60,7 @@ Imports:
     utils
 Suggests:
     acidroxygen (>= 0.1),
-    acidtest (>= 0.2.4),
+    acidtest (>= 0.2.5),
     BiocStyle (>= 2.12),
     splatter (>= 1.8),
     knitr (>= 1.24),
