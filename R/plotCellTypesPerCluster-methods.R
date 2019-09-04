@@ -1,3 +1,20 @@
+## FIXME This isn't working as expected.
+
+## Error in result[[njob]] <- value :
+##   attempt to select less than one element in OneIndex
+## Calls: plotCellTypesPerCluster ... .local -> bplapply -> bplapply -> bploop -> bploop.lapply
+## Backtrace:
+##     █
+##  1. ├─bioverbs::plotCellTypesPerCluster(...)
+##  2. └─pointillism::plotCellTypesPerCluster(...)
+##  3.   └─pointillism:::.local(object, markers, ...)
+##  4.     ├─BiocParallel::bplapply(...) R/plotCellTypesPerCluster-methods.R:66:8
+##  5.     └─BiocParallel::bplapply(...)
+##  6.       ├─BiocParallel::bploop(...)
+##  7.       └─BiocParallel:::bploop.lapply(...)
+
+
+
 #' @name plotCellTypesPerCluster
 #' @inherit bioverbs::plotCellTypesPerCluster
 #' @note Updated 2019-09-03.
@@ -48,7 +65,6 @@ NULL
         reduction,
         expression,
         headerLevel = 2L,
-        BPPARAM,  # nolint
         ...
     ) {
         ## Passthrough: color, dark.
@@ -63,7 +79,7 @@ NULL
         ## Output Markdown headers per cluster.
         clusters <- unique(as.character(markers[["cluster"]]))
         assert(isNonEmpty(clusters))
-        return <- bplapply(
+        return <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 markdownHeader(
@@ -114,8 +130,7 @@ NULL
                         invisible(p)
                     }
                 )
-            },
-            BPPARAM = BPPARAM
+            }
         )
         invisible(return)
     }

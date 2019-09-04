@@ -50,7 +50,6 @@ NULL
         direction,
         reduction,
         headerLevel = 2L,
-        BPPARAM,  # nolint
         ...
     ) {
         ## Passthrough: n, direction, coding
@@ -68,7 +67,7 @@ NULL
         )
         assert(isSubset("cluster", colnames(markers)))
         clusters <- levels(markers[["cluster"]])
-        list <- bplapply(
+        list <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 genes <- markers[
@@ -99,8 +98,7 @@ NULL
                     show(p)
                     invisible(p)
                 })
-            },
-            BPPARAM = BPPARAM
+            }
         )
         invisible(list)
     }
