@@ -1,12 +1,8 @@
-## FIXME Switch to calling `uniteInterestingGroups()` here.
-
-
-
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit bioverbs::plotReducedDim
-#' @note Updated 2019-09-03.
+#' @note Updated 2019-09-04.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -122,6 +118,9 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
+        ## Note that we're not slotting interesting groups back into object
+        ## here because we're allowing visualization of cluster identity, which
+        ## isn't sample level.
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
@@ -160,16 +159,10 @@ NULL
                 printString(supported)
             ))
         }
-        if (isString(interestingGroups)) {
-            data[["interestingGroups"]] <- data[[interestingGroups]]
-        } else {
-            data[["interestingGroups"]] <- apply(
-                X = data[, interestingGroups, drop = FALSE],
-                MARGIN = 1L,
-                FUN = paste,
-                collapse = ":"
-            )
-        }
+        data <- uniteInterestingGroups(
+            object = data,
+            interestingGroups = interestingGroups
+        )
         ## Turn off labeling if there's only 1 cluster.
         if (hasLength(levels(data[["ident"]]), n = 1L)) {
             label <- FALSE
