@@ -225,7 +225,7 @@ Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
 \note{
-Updated 2019-09-03.
+Updated 2019-09-04.
 }
 \section{Reduction types}{
 
