@@ -9,7 +9,8 @@
 #'
 #' @importMethodsFrom basejump coerce
 #'
-#' @importFrom BiocGenerics counts counts<- sizeFactors sizeFactors<- table
+#' @importFrom BiocGenerics counts counts<- rowMeans rowSums sizeFactors
+#'   sizeFactors<- table
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
 #' @importFrom DelayedArray DelayedArray
@@ -17,8 +18,8 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom IRanges SplitDataFrameList unsplit
 #' @importFrom S4Vectors DataFrame as.data.frame as.matrix cbind complete.cases
-#'   do.call head lapply mcols mcols<- metadata metadata<- na.omit rowMeans
-#'   rowSums sapply split tail
+#'   do.call head lapply mcols mcols<- metadata metadata<- na.omit sapply split
+#'   tail
 #' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
 #'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
