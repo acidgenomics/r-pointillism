@@ -28,7 +28,7 @@ cellCountsPerCluster(object, ...)
 Cell counts per cluster
 }
 \note{
-Updated 2019-09-02.
+Updated 2019-09-03.
 }
 \examples{
 data(

@@ -1,8 +1,3 @@
-## FIXME Update bioverbs return.
-## FIXME Need to generate a multi-sample example.
-
-
-
 #' @name clusterCellCountsPerSample
 #' @inherit bioverbs::clusterCellCountsPerSample
 #' @note Updated 2019-09-03.
@@ -19,8 +14,6 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
-#' colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 #' x <- clusterCellCountsPerSample(object)
 #' print(x)
 #'

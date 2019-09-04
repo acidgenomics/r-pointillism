@@ -1,3 +1,5 @@
+## FIXME How is this different from `clusterCellCountsPerSample()`?
+
 context("cellCountsPerCluster")
 
 with_parameters_test_that(

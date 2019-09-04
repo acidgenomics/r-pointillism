@@ -1,10 +1,6 @@
-## FIXME Update bioverbs return.
-
-
-
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
-#' @note Updated 2019-09-02.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
