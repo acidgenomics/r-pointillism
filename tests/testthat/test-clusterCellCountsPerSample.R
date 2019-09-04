@@ -1,9 +1,13 @@
+## FIXME Redundant with `cellCountsPerCluster()`?
+
 context("clusterCellCountsPerSample")
 
 with_parameters_test_that(
     "clusterCellCountsPerSample", {
-        x <- clusterCellCountsPerSample(object)
-        expect_s4_class(x, "DataFrame")
+        colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
+        colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
+        object <- clusterCellCountsPerSample(object)
+        expect_s4_class(object, "DataFrame")
         expect_identical(
             lapply(x, class),
             list(

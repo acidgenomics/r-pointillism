@@ -22,8 +22,7 @@ clusterCellCountsPerSample(object, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{grouped_df}.
-Grouped by \code{sampleName} column, arranged by abundance.
+\code{DataFrame}.
 }
 \description{
 Cluster cell counts per sample
@@ -40,8 +39,6 @@ data(
 
 ## Seurat ====
 object <- Seurat
-colData(object)[["sampleID"]] <- as.factor(paste0("sample", seq(2L)))
-colData(object)[["sampleName"]] <- colData(object)[["sampleID"]]
 x <- clusterCellCountsPerSample(object)
 print(x)
 

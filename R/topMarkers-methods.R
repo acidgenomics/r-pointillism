@@ -1,11 +1,6 @@
-## FIXME Take out the return option?
-## FIXME Improve return in bioverbs.
-
-
-
 #' @name topMarkers
 #' @inherit bioverbs::topMarkers
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param n `integer(1)`.
@@ -14,8 +9,6 @@
 #'   Whether to include upregulated (`"up"`; positive LFC), downregulated
 #'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
 #' @param ... Additional arguments.
-#'
-#' @return `DataFrame`.
 #'
 #' @examples
 #' data(seuratAllMarkers)

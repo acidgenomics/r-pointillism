@@ -30,7 +30,7 @@ Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 Top markers
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
 \examples{
 data(seuratAllMarkers)

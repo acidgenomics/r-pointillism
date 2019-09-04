@@ -1,3 +1,7 @@
+## FIXME Switch to calling `uniteInterestingGroups()` here.
+
+
+
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
@@ -159,7 +163,6 @@ NULL
         if (isString(interestingGroups)) {
             data[["interestingGroups"]] <- data[[interestingGroups]]
         } else {
-            ## FIXME Switch to calling `uniteInterestingGroups()`.
             data[["interestingGroups"]] <- apply(
                 X = data[, interestingGroups, drop = FALSE],
                 MARGIN = 1L,
