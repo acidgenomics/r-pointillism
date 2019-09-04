@@ -31,8 +31,9 @@
 #'   decode estimateSizeFactors geometricMean import interestingGroups
 #'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
 #'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   metrics organism organism<- printString sampleData sampleData<- sampleNames
-#'   separator showSlotInfo snakeCase uniteInterestingGroups
+#'   melt metrics mutateIf organism organism<- printString sampleData
+#'   sampleData<- sampleNames separator showSlotInfo snakeCase
+#'   uniteInterestingGroups
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
