@@ -30,7 +30,8 @@ plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{SingleCellExperiment}(object,
   reduction = "UMAP", dims = c(1L, 2L), interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -41,7 +42,8 @@ plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{Seurat}(object, reduction = "UMAP",
   dims = c(1L, 2L), interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -52,7 +54,8 @@ plotUMAP(object, ...)
 
 \S4method{plotReducedDim}{cell_data_set}(object, reduction = "UMAP",
   dims = c(1L, 2L), interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -63,8 +66,9 @@ plotUMAP(object, ...)
 
 \S4method{plotTSNE}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -73,8 +77,9 @@ plotUMAP(object, ...)
 
 \S4method{plotTSNE}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -83,8 +88,9 @@ plotUMAP(object, ...)
 
 \S4method{plotTSNE}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -93,8 +99,9 @@ plotUMAP(object, ...)
 
 \S4method{plotUMAP}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -103,8 +110,9 @@ plotUMAP(object, ...)
 
 \S4method{plotUMAP}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -113,8 +121,9 @@ plotUMAP(object, ...)
 
 \S4method{plotUMAP}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -123,8 +132,9 @@ plotUMAP(object, ...)
 
 \S4method{plotPCA}{SingleCellExperiment}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -133,8 +143,9 @@ plotUMAP(object, ...)
 
 \S4method{plotPCA}{Seurat}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
@@ -143,8 +154,9 @@ plotUMAP(object, ...)
 
 \S4method{plotPCA}{cell_data_set}(object, dims = c(1L, 2L),
   interestingGroups = NULL, color = getOption("acid.discrete.color",
-  default = NULL), pointSize = getOption("acid.pointSize", default =
-  0.75), pointAlpha = getOption("acid.pointAlpha", default = 0.85),
+  default = acidplots::scale_color_synesthesia_d()),
+  pointSize = getOption("acid.pointSize", default = 0.75),
+  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
   label = getOption("acid.label", default = TRUE),
   labelSize = getOption("acid.labelSize", default = 6L),
