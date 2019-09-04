@@ -8,11 +8,13 @@
 
 <title>Version 0.4 • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,7 +36,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Version 0.4" />
+
 
 
 
@@ -65,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -87,7 +91,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -116,9 +119,9 @@
 <h2 class="hasAnchor">
 <a href="#pointillism-0-4-0-2019-08-07" class="anchor"></a>pointillism 0.4.0 (2019-08-07)</h2>
 <p>Initial support for monocle3 <code>cell_data_set</code> class.</p>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked internal S4 function names.</li>
 <li>Updated internal example data.</li>
@@ -140,6 +143,17 @@
 </ul>
 </div>
 </div>
+    <div id="pointillism-0-4-2-2019-09-04" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-4-2-2019-09-04" class="anchor"></a>pointillism 0.4.2 (2019-09-04)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Reworked internal code to remove dplyr, magrittr, rlang, tibble, and tidyr dependencies. Consistently using base R and Bioconductor S4 methods internally instead, working primarily with <code>DataFrame</code> instead of <code>tbl_df</code>.</li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -148,6 +162,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li><a href="#pointillism-0-4-0-2019-08-07">0.4.0</a></li>
         <li><a href="#pointillism-0-4-1-2019-08-12">0.4.1</a></li>
+        <li><a href="#pointillism-0-4-2-2019-09-04">0.4.2</a></li>
       </ul>
     </div>
   </div>
@@ -161,7 +176,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

@@ -12,12 +12,12 @@ plotCellTypesPerCluster(object, markers, ...)
 
   \S4method{plotCellTypesPerCluster}{SingleCellExperiment,KnownMarkers}(object,
   markers, min = 1L, max = Inf, reduction = "UMAP",
-  expression = c("mean", "sum"), headerLevel = 2L, progress = FALSE,
-  ...)
+  expression = c("mean", "sum"), headerLevel = 2L, ...,
+  BPPARAM = BiocParallel::bpparam())
 
 \S4method{plotCellTypesPerCluster}{Seurat,KnownMarkers}(object, markers,
   min = 1L, max = Inf, reduction = "UMAP", expression = c("mean",
-  "sum"), headerLevel = 2L, progress = FALSE, ...)
+  "sum"), headerLevel = 2L, ..., BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{object}{Object.}
@@ -41,10 +41,16 @@ argument in the \code{character} vector.}
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
 
-\item{progress}{\code{logical(1)}.
-Show progress, using progress bars.}
-
 \item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:bpparam]{bpparam}.
+\item \link[BiocParallel:SerialParam]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
+}}
 }
 \value{
 Show graphical output. Invisibly return \code{list}.
@@ -58,7 +64,7 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \note{
-Updated 2019-08-07.
+Updated 2019-09-03.
 }
 \examples{
 data(Seurat, package = "acidtest")

@@ -11,8 +11,8 @@
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-09-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -23,13 +23,9 @@ setValidity(
     Class = "CellCycleMarkers",
     method = function(object) {
         validate(
-            identical(
-                x = lapply(object[[1L]], class),
-                y = list(
-                    phase = "factor",
-                    geneID = "character",
-                    geneName = "character"
-                )
+            areSetEqual(
+                x = colnames(object[[1L]]),
+                y = c("geneID", "geneName", "phase")
             ),
             isSubset(
                 x = c("version", "organism", "ensemblRelease", "date"),
@@ -46,8 +42,8 @@ setValidity(
 #' Data provenence information, including the organism and Ensembl release are
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-09-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -58,16 +54,12 @@ setValidity(
     Class = "CellTypeMarkers",
     method = function(object) {
         validate(
-            identical(
-                x = lapply(object[[1L]], class),
-                y = list(
-                    cellType = "factor",
-                    geneID = "character",
-                    geneName = "character"
-                )
+            areSetEqual(
+                x = colnames(object[[1L]]),
+                y = c("cellType", "geneID", "geneName")
             ),
             isSubset(
-                x = c("version", "organism", "ensemblRelease", "date"),
+                x = c("date", "ensemblRelease", "organism", "version"),
                 y = names(metadata(object))
             )
         )
@@ -83,8 +75,8 @@ setValidity(
 #' Results are grouped by `cellType` column and arranged by adjusted *P* value
 #' (`padj`).
 #'
-#' @note Updated 2019-07-31.
 #' @export
+#' @note Updated 2019-07-31.
 #'
 #' @return `KnownMarkers`.
 setClass(
@@ -124,8 +116,8 @@ setValidity(
 #'
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
-#' @note Updated 2019-08-06.
 #' @export
+#' @note Updated 2019-09-03.
 #'
 #' @return `SeuratMarkers`.
 setClass(
@@ -138,16 +130,18 @@ setValidity(
         validate(
             hasRownames(object),
             identical(
-                x = colnames(object),
+                x = sort(colnames(object)),
                 y = c(
                     "avgLogFC",
+                    "padj",
                     "pct1",
                     "pct2",
                     "pvalue",
-                    "padj",
                     "ranges"
                 )
-            )
+            ),
+            ## Ensure sorting by adjusted P value.
+            identical(object[["padj"]], sort(object[["padj"]]))
         )
     }
 )
@@ -160,8 +154,8 @@ setValidity(
 #'
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
-#' @note Updated 2019-08-06.
 #' @export
+#' @note Updated 2019-09-03.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
@@ -174,18 +168,25 @@ setValidity(
         validate(
             all(grepl("^cluster", names(object))),
             identical(
-                x = colnames(object)[[1L]],
+                x = sort(colnames(object)[[1L]]),
                 y = c(
+                    "avgLogFC",
                     "cluster",
                     "name",
-                    "avgLogFC",
+                    "padj",
                     "pct1",
                     "pct2",
                     "pvalue",
-                    "padj",
                     "ranges"
                 )
-            )
+            ),
+            ## Ensure sorting by adjusted P value.
+            all(bapply(
+                X = object,
+                FUN = function(x) {
+                    identical(x[["padj"]], sort(x[["padj"]]))
+                }
+            ))
         )
     }
 )

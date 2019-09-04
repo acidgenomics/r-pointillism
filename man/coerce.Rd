@@ -2,13 +2,9 @@
 % Please edit documentation in R/coerce-methods.R
 \name{coerce}
 \alias{coerce}
-\alias{coerce,CellCycleMarkers,tbl_df-method}
-\alias{coerce,CellTypeMarkers,tbl_df-method}
 \alias{coerce,Seurat,SingleCellExperiment-method}
 \alias{coerce,Seurat,RangedSummarizedExperiment-method}
 \alias{coerce,Seurat,SummarizedExperiment-method}
-\alias{coerce,SeuratMarkers,tbl_df-method}
-\alias{coerce,SeuratMarkersPerCluster,tbl_df-method}
 \alias{coerce,SingleCellExperiment,Seurat-method}
 \title{Force an object to belong to a class}
 \description{
@@ -17,16 +13,6 @@ Force an object to belong to a class
 \note{
 Updated 2019-07-31.
 }
-\section{\code{CellCycleMarkers} to \code{tbl_df}}{
-
-S4 coercion support for creating a \code{tbl_df} from \code{CellCycleMarkers}.
-}
-
-\section{\code{CellTypeMarkers} to \code{tbl_df}}{
-
-S4 coercion support for creating a \code{tbl_df} from \code{CellTypeMarkers}.
-}
-
 \section{\code{Seurat} to \code{SingleCellExperiment}}{
 
 S4 coercion support for creating a \code{SingleCellExperiment} from a \code{Seurat}
@@ -48,16 +34,6 @@ S4 coercion support for creating a \code{RangedSummarizedExperiment} from a
 
 S4 coercion support for creating a \code{SummarizedExperiment} from a \code{Seurat}
 class object.
-}
-
-\section{\code{SeuratMarkers} to \code{tbl_df}}{
-
-S4 coercion support for creating a \code{tbl_df} from a \code{Markers} object.
-}
-
-\section{\code{SeuratMarkersPerCluster} to \code{tbl_df}}{
-
-S4 coercion support for creating a \code{tbl_df} from \code{SeuratMarkersPerCluster}.
 }
 
 \section{\code{SingleCellExperiment} to \code{Seurat}}{

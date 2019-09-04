@@ -1,3 +1,11 @@
+## pointillism 0.4.2 (2019-09-04)
+
+### Major changes
+
+- Reworked internal code to remove dplyr, magrittr, rlang, tibble, and tidyr
+  dependencies. Consistently using base R and Bioconductor S4 methods internally
+  instead, working primarily with `DataFrame` instead of `tbl_df`.
+
 ## pointillism 0.4.1 (2019-08-12)
 
 ### Minor changes

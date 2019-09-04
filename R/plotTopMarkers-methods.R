@@ -3,9 +3,8 @@
 
 
 #' @name plotTopMarkers
-#' @include globals.R
 #' @inherit bioverbs::plotTopMarkers
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-09-03.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -42,7 +41,7 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-08-23.
 `plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
@@ -51,7 +50,6 @@ NULL
         direction,
         reduction,
         headerLevel = 2L,
-        progress = FALSE,
         ...
     ) {
         ## Passthrough: n, direction, coding
@@ -63,58 +61,51 @@ NULL
             direction = direction
         )
         assert(
+            is(markers, "DataFrame"),
             isScalar(reduction),
-            isHeaderLevel(headerLevel),
-            isFlag(progress)
+            isHeaderLevel(headerLevel)
         )
-        if (isTRUE(progress)) {
-            applyFun <- pblapply
-        } else {
-            applyFun <- lapply
-        }
-
         assert(isSubset("cluster", colnames(markers)))
         clusters <- levels(markers[["cluster"]])
-
-
-        list <- applyFun(clusters, function(cluster) {
-            genes <- markers %>%
-                ungroup() %>%
-                filter(cluster == !!cluster) %>%
-                pull("name")
-            if (!length(genes)) {
-                message(paste0("No genes for cluster ", cluster, "."))
-                return(invisible())
-            }
-            if (length(genes) > 10L) {
-                warning("Maximum of 10 genes per cluster is recommended")
-            }
-
-            markdownHeader(
-                text = paste("Cluster", cluster),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reduction = reduction,
-                    ...
+        list <- lapply(
+            X = clusters,
+            FUN = function(cluster) {
+                genes <- markers[
+                    markers[["cluster"]] == cluster,
+                    "name",
+                    drop = TRUE
+                    ]
+                genes <- as.character(genes)
+                if (!hasLength(genes)) {
+                    message(sprintf("No genes for cluster %s.", cluster))
+                    return(invisible())
+                } else if (length(genes) > 10L) {
+                    warning("Maximum of 10 genes per cluster is recommended.")
+                }
+                markdownHeader(
+                    text = paste("Cluster", cluster),
+                    level = headerLevel,
+                    tabset = TRUE,
+                    asis = TRUE
                 )
-                show(p)
-                invisible(p)
-            })
-        })
-
+                lapply(genes, function(gene) {
+                    p <- plotMarker(
+                        object = object,
+                        genes = gene,
+                        reduction = reduction,
+                        ...
+                    )
+                    show(p)
+                    invisible(p)
+                })
+            }
+        )
         invisible(list)
     }
 
 formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
-    c("direction", "reduction")
-] <- list(direction, reduction)
+    c("direction", "reduction", "BPPARAM")
+] <- list(direction, reduction, BPPARAM)
 
 
 

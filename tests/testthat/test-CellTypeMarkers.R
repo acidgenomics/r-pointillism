@@ -14,5 +14,5 @@ test_that("CellTypeMarkers", {
         object = markers,
         gene2symbol = gene2symbol
     )
-    expect_is(x, "CellTypeMarkers")
+    expect_s4_class(x, "CellTypeMarkers")
 })

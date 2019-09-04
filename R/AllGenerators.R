@@ -5,8 +5,8 @@ NULL
 
 
 
-## Updated 2019-07-31.
-.cellMarkers <- function(
+## Updated 2019-08-29.
+.CellMarkers <- function(  # nolint
     object,
     gene2symbol,
     class = c("CellCycleMarkers", "CellTypeMarkers")
@@ -16,50 +16,69 @@ NULL
         is(gene2symbol, "Gene2Symbol")
     )
     class <- match.arg(class)
-
-    if (class == "CellCycleMarkers") {
-        group <- "phase"
-    } else if (class == "CellTypeMarkers") {
-        group <- "cellType"
-    }
-
-    ## Coerce to tibble and sanitize.
-    data <- object %>%
-        as_tibble(rownames = NULL) %>%
-        camel() %>%
-        select(!!!syms(c(group, "geneID"))) %>%
-        .[complete.cases(.), , drop = FALSE]
-
+    group <- switch(
+        EXPR = class,
+        "CellCycleMarkers" = "phase",
+        "CellTypeMarkers" = "cellType"
+    )
+    x <- object
+    x <- camelCase(x)
+    x <- x[, c(group, "geneID")]
+    x <- x[complete.cases(x), , drop = FALSE]
+    x <- unique(x)
     ## Warn user about markers that aren't present in the gene2symbol. This is
     ## useful for informing about putative markers that aren't expressed.
-    setdiff <- setdiff(data[["geneID"]], gene2symbol[["geneID"]])
-    if (length(setdiff)) {
-        stop(paste(
-            "Markers missing from gene2symbol:",
-            printString(setdiff),
-            sep = "\n"
+    setdiff <- setdiff(x[["geneID"]], gene2symbol[["geneID"]])
+    if (hasLength(setdiff)) {
+        stop(sprintf(
+            "Markers missing from gene2symbol: %s.",
+            toString(setdiff, width = 200L)
         ))
     }
-    intersect <- intersect(data[["geneID"]], gene2symbol[["geneID"]])
+    intersect <- intersect(x[["geneID"]], gene2symbol[["geneID"]])
     assert(isNonEmpty(intersect))
+    keep <- x[["geneID"]] %in% intersect
+    x <- x[keep, , drop = FALSE]
+    x <- leftJoin(x, gene2symbol, by = "geneID")
+    x <- x[, sort(colnames(x)), drop = FALSE]
+    x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
+    x <- mutateIf(x, is.character, as.factor)
+    x <- split(x, f = x[[group]])
+    x <- snakeCase(x)
+    metadata(x) <- metadata(gene2symbol)
+    x
+}
 
-    data <- data %>%
-        filter(!!sym("geneID") %in% !!intersect) %>%
-        mutate(!!sym(group) := as.factor(!!sym(group))) %>%
-        unique() %>%
-        left_join(
-            y = as_tibble(gene2symbol, rownames = NULL),
-            by = "geneID"
-        ) %>%
-        group_by(!!sym(group)) %>%
-        arrange(!!sym("geneName"), .by_group = TRUE) %>%
-        as("DataFrame")
 
-    out <- data %>%
-        split(f = .[[group]], drop = FALSE) %>%
-        snake()
-    metadata(out) <- metadata(gene2symbol)
-    out
+
+## Using approach in `uniteInterestingGroups()` to generate the
+## factor grouping column to apply split.
+## Updated 2019-09-04.
+.filterPromiscuousMarkers <- function(x, n) {
+    assert(
+        is(x, "DataFrame"),
+        isInt(n),
+        isTRUE(n > 1L)
+    )
+    cols <- c("cellType", "geneID")
+    df <- x[, cols, drop = FALSE]
+    ## Generate the grouping factor necessary to perform split.
+    f <- .group(df)
+    split <- split(df, f = f)
+    n <- vapply(X = split, FUN = nrow, FUN.VALUE = integer(1L))
+    which <- which(n >= n)
+    genes <- split[, "geneID"][which]
+    genes <- unlist(genes, use.names = FALSE)
+    genes <- sort(unique(genes))
+    if (hasLength(genes)) {
+        message(sprintf(
+            "Filtering promiscuous marker genes: %s.",
+            toString(genes, width = 100L)
+        ))
+        keep <- !(x[["geneID"]] %in% genes)
+        x <- x[keep, , drop = FALSE]
+    }
+    x
 }
 
 
@@ -71,7 +90,7 @@ NULL
 CellCycleMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellCycleMarkers"
-        data <- .cellMarkers(
+        data <- .CellMarkers(
             object = object,
             gene2symbol = gene2symbol,
             class = class
@@ -88,7 +107,7 @@ CellCycleMarkers <-  # nolint
 CellTypeMarkers <-  # nolint
     function(object, gene2symbol) {
         class <- "CellTypeMarkers"
-        data <- .cellMarkers(
+        data <- .CellMarkers(
             object = object,
             gene2symbol = gene2symbol,
             class = class
@@ -105,16 +124,16 @@ CellTypeMarkers <-  # nolint
 #'   identifiers in the `geneID` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2019-08-07.
+#' @note Updated 2019-09-01.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
-#' @param known `CellTypeMarkers`. Grouped by `cellType` column. Known markers
-#'   `data.frame` imported by `readCellTypeMarkers` or pulled from internal
-#'   cell cycle markers data.
-#' @param promiscuousThreshold `integer(1)`. Minimum number of clusters
-#'   required to consider a gene marker promiscuous. Set to `0` to disable
-#'   promiscuous marker filtering.
+#' @param known `CellTypeMarkers`.
+#'   Grouped by `cellType` column. Known markers `data.frame` imported by
+#'   `readCellTypeMarkers` or pulled from internal cell cycle markers data.
+#' @param promiscuousThreshold `integer(1)`.
+#'   Minimum number of clusters required to consider a gene marker promiscuous.
+#'   Set to `0` to disable promiscuous marker filtering.
 #'
 #' @return `KnownMarkers`.
 #'
@@ -124,18 +143,14 @@ CellTypeMarkers <-  # nolint
 #' ## SeuratMarkersPerCluster ====
 #' markers <- seuratAllMarkers
 #' known <- cellTypeMarkersList[["homoSapiens"]]
-#'
-#' x <- KnownMarkers(
-#'     markers = markers,
-#'     known = known
-#' )
+#' x <- KnownMarkers(markers = markers, known = known)
 #' summary(x)
 NULL
 
 
 
-## Updated 2019-07-31.
-`KnownMarkers,SeuratMarkersPerCluster` <-  # nolint
+## Updated 2019-09-01.
+`KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <-  # nolint
     function(
         markers,
         known,
@@ -148,53 +163,35 @@ NULL
             allAreNonNegative(promiscuousThreshold)
         )
         promiscuousThreshold <- as.integer(promiscuousThreshold)
-
         alpha <- metadata(markers)[["alpha"]]
         assert(isAlpha(alpha))
-
-        ## Coerce data.
-        markers <- as(markers, "tbl_df")
-        known <- as(known, "tbl_df")
+        markers <- unlist(markers, recursive = FALSE, use.names = FALSE)
+        ranges <- markers[["ranges"]]
+        markers[["ranges"]] <- NULL
+        markers[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        markers[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
+        known <- unlist(known, recursive = FALSE, use.names = FALSE)
         known[["geneName"]] <- NULL
-
         ## Determine where the known markers are located in the markers data.
         ## Here we have slotted the gene IDs inside a "ranges" column.
         assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
         keep <- markers[["geneID"]] %in% known[["geneID"]]
-        data <- markers[keep, , drop = FALSE]
-
+        x <- markers[keep, , drop = FALSE]
         ## Apply our alpha level cutoff.
-        data <- filter(data, !!sym("padj") < !!alpha)
-
+        keep <- x[["padj"]] < alpha
+        x <- x[keep, , drop = FALSE]
         ## Add the `cellType` column.
-        data <- left_join(x = data, y = known, by = "geneID")
-
+        x <- leftJoin(x, known, by = "geneID")
         ## Filter out promiscuous markers present in multiple clusters.
-        if (promiscuousThreshold > 1L) {
-            cols <- c("cellType", "geneID")
-            promiscuous <- data[, cols] %>%
-                as_tibble() %>%
-                ungroup() %>%
-                group_by(!!!syms(cols)) %>%
-                summarize(n = n()) %>%
-                filter(!!sym("n") >= !!promiscuousThreshold) %>%
-                pull("geneID")
-            if (length(promiscuous)) {
-                message(paste(
-                    "Removing promiscuous markers:", toString(promiscuous)
-                ))
-                keep <- !data[["geneID"]] %in% promiscuous
-                data <- data[keep, , drop = FALSE]
-            }
+        if (isTRUE(promiscuousThreshold > 1L)) {
+            x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)
         }
-
-        data <- as(data, "DataFrame")
-        metadata(data) <- list(
+        metadata(x) <- list(
             alpha = alpha,
             version = packageVersion("pointillism"),
             date = Sys.Date()
         )
-        new(Class = "KnownMarkers", data)
+        new(Class = "KnownMarkers", x)
     }
 
 
@@ -207,7 +204,7 @@ setMethod(
         markers = "SeuratMarkersPerCluster",
         known = "CellTypeMarkers"
     ),
-    definition = `KnownMarkers,SeuratMarkersPerCluster`
+    definition = `KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers`
 )
 
 
@@ -260,7 +257,7 @@ NULL
 
 
 
-## Updated 2019-08-06.
+## Updated 2019-08-30.
 `SeuratMarkers,data.frame` <-  # nolint
     function(
         object,
@@ -277,110 +274,75 @@ NULL
             ),
             isAlpha(alpha)
         )
-
-        ## Detect function from column names -----------------------------------
-        seuratMarkerCols <-
-            c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
-        if (identical(
-            colnames(object),
-            seuratMarkerCols
-        )) {
+        ## Detect function from column names.
+        cols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
+        if (identical(colnames(object), cols)) {
             perCluster <- FALSE
             fun <- "Seurat::FindMarkers"
-        } else if (identical(
-            colnames(object),
-            c(seuratMarkerCols, "cluster", "gene")
-        )) {
+        } else if (identical(colnames(object), c(cols, "cluster", "gene"))) {
             perCluster <- TRUE
             fun <- "Seurat::FindAllMarkers"
         }
         message(sprintf("'%s()' return detected.", fun))
-
-        ## Sanitize markers ----------------------------------------------------
-        ## Coerce to tibble.
-        data <- as_tibble(object, rownames = "rowname")
-        ## Standardize with camel case.
-        data <- camel(data)
-
-        ## Seurat mode ---------------------------------------------------------
+        ## Sanitize markers.
+        x <- as(object, "DataFrame")
+        x <- camelCase(x)
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
-        if (grep("^Seurat", fun)) {
-            if (fun == "Seurat::FindMarkers") {
-                data <- rename(data, name = !!sym("rowname"))
-            } else if (fun == "Seurat::FindAllMarkers") {
-                data <- data %>%
-                    mutate(rowname = NULL) %>%
-                    rename(name = !!sym("gene"))
-            }
-
-            ## Update legacy columns.
-            if ("avgDiff" %in% colnames(data)) {
-                message(paste(
-                    "Renaming legacy `avgDiff` column to `avgLogFC`",
-                    "(changed in Seurat v2.1)."
-                ))
-                data[["avgLogFC"]] <- data[["avgDiff"]]
-                data[["avgDiff"]] <- NULL
-            }
-
-            ## Rename P value columns to match DESeq2 conventions.
-            if ("pVal" %in% colnames(data)) {
-                data[["pvalue"]] <- data[["pVal"]]
-                data[["pVal"]] <- NULL
-            }
-            if ("pValAdj" %in% colnames(data)) {
-                data[["padj"]] <- data[["pValAdj"]]
-                data[["pValAdj"]] <- NULL
-            }
+        if (identical(fun, "Seurat::FindMarkers")) {
+            x[["name"]] <- rownames(x)
+        } else if (identical(fun, "Seurat::FindAllMarkers")) {
+            colnames(x)[colnames(x) == "gene"] <- "name"
         }
-
+        rownames(x) <- NULL
+        ## Update legacy columns.
+        if (isSubset("avgDiff", colnames(x))) {
+            message(
+                "Renaming legacy 'avgDiff' column to 'avgLogFC' ",
+                "(changed in Seurat v2.1)."
+            )
+            colnames(x)[colnames(x) == "avgDiff"] <- "avgLogFC"
+        }
+        ## Rename P value columns to match DESeq2 conventions.
+        if (isSubset("pVal", colnames(x))) {
+            colnames(x)[colnames(x) == "pVal"] <- "pvalue"
+        }
+        if (isSubset("pValAdj", colnames(x))) {
+            colnames(x)[colnames(x) == "pValAdj"] <- "padj"
+        }
         ## Ensure that required columns are present.
         requiredCols <- c(
             "name",
             "pct1",
             "pct2",
-            "avgLogFC",     # Seurat v2.1.
+            "avgLogFC",  # Seurat v2.1.
             "padj",
-            "pvalue"        # Renamed from `p_val`.
+            "pvalue"     # Renamed from `p_val`.
         )
-        assert(isSubset(requiredCols, colnames(data)))
-
+        assert(isSubset(requiredCols, colnames(x)))
+        ## Bind ranges as column.
+        assert(isSubset(unique(x[["name"]]), names(ranges)))
+        x[["ranges"]] <- ranges[x[["name"]]]
+        ## Arrange by adjusted P value.
+        x <- x[order(x[["padj"]]), sort(colnames(x)), drop = FALSE]
+        ## Split by cluster, if applicable.
         if (isTRUE(perCluster)) {
-            ## `cluster` is only present in `FindAllMarkers() return`.
-            data <- data %>%
-                select(!!!syms(c("cluster", "name")), everything()) %>%
-                group_by(!!sym("cluster")) %>%
-                arrange(!!sym("padj"), .by_group = TRUE)
-        } else {
-            data <- data %>%
-                select(!!sym("name"), everything()) %>%
-                arrange(!!sym("padj"))
+            x <- split(x, f = x[["cluster"]])
         }
-
-        ## Bind ranges as column -----------------------------------------------
-        data <- as(data, "DataFrame")
-        ## Require that all of the markers are defined in ranges.
-        assert(isSubset(unique(data[["name"]]), names(ranges)))
-        data[["ranges"]] <- ranges[data[["name"]]]
-
-        ## Add metadata and return ---------------------------------------------
-        metadata(data) <- c(
+        ## Add metadata and return.
+        metadata(x) <- c(
             .prototypeMetadata,
             list(
                 alpha = alpha,
                 sessionInfo = session_info(include_base = TRUE)
             )
         )
-
         if (isTRUE(perCluster)) {
-            out <- split(x = data, f = data[["cluster"]], drop = FALSE)
-            names(out) <- paste0("cluster", names(out))
-            metadata(out) <- metadata(data)
-            new(Class = "SeuratMarkersPerCluster", out)
+            names(x) <- paste0("cluster", names(x))
+            new(Class = "SeuratMarkersPerCluster", x)
         } else {
-            rownames(data) <- data[["name"]]
-            data[["name"]] <- NULL
-            new(Class = "SeuratMarkers", data)
+            rownames(x) <- x[["name"]]
+            x[["name"]] <- NULL
+            new(Class = "SeuratMarkers", x)
         }
     }
 

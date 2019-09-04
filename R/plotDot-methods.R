@@ -7,15 +7,14 @@ NULL
 
 
 
-#' Min Max
-#' @note Updated 2019-07-31.
+#' Min max
+#' @note Updated 2019-08-03.
 #' @seealso `Seurat:::MinMax`.
 #' @noRd
-.minMax <- function(data, min, max) {
-    data2 <- data
-    data2[data2 > max] <- max
-    data2[data2 < min] <- min
-    data2
+.minMax <- function(x, min, max) {
+    x[x > max] <- max
+    x[x < min] <- min
+    x
 }
 
 
@@ -62,45 +61,57 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
-        value <- "logcounts"
-
+        assay <- "logcounts"
         ## Fetch the gene expression data.
-        data <- .fetchGeneData(
+        x <- .fetchGeneData(
             object = object,
             genes = genes,
-            value = value,
+            assay = assay,
             metadata = TRUE
         )
-
-        ## Prepare data for ggplot.
         cols <- c("geneName", "sampleName", "ident")
-        data <- data %>%
-            as_tibble() %>%
-            group_by(!!!syms(cols)) %>%
-            summarize(
+        assert(isSubset(c(cols, assay), colnames(x)))
+        f <- .group(x[, cols])
+        x <- split(x = x, f = f)
+        x <- SplitDataFrameList(lapply(
+            X = x,
+            FUN = function(x) {
+                value <- x[[assay]]
                 ## Assuming use of logcounts here.
-                avgExp = mean(expm1(!!sym(value))),
-                ## Consider making threshold user definable.
-                pctExp = .percentAbove(!!sym(value), threshold = 0L)
-            ) %>%
-            ungroup() %>%
-            mutate(geneName = as.factor(!!sym("geneName"))) %>%
-            group_by(!!sym("geneName")) %>%
-            mutate(
-                avgExpScale = scale(!!sym("avgExp")),
-                avgExpScale = .minMax(
-                    !!sym("avgExpScale"),
+                avgExp <- mean(expm1(value))
+                ## Consider making the threshold user definable.
+                pctExp <- .percentAbove(value, threshold = 0L)
+                DataFrame(
+                    geneName = x[["geneName"]][[1L]],
+                    sampleName = x[["sampleName"]][[1L]],
+                    ident = x[["ident"]][[1L]],
+                    avgExp = avgExp,
+                    pctExp = pctExp
+                )
+            }
+        ))
+        x <- unlist(x, recursive = FALSE, use.names = FALSE)
+        ## Calculate the average expression scale per gene.
+        x <- split(x, f = x[["geneName"]])
+        x <- SplitDataFrameList(lapply(
+            X = x,
+            FUN = function(x) {
+                avgExpScale <- scale(x[["avgExp"]])
+                avgExpScale <- .minMax(
+                    x = avgExpScale,
                     max = colMax,
                     min = colMin
                 )
-            ) %>%
-            arrange(!!!syms(cols), .by_group = TRUE)
-
+                x[["avgExpScale"]] <- as.numeric(avgExpScale)
+                x
+            }
+        ))
+        x <- unlist(x, recursive = FALSE, use.names = FALSE)
         ## Apply our `dotMin` threshold.
-        data[["pctExp"]][data[["pctExp"]] < dotMin] <- NA
-
+        x[["pctExp"]][x[["pctExp"]] < dotMin] <- NA
+        ## Plot.
         p <- ggplot(
-            data = data,
+            data = as.data.frame(x),
             mapping = aes(
                 x = !!sym("geneName"),
                 y = !!sym("ident")
@@ -116,11 +127,10 @@ NULL
             scale_radius(range = c(0L, dotScale)) +
             labs(
                 title = title,
-                subtitle = value,
+                subtitle = assay,
                 x = "gene",
                 y = "cluster"
             )
-
         ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
@@ -128,11 +138,11 @@ NULL
         ) {
             p <- p + facet_wrap(facets = vars(!!sym("sampleName")))
         }
-
+        ## Color.
         if (is(color, "ScaleContinuous")) {
             p <- p + color
         }
-
+        ## Return.
         p
     }
 

@@ -1,6 +1,6 @@
 #' @name plotPCElbow
 #' @inherit bioverbs::plotPCElbow
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-09-03.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
@@ -47,7 +47,7 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-09-03.
 .plotPCElbow <-
     function(
         pctStdDev,
@@ -65,26 +65,18 @@ NULL
         )
         cumsum <- cumsum(pctStdDev)
         xLab <- "PCA component"
-
-        data <- tibble(
+        data <- DataFrame(
             pc = seq_along(pctStdDev),
             pct = pctStdDev,
             cumsum = cumsum
         )
-
-        minPctCutoff <- data %>%
-            .[.[["pct"]] >= minPct, "pc"] %>%
-            max()
-        maxCumPctCutoff <- data %>%
-            .[.[["cumsum"]] <= maxCumPct, "pc"] %>%
-            max()
-
-        ## Pick the smallest value of the cutoffs
+        minPctCutoff <- max(data[data[["pct"]] >= minPct, "pc"])
+        maxCumPctCutoff <- max(data[data[["cumsum"]] <= maxCumPct, "pc"])
+        ## Pick the smallest value of the cutoffs.
         cutoff <- min(minPctCutoff, maxCumPctCutoff)
-
-        ## Percent standard deviation ------------------------------------------
+        ## Percent standard deviation.
         ggpct <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("pc"),
                 y = !!sym("pct")
@@ -104,10 +96,9 @@ NULL
             ) +
             expand_limits(y = 0L) +
             scale_y_continuous(labels = percent)
-
-        ## Cumulative percent standard deviation -------------------------------
+        ## Cumulative percent standard deviation.
         ggcumsum <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("pc"),
                 y = !!sym("cumsum")
@@ -127,12 +118,11 @@ NULL
             ) +
             expand_limits(y = c(0L, 1L)) +
             scale_y_continuous(labels = percent)
-
+        ## Return.
         plotlist <- list(
             pct = ggpct,
             cumsum = ggcumsum
         )
-
         p <- plot_grid(plotlist = plotlist)
         attr(p, "elbow") <- cutoff
         p

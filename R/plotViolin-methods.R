@@ -7,12 +7,12 @@ NULL
 
 
 
-## Updated 2019-08-06.
+## Updated 2019-09-03.
 `plotViolin,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
-        value = c("logcounts", "normcounts"),
+        assay = c("logcounts", "normcounts"),
         perSample = TRUE,
         scale = c("count", "width", "area"),
         color,
@@ -27,17 +27,15 @@ NULL
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
-        value <- match.arg(value)
+        assay <- match.arg(assay)
         scale <- match.arg(scale)
-
         ## Fetch the gene expression data.
         data <- .fetchGeneData(
             object = object,
             genes = genes,
-            value = value,
+            assay = assay,
             metadata = TRUE
         )
-
         ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
@@ -58,12 +56,12 @@ NULL
             colorMapping <- x
             colorLabs <- "cluster"
         }
-
+        ## Plot.
         p <- ggplot(
-            data = as_tibble(data),
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym(x),
-                y = !!sym(value),
+                y = !!sym(assay),
                 color = !!sym(colorMapping)
             )
         ) +
@@ -81,7 +79,6 @@ NULL
                 color = colorLabs,
                 title = title
             )
-
         ## Handling step for multiple samples, if desired.
         if (
             isTRUE(perSample) &&
@@ -100,11 +97,11 @@ NULL
                     scales = "free_y"
                 )
         }
-
+        ## Color.
         if (is(color, "ScaleDiscrete")) {
             p <- p + color
         }
-
+        ## Return.
         p
     }
 

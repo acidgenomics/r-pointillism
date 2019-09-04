@@ -1,6 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit bioverbs::plotKnownMarkers
-#' @note Updated 2019-08-02.
+#' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers Object.
@@ -31,14 +31,13 @@ NULL
 
 
 
-## Updated 2019-08-02.
+## Updated 2019-09-03.
 `plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
         reduction,
         headerLevel,
-        progress = FALSE,
         ...
     ) {
         validObject(object)
@@ -46,64 +45,51 @@ NULL
         assert(
             isSubset(unique(markers[["name"]]), rownames(object)),
             isScalar(reduction),
-            isHeaderLevel(headerLevel),
-            isFlag(progress)
+            isHeaderLevel(headerLevel)
         )
-        if (isTRUE(progress)) {
-            applyFun <- pblapply
-        } else {
-            applyFun <- lapply
-        }
-
-        ## Safe to remove our nested ranges.
         markers <- as(markers, "DataFrame")
-        markers[["ranges"]] <- NULL
-
-        cellTypes <- markers %>%
-            .[["cellType"]] %>%
-            as.character() %>%
-            na.omit() %>%
-            unique()
+        cellTypes <- markers[["cellType"]]
+        cellTypes <- unique(na.omit(as.character(cellTypes)))
         assert(isNonEmpty(cellTypes))
-
-        list <- applyFun(cellTypes, function(cellType) {
-            genes <- markers %>%
-                as_tibble() %>%
-                filter(cellType == !!cellType) %>%
-                pull("name") %>%
-                as.character() %>%
-                na.omit() %>%
-                unique()
-            assert(isNonEmpty(genes))
-
-            markdownHeader(
-                text = as.character(cellType),
-                level = headerLevel,
-                tabset = TRUE,
-                asis = TRUE
-            )
-
-            lapply(genes, function(gene) {
-                p <- plotMarker(
-                    object = object,
-                    genes = gene,
-                    reduction = reduction,
-                    ...
+        list <- lapply(
+            X = cellTypes,
+            FUN = function(cellType) {
+                genes <- markers[
+                    markers[["cellType"]] == cellType,
+                    "name",
+                    drop = TRUE
+                ]
+                genes <- unique(na.omit(as.character(genes)))
+                assert(isNonEmpty(genes))
+                markdownHeader(
+                    text = cellType,
+                    level = headerLevel,
+                    tabset = TRUE,
+                    asis = TRUE
                 )
-                show(p)
-                invisible(p)
-            })
-        })
-
+                lapply(genes, function(gene) {
+                    p <- plotMarker(
+                        object = object,
+                        genes = gene,
+                        reduction = reduction,
+                        ...
+                    )
+                    show(p)
+                    invisible(p)
+                })
+            }
+        )
         invisible(list)
     }
 
 formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
     "headerLevel",
-    "reduction"
+    "reduction",
+    "BPPARAM"
 )] <- list(
     headerLevel = headerLevel,
-    reduction = reduction
+    reduction = reduction,
+    BPPARAM = BPPARAM
 )
 
 

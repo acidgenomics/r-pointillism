@@ -40,10 +40,10 @@ setMethod(
     function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
-            message(paste(
-                "Returning log normalized counts with",
+            message(
+                "Returning log normalized counts with ",
                 "'monocle3::normalized_counts()'."
-            ))
+            )
         }
         monocle3::normalized_counts(
             cds = object,
@@ -109,10 +109,10 @@ setMethod(
     function(object, verbose = FALSE) {
         assert(isFlag(verbose))
         if (isTRUE(verbose)) {
-            message(paste(
-                "Getting normalized counts with",
+            message(
+                "Getting normalized counts with ",
                 "'monocle3::normalized_counts()'."
-            ))
+            )
         }
         monocle3::normalized_counts(
             cds = object,
@@ -148,21 +148,6 @@ setMethod(
     signature = signature("cell_data_set"),
     definition = `sizeFactors,cell_data_set`
 )
-
-
-
-## nolint start
-##
-## > getMethod(
-## >     f = "sizeFactors<-",
-## >     signature = signature(
-## >         object = "SummarizedExperiment",
-## >         value = "numeric"
-## >     ),
-## >     where = asNamespace("basejump")
-## > )
-##
-## nolint end
 
 
 

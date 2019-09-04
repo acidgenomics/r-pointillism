@@ -8,11 +8,13 @@
 
 <title>Differential expression — diffExp • pointillism</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,10 +36,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Differential expression — diffExp" />
 
+<meta property="og:title" content="Differential expression — diffExp" />
 <meta property="og:description" content="Differential expression" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -90,7 +93,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/acidgenomics/pointillism">
@@ -117,9 +119,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Differential expression</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>...</span>)
@@ -127,13 +127,13 @@
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a></span>())
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>,
   <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>), <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a></span>())</pre>
-    
+  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -187,7 +187,7 @@ Currently only used by DESeq2 but not edgeR for calculations here.</p></td>
       <td><p>Additional arguments.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Varies depending on the <code>caller</code> argument:</p><ul>
@@ -196,19 +196,16 @@ Currently only used by DESeq2 but not edgeR for calculations here.</p></td>
 Apply <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::lfcShrink()</a></code> if shrunken results are desired.</p></li>
 </ul>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Perform pairwise differential expression across groups of cells. Currently
 supports edgeR and DESeq2 as DE callers.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>We are no longer recommending the use of software that attempts to
 mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 single cell RNA-seq data. Simply model the counts directly.</p>
-<p>Updated 2019-07-31.</p>
-    
+<p>Updated 2019-09-03.</p>
     <h2 class="hasAnchor" id="deseq-"><a class="anchor" href="#deseq-"></a>DESeq2</h2>
 
     
@@ -226,7 +223,6 @@ test, it is recommended to set <code>useT = TRUE</code> (<em>not currently in us
 ratio test implemented in <code>nbinomLRT()</code> should be used.</p>
 <p>Note that DESeq2 supports <code><a href='https://rdrr.io/r/stats/weights.html'>weights()</a></code> values automatically, if slotted using
 zinbwave (which is no longer recommended for droplet scRNA-seq).</p>
-    
     <h2 class="hasAnchor" id="edger"><a class="anchor" href="#edger"></a>edgeR</h2>
 
     
@@ -235,7 +231,6 @@ zinbwave (which is no longer recommended for droplet scRNA-seq).</p>
 <p>The LRT has been shown to perform better for null hypothesis testing with
 droplet scRNA-seq data. Here we are using <code><a href='https://rdrr.io/pkg/edgeR/man/glmfit.html'>edgeR::glmLRT()</a></code> internally.</p>
 <p>edgeR is currently significantly faster than DESeq2 for large datasets.</p>
-    
     <h2 class="hasAnchor" id="seurat-conventions"><a class="anchor" href="#seurat-conventions"></a>Seurat conventions</h2>
 
     
@@ -243,64 +238,54 @@ droplet scRNA-seq data. Here we are using <code><a href='https://rdrr.io/pkg/edg
 
 <p>Note that Seurat currently uses the convention <code>cells.1</code> for the numerator
 and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io/pkg/Seurat/man/FindMarkers.html'>Seurat::FindMarkers()</a></code> for details.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/Seurat/man/WhichCells.html'>Seurat::WhichCells()</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 
-<span class='co'>## Compare expression in cluster 3 relative to 2.</span>
+<span class='co'>## Compare expression in cluster 2 relative to 1.</span>
 <span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusters.html'>clusters</a></span>(<span class='no'>object</span>)
-<span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"3"</span>]
+<span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;         0 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
+#&gt;        19 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"1"</span>]
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;        19 character character </div><div class='input'>
+#&gt;        25 character character </div><div class='input'>
 ## edgeR ====
-# x <- diffExp(
-#     object = object,
-#     numerator = numerator,
-#     denominator = denominator,
-#     caller = "edgeR"
-# )
-# class(x)
-# summary(x)
+## > x <- diffExp(
+## >     object = object,
+## >     numerator = numerator,
+## >     denominator = denominator,
+## >     caller = "edgeR"
+## > )
+## > class(x)
+## > summary(x)
 
 ## DESeq2 ====
-# This will warn about weights with the minimal example.
-# x <- diffExp(
-#     object = object,
-#     numerator = numerator,
-#     denominator = denominator,
-#     caller = "DESeq2"
-# )
-# class(x)
-# summary(x)
+## This will warn about weights with the minimal example.
+## > x <- diffExp(
+## >     object = object,
+## >     numerator = numerator,
+## >     denominator = denominator,
+## >     caller = "DESeq2"
+## > )
+## > class(x)
+## > summary(x)
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#deseq-">DESeq2</a></li>
-
       <li><a href="#edger">edgeR</a></li>
-
       <li><a href="#seurat-conventions">Seurat conventions</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -314,7 +299,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

@@ -12,5 +12,5 @@ Data provenence information, including the organism and Ensembl release are
 defined in \code{\link[S4Vectors:metadata]{metadata()}}.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-09-03.
 }
