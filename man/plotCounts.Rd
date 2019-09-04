@@ -61,18 +61,21 @@ plotViolin(object, ...)
 \S4method{plotViolin}{SingleCellExperiment}(object, genes,
   assay = c("logcounts", "normcounts"), perSample = TRUE,
   scale = c("count", "width", "area"),
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotViolin}{Seurat}(object, genes, assay = c("logcounts",
   "normcounts"), perSample = TRUE, scale = c("count", "width", "area"),
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 
 \S4method{plotViolin}{cell_data_set}(object, genes,
   assay = c("logcounts", "normcounts"), perSample = TRUE,
   scale = c("count", "width", "area"),
-  color = getOption("acid.discrete.color", default = NULL),
+  color = getOption("acid.discrete.color", default =
+  acidplots::scale_color_synesthesia_d()),
   legend = getOption("acid.legend", default = TRUE), title = NULL)
 }
 \arguments{
