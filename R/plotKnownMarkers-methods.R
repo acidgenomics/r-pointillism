@@ -38,7 +38,6 @@ NULL
         markers,
         reduction,
         headerLevel,
-        BPPARAM,  # nolint
         ...
     ) {
         validObject(object)
@@ -52,7 +51,7 @@ NULL
         cellTypes <- markers[["cellType"]]
         cellTypes <- unique(na.omit(as.character(cellTypes)))
         assert(isNonEmpty(cellTypes))
-        list <- bplapply(
+        list <- lapply(
             X = cellTypes,
             FUN = function(cellType) {
                 genes <- markers[
@@ -78,8 +77,7 @@ NULL
                     show(p)
                     invisible(p)
                 })
-            },
-            BPPARAM = BPPARAM
+            }
         )
         invisible(list)
     }

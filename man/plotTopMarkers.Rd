@@ -10,7 +10,7 @@ plotTopMarkers(object, markers, ...)
 
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(object, markers,
   n = 1L, direction = c("up", "down", "both"), reduction = "UMAP",
-  headerLevel = 2L, BPPARAM = BiocParallel::bpparam(), ...)
+  headerLevel = 2L, ..., BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{object}{Object.}
@@ -30,6 +30,8 @@ Dimension reduction name or index position.}
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
 
+\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
+
 \item{BPPARAM}{\code{bpparamClass}.
 BiocParallel parameter to specify the desired processor configuration.\cr
 We recommend using one of the following:
@@ -38,8 +40,6 @@ We recommend using one of the following:
 \item \link[BiocParallel:SerialParam]{SerialParam}.
 \item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
 }}
-
-\item{...}{Passthrough arguments to \code{\link[=plotMarker]{plotMarker()}}.}
 }
 \value{
 Show graphical output. Invisibly return a \code{ggplot} \code{list}.
