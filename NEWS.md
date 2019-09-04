@@ -1,4 +1,4 @@
-## pointillism 0.4.2 (2019-09-03)
+## pointillism 0.4.2 (2019-09-04)
 
 ### Major changes
 
