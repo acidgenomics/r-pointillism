@@ -7,14 +7,14 @@ BPPARAM <- quote(BiocParallel::bpparam())  # nolint
 
 ## DR marker default color palettes.
 darkMarkerColors <-
-    ggplot2::scale_colour_viridis_c(option = "plasma")
+    ggplot2::scale_color_viridis_c(option = "plasma")
 lightMarkerColors <-
-    ggplot2::scale_colour_gradient(low = "gray90", high = "red")
+    ggplot2::scale_color_gradient(low = "gray90", high = "red")
 
 continuousColor <-
     quote(getOption(
         "acid.continuous.color",
-        default = ggplot2::scale_colour_gradient(
+        default = ggplot2::scale_color_gradient(
             low = "gray75",
             high = "purple"
         )
@@ -22,7 +22,7 @@ continuousColor <-
 continuousColorPurpleOrange <-
     quote(getOption(
         "acid.continuous.color",
-        default = ggplot2::scale_colour_gradient2(
+        default = ggplot2::scale_color_gradient2(
             low = "orange",
             mid = "gray75",
             high = "purple",

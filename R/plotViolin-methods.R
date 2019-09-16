@@ -23,7 +23,7 @@ NULL
         assert(
             isCharacter(genes),
             isFlag(perSample),
-            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+            isGGScale(color, scale = "discrete", aes = "color", nullOK = TRUE),
             isFlag(legend),
             isString(title, nullOK = TRUE)
         )
