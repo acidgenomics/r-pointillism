@@ -68,7 +68,7 @@ NULL
             isGGScale(
                 x = color,
                 scale = "continuous",
-                aes = "colour",
+                aes = "color",
                 nullOK = TRUE
             ),
             isNumber(pointSize),
@@ -131,7 +131,7 @@ NULL
                     mapping = aes(
                         x = !!sym("x"),
                         y = !!sym("y"),
-                        colour = !!sym(feature)
+                        color = !!sym(feature)
                     )
                 )
                 if (isTRUE(pointsAsNumbers)) {
@@ -156,7 +156,7 @@ NULL
                 }
                 p <- p +
                     labs(
-                        colour = NULL,
+                        color = NULL,
                         x = axes[[1L]],
                         y = axes[[2L]],
                         title = feature
@@ -174,7 +174,7 @@ NULL
                                 y = !!sym("centerY"),
                                 label = !!sym("ident")
                             ),
-                            colour = labelColor,
+                            color = labelColor,
                             size = labelSize,
                             fontface = "bold"
                         )
