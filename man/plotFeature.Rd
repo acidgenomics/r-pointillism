@@ -11,7 +11,7 @@ plotFeature(object, ...)
 
 \S4method{plotFeature}{SingleCellExperiment}(object, features,
   reduction = "UMAP", color = getOption("acid.continuous.color",
-  default = ggplot2::scale_colour_gradient(low = "gray75", high =
+  default = ggplot2::scale_color_gradient(low = "gray75", high =
   "purple")), pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -23,7 +23,7 @@ plotFeature(object, ...)
 
 \S4method{plotFeature}{Seurat}(object, features, reduction = "UMAP",
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
+  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),

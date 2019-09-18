@@ -12,7 +12,7 @@ plotMarker(object, ...)
 \S4method{plotMarker}{SingleCellExperiment}(object, genes,
   reduction = "UMAP", expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
+  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -24,7 +24,7 @@ plotMarker(object, ...)
 \S4method{plotMarker}{Seurat}(object, genes, reduction = "UMAP",
   expression = c("mean", "sum"),
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient(low = "gray75", high = "purple")),
+  ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
