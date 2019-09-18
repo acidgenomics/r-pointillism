@@ -38,21 +38,21 @@ plotDot(object, ...)
 \S4method{plotDot}{SingleCellExperiment}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  ggplot2::scale_color_gradient2(low = "orange", mid = "gray75", high =
   "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
   TRUE), title = NULL)
 
 \S4method{plotDot}{Seurat}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  ggplot2::scale_color_gradient2(low = "orange", mid = "gray75", high =
   "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
   TRUE), title = NULL)
 
 \S4method{plotDot}{cell_data_set}(object, genes, perSample = TRUE,
   colMin = -2.5, colMax = 2.5, dotMin = 0L, dotScale = 6L,
   color = getOption("acid.continuous.color", default =
-  ggplot2::scale_colour_gradient2(low = "orange", mid = "gray75", high =
+  ggplot2::scale_color_gradient2(low = "orange", mid = "gray75", high =
   "purple", midpoint = 0L)), legend = getOption("acid.legend", default =
   TRUE), title = NULL)
 
