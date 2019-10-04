@@ -50,7 +50,7 @@ NULL
         markers <- as(markers, "DataFrame")
         cellTypes <- markers[["cellType"]]
         cellTypes <- unique(na.omit(as.character(cellTypes)))
-        assert(isNonEmpty(cellTypes))
+        assert(hasLength(cellTypes))
         list <- lapply(
             X = cellTypes,
             FUN = function(cellType) {
@@ -60,7 +60,7 @@ NULL
                     drop = TRUE
                 ]
                 genes <- unique(na.omit(as.character(genes)))
-                assert(isNonEmpty(genes))
+                assert(hasLength(genes))
                 markdownHeader(
                     text = cellType,
                     level = headerLevel,

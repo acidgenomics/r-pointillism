@@ -93,7 +93,7 @@ NULL
                 ))
                 ## Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
-                assert(isNonEmpty(cells))
+                assert(hasLength(cells))
                 subset <- object[, cells]
                 ## Ensure that both the numerator and denominator are defined.
                 groupings <- droplevels(colData(subset)[[group]])

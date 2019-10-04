@@ -73,7 +73,7 @@
     data <- leftJoin(data, colData, by = "colname")
     ## Join the geneID and geneName columns by the "rowname" column.
     g2s <- Gene2Symbol(object)
-    assert(isNonEmpty(g2s), hasRownames(g2s))
+    assert(hasLength(g2s), hasRownames(g2s))
     g2s <- as(g2s, "DataFrame")
     g2s[["rowname"]] <- rownames(g2s)
     data <- leftJoin(data, g2s, by = "rowname")

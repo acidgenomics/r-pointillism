@@ -59,7 +59,7 @@ NULL
         markers <- cellTypesPerCluster(markers, min = min, max = max)
         ## Output Markdown headers per cluster.
         clusters <- unique(as.character(markers[["cluster"]]))
-        assert(isNonEmpty(clusters))
+        assert(hasLength(clusters))
         return <- lapply(
             X = clusters,
             FUN = function(cluster) {
