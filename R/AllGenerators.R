@@ -36,7 +36,7 @@ NULL
         ))
     }
     intersect <- intersect(x[["geneID"]], gene2symbol[["geneID"]])
-    assert(isNonEmpty(intersect))
+    assert(hasLength(intersect))
     keep <- x[["geneID"]] %in% intersect
     x <- x[keep, , drop = FALSE]
     x <- leftJoin(x, gene2symbol, by = "geneID")

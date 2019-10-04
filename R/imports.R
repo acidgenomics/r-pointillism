@@ -46,8 +46,8 @@
 #'   allAreNonNegative allArePositive areDisjointSets areIntersectingSets
 #'   areSetEqual assert bapply false isAlpha isInt hasColnames hasLength
 #'   hasNames hasRownames hasRows hasValidDimnames hasValidNames isGGScale isAny
-#'   isCharacter isFlag isHeaderLevel isIntegerish isNonEmpty isNonNegative
-#'   isNumber isPositive isScalar isScalarNumeric isString isSubset validate
+#'   isCharacter isFlag isHeaderLevel isIntegerish isNonNegative isNumber
+#'   isPositive isScalar isScalarNumeric isString isSubset validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
 #' @importFrom rlang !! sym
