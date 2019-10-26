@@ -1,3 +1,12 @@
+## pointillism 0.4.3 (2019-10-26)
+
+### Minor changes
+
+- Bug fix for legacy Seurat objects created via pointillism with named rownames
+  containing gene identifiers mapped to the gene symbols. Now the coercion
+  method for `Seurat` to `SingleCellExperiment` checks for this and sanitizes
+  the names automatically so the resulting `SingleCellExperiment` is valid.
+
 ## pointillism 0.4.2 (2019-09-04)
 
 ### Major changes
