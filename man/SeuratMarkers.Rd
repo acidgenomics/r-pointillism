@@ -34,6 +34,9 @@ automatically subset the ranges and arrange them alphabetically.}
 Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 }
+\value{
+\code{SeuratMarkers}.
+}
 \description{
 This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations.

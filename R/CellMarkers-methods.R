@@ -1,9 +1,11 @@
 #' Cell markers
 #'
 #' @name CellMarkers
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-10-26.
 #'
 #' @inheritParams acidroxygen::params
+#'
+#' @return Markers object.
 NULL
 
 
