@@ -54,10 +54,10 @@ NULL
                 numerator <- ident[which(ident == cluster)]
                 assert(all(numerator == cluster))
                 numerator <- sort(names(numerator))
-                assert(isNonEmpty(numerator))
+                assert(hasLength(numerator))
                 ## Denominator: cells in all other clusters.
                 denominator <- sort(setdiff(colnames(object), numerator))
-                assert(isNonEmpty(denominator))
+                assert(hasLength(denominator))
                 diffExp(
                     object = object,
                     numerator = numerator,

@@ -10,15 +10,11 @@ branches:
 install:
   - curl -sSL https://raw.githubusercontent.com/acidgenomics/Rcheck/master/install | bash
 
-before_script:
-    # Avoid BiocCheck > checkCodingPractice > checkLogicalUseFiles error.
-  - touch inst/rmarkdown/templates/{seurat-clustering,seurat-markers,seurat-per-cluster-analysis}/skeleton/_{footer,header,links}.Rmd
-
 jobs:
   include:
     - stage: test
-      name: "bioc-3.9"
-      script: image="singlecell" tag="bioc-3.9" ./.Rcheck/docker
+      name: "bioc-release"
+      script: image="singlecell" tag="bioc-release" ./.Rcheck/docker
     - stage: test
       name: "bioc-devel"
       script: image="singlecell" tag="bioc-devel" ./.Rcheck/docker

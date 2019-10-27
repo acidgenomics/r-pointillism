@@ -76,7 +76,7 @@ NULL
             isGGScale(
                 x = color,
                 scale = "continuous",
-                aes = "colour",
+                aes = "color",
                 nullOK = TRUE
             ),
             isNumber(pointSize),

@@ -3,7 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-10-31.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
@@ -25,9 +25,65 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Note that some older saved Seurat objects have row names containing names,
+## which are no longer considered valid for a SingleCellExperiment.
+##
+## For example:
+## ENSG00000000003 ENSG00000000005 ENSG00000000419
+##        "TSPAN6"          "TNMD"          "DPM1"
+## ENSG00000000457 ENSG00000000460 ENSG00000000971
+##         "SCYL3"      "C1orf112"           "CFH"
+##
+## We need to ensure the dimnames themselves are unnamed in the Seurat object
+## prior to coercine to SCE, otherwise we will hit a `.validate_names` error.
+##
+## Inspect current `methods("dimnames")` for Seurat methods:
+## > getS3method(f = "dimnames", class = "Seurat")
+## > getS3method(f = "dimnames", class = "Assay")
+##
+## > return(dimnames(x = GetAssay(object = x)))
+## > return(dimnames(x = GetAssayData(object = x)))
+##
+## We need to fix the row names of the primary assay data.
+## > data <- GetAssayData(from)
+## > class(data)
+## ## dgCMatrix
+##
+## > methods("GetAssayData")
+## > getS3method(f = "GetAssayData", class = "Seurat")
+## > getS3method(f = "GetAssayData", class = "Assay")
+##
+## Note that "slot" here defaults to "data" currently.
+## > return(slot(object = object, name = slot))
+##
+## For older objects, `DefaultAssay()` will be "RNA".
+## > from@assays$RNA
+## [1] "counts"        "data"          "scale.data"
+## [4] "key"           "var.features"  "meta.features"
+## [7] "misc"
+##
+## These can contain names and need to be sanitized via `unname()`.
+## > rownames(from@assays$RNA@counts)
+## > rownames(from@assays$RNA@data)
+
+
+
+## Updated 2019-10-26.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
+        validObject(from)
+        ## Strip legacy names from row names, if necessary.
+        if (hasNames(rownames(GetAssayData(from)))) {
+            assay <- DefaultAssay(from)
+            assert(
+                hasNames(rownames(from@assays[[assay]]@counts)),
+                hasNames(rownames(from@assays[[assay]]@data))
+            )
+            rownames(from@assays[[assay]]@counts) <-
+                unname(rownames(from@assays[[assay]]@counts))
+            rownames(from@assays[[assay]]@data) <-
+                unname(rownames(from@assays[[assay]]@data))
+        }
         ## Using the Seurat S3 coercion method here.
         to <- as.SingleCellExperiment(x = from, assay = NULL)
         ## Row and column data.
@@ -37,6 +93,7 @@ NULL
         metadata(to) <- metadata(from)
         metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
         metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
+        validObject(to)
         to
     }
 

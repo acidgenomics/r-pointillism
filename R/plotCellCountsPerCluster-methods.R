@@ -113,8 +113,10 @@ setMethod(
 
 
 ## Updated 2019-08-02.
-`plotCellCountsPerCluster,cell_data_set` <-
+`plotCellCountsPerCluster,cell_data_set` <-  # nolint
     `plotCellCountsPerCluster,SingleCellExperiment`
+
+
 
 #' @rdname plotCellCountsPerCluster
 #' @export
