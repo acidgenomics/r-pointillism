@@ -2,7 +2,9 @@
 #' @name show
 #' @author Michael Steinbuagh
 #' @inherit methods::show title description details params
-#' @note Updated 2019-07-31.
+#' @note Updated 2019-10-26.
+#'
+#' @return No return.
 #'
 #' @examples
 #' data(cellCycleMarkersList, cellTypeMarkersList)

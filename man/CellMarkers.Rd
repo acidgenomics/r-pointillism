@@ -17,6 +17,9 @@ CellTypeMarkers(object, gene2symbol)
 Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
 \code{Gene2Symbol} for more information.}
 }
+\value{
+Markers object.
+}
 \description{
 Cell markers
 }
@@ -28,5 +31,5 @@ Cell markers
 }}
 
 \note{
-Updated 2019-07-31.
+Updated 2019-10-26.
 }

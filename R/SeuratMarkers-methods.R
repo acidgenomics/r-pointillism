@@ -18,6 +18,8 @@
 #'   Gene annotations. Names must correspond to the rownames. The function will
 #'   automatically subset the ranges and arrange them alphabetically.
 #'
+#' @return `SeuratMarkers`.
+#'
 #' @examples
 #' data(Seurat, package = "acidtest")
 #'

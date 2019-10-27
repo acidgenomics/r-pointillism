@@ -14,6 +14,9 @@
 \arguments{
 \item{object}{Any R object}
 }
+\value{
+No return.
+}
 \description{
 Display the object, by printing, plotting or whatever suits its
   class.  This function exists to be specialized by methods.  The
@@ -37,7 +40,7 @@ complete, original object, with misleading results.  See the
 the discussion in \code{\link{setIs}} for the general concept.
 }
 \note{
-Updated 2019-07-31.
+Updated 2019-10-26.
 }
 \examples{
 data(cellCycleMarkersList, cellTypeMarkersList)
