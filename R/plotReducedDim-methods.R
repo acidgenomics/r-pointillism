@@ -108,7 +108,7 @@ NULL
             hasLength(dims, n = 2L),
             all(isIntegerish(dims)),
             isCharacter(interestingGroups, nullOK = TRUE),
-            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
+            isGGScale(color, scale = "discrete", aes = "color", nullOK = TRUE),
             isNumber(pointSize),
             isNumber(pointAlpha),
             isFlag(pointsAsNumbers),

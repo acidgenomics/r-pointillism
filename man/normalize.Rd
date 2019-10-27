@@ -24,6 +24,9 @@ Run the function with verbose output.}
 
 \item{...}{Additional arguments.}
 }
+\value{
+Modified object.
+}
 \description{
 This function calculates size factor normalized and log normalized counts
 from the raw count matrix defined in \code{\link[=counts]{counts()}}. These matrices are stored in
@@ -39,7 +42,7 @@ when \code{\link[=spikeNames]{spikeNames()}}) is defined, call \code{\link[scate
 instead.
 }
 \note{
-Updated 2019-08-05.
+Updated 2019-10-26.
 }
 \section{Normalized counts}{
 

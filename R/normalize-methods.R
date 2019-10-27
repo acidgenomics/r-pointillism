@@ -36,10 +36,12 @@
 #' pseudo-count (i.e., on the same scale as the counts).
 #'
 #' @name normalize
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-10-26.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
+#'
+#' @return Modified object.
 #'
 #' @seealso
 #' - `estimateSizeFactors()`.

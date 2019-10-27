@@ -2,7 +2,7 @@
 title: "pointillism"
 date: "`r BiocStyle::doc_date()`"
 output: BiocStyle::html_document
-bibliography: ../inst/rmarkdown/shared/bibliography.bib
+bibliography: '`r system.file("rmarkdown", "shared", "bibliography.bib", package = "basejump")`'
 vignette: >
   %\VignetteIndexEntry{pointillism}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,5 +30,5 @@ utils::sessionInfo()
 
 The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[Paperpile]: https://paperpile.com/
-[R]: https://www.r-project.org/
+[paperpile]: https://paperpile.com/
+[r]: https://www.r-project.org/

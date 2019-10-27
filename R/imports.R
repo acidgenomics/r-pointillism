@@ -6,9 +6,15 @@
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 #' @importClassesFrom monocle3 cell_data_set
-#'
+NULL
+
+
+
 #' @importMethodsFrom basejump coerce
-#'
+NULL
+
+
+
 #' @importFrom BiocGenerics counts counts<- rowMeans rowSums sizeFactors
 #'   sizeFactors<- table
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
@@ -20,8 +26,8 @@
 #' @importFrom S4Vectors DataFrame as.data.frame as.matrix cbind complete.cases
 #'   do.call head lapply mcols mcols<- metadata metadata<- na.omit sapply split
 #'   tail
-#' @importFrom Seurat CreateSeuratObject Idents as.SingleCellExperiment
-#'   as.Seurat DefaultAssay GetAssayData NormalizeData Stdev VariableFeatures
+#' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
+#'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
 #'   normcounts<- reducedDim reducedDim<- reducedDimNames reducedDims
 #'   sizeFactors sizeFactors<- spikeNames
@@ -46,8 +52,8 @@
 #'   allAreNonNegative allArePositive areDisjointSets areIntersectingSets
 #'   areSetEqual assert bapply false isAlpha isInt hasColnames hasLength
 #'   hasNames hasRownames hasRows hasValidDimnames hasValidNames isGGScale isAny
-#'   isCharacter isFlag isHeaderLevel isIntegerish isNonEmpty isNonNegative
-#'   isNumber isPositive isScalar isScalarNumeric isString isSubset validate
+#'   isCharacter isFlag isHeaderLevel isIntegerish isNonNegative isNumber
+#'   isPositive isScalar isScalarNumeric isString isSubset validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
 #' @importFrom rlang !! sym

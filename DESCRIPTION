@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.4.2
-Date: 2019-09-04
+Version: 0.4.3
+Date: 2019-10-26
 Authors@R: c(
     person(
         given = "Michael",
@@ -32,26 +32,26 @@ LazyData: false
 Depends:
     R (>= 3.6),
     SingleCellExperiment,
-    basejump (>= 0.11.12)
+    basejump (>= 0.11.20)
 Imports:
-    acidplots (>= 0.2.14),
-    bioverbs (>= 0.2.7),
-    goalie (>= 0.3.6),
-    monocle3 (>= 0.1.3),
+    acidplots (>= 0.2.16),
+    bioverbs (>= 0.2.10),
+    goalie (>= 0.4.0),
+    monocle3 (>= 0.2.0),
     BiocGenerics (>= 0.30),
     BiocParallel (>= 1.18),
     DelayedArray (>= 0.10),
     DelayedMatrixStats (>= 1.6),
-    DESeq2 (>= 1.22),
-    IRanges (>= 2.18),
+    DESeq2 (>= 1.24),
+    IRanges (>= 2.18.2),
     S4Vectors (>= 0.22),
     SummarizedExperiment (>= 1.14),
-    edgeR (>= 3.24),
+    edgeR (>= 3.26),
     scater (>= 1.12),
     Matrix (>= 1.2),
     Seurat (>= 3.1),
-    cowplot (>= 0.9),
-    ggplot2 (>= 3.1),
+    cowplot (>= 1.0),
+    ggplot2 (>= 3.2),
     rlang (>= 0.4),
     sessioninfo (>= 1.1),
     methods,
@@ -59,8 +59,8 @@ Imports:
     stats,
     utils
 Suggests:
-    acidroxygen (>= 0.1),
-    acidtest (>= 0.2.5),
+    acidroxygen (>= 0.1.3),
+    acidtest (>= 0.2.6),
     BiocStyle (>= 2.12),
     splatter (>= 1.8),
     knitr (>= 1.24),
@@ -86,41 +86,3 @@ biocViews:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
-Collate: 
-    'AllClasses.R'
-    'AllGenerics.R'
-    'AllGenerators.R'
-    'AllGlobals.R'
-    'Seurat-internal.R'
-    'assert-internal.R'
-    'base-Seurat-methods.R'
-    'base-cell_data_set-methods.R'
-    'cellCountsPerCluster-methods.R'
-    'cellTypesPerCluster-methods.R'
-    'clusters-methods.R'
-    'coerce-methods.R'
-    'cpm-methods.R'
-    'data.R'
-    'deprecated.R'
-    'diffExp-methods.R'
-    'diffExpPerCluster-methods.R'
-    'fetchData-internal.R'
-    'findMarkers-methods.R'
-    'group-internal.R'
-    'imports.R'
-    'normalize-methods.R'
-    'package.R'
-    'plotCellCountsPerCluster-methods.R'
-    'plotCellTypesPerCluster-methods.R'
-    'plotCounts-methods.R'
-    'plotDot-methods.R'
-    'plotFeature-methods.R'
-    'plotKnownMarkers-methods.R'
-    'plotMarker-methods.R'
-    'plotPCElbow-methods.R'
-    'plotReducedDim-methods.R'
-    'plotTopMarkers-methods.R'
-    'plotViolin-methods.R'
-    'show-methods.R'
-    'summary-methods.R'
-    'topMarkers-methods.R'
