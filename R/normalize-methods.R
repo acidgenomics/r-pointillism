@@ -86,7 +86,7 @@ NULL
 
 ## Use `scater::normalizeSCE()` instead when working with spike-ins or more
 ## complex, non-standard size factor calculations.
-## Updated 2019-08-05.
+## Updated 2019-10-30.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object, verbose = FALSE) {
         validObject(object)
@@ -104,35 +104,15 @@ NULL
                 "'scater::normalizeSCE()'."
             )
         }
-        ## Shared arguments for `normalizeSCE()` calls.
-        args <- list(
-            object = object,
-            exprs_values = "counts",
-            centre_size_factors = TRUE,
-            preserve_zeroes = FALSE
-        )
         ## Get normcounts assay.
-        sce <- do.call(
-            what = normalizeSCE,
-            args = c(
-                args,
-                return_log = FALSE
-            )
-        )
+        sce <- normalizeSCE(object, return_log = FALSE)
         assert(
             isSubset("normcounts", assayNames(sce)),
             !isSubset("logcounts", assayNames(sce))
         )
         normcounts <- normcounts(sce)
         ## Get logcounts assay.
-        sce <- do.call(
-            what = normalizeSCE,
-            args = c(
-                args,
-                return_log = TRUE,
-                log_exprs_offset = 1L
-            )
-        )
+        sce <- normalizeSCE(object, return_log = TRUE)
         assert(
             isSubset("logcounts", assayNames(sce)),
             !isSubset("normcounts", assayNames(sce))
