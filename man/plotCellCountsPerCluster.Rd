@@ -49,6 +49,6 @@ object <- Seurat
 plotCellCountsPerCluster(object)
 
 ## cell_data_set ====
-object <- cell_data_set
-plotCellCountsPerCluster(object)
+## > object <- cell_data_set
+## > plotCellCountsPerCluster(object)
 }

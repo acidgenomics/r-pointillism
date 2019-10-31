@@ -22,7 +22,7 @@
 \alias{normcounts,Seurat-method}
 \alias{organism,Seurat-method}
 \alias{organism<-,Seurat-method}
-\alias{reducedDim,Seurat-method}
+\alias{reducedDim,Seurat,ANY-method}
 \alias{reducedDimNames,Seurat-method}
 \alias{reducedDims,Seurat-method}
 \alias{rowData,Seurat-method}
@@ -71,7 +71,7 @@
 
 \S4method{organism}{Seurat}(object) <- value
 
-\S4method{reducedDim}{Seurat}(x, type = 1L, withDimnames = TRUE)
+\S4method{reducedDim}{Seurat,ANY}(x, type = 1L, withDimnames = TRUE)
 
 \S4method{reducedDimNames}{Seurat}(x)
 

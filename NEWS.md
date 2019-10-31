@@ -1,3 +1,7 @@
+## pointillism 0.4.4 (2019-10-30)
+
+Bioconductor 3.10 compatibility fixes.
+
 ## pointillism 0.4.3 (2019-10-26)
 
 ### Minor changes

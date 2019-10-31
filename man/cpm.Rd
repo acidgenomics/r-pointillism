@@ -29,7 +29,7 @@ Assay name or index position.}
 Counts per million
 }
 \note{
-Updated 2019-08-06.
+Updated 2019-10-30.
 }
 \examples{
 data(
@@ -53,16 +53,16 @@ class(cpm)
 mean(cpm)
 
 ## cell_data_set ====
-object <- cell_data_set
-cpm <- cpm(object)
-class(cpm)
-mean(cpm)
+## > object <- cell_data_set
+## > cpm <- cpm(object)
+## > class(cpm)
+## > mean(cpm)
 }
 \seealso{
 \itemize{
-\item \code{SingleCellExperiment::cpm()}.
-\item \code{edgeR::cpm()}.
-\item \code{scater::calculateCPM()}.
+\item \code{\link[SingleCellExperiment:cpm]{SingleCellExperiment::cpm()}}.
+\item \code{\link[edgeR:cpm]{edgeR::cpm()}}.
+\item \code{\link[scater:calculateCPM]{scater::calculateCPM()}}.
 }
 }
 \keyword{internal}

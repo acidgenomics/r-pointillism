@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -154,12 +154,12 @@ Assay name or index position.</p></td>
     <p><code>matrix</code></p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-06.</p>
+    <p>Updated 2019-10-30.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
 <ul>
-<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-assays.html'>SingleCellExperiment::cpm()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/assays.html'>SingleCellExperiment::cpm()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/edgeR/man/cpm.html'>edgeR::cpm()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/scater/man/calculateCPM.html'>scater::calculateCPM()</a></code>.</p></li>
 </ul>
@@ -185,12 +185,12 @@ Assay name or index position.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
 #&gt; attr(,"package")
 #&gt; [1] "Matrix"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] 4347.826</div><div class='input'>
-<span class='co'>## cell_data_set ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='no'>cpm</span> <span class='kw'>&lt;-</span> <span class='fu'>cpm</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
-#&gt; attr(,"package")
-#&gt; [1] "Matrix"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] 4958.686</div></pre>
+## cell_data_set ====
+## > object <- cell_data_set
+## > cpm <- cpm(object)
+## > class(cpm)
+## > mean(cpm)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
