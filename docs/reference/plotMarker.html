@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -258,18 +258,20 @@ Invisibly return a <code>ggplot</code> <code>list</code>.</p>
     <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>,
     <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
 )</div><div class='img'><img src='plotMarker-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## cell_data_set ====</span>
-<span class='no'>object</span> <span class='kw'>=</span> <span class='no'>cell_data_set</span>
-<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>object</span>) <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>Matrix</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Matrix/man/colSums.html'>rowSums</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4L</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>genes</span>)</div><div class='output co'>#&gt; [1] "WBGene00006789" "WBGene00006436" "WBGene00001168" "WBGene00006754"</div><div class='input'><span class='fu'>plotMarker</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
-    <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>genes</span>,
-    <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
-)</div><div class='img'><img src='plotMarker-2.png' alt='' width='700' height='433' /></div></pre>
+## cell_data_set ====
+## > object <- cell_data_set
+## > genes <- counts(object) %>%
+## >     Matrix::rowSums(.) %>%
+## >     sort(decreasing = TRUE) %>%
+## >     head(n = 4L) %>%
+## >     names()
+## > print(genes)
+## > plotMarker(
+## >     object = object,
+## >     genes = genes,
+## >     reduction = "UMAP"
+## > )
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
