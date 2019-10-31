@@ -8,10 +8,6 @@
 #' be computed internally automatically using [estimateSizeFactors()] with the
 #' recommended default settings.
 #'
-#' For complex normalizations involving custom size factors or spike-ins (i.e.
-#' when [spikeNames()]) is defined, call [scater::normalizeSCE()] directly
-#' instead.
-#'
 #' @section Normalized counts:
 #'
 #' Normalized counts are computed by dividing the counts for each cell by the
@@ -84,16 +80,11 @@ NULL
 
 
 
-## Use `scater::normalizeSCE()` instead when working with spike-ins or more
-## complex, non-standard size factor calculations.
 ## Updated 2019-10-30.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object, verbose = FALSE) {
         validObject(object)
-        assert(
-            isFlag(verbose),
-            !hasLength(spikeNames(object))
-        )
+        assert(isFlag(verbose))
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(object)
         }

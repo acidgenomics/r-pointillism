@@ -36,10 +36,6 @@ from the raw count matrix defined in \code{\link[=counts]{counts()}}. These matr
 If no library size factors are defined in \code{\link[=sizeFactors]{sizeFactors()}}, these values will
 be computed internally automatically using \code{\link[=estimateSizeFactors]{estimateSizeFactors()}} with the
 recommended default settings.
-
-For complex normalizations involving custom size factors or spike-ins (i.e.
-when \code{\link[=spikeNames]{spikeNames()}}) is defined, call \code{\link[scater:normalizeSCE]{scater::normalizeSCE()}} directly
-instead.
 }
 \note{
 Updated 2019-10-26.
