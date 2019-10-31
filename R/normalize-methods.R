@@ -44,13 +44,13 @@
 #' @return Modified object.
 #'
 #' @seealso
-#' - `estimateSizeFactors()`.
-#' - `SingleCellExperiment::normcounts()`.
-#' - `SingleCellExperiment::logcounts()`.
-#' - `scater::normalizeSCE()`.
-#' - `Seurat::NormalizeData()`.
-#' - `monocle3::preprocess_cds()`.
-#' - `monocle3::normalized_counts()`.
+#' - [estimateSizeFactors()].
+#' - [SingleCellExperiment::normcounts()].
+#' - [SingleCellExperiment::logcounts()].
+#' - [scater::normalizeSCE()].
+#' - [Seurat::NormalizeData()].
+#' - [monocle3::preprocess_cds()].
+#' - [monocle3::normalized_counts()].
 #'
 #' @examples
 #' data(
@@ -69,8 +69,8 @@
 #' object <- normalize(object)
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' object <- normalize(object)
+#' ## > object <- cell_data_set
+#' ## > object <- normalize(object)
 NULL
 
 

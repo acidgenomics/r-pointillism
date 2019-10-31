@@ -90,17 +90,17 @@ object <- Seurat
 object <- normalize(object)
 
 ## cell_data_set ====
-object <- cell_data_set
-object <- normalize(object)
+## > object <- cell_data_set
+## > object <- normalize(object)
 }
 \seealso{
 \itemize{
-\item \code{estimateSizeFactors()}.
-\item \code{SingleCellExperiment::normcounts()}.
-\item \code{SingleCellExperiment::logcounts()}.
-\item \code{scater::normalizeSCE()}.
-\item \code{Seurat::NormalizeData()}.
-\item \code{monocle3::preprocess_cds()}.
-\item \code{monocle3::normalized_counts()}.
+\item \code{\link[=estimateSizeFactors]{estimateSizeFactors()}}.
+\item \code{\link[SingleCellExperiment:normcounts]{SingleCellExperiment::normcounts()}}.
+\item \code{\link[SingleCellExperiment:logcounts]{SingleCellExperiment::logcounts()}}.
+\item \code{\link[scater:normalizeSCE]{scater::normalizeSCE()}}.
+\item \code{\link[Seurat:NormalizeData]{Seurat::NormalizeData()}}.
+\item \code{\link[monocle3:preprocess_cds]{monocle3::preprocess_cds()}}.
+\item \code{\link[monocle3:normalized_counts]{monocle3::normalized_counts()}}.
 }
 }
