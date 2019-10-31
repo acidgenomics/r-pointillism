@@ -1,14 +1,14 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
 #' @keywords internal
-#' @note Updated 2019-08-06.
+#' @note Updated 2019-10-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
 #' @seealso
-#' - `SingleCellExperiment::cpm()`.
-#' - `edgeR::cpm()`.
-#' - `scater::calculateCPM()`.
+#' - [SingleCellExperiment::cpm()].
+#' - [edgeR::cpm()].
+#' - [scater::calculateCPM()].
 #'
 #' @examples
 #' data(
@@ -49,7 +49,7 @@ NULL
 
 
 
-## Updated 2019-08-05.
+## Updated 2019-10-30.
 `cpm,SingleCellExperiment` <-  # nolint
     function(object, verbose = FALSE) {
         assert(isFlag(verbose))
@@ -65,11 +65,7 @@ NULL
         if (isTRUE(verbose)) {
             message("Calculating CPM with 'scater::calculateCPM()'.")
         }
-        calculateCPM(
-            object = object,
-            exprs_values = "counts",
-            use_size_factors = TRUE
-        )
+        calculateCPM(object)
     }
 
 
