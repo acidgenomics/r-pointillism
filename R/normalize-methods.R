@@ -96,14 +96,23 @@ NULL
             )
         }
         ## Get normcounts assay.
-        sce <- normalizeSCE(object, return_log = FALSE)
+        sce <- normalizeSCE(
+            object = object,
+            return_log = FALSE,
+            ## centreSizeFactors is now deprecated.
+            centre_size_factors = FALSE
+        )
         assert(
             isSubset("normcounts", assayNames(sce)),
             !isSubset("logcounts", assayNames(sce))
         )
         normcounts <- normcounts(sce)
         ## Get logcounts assay.
-        sce <- normalizeSCE(object, return_log = TRUE)
+        sce <- normalizeSCE(
+            object = object,
+            return_log = TRUE,
+            centre_size_factors = FALSE
+        )
         assert(
             isSubset("logcounts", assayNames(sce)),
             !isSubset("normcounts", assayNames(sce))
