@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -250,13 +250,14 @@ argument in the <code>character</code> vector.</p></td>
     <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"nCount_RNA"</span>, <span class='st'>"nFeature_RNA"</span>, <span class='st'>"PC_1"</span>, <span class='st'>"PC_2"</span>),
     <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
 )</div><div class='img'><img src='plotFeature-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## cell_data_set ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='fu'>plotFeature</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
-    <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>),
-    <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
-)</div><div class='img'><img src='plotFeature-2.png' alt='' width='700' height='433' /></div></pre>
+## cell_data_set ====
+## > object <- cell_data_set
+## > plotFeature(
+## >     object = object,
+## >     features = c("PC1", "PC2"),
+## >     reduction = "UMAP"
+## > )
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

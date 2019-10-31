@@ -36,10 +36,6 @@ from the raw count matrix defined in \code{\link[=counts]{counts()}}. These matr
 If no library size factors are defined in \code{\link[=sizeFactors]{sizeFactors()}}, these values will
 be computed internally automatically using \code{\link[=estimateSizeFactors]{estimateSizeFactors()}} with the
 recommended default settings.
-
-For complex normalizations involving custom size factors or spike-ins (i.e.
-when \code{\link[=spikeNames]{spikeNames()}}) is defined, call \code{\link[scater:normalizeSCE]{scater::normalizeSCE()}} directly
-instead.
 }
 \note{
 Updated 2019-10-26.
@@ -90,17 +86,17 @@ object <- Seurat
 object <- normalize(object)
 
 ## cell_data_set ====
-object <- cell_data_set
-object <- normalize(object)
+## > object <- cell_data_set
+## > object <- normalize(object)
 }
 \seealso{
 \itemize{
-\item \code{estimateSizeFactors()}.
-\item \code{SingleCellExperiment::normcounts()}.
-\item \code{SingleCellExperiment::logcounts()}.
-\item \code{scater::normalizeSCE()}.
-\item \code{Seurat::NormalizeData()}.
-\item \code{monocle3::preprocess_cds()}.
-\item \code{monocle3::normalized_counts()}.
+\item \code{\link[=estimateSizeFactors]{estimateSizeFactors()}}.
+\item \code{\link[SingleCellExperiment:normcounts]{SingleCellExperiment::normcounts()}}.
+\item \code{\link[SingleCellExperiment:logcounts]{SingleCellExperiment::logcounts()}}.
+\item \code{\link[scater:normalizeSCE]{scater::normalizeSCE()}}.
+\item \code{\link[Seurat:NormalizeData]{Seurat::NormalizeData()}}.
+\item \code{\link[monocle3:preprocess_cds]{monocle3::preprocess_cds()}}.
+\item \code{\link[monocle3:normalized_counts]{monocle3::normalized_counts()}}.
 }
 }

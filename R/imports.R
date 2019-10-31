@@ -30,7 +30,7 @@ NULL
 #'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
 #'   normcounts<- reducedDim reducedDim<- reducedDimNames reducedDims
-#'   sizeFactors sizeFactors<- spikeNames
+#'   sizeFactors sizeFactors<-
 #' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
 #'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom acidplots acid_theme_dark acid_theme_light

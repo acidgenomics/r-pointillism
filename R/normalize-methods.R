@@ -8,10 +8,6 @@
 #' be computed internally automatically using [estimateSizeFactors()] with the
 #' recommended default settings.
 #'
-#' For complex normalizations involving custom size factors or spike-ins (i.e.
-#' when [spikeNames()]) is defined, call [scater::normalizeSCE()] directly
-#' instead.
-#'
 #' @section Normalized counts:
 #'
 #' Normalized counts are computed by dividing the counts for each cell by the
@@ -44,13 +40,13 @@
 #' @return Modified object.
 #'
 #' @seealso
-#' - `estimateSizeFactors()`.
-#' - `SingleCellExperiment::normcounts()`.
-#' - `SingleCellExperiment::logcounts()`.
-#' - `scater::normalizeSCE()`.
-#' - `Seurat::NormalizeData()`.
-#' - `monocle3::preprocess_cds()`.
-#' - `monocle3::normalized_counts()`.
+#' - [estimateSizeFactors()].
+#' - [SingleCellExperiment::normcounts()].
+#' - [SingleCellExperiment::logcounts()].
+#' - [scater::normalizeSCE()].
+#' - [Seurat::NormalizeData()].
+#' - [monocle3::preprocess_cds()].
+#' - [monocle3::normalized_counts()].
 #'
 #' @examples
 #' data(
@@ -69,8 +65,8 @@
 #' object <- normalize(object)
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' object <- normalize(object)
+#' ## > object <- cell_data_set
+#' ## > object <- normalize(object)
 NULL
 
 
@@ -84,16 +80,11 @@ NULL
 
 
 
-## Use `scater::normalizeSCE()` instead when working with spike-ins or more
-## complex, non-standard size factor calculations.
-## Updated 2019-08-05.
+## Updated 2019-10-30.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object, verbose = FALSE) {
         validObject(object)
-        assert(
-            isFlag(verbose),
-            !hasLength(spikeNames(object))
-        )
+        assert(isFlag(verbose))
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(object)
         }
@@ -104,20 +95,12 @@ NULL
                 "'scater::normalizeSCE()'."
             )
         }
-        ## Shared arguments for `normalizeSCE()` calls.
-        args <- list(
-            object = object,
-            exprs_values = "counts",
-            centre_size_factors = TRUE,
-            preserve_zeroes = FALSE
-        )
         ## Get normcounts assay.
-        sce <- do.call(
-            what = normalizeSCE,
-            args = c(
-                args,
-                return_log = FALSE
-            )
+        sce <- normalizeSCE(
+            object = object,
+            return_log = FALSE,
+            ## centreSizeFactors is now deprecated.
+            centre_size_factors = FALSE
         )
         assert(
             isSubset("normcounts", assayNames(sce)),
@@ -125,13 +108,10 @@ NULL
         )
         normcounts <- normcounts(sce)
         ## Get logcounts assay.
-        sce <- do.call(
-            what = normalizeSCE,
-            args = c(
-                args,
-                return_log = TRUE,
-                log_exprs_offset = 1L
-            )
+        sce <- normalizeSCE(
+            object = object,
+            return_log = TRUE,
+            centre_size_factors = FALSE
         )
         assert(
             isSubset("logcounts", assayNames(sce)),

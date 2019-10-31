@@ -43,8 +43,8 @@
 #' plotReducedDim(object, reduction = "UMAP")
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' plotReducedDim(object, reduction = "UMAP")
+#' ## > object <- cell_data_set
+#' ## > plotReducedDim(object, reduction = "UMAP")
 NULL
 
 

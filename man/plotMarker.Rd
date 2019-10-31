@@ -115,18 +115,18 @@ plotMarker(
 )
 
 ## cell_data_set ====
-object = cell_data_set
-genes <- counts(object) \%>\%
-    Matrix::rowSums(.) \%>\%
-    sort(decreasing = TRUE) \%>\%
-    head(n = 4L) \%>\%
-    names()
-print(genes)
-plotMarker(
-    object = object,
-    genes = genes,
-    reduction = "UMAP"
-)
+## > object <- cell_data_set
+## > genes <- counts(object) \%>\%
+## >     Matrix::rowSums(.) \%>\%
+## >     sort(decreasing = TRUE) \%>\%
+## >     head(n = 4L) \%>\%
+## >     names()
+## > print(genes)
+## > plotMarker(
+## >     object = object,
+## >     genes = genes,
+## >     reduction = "UMAP"
+## > )
 }
 \author{
 Michael Steinbaugh, Rory Kirchner

@@ -52,10 +52,10 @@
 #' plotCounts(object, genes = genes, perSample = FALSE)
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' genes <- head(rownames(object), n = 4L)
-#' print(genes)
-#' plotCounts(object, genes = genes)
+#' ## > object <- cell_data_set
+#' ## > genes <- head(rownames(object), n = 4L)
+#' ## > print(genes)
+#' ## > plotCounts(object, genes = genes)
 NULL
 
 
