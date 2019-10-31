@@ -32,10 +32,10 @@
 #' mean(cpm)
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' cpm <- cpm(object)
-#' class(cpm)
-#' mean(cpm)
+#' ## > object <- cell_data_set
+#' ## > cpm <- cpm(object)
+#' ## > class(cpm)
+#' ## > mean(cpm)
 NULL
 
 

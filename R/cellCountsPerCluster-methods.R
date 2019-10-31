@@ -1,6 +1,6 @@
 #' @name cellCountsPerCluster
 #' @inherit bioverbs::cellCountsPerCluster
-#' @note Updated 2019-09-03.
+#' @note Updated 2019-10-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -20,9 +20,9 @@
 #' print(x)
 #'
 #' ## cell_data_set ===
-#' object <- cell_data_set
-#' x <- cellCountsPerCluster(object)
-#' print(x)
+#' ## > object <- cell_data_set
+#' ## > x <- cellCountsPerCluster(object)
+#' ## > print(x)
 NULL
 
 
@@ -36,7 +36,7 @@ NULL
 
 
 
-## Updated 2019-09-02.
+## Updated 2019-10-30.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)

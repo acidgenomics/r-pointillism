@@ -32,8 +32,8 @@
 #' plotPCElbow(object)
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' plotPCElbow(object)
+#' ## > object <- cell_data_set
+#' ## > plotPCElbow(object)
 NULL
 
 
