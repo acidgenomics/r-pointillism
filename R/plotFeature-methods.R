@@ -27,12 +27,12 @@
 #' )
 #'
 #' ## cell_data_set ====
-#' object <- cell_data_set
-#' plotFeature(
-#'     object = object,
-#'     features = c("PC1", "PC2"),
-#'     reduction = "UMAP"
-#' )
+#' ## > object <- cell_data_set
+#' ## > plotFeature(
+#' ## >     object = object,
+#' ## >     features = c("PC1", "PC2"),
+#' ## >     reduction = "UMAP"
+#' ## > )
 NULL
 
 
