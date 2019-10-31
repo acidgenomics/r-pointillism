@@ -73,7 +73,7 @@ normcounts() and logcounts() slots in assays(), respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -163,9 +163,6 @@ Run the function with verbose output.</p></td>
     <p>If no library size factors are defined in <code>sizeFactors()</code>, these values will
 be computed internally automatically using <code>estimateSizeFactors()</code> with the
 recommended default settings.</p>
-<p>For complex normalizations involving custom size factors or spike-ins (i.e.
-when <code>spikeNames()</code>) is defined, call <code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code> directly
-instead.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-10-26.</p>
@@ -203,8 +200,8 @@ pseudo-count (i.e., on the same scale as the counts).</p>
     <div class='dont-index'>
 <ul>
 <li><p><code>estimateSizeFactors()</code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-assays.html'>SingleCellExperiment::normcounts()</a></code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SCE-assays.html'>SingleCellExperiment::logcounts()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/assays.html'>SingleCellExperiment::normcounts()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/assays.html'>SingleCellExperiment::logcounts()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/scater/man/normalize.html'>scater::normalizeSCE()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/NormalizeData.html'>Seurat::NormalizeData()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/monocle3/man/preprocess_cds.html'>monocle3::preprocess_cds()</a></code>.</p></li>
@@ -228,8 +225,8 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)
 
 <span class='co'>## cell_data_set ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>cell_data_set</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div></pre>
+<span class='co'>## &gt; object &lt;- cell_data_set</span>
+<span class='co'>## &gt; object &lt;- normalize(object)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
