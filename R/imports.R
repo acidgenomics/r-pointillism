@@ -58,7 +58,7 @@ NULL
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
 #' @importFrom rlang !! sym
 #' @importFrom scales percent pretty_breaks
-#' @importFrom scater calculateCPM normalizeSCE
+#' @importFrom scater calculateCPM normalizeCounts
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
 #' @importFrom utils capture.output globalVariables packageVersion

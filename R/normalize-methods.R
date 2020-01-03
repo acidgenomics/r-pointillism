@@ -1,8 +1,3 @@
-#' @importFrom scater normalizeCounts
-NULL
-
-
-
 #' Normalize expression using pre-computed size factors
 #'
 #' This function calculates size factor normalized and log normalized counts
@@ -88,7 +83,7 @@ NULL
 
 ## Updated 2020-01-03.
 `normalize,SingleCellExperiment` <-  # nolint
-    function(object, verbose = FALSE) {
+    function(object) {
         validObject(object)
         assert(isFlag(verbose))
         if (is.null(sizeFactors(object))) {
@@ -99,12 +94,10 @@ NULL
             )
         }
         assert(!is.null(sizeFactors(object)))
-        if (isTRUE(verbose)) {
-            message(
-                "Computing 'normcounts' and 'logcounts' assays using ",
-                "'scater::normalizeCounts()'."
-            )
-        }
+        message(
+            "Computing 'normcounts' and 'logcounts' assays using ",
+            "'scater::normalizeCounts()'."
+        )
         ## Get normcounts matrix.
         normcounts <- normalizeCounts(
             x = object,
