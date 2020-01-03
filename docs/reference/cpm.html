@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -125,10 +125,10 @@
     <pre class="usage"><span class='fu'>cpm</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>cpm</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>cpm</span>(<span class='no'>object</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>cpm</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>cpm</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -136,11 +136,6 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Run the function with verbose output.</p></td>
     </tr>
     <tr>
       <th>assay</th>
@@ -154,7 +149,7 @@ Assay name or index position.</p></td>
     <p><code>matrix</code></p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-10-30.</p>
+    <p>Updated 2020-01-03.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -175,14 +170,12 @@ Assay name or index position.</p></td>
 
 <span class='co'>## SingleCellExperiment ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>estimateSizeFactors</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using 'mean-ratio' method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='input'><span class='no'>cpm</span> <span class='kw'>&lt;-</span> <span class='fu'>cpm</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>estimateSizeFactors</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using 'mean-ratio' method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='input'><span class='no'>cpm</span> <span class='kw'>&lt;-</span> <span class='fu'>cpm</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating CPM with 'scater::calculateCPM()'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
 #&gt; attr(,"package")
 #&gt; [1] "Matrix"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] 2000</div><div class='input'>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>cpm</span> <span class='kw'>&lt;-</span> <span class='fu'>cpm</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
+<span class='no'>cpm</span> <span class='kw'>&lt;-</span> <span class='fu'>cpm</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Generating CPM with 'Seurat::NormalizeData()'.</span></div><div class='output co'>#&gt; <span class='message'>Returning CPM with 'Seurat::GetAssayData()'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] "dgCMatrix"
 #&gt; attr(,"package")
 #&gt; [1] "Matrix"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>cpm</span>)</div><div class='output co'>#&gt; [1] 4347.826</div><div class='input'>
 ## cell_data_set ====

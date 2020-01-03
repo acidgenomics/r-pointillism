@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -124,17 +124,31 @@
 
     <pre class="usage"><span class='fu'>plotCellTypesPerCluster</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='no'>...</span>)
 
-
-  <span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
-<span class='fu'>plotCellTypesPerCluster</span>(<span class='no'>object</span>,
-  <span class='no'>markers</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())
+<span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
+<span class='fu'>plotCellTypesPerCluster</span>(
+  <span class='no'>object</span>,
+  <span class='no'>markers</span>,
+  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)
 
 <span class='co'># S4 method for Seurat,KnownMarkers</span>
-<span class='fu'>plotCellTypesPerCluster</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>,
-  <span class='st'>"sum"</span>), <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())</pre>
+<span class='fu'>plotCellTypesPerCluster</span>(
+  <span class='no'>object</span>,
+  <span class='no'>markers</span>,
+  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,14 +235,14 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
 #&gt; 
 #&gt; 
 #&gt; ### Macrophage
-#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 2 {.tabset}
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; ### Dendritic Cell
-#&gt; </div><div class='img'><img src='plotCellTypesPerCluster-2.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotCellTypesPerCluster-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotCellTypesPerCluster-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -126,14 +126,13 @@
 <span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>logcounts</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>logcounts</span>(<span class='no'>object</span>)
 
 <span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>,
-  <span class='st'>"DataFrame"</span>))
+<span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"DataFrame"</span>))
 
 <span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>normcounts</span>(<span class='no'>object</span>)
 
 <span class='co'># S4 method for cell_data_set</span>
 <span class='fu'>sizeFactors</span>(<span class='no'>object</span>)
@@ -151,11 +150,6 @@
     <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Run the function with verbose output.</p></td>
     </tr>
     <tr>
       <th>return</th>

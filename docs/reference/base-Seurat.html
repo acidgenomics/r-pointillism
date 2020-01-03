@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -150,7 +150,7 @@
 <span class='fu'>interestingGroups</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>logcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>logcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>mapGenesToIDs</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
@@ -171,7 +171,7 @@
 <span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for Seurat</span>
 <span class='fu'>organism</span>(<span class='no'>object</span>)
@@ -198,10 +198,13 @@
 <span class='fu'>rowRanges</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ignoreCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>,
-  <span class='st'>"^samRef$"</span>), <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^ident$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^sScore$"</span>,
-  <span class='st'>"^phase$"</span>, <span class='st'>"^oldIdent$"</span>, <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[0-9]+"</span>))
+<span class='fu'>sampleData</span>(
+  <span class='no'>object</span>,
+  <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ignoreCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>, <span class='st'>"^samRef$"</span>),
+  <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^ident$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^sScore$"</span>, <span class='st'>"^phase$"</span>, <span class='st'>"^oldIdent$"</span>,
+    <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[0-9]+"</span>)
+)
 
 <span class='co'># S4 method for Seurat,DataFrame</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
@@ -239,11 +242,6 @@
       <th>assay</th>
       <td><p><code><a href='https://rdrr.io/r/base/vector.html'>vector(1)</a></code>.
 Assay name or index position.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Run the function with verbose output.</p></td>
     </tr>
     <tr>
       <th>genes</th>
