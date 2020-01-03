@@ -85,7 +85,6 @@ NULL
 `normalize,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)
-        assert(isFlag(verbose))
         if (is.null(sizeFactors(object))) {
             object <- estimateSizeFactors(
                 object = object,
@@ -132,14 +131,11 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normalize,Seurat` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message("Normalizing with 'Seurat::NormalizeData()'.")
-        }
-        NormalizeData(object = object, verbose = verbose)
+    function(object) {
+        message("Normalizing with 'Seurat::NormalizeData()'.")
+        NormalizeData(object = object, verbose = TRUE)
     }
 
 
@@ -154,20 +150,17 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normalize,cell_data_set` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message("Normalizing with 'monocle3::preprocess_cds()'.")
-        }
+    function(object) {
+        message("Normalizing with 'monocle3::preprocess_cds()'.")
         monocle3::preprocess_cds(
             cds = object,
             method = "PCA",
             norm_method = "log",
             pseudo_count = 1L,
             scaling = TRUE,
-            verbose = verbose
+            verbose = TRUE
         )
     }
 

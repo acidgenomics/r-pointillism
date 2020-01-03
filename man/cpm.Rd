@@ -8,15 +8,12 @@
 \usage{
 cpm(object, ...)
 
-\S4method{cpm}{SingleCellExperiment}(object, verbose = FALSE)
+\S4method{cpm}{SingleCellExperiment}(object)
 
-\S4method{cpm}{Seurat}(object, assay = NULL, verbose = FALSE)
+\S4method{cpm}{Seurat}(object, assay = NULL)
 }
 \arguments{
 \item{object}{Object.}
-
-\item{verbose}{\code{logical(1)}.
-Run the function with verbose output.}
 
 \item{assay}{\code{vector(1)}.
 Assay name or index position.}
@@ -28,7 +25,7 @@ Assay name or index position.}
 Counts per million
 }
 \note{
-Updated 2019-10-30.
+Updated 2020-01-03.
 }
 \examples{
 data(

@@ -35,16 +35,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `logcounts,cell_data_set` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message(
-                "Returning log normalized counts with ",
-                "'monocle3::normalized_counts()'."
-            )
-        }
+    function(object) {
+        message(
+            "Returning log normalized counts with ",
+            "'monocle3::normalized_counts()'."
+        )
         monocle3::normalized_counts(
             cds = object,
             norm_method = "log",
@@ -104,16 +101,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normcounts,cell_data_set` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message(
-                "Getting normalized counts with ",
-                "'monocle3::normalized_counts()'."
-            )
-        }
+    function(object) {
+        message(
+            "Getting normalized counts with ",
+            "'monocle3::normalized_counts()'."
+        )
         monocle3::normalized_counts(
             cds = object,
             norm_method = "size_only",
