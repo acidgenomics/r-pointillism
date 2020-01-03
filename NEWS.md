@@ -1,3 +1,19 @@
+## pointillism 0.4.5 (2020-01-30)
+
+### Major changes
+
+- `normalize`: reworked internal code to reflect changes in scater package.
+  Instead of calling `normalizeSCE` or `normalize` internally, `normalizeCounts`
+  is the recommended method for returning `normcounts` and `logcounts` assays
+  that can be slotted in `assays` of the `SingleCellExperiment` object.
+- Deprecated `plotDot` in favor of `plotDots` (note plural spelling change).
+  This reads better and improves consistency with conventions used in scater.
+
+### Minor changes
+
+- Removed user-defined option to reduce verbosity, where applicable. If these
+  functions are too noisy, we'll tone it down in the future.
+
 ## pointillism 0.4.4 (2019-10-30)
 
 Bioconductor 3.10 compatibility fixes.
