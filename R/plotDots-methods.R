@@ -1,7 +1,7 @@
 #' @rdname plotCounts
-#' @name plotDot
-#' @importFrom bioverbs plotDot
-#' @usage plotDot(object, ...)
+#' @name plotDots
+#' @importFrom bioverbs plotDots
+#' @usage plotDots(object, ...)
 #' @export
 NULL
 
@@ -29,8 +29,8 @@ NULL
 
 
 
-## Updated 2019-08-06.
-`plotDot,SingleCellExperiment` <-  # nolint
+## Updated 2020-01-03.
+`plotDots,SingleCellExperiment` <-  # nolint
     function(
         object,
         genes,
@@ -146,7 +146,7 @@ NULL
         p
     }
 
-formals(`plotDot,SingleCellExperiment`)[
+formals(`plotDots,SingleCellExperiment`)[
     c("color", "legend")] <- list(
         color = continuousColorPurpleOrange,
         legend = legend
@@ -157,39 +157,39 @@ formals(`plotDot,SingleCellExperiment`)[
 #' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotDot",
+    f = "plotDots",
     signature = signature("SingleCellExperiment"),
-    definition = `plotDot,SingleCellExperiment`
+    definition = `plotDots,SingleCellExperiment`
 )
 
 
 
 ## Updated 2019-07-31.
-`plotDot,Seurat` <-  # nolint
-    `plotDot,SingleCellExperiment`
+`plotDots,Seurat` <-  # nolint
+    `plotDots,SingleCellExperiment`
 
 
 
 #' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotDot",
+    f = "plotDots",
     signature = signature("Seurat"),
-    definition = `plotDot,Seurat`
+    definition = `plotDots,Seurat`
 )
 
 
 
 ## Updated 2019-08-32.
-`plotDot,cell_data_set` <-  # nolint
-    `plotDot,SingleCellExperiment`
+`plotDots,cell_data_set` <-  # nolint
+    `plotDots,SingleCellExperiment`
 
 
 
 #' @rdname plotCounts
 #' @export
 setMethod(
-    f = "plotDot",
+    f = "plotDots",
     signature = signature("cell_data_set"),
-    definition = `plotDot,cell_data_set`
+    definition = `plotDots,cell_data_set`
 )

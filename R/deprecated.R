@@ -77,13 +77,32 @@ runZinbwave <- function(...) {
 
 
 
-# v0.4.0 =======================================================================
+## v0.4.0 ======================================================================
 #' @rdname deprecated
 #' @export
 clusterID <- function(...) {
     .Deprecated("clusters")
     clusters(...)
 }
+
+
+
+## v0.4.5 ======================================================================
+#' @importFrom bioverbs plotDot
+NULL
+
+`plotDot,ANY` <- function(object, ...) {
+    ## > .Deprecated("plotDots")
+    plotDots(object, ...)
+}
+
+#' @rdname deprecated
+#' @export
+setMethod(
+    f = "plotDot",
+    signature = signature("ANY"),
+    definition = `plotDot,ANY`
+)
 
 
 

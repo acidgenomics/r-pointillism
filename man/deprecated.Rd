@@ -3,12 +3,17 @@
 \name{deprecated}
 \alias{deprecated}
 \alias{clusterID}
+\alias{plotDot,ANY-method}
 \title{Deprecated functions}
 \usage{
 clusterID(...)
+
+\S4method{plotDot}{ANY}(object, ...)
 }
 \arguments{
 \item{...}{Additional arguments.}
+
+\item{object}{Object.}
 }
 \value{
 \code{.Deprecated}.
