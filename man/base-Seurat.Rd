@@ -50,7 +50,7 @@
 
 \S4method{interestingGroups}{Seurat,character}(object) <- value
 
-\S4method{logcounts}{Seurat}(object, assay = NULL, verbose = FALSE)
+\S4method{logcounts}{Seurat}(object, assay = NULL)
 
 \S4method{mapGenesToIDs}{Seurat}(object, genes, strict = TRUE)
 
@@ -64,7 +64,7 @@
 
 \S4method{metrics}{Seurat}(object, ...)
 
-\S4method{normcounts}{Seurat}(object, assay = NULL, verbose = FALSE)
+\S4method{normcounts}{Seurat}(object, assay = NULL)
 
 \S4method{organism}{Seurat}(object)
 
@@ -111,9 +111,6 @@ For more information:\preformatted{help(topic = "Extract", package = "base")
 
 \item{assay}{\code{vector(1)}.
 Assay name or index position.}
-
-\item{verbose}{\code{logical(1)}.
-Run the function with verbose output.}
 
 \item{genes}{\code{character}.
 Gene identifiers.}

@@ -205,30 +205,25 @@ setReplaceMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `logcounts,Seurat` <-  # nolint
-    function(object, assay = NULL, verbose = FALSE) {
-        assert(isFlag(verbose))
+    function(object, assay = NULL) {
         norm <- .seuratNormalizationMethod(object, assay = assay)
         if (norm != "LogNormalize") {
-            if (isTRUE(verbose)) {
-                message(
-                    "Generating log normalized counts with ",
-                    "'Seurat::NormalizeData()'."
-                )
-            }
+            message(
+                "Generating log normalized counts with ",
+                "'Seurat::NormalizeData()'."
+            )
             object <- NormalizeData(
                 object = object,
                 normalization.method = "LogNormalize",
-                verbose = verbose
+                verbose = TRUE
             )
         }
-        if (isTRUE(verbose)) {
-            message(
-                "Returning log normalized counts with ",
-                "'Seurat::GetAssayData()'."
-            )
-        }
+        message(
+            "Returning log normalized counts with ",
+            "'Seurat::GetAssayData()'."
+        )
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 
@@ -381,33 +376,28 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normcounts,Seurat` <-  # nolint
-    function(object, assay = NULL, verbose = FALSE) {
-        assert(isFlag(verbose))
+    function(object, assay = NULL) {
         ## Check for pre-calculated relative counts (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1L)) {
-            if (isTRUE(verbose)) {
-                message(
-                    "Generating normalized counts with ",
-                    "'Seurat::NormalizeData()'."
-                )
-            }
+            message(
+                "Generating normalized counts with ",
+                "'Seurat::NormalizeData()'."
+            )
             object <- NormalizeData(
                 object = object,
                 normalization.method = "RC",
                 scale.factor = 1L,
-                verbose = verbose
+                verbose = TRUE
             )
         }
-        if (isTRUE(verbose)) {
-            message(
-                "Returning normalized counts with ",
-                "'Seurat::GetAssayData()'."
-            )
-        }
+        message(
+            "Returning normalized counts with ",
+            "'Seurat::GetAssayData()'."
+        )
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 

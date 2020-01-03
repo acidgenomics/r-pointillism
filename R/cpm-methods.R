@@ -1,7 +1,7 @@
 #' @name cpm
 #' @inherit bioverbs::cpm
 #' @keywords internal
-#' @note Updated 2019-10-30.
+#' @note Updated 2020-01-03.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -49,22 +49,17 @@ NULL
 
 
 
-## Updated 2019-10-30.
+## Updated 2020-01-03.
 `cpm,SingleCellExperiment` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
+    function(object) {
         ## Early return if cpm assay is defined.
         if (isSubset("cpm", assayNames(object))) {
-            if (isTRUE(verbose)) {
-                message("Returning CPM from pre-calculated 'cpm' assay.")
-            }
+            message("Returning CPM from pre-calculated 'cpm' assay.")
             return(assay(x = object, i = "cpm"))
         }
         ## Otherwise, calculate on the fly.
         assert(is.numeric(sizeFactors(object)))
-        if (isTRUE(verbose)) {
-            message("Calculating CPM with 'scater::calculateCPM()'.")
-        }
+        message("Calculating CPM with 'scater::calculateCPM()'.")
         calculateCPM(object)
     }
 
@@ -80,28 +75,23 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `cpm,Seurat` <-  # nolint
-    function(object, assay = NULL, verbose = FALSE) {
-        assert(isFlag(verbose))
+    function(object, assay = NULL) {
         ## Check for pre-calculated CPM (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1e6L)) {
-            if (isTRUE(verbose)) {
-                message("Generating CPM with 'Seurat::NormalizeData()'.")
-            }
+            message("Generating CPM with 'Seurat::NormalizeData()'.")
             object <- NormalizeData(
                 object = object,
                 assay = assay,
                 normalization.method = "RC",
                 scale.factor = 1e6L,
-                verbose = verbose
+                verbose = TRUE
             )
         }
-        if (isTRUE(verbose)) {
-            message("Returning CPM with 'Seurat::GetAssayData()'.")
-        }
+        message("Returning CPM with 'Seurat::GetAssayData()'.")
         GetAssayData(object = object, slot = "data", assay = assay)
     }
 

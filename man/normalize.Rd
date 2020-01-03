@@ -11,15 +11,12 @@ normalize(object, ...)
 
 \S4method{normalize}{SingleCellExperiment}(object)
 
-\S4method{normalize}{Seurat}(object, verbose = FALSE)
+\S4method{normalize}{Seurat}(object)
 
-\S4method{normalize}{cell_data_set}(object, verbose = FALSE)
+\S4method{normalize}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
-
-\item{verbose}{\code{logical(1)}.
-Run the function with verbose output.}
 
 \item{...}{Additional arguments.}
 }
