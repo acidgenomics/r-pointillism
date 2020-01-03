@@ -91,10 +91,11 @@ clusterID <- function(...) {
 #' @importFrom bioverbs plotDot
 NULL
 
-`plotDot,ANY` <- function(object, ...) {
-    ## > .Deprecated("plotDots")
-    plotDots(object, ...)
-}
+`plotDot,ANY` <-  # nolint
+    function(object, ...) {
+        ## > .Deprecated("plotDots")
+        plotDots(object, ...)
+    }
 
 #' @rdname deprecated
 #' @export
