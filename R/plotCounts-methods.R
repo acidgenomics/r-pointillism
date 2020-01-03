@@ -1,9 +1,9 @@
 #' @name plotCounts
-#' @aliases plotDot plotViolin
+#' @aliases plotDots plotViolin
 #' @inherit bioverbs::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
-#' @note Updated 2019-08-06.
+#' @note Updated 2020-01-03.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
@@ -88,7 +88,7 @@ NULL
         if (geom == "dot") {
             assert(identical(assay, "logcounts"))
             args[["assay"]] <- NULL
-            what <- plotDot
+            what <- plotDots
         } else if (geom == "violin") {
             what <- plotViolin
         }
