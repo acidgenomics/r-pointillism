@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -125,14 +125,24 @@
     <pre class="usage"><span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
-<span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>,
-  <span class='no'>markers</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())
+<span class='fu'>plotKnownMarkers</span>(
+  <span class='no'>object</span>,
+  <span class='no'>markers</span>,
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)
 
 <span class='co'># S4 method for Seurat,KnownMarkers</span>
-<span class='fu'>plotKnownMarkers</span>(<span class='no'>object</span>, <span class='no'>markers</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='no'>...</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())</pre>
+<span class='fu'>plotKnownMarkers</span>(
+  <span class='no'>object</span>,
+  <span class='no'>markers</span>,
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,10 +203,10 @@ Invisibly return a <code>ggplot</code> <code>list</code>.</p>
 )</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Dendritic Cell {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-8.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-7.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Macrophage {.tabset}
-#&gt; </div><div class='img'><img src='plotKnownMarkers-9.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotKnownMarkers-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotKnownMarkers-9.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

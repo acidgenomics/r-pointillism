@@ -72,7 +72,7 @@ marker analysis and add corresponding gene annotations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -132,8 +132,7 @@ marker analysis and add corresponding gene annotations.</p>
 <span class='fu'>SeuratMarkers</span>(<span class='no'>object</span>, <span class='no'>ranges</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)
 
 <span class='co'># S4 method for data.frame</span>
-<span class='fu'>SeuratMarkersPerCluster</span>(<span class='no'>object</span>, <span class='no'>ranges</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+<span class='fu'>SeuratMarkersPerCluster</span>(<span class='no'>object</span>, <span class='no'>ranges</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,8 +190,8 @@ in the <code>gene</code> column.</p>
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75
-#&gt; version: 0.4.4
-#&gt; date: 2019-10-30</div><div class='input'>
+#&gt; version: 0.4.5
+#&gt; date: 2020-01-03</div><div class='input'>
 <span class='co'>## `FindAllMarkers()` return.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span>(<span class='fu'><a href='https://rdrr.io/r/utils/capture.output.html'>capture.output</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(
     <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Seurat</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Seurat/man/FindAllMarkers.html'>FindAllMarkers</a></span>(<span class='no'>object</span>)

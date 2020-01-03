@@ -32,7 +32,7 @@
 #' pseudo-count (i.e., on the same scale as the counts).
 #'
 #' @name normalize
-#' @note Updated 2019-10-26.
+#' @note Updated 2020-01-03.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -43,7 +43,8 @@
 #' - [estimateSizeFactors()].
 #' - [SingleCellExperiment::normcounts()].
 #' - [SingleCellExperiment::logcounts()].
-#' - [scater::normalizeSCE()].
+#' - [scater::normalizeCounts()].
+#' - [scater::logNormCounts()].
 #' - [Seurat::NormalizeData()].
 #' - [monocle3::preprocess_cds()].
 #' - [monocle3::normalized_counts()].
@@ -80,46 +81,38 @@ NULL
 
 
 
-## Updated 2019-10-30.
+## Updated 2020-01-03.
 `normalize,SingleCellExperiment` <-  # nolint
-    function(object, verbose = FALSE) {
+    function(object) {
         validObject(object)
-        assert(isFlag(verbose))
         if (is.null(sizeFactors(object))) {
-            object <- estimateSizeFactors(object)
-        }
-        assert(!is.null(sizeFactors(object)))
-        if (isTRUE(verbose)) {
-            message(
-                "Computing 'normcounts' and 'logcounts' assays using ",
-                "'scater::normalizeSCE()'."
+            object <- estimateSizeFactors(
+                object = object,
+                type = "mean-ratio",
+                center = 1L
             )
         }
-        ## Get normcounts assay.
-        sce <- normalizeSCE(
-            object = object,
-            return_log = FALSE,
-            ## centreSizeFactors is now deprecated.
-            centre_size_factors = FALSE
+        assert(!is.null(sizeFactors(object)))
+        message(
+            "Computing 'normcounts' and 'logcounts' assays using ",
+            "'scater::normalizeCounts()'."
         )
-        assert(
-            isSubset("normcounts", assayNames(sce)),
-            !isSubset("logcounts", assayNames(sce))
+        ## Get normcounts matrix.
+        normcounts <- normalizeCounts(
+            x = object,
+            log = FALSE,
+            ## Already centered (see `estimateSizeFactors()` step above).
+            center_size_factors = FALSE
         )
-        normcounts <- normcounts(sce)
-        ## Get logcounts assay.
-        sce <- normalizeSCE(
-            object = object,
-            return_log = TRUE,
-            centre_size_factors = FALSE
-        )
-        assert(
-            isSubset("logcounts", assayNames(sce)),
-            !isSubset("normcounts", assayNames(sce))
-        )
-        logcounts <- logcounts(sce)
-        ## Slot the normalized counts in object.
+        assert(is(normcounts, "Matrix"))
         normcounts(object) <- normcounts
+        ## Get logcounts matrix.
+        logcounts <- normalizeCounts(
+            x = object,
+            log = TRUE,
+            center_size_factors = FALSE
+        )
+        assert(is(logcounts, "Matrix"))
         logcounts(object) <- logcounts
         ## Stash scater package version in metadata.
         metadata(object)[["scater"]] <- packageVersion("scater")
@@ -138,14 +131,11 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normalize,Seurat` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message("Normalizing with 'Seurat::NormalizeData()'.")
-        }
-        NormalizeData(object = object, verbose = verbose)
+    function(object) {
+        message("Normalizing with 'Seurat::NormalizeData()'.")
+        NormalizeData(object = object, verbose = TRUE)
     }
 
 
@@ -160,20 +150,17 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-01-03.
 `normalize,cell_data_set` <-  # nolint
-    function(object, verbose = FALSE) {
-        assert(isFlag(verbose))
-        if (isTRUE(verbose)) {
-            message("Normalizing with 'monocle3::preprocess_cds()'.")
-        }
+    function(object) {
+        message("Normalizing with 'monocle3::preprocess_cds()'.")
         monocle3::preprocess_cds(
             cds = object,
             method = "PCA",
             norm_method = "log",
             pseudo_count = 1L,
             scaling = TRUE,
-            verbose = verbose
+            verbose = TRUE
         )
     }
 

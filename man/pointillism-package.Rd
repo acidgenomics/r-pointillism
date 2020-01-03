@@ -18,12 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com} (0000-0002-2403-2221)
+\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com} (\href{https://orcid.org/0000-0002-2403-2221}{ORCID})
 
 Other contributors:
 \itemize{
   \item Acid Genomics [copyright holder, funder]
-  \item Rory Kirchner \email{roryk@alum.mit.edu} (0000-0003-4814-5885) [contributor]
+  \item Rory Kirchner \email{roryk@alum.mit.edu} (\href{https://orcid.org/0000-0003-4814-5885}{ORCID}) [contributor]
 }
 
 }
