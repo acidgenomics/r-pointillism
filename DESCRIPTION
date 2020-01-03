@@ -45,7 +45,7 @@ Imports:
     Seurat (>= 3.1.1),
     SummarizedExperiment (>= 1.16),
     acidplots (>= 0.2.21),
-    bioverbs (>= 0.2.12),
+    bioverbs (>= 0.2.13),
     cowplot (>= 1.0),
     edgeR (>= 3.28),
     ggplot2 (>= 3.2),
