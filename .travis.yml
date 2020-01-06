@@ -1,7 +1,7 @@
 language: general
 
-env:
-  - RCHECK_SKIP_UPDATE=1
+# env:
+#   - RCHECK_SKIP_UPDATE=1
 
 services:
   - docker
