@@ -1,5 +1,5 @@
 #' @name findMarkers
-#' @inherit bioverbs::findMarkers
+#' @inherit acidgenerics::findMarkers
 #' @note Updated 2019-08-02.
 #'
 #' @inheritParams acidroxygen::params
@@ -23,7 +23,7 @@ NULL
 
 #' @rdname findMarkers
 #' @name findMarkers
-#' @importFrom bioverbs findMarkers
+#' @importFrom acidgenerics findMarkers
 #' @usage findMarkers(object, ...)
 #' @export
 NULL

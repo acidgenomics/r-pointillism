@@ -1,6 +1,6 @@
 #' @name plotCounts
 #' @aliases plotDots plotViolin
-#' @inherit bioverbs::plotCounts
+#' @inherit acidgenerics::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
 #' @note Updated 2020-01-03.
@@ -62,7 +62,7 @@ NULL
 
 #' @rdname plotCounts
 #' @name plotCounts
-#' @importFrom bioverbs plotCounts
+#' @importFrom acidgenerics plotCounts
 #' @usage plotCounts(object, ...)
 #' @export
 NULL

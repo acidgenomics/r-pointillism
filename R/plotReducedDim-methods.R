@@ -1,7 +1,7 @@
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @inherit bioverbs::plotReducedDim
+#' @inherit acidgenerics::plotReducedDim
 #' @note Updated 2019-09-04.
 #'
 #' @inheritParams acidroxygen::params
@@ -51,7 +51,7 @@ NULL
 
 #' @rdname plotReducedDim
 #' @name plotReducedDim
-#' @importFrom bioverbs plotReducedDim
+#' @importFrom acidgenerics plotReducedDim
 #' @usage plotReducedDim(object, ...)
 #' @export
 NULL
@@ -65,14 +65,14 @@ NULL
 
 #' @rdname plotReducedDim
 #' @name plotTSNE
-#' @importFrom bioverbs plotTSNE
+#' @importFrom acidgenerics plotTSNE
 #' @usage plotTSNE(object, ...)
 #' @export
 NULL
 
 #' @rdname plotReducedDim
 #' @name plotUMAP
-#' @importFrom bioverbs plotUMAP
+#' @importFrom acidgenerics plotUMAP
 #' @usage plotUMAP(object, ...)
 #' @export
 NULL

@@ -1,5 +1,5 @@
 #' @name plotCellCountsPerCluster
-#' @inherit bioverbs::plotCellCountsPerCluster
+#' @inherit acidgenerics::plotCellCountsPerCluster
 #' @note Updated 2019-08-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -27,7 +27,7 @@ NULL
 
 #' @rdname plotCellCountsPerCluster
 #' @name plotCellCountsPerCluster
-#' @importFrom bioverbs plotCellCountsPerCluster
+#' @importFrom acidgenerics plotCellCountsPerCluster
 #' @usage plotCellCountsPerCluster(object, ...)
 #' @export
 NULL

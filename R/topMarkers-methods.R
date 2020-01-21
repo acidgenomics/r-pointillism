@@ -1,5 +1,5 @@
 #' @name topMarkers
-#' @inherit bioverbs::topMarkers
+#' @inherit acidgenerics::topMarkers
 #' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -23,7 +23,7 @@ NULL
 
 #' @rdname topMarkers
 #' @name topMarkers
-#' @importFrom bioverbs topMarkers
+#' @importFrom acidgenerics topMarkers
 #' @usage topMarkers(object, ...)
 #' @export
 NULL

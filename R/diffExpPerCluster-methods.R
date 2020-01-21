@@ -1,5 +1,5 @@
 #' @name diffExpPerCluster
-#' @inherit bioverbs::diffExpPerCluster
+#' @inherit acidgenerics::diffExpPerCluster
 #' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -40,7 +40,7 @@ NULL
 
 #' @rdname diffExpPerCluster
 #' @name diffExpPerCluster
-#' @importFrom bioverbs diffExpPerCluster
+#' @importFrom acidgenerics diffExpPerCluster
 #' @usage diffExpPerCluster(object, ...)
 #' @export
 NULL

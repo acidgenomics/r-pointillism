@@ -1,5 +1,5 @@
 #' @name plotCellTypesPerCluster
-#' @inherit bioverbs::plotCellTypesPerCluster
+#' @inherit acidgenerics::plotCellTypesPerCluster
 #' @note Updated 2019-09-03.
 #'
 #' @details
@@ -29,7 +29,7 @@ NULL
 
 #' @rdname plotCellTypesPerCluster
 #' @name plotCellTypesPerCluster
-#' @importFrom bioverbs plotCellTypesPerCluster
+#' @importFrom acidgenerics plotCellTypesPerCluster
 #' @usage plotCellTypesPerCluster(object, markers, ...)
 #' @export
 NULL
