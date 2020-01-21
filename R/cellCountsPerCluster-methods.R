@@ -1,5 +1,5 @@
 #' @name cellCountsPerCluster
-#' @inherit bioverbs::cellCountsPerCluster
+#' @inherit acidgenerics::cellCountsPerCluster
 #' @note Updated 2019-10-30.
 #'
 #' @inheritParams acidroxygen::params
@@ -29,7 +29,7 @@ NULL
 
 #' @rdname cellCountsPerCluster
 #' @name cellCountsPerCluster
-#' @importFrom bioverbs cellCountsPerCluster
+#' @importFrom acidgenerics cellCountsPerCluster
 #' @usage cellCountsPerCluster(object, ...)
 #' @export
 NULL

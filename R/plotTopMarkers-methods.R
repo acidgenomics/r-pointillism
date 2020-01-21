@@ -3,7 +3,7 @@
 
 
 #' @name plotTopMarkers
-#' @inherit bioverbs::plotTopMarkers
+#' @inherit acidgenerics::plotTopMarkers
 #' @note Updated 2019-09-03.
 #'
 #' @details
@@ -34,7 +34,7 @@ NULL
 
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
-#' @importFrom bioverbs plotTopMarkers
+#' @importFrom acidgenerics plotTopMarkers
 #' @usage plotTopMarkers(object, markers, ...)
 #' @export
 NULL

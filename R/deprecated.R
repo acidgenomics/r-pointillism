@@ -88,7 +88,7 @@ clusterID <- function(...) {
 
 
 ## v0.4.5 ======================================================================
-#' @importFrom bioverbs plotDot
+#' @importFrom acidgenerics plotDot
 NULL
 
 `plotDot,ANY` <-  # nolint

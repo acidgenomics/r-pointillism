@@ -1,6 +1,6 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @inherit bioverbs::plotMarker
+#' @inherit acidgenerics::plotMarker
 #' @note Updated 2019-08-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -46,7 +46,7 @@ NULL
 
 #' @rdname plotMarker
 #' @name plotMarker
-#' @importFrom bioverbs plotMarker
+#' @importFrom acidgenerics plotMarker
 #' @usage plotMarker(object, ...)
 #' @export
 NULL
