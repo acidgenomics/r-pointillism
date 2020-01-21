@@ -1,5 +1,5 @@
 #' @name plotKnownMarkers
-#' @inherit bioverbs::plotKnownMarkers
+#' @inherit acidgenerics::plotKnownMarkers
 #' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -24,7 +24,7 @@ NULL
 
 #' @rdname plotKnownMarkers
 #' @name plotKnownMarkers
-#' @importFrom bioverbs plotKnownMarkers
+#' @importFrom acidgenerics plotKnownMarkers
 #' @usage plotKnownMarkers(object, markers, ...)
 #' @export
 NULL

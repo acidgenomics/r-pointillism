@@ -1,5 +1,5 @@
 #' @name plotFeature
-#' @inherit bioverbs::plotFeature
+#' @inherit acidgenerics::plotFeature
 #' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -39,7 +39,7 @@ NULL
 
 #' @rdname plotFeature
 #' @name plotFeature
-#' @importFrom bioverbs plotFeature
+#' @importFrom acidgenerics plotFeature
 #' @usage plotFeature(object, ...)
 #' @export
 NULL

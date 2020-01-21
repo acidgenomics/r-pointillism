@@ -1,6 +1,6 @@
 #' @rdname plotCounts
 #' @name plotDots
-#' @importFrom bioverbs plotDots
+#' @importFrom acidgenerics plotDots
 #' @usage plotDots(object, ...)
 #' @export
 NULL

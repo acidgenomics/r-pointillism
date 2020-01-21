@@ -1,5 +1,5 @@
 #' @name plotPCElbow
-#' @inherit bioverbs::plotPCElbow
+#' @inherit acidgenerics::plotPCElbow
 #' @note Updated 2019-09-03.
 #'
 #' @details
@@ -40,7 +40,7 @@ NULL
 
 #' @rdname plotPCElbow
 #' @name plotPCElbow
-#' @importFrom bioverbs plotPCElbow
+#' @importFrom acidgenerics plotPCElbow
 #' @usage plotPCElbow(object, ...)
 #' @export
 NULL

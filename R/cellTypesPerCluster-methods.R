@@ -1,5 +1,5 @@
 #' @name cellTypesPerCluster
-#' @inherit bioverbs::cellTypesPerCluster
+#' @inherit acidgenerics::cellTypesPerCluster
 #' @note Updated 2019-09-03.
 #'
 #' @inheritParams acidroxygen::params
@@ -27,7 +27,7 @@ NULL
 
 #' @rdname cellTypesPerCluster
 #' @name cellTypesPerCluster
-#' @importFrom bioverbs cellTypesPerCluster
+#' @importFrom acidgenerics cellTypesPerCluster
 #' @usage cellTypesPerCluster(object, ...)
 #' @export
 NULL
