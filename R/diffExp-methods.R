@@ -1,5 +1,5 @@
 #' @name diffExp
-#' @inherit bioverbs::diffExp
+#' @inherit acidgenerics::diffExp
 #'
 #' @note We are no longer recommending the use of software that attempts to
 #'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
@@ -109,7 +109,7 @@ NULL
 
 #' @rdname diffExp
 #' @name diffExp
-#' @importFrom bioverbs diffExp
+#' @importFrom acidgenerics diffExp
 #' @usage diffExp(object, ...)
 #' @export
 NULL

@@ -1,5 +1,5 @@
 #' @name clusters
-#' @inherit bioverbs::clusters
+#' @inherit acidgenerics::clusters
 #' @note Updated 2019-08-02.
 #'
 #' @inheritParams acidroxygen::params
@@ -23,7 +23,7 @@ NULL
 
 #' @rdname clusters
 #' @name clusters
-#' @importFrom bioverbs clusters
+#' @importFrom acidgenerics clusters
 #' @usage clusters(object, ...)
 #' @export
 NULL

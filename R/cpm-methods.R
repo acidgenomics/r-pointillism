@@ -1,5 +1,5 @@
 #' @name cpm
-#' @inherit bioverbs::cpm
+#' @inherit acidgenerics::cpm
 #' @keywords internal
 #' @note Updated 2020-01-03.
 #'
@@ -42,7 +42,7 @@ NULL
 
 #' @rdname cpm
 #' @name cpm
-#' @importFrom bioverbs cpm
+#' @importFrom acidgenerics cpm
 #' @usage cpm(object, ...)
 #' @export
 NULL
