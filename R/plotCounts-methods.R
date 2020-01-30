@@ -32,11 +32,7 @@
 #' - [monocle3::plot_genes_violin()].
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -50,12 +46,6 @@
 #'
 #' ## Per sample mode disabled.
 #' plotCounts(object, genes = genes, perSample = FALSE)
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > genes <- head(rownames(object), n = 4L)
-#' ## > print(genes)
-#' ## > plotCounts(object, genes = genes)
 NULL
 
 

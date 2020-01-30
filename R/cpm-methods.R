@@ -1,7 +1,7 @@
 #' @name cpm
 #' @inherit acidgenerics::cpm
 #' @keywords internal
-#' @note Updated 2020-01-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -14,7 +14,6 @@
 #' data(
 #'     Seurat,
 #'     SingleCellExperiment,
-#'     cell_data_set,
 #'     package = "acidtest"
 #' )
 #'
@@ -30,12 +29,6 @@
 #' cpm <- cpm(object)
 #' class(cpm)
 #' mean(cpm)
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > cpm <- cpm(object)
-#' ## > class(cpm)
-#' ## > mean(cpm)
 NULL
 
 

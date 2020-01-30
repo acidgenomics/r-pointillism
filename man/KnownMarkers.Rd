@@ -34,14 +34,14 @@ identifiers in the \code{geneID} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 
-Updated 2019-09-01.
+Updated 2020-01-30.
 }
 \examples{
-data(cellTypeMarkersList, seuratAllMarkers)
+data(cell_type_markers_list, seurat_all_markers)
 
 ## SeuratMarkersPerCluster ====
-markers <- seuratAllMarkers
-known <- cellTypeMarkersList[["homoSapiens"]]
+markers <- seurat_all_markers
+known <- cell_type_markers_list[["homoSapiens"]]
 x <- KnownMarkers(markers = markers, known = known)
 summary(x)
 }

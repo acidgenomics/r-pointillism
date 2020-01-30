@@ -24,13 +24,13 @@ Invisible \code{NULL}.
 Object summaries
 }
 \note{
-Updated 2019-07-31.
+Updated 2020-01-30.
 }
 \examples{
-data(seuratAllMarkers)
+data(seurat_all_markers)
 
 ## SeuratMarkersPerCluster ====
-object <- seuratAllMarkers
+object <- seurat_all_markers
 class(object)
 summary(object)
 }

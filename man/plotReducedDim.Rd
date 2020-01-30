@@ -284,7 +284,7 @@ Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
 \note{
-Updated 2019-09-04.
+Updated 2020-01-30.
 }
 \section{Reduction types}{
 
@@ -303,19 +303,11 @@ The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticul
 }
 
 \examples{
-data(
-    Seurat,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## Seurat ====
 object <- Seurat
 plotReducedDim(object, reduction = "UMAP")
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > plotReducedDim(object, reduction = "UMAP")
 }
 \seealso{
 \itemize{

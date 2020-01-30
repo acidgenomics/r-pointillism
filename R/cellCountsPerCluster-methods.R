@@ -1,6 +1,6 @@
 #' @name cellCountsPerCluster
 #' @inherit acidgenerics::cellCountsPerCluster
-#' @note Updated 2019-10-30.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -8,21 +8,12 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' x <- cellCountsPerCluster(object)
 #' print(x)
-#'
-#' ## cell_data_set ===
-#' ## > object <- cell_data_set
-#' ## > x <- cellCountsPerCluster(object)
-#' ## > print(x)
 NULL
 
 

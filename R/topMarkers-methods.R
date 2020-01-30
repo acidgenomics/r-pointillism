@@ -1,6 +1,6 @@
 #' @name topMarkers
 #' @inherit acidgenerics::topMarkers
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param n `integer(1)`.
@@ -11,10 +11,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seuratAllMarkers)
+#' data(seurat_all_markers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seuratAllMarkers
+#' object <- seurat_all_markers
 #' x <- topMarkers(object, n = 2L)
 #' print(x)
 NULL
