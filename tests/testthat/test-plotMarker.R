@@ -22,7 +22,7 @@ with_parameters_test_that(
 
 context("plotKnownMarkers")
 
-markers <- head(seuratKnownMarkers, n = 2L)
+markers <- head(seurat_known_markers, n = 2L)
 with_parameters_test_that(
     "plotKnownMarkers", {
         invisible(capture.output(
@@ -43,7 +43,7 @@ context("plotTopMarkers")
 
 test_that("Seurat", {
     object <- seurat
-    markers <- head(seuratAllMarkers, n = 2L)
+    markers <- head(seurat_all_markers, n = 2L)
     invisible(capture.output(
         x <- plotTopMarkers(
             object = object,

@@ -23,11 +23,11 @@ with_parameters_test_that(
 
 
 
-context("plotDot")
+context("plotDots")
 
 with_parameters_test_that(
-    "plotDot", {
-        p <- plotDot(object, genes = genes)
+    "plotDots", {
+        p <- plotDots(object, genes = genes)
         expect_s3_class(p, "ggplot")
     },
     object = objects
