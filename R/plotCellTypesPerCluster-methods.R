@@ -12,11 +12,11 @@
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
-#' data(seuratKnownMarkers)
+#' data(seurat_known_markers)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' markers <- seuratKnownMarkers
+#' markers <- seurat_known_markers
 #'
 #' plotCellTypesPerCluster(
 #'     object = object,

@@ -32,7 +32,7 @@
 #' pseudo-count (i.e., on the same scale as the counts).
 #'
 #' @name normalize
-#' @note Updated 2020-01-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -50,12 +50,7 @@
 #' - [monocle3::normalized_counts()].
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     SingleCellExperiment,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
@@ -64,10 +59,6 @@
 #' ## Seurat ====
 #' object <- Seurat
 #' object <- normalize(object)
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > object <- normalize(object)
 NULL
 
 

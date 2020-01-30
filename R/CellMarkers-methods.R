@@ -1,7 +1,7 @@
 #' Cell markers
 #'
 #' @name CellMarkers
-#' @note Updated 2019-10-26.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -35,7 +35,7 @@ NULL
     ## useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(x[["geneID"]], gene2symbol[["geneID"]])
     if (hasLength(setdiff)) {
-        stop(sprintf(
+        cli_alert_warning(sprintf(
             "Markers missing from gene2symbol: %s.",
             toString(setdiff, width = 200L)
         ))

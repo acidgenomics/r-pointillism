@@ -27,22 +27,13 @@ cellCountsPerCluster(object, ...)
 Cell counts per cluster
 }
 \note{
-Updated 2019-10-30.
+Updated 2020-01-30.
 }
 \examples{
-data(
-    Seurat,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## Seurat ====
 object <- Seurat
 x <- cellCountsPerCluster(object)
 print(x)
-
-## cell_data_set ===
-## > object <- cell_data_set
-## > x <- cellCountsPerCluster(object)
-## > print(x)
 }

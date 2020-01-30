@@ -34,7 +34,7 @@ be computed internally automatically using \code{\link[=estimateSizeFactors]{est
 recommended default settings.
 }
 \note{
-Updated 2020-01-03.
+Updated 2020-01-30.
 }
 \section{Normalized counts}{
 
@@ -66,12 +66,7 @@ pseudo-count (i.e., on the same scale as the counts).
 }
 
 \examples{
-data(
-    Seurat,
-    SingleCellExperiment,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## SingleCellExperiment ====
 object <- SingleCellExperiment
@@ -80,10 +75,6 @@ object <- normalize(object)
 ## Seurat ====
 object <- Seurat
 object <- normalize(object)
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > object <- normalize(object)
 }
 \seealso{
 \itemize{

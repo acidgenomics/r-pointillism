@@ -1,6 +1,6 @@
 #' @name plotFeature
 #' @inherit acidgenerics::plotFeature
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
@@ -12,11 +12,7 @@
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -25,14 +21,6 @@
 #'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
 #'     reduction = "UMAP"
 #' )
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > plotFeature(
-#' ## >     object = object,
-#' ## >     features = c("PC1", "PC2"),
-#' ## >     reduction = "UMAP"
-#' ## > )
 NULL
 
 
