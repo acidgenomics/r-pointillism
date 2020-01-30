@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -156,30 +156,30 @@ Whether to include upregulated (<code>"up"</code>; positive LFC), downregulated
     <p><code>DataFrame</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-09-03.</p>
+    <p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seuratAllMarkers</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_all_markers</span>)
 
 <span class='co'>## SeuratMarkersPerCluster ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 6 rows and 9 columns
-#&gt;    cluster     name         avgLogFC      pct1      pct2               pvalue
-#&gt;   &lt;factor&gt; &lt;factor&gt;        &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;            &lt;numeric&gt;
-#&gt; 1        0      CD7 2.55597346986167     0.528     0.091 8.17877467459745e-06
-#&gt; 2        0     GNLY 4.78418517067847     0.444     0.068 3.26567195655177e-05
-#&gt; 3        1   S100A8  4.3281839079057      0.96     0.091 1.43329136712276e-14
-#&gt; 4        1     TYMP 2.21103115611057         1     0.164 4.77301463121415e-13
-#&gt; 5        2 HLA-DPB1 1.74909415488556     0.947      0.41 2.66705578454703e-08
-#&gt; 6        2    MS4A1   4.533789508485     0.526     0.033 7.53228953498949e-08
-#&gt;                   padj          geneID geneName
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_all_markers</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>topMarkers</span>(<span class='no'>object</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Including upregulated markers.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 6 rows and 9 columns
+#&gt;           avgLogFC  cluster     name                 padj      pct1      pct2
+#&gt;          &lt;numeric&gt; &lt;factor&gt; &lt;factor&gt;            &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1 2.55597346986167        0      CD7  0.00188111817515741     0.528     0.091
+#&gt; 2 4.78418517067847        0     GNLY  0.00751104550006906     0.444     0.068
+#&gt; 3  4.3281839079057        1   S100A8 3.29657014438234e-12      0.96     0.091
+#&gt; 4 2.21103115611057        1     TYMP 1.09779336517925e-10         1     0.164
+#&gt; 5 1.74909415488556        2 HLA-DPB1 6.13422830445816e-06     0.947      0.41
+#&gt; 6   4.533789508485        2    MS4A1 1.73242659304758e-05     0.526     0.033
+#&gt;                 pvalue          geneID geneName
 #&gt;              &lt;numeric&gt;        &lt;factor&gt; &lt;factor&gt;
-#&gt; 1  0.00188111817515741 ENSG00000173762      CD7
-#&gt; 2  0.00751104550006906 ENSG00000115523     GNLY
-#&gt; 3 3.29657014438234e-12 ENSG00000143546   S100A8
-#&gt; 4 1.09779336517925e-10 ENSG00000025708     TYMP
-#&gt; 5 6.13422830445816e-06 ENSG00000215048 HLA-DPB1
-#&gt; 6 1.73242659304758e-05 ENSG00000156738    MS4A1</div></pre>
+#&gt; 1 8.17877467459745e-06 ENSG00000173762      CD7
+#&gt; 2 3.26567195655177e-05 ENSG00000115523     GNLY
+#&gt; 3 1.43329136712276e-14 ENSG00000143546   S100A8
+#&gt; 4 4.77301463121415e-13 ENSG00000025708     TYMP
+#&gt; 5 2.66705578454703e-08 ENSG00000215048 HLA-DPB1
+#&gt; 6 7.53228953498949e-08 ENSG00000156738    MS4A1</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

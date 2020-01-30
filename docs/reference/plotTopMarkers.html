@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -195,29 +195,29 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-09-03.</p>
+    <p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seuratAllMarkers</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_all_markers</span>)
 
 <span class='co'>## Seurat, SeuratMarkersPerCluster ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
+<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_all_markers</span>
 <span class='fu'>plotTopMarkers</span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
     <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>,
     <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Including upregulated markers.</span></div><div class='output co'>#&gt; 
+)</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Including upregulated markers.</span></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 0 {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='output co'>#&gt; 
+#&gt; </div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 1 {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotTopMarkers-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='img'><img src='plotTopMarkers-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ## Cluster 2 {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Returning log normalized counts with 'Seurat::GetAssayData()'.</span></div><div class='img'><img src='plotTopMarkers-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='plotTopMarkers-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt; </div><div class='img'><img src='plotTopMarkers-3.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
