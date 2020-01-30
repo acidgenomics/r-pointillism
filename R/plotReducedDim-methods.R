@@ -72,7 +72,7 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -179,7 +179,7 @@ NULL
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
             if (pointSize < 4L) {
-                message("Increase pointSize to 4.")
+                cli_alert_warning("Increase pointSize to 4.")
                 pointSize <- 4L
             }
             p <- p +

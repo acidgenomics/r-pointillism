@@ -77,10 +77,14 @@ NULL
                     ]
                 genes <- as.character(genes)
                 if (!hasLength(genes)) {
-                    message(sprintf("No genes for cluster %s.", cluster))
+                    cli_alert_warning(sprintf(
+                        "No genes for cluster %s.", cluster
+                    ))
                     return(invisible())
                 } else if (length(genes) > 10L) {
-                    warning("Maximum of 10 genes per cluster is recommended.")
+                    cli_alert_warning(
+                        "Maximum of 10 genes per cluster is recommended."
+                    )
                 }
                 markdownHeader(
                     text = paste("Cluster", cluster),
