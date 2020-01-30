@@ -7,13 +7,14 @@ options(
 data(
     Seurat,
     SingleCellExperiment,
-    cell_data_set,
     package = "acidtest",
     envir = environment()
 )
+
 data(
-    seuratAllMarkers,
-    seuratKnownMarkers,
+    cell_data_set,
+    seurat_all_markers,
+    seurat_known_markers,
     package = "pointillism",
     envir = environment()
 )

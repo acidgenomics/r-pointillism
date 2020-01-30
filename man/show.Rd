@@ -39,17 +39,17 @@ complete, original object, with misleading results.  See the
 the discussion in \code{\link[methods]{setIs}} for the general concept.
 }
 \note{
-Updated 2019-10-26.
+Updated 2020-01-30.
 }
 \examples{
-data(cellCycleMarkersList, cellTypeMarkersList)
+data(cell_cycle_markers_list, cell_type_markers_list)
 
 ## CellCycleMarkers ====
-object <- cellCycleMarkersList[[1L]]
+object <- cell_cycle_markers_list[[1L]]
 show(object)
 
 ## CellTypeMarkers ====
-object <- cellTypeMarkersList[[1L]]
+object <- cell_type_markers_list[[1L]]
 show(object)
 }
 \author{

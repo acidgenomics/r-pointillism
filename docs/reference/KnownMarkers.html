@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -161,14 +161,14 @@ Set to <code>0</code> to disable promiscuous marker filtering.</p></td>
 identifiers in the <code>geneID</code> column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.</p>
-<p>Updated 2019-09-01.</p>
+<p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cellTypeMarkersList</span>, <span class='no'>seuratAllMarkers</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cell_type_markers_list</span>, <span class='no'>seurat_all_markers</span>)
 
 <span class='co'>## SeuratMarkersPerCluster ====</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seuratAllMarkers</span>
-<span class='no'>known</span> <span class='kw'>&lt;-</span> <span class='no'>cellTypeMarkersList</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
+<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_all_markers</span>
+<span class='no'>known</span> <span class='kw'>&lt;-</span> <span class='no'>cell_type_markers_list</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>KnownMarkers</span>(<span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>, <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>known</span>)
 <span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "KnownMarkers object of length 10 with 0 metadata columns"</div></pre>
   </div>

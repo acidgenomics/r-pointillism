@@ -4,7 +4,7 @@
 
 #' @name plotTopMarkers
 #' @inherit acidgenerics::plotTopMarkers
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -18,11 +18,11 @@
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
-#' data(seuratAllMarkers)
+#' data(seurat_all_markers)
 #'
 #' ## Seurat, SeuratMarkersPerCluster ====
 #' object <- Seurat
-#' markers <- seuratAllMarkers
+#' markers <- seurat_all_markers
 #' plotTopMarkers(
 #'     object = object,
 #'     markers = markers,
@@ -77,10 +77,14 @@ NULL
                     ]
                 genes <- as.character(genes)
                 if (!hasLength(genes)) {
-                    message(sprintf("No genes for cluster %s.", cluster))
+                    cli_alert_warning(sprintf(
+                        "No genes for cluster %s.", cluster
+                    ))
                     return(invisible())
                 } else if (length(genes) > 10L) {
-                    warning("Maximum of 10 genes per cluster is recommended.")
+                    cli_alert_warning(
+                        "Maximum of 10 genes per cluster is recommended."
+                    )
                 }
                 markdownHeader(
                     text = paste("Cluster", cluster),

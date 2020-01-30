@@ -1,17 +1,13 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit acidgenerics::plotMarker
-#' @note Updated 2019-08-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -26,20 +22,6 @@
 #'     genes = genes,
 #'     reduction = "UMAP"
 #' )
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > genes <- counts(object) %>%
-#' ## >     Matrix::rowSums(.) %>%
-#' ## >     sort(decreasing = TRUE) %>%
-#' ## >     head(n = 4L) %>%
-#' ## >     names()
-#' ## > print(genes)
-#' ## > plotMarker(
-#' ## >     object = object,
-#' ## >     genes = genes,
-#' ## >     reduction = "UMAP"
-#' ## > )
 NULL
 
 

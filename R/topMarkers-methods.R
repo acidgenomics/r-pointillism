@@ -1,6 +1,6 @@
 #' @name topMarkers
 #' @inherit acidgenerics::topMarkers
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param n `integer(1)`.
@@ -11,10 +11,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seuratAllMarkers)
+#' data(seurat_all_markers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seuratAllMarkers
+#' object <- seurat_all_markers
 #' x <- topMarkers(object, n = 2L)
 #' print(x)
 NULL
@@ -31,7 +31,7 @@ NULL
 
 
 ## Note that the validity method checks for sorting by adjusted P value.
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
@@ -41,13 +41,12 @@ NULL
         validObject(object)
         assert(isInt(n))
         direction <- match.arg(direction)
-        msg <- switch(
+        cli_alert_info(switch(
             EXPR = direction,
             "both" = "Including both up- and down-regulated markers.",
             "down" = "Including downregulated markers.",
             "up" = "Including upregulated markers."
-        )
-        message(msg)
+        ))
         x <- object
         x <- SplitDataFrameList(lapply(
             X = x,

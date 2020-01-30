@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deprecated functions — deprecated • pointillism</title>
+<title>Seurat all markers example — seurat_all_markers • pointillism</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Deprecated functions — deprecated" />
-<meta property="og:description" content="Deprecated functions" />
+<meta property="og:title" content="Seurat all markers example — seurat_all_markers" />
+<meta property="og:description" content="Seurat all markers example" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,66 +113,69 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Deprecated functions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a></small>
-    <div class="hidden name"><code>deprecated.Rd</code></div>
+    <h1>Seurat all markers example</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>seurat_all_markers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Deprecated functions</p>
+    <p>Seurat all markers example</p>
     </div>
 
-    <pre class="usage"><span class='fu'>clusterID</span>(<span class='no'>...</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_all_markers</span>)</pre>
 
-<span class='co'># S4 method for ANY</span>
-<span class='fu'>plotDot</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
+    <p>An object of class <code>SeuratMarkersPerCluster</code> of dimension 106 x 76 x 37 x 8 x 8 x 8.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>.Deprecated</code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p><code>SeuratMarkersPerCluster</code>.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <div class='dont-index'><p><a href='https://rdrr.io/r/base/Deprecated.html'>Deprecated</a>.</p></div>
+    <p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>...</span>) {
-    <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>.Deprecated</a></span>(<span class='st'>"b"</span>)
-    <span class='fu'>b</span>(<span class='no'>...</span>)
-}
-
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-    <span class='no'>x</span> + <span class='fl'>1L</span>
-}
-
-<span class='fu'><a href='https://rdrr.io/r/base/conditions.html'>withCallingHandlers</a></span>(
-    <span class='kw'>expr</span> <span class='kw'>=</span> <span class='fu'>a</span>(<span class='fl'>1L</span>),
-    <span class='kw'>warning</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>w</span>) {
-        <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>w</span>)
-        <span class='fu'><a href='https://rdrr.io/r/base/conditions.html'>invokeRestart</a></span>(<span class='st'>"muffleWarning"</span>)
-    }
-)</div><div class='output co'>#&gt; &lt;deprecatedWarning: 'a' is deprecated.
-#&gt; Use 'b' instead.
-#&gt; See help("Deprecated")&gt;</div><div class='output co'>#&gt; [1] 2</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_all_markers</span>)
+<span class='no'>seurat_all_markers</span></div><div class='output co'>#&gt; SeuratMarkersPerCluster of length 3
+#&gt; $cluster0
+#&gt; DataFrame with 106 rows and 8 columns
+#&gt;               avgLogFC  cluster        name                 padj      pct1
+#&gt;              &lt;numeric&gt; &lt;factor&gt; &lt;character&gt;            &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1    -4.03469149237519        0    HLA-DPB1 2.20173893589937e-10     0.083
+#&gt; 2    -3.76097185713251        0    HLA-DRB1 1.76481919229668e-09     0.083
+#&gt; 3    -3.03212788647685        0    HLA-DPA1 8.44829630384883e-09     0.111
+#&gt; 4    -2.95497408279157        0     HLA-DRA 2.78096237621776e-08     0.417
+#&gt; 5     -3.0196081283535        0    HLA-DRB5 2.19582137421774e-07     0.056
+#&gt; ...                ...      ...         ...                  ...       ...
+#&gt; 102  -1.26243136100614        0        RGS2                    1     0.167
+#&gt; 103  -0.81334942250346        0       BLVRA                    1     0.111
+#&gt; 104   1.31023755110387        0        CCL4                    1      0.25
+#&gt; 105  0.859201714501344        0       VDAC3                    1     0.361
+#&gt; 106 -0.574662932295624        0      FCER1G                    1     0.389
+#&gt;          pct2               pvalue                             ranges
+#&gt;     &lt;numeric&gt;            &lt;numeric&gt;                          &lt;GRanges&gt;
+#&gt; 1       0.909 9.57277798217116e-13 HSCHR6_MHC_QBL:32972757-32984034:+
+#&gt; 2       0.864 7.67312692302906e-12              6:32546546-32557625:-
+#&gt; 3       0.864 3.67317230602123e-11 HSCHR6_MHC_MCF:33065822-33082016:-
+#&gt; 4       0.909 1.20911407661642e-10              6:32407619-32412823:+
+#&gt; 5       0.773 9.54704945312061e-10              6:32485120-32498064:-
+#&gt; ...       ...                  ...                                ...
+#&gt; 102       0.5  0.00775273895620089            1:192778169-192781403:+
+#&gt; 103     0.409  0.00883721022646868              7:43798279-43846939:+
+#&gt; 104     0.045  0.00952140975254573             17:34430983-34433014:+
+#&gt; 105     0.136   0.0097158131386374              8:42249142-42263415:+
+#&gt; 106     0.705  0.00984280930411559            1:161185024-161190489:+
+#&gt; 
+#&gt; ...
+#&gt; &lt;2 more elements&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

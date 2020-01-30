@@ -1,6 +1,6 @@
 #' @name diffExpPerCluster
 #' @inherit acidgenerics::diffExpPerCluster
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams diffExp
@@ -47,7 +47,7 @@ NULL
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `diffExpPerCluster,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -56,6 +56,7 @@ NULL
         denominator,
         ...
     ) {
+        cli_h1("{.fun diffExpPerCluster}")
         object <- as(object, "SingleCellExperiment")
         ## group
         assert(
@@ -80,17 +81,14 @@ NULL
         assert(is.factor(ident))
         clusters <- levels(ident)
         assert(length(clusters) >= 2L)
-        message(sprintf("%d clusters detected.", length(clusters)))
+        cli_alert_info(sprintf("%d clusters detected.", length(clusters)))
         ## Loop across each cluster and perform pairwise DE based on the single
         ## group of interest defined.
         ## Consider adding a skip step here for clusters with very few cells.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
-                message(sprintf(
-                    "Cluster %s ====",
-                    as.character(cluster)
-                ))
+                cli_h2(sprintf("Cluster %s", as.character(cluster)))
                 ## Subset the cells by cluster.
                 cells <- colnames(object)[which(ident == cluster)]
                 assert(hasLength(cells))

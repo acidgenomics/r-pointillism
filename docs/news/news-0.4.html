@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -133,9 +133,9 @@
     <div id="pointillism-0-4-1-2019-08-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0-4-1-2019-08-12" class="anchor"></a>pointillism 0.4.1 (2019-08-12)</h2>
-<div id="minor-changes-2" class="section level3">
+<div id="minor-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Bug fix for gene symbols being sanitized by <code>as.data.frame</code> or <code>as_tibble</code> coercion inconsitently across R versions. Switched to using <code>as</code> coercion from <code>DataFrame</code> to <code>data.frame</code> instead.</li>
 <li>Improved message consistency, removing use of backticks in favor of single quotes, which is now the convention across basejump.</li>
@@ -157,9 +157,9 @@
     <div id="pointillism-0-4-3-2019-10-26" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0-4-3-2019-10-26" class="anchor"></a>pointillism 0.4.3 (2019-10-26)</h2>
-<div id="minor-changes-1" class="section level3">
+<div id="minor-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Bug fix for legacy Seurat objects created via pointillism with named rownames containing gene identifiers mapped to the gene symbols. Now the coercion method for <code>Seurat</code> to <code>SingleCellExperiment</code> checks for this and sanitizes the names automatically so the resulting <code>SingleCellExperiment</code> is valid.</li>
 </ul>
@@ -170,9 +170,9 @@
 <a href="#pointillism-0-4-4-2019-10-30" class="anchor"></a>pointillism 0.4.4 (2019-10-30)</h2>
 <p>Bioconductor 3.10 compatibility fixes.</p>
 </div>
-    <div id="pointillism-0-4-5-2020-01-30" class="section level2">
+    <div id="pointillism-0-4-5-2020-01-03" class="section level2">
 <h2 class="hasAnchor">
-<a href="#pointillism-0-4-5-2020-01-30" class="anchor"></a>pointillism 0.4.5 (2020-01-30)</h2>
+<a href="#pointillism-0-4-5-2020-01-03" class="anchor"></a>pointillism 0.4.5 (2020-01-03)</h2>
 <div id="major-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h3>
@@ -182,11 +182,34 @@
 <li>Deprecated <code>plotDot</code> in favor of <code>plotDots</code> (note plural spelling change). This reads better and improves consistency with conventions used in scater.</li>
 </ul>
 </div>
+<div id="minor-changes-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Removed user-defined option to reduce verbosity, where applicable. If these functions are too noisy, we’ll tone it down in the future.</li>
+</ul>
+</div>
+</div>
+    <div id="pointillism-0-4-6-2020-01-20" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-4-6-2020-01-20" class="anchor"></a>pointillism 0.4.6 (2020-01-20)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Reworked NAMESPACE to support migration of bioverbs package to acidgenerics.</li>
+</ul>
+</div>
+</div>
+    <div id="pointillism-0-4-7-2020-01-30" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0-4-7-2020-01-30" class="anchor"></a>pointillism 0.4.7 (2020-01-30)</h2>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Removed user-defined option to reduce verbosity, where applicable. If these functions are too noisy, we’ll tone it down in the future.</li>
+<li>Now using cli package for messages.</li>
+<li>Updated basejump dependencies.</li>
 </ul>
 </div>
 </div>
@@ -201,7 +224,9 @@
         <li><a href="#pointillism-0-4-2-2019-09-04">0.4.2</a></li>
         <li><a href="#pointillism-0-4-3-2019-10-26">0.4.3</a></li>
         <li><a href="#pointillism-0-4-4-2019-10-30">0.4.4</a></li>
-        <li><a href="#pointillism-0-4-5-2020-01-30">0.4.5</a></li>
+        <li><a href="#pointillism-0-4-5-2020-01-03">0.4.5</a></li>
+        <li><a href="#pointillism-0-4-6-2020-01-20">0.4.6</a></li>
+        <li><a href="#pointillism-0-4-7-2020-01-30">0.4.7</a></li>
       </ul>
     </div>
   </div>

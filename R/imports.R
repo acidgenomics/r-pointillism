@@ -41,6 +41,8 @@ NULL
 #'   melt metrics mutateIf organism organism<- printString sampleData
 #'   sampleData<- sampleNames separator showSlotInfo snakeCase
 #'   uniteInterestingGroups
+#' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_div cli_end
+#'   cli_h1 cli_h2 cli_ul
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
@@ -62,4 +64,11 @@ NULL
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
 #' @importFrom utils capture.output globalVariables packageVersion
+NULL
+
+
+
+## This is needed to properly declare S4 `as()` coercion methods.
+#' @importFrom methods coerce
+#' @exportMethod coerce
 NULL

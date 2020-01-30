@@ -2,7 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit acidgenerics::plotReducedDim
-#' @note Updated 2019-09-04.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -32,19 +32,11 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' plotReducedDim(object, reduction = "UMAP")
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > plotReducedDim(object, reduction = "UMAP")
 NULL
 
 
@@ -80,7 +72,7 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -187,7 +179,7 @@ NULL
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
             if (pointSize < 4L) {
-                message("Increase pointSize to 4.")
+                cli_alert_warning("Increase pointSize to 4.")
                 pointSize <- 4L
             }
             p <- p +

@@ -81,8 +81,8 @@ Superimpose sample text labels on the plot.}
 Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
-Plot against a dark background using the
-\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
+Plot against a dark background using the \code{acid_theme_light()} ggplot2
+theme.}
 
 \item{legend}{\code{logical(1)}.
 Include plot legend.}
@@ -100,14 +100,10 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2019-08-03.
+Updated 2020-01-30.
 }
 \examples{
-data(
-    Seurat,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## Seurat ====
 object <- Seurat
@@ -122,20 +118,6 @@ plotMarker(
     genes = genes,
     reduction = "UMAP"
 )
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > genes <- counts(object) \%>\%
-## >     Matrix::rowSums(.) \%>\%
-## >     sort(decreasing = TRUE) \%>\%
-## >     head(n = 4L) \%>\%
-## >     names()
-## > print(genes)
-## > plotMarker(
-## >     object = object,
-## >     genes = genes,
-## >     reduction = "UMAP"
-## > )
 }
 \author{
 Michael Steinbaugh, Rory Kirchner

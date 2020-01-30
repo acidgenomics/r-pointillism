@@ -196,11 +196,7 @@ Dot geom currently only supports logcounts.
 Updated 2020-01-03.
 }
 \examples{
-data(
-    Seurat,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## Seurat ====
 object <- Seurat
@@ -214,12 +210,6 @@ plotCounts(object, genes = genes, perSample = TRUE)
 
 ## Per sample mode disabled.
 plotCounts(object, genes = genes, perSample = FALSE)
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > genes <- head(rownames(object), n = 4L)
-## > print(genes)
-## > plotCounts(object, genes = genes)
 }
 \seealso{
 \itemize{

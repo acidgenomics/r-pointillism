@@ -40,6 +40,6 @@ Varies, depending on the generic.
 Extend base S4 methods for \code{cell_data_set} class
 }
 \note{
-Updated 2019-08-05.
+Updated 2020-01-30.
 }
 \keyword{internal}

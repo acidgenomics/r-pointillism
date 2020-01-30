@@ -25,13 +25,12 @@ Assay name or index position.}
 Counts per million
 }
 \note{
-Updated 2020-01-03.
+Updated 2020-01-30.
 }
 \examples{
 data(
     Seurat,
     SingleCellExperiment,
-    cell_data_set,
     package = "acidtest"
 )
 
@@ -47,12 +46,6 @@ object <- Seurat
 cpm <- cpm(object)
 class(cpm)
 mean(cpm)
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > cpm <- cpm(object)
-## > class(cpm)
-## > mean(cpm)
 }
 \seealso{
 \itemize{
