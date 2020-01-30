@@ -12,7 +12,7 @@
 \usage{
 \S4method{Gene2Symbol}{cell_data_set}(object, ...)
 
-\S4method{logcounts}{cell_data_set}(object, verbose = FALSE)
+\S4method{logcounts}{cell_data_set}(object)
 
 \S4method{metrics}{cell_data_set}(object, return = c("tbl_df", "DataFrame"))
 
@@ -26,9 +26,6 @@
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
-
-\item{verbose}{\code{logical(1)}.
-Run the function with verbose output.}
 
 \item{return}{\code{character(1)}.
 Return type. Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults
