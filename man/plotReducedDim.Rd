@@ -262,8 +262,8 @@ Superimpose sample text labels on the plot.}
 Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
-Plot against a dark background using the
-\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
+Plot against a dark background using the \code{acid_theme_light()} ggplot2
+theme.}
 
 \item{legend}{\code{logical(1)}.
 Include plot legend.}
@@ -284,7 +284,7 @@ Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:colData]{colData()}} by default.
 }
 \note{
-Updated 2019-09-04.
+Updated 2020-01-30.
 }
 \section{Reduction types}{
 
@@ -303,19 +303,11 @@ The UMAP module can be loaded in R using \href{https://rstudio.github.io/reticul
 }
 
 \examples{
-data(
-    Seurat,
-    cell_data_set,
-    package = "acidtest"
-)
+data(Seurat, package = "acidtest")
 
 ## Seurat ====
 object <- Seurat
 plotReducedDim(object, reduction = "UMAP")
-
-## cell_data_set ====
-## > object <- cell_data_set
-## > plotReducedDim(object, reduction = "UMAP")
 }
 \seealso{
 \itemize{

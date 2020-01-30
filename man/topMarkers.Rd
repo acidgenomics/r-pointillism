@@ -28,13 +28,13 @@ Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 Top markers
 }
 \note{
-Updated 2019-09-03.
+Updated 2020-01-30.
 }
 \examples{
-data(seuratAllMarkers)
+data(seurat_all_markers)
 
 ## SeuratMarkersPerCluster ====
-object <- seuratAllMarkers
+object <- seurat_all_markers
 x <- topMarkers(object, n = 2L)
 print(x)
 }

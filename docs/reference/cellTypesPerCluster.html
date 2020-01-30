@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -155,15 +155,15 @@ Maximum number of marker genes per cluster.</p></td>
     <p><code>DataFrame</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-09-03.</p>
+    <p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cellTypeMarkersList</span>, <span class='no'>seuratAllMarkers</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cell_type_markers_list</span>, <span class='no'>seurat_all_markers</span>)
 
 <span class='co'>## KnownMarkers ====</span>
 <span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='KnownMarkers.html'>KnownMarkers</a></span>(
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>seuratAllMarkers</span>,
-    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>cellTypeMarkersList</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
+    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>seurat_all_markers</span>,
+    <span class='kw'>known</span> <span class='kw'>=</span> <span class='no'>cell_type_markers_list</span><span class='kw'>[[</span><span class='st'>"homoSapiens"</span>]]
 )
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellTypesPerCluster</span>(<span class='no'>markers</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 2 rows and 6 columns

@@ -1,7 +1,7 @@
 #' @name cpm
 #' @inherit acidgenerics::cpm
 #' @keywords internal
-#' @note Updated 2020-01-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -14,7 +14,6 @@
 #' data(
 #'     Seurat,
 #'     SingleCellExperiment,
-#'     cell_data_set,
 #'     package = "acidtest"
 #' )
 #'
@@ -30,12 +29,6 @@
 #' cpm <- cpm(object)
 #' class(cpm)
 #' mean(cpm)
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > cpm <- cpm(object)
-#' ## > class(cpm)
-#' ## > mean(cpm)
 NULL
 
 
@@ -49,17 +42,16 @@ NULL
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `cpm,SingleCellExperiment` <-  # nolint
     function(object) {
         ## Early return if cpm assay is defined.
         if (isSubset("cpm", assayNames(object))) {
-            message("Returning CPM from pre-calculated 'cpm' assay.")
             return(assay(x = object, i = "cpm"))
         }
         ## Otherwise, calculate on the fly.
         assert(is.numeric(sizeFactors(object)))
-        message("Calculating CPM with 'scater::calculateCPM()'.")
+        cli_alert("Calculating CPM with {.pkg scater}::{.fun calculateCPM}.")
         calculateCPM(object)
     }
 
@@ -75,14 +67,16 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `cpm,Seurat` <-  # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated CPM (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1e6L)) {
-            message("Generating CPM with 'Seurat::NormalizeData()'.")
+            cli_alert(
+                "Generating CPM with {.pkg Seurat}::{.fun NormalizeData}."
+            )
             object <- NormalizeData(
                 object = object,
                 assay = assay,
@@ -91,7 +85,6 @@ setMethod(
                 verbose = TRUE
             )
         }
-        message("Returning CPM with 'Seurat::GetAssayData()'.")
         GetAssayData(object = object, slot = "data", assay = assay)
     }
 

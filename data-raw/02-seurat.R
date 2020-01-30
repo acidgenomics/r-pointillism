@@ -1,14 +1,14 @@
 ## Seurat example markers return data.
-## Updated 2019-07-31.
+## Updated 2020-01-30.
 
 library(usethis)
-library(Seurat)  # 3.0.2
+library(Seurat)   # 3.1.2
 
-data(cellTypeMarkersList)
+data(cell_type_markers_list)
 data(Seurat, package = "acidtest")
 
 ## seurat_all_markers ===========================================================
-seuratAllMarkers <- withCallingHandlers(
+seurat_all_markers <- withCallingHandlers(
     expr = SeuratMarkersPerCluster(
         object = FindAllMarkers(Seurat),
         ranges = rowRanges(Seurat)
@@ -23,15 +23,15 @@ seuratAllMarkers <- withCallingHandlers(
 )
 
 ## known_markers_small ==========================================================
-seuratKnownMarkers <- KnownMarkers(
-    markers = seuratAllMarkers,
-    known = cellTypeMarkersList[["homoSapiens"]]
+seurat_known_markers <- KnownMarkers(
+    markers = seurat_all_markers,
+    known = cell_type_markers_list[["homoSapiens"]]
 )
 
 ## Save =========================================================================
 use_data(
-    seuratAllMarkers,
-    seuratKnownMarkers,
+    seurat_all_markers,
+    seurat_known_markers,
     compress = "xz",
     overwrite = TRUE
 )

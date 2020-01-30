@@ -77,15 +77,15 @@ type (per unbiased cluster). Cell types with too few (\code{min} cutoff) or too
 many (\code{max} cutoff) marker genes will be skipped.
 }
 \note{
-Updated 2019-09-03.
+Updated 2020-01-30.
 }
 \examples{
 data(Seurat, package = "acidtest")
-data(seuratKnownMarkers)
+data(seurat_known_markers)
 
 ## Seurat ====
 object <- Seurat
-markers <- seuratKnownMarkers
+markers <- seurat_known_markers
 
 plotCellTypesPerCluster(
     object = object,

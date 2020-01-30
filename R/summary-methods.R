@@ -1,16 +1,16 @@
 #' @name summary
 #' @importFrom S4Vectors summary
 #' @inherit basejump::summary
-#' @note Updated 2019-07-31.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seuratAllMarkers)
+#' data(seurat_all_markers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seuratAllMarkers
+#' object <- seurat_all_markers
 #' class(object)
 #' summary(object)
 NULL

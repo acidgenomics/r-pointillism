@@ -2,19 +2,19 @@
 #' @name show
 #' @author Michael Steinbuagh
 #' @inherit methods::show title description details params
-#' @note Updated 2019-10-26.
+#' @note Updated 2020-01-30.
 #'
 #' @return No return.
 #'
 #' @examples
-#' data(cellCycleMarkersList, cellTypeMarkersList)
+#' data(cell_cycle_markers_list, cell_type_markers_list)
 #'
 #' ## CellCycleMarkers ====
-#' object <- cellCycleMarkersList[[1L]]
+#' object <- cell_cycle_markers_list[[1L]]
 #' show(object)
 #'
 #' ## CellTypeMarkers ====
-#' object <- cellTypeMarkersList[[1L]]
+#' object <- cell_type_markers_list[[1L]]
 #' show(object)
 NULL
 

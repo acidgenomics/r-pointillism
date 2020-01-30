@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cell-type markers list — cellTypeMarkersList • pointillism</title>
+<title>Seurat known markers example — seurat_known_markers • pointillism</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cell-type markers list — cellTypeMarkersList" />
-<meta property="og:description" content="Cell-type markers list" />
+<meta property="og:title" content="Seurat known markers example — seurat_known_markers" />
+<meta property="og:description" content="Seurat known markers example" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -113,30 +113,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cell-type markers list</h1>
+    <h1>Seurat known markers example</h1>
     <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>cellTypeMarkersList.Rd</code></div>
+    <div class="hidden name"><code>seurat_known_markers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Cell-type markers list</p>
+    <p>Seurat known markers example</p>
     </div>
 
-    <pre class="usage"><span class='no'>cellTypeMarkersList</span></pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_known_markers</span>)</pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>list</code> of length 3.</p>
+    <p>An object of class <code>KnownMarkers</code> with 16 rows and 10 columns.</p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>KnownMarkers</code>.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Updated 2020-01-30.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cellTypeMarkersList</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>cellTypeMarkersList</span>)</div><div class='output co'>#&gt; [1] "drosophilaMelanogaster" "homoSapiens"            "musMusculus"           </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_known_markers</span>)
+<span class='no'>seurat_known_markers</span></div><div class='output co'>#&gt; KnownMarkers with 16 rows and 10 columns
+#&gt;              geneID          avgLogFC  cluster        name                 padj
+#&gt;         &lt;character&gt;         &lt;numeric&gt; &lt;factor&gt; &lt;character&gt;            &lt;numeric&gt;
+#&gt; 1   ENSG00000215048 -4.03469149237519        0    HLA-DPB1 2.20173893589937e-10
+#&gt; 2   ENSG00000196126 -3.76097185713251        0    HLA-DRB1 1.76481919229668e-09
+#&gt; 3   ENSG00000168384 -3.03212788647685        0    HLA-DPA1 8.44829630384883e-09
+#&gt; 4   ENSG00000204287 -2.95497408279157        0     HLA-DRA 2.78096237621776e-08
+#&gt; 5   ENSG00000179344 -3.00075456880158        0    HLA-DQB1 6.98095636818305e-06
+#&gt; ...             ...               ...      ...         ...                  ...
+#&gt; 12  ENSG00000196126  1.65909049459023        2    HLA-DRB1 0.000308633504794642
+#&gt; 13  ENSG00000204287  1.81241934529497        2     HLA-DRA  0.00106224246190559
+#&gt; 14  ENSG00000168384  1.21232847541956        2    HLA-DPA1  0.00289476883051935
+#&gt; 15  ENSG00000226264  2.07187123241627        2     HLA-DMB    0.005857497716702
+#&gt; 16  ENSG00000196735   1.7239908499937        2    HLA-DQA1   0.0153574754202906
+#&gt;          pct1      pct2               pvalue    geneName       cellType
+#&gt;     &lt;numeric&gt; &lt;numeric&gt;            &lt;numeric&gt; &lt;character&gt;       &lt;factor&gt;
+#&gt; 1       0.083     0.909 9.57277798217116e-13    HLA-DPB1 Dendritic Cell
+#&gt; 2       0.083     0.864 7.67312692302906e-12    HLA-DRB1 Dendritic Cell
+#&gt; 3       0.111     0.864 3.67317230602123e-11    HLA-DPA1 Dendritic Cell
+#&gt; 4       0.417     0.909 1.20911407661642e-10     HLA-DRA Dendritic Cell
+#&gt; 5       0.028     0.659 3.03519842094915e-08    HLA-DQB1 Dendritic Cell
+#&gt; ...       ...       ...                  ...         ...            ...
+#&gt; 12      0.842      0.41 1.34188480345497e-06    HLA-DRB1 Dendritic Cell
+#&gt; 13      0.895     0.623 4.61844548654605e-06     HLA-DRA Dendritic Cell
+#&gt; 14      0.895      0.41 1.25859514370406e-05    HLA-DPA1 Dendritic Cell
+#&gt; 15      0.632     0.213 2.54673813769652e-05     HLA-DMB Dendritic Cell
+#&gt; 16      0.632      0.23 6.67716322621332e-05    HLA-DQA1 Dendritic Cell</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

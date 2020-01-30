@@ -11,6 +11,7 @@ reference:
   - title: S4 classes
     contents:
       - ends_with("-class")
+      - ends_with("Markers")
       - coerce
       - show
       - summary
@@ -21,9 +22,8 @@ reference:
     contents:
       - cellCountsPerCluster
       - cellTypesPerCluster
-      - clusterCellCountsPerSample
-      - clusters
       - clusterID
+      - clusters
       - normalize
   - title: Differential expression
     contents:
@@ -31,14 +31,10 @@ reference:
       - starts_with("diffExp")
       - findMarkers
       - topMarkers
-  - title: Cell marker data
-    contents:
-      - cellCycleMarkersList
-      - cellTypeMarkersList
   - title: Plots
     contents:
       - starts_with("plot")
-  - title: Example data
+  - title: Data
     contents:
-      - seuratAllMarkers
-      - seuratKnownMarkers
+      - starts_with("cell_")
+      - starts_with("seurat_")

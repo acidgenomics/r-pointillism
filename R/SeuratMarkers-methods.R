@@ -6,7 +6,7 @@
 #' @name SeuratMarkers
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
-#' @note Updated 2019-08-06.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -48,7 +48,7 @@ NULL
 
 
 
-## Updated 2019-08-30.
+## Updated 2020-01-30.
 `SeuratMarkers,data.frame` <-  # nolint
     function(
         object,
@@ -69,28 +69,28 @@ NULL
         cols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
         if (identical(colnames(object), cols)) {
             perCluster <- FALSE
-            fun <- "Seurat::FindMarkers"
+            fun <- "FindMarkers"
         } else if (identical(colnames(object), c(cols, "cluster", "gene"))) {
             perCluster <- TRUE
-            fun <- "Seurat::FindAllMarkers"
+            fun <- "FindAllMarkers"
         }
-        message(sprintf("'%s()' return detected.", fun))
+        cli_alert_info(sprintf("{.fun %s} return detected.", fun))
         ## Sanitize markers.
         x <- as(object, "DataFrame")
         x <- camelCase(x)
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
-        if (identical(fun, "Seurat::FindMarkers")) {
+        if (identical(fun, "FindMarkers")) {
             x[["name"]] <- rownames(x)
-        } else if (identical(fun, "Seurat::FindAllMarkers")) {
+        } else if (identical(fun, "FindAllMarkers")) {
             colnames(x)[colnames(x) == "gene"] <- "name"
         }
         rownames(x) <- NULL
         ## Update legacy columns.
         if (isSubset("avgDiff", colnames(x))) {
-            message(
-                "Renaming legacy 'avgDiff' column to 'avgLogFC' ",
-                "(changed in Seurat v2.1)."
-            )
+            cli_alert_warning(paste(
+                "Renaming legacy {.var avgDiff} column to {.var avgLogFC}",
+                "(changed in {.pkg Seurat} v2.1)."
+            ))
             colnames(x)[colnames(x) == "avgDiff"] <- "avgLogFC"
         }
         ## Rename P value columns to match DESeq2 conventions.

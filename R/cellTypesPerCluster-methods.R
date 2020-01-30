@@ -1,6 +1,6 @@
 #' @name cellTypesPerCluster
 #' @inherit acidgenerics::cellTypesPerCluster
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param min `integer(1)`.
@@ -12,12 +12,12 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' data(cellTypeMarkersList, seuratAllMarkers)
+#' data(cell_type_markers_list, seurat_all_markers)
 #'
 #' ## KnownMarkers ====
 #' markers <- KnownMarkers(
-#'     markers = seuratAllMarkers,
-#'     known = cellTypeMarkersList[["homoSapiens"]]
+#'     markers = seurat_all_markers,
+#'     known = cell_type_markers_list[["homoSapiens"]]
 #' )
 #' x <- cellTypesPerCluster(markers)
 #' print(x)

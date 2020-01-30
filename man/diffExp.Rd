@@ -82,7 +82,7 @@ We are no longer recommending the use of software that attempts to
 mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 single cell RNA-seq data. Simply model the counts directly.
 
-Updated 2019-09-03.
+Updated 2020-01-30.
 }
 \section{DESeq2}{
 

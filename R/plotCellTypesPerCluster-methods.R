@@ -1,6 +1,6 @@
 #' @name plotCellTypesPerCluster
 #' @inherit acidgenerics::plotCellTypesPerCluster
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -12,11 +12,11 @@
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
-#' data(seuratKnownMarkers)
+#' data(seurat_known_markers)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' markers <- seuratKnownMarkers
+#' markers <- seurat_known_markers
 #'
 #' plotCellTypesPerCluster(
 #'     object = object,
@@ -36,7 +36,7 @@ NULL
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
@@ -72,7 +72,9 @@ NULL
                 keep <- markers[["cluster"]] == cluster
                 clusterData <- markers[keep, , drop = FALSE]
                 if (!hasRows(clusterData)) {
-                    message(sprintf("No markers for cluster %s.", cluster))
+                    cli_alert_warning(sprintf(
+                        "No markers for cluster %s.", cluster
+                    ))
                     return(invisible())
                 }
                 cellTypes <- clusterData[["cellType"]]

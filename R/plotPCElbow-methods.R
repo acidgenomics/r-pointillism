@@ -1,6 +1,6 @@
 #' @name plotPCElbow
 #' @inherit acidgenerics::plotPCElbow
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
@@ -21,19 +21,11 @@
 #' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     cell_data_set,
-#'     package = "acidtest"
-#' )
+#' data(Seurat, package = "acidtest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' plotPCElbow(object)
-#'
-#' ## cell_data_set ====
-#' ## > object <- cell_data_set
-#' ## > plotPCElbow(object)
 NULL
 
 

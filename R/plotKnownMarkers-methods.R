@@ -1,6 +1,6 @@
 #' @name plotKnownMarkers
 #' @inherit acidgenerics::plotKnownMarkers
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #' @param markers Object.
@@ -8,11 +8,11 @@
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
-#' data(seuratKnownMarkers)
+#' data(seurat_known_markers)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' markers <- seuratKnownMarkers
+#' markers <- seurat_known_markers
 #' plotKnownMarkers(
 #'     object = object,
 #'     markers = markers,

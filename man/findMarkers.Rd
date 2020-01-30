@@ -28,7 +28,7 @@ findMarkers(object, ...)
 Find cluster-specific marker genes
 }
 \note{
-Updated 2019-08-02.
+Updated 2020-01-30.
 }
 \examples{
 data(Seurat, package = "acidtest")
