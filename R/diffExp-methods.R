@@ -165,6 +165,7 @@ NULL
         ))
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
+        cli_div(theme = list(body = list("margin-left" = 4L)))
         cli_ul(c(
             sprintf(
                 "Total: %d %s",
@@ -182,6 +183,7 @@ NULL
                 ngettext(length(denominator), "cell", "cells")
             )
         ))
+        cli_end()
         object <- object[, cells, drop = FALSE]
         ## Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- counts(object)
@@ -189,6 +191,7 @@ NULL
 
         ## Gene filter ---------------------------------------------------------
         cli_alert("Applying gene expression low pass filter.")
+        cli_div(theme = list(body = list("margin-left" = 4L)))
         cli_alert_info(sprintf(
             "Requiring at least %d %s with counts of %d or more per gene.",
             minCellsPerGene,
@@ -221,11 +224,14 @@ NULL
         }
         ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
+        cli_end()
 
         ## Cell filter ---------------------------------------------------------
+        cli_alert("Applying cell low pass filter.")
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (hasLength(trash)) {
+            cli_div(theme = list(body = list("margin-left" = 4L)))
             cli_alert_warning(sprintf(
                 "Removed %d low quality %s.",
                 length(trash),
@@ -235,6 +241,7 @@ NULL
                     msg2 = "cells"
                 )
             ))
+            cli_end()
         }
         ## Resize the numerator and denominator after our QC filters.
         ## Early return `NULL` if there are less than n cells in either.
