@@ -43,7 +43,7 @@ marker analysis and add corresponding gene annotations.
 For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
 in the \code{gene} column.
 
-Updated 2019-08-06.
+Updated 2020-01-30.
 }
 \examples{
 data(Seurat, package = "acidtest")

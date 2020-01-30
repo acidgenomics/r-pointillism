@@ -12,7 +12,7 @@
 \usage{
 \S4method{Gene2Symbol}{cell_data_set}(object, ...)
 
-\S4method{logcounts}{cell_data_set}(object)
+\S4method{logcounts}{cell_data_set}(object, verbose = FALSE)
 
 \S4method{metrics}{cell_data_set}(object, return = c("tbl_df", "DataFrame"))
 
@@ -27,6 +27,9 @@
 
 \item{...}{Additional arguments.}
 
+\item{verbose}{\code{logical(1)}.
+Run the function with verbose output.}
+
 \item{return}{\code{character(1)}.
 Return type. Uses \code{\link[base:match.arg]{match.arg()}} internally and defaults
 to the first argument in the \code{character} vector.}
@@ -40,6 +43,6 @@ Varies, depending on the generic.
 Extend base S4 methods for \code{cell_data_set} class
 }
 \note{
-Updated 2019-08-05.
+Updated 2020-01-30.
 }
 \keyword{internal}

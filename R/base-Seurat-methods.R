@@ -205,25 +205,17 @@ setReplaceMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `logcounts,Seurat` <-  # nolint
     function(object, assay = NULL) {
         norm <- .seuratNormalizationMethod(object, assay = assay)
         if (norm != "LogNormalize") {
-            message(
-                "Generating log normalized counts with ",
-                "'Seurat::NormalizeData()'."
-            )
             object <- NormalizeData(
                 object = object,
                 normalization.method = "LogNormalize",
                 verbose = TRUE
             )
         }
-        message(
-            "Returning log normalized counts with ",
-            "'Seurat::GetAssayData()'."
-        )
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 
@@ -376,17 +368,13 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `normcounts,Seurat` <-  # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated relative counts (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1L)) {
-            message(
-                "Generating normalized counts with ",
-                "'Seurat::NormalizeData()'."
-            )
             object <- NormalizeData(
                 object = object,
                 normalization.method = "RC",
@@ -394,10 +382,6 @@ setMethod(
                 verbose = TRUE
             )
         }
-        message(
-            "Returning normalized counts with ",
-            "'Seurat::GetAssayData()'."
-        )
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 
