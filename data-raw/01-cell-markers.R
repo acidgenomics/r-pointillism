@@ -1,5 +1,5 @@
 ## Cell-cycle and cell-type markers.
-## Updated 2019-07-31.
+## Updated 2020-01-30.
 
 ## Here we're matching the stored Ensembl identifiers (`geneID`) using
 ## ensembldb to obtain the latest symbol names from Ensembl.
@@ -12,22 +12,22 @@ library(usethis)
 library(stringr)
 
 # Import as `DataFrame` instead of `tbl_df`.
-options("acid.data.frame") <- "DataFrame"
+options("acid.data.frame" = "DataFrame")
 
-markersDir <- system.file(
+markers_dir <- system.file(
     file.path("inst", "extdata", "markers"),
     package = "pointillism"
 )
-stopifnot(dir.exists(markersDir))
+stopifnot(dir.exists(markers_dir))
 
 ## Ensembl release version.
-release <- as.integer(readLines(file.path(markersDir, "ensembl-release.txt")))
+release <- as.integer(readLines(file.path(markers_dir, "ensembl-release.txt")))
 
 ## Cell-cycle markers ==========================================================
-cellCycleDir <- file.path(markersDir, "cell-cycle")
-stopifnot(dir.exists(cellCycleDir))
-files <- list.files(path = cellCycleDir, pattern = "*.csv", full.names = TRUE)
-cellCycleMarkersList <- lapply(
+cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
+stopifnot(dir.exists(cell_cycle_dir))
+files <- list.files(path = cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
+cell_cycle_markers_list <- lapply(
     X = files,
     FUN = function(file) {
         data <- import(file = file)
@@ -44,13 +44,13 @@ cellCycleMarkersList <- lapply(
     }
 )
 names <- camel(basenameSansExt(files))
-names(cellCycleMarkersList) <- names
+names(cell_cycle_markers_list) <- names
 
 ## Cell-type markers ===========================================================
-cellTypeDir <- file.path(markersDir, "cell-type")
-stopifnot(dir.exists(cellTypeDir))
-files <- list.files(path = cellTypeDir, pattern = "*.csv", full.names = TRUE)
-cellTypeMarkersList <- lapply(
+cell_type_dir <- file.path(markers_dir, "cell-type")
+stopifnot(dir.exists(cell_type_dir))
+files <- list.files(path = cell_type_dir, pattern = "*.csv", full.names = TRUE)
+cell_type_markers_list <- lapply(
     X = files,
     FUN = function(file) {
         data <- import(file = file)
@@ -67,12 +67,12 @@ cellTypeMarkersList <- lapply(
     }
 )
 names <- camel(basenameSansExt(files))
-names(cellTypeMarkersList) <- names
+names(cell_type_markers_list) <- names
 
 ## Save R data ==================================================================
 use_data(
-    cellCycleMarkersList,
-    cellTypeMarkersList,
+    cell_cycle_markers_list,
+    cell_type_markers_list,
     compress = "xz",
     overwrite = TRUE
 )
