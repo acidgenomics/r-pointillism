@@ -73,7 +73,7 @@ normcounts() and logcounts() slots in assays(), respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -160,7 +160,7 @@ be computed internally automatically using <code>estimateSizeFactors()</code> wi
 recommended default settings.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-03.</p>
+    <p>Updated 2020-01-30.</p>
     <h2 class="hasAnchor" id="normalized-counts"><a class="anchor" href="#normalized-counts"></a>Normalized counts</h2>
 
     
@@ -206,23 +206,14 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(
-    <span class='no'>Seurat</span>,
-    <span class='no'>SingleCellExperiment</span>,
-    <span class='no'>cell_data_set</span>,
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>
-)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
 
 <span class='co'>## SingleCellExperiment ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Calculating library size factors using 'mean-ratio' method.</span></div><div class='output co'>#&gt; <span class='message'>Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>Computing 'normcounts' and 'logcounts' assays using 'scater::normalizeCounts()'.</span></div><div class='input'>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Calculating library size factors using <span style='color: #0000BB;'>mean-ratio</span><span> method.</span></div><div class='output co'>#&gt; <span class='message'>→ Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>→ Computing </span><span style='color: #262626;background-color: #DADADA;'>`normcounts`</span><span> and </span><span style='color: #262626;background-color: #DADADA;'>`logcounts`</span><span> assays using </span><span style='color: #0000BB;'>scater</span><span>::</span><span style='color: #262626;background-color: #DADADA;'>`normalizeCounts()`</span><span>.</span></div><div class='input'>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>Normalizing with 'Seurat::NormalizeData()'.</span></div><div class='input'>
-## cell_data_set ====
-## > object <- cell_data_set
-## > object <- normalize(object)
-</div></pre>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Normalizing with </span><span style='color: #0000BB;'>Seurat</span><span>::</span><span style='color: #262626;background-color: #DADADA;'>`NormalizeData()`</span><span>.</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
