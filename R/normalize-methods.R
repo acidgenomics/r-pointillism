@@ -72,7 +72,7 @@ NULL
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object) {
         validObject(object)
@@ -84,10 +84,10 @@ NULL
             )
         }
         assert(!is.null(sizeFactors(object)))
-        message(
-            "Computing 'normcounts' and 'logcounts' assays using ",
-            "'scater::normalizeCounts()'."
-        )
+        cli_alert(paste(
+            "Computing {.var normcounts} and {.var logcounts} assays using",
+            "{.pkg scater}::{.fun normalizeCounts}."
+        ))
         ## Get normcounts matrix.
         normcounts <- normalizeCounts(
             x = object,
@@ -122,10 +122,10 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `normalize,Seurat` <-  # nolint
     function(object) {
-        message("Normalizing with 'Seurat::NormalizeData()'.")
+        cli_alert("Normalizing with {.pkg Seurat}::{.fun NormalizeData}.")
         NormalizeData(object = object, verbose = TRUE)
     }
 
@@ -141,10 +141,10 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `normalize,cell_data_set` <-  # nolint
     function(object) {
-        message("Normalizing with 'monocle3::preprocess_cds()'.")
+        cli_alert("Normalizing with {.pkg monocle3}::{.fun preprocess_cds}.")
         monocle3::preprocess_cds(
             cds = object,
             method = "PCA",
