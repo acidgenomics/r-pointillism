@@ -58,7 +58,7 @@ NULL
 
 ## Using approach in `uniteInterestingGroups()` to generate the
 ## factor grouping column to apply split.
-## Updated 2019-09-04.
+## Updated 2020-01-30.
 .filterPromiscuousMarkers <- function(x, n) {
     assert(
         is(x, "DataFrame"),
@@ -76,7 +76,7 @@ NULL
     genes <- unlist(genes, use.names = FALSE)
     genes <- sort(unique(genes))
     if (hasLength(genes)) {
-        message(sprintf(
+        cli_alert_warning(sprintf(
             "Filtering promiscuous marker genes: %s.",
             toString(genes, width = 100L)
         ))
