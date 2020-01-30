@@ -1,4 +1,17 @@
-## pointillism 0.4.5 (2020-01-30)
+## pointillism 0.4.7 (2020-01-30)
+
+### Minor changes
+
+- Now using cli package for messages.
+- Updated basejump dependencies.
+
+## pointillism 0.4.6 (2020-01-20)
+
+### Minor changes
+
+- Reworked NAMESPACE to support migration of bioverbs package to acidgenerics.
+
+## pointillism 0.4.5 (2020-01-03)
 
 ### Major changes
 
