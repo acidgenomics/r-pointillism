@@ -81,8 +81,8 @@ Superimpose sample text labels on the plot.}
 Size of the text label.}
 
 \item{dark}{\code{logical(1)}.
-Plot against a dark background using the
-\code{\link[acidplots:acid_theme_light]{acid_theme_light()}} ggplot2 theme.}
+Plot against a dark background using the \code{acid_theme_light()} ggplot2
+theme.}
 
 \item{legend}{\code{logical(1)}.
 Include plot legend.}
