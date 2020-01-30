@@ -5,7 +5,7 @@ with_parameters_test_that(
         invisible(capture.output(
             list <- plotCellTypesPerCluster(
                 object = object,
-                markers = seuratKnownMarkers
+                markers = seurat_known_markers
             )
         ))
         expect_type(list, "list")

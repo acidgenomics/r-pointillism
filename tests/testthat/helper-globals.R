@@ -11,16 +11,16 @@ data(
     envir = environment()
 )
 
-## > data(
-## >     cell_data_set,
-## >     seuratAllMarkers,
-## >     seuratKnownMarkers,
-## >     package = "pointillism",
-## >     envir = environment()
-## > )
+data(
+    cell_data_set,
+    seurat_all_markers,
+    seurat_known_markers,
+    package = "pointillism",
+    envir = environment()
+)
 
-## > cds <- cell_data_set
-## > rm(cell_data_set)
+cds <- cell_data_set
+rm(cell_data_set)
 
 sce <- SingleCellExperiment
 rm(SingleCellExperiment)
