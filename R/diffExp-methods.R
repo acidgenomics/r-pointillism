@@ -4,7 +4,7 @@
 #' @note We are no longer recommending the use of software that attempts to
 #'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 #'   single cell RNA-seq data. Simply model the counts directly.
-#' @note Updated 2019-09-03.
+#' @note Updated 2020-01-30.
 #'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
@@ -125,7 +125,7 @@ NULL
 
 
 ## diffExp =====================================================================
-## Updated 2019-09-03.
+## Updated 2020-01-30.
 `diffExp,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -159,22 +159,28 @@ NULL
             .isBPPARAM(BPPARAM)
         )
         caller <- match.arg(caller)
-        message(sprintf("Performing differential expression with %s.", caller))
+        cli_alert(sprintf(
+            "Performing differential expression with {.pkg %s}.",
+            caller
+        ))
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
-        message(sprintf(
-            fmt = paste(
-                "  - Total: %d %s",
-                "  - Numerator: %d %s",
-                "  - Denominator: %d %s",
-                sep = "\n"
+        cli_ul(c(
+            sprintf(
+                "Total: %d %s",
+                length(cells),
+                ngettext(length(cells), "cell", "cells"),
             ),
-            length(cells),
-            ngettext(length(cells), "cell", "cells"),
-            length(numerator),
-            ngettext(length(numerator), "cell", "cells"),
-            length(denominator),
-            ngettext(length(denominator), "cell", "cells")
+            sprintf(
+                "Numerator: %d %s",
+                length(numerator),
+                ngettext(length(numerator), "cell", "cells"),
+            ),
+            sprintf(
+                "Denominator: %d %s",
+                length(denominator),
+                ngettext(length(denominator), "cell", "cells")
+            )
         ))
         object <- object[, cells, drop = FALSE]
         ## Ensure we're using a sparse matrix to calculate the logical matrix.
@@ -182,8 +188,8 @@ NULL
         counts <- as(counts, "sparseMatrix")
 
         ## Gene filter ---------------------------------------------------------
-        message("Applying gene expression low pass filter.")
-        message(sprintf(
+        cli_alert("Applying gene expression low pass filter.")
+        cli_alert_info(sprintf(
             "Requiring at least %d %s with counts of %d or more per gene.",
             minCellsPerGene,
             ngettext(
@@ -198,7 +204,7 @@ NULL
         ## a lot faster when using a sparse matrix (see above).
         genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
-        message(sprintf(
+        cli_alert_info(sprintf(
             "%d of %d %s passed filter.",
             length(genes),
             nrow(object),
@@ -210,7 +216,7 @@ NULL
         ))
         ## Early return NULL if no genes pass.
         if (!hasLength(genes)) {
-            warning("No genes passed the low count filter.")
+            cli_alert_warning("No genes passed the low count filter.")
             return(NULL)
         }
         ## Now subset the object by applying our low pass expression filter.
@@ -220,7 +226,7 @@ NULL
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (hasLength(trash)) {
-            message(sprintf(
+            cli_alert_warning(sprintf(
                 "Removed %d low quality %s.",
                 length(trash),
                 ngettext(
@@ -292,31 +298,29 @@ formals(`diffExp,SingleCellExperiment`)[["BPPARAM"]] <- BPPARAM
 ## - `minmu`: Set a lower threshold than the default 0.5, as recommended
 ##   in Mike Love's zinbwave-DESeq2 vignette.
 ##
-## Updated 2019-07-31.
+## Updated 2020-01-30.
 .diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
     assert(.hasDesignFormula(object))
-    message("Running DESeq2.")
-    message(printString(system.time({
-        dds <- DESeqDataSet(
-            se = object,
-            design = .designFormula
-        )
-        dds <- DESeq(
-            object = dds,
-            test = "LRT",
-            reduced = ~ 1L,
-            sfType = "poscounts",
-            minmu = 1e-6,
-            minReplicatesForReplace = Inf,
-            BPPARAM = BPPARAM
-        )
-        ## We have already performed low count filtering.
-        res <- results(
-            object = dds,
-            independentFiltering = FALSE,
-            BPPARAM = BPPARAM
-        )
-    })))
+    cli_alert("Running {.pkg DESeq2}.")
+    dds <- DESeqDataSet(
+        se = object,
+        design = .designFormula
+    )
+    dds <- DESeq(
+        object = dds,
+        test = "LRT",
+        reduced = ~ 1L,
+        sfType = "poscounts",
+        minmu = 1e-6,
+        minReplicatesForReplace = Inf,
+        BPPARAM = BPPARAM
+    )
+    ## We have already performed low count filtering.
+    res <- results(
+        object = dds,
+        independentFiltering = FALSE,
+        BPPARAM = BPPARAM
+    )
     res
 }
 
@@ -329,23 +333,21 @@ formals(`diffExp,SingleCellExperiment`)[["BPPARAM"]] <- BPPARAM
 ## degrees of freedom, to account for the downweighting in the zero-inflation
 ## model (which no longer applies here).
 ##
-## Updated 2019-07-31.
+## Updated 2020-01-30.
 .diffExp.edgeR <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
-    message("Running edgeR.")
+    cli_alert("Running {.pkg edgeR}.")
     ## Ensure sparseMatrix gets coerced to dense matrix.
     counts <- as.matrix(counts(object))
     design <- metadata(object)[["design"]]
     assert(is.matrix(design))
     group <- object[["group"]]
     assert(is.factor(group))
-    message(printString(system.time({
-        dge <- DGEList(counts, group = group)
-        dge <- calcNormFactors(dge)
-        dge <- estimateDisp(dge, design = design)
-        fit <- glmFit(dge, design = design)
-        lrt <- glmLRT(glmfit = fit, coef = 2L)
-    })))
+    dge <- DGEList(counts, group = group)
+    dge <- calcNormFactors(dge)
+    dge <- estimateDisp(dge, design = design)
+    fit <- glmFit(dge, design = design)
+    lrt <- glmLRT(glmfit = fit, coef = 2L)
     lrt
 }
 
