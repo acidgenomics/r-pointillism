@@ -169,12 +169,12 @@ NULL
             sprintf(
                 "Total: %d %s",
                 length(cells),
-                ngettext(length(cells), "cell", "cells"),
+                ngettext(length(cells), "cell", "cells")
             ),
             sprintf(
                 "Numerator: %d %s",
                 length(numerator),
-                ngettext(length(numerator), "cell", "cells"),
+                ngettext(length(numerator), "cell", "cells")
             ),
             sprintf(
                 "Denominator: %d %s",
