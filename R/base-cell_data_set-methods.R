@@ -2,7 +2,7 @@
 #'
 #' @name base-cell_data_set
 #' @keywords internal
-#' @note Updated 2019-08-05.
+#' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -35,13 +35,9 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `logcounts,cell_data_set` <-  # nolint
     function(object) {
-        message(
-            "Returning log normalized counts with ",
-            "'monocle3::normalized_counts()'."
-        )
         monocle3::normalized_counts(
             cds = object,
             norm_method = "log",
@@ -101,13 +97,9 @@ setMethod(
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-01-30.
 `normcounts,cell_data_set` <-  # nolint
     function(object) {
-        message(
-            "Getting normalized counts with ",
-            "'monocle3::normalized_counts()'."
-        )
         monocle3::normalized_counts(
             cds = object,
             norm_method = "size_only",
