@@ -22,7 +22,6 @@ reference:
     contents:
       - cellCountsPerCluster
       - cellTypesPerCluster
-      - clusterID
       - clusters
       - normalize
   - title: Differential expression
