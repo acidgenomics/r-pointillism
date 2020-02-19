@@ -1,8 +1,8 @@
 context("plotPCElbow")
 
 objects <- list(
-    Seurat = seurat,
-    cell_data_set = cds
+    Seurat = seurat
+    ## cell_data_set = cds
 )
 
 with_parameters_test_that(
@@ -15,7 +15,7 @@ with_parameters_test_that(
     },
     object = objects,
     elbow = list(
-        Seurat = 10L,
-        cell_data_set = 16L
+        Seurat = 10L
+        ## cell_data_set = 16L
     )
 )

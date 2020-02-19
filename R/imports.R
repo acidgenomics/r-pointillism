@@ -3,9 +3,11 @@
 
 
 
+## Disabled until monocle3 is on Bioconductor.
+## #' @importClassesFrom monocle3 cell_data_set
+
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
-#' @importClassesFrom monocle3 cell_data_set
 NULL
 
 

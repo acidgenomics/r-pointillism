@@ -150,26 +150,26 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotPCElbow,cell_data_set` <-  # nolint
-    function(object, minPct, maxCumPct) {
-        pctStdDev <- slot(object, "preprocess_aux")[["prop_var_expl"]]
-        .plotPCElbow(
-            pctStdDev = pctStdDev,
-            minPct = minPct,
-            maxCumPct = maxCumPct
-        )
-    }
-
-args <- c("minPct", "maxCumPct")
-formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
-
-
-
-#' @rdname plotPCElbow
-#' @export
-setMethod(
-    f = "plotPCElbow",
-    signature = signature("cell_data_set"),
-    definition = `plotPCElbow,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotPCElbow,cell_data_set` <-  # nolint
+##     function(object, minPct, maxCumPct) {
+##         pctStdDev <- slot(object, "preprocess_aux")[["prop_var_expl"]]
+##         .plotPCElbow(
+##             pctStdDev = pctStdDev,
+##             minPct = minPct,
+##             maxCumPct = maxCumPct
+##         )
+##     }
+## 
+## args <- c("minPct", "maxCumPct")
+## formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
+## 
+## 
+## 
+## #' @rdname plotPCElbow
+## #' @export
+## setMethod(
+##     f = "plotPCElbow",
+##     signature = signature("cell_data_set"),
+##     definition = `plotPCElbow,cell_data_set`
+## )
