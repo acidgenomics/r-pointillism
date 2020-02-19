@@ -104,16 +104,16 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotCellCountsPerCluster,cell_data_set` <-  # nolint
-    `plotCellCountsPerCluster,SingleCellExperiment`
-
-
-
-#' @rdname plotCellCountsPerCluster
-#' @export
-setMethod(
-    f = "plotCellCountsPerCluster",
-    signature = signature("cell_data_set"),
-    definition = `plotCellCountsPerCluster,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotCellCountsPerCluster,cell_data_set` <-  # nolint
+##     `plotCellCountsPerCluster,SingleCellExperiment`
+## 
+## 
+## 
+## #' @rdname plotCellCountsPerCluster
+## #' @export
+## setMethod(
+##     f = "plotCellCountsPerCluster",
+##     signature = signature("cell_data_set"),
+##     definition = `plotCellCountsPerCluster,cell_data_set`
+## )

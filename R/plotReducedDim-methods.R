@@ -349,19 +349,19 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotReducedDim,cell_data_set` <-  # nolint
-    `plotReducedDim,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotReducedDim",
-    signature = signature("cell_data_set"),
-    definition = `plotReducedDim,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotReducedDim,cell_data_set` <-  # nolint
+##     `plotReducedDim,SingleCellExperiment`
+## 
+## 
+## 
+## #' @rdname plotReducedDim
+## #' @export
+## setMethod(
+##     f = "plotReducedDim",
+##     signature = signature("cell_data_set"),
+##     definition = `plotReducedDim,cell_data_set`
+## )
 
 
 
@@ -391,19 +391,19 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotTSNE,cell_data_set` <-  # nolint
-    `plotTSNE,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("cell_data_set"),
-    definition = `plotTSNE,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotTSNE,cell_data_set` <-  # nolint
+##     `plotTSNE,SingleCellExperiment`
+## 
+## 
+## 
+## #' @rdname plotReducedDim
+## #' @export
+## setMethod(
+##     f = "plotTSNE",
+##     signature = signature("cell_data_set"),
+##     definition = `plotTSNE,cell_data_set`
+## )
 
 
 
@@ -433,19 +433,19 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotUMAP,cell_data_set` <-  # nolint
-    `plotUMAP,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("cell_data_set"),
-    definition = `plotUMAP,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotUMAP,cell_data_set` <-  # nolint
+##     `plotUMAP,SingleCellExperiment`
+## 
+## 
+## 
+## #' @rdname plotReducedDim
+## #' @export
+## setMethod(
+##     f = "plotUMAP",
+##     signature = signature("cell_data_set"),
+##     definition = `plotUMAP,cell_data_set`
+## )
 
 
 
@@ -475,16 +475,16 @@ setMethod(
 
 
 
-## Updated 2019-08-02.
-`plotPCA,cell_data_set` <-  # nolint
-    `plotPCA,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotPCA",
-    signature = signature("cell_data_set"),
-    definition = `plotPCA,cell_data_set`
-)
+## ## Updated 2019-08-02.
+## `plotPCA,cell_data_set` <-  # nolint
+##     `plotPCA,SingleCellExperiment`
+## 
+## 
+## 
+## #' @rdname plotReducedDim
+## #' @export
+## setMethod(
+##     f = "plotPCA",
+##     signature = signature("cell_data_set"),
+##     definition = `plotPCA,cell_data_set`
+## )
