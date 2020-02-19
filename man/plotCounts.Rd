@@ -7,13 +7,10 @@
 \alias{plotViolin}
 \alias{plotCounts,SingleCellExperiment-method}
 \alias{plotCounts,Seurat-method}
-\alias{plotCounts,cell_data_set-method}
 \alias{plotDots,SingleCellExperiment-method}
 \alias{plotDots,Seurat-method}
-\alias{plotDots,cell_data_set-method}
 \alias{plotViolin,SingleCellExperiment-method}
 \alias{plotViolin,Seurat-method}
-\alias{plotViolin,cell_data_set-method}
 \title{Plot counts}
 \usage{
 plotCounts(object, ...)
@@ -29,16 +26,6 @@ plotCounts(object, ...)
 )
 
 \S4method{plotCounts}{Seurat}(
-  object,
-  genes,
-  assay = c("logcounts", "normcounts"),
-  geom = c("violin", "dot"),
-  perSample = TRUE,
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
-\S4method{plotCounts}{cell_data_set}(
   object,
   genes,
   assay = c("logcounts", "normcounts"),
@@ -80,21 +67,6 @@ plotDots(object, ...)
   title = NULL
 )
 
-\S4method{plotDots}{cell_data_set}(
-  object,
-  genes,
-  perSample = TRUE,
-  colMin = -2.5,
-  colMax = 2.5,
-  dotMin = 0L,
-  dotScale = 6L,
-  color = getOption("acid.continuous.color", default =
-    ggplot2::scale_color_gradient2(low = "orange", mid = "gray75", high = "purple",
-    midpoint = 0L)),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
 plotViolin(object, ...)
 
 \S4method{plotViolin}{SingleCellExperiment}(
@@ -110,18 +82,6 @@ plotViolin(object, ...)
 )
 
 \S4method{plotViolin}{Seurat}(
-  object,
-  genes,
-  assay = c("logcounts", "normcounts"),
-  perSample = TRUE,
-  scale = c("count", "width", "area"),
-  color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
-\S4method{plotViolin}{cell_data_set}(
   object,
   genes,
   assay = c("logcounts", "normcounts"),

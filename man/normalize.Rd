@@ -4,7 +4,6 @@
 \alias{normalize}
 \alias{normalize,SingleCellExperiment-method}
 \alias{normalize,Seurat-method}
-\alias{normalize,cell_data_set-method}
 \title{Normalize expression using pre-computed size factors}
 \usage{
 normalize(object, ...)
@@ -12,8 +11,6 @@ normalize(object, ...)
 \S4method{normalize}{SingleCellExperiment}(object)
 
 \S4method{normalize}{Seurat}(object)
-
-\S4method{normalize}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}

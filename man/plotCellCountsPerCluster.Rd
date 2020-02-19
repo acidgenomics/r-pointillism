@@ -4,7 +4,6 @@
 \alias{plotCellCountsPerCluster}
 \alias{plotCellCountsPerCluster,SingleCellExperiment-method}
 \alias{plotCellCountsPerCluster,Seurat-method}
-\alias{plotCellCountsPerCluster,cell_data_set-method}
 \title{Plot cell counts per cluster}
 \usage{
 plotCellCountsPerCluster(object, ...)
@@ -12,8 +11,6 @@ plotCellCountsPerCluster(object, ...)
 \S4method{plotCellCountsPerCluster}{SingleCellExperiment}(object, interestingGroups = NULL)
 
 \S4method{plotCellCountsPerCluster}{Seurat}(object, interestingGroups = NULL)
-
-\S4method{plotCellCountsPerCluster}{cell_data_set}(object, interestingGroups = NULL)
 }
 \arguments{
 \item{object}{Object.}

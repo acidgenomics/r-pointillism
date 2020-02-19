@@ -4,7 +4,6 @@
 \alias{clusters}
 \alias{clusters,SingleCellExperiment-method}
 \alias{clusters,Seurat-method}
-\alias{clusters,cell_data_set-method}
 \title{Cluster identifiers}
 \usage{
 clusters(object, ...)
@@ -12,14 +11,9 @@ clusters(object, ...)
 \S4method{clusters}{SingleCellExperiment}(object)
 
 \S4method{clusters}{Seurat}(object)
-
-\S4method{clusters}{cell_data_set}(object, reduction = "UMAP")
 }
 \arguments{
 \item{object}{Object.}
-
-\item{reduction}{\code{vector(1)}.
-Dimension reduction name or index position.}
 
 \item{...}{Additional arguments.}
 }

@@ -4,7 +4,6 @@
 \alias{cellCountsPerCluster}
 \alias{cellCountsPerCluster,SingleCellExperiment-method}
 \alias{cellCountsPerCluster,Seurat-method}
-\alias{cellCountsPerCluster,cell_data_set-method}
 \title{Cell counts per cluster}
 \usage{
 cellCountsPerCluster(object, ...)
@@ -12,8 +11,6 @@ cellCountsPerCluster(object, ...)
 \S4method{cellCountsPerCluster}{SingleCellExperiment}(object)
 
 \S4method{cellCountsPerCluster}{Seurat}(object)
-
-\S4method{cellCountsPerCluster}{cell_data_set}(object)
 }
 \arguments{
 \item{object}{Object.}
