@@ -7,16 +7,12 @@
 \alias{plotUMAP}
 \alias{plotReducedDim,SingleCellExperiment-method}
 \alias{plotReducedDim,Seurat-method}
-\alias{plotReducedDim,cell_data_set-method}
 \alias{plotTSNE,SingleCellExperiment-method}
 \alias{plotTSNE,Seurat-method}
-\alias{plotTSNE,cell_data_set-method}
 \alias{plotUMAP,SingleCellExperiment-method}
 \alias{plotUMAP,Seurat-method}
-\alias{plotUMAP,cell_data_set-method}
 \alias{plotPCA,SingleCellExperiment-method}
 \alias{plotPCA,Seurat-method}
-\alias{plotPCA,cell_data_set-method}
 \title{Plot reduced dimensions}
 \usage{
 plotReducedDim(object, ...)
@@ -45,23 +41,6 @@ plotUMAP(object, ...)
 )
 
 \S4method{plotReducedDim}{Seurat}(
-  object,
-  reduction = "UMAP",
-  dims = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
-\S4method{plotReducedDim}{cell_data_set}(
   object,
   reduction = "UMAP",
   dims = c(1L, 2L),
@@ -110,22 +89,6 @@ plotUMAP(object, ...)
   title = NULL
 )
 
-\S4method{plotTSNE}{cell_data_set}(
-  object,
-  dims = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
 \S4method{plotUMAP}{SingleCellExperiment}(
   object,
   dims = c(1L, 2L),
@@ -158,22 +121,6 @@ plotUMAP(object, ...)
   title = NULL
 )
 
-\S4method{plotUMAP}{cell_data_set}(
-  object,
-  dims = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
 \S4method{plotPCA}{SingleCellExperiment}(
   object,
   dims = c(1L, 2L),
@@ -191,22 +138,6 @@ plotUMAP(object, ...)
 )
 
 \S4method{plotPCA}{Seurat}(
-  object,
-  dims = c(1L, 2L),
-  interestingGroups = NULL,
-  color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE),
-  title = NULL
-)
-
-\S4method{plotPCA}{cell_data_set}(
   object,
   dims = c(1L, 2L),
   interestingGroups = NULL,

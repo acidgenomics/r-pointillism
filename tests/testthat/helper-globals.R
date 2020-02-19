@@ -12,15 +12,15 @@ data(
 )
 
 data(
-    cell_data_set,
+    ## cell_data_set,
     seurat_all_markers,
     seurat_known_markers,
     package = "pointillism",
     envir = environment()
 )
 
-cds <- cell_data_set
-rm(cell_data_set)
+## cds <- cell_data_set
+## rm(cell_data_set)
 
 sce <- SingleCellExperiment
 rm(SingleCellExperiment)

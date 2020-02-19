@@ -3,14 +3,11 @@
 \name{plotPCElbow}
 \alias{plotPCElbow}
 \alias{plotPCElbow,Seurat-method}
-\alias{plotPCElbow,cell_data_set-method}
 \title{Plot principal component elbow}
 \usage{
 plotPCElbow(object, ...)
 
 \S4method{plotPCElbow}{Seurat}(object, minPct = 0.01, maxCumPct = 0.9)
-
-\S4method{plotPCElbow}{cell_data_set}(object, minPct = 0.01, maxCumPct = 0.9)
 }
 \arguments{
 \item{object}{Object.}
