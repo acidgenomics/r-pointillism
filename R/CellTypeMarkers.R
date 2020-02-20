@@ -9,8 +9,24 @@
 #' @return `CellTypeMarkers`.
 #'
 #' @examples
+#' markers_dir <- system.file(
+#'     file.path("inst", "extdata", "markers"),
+#'     package = "pointillism"
+#' )
 #'
+#' cell_type_dir <- file.path(markers_dir, "cell-type")
+#' files <- list.files(cell_type_dir, pattern = "*.csv", full.names = TRUE)
+#' file <- files[[1L]]
 #'
+#' ## Ensembl release version.
+#' release_file <- file.path(markers_dir, "ensembl-release.txt")
+#' release <- as.integer(readLines(release_file))
+#'
+#' importCellTypeMarkers(
+#'     file = file,
+#'    organism = basenameSansExt(file),
+#'     release = release
+#' )
 NULL
 
 

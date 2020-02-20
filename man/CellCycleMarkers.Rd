@@ -2,11 +2,20 @@
 % Please edit documentation in R/CellCycleMarkers.R
 \name{CellCycleMarkers}
 \alias{CellCycleMarkers}
-\title{Import cell-cycle markers}
+\alias{importCellCycleMarkers}
+\title{Cell-cycle markers}
 \usage{
-CellCycleMarkers(file, organism, release)
+CellCycleMarkers(object, gene2symbol)
+
+importCellCycleMarkers(file, organism, release)
 }
 \arguments{
+\item{object}{Object.}
+
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
+
 \item{file}{\code{character(1)}.
 File path.}
 
@@ -24,7 +33,7 @@ ensembldb in use.}
 \code{CellCycleMarkers}.
 }
 \description{
-Import cell-cycle markers
+Cell-cycle markers
 }
 \note{
 Updated 2020-02-20.
@@ -36,8 +45,7 @@ markers_dir <- system.file(
 )
 
 cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
-stopifnot(dir.exists(cell_cycle_dir))
-files <- list.files(path = cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
+files <- list.files(cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
 file <- files[[1L]]
 
 ## Ensembl release version.
