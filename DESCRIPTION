@@ -63,7 +63,6 @@ Suggests:
     acidroxygen (>= 0.1.8),
     acidtest (>= 0.2.14),
     knitr (>= 1.24),
-    monocle3 (>= 0.2.0),
     patrick (>= 0.0.1),
     roxygen2 (>= 6.1),
     splatter (>= 1.10),
@@ -74,8 +73,7 @@ Remotes:
     acidgenomics/acidroxygen,
     acidgenomics/acidtest,
     acidgenomics/basejump,
-    acidgenomics/goalie,
-    cole-trapnell-lab/monocle3
+    acidgenomics/goalie
 biocViews:
     Clustering,
     DataRepresentation,
