@@ -13,9 +13,6 @@
 library(usethis)
 library(stringr)
 
-# Import as `DataFrame` instead of `tbl_df`.
-options("acid.data.frame" = "DataFrame")
-
 markers_dir <- system.file(
     file.path("inst", "extdata", "markers"),
     package = "pointillism"
