@@ -9,7 +9,7 @@ runSeurat(
   regressCellCycle = c("s-g2m-diff", "yes", "no"),
   varsToRegress = c("nCount_RNA", "mitoRatio"),
   dims = "auto",
-  resolution = seq(from = 0.2, to = 1.2, by = 0.1),
+  resolution = seq(from = 0.2, to = 1.2, by = 0.2),
   tsneMethod = "Rtsne",
   umapMethod = "umap-learn",
   virtualenv = "r-reticulate",
