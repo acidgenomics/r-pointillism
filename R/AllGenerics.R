@@ -28,3 +28,14 @@ setGeneric(
         standardGeneric("SeuratMarkersPerCluster")
     }
 )
+
+
+
+#' @rdname runSeurat
+#' @export
+setGeneric(
+    name = "runSeurat",
+    def = function(object, ...) {
+        standardGeneric("runSeurat")
+    }
+)
