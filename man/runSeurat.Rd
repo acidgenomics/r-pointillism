@@ -4,7 +4,16 @@
 \alias{runSeurat}
 \title{Run Seurat}
 \usage{
-runSeurat(object, virtualenv = "r-reticulate", regressCellCycle = TRUE)
+runSeurat(
+  object,
+  regressCellCycle = c("s-g2m-diff", "yes", "no"),
+  varsToRegress = c("nCount_RNA", "mitoRatio"),
+  dims = "auto",
+  resolution = seq(from = 0.2, to = 1.2, by = 0.1),
+  tsneMethod = "Rtsne",
+  umapMethod = "umap-learn",
+  virtualenv = "r-reticulate"
+)
 }
 \description{
 Run Seurat
@@ -23,5 +32,7 @@ in \code{Rprofile.site}.
 \itemize{
 \item https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 \item https://github.com/satijalab/seurat/wiki
+\item https://satijalab.org/seurat/essential_commands.html
+\item https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
 }
 }
