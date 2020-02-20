@@ -2,7 +2,7 @@
 #' @name show
 #' @author Michael Steinbuagh
 #' @inherit methods::show title description details params
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-20.
 #'
 #' @return No return.
 #'
@@ -20,7 +20,7 @@ NULL
 
 
 
-## Updated 2019-07-31.
+## Updated 2020-02-20.
 `show,CellCycleMarkers` <-  # nolint
     function(object) {
         validObject(object)
@@ -31,7 +31,7 @@ NULL
         genes <- vapply(
             X = object,
             FUN = function(x) {
-                x <- x[["geneName"]]
+                x <- as.character(x[["geneName"]])
                 x <- sort(x)
                 x <- c(head(x, n = 2L), "...", tail(x, n = 2L))
                 paste(x, collapse = " ")
@@ -73,7 +73,7 @@ setMethod(
         genes <- vapply(
             X = object,
             FUN = function(x) {
-                x <- x[["geneName"]]
+                x <- as.character(x[["geneName"]])
                 x <- sort(x)
                 x <- c(head(x, n = 2L), "...", tail(x, n = 2L))
                 paste(x, collapse = " ")
