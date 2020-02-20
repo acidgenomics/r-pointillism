@@ -66,7 +66,6 @@ runSeurat <- function(
     ## https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
 
     if (!identical(regressCellCycle, "no")) {
-        ## FIXME This step will error if we subset the Seurat object...
         organism <- organism(object)
         data(
             cell_cycle_markers_list,
