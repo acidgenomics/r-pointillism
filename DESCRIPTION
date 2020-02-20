@@ -61,6 +61,7 @@ Imports:
 Suggests:
     BiocStyle (>= 2.14),
     acidtest (>= 0.2.14),
+    future (>= 1.16),
     knitr (>= 1.24),
     patrick (>= 0.0.1),
     reticulate (>= 1.14),
