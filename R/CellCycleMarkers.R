@@ -15,8 +15,7 @@
 #' )
 #'
 #' cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
-#' stopifnot(dir.exists(cell_cycle_dir))
-#' files <- list.files(path = cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
+#' files <- list.files(cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
 #' file <- files[[1L]]
 #'
 #' ## Ensembl release version.

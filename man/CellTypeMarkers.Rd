@@ -2,11 +2,20 @@
 % Please edit documentation in R/CellTypeMarkers.R
 \name{CellTypeMarkers}
 \alias{CellTypeMarkers}
+\alias{importCellTypeMarkers}
 \title{Cell-type markers}
 \usage{
-CellTypeMarkers(file, organism, release)
+CellTypeMarkers(object, gene2symbol)
+
+importCellTypeMarkers(file, organism, release)
 }
 \arguments{
+\item{object}{Object.}
+
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
+
 \item{file}{\code{character(1)}.
 File path.}
 
@@ -28,4 +37,24 @@ Cell-type markers
 }
 \note{
 Updated 2020-02-20.
+}
+\examples{
+markers_dir <- system.file(
+    file.path("inst", "extdata", "markers"),
+    package = "pointillism"
+)
+
+cell_type_dir <- file.path(markers_dir, "cell-type")
+files <- list.files(cell_type_dir, pattern = "*.csv", full.names = TRUE)
+file <- files[[1L]]
+
+## Ensembl release version.
+release_file <- file.path(markers_dir, "ensembl-release.txt")
+release <- as.integer(readLines(release_file))
+
+importCellTypeMarkers(
+    file = file,
+   organism = basenameSansExt(file),
+    release = release
+)
 }
