@@ -59,7 +59,7 @@ setMethod(
 
 
 
-## Updated 2019-07-31.
+## Updated 2020-02-20.
 `show,CellTypeMarkers` <-  # nolint
     function(object) {
         validObject(object)
