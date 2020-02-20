@@ -36,6 +36,7 @@ NULL
 #' @export
 CellCycleMarkers <-  # nolint
     function(object, gene2symbol) {
+        assert(is(object, "DataFrame"))
         class <- "CellCycleMarkers"
         data <- .CellMarkers(
             object = object,

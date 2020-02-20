@@ -1,6 +1,6 @@
 #' Cell-type markers
 #'
-#' @export
+#' @name CellTypeMarkers
 #' @note Updated 2020-02-20.
 #'
 #' @inheritParams acidroxygen::params
@@ -9,7 +9,31 @@
 #' @return `CellTypeMarkers`.
 #'
 #' @examples
-CellTypeMarkers <- function(
+#'
+#'
+NULL
+
+
+
+#' @rdname CellTypeMarkers
+#' @export
+CellTypeMarkers <-  # nolint
+    function(object, gene2symbol) {
+        assert(is(object, "DataFrame"))
+        class <- "CellTypeMarkers"
+        data <- .CellMarkers(
+            object = object,
+            gene2symbol = gene2symbol,
+            class = class
+        )
+        new(Class = class, data)
+    }
+
+
+
+#' @rdname CellTypeMarkers
+#' @export
+importCellTypeMarkers <- function(
     file,
     organism,
     release
@@ -20,11 +44,8 @@ CellTypeMarkers <- function(
         organism = organism,
         release = release
     )
-    class <- "CellTypeMarkers"
-    data <- .CellMarkers(
+    CellTypeMarkers(
         object = object,
-        gene2symbol = gene2symbol,
-        class = class
+        gene2symbol = gene2symbol
     )
-    new(Class = class, data)
 }
