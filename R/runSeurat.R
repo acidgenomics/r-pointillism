@@ -146,5 +146,6 @@ runSeurat <- function(
         dims = dims
     )
 
+    cli_alert_success("Seurat run was successful.")
     object
 }
