@@ -96,30 +96,40 @@ runSeurat <- function(
     ## Scaling and projection --------------------------------------------------
     cli_alert("{.pkg Seurat}::{.fun ScaleData}")
     cli_dl(c(varsToRegress = toString(varsToRegress)))
-    ## This step is CPU intensive for large datasets.
-    object <- Seurat::ScaleData(
-        object = object,
-        vars.to.regress = varsToRegress,
-        features = rownames(object)
-    )
+    ## Scaling all features is very slow for large datasets.
+    ## Current default in Seurat scales variable features only.
+    ## All features:
+    ## > features = rownames(object)
+    ## Variable features only:
+    ## > features = Seurat::VariableFeatures(object)
+    object <- Seurat::ScaleData(object, vars.to.regress = varsToRegress)
 
     cli_alert("{.pkg Seurat}::{.fun RunPCA}")
-    object <- Seurat::RunPCA(
-        object = object,
-        features = Seurat::VariableFeatures(object)
-    )
+    object <- Seurat::RunPCA(object)
 
     if (identical(dims, "auto")) {
         cli_alert("{.fun plotElbow}")
-        dims <- plotElbow(object)
+        p <- plotPCElbow(object)
+        elbow <- attr(p, "elbow")
+        dims <- seq(from = 1L, to = elbow, by = 1L)
     }
 
     ## Clustering --------------------------------------------------------------
     cli_alert("{.pkg Seurat}::{.fun FindNeighbors}")
+    cli_alert_info(paste("Using", length(dims), "dims."))
     object <- Seurat::FindNeighbors(object, dims = dims)
 
     cli_alert("{.pkg Seurat}::{.fun FindClusters}")
+    cli_dl(c(resolution = deparse(resolution)))
     object <- Seurat::FindClusters(object, resolution = resolution)
+
+    ## tSNE / UMAP -------------------------------------------------------------
+    cli_alert("{.pkg Seurat}::{.fun RunTSNE}")
+    cli_dl(c(method = tsneMethod))
+    object <- Seurat::RunTSNE(
+        object = object,
+        tsne.method = tsneMethod
+    )
 
     if (identical(umapMethod, "umap-learn")) {
         assert(requireNamespace("reticulate", quietly = TRUE))
@@ -127,14 +137,9 @@ runSeurat <- function(
         assert(reticulate::py_module_available(module = "umap"))
     }
 
-    ## tSNE / UMAP -------------------------------------------------------------
-    cli_alert("{.pkg Seurat}::{.fun RunTSNE}")
-    object <- Seurat::RunTSNE(
-        object = object,
-        tsne.method = tsneMethod
-    )
-
     cli_alert("{.pkg Seurat}::{.fun RunUMAP}")
+    cli_dl(c(method = umapMethod))
+    cli_alert_info(paste("Using", length(dims), "dims."))
     object <- Seurat::RunUMAP(
         object = object,
         umap.method = umapMethod,
