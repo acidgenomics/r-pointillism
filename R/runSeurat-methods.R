@@ -106,7 +106,11 @@ NULL
         ## > features = rownames(object)
         ## Variable features only:
         ## > features = Seurat::VariableFeatures(object)
-        object <- Seurat::ScaleData(object, vars.to.regress = varsToRegress)
+        object <- Seurat::ScaleData(
+            object = object,
+            features = rownames(object),
+            vars.to.regress = varsToRegress
+        )
 
         cli_alert("{.pkg Seurat}::{.fun RunPCA}")
         object <- Seurat::RunPCA(object)
