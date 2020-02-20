@@ -16,7 +16,8 @@
     )
     x <- object
     x <- camelCase(x)
-    x <- x[, c(group, "geneID")]
+    cols <- c(group, "geneID")
+    x <- x[, cols]
     x <- x[complete.cases(x), , drop = FALSE]
     x <- unique(x)
     ## Warn user about markers that aren't present in the gene2symbol. This is
