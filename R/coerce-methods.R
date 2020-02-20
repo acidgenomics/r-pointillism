@@ -68,7 +68,7 @@ NULL
 
 
 
-## Updated 2019-10-26.
+## Updated 2020-02-20.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
         validObject(from)
@@ -177,7 +177,6 @@ setAs(
             counts = counts(from),
             project = "pointillism",
             assay = "RNA",
-            ## Already applied filtering cutoffs for cells and genes.
             min.cells = 0L,
             min.features = 0L,
             names.field = 1L,
