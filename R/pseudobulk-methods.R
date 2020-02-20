@@ -1,6 +1,10 @@
+## FIXME Need to map cluster IDs for Seurat.
+
+
+
 #' @name pseudobulk
 #' @inherit acidgenerics::pseudobulk
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-19.
 #'
 #' @inheritParams basejump::aggregate
 #' @inheritParams acidroxygen::params
