@@ -24,7 +24,7 @@ runSeurat <- function(
     tsneMethod = "Rtsne",
     umapMethod = "umap-learn",
     virtualenv = "r-reticulate",
-    cores = "auto"
+    workers = "auto"
 ) {
     assert(
         requireNamespace("future", quietly = TRUE),
@@ -36,7 +36,7 @@ runSeurat <- function(
         isString(tsneMethod),
         isString(umapMethod),
         isString(virtualenv),
-        identical(dims, "auto") || isInt(cores)
+        identical(dims, "auto") || isInt(workesr)
     )
     regressCellCycle <- match.arg(regressCellCycle)
 
@@ -44,10 +44,10 @@ runSeurat <- function(
     ## Note that Seurat currently uses future package for parallelization.
     ## Multiprocess is currently unstable in RStudio and disabled.
     if (isTRUE(future::supportsMulticore())) {
-        workers <- cores
         if (identical(workers, "auto")) {
             workers <- max(getOption("mc.cores"), 1L)
         }
+        assert(isInt(workers))
         cli_alert(paste(
             "Enabling {.pkg future} multiprocess with",
             workers, "workers."

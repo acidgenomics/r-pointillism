@@ -12,7 +12,8 @@ runSeurat(
   resolution = seq(from = 0.2, to = 1.2, by = 0.1),
   tsneMethod = "Rtsne",
   umapMethod = "umap-learn",
-  virtualenv = "r-reticulate"
+  virtualenv = "r-reticulate",
+  workers = "auto"
 )
 }
 \description{
@@ -34,5 +35,7 @@ in \code{Rprofile.site}.
 \item https://github.com/satijalab/seurat/wiki
 \item https://satijalab.org/seurat/essential_commands.html
 \item https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
+\item Parallelization with future
+https://satijalab.org/seurat/v3.0/future_vignette.html
 }
 }
