@@ -3,9 +3,10 @@
 ^[._][-._a-zA-Z0-9]+$
 ^\.Rproj\.user$
 ^CONTRIBUTING\.md$
+^data/cell_data_set.rda$
 ^data-raw$
 ^doc(s)?$
 ^Meta$
 ^pkgdown$
-^tests/testthat/cache$
+^tests$
 ^vignettes/\.$
