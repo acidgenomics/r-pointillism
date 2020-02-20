@@ -1,10 +1,12 @@
-#' Import cell-cycle markers
+#' Cell-cycle markers
 #'
-#' @export
+#' @name CellCycleMarkers
 #' @note Updated 2020-02-20.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams basejump::makeGene2SymbolFromEnsembl
+#'
+#' @return `CellCycleMarkers`.
 #'
 #' @examples
 #' markers_dir <- system.file(
@@ -26,13 +28,33 @@
 #'     organism = basenameSansExt(file),
 #'     release = release
 #' )
+NULL
+
+
+
+#' @rdname CellCycleMarkers
+#' @export
+CellCycleMarkers <-  # nolint
+    function(object, gene2symbol) {
+        class <- "CellCycleMarkers"
+        data <- .CellMarkers(
+            object = object,
+            gene2symbol = gene2symbol,
+            class = class
+        )
+        new(Class = class, data)
+    }
+
+
+
+#' @rdname CellCycleMarkers
+#' @export
 importCellCycleMarkers <- function(
     file,
     organism,
     release
 ) {
     object <- import(file)
-    assert(isSubset(c("phase", "geneID", "modified"), colnames(object)))
     object <- as(object, "DataFrame")
     gene2symbol <- makeGene2SymbolFromEnsembl(
         organism = organism,
