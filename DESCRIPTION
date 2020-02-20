@@ -60,17 +60,16 @@ Imports:
     utils
 Suggests:
     BiocStyle (>= 2.14),
-    acidroxygen (>= 0.1.8),
     acidtest (>= 0.2.14),
     knitr (>= 1.24),
     patrick (>= 0.0.1),
+    reticulate (>= 1.14),
     roxygen2 (>= 6.1),
     splatter (>= 1.10),
     testthat (>= 2.2)
 Remotes:
     acidgenomics/acidgenerics,
     acidgenomics/acidplots,
-    acidgenomics/acidroxygen,
     acidgenomics/acidtest,
     acidgenomics/basejump,
     acidgenomics/goalie
