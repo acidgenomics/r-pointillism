@@ -1,17 +1,17 @@
-#' Cell data set
-#'
-#' Example monocle3 `cell_data_set` object.
-#'
-#' @note Updated 2020-01-30.
-#' @return `cell_data_set`.
-#' @usage data(cell_data_set)
-#' @examples
-#' if (requireNamespace("monocle3", quietly = TRUE)) {
-#'     data(cell_data_set)
-#'     class(cell_data_set)
-#'     cell_data_set
-#' }
-"cell_data_set"
+# #' Cell data set
+# #'
+# #' Example monocle3 `cell_data_set` object.
+# #'
+# #' @note Updated 2020-01-30.
+# #' @return `cell_data_set`.
+# #' @usage data(cell_data_set)
+# #' @examples
+# #' if (requireNamespace("monocle3", quietly = TRUE)) {
+# #'     data(cell_data_set)
+# #'     class(cell_data_set)
+# #'     cell_data_set
+# #' }
+# "cell_data_set"
 
 
 
