@@ -1,10 +1,4 @@
-## FIXME Need to handle the names a little better.
-## FIXME This function needs to be updated to handle g2m correctly.
-## FIXME We don't want this to say 'g2_slash_m'
-
-
-
-## Updated 2019-08-29.
+## Updated 2020-02-20.
 .CellMarkers <- function(  # nolint
     object,
     gene2symbol,
@@ -43,7 +37,9 @@
     x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
     x <- mutateIf(x, is.character, as.factor)
     x <- split(x, f = x[[group]])
-    x <- snakeCase(x)
+    names(x) <- snakeCase(names(x))
+    ## Specific fix for G2/M input (cell-cycle markers).
+    names(x) <- sub("g2_slash_m", "g2m", names(x))
     metadata(x) <- metadata(gene2symbol)
     x
 }
