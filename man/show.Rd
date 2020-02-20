@@ -39,7 +39,7 @@ complete, original object, with misleading results.  See the
 the discussion in \code{\link[methods]{setIs}} for the general concept.
 }
 \note{
-Updated 2020-01-30.
+Updated 2020-02-20.
 }
 \examples{
 data(cell_cycle_markers_list, cell_type_markers_list)
