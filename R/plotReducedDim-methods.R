@@ -276,12 +276,9 @@ setMethod(
 
 ## Updated 2020-02-21.
 `plotReducedDim,Seurat` <-  # nolint
-    function(object, idents = NULL, ...) {
+    function(object, ...) {
         validObject(object)
-        assert(isString(idents, nullOK = TRUE))
-        if (is.null(idents)) {
-            idents <- .seuratWhichIdents(object)
-        }
+        idents <- .seuratWhichIdents(object)
         cli_dl(c(idents = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }

@@ -1,3 +1,16 @@
+## pointillism 0.4.8 (2020-02-21)
+
+### Major changes
+
+- `plotReducedDim`, `plotMarker`: Changed title handling support. Switched from
+  using `title` argument in favor of `labels`, which better matches the
+  conventions now used in acidplots.
+
+### Minor changes
+
+- Seurat methods now show resolution parameter used to map idents, where
+  applicable. Currently this applies to `plotReducedDim` family of functions.
+
 ## pointillism 0.4.7 (2020-01-30)
 
 ### Minor changes
