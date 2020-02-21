@@ -2,7 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit acidgenerics::plotReducedDim
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -87,7 +87,10 @@ NULL
         labelSize,
         dark,
         legend,
-        title = NULL
+        labels = list(
+            title = NULL,
+            subtitle = NULL
+        )
     ) {
         validObject(object)
         assert(
@@ -104,9 +107,16 @@ NULL
             isFlag(label),
             isNumber(labelSize),
             isFlag(dark),
-            isFlag(legend),
-            isString(title, nullOK = TRUE)
+            isFlag(legend)
         )
+        labels <- matchLabels(
+            labels = labels,
+            choices = eval(formals()[["labels"]])
+        )
+        cli_dl(c(
+            reduction = reduction,
+            dims = deparse(dims)
+        ))
         ## Note that we're not slotting interesting groups back into object
         ## here because we're allowing visualization of cluster identity, which
         ## isn't sample level.
@@ -166,12 +176,7 @@ NULL
                 y = !!sym("y"),
                 color = !!sym("interestingGroups")
             )
-        ) +
-            labs(
-                x = axes[[1L]],
-                y = axes[[2L]],
-                color = paste(interestingGroups, collapse = ":\n")
-            )
+        )
         ## Points as numbers.
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
@@ -230,11 +235,18 @@ NULL
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
+        ## Labels.
+        if (is.list(labels)) {
+            labels[["x"]] <- axes[[1L]]
+            labels[["y"]] <- axes[[2L]]
+            labels[["color"]] <- paste(interestingGroups, collapse = ":\n")
+            labels[["fill"]] <- labels[["color"]]
+            p <- p + do.call(what = labs, args = labels)
+        }
         p
     }
 
-formals(`plotReducedDim,SingleCellExperiment`)[c(
-    "color",
+args <- c(
     "dark",
     "dims",
     "label",
@@ -244,18 +256,11 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
     "pointSize",
     "pointsAsNumbers",
     "reduction"
-)] <- list(
-    color = discreteColor,
-    dark = dark,
-    dims = dims,
-    label = label,
-    labelSize = labelSize,
-    legend = legend,
-    pointAlpha = pointAlpha,
-    pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers,
-    reduction = reduction
 )
+args1 <- c(args, "color")
+args2 <- c(args, "discreteColor")
+formals(`plotReducedDim,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args, args1, args2)
 
 
 
@@ -271,10 +276,13 @@ setMethod(
 
 ## Updated 2020-02-21.
 `plotReducedDim,Seurat` <-  # nolint
-    function(object, ...) {
+    function(object, idents = NULL, ...) {
         validObject(object)
-        resolution <- .seuratWhichResolution(object)
-        cli_dl(c(resolution = resolution))
+        assert(isString(idents, nullOK = TRUE))
+        if (is.null(idents)) {
+            idents <- .seuratWhichIdents(object)
+        }
+        cli_dl(c(idents = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }
 
@@ -293,7 +301,7 @@ setMethod(
 ## Updated 2020-02-21.
 `plotPCA,SingleCellExperiment` <-  # nolint
     function(object, ...) {
-        plotReducedDim(object = object, resolution = "PCA", ...)
+        plotReducedDim(object = object, reduction = "PCA", ...)
     }
 
 
@@ -327,7 +335,7 @@ setMethod(
 ## Updated 2020-02-21.
 `plotTSNE,SingleCellExperiment` <-  # nolint
     function(object, ...) {
-        plotReducedDim(object = object, resolution = "TSNE", ...)
+        plotReducedDim(object = object, reduction = "TSNE", ...)
     }
 
 
@@ -361,7 +369,7 @@ setMethod(
 ## Updated 2020-02-21.
 `plotUMAP,SingleCellExperiment` <-  # nolint
     function(object, ...) {
-        plotReducedDim(object = object, resolution = "UMAP", ...)
+        plotReducedDim(object = object, reduction = "UMAP", ...)
     }
 
 
