@@ -57,7 +57,7 @@
 ## >
 ## >
 ## >
-## > ## This method will automatically add "ident" column and strip "cell" column.
+## > ## This method will automatically add "ident" and strip "cell" column.
 ## > ## Updated 2019-08-06.
 ## > `metrics,cell_data_set` <-  # nolint
 ## >     function(object, return) {
