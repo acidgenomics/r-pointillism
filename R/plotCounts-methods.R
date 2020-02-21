@@ -112,19 +112,3 @@ setMethod(
     signature = signature("Seurat"),
     definition = `plotCounts,SingleCellExperiment`
 )
-
-
-
-## ## Updated 2019-08-02.
-## `plotCounts,cell_data_set` <-  # nolint
-##     `plotCounts,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotCounts
-## #' @export
-## setMethod(
-##     f = "plotCounts",
-##     signature = signature("cell_data_set"),
-##     definition = `plotCounts,cell_data_set`
-## )

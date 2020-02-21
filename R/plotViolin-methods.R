@@ -137,19 +137,3 @@ setMethod(
     signature = signature("Seurat"),
     definition = `plotViolin,Seurat`
 )
-
-
-
-## ## Updated 2019-08-02.
-## `plotViolin,cell_data_set` <-  # nolint
-##     `plotViolin,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotCounts
-## #' @export
-## setMethod(
-##     f = "plotViolin",
-##     signature = signature("cell_data_set"),
-##     definition = `plotViolin,cell_data_set`
-## )

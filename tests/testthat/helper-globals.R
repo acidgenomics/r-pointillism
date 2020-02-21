@@ -19,8 +19,8 @@ data(
     envir = environment()
 )
 
-## cds <- cell_data_set
-## rm(cell_data_set)
+## > cds <- cell_data_set
+## > rm(cell_data_set)
 
 sce <- SingleCellExperiment
 rm(SingleCellExperiment)
