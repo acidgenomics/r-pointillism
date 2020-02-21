@@ -94,7 +94,7 @@ argument in the \code{character} vector.}
 Plot feature
 }
 \note{
-Updated 2020-01-30.
+Updated 2020-02-21.
 }
 \examples{
 data(Seurat, package = "acidtest")
