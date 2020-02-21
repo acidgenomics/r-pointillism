@@ -36,11 +36,11 @@ ensembldb in use.}
 Cell-cycle markers
 }
 \note{
-Updated 2020-02-20.
+Updated 2020-02-21.
 }
 \examples{
 markers_dir <- system.file(
-    file.path("inst", "extdata", "markers"),
+    file.path("extdata", "markers"),
     package = "pointillism"
 )
 
