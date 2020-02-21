@@ -169,7 +169,7 @@ NULL
                 if (isTRUE(dark)) {
                     p <- p + acid_theme_dark()
                     if (is.null(color)) {
-                        color <- darkMarkerColors
+                        color <- .darkMarkerColors
                     }
                 }
                 if (is(color, "ScaleContinuous")) {

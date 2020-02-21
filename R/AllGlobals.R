@@ -1,12 +1,9 @@
 globalVariables(".")
 
+
+
 .formalsList <- list(
     BPPARAM = quote(BiocParallel::bpparam()),  # nolint
-    ## DR marker default color palettes.
-    darkMarkerColors =
-        ggplot2::scale_color_viridis_c(option = "plasma"),
-    lightMarkerColors =
-        ggplot2::scale_color_gradient(low = "gray90", high = "red"),
     continuousColor =
         quote(getOption(
             "acid.continuous.color",
@@ -43,6 +40,14 @@ globalVariables(".")
     pointsAsNumbers = quote(getOption("acid.pointsAsNumbers", default = FALSE)),
     reduction = "UMAP"  # 1L
 )
+
+
+
+## DR marker default color palettes.
+.darkMarkerColors <-
+    ggplot2::scale_color_viridis_c(option = "plasma")
+
+
 
 ## > ## Set default ggplot2 theme.
 ## > if (isTRUE(getOption("acid.dark"))) {
