@@ -80,10 +80,11 @@ NULL
             ccm <- env[["cell_cycle_markers_list"]]
             organism <- camelCase(organism(object))
             if (!isSubset(organism, names(ccm))) {
-                stop(paste(
-                    "Failed to obtain cell-cycle markers.",
-                    deparse(organism), "is not currently supported.",
-                    "Please file an issue on GitHub."
+                stop(paste0(
+                    "Failed to obtain cell-cycle markers.\n",
+                    deparse(organism), " is not currently supported.\n",
+                    "Please file an issue on GitHub:\n",
+                    "https://github.com/acidgenomics/pointillism/issues"
                 ))
             }
             ccm <- ccm[[organism]]
