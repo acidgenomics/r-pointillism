@@ -84,19 +84,3 @@ setMethod(
     signature = signature("Seurat"),
     definition = `cellCountsPerCluster,Seurat`
 )
-
-
-
-## ## Updated 2019-08-02.
-## `cellCountsPerCluster,cell_data_set` <-  # nolint
-##     `cellCountsPerCluster,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname cellCountsPerCluster
-## #' @export
-## setMethod(
-##     f = "cellCountsPerCluster",
-##     signature = signature("cell_data_set"),
-##     definition = `cellCountsPerCluster,cell_data_set`
-## )

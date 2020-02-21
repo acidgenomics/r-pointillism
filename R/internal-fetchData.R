@@ -84,7 +84,7 @@
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-02-21.
 .fetchReductionData <- function(
     object,
     reduction = 1L,
@@ -132,6 +132,10 @@
     assert(is(data, "DataFrame"))
     ## Split by cluster.
     f <- data[["ident"]]
+    assert(
+        is.factor(f),
+        !all(is.na(f))
+    )
     split <- split(x = data, f = f)
     split <- SplitDataFrameList(lapply(
         X = split,
@@ -152,12 +156,13 @@
     data
 }
 
-formals(.fetchReductionData)[c("dims", "reduction")] <-
-    list(dims = dims, reduction = reduction)
+args <- c("dims", "reduction")
+formals(.fetchReductionData)[args] <-
+    .formalsList[args]
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-02-21.
 .fetchReductionExpressionData <- function(
     object,
     genes,
@@ -201,7 +206,9 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
     data
 }
 
-formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
+args <- "reduction"
+formals(.fetchReductionExpressionData)[args] <- .formalsList[args]
+rm(args)
 
 
 

@@ -4,7 +4,7 @@
 #' @note We are no longer recommending the use of software that attempts to
 #'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 #'   single cell RNA-seq data. Simply model the counts directly.
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @details
 #' Perform pairwise differential expression across groups of cells. Currently
@@ -118,14 +118,79 @@ NULL
 
 .designFormula <- ~group
 
+
+
+## DESeq2 is slow for large datasets.
+##
+## - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
+## - `sfType`: Use "poscounts" instead of "ratio" here because we're
+##   expecting genes with zero counts.
+##   See `DESeq2::estimateSizeFactors()` for details.
+## - `minmu`: Set a lower threshold than the default 0.5, as recommended
+##   in Mike Love's zinbwave-DESeq2 vignette.
+##
+## Updated 2020-01-30.
+.diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
+    assert(.hasDesignFormula(object))
+    cli_alert("Running {.pkg DESeq2}.")
+    dds <- DESeqDataSet(
+        se = object,
+        design = .designFormula
+    )
+    dds <- DESeq(
+        object = dds,
+        test = "LRT",
+        reduced = ~ 1L,
+        sfType = "poscounts",
+        minmu = 1e-6,
+        minReplicatesForReplace = Inf,
+        BPPARAM = BPPARAM
+    )
+    ## We have already performed low count filtering.
+    res <- results(
+        object = dds,
+        independentFiltering = FALSE,
+        BPPARAM = BPPARAM
+    )
+    res
+}
+
+
+
+## edgeR is much faster than DESeq2 for large datasets.
+##
+## Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
+## of the `glmLRT()` method, that allows an F-test with adjusted denominator
+## degrees of freedom, to account for the downweighting in the zero-inflation
+## model (which no longer applies here).
+##
+## Updated 2020-01-30.
+.diffExp.edgeR <- function(object) {  # nolint
+    assert(.hasDesignFormula(object))
+    cli_alert("Running {.pkg edgeR}.")
+    ## Ensure sparseMatrix gets coerced to dense matrix.
+    counts <- as.matrix(counts(object))
+    design <- metadata(object)[["design"]]
+    assert(is.matrix(design))
+    group <- object[["group"]]
+    assert(is.factor(group))
+    dge <- DGEList(counts, group = group)
+    dge <- calcNormFactors(dge)
+    dge <- estimateDisp(dge, design = design)
+    fit <- glmFit(dge, design = design)
+    lrt <- glmLRT(glmfit = fit, coef = 2L)
+    lrt
+}
+
+
+
 .underpoweredContrast <- function() {
     warning("Skipping DE. Underpowered contrast (not enough cells).")
 }
 
 
 
-## diffExp =====================================================================
-## Updated 2020-01-30.
+## Updated 2020-02-21.
 `diffExp,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -292,71 +357,10 @@ NULL
         fun(object)
     }
 
-formals(`diffExp,SingleCellExperiment`)[["BPPARAM"]] <- BPPARAM
-
-
-
-## DESeq2 is slow for large datasets.
-##
-## - `reduced`: For `test = "LRT"`, a reduced formula to compare against.
-## - `sfType`: Use "poscounts" instead of "ratio" here because we're
-##   expecting genes with zero counts.
-##   See `DESeq2::estimateSizeFactors()` for details.
-## - `minmu`: Set a lower threshold than the default 0.5, as recommended
-##   in Mike Love's zinbwave-DESeq2 vignette.
-##
-## Updated 2020-01-30.
-.diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
-    assert(.hasDesignFormula(object))
-    cli_alert("Running {.pkg DESeq2}.")
-    dds <- DESeqDataSet(
-        se = object,
-        design = .designFormula
-    )
-    dds <- DESeq(
-        object = dds,
-        test = "LRT",
-        reduced = ~ 1L,
-        sfType = "poscounts",
-        minmu = 1e-6,
-        minReplicatesForReplace = Inf,
-        BPPARAM = BPPARAM
-    )
-    ## We have already performed low count filtering.
-    res <- results(
-        object = dds,
-        independentFiltering = FALSE,
-        BPPARAM = BPPARAM
-    )
-    res
-}
-
-
-
-## edgeR is much faster than DESeq2 for large datasets.
-##
-## Note that zinbwave recommends `glmWeightedF()`, which recycles an old version
-## of the `glmLRT()` method, that allows an F-test with adjusted denominator
-## degrees of freedom, to account for the downweighting in the zero-inflation
-## model (which no longer applies here).
-##
-## Updated 2020-01-30.
-.diffExp.edgeR <- function(object) {  # nolint
-    assert(.hasDesignFormula(object))
-    cli_alert("Running {.pkg edgeR}.")
-    ## Ensure sparseMatrix gets coerced to dense matrix.
-    counts <- as.matrix(counts(object))
-    design <- metadata(object)[["design"]]
-    assert(is.matrix(design))
-    group <- object[["group"]]
-    assert(is.factor(group))
-    dge <- DGEList(counts, group = group)
-    dge <- calcNormFactors(dge)
-    dge <- estimateDisp(dge, design = design)
-    fit <- glmFit(dge, design = design)
-    lrt <- glmLRT(glmfit = fit, coef = 2L)
-    lrt
-}
+args <- "BPPARAM"
+formals(`diffExp,SingleCellExperiment`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 
@@ -370,9 +374,11 @@ setMethod(
 
 
 
-## Updated 2019-07-31.
+## Updated 2020-02-21.
 `diffExp,Seurat` <-  # nolint
-    `diffExp,SingleCellExperiment`
+    function(object, ...) {
+        diffExp(object = as(object, "SingleCellExperiment"), ...)
+    }
 
 
 

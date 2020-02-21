@@ -3,7 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2019-10-31.
+#' @note Updated 2020-02-21.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
@@ -68,7 +68,7 @@ NULL
 
 
 
-## Updated 2019-10-26.
+## Updated 2020-02-20.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
         validObject(from)
@@ -86,6 +86,30 @@ NULL
         }
         ## Using the Seurat S3 coercion method here.
         to <- as.SingleCellExperiment(x = from, assay = NULL)
+        ## Harden against invalid ident mapping, which can happen when user
+        ## reassigns via `Idents<-`.
+        ##
+        ## Note that Seurat 3.1.3 doesn't currently update "ident" data in
+        ## object@meta.data correctly, which is what gets passed to SCE in
+        ## default coercion method.
+        ##
+        ## > Seurat:::Idents.Seurat
+        ## > slot(object = object, name = "active.ident")
+        ##
+        ## > Seurat:::`Idents<-.Seurat`
+        ## > slot(object = object, name = "active.ident") <- idents
+        ##
+        ## Updated on 2020-02-21.
+        ## File a bug report with Seurat.
+        if (isSubset("ident", colnames(colData(to)))) {
+            idents <- Idents(from)
+            assert(
+                identical(names(idents), rownames(colData(to))),
+                is.factor(idents),
+                !all(is.na(idents))
+            )
+            colData(to)[["ident"]] <- idents
+        }
         ## Row and column data.
         rowRanges(to) <- rowRanges(from)
         colData(to) <- colData(to)
@@ -177,7 +201,6 @@ setAs(
             counts = counts(from),
             project = "pointillism",
             assay = "RNA",
-            ## Already applied filtering cutoffs for cells and genes.
             min.cells = 0L,
             min.features = 0L,
             names.field = 1L,

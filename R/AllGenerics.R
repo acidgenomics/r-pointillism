@@ -28,3 +28,25 @@ setGeneric(
         standardGeneric("SeuratMarkersPerCluster")
     }
 )
+
+
+
+#' @rdname runSeurat
+#' @export
+setGeneric(
+    name = "runSeurat",
+    def = function(object, ...) {
+        standardGeneric("runSeurat")
+    }
+)
+
+
+
+#' @rdname runZinbwave
+#' @export
+setGeneric(
+    name = "runZinbwave",
+    def = function(Y, ...) {
+        standardGeneric("runZinbwave")
+    }
+)

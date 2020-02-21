@@ -31,7 +31,7 @@ be computed internally automatically using \code{\link[=estimateSizeFactors]{est
 recommended default settings.
 }
 \note{
-Updated 2020-01-30.
+Updated 2020-02-21.
 }
 \section{Normalized counts}{
 
@@ -75,13 +75,13 @@ object <- normalize(object)
 }
 \seealso{
 \itemize{
-\item \code{\link[=estimateSizeFactors]{estimateSizeFactors()}}.
-\item \code{\link[SingleCellExperiment:normcounts]{SingleCellExperiment::normcounts()}}.
-\item \code{\link[SingleCellExperiment:logcounts]{SingleCellExperiment::logcounts()}}.
-\item \code{\link[scater:normalizeCounts]{scater::normalizeCounts()}}.
-\item \code{\link[scater:logNormCounts]{scater::logNormCounts()}}.
-\item \code{\link[Seurat:NormalizeData]{Seurat::NormalizeData()}}.
-\item \code{\link[monocle3:preprocess_cds]{monocle3::preprocess_cds()}}.
-\item \code{\link[monocle3:normalized_counts]{monocle3::normalized_counts()}}.
+\item \code{estimateSizeFactors()}.
+\item \code{SingleCellExperiment::normcounts()}.
+\item \code{SingleCellExperiment::logcounts()}.
+\item \code{scater::normalizeCounts()}.
+\item \code{scater::logNormCounts()}.
+\item \code{Seurat::NormalizeData()}.
+\item \code{monocle3::preprocess_cds()}.
+\item \code{monocle3::normalized_counts()}.
 }
 }

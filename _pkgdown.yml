@@ -22,7 +22,6 @@ reference:
     contents:
       - cellCountsPerCluster
       - cellTypesPerCluster
-      - clusterID
       - clusters
       - normalize
   - title: Differential expression
@@ -34,6 +33,9 @@ reference:
   - title: Plots
     contents:
       - starts_with("plot")
+  - title: Wrappers
+    contents:
+      - starts_with("run")
   - title: Data
     contents:
       - starts_with("cell_")

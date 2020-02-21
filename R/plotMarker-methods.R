@@ -1,7 +1,7 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit acidgenerics::plotMarker
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -35,7 +35,7 @@ NULL
 
 
 
-## Updated 2019-08-03.
+## Updated 2020-02-21.
 `plotMarker,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -50,7 +50,10 @@ NULL
         labelSize,
         dark,
         legend,
-        title = TRUE
+        labels = list(
+            title = "auto",
+            subtitle = NULL
+        )
     ) {
         assert(
             isCharacter(genes),
@@ -67,14 +70,14 @@ NULL
             isFlag(label),
             isNumber(labelSize),
             isFlag(dark),
-            isFlag(legend),
-            isAny(title, c("character", "logical", "NULL"))
+            isFlag(legend)
+        )
+        labels <- matchLabels(
+            labels = labels,
+            choices = eval(formals()[["labels"]])
         )
         geneNames <- mapGenesToSymbols(object, genes)
         expression <- match.arg(expression)
-        if (is.character(title)) {
-            assert(isString(title))
-        }
         ## Fetch reduced dimension data.
         assay <- "logcounts"
         data <- .fetchReductionExpressionData(
@@ -106,30 +109,6 @@ NULL
                 color = !!sym(expression)
             )
         )
-        ## Titles.
-        subtitle <- NULL
-        if (isTRUE(title)) {
-            if (isString(geneNames)) {
-                title <- geneNames
-            } else {
-                title <- NULL
-                subtitle <- geneNames
-                ## Limit to the first 5 markers
-                if (length(subtitle) > 5L) {
-                    subtitle <- c(subtitle[seq_len(5L)], "...")
-                }
-                subtitle <- toString(subtitle)
-            }
-        } else if (identical(title, FALSE)) {
-            title <- NULL
-        }
-        p <- p +
-            labs(
-                x = axes[[1L]],
-                y = axes[[2L]],
-                title = title,
-                subtitle = subtitle
-            )
         ## Customize legend.
         if (isTRUE(legend)) {
             if (isString(genes)) {
@@ -185,19 +164,28 @@ NULL
         if (isTRUE(dark)) {
             p <- p + acid_theme_dark()
             if (is.null(color)) {
-                color <- darkMarkerColors
+                color <- .darkMarkerColors
             }
         }
         ## Color.
         if (is(color, "ScaleContinuous")) {
             p <- p + color
         }
+        ## Labels.
+        if (is.list(labels)) {
+            ## Title (and subtitle).
+            if (identical(labels[["title"]], "auto")) {
+                labels[["title"]] <- toString(geneNames, width = 50L)
+            }
+            labels[["x"]] <- axes[[1L]]
+            labels[["y"]] <- axes[[2L]]
+            p <- p + do.call(what = labs, args = labels)
+        }
         ## Return.
         p
     }
 
-formals(`plotMarker,SingleCellExperiment`)[c(
-    "color",
+args <- c(
     "dark",
     "expression",
     "label",
@@ -207,18 +195,11 @@ formals(`plotMarker,SingleCellExperiment`)[c(
     "pointSize",
     "pointsAsNumbers",
     "reduction"
-)] <- list(
-    color = continuousColor,
-    dark = dark,
-    expression = expression,
-    label = label,
-    labelSize = labelSize,
-    legend = legend,
-    pointAlpha = pointAlpha,
-    pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers,
-    reduction = reduction
 )
+args1 <- c(args, "color")
+args2 <- c(args, "continuousColor")
+formals(`plotMarker,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args, args1, args2)
 
 
 

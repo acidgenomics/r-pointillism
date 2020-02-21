@@ -1,16 +1,4 @@
-#' Cell markers
-#'
-#' @name CellMarkers
-#' @note Updated 2020-01-30.
-#'
-#' @inheritParams acidroxygen::params
-#'
-#' @return Markers object.
-NULL
-
-
-
-## Updated 2019-08-29.
+## Updated 2020-02-20.
 .CellMarkers <- function(  # nolint
     object,
     gene2symbol,
@@ -28,7 +16,8 @@ NULL
     )
     x <- object
     x <- camelCase(x)
-    x <- x[, c(group, "geneID")]
+    cols <- c(group, "geneID")
+    x <- x[, cols]
     x <- x[complete.cases(x), , drop = FALSE]
     x <- unique(x)
     ## Warn user about markers that aren't present in the gene2symbol. This is
@@ -49,7 +38,9 @@ NULL
     x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
     x <- mutateIf(x, is.character, as.factor)
     x <- split(x, f = x[[group]])
-    x <- snakeCase(x)
+    names(x) <- snakeCase(names(x))
+    ## Specific fix for G2/M input (cell-cycle markers).
+    names(x) <- sub("g2_slash_m", "g2m", names(x))
     metadata(x) <- metadata(gene2symbol)
     x
 }
@@ -85,33 +76,3 @@ NULL
     }
     x
 }
-
-
-
-#' @describeIn CellMarkers Cell-cycle markers.
-#' @export
-CellCycleMarkers <-  # nolint
-    function(object, gene2symbol) {
-        class <- "CellCycleMarkers"
-        data <- .CellMarkers(
-            object = object,
-            gene2symbol = gene2symbol,
-            class = class
-        )
-        new(Class = class, data)
-    }
-
-
-
-#' @describeIn CellMarkers Cell-type markers.
-#' @export
-CellTypeMarkers <-  # nolint
-    function(object, gene2symbol) {
-        class <- "CellTypeMarkers"
-        data <- .CellMarkers(
-            object = object,
-            gene2symbol = gene2symbol,
-            class = class
-        )
-        new(Class = class, data)
-    }

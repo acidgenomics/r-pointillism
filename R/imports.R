@@ -1,10 +1,10 @@
 ## Conflicts:
-## #' @importFrom Matrix rowMeans rowSums
-
-
+## > #' @importFrom Matrix rowMeans rowSums
 
 ## Disabled until monocle3 is on Bioconductor.
-## #' @importClassesFrom monocle3 cell_data_set
+## > #' @importClassesFrom monocle3 cell_data_set
+
+
 
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
@@ -35,16 +35,16 @@ NULL
 #'   sizeFactors sizeFactors<-
 #' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
 #'   colData colData<- rowData rowData<- rowRanges rowRanges<-
-#' @importFrom acidplots acid_theme_dark acid_theme_light
+#' @importFrom acidplots acid_theme_dark acid_theme_light matchLabels
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
 #'   decode estimateSizeFactors geometricMean import interestingGroups
-#'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
-#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   melt metrics mutateIf organism organism<- printString sampleData
-#'   sampleData<- sampleNames separator showSlotInfo snakeCase
-#'   uniteInterestingGroups
-#' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_div cli_end
-#'   cli_h1 cli_h2 cli_ul
+#'   interestingGroups<- leftJoin makeGene2SymbolFromEnsembl makeNames
+#'   mapGenesToIDs mapGenesToRownames mapGenesToSymbols markdownHeader
+#'   matchInterestingGroups melt metrics mutateIf organism organism<-
+#'   printString sampleData sampleData<- sampleNames separator showSlotInfo
+#'   snakeCase uniteInterestingGroups
+#' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
+#'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_text cli_ul
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
@@ -65,7 +65,7 @@ NULL
 #' @importFrom scater calculateCPM normalizeCounts
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
-#' @importFrom utils capture.output globalVariables packageVersion
+#' @importFrom utils capture.output data globalVariables packageVersion
 NULL
 
 
