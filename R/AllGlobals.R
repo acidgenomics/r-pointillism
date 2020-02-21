@@ -35,7 +35,7 @@ globalVariables(".")
     direction = c("up", "down", "both"),
     expression = c("mean", "sum"),
     headerLevel = 2L,
-    labelClusters = quote(getOption("acid.label", default = TRUE)),
+    label = quote(getOption("acid.label", default = TRUE)),
     labelSize = quote(getOption("acid.labelSize", default = 6L)),
     legend = quote(getOption("acid.legend", default = TRUE)),
     pointAlpha = quote(getOption("acid.pointAlpha", default = 0.85)),
