@@ -153,7 +153,7 @@ Visualize genes on a dot or violin plot.
 \note{
 Dot geom currently only supports logcounts.
 
-Updated 2020-01-03.
+Updated 2020-02-21.
 }
 \examples{
 data(Seurat, package = "acidtest")
@@ -173,9 +173,9 @@ plotCounts(object, genes = genes, perSample = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{\link[Seurat:DotPlot]{Seurat::DotPlot()}}.
-\item \code{\link[Seurat:VlnPlot]{Seurat::VlnPlot()}}.
-\item \code{\link[Seurat:RidgePlot]{Seurat::RidgePlot()}}.
-\item \code{\link[monocle3:plot_genes_violin]{monocle3::plot_genes_violin()}}.
+\item \code{Seurat::DotPlot()}.
+\item \code{Seurat::VlnPlot()}.
+\item \code{Seurat::RidgePlot()}.
+\item \code{monocle3::plot_genes_violin()}.
 }
 }

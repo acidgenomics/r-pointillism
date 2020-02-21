@@ -1,6 +1,6 @@
 #' @name plotFeature
 #' @inherit acidgenerics::plotFeature
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
@@ -34,8 +34,7 @@ NULL
 
 
 
-## Note: We aren't using `title` argument here.
-## Updated 2019-09-03.
+## Updated 2020-02-21.
 `plotFeature,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -170,7 +169,7 @@ NULL
                 if (isTRUE(dark)) {
                     p <- p + acid_theme_dark()
                     if (is.null(color)) {
-                        color <- darkMarkerColors
+                        color <- .darkMarkerColors
                     }
                 }
                 if (is(color, "ScaleContinuous")) {
@@ -194,8 +193,7 @@ NULL
         }
     }
 
-formals(`plotFeature,SingleCellExperiment`)[c(
-    "color",
+args <- c(
     "dark",
     "expression",
     "label",
@@ -205,18 +203,11 @@ formals(`plotFeature,SingleCellExperiment`)[c(
     "pointSize",
     "pointsAsNumbers",
     "reduction"
-)] <- list(
-    color = continuousColor,
-    dark = dark,
-    expression = expression,
-    label = label,
-    labelSize = labelSize,
-    legend = legend,
-    pointAlpha = pointAlpha,
-    pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers,
-    reduction = reduction
 )
+args1 <- c(args, "color")
+args2 <- c(args, "continuousColor")
+formals(`plotFeature,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args, args1, args2)
 
 
 

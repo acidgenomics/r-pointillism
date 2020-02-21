@@ -19,16 +19,7 @@ diffExp(object, ...)
   BPPARAM = BiocParallel::bpparam()
 )
 
-\S4method{diffExp}{Seurat}(
-  object,
-  numerator,
-  denominator,
-  caller = c("edgeR", "DESeq2"),
-  minCells = 2L,
-  minCellsPerGene = 1L,
-  minCountsPerCell = 1L,
-  BPPARAM = BiocParallel::bpparam()
-)
+\S4method{diffExp}{Seurat}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -82,7 +73,7 @@ We are no longer recommending the use of software that attempts to
 mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 single cell RNA-seq data. Simply model the counts directly.
 
-Updated 2020-01-30.
+Updated 2020-02-21.
 }
 \section{DESeq2}{
 

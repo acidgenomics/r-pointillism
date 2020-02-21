@@ -2,7 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit acidgenerics::plotReducedDim
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -72,7 +72,7 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2020-01-30.
+## Updated 2020-02-21.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -87,12 +87,12 @@ NULL
         labelSize,
         dark,
         legend,
-        title = NULL
+        labels = list(
+            title = NULL,
+            subtitle = NULL
+        )
     ) {
         validObject(object)
-        if (!is(object, "SingleCellExperiment")) {
-            object <- as(object, "SingleCellExperiment")
-        }
         assert(
             .hasClusters(object),
             ## Allow pass in of positional scalar, for looping.
@@ -107,9 +107,16 @@ NULL
             isFlag(label),
             isNumber(labelSize),
             isFlag(dark),
-            isFlag(legend),
-            isString(title, nullOK = TRUE)
+            isFlag(legend)
         )
+        labels <- matchLabels(
+            labels = labels,
+            choices = eval(formals()[["labels"]])
+        )
+        cli_dl(c(
+            reduction = reduction,
+            dims = deparse(dims)
+        ))
         ## Note that we're not slotting interesting groups back into object
         ## here because we're allowing visualization of cluster identity, which
         ## isn't sample level.
@@ -169,12 +176,7 @@ NULL
                 y = !!sym("y"),
                 color = !!sym("interestingGroups")
             )
-        ) +
-            labs(
-                x = axes[[1L]],
-                y = axes[[2L]],
-                color = paste(interestingGroups, collapse = ":\n")
-            )
+        )
         ## Points as numbers.
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
@@ -233,11 +235,18 @@ NULL
         p <- p +
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
+        ## Labels.
+        if (is.list(labels)) {
+            labels[["x"]] <- axes[[1L]]
+            labels[["y"]] <- axes[[2L]]
+            labels[["color"]] <- paste(interestingGroups, collapse = ":\n")
+            labels[["fill"]] <- labels[["color"]]
+            p <- p + do.call(what = labs, args = labels)
+        }
         p
     }
 
-formals(`plotReducedDim,SingleCellExperiment`)[c(
-    "color",
+args <- c(
     "dark",
     "dims",
     "label",
@@ -247,82 +256,14 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
     "pointSize",
     "pointsAsNumbers",
     "reduction"
-)] <- list(
-    color = discreteColor,
-    dark = dark,
-    dims = dims,
-    label = label,
-    labelSize = labelSize,
-    legend = legend,
-    pointAlpha = pointAlpha,
-    pointSize = pointSize,
-    pointsAsNumbers = pointsAsNumbers,
-    reduction = reduction
 )
+args1 <- c(args, "color")
+args2 <- c(args, "discreteColor")
+formals(`plotReducedDim,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args, args1, args2)
 
 
 
-## Updated 2019-07-31.
-`plotPCA,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "PCA"
-                )
-            )
-        )
-
-    }
-
-
-
-## Updated 2019-07-31.
-`plotTSNE,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "TSNE"
-                )
-            )
-        )
-    }
-
-
-
-## Updated 2019-07-31.
-`plotUMAP,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "UMAP"
-                )
-            )
-        )
-    }
-
-
-
-## Formals =====================================================================
-## Set the formals for the convenience functions.
-f <- formals(`plotReducedDim,SingleCellExperiment`)
-f <- f[setdiff(names(f), "reduction")]
-formals(`plotPCA,SingleCellExperiment`) <- f
-formals(`plotTSNE,SingleCellExperiment`) <- f
-formals(`plotUMAP,SingleCellExperiment`) <- f
-rm(f)
-
-
-
-## Methods =====================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
@@ -333,9 +274,14 @@ setMethod(
 
 
 
-## Updated 2019-07-31.
+## Updated 2020-02-21.
 `plotReducedDim,Seurat` <-  # nolint
-    `plotReducedDim,SingleCellExperiment`
+    function(object, ...) {
+        validObject(object)
+        idents <- .seuratWhichIdents(object)
+        cli_dl(c(idents = idents))
+        plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
+    }
 
 
 
@@ -349,103 +295,11 @@ setMethod(
 
 
 
-## ## Updated 2019-08-02.
-## `plotReducedDim,cell_data_set` <-  # nolint
-##     `plotReducedDim,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotReducedDim",
-##     signature = signature("cell_data_set"),
-##     definition = `plotReducedDim,cell_data_set`
-## )
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotTSNE,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotTSNE,Seurat` <-  # nolint
-    `plotTSNE,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("Seurat"),
-    definition = `plotTSNE,Seurat`
-)
-
-
-
-## ## Updated 2019-08-02.
-## `plotTSNE,cell_data_set` <-  # nolint
-##     `plotTSNE,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotTSNE",
-##     signature = signature("cell_data_set"),
-##     definition = `plotTSNE,cell_data_set`
-## )
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotUMAP,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotUMAP,Seurat` <-  # nolint
-    `plotUMAP,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("Seurat"),
-    definition = `plotUMAP,Seurat`
-)
-
-
-
-## ## Updated 2019-08-02.
-## `plotUMAP,cell_data_set` <-  # nolint
-##     `plotUMAP,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotUMAP",
-##     signature = signature("cell_data_set"),
-##     definition = `plotUMAP,cell_data_set`
-## )
+## Updated 2020-02-21.
+`plotPCA,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "PCA", ...)
+    }
 
 
 
@@ -475,16 +329,68 @@ setMethod(
 
 
 
-## ## Updated 2019-08-02.
-## `plotPCA,cell_data_set` <-  # nolint
-##     `plotPCA,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotPCA",
-##     signature = signature("cell_data_set"),
-##     definition = `plotPCA,cell_data_set`
-## )
+## Updated 2020-02-21.
+`plotTSNE,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "TSNE", ...)
+    }
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotTSNE,SingleCellExperiment`
+)
+
+
+
+## Updated 2020-02-21.
+`plotTSNE,Seurat` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("Seurat"),
+    definition = `plotTSNE,Seurat`
+)
+
+
+
+## Updated 2020-02-21.
+`plotUMAP,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "UMAP", ...)
+    }
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotUMAP,SingleCellExperiment`
+)
+
+
+
+## Updated 2020-02-21.
+`plotUMAP,Seurat` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("Seurat"),
+    definition = `plotUMAP,Seurat`
+)

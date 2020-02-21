@@ -3,7 +3,7 @@
 #' @inherit acidgenerics::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
-#' @note Updated 2020-01-03.
+#' @note Updated 2020-02-21.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
@@ -26,10 +26,10 @@
 #' @param ... Additional arguments.
 #'
 #' @seealso
-#' - [Seurat::DotPlot()].
-#' - [Seurat::VlnPlot()].
-#' - [Seurat::RidgePlot()].
-#' - [monocle3::plot_genes_violin()].
+#' - `Seurat::DotPlot()`.
+#' - `Seurat::VlnPlot()`.
+#' - `Seurat::RidgePlot()`.
+#' - `monocle3::plot_genes_violin()`.
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
@@ -59,7 +59,7 @@ NULL
 
 
 
-## Updated 2019-08-06.
+## Updated 2020-02-21.
 `plotCounts,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -85,7 +85,9 @@ NULL
         do.call(what = what, args = args)
     }
 
-formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
+args <- "legend"
+formals(`plotCounts,SingleCellExperiment`)[args] <- .formalsList[args]
+rm(args)
 
 
 
@@ -112,19 +114,3 @@ setMethod(
     signature = signature("Seurat"),
     definition = `plotCounts,SingleCellExperiment`
 )
-
-
-
-## ## Updated 2019-08-02.
-## `plotCounts,cell_data_set` <-  # nolint
-##     `plotCounts,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotCounts
-## #' @export
-## setMethod(
-##     f = "plotCounts",
-##     signature = signature("cell_data_set"),
-##     definition = `plotCounts,cell_data_set`
-## )

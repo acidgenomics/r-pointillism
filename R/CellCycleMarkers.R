@@ -1,0 +1,67 @@
+#' Cell-cycle markers
+#'
+#' @name CellCycleMarkers
+#' @note Updated 2020-02-21.
+#'
+#' @inheritParams acidroxygen::params
+#' @inheritParams basejump::makeGene2SymbolFromEnsembl
+#'
+#' @return `CellCycleMarkers`.
+#'
+#' @examples
+#' markers_dir <- system.file(
+#'     file.path("extdata", "markers"),
+#'     package = "pointillism"
+#' )
+#'
+#' cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
+#' files <- list.files(cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
+#' file <- files[[1L]]
+#'
+#' ## Ensembl release version.
+#' release_file <- file.path(markers_dir, "ensembl-release.txt")
+#' release <- as.integer(readLines(release_file))
+#'
+#' importCellCycleMarkers(
+#'     file = file,
+#'     organism = basenameSansExt(file),
+#'     release = release
+#' )
+NULL
+
+
+
+#' @rdname CellCycleMarkers
+#' @export
+CellCycleMarkers <-  # nolint
+    function(object, gene2symbol) {
+        assert(is(object, "DataFrame"))
+        class <- "CellCycleMarkers"
+        data <- .CellMarkers(
+            object = object,
+            gene2symbol = gene2symbol,
+            class = class
+        )
+        new(Class = class, data)
+    }
+
+
+
+#' @rdname CellCycleMarkers
+#' @export
+importCellCycleMarkers <- function(
+    file,
+    organism,
+    release
+) {
+    object <- import(file)
+    object <- as(object, "DataFrame")
+    gene2symbol <- makeGene2SymbolFromEnsembl(
+        organism = organism,
+        release = release
+    )
+    CellCycleMarkers(
+        object = object,
+        gene2symbol = gene2symbol
+    )
+}

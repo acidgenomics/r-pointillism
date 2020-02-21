@@ -32,7 +32,7 @@
 #' pseudo-count (i.e., on the same scale as the counts).
 #'
 #' @name normalize
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -40,14 +40,14 @@
 #' @return Modified object.
 #'
 #' @seealso
-#' - [estimateSizeFactors()].
-#' - [SingleCellExperiment::normcounts()].
-#' - [SingleCellExperiment::logcounts()].
-#' - [scater::normalizeCounts()].
-#' - [scater::logNormCounts()].
-#' - [Seurat::NormalizeData()].
-#' - [monocle3::preprocess_cds()].
-#' - [monocle3::normalized_counts()].
+#' - `estimateSizeFactors()`.
+#' - `SingleCellExperiment::normcounts()`.
+#' - `SingleCellExperiment::logcounts()`.
+#' - `scater::normalizeCounts()`.
+#' - `scater::logNormCounts()`.
+#' - `Seurat::NormalizeData()`.
+#' - `monocle3::preprocess_cds()`.
+#' - `monocle3::normalized_counts()`.
 #'
 #' @examples
 #' data(Seurat, SingleCellExperiment, package = "acidtest")
@@ -141,26 +141,28 @@ setMethod(
 
 
 
-## ## Updated 2020-01-30.
-## `normalize,cell_data_set` <-  # nolint
-##     function(object) {
-##         cli_alert("Normalizing with {.pkg monocle3}::{.fun preprocess_cds}.")
-##         monocle3::preprocess_cds(
-##             cds = object,
-##             method = "PCA",
-##             norm_method = "log",
-##             pseudo_count = 1L,
-##             scaling = TRUE,
-##             verbose = TRUE
-##         )
-##     }
-## 
-## 
-## 
-## #' @rdname normalize
-## #' @export
-## setMethod(
-##     f = "normalize",
-##     signature = signature("cell_data_set"),
-##     definition = `normalize,cell_data_set`
-## )
+## > ## Updated 2020-01-30.
+## > `normalize,cell_data_set` <-  # nolint
+## >     function(object) {
+## >         cli_alert(
+## >             "Normalizing with {.pkg monocle3}::{.fun preprocess_cds}."
+## >         )
+## >         monocle3::preprocess_cds(
+## >             cds = object,
+## >             method = "PCA",
+## >             norm_method = "log",
+## >             pseudo_count = 1L,
+## >             scaling = TRUE,
+## >             verbose = TRUE
+## >         )
+## >     }
+## >
+## >
+## >
+## > #' @rdname normalize
+## > #' @export
+## > setMethod(
+## >     f = "normalize",
+## >     signature = signature("cell_data_set"),
+## >     definition = `normalize,cell_data_set`
+## > )

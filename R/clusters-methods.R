@@ -72,36 +72,36 @@ setMethod(
 
 
 
-## ## Note that monocle3 currently defines the generic using "x" instead of
-## ## "object", and requires "reduction_method" in definition.
-## ##
-## ## For `reduction`, note that positional scalar works.
-## ##
-## ## Updated 2019-08-02.
-## `clusters,cell_data_set` <-  # nolint
-##     function(object, reduction) {
-##         validObject(object)
-##         assert(isScalar(reduction))
-##         monocle3::clusters(
-##             x = object,
-##             reduction_method = reduction
-##         )
-##     }
-## 
-## f <- methodFormals(
-##     f = "clusters",
-##     signature = signature(x = "cell_data_set"),
-##     package = "monocle3"
-## )
-## formals(`clusters,cell_data_set`)[["reduction"]] <-
-##     f[["reduction_method"]]
-## 
-## 
-## 
-## #' @rdname clusters
-## #' @export
-## setMethod(
-##     f = "clusters",
-##     signature = signature("cell_data_set"),
-##     definition = `clusters,cell_data_set`
-## )
+## > ## Note that monocle3 currently defines the generic using "x" instead of
+## > ## "object", and requires "reduction_method" in definition.
+## > ##
+## > ## For `reduction`, note that positional scalar works.
+## > ##
+## > ## Updated 2019-08-02.
+## > `clusters,cell_data_set` <-  # nolint
+## >     function(object, reduction) {
+## >         validObject(object)
+## >         assert(isScalar(reduction))
+## >         monocle3::clusters(
+## >             x = object,
+## >             reduction_method = reduction
+## >         )
+## >     }
+## >
+## > f <- methodFormals(
+## >     f = "clusters",
+## >     signature = signature(x = "cell_data_set"),
+## >     package = "monocle3"
+## > )
+## > formals(`clusters,cell_data_set`)[["reduction"]] <-
+## >     f[["reduction_method"]]
+## >
+## >
+## >
+## > #' @rdname clusters
+## > #' @export
+## > setMethod(
+## >     f = "clusters",
+## >     signature = signature("cell_data_set"),
+## >     definition = `clusters,cell_data_set`
+## > )

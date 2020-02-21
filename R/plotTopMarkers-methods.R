@@ -1,7 +1,3 @@
-## Need to add `cell_data_set` support.
-
-
-
 #' @name plotTopMarkers
 #' @inherit acidgenerics::plotTopMarkers
 #' @note Updated 2020-01-30.
@@ -107,9 +103,10 @@ NULL
         invisible(list)
     }
 
-formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
-    c("direction", "reduction", "BPPARAM")
-] <- list(direction, reduction, BPPARAM)
+args <- c("direction", "reduction", "BPPARAM")
+formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 

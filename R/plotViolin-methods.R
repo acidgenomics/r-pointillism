@@ -105,12 +105,10 @@ NULL
         p
     }
 
-formals(`plotViolin,SingleCellExperiment`)[
-    c("color", "legend")] <-
-    list(
-        color = discreteColor,
-        legend = legend
-    )
+args1 <- c("color", "legend")
+args2 <- c("discreteColor", "legend")
+formals(`plotViolin,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args1, args2)
 
 
 
@@ -137,19 +135,3 @@ setMethod(
     signature = signature("Seurat"),
     definition = `plotViolin,Seurat`
 )
-
-
-
-## ## Updated 2019-08-02.
-## `plotViolin,cell_data_set` <-  # nolint
-##     `plotViolin,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotCounts
-## #' @export
-## setMethod(
-##     f = "plotViolin",
-##     signature = signature("cell_data_set"),
-##     definition = `plotViolin,cell_data_set`
-## )

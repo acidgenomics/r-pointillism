@@ -22,7 +22,7 @@ plotMarker(object, ...)
   labelSize = getOption("acid.labelSize", default = 6L),
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE),
-  title = TRUE
+  labels = list(title = "auto", subtitle = NULL)
 )
 
 \S4method{plotMarker}{Seurat}(
@@ -39,7 +39,7 @@ plotMarker(object, ...)
   labelSize = getOption("acid.labelSize", default = 6L),
   dark = getOption("acid.dark", default = FALSE),
   legend = getOption("acid.legend", default = TRUE),
-  title = TRUE
+  labels = list(title = "auto", subtitle = NULL)
 )
 }
 \arguments{
@@ -87,8 +87,9 @@ theme.}
 \item{legend}{\code{logical(1)}.
 Include plot legend.}
 
-\item{title}{\code{character(1)}.
-Title.}
+\item{labels}{\code{list}.
+ggplot2 labels.
+See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
 
 \item{...}{Additional arguments.}
 }
@@ -100,7 +101,7 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2020-01-30.
+Updated 2020-02-21.
 }
 \examples{
 data(Seurat, package = "acidtest")

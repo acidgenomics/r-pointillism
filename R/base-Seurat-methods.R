@@ -511,31 +511,36 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2020-02-20.
 `rowRanges,Seurat` <-  # nolint
     function(x) {
         sce <- as.SingleCellExperiment(x)
-        ## Default coercion method will return a GRangesList.
         gr <- rowRanges(sce)
         ## Attempt to use stashed rowRanges, if defined.
         stash <- .getSeuratStash(x, "rowRanges")
-        if (is(stash, "GRanges")) {
-            assert(identical(length(gr), length(stash)))
-            ## Handle situation where we've changed from gene IDs to gene names.
-            if (!identical(names(gr), names(stash))) {
-                names(stash) <- names(gr)
-            }
-            mcols1 <- mcols(stash)
-            mcols2 <- mcols(gr)
-            mcols2 <- mcols2[
-                ,
-                setdiff(colnames(mcols2), colnames(mcols1)),
-                drop = FALSE
-                ]
-            mcols <- cbind(mcols1, mcols2)
-            gr <- stash
-            mcols(gr) <- mcols
+        if (!is(stash, "GRanges")) {
+            return(gr)
         }
+        ## Handle situation where we've changed from gene IDs to gene names
+        ## using `convertGenesToSymbols`.
+        if (
+            identical(length(gr), length(stash)) &&
+            !identical(names(gr), names(stash))
+        ) {
+            names(stash) <- names(gr)
+        }
+        assert(areIntersectingSets(names(stash), names(gr)))
+        stash <- stash[names(gr)]
+        mcols1 <- mcols(stash)
+        mcols2 <- mcols(gr)
+        mcols2 <- mcols2[
+            ,
+            setdiff(colnames(mcols2), colnames(mcols1)),
+            drop = FALSE
+            ]
+        mcols <- cbind(mcols1, mcols2)
+        gr <- stash
+        mcols(gr) <- mcols
         gr
     }
 
