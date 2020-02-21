@@ -39,10 +39,9 @@ NULL
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
 #'   decode estimateSizeFactors geometricMean import interestingGroups
 #'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
-#'   mapGenesToSymbols markdownHeader matchArgsToDoCall matchInterestingGroups
-#'   melt metrics mutateIf organism organism<- printString sampleData
-#'   sampleData<- sampleNames separator showSlotInfo snakeCase
-#'   uniteInterestingGroups
+#'   mapGenesToSymbols markdownHeader matchInterestingGroups melt metrics
+#'   mutateIf organism organism<- printString sampleData sampleData<-
+#'   sampleNames separator showSlotInfo snakeCase uniteInterestingGroups
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
 #'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_ul
 #' @importFrom cowplot plot_grid

@@ -72,7 +72,7 @@ NULL
 
 
 ## Constructors ================================================================
-## Updated 2020-01-30.
+## Updated 2020-02-21.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -90,9 +90,6 @@ NULL
         title = NULL
     ) {
         validObject(object)
-        if (!is(object, "SingleCellExperiment")) {
-            object <- as(object, "SingleCellExperiment")
-        }
         assert(
             .hasClusters(object),
             ## Allow pass in of positional scalar, for looping.
@@ -262,67 +259,6 @@ formals(`plotReducedDim,SingleCellExperiment`)[c(
 
 
 
-## Updated 2019-07-31.
-`plotPCA,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "PCA"
-                )
-            )
-        )
-
-    }
-
-
-
-## Updated 2019-07-31.
-`plotTSNE,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "TSNE"
-                )
-            )
-        )
-    }
-
-
-
-## Updated 2019-07-31.
-`plotUMAP,SingleCellExperiment` <-  # nolint
-    function() {
-        do.call(
-            what = plotReducedDim,
-            args = matchArgsToDoCall(
-                args = list(
-                    object = object,
-                    reduction = "UMAP"
-                )
-            )
-        )
-    }
-
-
-
-## Formals =====================================================================
-## Set the formals for the convenience functions.
-f <- formals(`plotReducedDim,SingleCellExperiment`)
-f <- f[setdiff(names(f), "reduction")]
-formals(`plotPCA,SingleCellExperiment`) <- f
-formals(`plotTSNE,SingleCellExperiment`) <- f
-formals(`plotUMAP,SingleCellExperiment`) <- f
-rm(f)
-
-
-
-## Methods =====================================================================
 #' @rdname plotReducedDim
 #' @export
 setMethod(
@@ -333,9 +269,14 @@ setMethod(
 
 
 
-## Updated 2019-07-31.
-`plotReducedDim,Seurat` <-  # nolint
-    `plotReducedDim,SingleCellExperiment`
+## Updated 2020-02-21.
+`plotReducedDim,Seurat` <-
+    function(object, ...) {
+        validObject(object)
+        resolution <- .seuratWhichResolution(object)
+        cli_dl(c(resolution = resolution))
+        plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
+    }
 
 
 
@@ -349,103 +290,11 @@ setMethod(
 
 
 
-## ## Updated 2019-08-02.
-## `plotReducedDim,cell_data_set` <-  # nolint
-##     `plotReducedDim,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotReducedDim",
-##     signature = signature("cell_data_set"),
-##     definition = `plotReducedDim,cell_data_set`
-## )
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotTSNE,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotTSNE,Seurat` <-  # nolint
-    `plotTSNE,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("Seurat"),
-    definition = `plotTSNE,Seurat`
-)
-
-
-
-## ## Updated 2019-08-02.
-## `plotTSNE,cell_data_set` <-  # nolint
-##     `plotTSNE,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotTSNE",
-##     signature = signature("cell_data_set"),
-##     definition = `plotTSNE,cell_data_set`
-## )
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotUMAP,SingleCellExperiment`
-)
-
-
-
-## Updated 2019-07-31.
-`plotUMAP,Seurat` <-  # nolint
-    `plotUMAP,SingleCellExperiment`
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("Seurat"),
-    definition = `plotUMAP,Seurat`
-)
-
-
-
-## ## Updated 2019-08-02.
-## `plotUMAP,cell_data_set` <-  # nolint
-##     `plotUMAP,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotUMAP",
-##     signature = signature("cell_data_set"),
-##     definition = `plotUMAP,cell_data_set`
-## )
+## Updated 2020-02-21.
+`plotPCA,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, resolution = "PCA", ...)
+    }
 
 
 
@@ -475,16 +324,68 @@ setMethod(
 
 
 
-## ## Updated 2019-08-02.
-## `plotPCA,cell_data_set` <-  # nolint
-##     `plotPCA,SingleCellExperiment`
-## 
-## 
-## 
-## #' @rdname plotReducedDim
-## #' @export
-## setMethod(
-##     f = "plotPCA",
-##     signature = signature("cell_data_set"),
-##     definition = `plotPCA,cell_data_set`
-## )
+## Updated 2020-02-21.
+`plotTSNE,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, resolution = "TSNE", ...)
+    }
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotTSNE,SingleCellExperiment`
+)
+
+
+
+## Updated 2020-02-21.
+`plotTSNE,Seurat` <-  # nolint
+    `plotTSNE,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("Seurat"),
+    definition = `plotTSNE,Seurat`
+)
+
+
+
+## Updated 2020-02-21.
+`plotUMAP,SingleCellExperiment` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, resolution = "UMAP", ...)
+    }
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotUMAP,SingleCellExperiment`
+)
+
+
+
+## Updated 2020-02-21.
+`plotUMAP,Seurat` <-  # nolint
+    `plotUMAP,SingleCellExperiment`
+
+
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("Seurat"),
+    definition = `plotUMAP,Seurat`
+)

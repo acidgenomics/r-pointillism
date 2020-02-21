@@ -35,6 +35,7 @@
 #' slotted in `object@meta.data`.
 #'
 #' @note Updated 2020-02-21.
+#' @noRd
 #'
 #' @seealso
 #' - `Seurat::Idents()`
