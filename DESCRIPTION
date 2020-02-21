@@ -67,7 +67,8 @@ Suggests:
     reticulate (>= 1.14),
     roxygen2 (>= 6.1),
     splatter (>= 1.10),
-    testthat (>= 2.2)
+    testthat (>= 2.2),
+    zinbwave (>= 1.8)
 Remotes:
     acidgenomics/acidgenerics,
     acidgenomics/acidplots,
