@@ -31,7 +31,7 @@ NULL
 
 
 ## Note that the validity method checks for sorting by adjusted P value.
-## Updated 2020-01-30.
+## Updated 2020-02-21.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
@@ -72,7 +72,10 @@ NULL
         x
     }
 
-formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]] <- direction
+args <- "direction"
+formals(`topMarkers,SeuratMarkersPerCluster`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 

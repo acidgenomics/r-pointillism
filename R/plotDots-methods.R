@@ -29,7 +29,7 @@ NULL
 
 
 
-## Updated 2020-01-03.
+## Updated 2020-02-21.
 `plotDots,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -146,11 +146,10 @@ NULL
         p
     }
 
-formals(`plotDots,SingleCellExperiment`)[
-    c("color", "legend")] <- list(
-        color = continuousColorPurpleOrange,
-        legend = legend
-    )
+args1 <- c("color", "legend")
+args2 <- c("continuousColorPurpleOrange", "legend")
+formals(`plotDots,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args1, args2)
 
 
 

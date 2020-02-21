@@ -153,7 +153,7 @@ Visualize genes on a dot or violin plot.
 \note{
 Dot geom currently only supports logcounts.
 
-Updated 2020-01-03.
+Updated 2020-02-21.
 }
 \examples{
 data(Seurat, package = "acidtest")

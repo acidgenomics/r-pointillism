@@ -103,9 +103,10 @@ NULL
         invisible(list)
     }
 
-formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[
-    c("direction", "reduction", "BPPARAM")
-] <- list(direction, reduction, BPPARAM)
+args <- c("direction", "reduction", "BPPARAM")
+formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 
