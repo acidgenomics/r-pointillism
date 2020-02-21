@@ -38,10 +38,11 @@ NULL
 #' @importFrom acidplots acid_theme_dark acid_theme_light matchLabels
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
 #'   decode estimateSizeFactors geometricMean import interestingGroups
-#'   interestingGroups<- leftJoin makeNames mapGenesToIDs mapGenesToRownames
-#'   mapGenesToSymbols markdownHeader matchInterestingGroups melt metrics
-#'   mutateIf organism organism<- printString sampleData sampleData<-
-#'   sampleNames separator showSlotInfo snakeCase uniteInterestingGroups
+#'   interestingGroups<- leftJoin makeGene2SymbolFromEnsembl makeNames
+#'   mapGenesToIDs mapGenesToRownames mapGenesToSymbols markdownHeader
+#'   matchInterestingGroups melt metrics mutateIf organism organism<-
+#'   printString sampleData sampleData<- sampleNames separator showSlotInfo
+#'   snakeCase uniteInterestingGroups
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
 #'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_ul
 #' @importFrom cowplot plot_grid
