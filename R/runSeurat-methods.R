@@ -71,13 +71,22 @@ NULL
         ## https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
 
         if (!identical(regressCellCycle, "no")) {
-            organism <- organism(object)
+            env <- new.env()
             data(
-                cell_cycle_markers_list,
+                "cell_cycle_markers_list",
                 package = "pointillism",
-                envir = environment()
+                envir = env
             )
-            ccm <- cell_cycle_markers_list[[camelCase(organism)]]
+            ccm <- env[["cell_cycle_markers_list"]]
+            organism <- camelCase(organism(object))
+            if (!isSubset(organism, names(ccm))) {
+                stop(paste(
+                    "Failed to obtain cell-cycle markers.",
+                    deparse(organism), "is not currently supported.",
+                    "Please file an issue on GitHub."
+                ))
+            }
+            ccm <- ccm[[organism]]
             assert(is(ccm, "CellCycleMarkers"))
             g2mGenes <- as.character(ccm[["g2m"]][["geneName"]])
             sGenes <- as.character(ccm[["s"]][["geneName"]])
