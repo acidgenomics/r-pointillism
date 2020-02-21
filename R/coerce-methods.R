@@ -3,7 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2019-10-31.
+#' @note Updated 2020-02-21.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
@@ -93,10 +93,10 @@ NULL
         ## object@meta.data correctly, which is what gets passed to SCE in
         ## default coercion method.
         ##
-        ## `Seurat:::Idents.Seurat`
+        ## ## Seurat:::Idents.Seurat
         ## > slot(object = object, name = "active.ident")
         ##
-        ## `Seurat:::`Idents<-.Seurat`
+        ## ## Seurat:::`Idents<-.Seurat`
         ## > slot(object = object, name = "active.ident") <- idents
         ##
         ## Updated on 2020-02-21.
