@@ -88,6 +88,15 @@
         stop("Failed to match `Idents()` in `object@meta.data`.")
     }
     col <- names(keep)[keep]
-    assert(isString(col))
+    ## Inform the user about multiple identical resolutions, which can happen
+    ## with low complexity samples.
+    if (!isString(col)) {
+        cli_alert_warning(paste(
+            "Multiple resolution columns matched:",
+            toString(col)
+        ))
+        col <- col[[1L]]
+        cli_alert_info(paste("Picking the lowest resolution:", col))
+    }
     col
 }
