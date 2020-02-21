@@ -1,7 +1,7 @@
 #' Cell-type markers
 #'
 #' @name CellTypeMarkers
-#' @note Updated 2020-02-20.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams basejump::makeGene2SymbolFromEnsembl
@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' markers_dir <- system.file(
-#'     file.path("inst", "extdata", "markers"),
+#'     file.path("extdata", "markers"),
 #'     package = "pointillism"
 #' )
 #'

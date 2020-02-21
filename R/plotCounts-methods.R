@@ -26,10 +26,10 @@
 #' @param ... Additional arguments.
 #'
 #' @seealso
-#' - [Seurat::DotPlot()].
-#' - [Seurat::VlnPlot()].
-#' - [Seurat::RidgePlot()].
-#' - [monocle3::plot_genes_violin()].
+#' - `Seurat::DotPlot()`.
+#' - `Seurat::VlnPlot()`.
+#' - `Seurat::RidgePlot()`.
+#' - `monocle3::plot_genes_violin()`.
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")

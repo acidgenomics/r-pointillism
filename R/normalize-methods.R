@@ -32,7 +32,7 @@
 #' pseudo-count (i.e., on the same scale as the counts).
 #'
 #' @name normalize
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -40,14 +40,14 @@
 #' @return Modified object.
 #'
 #' @seealso
-#' - [estimateSizeFactors()].
-#' - [SingleCellExperiment::normcounts()].
-#' - [SingleCellExperiment::logcounts()].
-#' - [scater::normalizeCounts()].
-#' - [scater::logNormCounts()].
-#' - [Seurat::NormalizeData()].
-#' - [monocle3::preprocess_cds()].
-#' - [monocle3::normalized_counts()].
+#' - `estimateSizeFactors()`.
+#' - `SingleCellExperiment::normcounts()`.
+#' - `SingleCellExperiment::logcounts()`.
+#' - `scater::normalizeCounts()`.
+#' - `scater::logNormCounts()`.
+#' - `Seurat::NormalizeData()`.
+#' - `monocle3::preprocess_cds()`.
+#' - `monocle3::normalized_counts()`.
 #'
 #' @examples
 #' data(Seurat, SingleCellExperiment, package = "acidtest")

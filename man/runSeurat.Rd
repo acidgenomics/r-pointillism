@@ -22,6 +22,53 @@ runSeurat(object, ...)
 
 \S4method{runSeurat}{SingleCellExperiment}(object, ...)
 }
+\arguments{
+\item{object}{Object.}
+
+\item{...}{Additional arguments.}
+
+\item{regressCellCycle}{\code{character(1)}.
+\itemize{
+\item \code{"s-g2m-diff"}: Calculate the difference between S and G2/M phases and
+use that to regress. See \code{CC.Difference} metric in Seurat vignette.
+\item \code{"yes"}: Regress out any effects of both S and G2/M phase variable.
+Refer to \code{"S.Score"} and \code{"G2M.Score"} metrics in Seurat vignette.
+\item \code{"no"}: Don't calculate cell-cycle scoring and don't regress.
+}
+
+Refer to the Seurat cell-cycle regression vignette for details.}
+
+\item{varsToRegress}{\code{character} or \code{NULL}.
+Unwanted sources of variance to regress. Note that when \code{regressCellCycle}
+is not \code{"no"}, then the corresponding cell-cycle variables are added
+automatically. Passes to \link[Seurat:ScaleData]{Seurat::ScaleData} internally.}
+
+\item{dims}{\code{"auto"} or \code{integer}.
+Dimensions of reduction to use as input for shared nearest neighbor (SNN)
+graph construction. When set to "auto" (default), the elbow point is
+calculated internally. See \code{\link[=plotPCElbow]{plotPCElbow()}} for details. Passes to
+\code{\link[Seurat:FindNeighbors]{Seurat::FindNeighbors()}} and \code{\link[Seurat:RunUMAP]{Seurat::RunUMAP()}} internally.}
+
+\item{resolution}{\code{numeric}.
+Resolutions to calculate for clustering.
+Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.}
+
+\item{tsneMethod}{\code{character(1)}.
+t-SNE algorithm. Using the current default in Seurat.}
+
+\item{umapMethod}{\code{character(1)}.
+UMAP algorithm. Use either \code{"umap-learn"}, which requires reticulate, or
+\code{"uwot"}. Note that Seurat 3 changed the default from umap-learn to uwot,
+but I prefer to call the python package directly.}
+
+\item{virtualenv}{\code{character(1)}.
+Python virtual environment name.
+Only evaluated when \code{umapMethod = "umap-learn"}.
+See reticulate section for details.}
+
+\item{workers}{\code{"auto"}, \code{integer(1)}, or \code{NULL}.
+Disable parallelization with future by setting to \code{NULL}.}
+}
 \description{
 Run Seurat
 }
@@ -31,17 +78,23 @@ Updated 2020-02-21.
 \section{reticulate}{
 
 
+A Python virtual environment (e.g. "r-reticulate") with umap-learn installed
+is required when \code{umapMethod} is set to "umap-learn" (default).
+
+The reticulate package supports conda or virtual environments managed by
+venv/virtualenv. I've had better luck with using using virtual environments
+rather than attempting to use conda with this package.
+
 Check \code{Sys.getenv("WORKON_HOME")} path, which is the current approach used
 in \code{Rprofile.site}.
 }
 
 \seealso{
 \itemize{
-\item https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 \item https://github.com/satijalab/seurat/wiki
 \item https://satijalab.org/seurat/essential_commands.html
 \item https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
-\item Parallelization with future
 https://satijalab.org/seurat/v3.0/future_vignette.html
+\item https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 }
 }

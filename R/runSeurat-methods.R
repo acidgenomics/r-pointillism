@@ -5,16 +5,56 @@
 #'
 #' @section reticulate:
 #'
+#' A Python virtual environment (e.g. "r-reticulate") with umap-learn installed
+#' is required when `umapMethod` is set to "umap-learn" (default).
+#'
+#' The reticulate package supports conda or virtual environments managed by
+#' venv/virtualenv. I've had better luck with using using virtual environments
+#' rather than attempting to use conda with this package.
+#'
 #' Check `Sys.getenv("WORKON_HOME")` path, which is the current approach used
 #' in `Rprofile.site`.
 #'
+#' @inheritParams acidroxygen::params
+#' @param regressCellCycle `character(1)`.
+#'   - `"s-g2m-diff"`: Calculate the difference between S and G2/M phases and
+#'     use that to regress. See `CC.Difference` metric in Seurat vignette.
+#'   - `"yes"`: Regress out any effects of both S and G2/M phase variable.
+#'     Refer to `"S.Score"` and `"G2M.Score"` metrics in Seurat vignette.
+#'   - `"no"`: Don't calculate cell-cycle scoring and don't regress.
+#'
+#'   Refer to the Seurat cell-cycle regression vignette for details.
+#' @param varsToRegress `character` or `NULL`.
+#'   Unwanted sources of variance to regress. Note that when `regressCellCycle`
+#'   is not `"no"`, then the corresponding cell-cycle variables are added
+#'   automatically. Passes to [Seurat::ScaleData] internally.
+#' @param dims `"auto"` or `integer`.
+#'   Dimensions of reduction to use as input for shared nearest neighbor (SNN)
+#'   graph construction. When set to "auto" (default), the elbow point is
+#'   calculated internally. See [plotPCElbow()] for details. Passes to
+#'   [Seurat::FindNeighbors()] and [Seurat::RunUMAP()] internally.
+#' @param resolution `numeric`.
+#'   Resolutions to calculate for clustering.
+#'   Passes to [Seurat::FindClusters()] internally.
+#' @param tsneMethod `character(1)`.
+#'   t-SNE algorithm. Using the current default in Seurat.
+#' @param umapMethod `character(1)`.
+#'   UMAP algorithm. Use either `"umap-learn"`, which requires reticulate, or
+#'   `"uwot"`. Note that Seurat 3 changed the default from umap-learn to uwot,
+#'   but I prefer to call the python package directly.
+#' @param virtualenv `character(1)`.
+#'   Python virtual environment name.
+#'   Only evaluated when `umapMethod = "umap-learn"`.
+#'   See reticulate section for details.
+#' @param workers `"auto"`, `integer(1)`, or `NULL`.
+#'   Disable parallelization with future by setting to `NULL`.
+#'
 #' @seealso
-#' - https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 #' - https://github.com/satijalab/seurat/wiki
 #' - https://satijalab.org/seurat/essential_commands.html
 #' - https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
-#' - Parallelization with future
 #'   https://satijalab.org/seurat/v3.0/future_vignette.html
+#' - https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 NULL
 
 
@@ -41,14 +81,17 @@ NULL
             isString(tsneMethod),
             isString(umapMethod),
             isString(virtualenv),
-            identical(workers, "auto") || isInt(workers)
+            identical(workers, "auto") || isInt(workers, nullOK = TRUE)
         )
         regressCellCycle <- match.arg(regressCellCycle)
 
         ## Parallelization (via future) ----------------------------------------
         ## Note that Seurat currently uses future package for parallelization.
         ## Multiprocess is currently unstable in RStudio and disabled.
-        if (isTRUE(future::supportsMulticore())) {
+        if (
+            isTRUE(future::supportsMulticore()) &&
+            !is.null(workers)
+        ) {
             if (identical(workers, "auto")) {
                 workers <- max(getOption("mc.cores"), 1L)
             }
