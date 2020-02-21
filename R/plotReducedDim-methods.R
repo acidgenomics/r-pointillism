@@ -270,7 +270,7 @@ setMethod(
 
 
 ## Updated 2020-02-21.
-`plotReducedDim,Seurat` <-
+`plotReducedDim,Seurat` <-  # nolint
     function(object, ...) {
         validObject(object)
         resolution <- .seuratWhichResolution(object)
