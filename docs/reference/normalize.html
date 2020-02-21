@@ -157,7 +157,7 @@ be computed internally automatically using <code>estimateSizeFactors()</code> wi
 recommended default settings.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-30.</p>
+    <p>Updated 2020-02-21.</p>
     <h2 class="hasAnchor" id="normalized-counts"><a class="anchor" href="#normalized-counts"></a>Normalized counts</h2>
 
     
@@ -207,10 +207,10 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 
 <span class='co'>## SingleCellExperiment ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Calculating library size factors using <span style='color: #0000BB;'>mean-ratio</span><span> method.</span></div><div class='output co'>#&gt; <span class='message'>→ Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>→ Computing </span><span style='color: #262626;background-color: #DADADA;'>`normcounts`</span><span> and </span><span style='color: #262626;background-color: #DADADA;'>`logcounts`</span><span> assays using </span><span style='color: #0000BB;'>scater</span><span>::</span><span style='color: #262626;background-color: #DADADA;'>`normalizeCounts()`</span><span>.</span></div><div class='input'>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Calculating library size factors using <span style='color: #0000BB;'>mean-ratio</span><span> method.</span></div><div class='output co'>#&gt; <span class='message'>→ Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>→ Computing </span><span style='color: #C6C6C6;background-color: #262626;'>`normcounts`</span><span> and </span><span style='color: #C6C6C6;background-color: #262626;'>`logcounts`</span><span> assays using </span><span style='color: #0000BB;'>scater</span><span>::</span><span style='color: #C6C6C6;background-color: #262626;'>`normalizeCounts()`</span><span>.</span></div><div class='input'>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Normalizing with </span><span style='color: #0000BB;'>Seurat</span><span>::</span><span style='color: #262626;background-color: #DADADA;'>`NormalizeData()`</span><span>.</span></div></span></pre>
+<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Normalizing with </span><span style='color: #0000BB;'>Seurat</span><span>::</span><span style='color: #C6C6C6;background-color: #262626;'>`NormalizeData()`</span><span>.</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

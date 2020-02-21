@@ -140,27 +140,100 @@
 <span class='co'># S4 method for SingleCellExperiment</span>
 <span class='fu'>runSeurat</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
+      <th>regressCellCycle</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.</p><ul>
+<li><p><code>"s-g2m-diff"</code>: Calculate the difference between S and G2/M phases and
+use that to regress. See <code>CC.Difference</code> metric in Seurat vignette.</p></li>
+<li><p><code>"yes"</code>: Regress out any effects of both S and G2/M phase variable.
+Refer to <code>"S.Score"</code> and <code>"G2M.Score"</code> metrics in Seurat vignette.</p></li>
+<li><p><code>"no"</code>: Don't calculate cell-cycle scoring and don't regress.</p></li>
+</ul>
+
+<p>Refer to the Seurat cell-cycle regression vignette for details.</p></td>
+    </tr>
+    <tr>
+      <th>varsToRegress</th>
+      <td><p><code>character</code> or <code>NULL</code>.
+Unwanted sources of variance to regress. Note that when <code>regressCellCycle</code>
+is not <code>"no"</code>, then the corresponding cell-cycle variables are added
+automatically. Passes to <a href='https://rdrr.io/pkg/Seurat/man/ScaleData.html'>Seurat::ScaleData</a> internally.</p></td>
+    </tr>
+    <tr>
+      <th>dims</th>
+      <td><p><code>"auto"</code> or <code>integer</code>.
+Dimensions of reduction to use as input for shared nearest neighbor (SNN)
+graph construction. When set to "auto" (default), the elbow point is
+calculated internally. See <code><a href='plotPCElbow.html'>plotPCElbow()</a></code> for details. Passes to
+<code><a href='https://rdrr.io/pkg/Seurat/man/FindNeighbors.html'>Seurat::FindNeighbors()</a></code> and <code><a href='https://rdrr.io/pkg/Seurat/man/RunUMAP.html'>Seurat::RunUMAP()</a></code> internally.</p></td>
+    </tr>
+    <tr>
+      <th>resolution</th>
+      <td><p><code>numeric</code>.
+Resolutions to calculate for clustering.
+Passes to <code><a href='https://rdrr.io/pkg/Seurat/man/FindClusters.html'>Seurat::FindClusters()</a></code> internally.</p></td>
+    </tr>
+    <tr>
+      <th>tsneMethod</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+t-SNE algorithm. Using the current default in Seurat.</p></td>
+    </tr>
+    <tr>
+      <th>umapMethod</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+UMAP algorithm. Use either <code>"umap-learn"</code>, which requires reticulate, or
+<code>"uwot"</code>. Note that Seurat 3 changed the default from umap-learn to uwot,
+but I prefer to call the python package directly.</p></td>
+    </tr>
+    <tr>
+      <th>virtualenv</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Python virtual environment name.
+Only evaluated when <code>umapMethod = "umap-learn"</code>.
+See reticulate section for details.</p></td>
+    </tr>
+    <tr>
+      <th>workers</th>
+      <td><p><code>"auto"</code>, <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>, or <code>NULL</code>.
+Disable parallelization with future by setting to <code>NULL</code>.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-02-20.</p>
+    <p>Updated 2020-02-21.</p>
     <h2 class="hasAnchor" id="reticulate"><a class="anchor" href="#reticulate"></a>reticulate</h2>
 
     
 
 
+<p>A Python virtual environment (e.g. "r-reticulate") with umap-learn installed
+is required when <code>umapMethod</code> is set to "umap-learn" (default).</p>
+<p>The reticulate package supports conda or virtual environments managed by
+venv/virtualenv. I've had better luck with using using virtual environments
+rather than attempting to use conda with this package.</p>
 <p>Check <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("WORKON_HOME")</a></code> path, which is the current approach used
 in <code>Rprofile.site</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
 <ul>
-<li><p>https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</p></li>
 <li><p>https://github.com/satijalab/seurat/wiki</p></li>
 <li><p>https://satijalab.org/seurat/essential_commands.html</p></li>
-<li><p>https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html</p></li>
-<li><p>Parallelization with future
+<li><p>https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
 https://satijalab.org/seurat/v3.0/future_vignette.html</p></li>
+<li><p>https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</p></li>
 </ul>
 </div>
 
@@ -168,6 +241,7 @@ https://satijalab.org/seurat/v3.0/future_vignette.html</p></li>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       <li><a href="#note">Note</a></li>
       <li><a href="#reticulate">reticulate</a></li>
       <li><a href="#see-also">See also</a></li>
