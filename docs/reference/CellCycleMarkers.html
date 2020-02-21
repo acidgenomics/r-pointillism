@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend base S4 methods for <code>cell_data_set</code> class — base-cell_data_set • pointillism</title>
+<title>Cell-cycle markers — CellCycleMarkers • pointillism</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extend base S4 methods for <code>cell_data_set</code> class — base-cell_data_set" />
-<meta property="og:description" content="Extend base S4 methods for cell_data_set class" />
+<meta property="og:title" content="Cell-cycle markers — CellCycleMarkers" />
+<meta property="og:description" content="Cell-cycle markers" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -113,32 +113,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extend base S4 methods for <code>cell_data_set</code> class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/base-cell_data_set-methods.R'><code>R/base-cell_data_set-methods.R</code></a></small>
-    <div class="hidden name"><code>base-cell_data_set.Rd</code></div>
+    <h1>Cell-cycle markers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/CellCycleMarkers.R'><code>R/CellCycleMarkers.R</code></a></small>
+    <div class="hidden name"><code>CellCycleMarkers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extend base S4 methods for <code>cell_data_set</code> class</p>
+    <p>Cell-cycle markers</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>CellCycleMarkers</span>(<span class='no'>object</span>, <span class='no'>gene2symbol</span>)
 
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>logcounts</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"DataFrame"</span>))
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>sizeFactors</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for cell_data_set,ANY</span>
-<span class='fu'>sizeFactors</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>importCellCycleMarkers</span>(<span class='no'>file</span>, <span class='no'>organism</span>, <span class='no'>release</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,28 +134,57 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>gene2symbol</th>
+      <td><p><code>Gene2Symbol</code>.
+Gene-to-symbol mappings. Must contain <code>geneID</code> and <code>geneName</code> columns. See
+<code>Gene2Symbol</code> for more information.</p></td>
     </tr>
     <tr>
-      <th>return</th>
+      <th>file</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Return type. Uses <code><a href='https://rdrr.io/r/base/match.arg.html'>match.arg()</a></code> internally and defaults
-to the first argument in the <code>character</code> vector.</p></td>
+File path.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>Value to assign.</p></td>
+      <th>organism</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Full Latin organism name (e.g. <code>"Homo sapiens"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>release</th>
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+Ensembl release version (e.g. <code>90</code>). We recommend setting this value if
+possible, for improved reproducibility. When left unset, the latest release
+available via AnnotationHub/ensembldb is used. Note that the latest version
+available can vary, depending on the versions of AnnotationHub and
+ensembldb in use.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Varies, depending on the generic.</p>
+    <p><code>CellCycleMarkers</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-30.</p>
+    <p>Updated 2020-02-20.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>markers_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"inst"</span>, <span class='st'>"extdata"</span>, <span class='st'>"markers"</span>),
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pointillism"</span>
+)
+
+<span class='no'>cell_cycle_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>markers_dir</span>, <span class='st'>"cell-cycle"</span>)
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>cell_cycle_dir</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"*.csv"</span>, <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='no'>files</span><span class='kw'>[[</span><span class='fl'>1L</span>]]</div><div class='output co'>#&gt; <span class='error'>Error in files[[1L]]: subscript out of bounds</span></div><div class='input'>
+<span class='co'>## Ensembl release version.</span>
+<span class='no'>release_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>markers_dir</span>, <span class='st'>"ensembl-release.txt"</span>)
+<span class='no'>release</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>release_file</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/ensembl-release.txt': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
+<span class='fu'>importCellCycleMarkers</span>(
+    <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>file</span>,
+    <span class='kw'>organism</span> <span class='kw'>=</span> <span class='fu'>basenameSansExt</span>(<span class='no'>file</span>),
+    <span class='kw'>release</span> <span class='kw'>=</span> <span class='no'>release</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in import(file): Assert failure.</span>
+#&gt; <span class='error'>[1] isAFile(file) || isAURL(file) is not TRUE.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -177,6 +192,7 @@ to the first argument in the <code>character</code> vector.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
