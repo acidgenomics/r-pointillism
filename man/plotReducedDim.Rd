@@ -40,7 +40,7 @@ plotUMAP(object, ...)
   labels = list(title = NULL, subtitle = NULL)
 )
 
-\S4method{plotReducedDim}{Seurat}(object, idents = NULL, ...)
+\S4method{plotReducedDim}{Seurat}(object, ...)
 
 \S4method{plotPCA}{SingleCellExperiment}(object, ...)
 
