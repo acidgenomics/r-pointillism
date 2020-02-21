@@ -87,7 +87,7 @@ setMethod(
 ## >             reduction_method = reduction
 ## >         )
 ## >     }
-## > 
+## >
 ## > f <- methodFormals(
 ## >     f = "clusters",
 ## >     signature = signature(x = "cell_data_set"),
@@ -95,9 +95,9 @@ setMethod(
 ## > )
 ## > formals(`clusters,cell_data_set`)[["reduction"]] <-
 ## >     f[["reduction_method"]]
-## > 
-## > 
-## > 
+## >
+## >
+## >
 ## > #' @rdname clusters
 ## > #' @export
 ## > setMethod(
