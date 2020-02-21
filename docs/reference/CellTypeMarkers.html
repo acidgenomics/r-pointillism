@@ -165,26 +165,32 @@ ensembldb in use.</p></td>
     <p><code>CellTypeMarkers</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-02-20.</p>
+    <p>Updated 2020-02-21.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>markers_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"inst"</span>, <span class='st'>"extdata"</span>, <span class='st'>"markers"</span>),
+    <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"markers"</span>),
     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pointillism"</span>
 )
 
 <span class='no'>cell_type_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>markers_dir</span>, <span class='st'>"cell-type"</span>)
 <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>cell_type_dir</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"*.csv"</span>, <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='no'>files</span><span class='kw'>[[</span><span class='fl'>1L</span>]]</div><div class='output co'>#&gt; <span class='error'>Error in files[[1L]]: subscript out of bounds</span></div><div class='input'>
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='no'>files</span><span class='kw'>[[</span><span class='fl'>1L</span>]]
+
 <span class='co'>## Ensembl release version.</span>
 <span class='no'>release_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>markers_dir</span>, <span class='st'>"ensembl-release.txt"</span>)
-<span class='no'>release</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>release_file</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/ensembl-release.txt': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
+<span class='no'>release</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>release_file</span>))
+
 <span class='fu'>importCellTypeMarkers</span>(
     <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>file</span>,
    <span class='kw'>organism</span> <span class='kw'>=</span> <span class='fu'>basenameSansExt</span>(<span class='no'>file</span>),
     <span class='kw'>release</span> <span class='kw'>=</span> <span class='no'>release</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in import(file): Assert failure.</span>
-#&gt; <span class='error'>[1] isAFile(file) || isAURL(file) is not TRUE.</span></div></pre>
+)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>drosophila-melanogaster.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #C6C6C6;background-color: #262626;'>`fread()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Making </span><span style='color: #C6C6C6;background-color: #262626;'>`GRanges`</span><span> from Ensembl.</span></div><div class='output co'>#&gt; <span class='message'>→ Matching </span><span style='color: #C6C6C6;background-color: #262626;'>`EnsDb`</span><span> from </span><span style='color: #0000BB;'>AnnotationHub</span><span> 2.18.0 (2019-10-29).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> </span><span style='color: #0000BB;'>AH78755</span><span>: Ensembl 99 EnsDb for Drosophila melanogaster.</span></div><div class='output co'>#&gt; <span class='message'>→ Making </span><span style='color: #C6C6C6;background-color: #262626;'>`GRanges`</span><span> from </span><span style='color: #C6C6C6;background-color: #262626;'>`EnsDb`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>    Organism: Drosophila melanogaster</span></div><div class='output co'>#&gt; <span class='message'>    Genome build: BDGP6.28</span></div><div class='output co'>#&gt; <span class='message'>    Ensembl release: 99</span></div><div class='output co'>#&gt; <span class='message'>    Level: genes</span></div><div class='output co'>#&gt; <span class='message'>→ Defining </span><span style='color: #C6C6C6;background-color: #262626;'>`broadClass`</span><span> using: </span><span style='color: #C6C6C6;background-color: #262626;'>`geneBiotype, geneName, seqnames`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Arranging by </span><span style='color: #C6C6C6;background-color: #262626;'>`geneID`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 17807 genes detected.</span></div><div class='output co'>#&gt; CellTypeMarkers
+#&gt; Drosophila melanogaster (Ensembl 99)
+#&gt; crystal_cell(5): klu lz ... PPO1 Sox102F
+#&gt; lamellocyte(5): 14-3-3zeta atilla ... pnt tx
+#&gt; plasmatocyte(5): bbx bon ... Sox102F ttk
+#&gt; prohemocyte(5): dome h ... Tep4 wg</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
