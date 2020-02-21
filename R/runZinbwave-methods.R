@@ -29,7 +29,9 @@
 #' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).
 #'
 #' @return Modified object.
-#'   Weights added to `assays`.
+#'   The dimensionality reduced matrix is stored in the `reducedDims` slot,
+#'   and optionally normalized values and residuals are added in the list
+#'   of assays.
 #'
 #' @seealso `zinbwave::zinbwave`.
 #'
@@ -38,7 +40,6 @@
 #' Y <- SingleCellExperiment
 #' Y <- nonzeroRowsAndCols(Y)
 #' Y <- runZinbwave(Y)
-#' class(weights(Y))
 NULL
 
 
@@ -70,7 +71,7 @@ NULL
             error = function(e) NULL
         )
         if (is.matrix(weights) && !isTRUE(recalculate)) {
-            message("Object already contains pre-calculated weights.")
+            cli_alert_success("Object already contains pre-calculated weights.")
             return(Y)
         }
 
@@ -79,8 +80,8 @@ NULL
         bpprogressbar(BPPARAM) <- TRUE
         # Inform the user whether running in parallel or serial.
         bpparamInfo <- capture.output(BPPARAM)
-        message(paste(
-            "BiocParallel param registered.",
+        cli_alert_info(paste(
+            "{.pkg BiocParallel} param registered.",
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
         ))
@@ -88,7 +89,7 @@ NULL
         # Prepare Y object for zinbwave ----------------------------------------
         # We're returnining original object class, with modified assays.
         # Note that `zinbwave` otherwise returns `SingleCellExperiment`.
-        object <- Y
+        input <- Y
         # Coerce to SingleCellExperiment, for consistency.
         Y <- as(Y, "SingleCellExperiment")  # nolint
         # zinbFit doesn't currently support sparse counts.
@@ -97,7 +98,7 @@ NULL
         counts(Y) <- as.matrix(counts(Y))
 
         # Fit a ZINB regression model ------------------------------------------
-        message("zinbFit(): Fitting a ZINB regression model.")
+        cli_alert("{.fun zinbFit}: Fitting a ZINB regression model.")
         message(paste(
             "CPU time used:",
             printString(system.time({
@@ -114,17 +115,17 @@ NULL
             })),
             sep = "\n"
         ))
-        message(paste(
+        cli_text(paste(
             capture.output(print(fittedModel)),
             collapse = "\n"
         ))
 
         # zinbwave -------------------------------------------------------------
-        message(paste(
-            "zinbwave(): Performing dimensionality reduction using a",
+        cli_alert(paste(
+            "{.fun zinbwave}: Performing dimensionality reduction using a",
             "ZINB regression model with gene and cell-level covariates."
         ))
-        message(paste(
+        cli_text(paste(
             "CPU time used:",
             printString(system.time({
                 # Wrapping here to disable progress bars.
@@ -141,15 +142,18 @@ NULL
             })),
             sep = "\n"
         ))
+        assert(is(zinb, "SingleCellExperiment"))
 
         # Return ---------------------------------------------------------------
-        # Re-slot original raw counts, in case they are sparse.
-        counts <- counts(object)
-        assert(identical(dimnames(zinb), dimnames(counts)))
-        assays(object) <- assays(zinb)
-        counts(object) <- counts
-        metadata(object)[["weights"]] <- "zinbwave"
-        object
+        output <- zinb
+        assert(identical(dimnames(input), dimnames(output)))
+        # Re-slot original assays, in case they are sparse.
+        intersect <- intersect(assayNames(input), assayNames(output))
+        assert(hasLength(intersect))
+        assays(output)[intersect] <- assays(input)[intersect]
+        metadata(output)[["weights"]] <-
+            paste("zinbwave", packageVersion("zinbwave"))
+        output
     }
 
 args <- "BPPARAM"
