@@ -84,7 +84,7 @@
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-02-21.
 .fetchReductionData <- function(
     object,
     reduction = 1L,
@@ -132,6 +132,10 @@
     assert(is(data, "DataFrame"))
     ## Split by cluster.
     f <- data[["ident"]]
+    assert(
+        is.factor(f),
+        !all(is.na(x))
+    )
     split <- split(x = data, f = f)
     split <- SplitDataFrameList(lapply(
         X = split,
