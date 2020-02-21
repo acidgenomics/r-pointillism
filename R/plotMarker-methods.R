@@ -78,9 +78,6 @@ NULL
         )
         geneNames <- mapGenesToSymbols(object, genes)
         expression <- match.arg(expression)
-        if (is.character(title)) {
-            assert(isString(title))
-        }
         ## Fetch reduced dimension data.
         assay <- "logcounts"
         data <- .fetchReductionExpressionData(
