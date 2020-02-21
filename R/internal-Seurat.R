@@ -91,12 +91,9 @@
     ## Inform the user about multiple identical resolutions, which can happen
     ## with low complexity samples.
     if (!isString(col)) {
-        cli_alert_warning(paste(
-            "Multiple resolution columns matched:",
-            toString(col)
-        ))
+        cli_alert_warning(paste("Multiple resolutions matched:", toString(col)))
         col <- col[[1L]]
-        cli_alert_info(paste("Picking the lowest resolution:", col))
+        cli_alert_warning(paste("Picking the lowest resolution:", col))
     }
     col
 }
