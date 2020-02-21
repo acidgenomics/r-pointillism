@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cell data set — cell_data_set • pointillism</title>
+<title>Run Seurat — runSeurat • pointillism</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cell data set — cell_data_set" />
-<meta property="og:description" content="Example monocle3 cell_data_set object." />
+<meta property="og:title" content="Run Seurat — runSeurat" />
+<meta property="og:description" content="Run Seurat" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -113,54 +113,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cell data set</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>cell_data_set.Rd</code></div>
+    <h1>Run Seurat</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/runSeurat-methods.R'><code>R/runSeurat-methods.R</code></a></small>
+    <div class="hidden name"><code>runSeurat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Example monocle3 <code>cell_data_set</code> object.</p>
+    <p>Run Seurat</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cell_data_set</span>)</pre>
+    <pre class="usage"><span class='fu'>runSeurat</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S4 method for Seurat</span>
+<span class='fu'>runSeurat</span>(
+  <span class='no'>object</span>,
+  <span class='kw'>regressCellCycle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"s-g2m-diff"</span>, <span class='st'>"yes"</span>, <span class='st'>"no"</span>),
+  <span class='kw'>varsToRegress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"nCount_RNA"</span>, <span class='st'>"mitoRatio"</span>),
+  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
+  <span class='kw'>tsneMethod</span> <span class='kw'>=</span> <span class='st'>"Rtsne"</span>,
+  <span class='kw'>umapMethod</span> <span class='kw'>=</span> <span class='st'>"umap-learn"</span>,
+  <span class='kw'>virtualenv</span> <span class='kw'>=</span> <span class='st'>"r-reticulate"</span>,
+  <span class='kw'>workers</span> <span class='kw'>=</span> <span class='st'>"auto"</span>
+)
+
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>runSeurat</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>cell_data_set</code> with 200 rows and 200 columns.</p>
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>cell_data_set</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-30.</p>
+    <p>Updated 2020-02-20.</p>
+    <h2 class="hasAnchor" id="reticulate"><a class="anchor" href="#reticulate"></a>reticulate</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"monocle3"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>cell_data_set</span>)
-    <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>cell_data_set</span>)
-    <span class='no'>cell_data_set</span>
-}</div><div class='output co'>#&gt; class: cell_data_set 
-#&gt; dim: 200 200 
-#&gt; metadata(2): cds_version citations
-#&gt; assays(1): counts
-#&gt; rownames(200): WBGene00006436 WBGene00006789 ... WBGene00009119
-#&gt;   WBGene00004167
-#&gt; rowData names(1): gene_short_name
-#&gt; colnames(200): cele_009_002_AATATTCGAA cele_005_091_TCTAGAACTA ...
-#&gt;   cele_005_063_CAACTTGGAT cele_005_077_ATCATGGCTG
-#&gt; colData names(2): cell Size_Factor
-#&gt; reducedDimNames(2): PCA UMAP
-#&gt; spikeNames(0):
-#&gt; altExpNames(0):</div></pre>
+    
+
+
+<p>Check <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("WORKON_HOME")</a></code> path, which is the current approach used
+in <code>Rprofile.site</code>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p>https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</p></li>
+<li><p>https://github.com/satijalab/seurat/wiki</p></li>
+<li><p>https://satijalab.org/seurat/essential_commands.html</p></li>
+<li><p>https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html</p></li>
+<li><p>Parallelization with future
+https://satijalab.org/seurat/v3.0/future_vignette.html</p></li>
+</ul>
+</div>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#reticulate">reticulate</a></li>
+      <li><a href="#see-also">See also</a></li>
     </ul>
 
   </div>

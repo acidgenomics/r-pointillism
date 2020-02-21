@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -137,16 +137,7 @@
 )
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>diffExp</span>(
-  <span class='no'>object</span>,
-  <span class='no'>numerator</span>,
-  <span class='no'>denominator</span>,
-  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>),
-  <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)</pre>
+<span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,7 +210,7 @@ supports edgeR and DESeq2 as DE callers.</p>
     <p>We are no longer recommending the use of software that attempts to
 mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
 single cell RNA-seq data. Simply model the counts directly.</p>
-<p>Updated 2020-01-30.</p>
+<p>Updated 2020-02-21.</p>
     <h2 class="hasAnchor" id="deseq-"><a class="anchor" href="#deseq-"></a>DESeq2</h2>
 
     

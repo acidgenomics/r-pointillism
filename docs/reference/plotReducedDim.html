@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -145,197 +145,29 @@
   <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
   <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 )
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotReducedDim</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotReducedDim</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotReducedDim</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotTSNE</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotPCA</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotTSNE</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotTSNE</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotPCA</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotUMAP</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotUMAP</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotUMAP</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotTSNE</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>plotPCA</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+<span class='fu'>plotUMAP</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>plotPCA</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
-
-<span class='co'># S4 method for cell_data_set</span>
-<span class='fu'>plotPCA</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.discrete.color"</span>, <span class='kw'>default</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_color_synesthesia_d</a></span>()),
-  <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.75</span>),
-  <span class='kw'>pointAlpha</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointAlpha"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>0.85</span>),
-  <span class='kw'>pointsAsNumbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.pointsAsNumbers"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.label"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>labelSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.labelSize"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>6L</span>),
-  <span class='kw'>dark</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.dark"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"acid.legend"</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+<span class='fu'>plotUMAP</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -409,9 +241,10 @@ theme.</p></td>
 Include plot legend.</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Title.</p></td>
+      <th>labels</th>
+      <td><p><code>list</code>.
+ggplot2 labels.
+See <code><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggplot2::labs()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -428,7 +261,7 @@ Title.</p></td>
 <code><a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>colData()</a></code> by default.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-30.</p>
+    <p>Updated 2020-02-21.</p>
     <h2 class="hasAnchor" id="reduction-types"><a class="anchor" href="#reduction-types"></a>Reduction types</h2>
 
     
@@ -451,7 +284,7 @@ The UMAP module can be loaded in R using <a href='https://rstudio.github.io/reti
     <div class='dont-index'>
 <ul>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/DimPlot.html'>Seurat::DimPlot()</a></code>.</p></li>
-<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/plot_cells.html'>monocle3::plot_cells()</a></code>.</p></li>
+<li><p><code>monocle3::plot_cells()</code>.</p></li>
 <li><p><a href='https://satijalab.org/seurat/mca.html'>Seurat Mouse Cell Atlas vignette</a>.</p></li>
 </ul>
 </div>
@@ -461,7 +294,7 @@ The UMAP module can be loaded in R using <a href='https://rstudio.github.io/reti
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='fu'>plotReducedDim</span>(<span class='no'>object</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>)</div><div class='img'><img src='plotReducedDim-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotReducedDim</span>(<span class='no'>object</span>, <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>)</div><div class='output co'>#&gt; <span class='message'>idents: RNA_snn_res.1</span></div><div class='output co'>#&gt; <span class='message'>reduction: UMAP</span></div><div class='output co'>#&gt; <span class='message'>dims: 1:2</span></div><div class='img'><img src='plotReducedDim-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
