@@ -68,7 +68,6 @@ data(SingleCellExperiment, package = "acidtest")
 Y <- SingleCellExperiment
 Y <- nonzeroRowsAndCols(Y)
 Y <- runZinbwave(Y)
-class(weights(Y))
 }
 \seealso{
 \code{zinbwave::zinbwave}.

@@ -44,7 +44,7 @@ NULL
 #'   printString sampleData sampleData<- sampleNames separator showSlotInfo
 #'   snakeCase uniteInterestingGroups
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
-#'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_ul
+#'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_text cli_ul
 #' @importFrom cowplot plot_grid
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
