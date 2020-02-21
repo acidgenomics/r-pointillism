@@ -1,7 +1,3 @@
-## Need to add `cell_data_set` support.
-
-
-
 #' @name plotTopMarkers
 #' @inherit acidgenerics::plotTopMarkers
 #' @note Updated 2020-01-30.

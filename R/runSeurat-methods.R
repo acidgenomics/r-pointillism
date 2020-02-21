@@ -91,7 +91,8 @@ NULL
 
         ## Update the variables to regress, including cell cycle.
         if (identical(regressCellCycle, "s-g2m-diff")) {
-            object[["CC.Difference"]] <- object$S.Score - object$G2M.Score
+            ## Note that Seurat uses non-standard '$' and '[[' methods.
+            object$CC.Difference <- object$S.Score - object$G2M.Score  # nolint
             varsToRegress <- c("CC.Difference", varsToRegress)
         } else if (identical(regressCellCycle, "yes")) {
             varsToRegress <- c("S.Score", "G2M.Score", varsToRegress)

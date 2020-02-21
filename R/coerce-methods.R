@@ -93,10 +93,10 @@ NULL
         ## object@meta.data correctly, which is what gets passed to SCE in
         ## default coercion method.
         ##
-        ## ## Seurat:::Idents.Seurat
+        ## > Seurat:::Idents.Seurat
         ## > slot(object = object, name = "active.ident")
         ##
-        ## ## Seurat:::`Idents<-.Seurat`
+        ## > Seurat:::`Idents<-.Seurat`
         ## > slot(object = object, name = "active.ident") <- idents
         ##
         ## Updated on 2020-02-21.
