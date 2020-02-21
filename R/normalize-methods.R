@@ -154,9 +154,9 @@ setMethod(
 ## >             verbose = TRUE
 ## >         )
 ## >     }
-## > 
-## > 
-## > 
+## >
+## >
+## >
 ## > #' @rdname normalize
 ## > #' @export
 ## > setMethod(

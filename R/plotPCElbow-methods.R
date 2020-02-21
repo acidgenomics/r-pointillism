@@ -160,12 +160,12 @@ setMethod(
 ## >             maxCumPct = maxCumPct
 ## >         )
 ## >     }
-## > 
+## >
 ## > args <- c("minPct", "maxCumPct")
 ## > formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
-## > 
-## > 
-## > 
+## >
+## >
+## >
 ## > #' @rdname plotPCElbow
 ## > #' @export
 ## > setMethod(
