@@ -1,6 +1,6 @@
 #' @name plotCellTypesPerCluster
 #' @inherit acidgenerics::plotCellTypesPerCluster
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-02-21.
 #'
 #' @details
 #' Plot the geometric mean of the significant marker genes for every known cell
@@ -36,7 +36,7 @@ NULL
 
 
 
-## Updated 2020-01-30.
+## Updated 2020-02-21.
 `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
         object,
@@ -118,9 +118,10 @@ NULL
         invisible(return)
     }
 
-formals(`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`)[
-    c("reduction", "expression", "BPPARAM")
-] <- list(reduction, expression, BPPARAM)
+args <- c("reduction", "expression", "BPPARAM")
+formals(`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 

@@ -3,7 +3,7 @@
 #' @inherit acidgenerics::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
-#' @note Updated 2020-01-03.
+#' @note Updated 2020-02-21.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
@@ -59,7 +59,7 @@ NULL
 
 
 
-## Updated 2019-08-06.
+## Updated 2020-02-21.
 `plotCounts,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -85,7 +85,9 @@ NULL
         do.call(what = what, args = args)
     }
 
-formals(`plotCounts,SingleCellExperiment`)[["legend"]] <- legend
+args <- "legend"
+formals(`plotCounts,SingleCellExperiment`)[args] <- .formalsList[args]
+rm(args)
 
 
 

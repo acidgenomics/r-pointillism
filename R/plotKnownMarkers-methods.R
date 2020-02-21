@@ -82,15 +82,10 @@ NULL
         invisible(list)
     }
 
-formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[c(
-    "headerLevel",
-    "reduction",
-    "BPPARAM"
-)] <- list(
-    headerLevel = headerLevel,
-    reduction = reduction,
-    BPPARAM = BPPARAM
-)
+args <- c("headerLevel", "reduction", "BPPARAM")
+formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[args] <-
+    .formalsList[args]
+rm(args)
 
 
 

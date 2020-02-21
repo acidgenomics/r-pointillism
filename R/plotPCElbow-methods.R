@@ -137,6 +137,7 @@ NULL
 
 args <- c("minPct", "maxCumPct")
 formals(`plotPCElbow,Seurat`)[args] <- formals(.plotPCElbow)[args]
+rm(args)
 
 
 

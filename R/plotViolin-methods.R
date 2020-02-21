@@ -105,12 +105,10 @@ NULL
         p
     }
 
-formals(`plotViolin,SingleCellExperiment`)[
-    c("color", "legend")] <-
-    list(
-        color = discreteColor,
-        legend = legend
-    )
+args1 <- c("color", "legend")
+args2 <- c("discreteColor", "legend")
+formals(`plotViolin,SingleCellExperiment`)[args1] <- .formalsList[args2]
+rm(args1, args2)
 
 
 
