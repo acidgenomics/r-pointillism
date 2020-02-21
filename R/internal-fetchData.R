@@ -134,7 +134,7 @@
     f <- data[["ident"]]
     assert(
         is.factor(f),
-        !all(is.na(x))
+        !all(is.na(f))
     )
     split <- split(x = data, f = f)
     split <- SplitDataFrameList(lapply(
