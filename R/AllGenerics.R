@@ -39,3 +39,14 @@ setGeneric(
         standardGeneric("runSeurat")
     }
 )
+
+
+
+#' @rdname runZinbwave
+#' @export
+setGeneric(
+    name = "runZinbwave",
+    def = function(Y, ...) {
+        standardGeneric("runZinbwave")
+    }
+)
