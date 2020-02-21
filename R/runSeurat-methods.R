@@ -1,7 +1,7 @@
 #' Run Seurat
 #'
 #' @name runSeurat
-#' @note Updated 2020-02-20.
+#' @note Updated 2020-02-21.
 #'
 #' @section reticulate:
 #'
@@ -19,7 +19,7 @@ NULL
 
 
 
-## Updated 2020-02-20.
+## Updated 2020-02-21.
 `runSeurat,Seurat` <-  # nolint
     function(
         object,
@@ -41,7 +41,7 @@ NULL
             isString(tsneMethod),
             isString(umapMethod),
             isString(virtualenv),
-            identical(dims, "auto") || isInt(workesr)
+            identical(workers, "auto") || isInt(workers)
         )
         regressCellCycle <- match.arg(regressCellCycle)
 
