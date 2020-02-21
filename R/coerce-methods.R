@@ -86,6 +86,14 @@ NULL
         }
         ## Using the Seurat S3 coercion method here.
         to <- as.SingleCellExperiment(x = from, assay = NULL)
+        ## Harden against invalid ident mapping, which can happen when user
+        ## reassigns via `Idents<-` incorrectly.
+        if (isSubset("ident", colnames(colData(to)))) {
+            assert(
+                is.factor(colData(to)[["ident"]]),
+                !all(is.na(colData(to)[["ident"]]))
+            )
+        }
         ## Row and column data.
         rowRanges(to) <- rowRanges(from)
         colData(to) <- colData(to)
