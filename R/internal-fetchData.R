@@ -156,12 +156,13 @@
     data
 }
 
-formals(.fetchReductionData)[c("dims", "reduction")] <-
-    list(dims = dims, reduction = reduction)
+args <- c("dims", "reduction")
+formals(.fetchReductionData)[args] <-
+    .formalsList[args]
 
 
 
-## Updated 2019-09-03.
+## Updated 2020-02-21.
 .fetchReductionExpressionData <- function(
     object,
     genes,
@@ -205,7 +206,9 @@ formals(.fetchReductionData)[c("dims", "reduction")] <-
     data
 }
 
-formals(.fetchReductionExpressionData)[["reduction"]] <- reduction
+args <- "reduction"
+formals(.fetchReductionExpressionData)[args] <- .formalsList[args]
+rm(args)
 
 
 
