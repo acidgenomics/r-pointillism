@@ -26,7 +26,7 @@ runSeurat(object, ...)
 Run Seurat
 }
 \note{
-Updated 2020-02-20.
+Updated 2020-02-21.
 }
 \section{reticulate}{
 
