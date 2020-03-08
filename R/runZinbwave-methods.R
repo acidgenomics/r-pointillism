@@ -182,8 +182,8 @@ setMethod(
 ## >
 ## >
 ## >
-## > #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashes weights
-## > #'   in the `weights()` slot.
+## > #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashesss
+## > #'   weights in the `weights()` slot.
 ## > #' @export
 ## > setMethod(
 ## >     f = "runZinbwave",
