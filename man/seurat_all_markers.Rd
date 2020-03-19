@@ -4,7 +4,9 @@
 \name{seurat_all_markers}
 \alias{seurat_all_markers}
 \title{Seurat all markers example}
-\format{An object of class \code{SeuratMarkersPerCluster} of dimension 106 x 76 x 37 x 8 x 8 x 8.}
+\format{
+An object of class \code{SeuratMarkersPerCluster} of dimension 106 x 76 x 37 x 8 x 8 x 8.
+}
 \usage{
 data(seurat_all_markers)
 }

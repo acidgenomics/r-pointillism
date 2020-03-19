@@ -4,7 +4,9 @@
 \name{cell_cycle_markers_list}
 \alias{cell_cycle_markers_list}
 \title{Cell-cycle markers list}
-\format{An object of class \code{list} of length 3.}
+\format{
+An object of class \code{list} of length 3.
+}
 \usage{
 data(cell_cycle_markers_list)
 }

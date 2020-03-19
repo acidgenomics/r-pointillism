@@ -4,7 +4,9 @@
 \name{seurat_known_markers}
 \alias{seurat_known_markers}
 \title{Seurat known markers example}
-\format{An object of class \code{KnownMarkers} with 16 rows and 10 columns.}
+\format{
+An object of class \code{KnownMarkers} with 16 rows and 10 columns.
+}
 \usage{
 data(seurat_known_markers)
 }
