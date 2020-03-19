@@ -2,7 +2,7 @@
 #'
 #' @name runZinbwave
 #' @inherit zinbwave::zinbwave title description params
-#' @note Updated 2020-02-21.
+#' @note Updated 2020-03-19.
 #'
 #' @details
 #' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
@@ -36,10 +36,12 @@
 #' @seealso `zinbwave::zinbwave`.
 #'
 #' @examples
-#' data(SingleCellExperiment, package = "acidtest")
-#' Y <- SingleCellExperiment
-#' Y <- nonzeroRowsAndCols(Y)
-#' Y <- runZinbwave(Y)
+#' if (requireNamespace("zinbwave", quietly = TRUE)) {
+#'     data(SingleCellExperiment, package = "acidtest")
+#'     Y <- SingleCellExperiment
+#'     Y <- nonzeroRowsAndCols(Y)
+#'     Y <- runZinbwave(Y)
+#' }
 NULL
 
 
