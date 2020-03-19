@@ -36,7 +36,7 @@
 #' @seealso `zinbwave::zinbwave`.
 #'
 #' @examples
-#' if (requireNamespace("zinbwave", quietly = TRUE) {
+#' if (requireNamespace("zinbwave", quietly = TRUE)) {
 #'     data(SingleCellExperiment, package = "acidtest")
 #'     Y <- SingleCellExperiment
 #'     Y <- nonzeroRowsAndCols(Y)
