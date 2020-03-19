@@ -12,8 +12,8 @@ plotFeature(object, ...)
   object,
   features,
   reduction = "UMAP",
-  color = getOption("acid.continuous.color", default = ggplot2::scale_color_gradient(low
-    = "gray75", high = "purple")),
+  color = getOption("acid.continuous.color", default =
+    ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
@@ -28,8 +28,8 @@ plotFeature(object, ...)
   object,
   features,
   reduction = "UMAP",
-  color = getOption("acid.continuous.color", default = ggplot2::scale_color_gradient(low
-    = "gray75", high = "purple")),
+  color = getOption("acid.continuous.color", default =
+    ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
   pointSize = getOption("acid.pointSize", default = 0.75),
   pointAlpha = getOption("acid.pointAlpha", default = 0.85),
   pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),

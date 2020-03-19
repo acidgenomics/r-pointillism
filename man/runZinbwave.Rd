@@ -38,7 +38,9 @@ back-end to be used for computations. See
 }
 \value{
 Modified object.
-Weights added to \code{assays}.
+The dimensionality reduced matrix is stored in the \code{reducedDims} slot,
+and optionally normalized values and residuals are added in the list
+of assays.
 }
 \description{
 Given an object with the data, it performs dimensionality reduction using
@@ -50,7 +52,7 @@ will be defined in the \code{assays} slot. If these values have already been
 calculated, the object will be returned unmodified, unless \code{recalculate = TRUE}.
 }
 \note{
-Updated 2020-02-21.
+Updated 2020-03-19.
 }
 \section{Parallelization}{
 
@@ -64,10 +66,12 @@ to run with multiple cores.
 }
 
 \examples{
-data(SingleCellExperiment, package = "acidtest")
-Y <- SingleCellExperiment
-Y <- nonzeroRowsAndCols(Y)
-Y <- runZinbwave(Y)
+if (requireNamespace("zinbwave", quietly = TRUE) {
+    data(SingleCellExperiment, package = "acidtest")
+    Y <- SingleCellExperiment
+    Y <- nonzeroRowsAndCols(Y)
+    Y <- runZinbwave(Y)
+}
 }
 \seealso{
 \code{zinbwave::zinbwave}.
