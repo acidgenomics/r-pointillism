@@ -8,12 +8,20 @@
 \usage{
 findMarkers(object, ...)
 
-\S4method{findMarkers}{SingleCellExperiment}(object, ...)
+\S4method{findMarkers}{SingleCellExperiment}(object, clusters = NULL, ...)
 
-\S4method{findMarkers}{Seurat}(object, ...)
+\S4method{findMarkers}{Seurat}(object, clusters = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{clusters}{\code{character} or \code{NULL}.
+Cluster identifiers.
+Must correspond to values in \code{\link[=clusters]{clusters()}}.
+Note that Seurat uses zero-indexed IDs by default (e.g. 0, 1, 2, ...).
+If left \code{NULL} (default), all clusters will be analyzed.
+Looping across clusters manually here can avoid memory issues on laptops
+and other machines with limited amounts of RAM.}
 
 \item{...}{Passthrough arguments to \code{\link[=diffExp]{diffExp()}}.}
 }
