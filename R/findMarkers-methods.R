@@ -44,7 +44,7 @@ NULL
         clusters = NULL,
         ...
     ) {
-        assert(isCharacter(cluster, nullOK = TRUE))
+        assert(isCharacter(clusters, nullOK = TRUE))
         cli_h1("{.fun findMarkers}")
         object <- as(object, "SingleCellExperiment")
         ## Get the cluster mappings. Following the Seurat nomenclature here of
