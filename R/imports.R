@@ -6,6 +6,7 @@
 
 
 
+#' @importClassesFrom acidgsea FGSEAList RankedList
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 NULL
