@@ -1,3 +1,7 @@
+# FIXME Add pseudobulk support here.
+
+
+
 #' @name diffExpPerCluster
 #' @inherit acidgenerics::diffExpPerCluster
 #' @note Updated 2020-01-30.
