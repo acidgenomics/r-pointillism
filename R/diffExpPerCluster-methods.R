@@ -1,4 +1,4 @@
-# FIXME Add pseudobulk support here.
+## Consider adding pseudobulk support here in a future update.
 
 
 
