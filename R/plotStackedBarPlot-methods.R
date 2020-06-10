@@ -3,21 +3,16 @@
 #' @note Updated 2020-06-10.
 #'
 #' @inheritParams acidroxygen::params
+#' @param absolute `logical(1)`.
+#'   Return absolute (`TRUE`) or relative/proportional (`FALSE`) cell count.
 #' @param ... Additional arguments.
 #'
 #' @examples
 #' data(Seurat, package = "acidtest")
-#' data(seurat_known_markers)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' markers <- seurat_known_markers
-#'
-#' plotCellTypesPerCluster(
-#'     object = object,
-#'     markers = markers,
-#'     reduction = "UMAP"
-#' )
+#' plotStackedBarPlot(object)
 NULL
 
 
@@ -32,8 +27,52 @@ NULL
 
 
 `plotStackedBarPlot,SingleCellExperiment` <-  # nolint
-    function(object) {
-        print("FIXME")
+    function(
+        object,
+        absolute = FALSE,
+        interestingGroups = NULL,
+        labels = NULL
+    ) {
+        validObject(object)
+        assert(isFlag(absolute))
+        labels <- matchLabels(
+            labels = labels,
+            choices = eval(formals()[["labels"]])
+        )
+        interestingGroups(object) <-
+            matchInterestingGroups(object, interestingGroups)
+        interestingGroups <- interestingGroups(object)
+        data <- metrics(object) %>%
+            group_by(!!!syms(c("interestingGroups", "ident"))) %>%
+            summarize(n = n(), .groups = "keep")
+        p <- ggplot(
+            data = data,
+            mapping = aes(
+                x = !!sym("interestingGroups"),
+                y = !!sym("n"),
+                fill = !!sym("ident")
+            )
+        ) +
+            geom_bar(
+                color = "black",
+                position = ifelse(
+                    test = isTRUE(absolute),
+                    yes = "stack",
+                    no = "fill"
+                ),
+                stat = "identity"
+            )
+        if (!isSubset("x", names(labels))) {
+            labels[["x"]] <- paste(interestingGroups, collapse = ":\n")
+        }
+        if (!isSubset("y", names(labels))) {
+            labels[["y"]] <- "cell count"
+            if (!isTRUE(absolute)) {
+                labels[["y"]] <- paste("relative", labels[["y"]])
+            }
+        }
+        p <- p + do.call(what = labs, args = labels)
+        p
     }
 
 
@@ -41,7 +80,7 @@ NULL
 #' @rdname plotStackedBarPlot
 #' @export
 setMethod(
-    f = "plotCellTypesPerCluster",
+    f = "plotStackedBarPlot",
     signature = signature("SingleCellExperiment"),
     definition = `plotStackedBarPlot,SingleCellExperiment`
 )
@@ -56,7 +95,7 @@ setMethod(
 #' @rdname plotStackedBarPlot
 #' @export
 setMethod(
-    f = "plotCellTypesPerCluster",
+    f = "plotStackedBarPlot",
     signature = signature("Seurat"),
     definition = `plotStackedBarPlot,Seurat`
 )
