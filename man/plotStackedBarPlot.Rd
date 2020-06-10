@@ -2,18 +2,39 @@
 % Please edit documentation in R/plotStackedBarPlot-methods.R
 \name{plotStackedBarPlot}
 \alias{plotStackedBarPlot}
-\alias{plotCellTypesPerCluster,SingleCellExperiment,ANY-method}
-\alias{plotCellTypesPerCluster,Seurat,ANY-method}
+\alias{plotStackedBarPlot,SingleCellExperiment-method}
+\alias{plotStackedBarPlot,Seurat-method}
 \title{Plot stacked bar plot}
 \usage{
 plotStackedBarPlot(object, ...)
 
-\S4method{plotCellTypesPerCluster}{SingleCellExperiment,ANY}(object)
+\S4method{plotStackedBarPlot}{SingleCellExperiment}(
+  object,
+  absolute = FALSE,
+  interestingGroups = NULL,
+  labels = NULL
+)
 
-\S4method{plotCellTypesPerCluster}{Seurat,ANY}(object)
+\S4method{plotStackedBarPlot}{Seurat}(
+  object,
+  absolute = FALSE,
+  interestingGroups = NULL,
+  labels = NULL
+)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{absolute}{\code{logical(1)}.
+Return absolute (\code{TRUE}) or relative/proportional (\code{FALSE}) cell count.}
+
+\item{interestingGroups}{\code{character}.
+Groups of interest to use for visualization.
+Corresponds to factors describing the columns of the object.}
+
+\item{labels}{\code{list}.
+ggplot2 labels.
+See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
 
 \item{...}{Additional arguments.}
 }
@@ -28,15 +49,8 @@ Updated 2020-06-10.
 }
 \examples{
 data(Seurat, package = "acidtest")
-data(seurat_known_markers)
 
 ## Seurat ====
 object <- Seurat
-markers <- seurat_known_markers
-
-plotCellTypesPerCluster(
-    object = object,
-    markers = markers,
-    reduction = "UMAP"
-)
+plotStackedBarPlot(object)
 }
