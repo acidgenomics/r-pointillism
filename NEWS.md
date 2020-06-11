@@ -1,4 +1,23 @@
-## pointillism 0.4.8 (2020-02-21)
+## pointillism 0.4.10 (2020-06-11)
+
+### New functions
+
+- `plotStackedBarPlot`: Added support for quickly generating stacked bar plots
+  of cluster frequencies.
+
+### Minor changes
+
+- Dependency updates.
+
+## pointillism 0.4.9 (2020-02-21)
+
+### Minor changes
+
+- `runZinbwave`: Updated internal zinbwave code to be compatible with
+  Bioconductor 3.11 release.
+- Updated test data.
+
+## pointillism 0.4.8 (2020-02-20)
 
 ### Major changes
 

@@ -46,6 +46,7 @@ NULL
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
 #'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_text cli_ul
 #' @importFrom cowplot plot_grid
+#' @importFrom dplyr group_by n summarize
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
@@ -60,7 +61,7 @@ NULL
 #'   isPositive isScalar isScalarNumeric isString isSubset validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
-#' @importFrom rlang !! sym
+#' @importFrom rlang !! !!! sym syms
 #' @importFrom scales percent pretty_breaks
 #' @importFrom scater calculateCPM normalizeCounts
 #' @importFrom sessioninfo session_info

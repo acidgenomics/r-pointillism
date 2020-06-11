@@ -34,11 +34,11 @@
 \usage{
 \S4method{Gene2Symbol}{Seurat}(object, ...)
 
-\S4method{assay}{Seurat,ANY}(x, i, ...)
+\S4method{assay}{Seurat,ANY}(x, i, withDimnames = TRUE, ...)
 
 \S4method{assayNames}{Seurat}(x, ...)
 
-\S4method{assays}{Seurat}(x, ..., withDimnames = TRUE)
+\S4method{assays}{Seurat}(x, withDimnames = TRUE, ...)
 
 \S4method{colData}{Seurat}(x, ...)
 
