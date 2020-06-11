@@ -1,4 +1,4 @@
-## pointillism 0.4.10 (2020-06-10)
+## pointillism 0.4.10 (2020-06-11)
 
 ### New functions
 
