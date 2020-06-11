@@ -3,6 +3,13 @@
 #' @note Updated 2020-01-30.
 #'
 #' @inheritParams acidroxygen::params
+#' @param clusters `character` or `NULL`.
+#'   Cluster identifiers.
+#'   Must correspond to values in [clusters()].
+#'   Note that Seurat uses zero-indexed IDs by default (e.g. 0, 1, 2, ...).
+#'   If left `NULL` (default), all clusters will be analyzed.
+#'   Looping across clusters manually here can avoid memory issues on laptops
+#'   and other machines with limited amounts of RAM.
 #' @param ... Passthrough arguments to [diffExp()].
 #'
 #' @return `list` containing:
@@ -30,17 +37,26 @@ NULL
 
 
 
-## Updated 2020-01-30.
+## Updated 2020-05-21.
 `findMarkers,SingleCellExperiment` <-  # nolint
-    function(object, ...) {
+    function(
+        object,
+        clusters = NULL,
+        ...
+    ) {
+        assert(isCharacter(clusters, nullOK = TRUE))
         cli_h1("{.fun findMarkers}")
         object <- as(object, "SingleCellExperiment")
         ## Get the cluster mappings. Following the Seurat nomenclature here of
         ## using "ident" to denote the cluster identifier mapping factor.
         ident <- clusters(object)
         assert(is.factor(ident), hasNames(ident))
-        clusters <- levels(ident)
-        assert(length(clusters) >= 2L)
+        if (!length(levels(ident)) >= 2L) {
+            stop("Object does not contain 2 or more clusters.")
+        }
+        if (is.null(clusters)) {
+            clusters <- levels(ident)
+        }
         cli_alert_info(sprintf("%d clusters detected.", length(clusters)))
         ## Loop across the clusters and calculate gene enrichment relative to
         ## all of the other clusters combined.

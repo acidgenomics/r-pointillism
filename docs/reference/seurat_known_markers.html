@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +43,6 @@
 
 <meta property="og:title" content="Seurat known markers example — seurat_known_markers" />
 <meta property="og:description" content="Seurat known markers example" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -57,7 +60,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
       </span>
     </div>
 
@@ -95,7 +98,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/acidgenomics/pointillism">
+  <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -138,42 +141,37 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_known_markers</span>)
 <span class='no'>seurat_known_markers</span></div><div class='output co'>#&gt; KnownMarkers with 16 rows and 10 columns
-#&gt;              geneID          avgLogFC  cluster        name                 padj
-#&gt;         &lt;character&gt;         &lt;numeric&gt; &lt;factor&gt; &lt;character&gt;            &lt;numeric&gt;
-#&gt; 1   ENSG00000215048 -4.03469149237519        0    HLA-DPB1 2.20173893589937e-10
-#&gt; 2   ENSG00000196126 -3.76097185713251        0    HLA-DRB1 1.76481919229668e-09
-#&gt; 3   ENSG00000168384 -3.03212788647685        0    HLA-DPA1 8.44829630384883e-09
-#&gt; 4   ENSG00000204287 -2.95497408279157        0     HLA-DRA 2.78096237621776e-08
-#&gt; 5   ENSG00000179344 -3.00075456880158        0    HLA-DQB1 6.98095636818305e-06
-#&gt; ...             ...               ...      ...         ...                  ...
-#&gt; 12  ENSG00000196126  1.65909049459023        2    HLA-DRB1 0.000308633504794642
-#&gt; 13  ENSG00000204287  1.81241934529497        2     HLA-DRA  0.00106224246190559
-#&gt; 14  ENSG00000168384  1.21232847541956        2    HLA-DPA1  0.00289476883051935
-#&gt; 15  ENSG00000226264  2.07187123241627        2     HLA-DMB    0.005857497716702
-#&gt; 16  ENSG00000196735   1.7239908499937        2    HLA-DQA1   0.0153574754202906
-#&gt;          pct1      pct2               pvalue    geneName       cellType
-#&gt;     &lt;numeric&gt; &lt;numeric&gt;            &lt;numeric&gt; &lt;character&gt;       &lt;factor&gt;
-#&gt; 1       0.083     0.909 9.57277798217116e-13    HLA-DPB1 Dendritic Cell
-#&gt; 2       0.083     0.864 7.67312692302906e-12    HLA-DRB1 Dendritic Cell
-#&gt; 3       0.111     0.864 3.67317230602123e-11    HLA-DPA1 Dendritic Cell
-#&gt; 4       0.417     0.909 1.20911407661642e-10     HLA-DRA Dendritic Cell
-#&gt; 5       0.028     0.659 3.03519842094915e-08    HLA-DQB1 Dendritic Cell
-#&gt; ...       ...       ...                  ...         ...            ...
-#&gt; 12      0.842      0.41 1.34188480345497e-06    HLA-DRB1 Dendritic Cell
-#&gt; 13      0.895     0.623 4.61844548654605e-06     HLA-DRA Dendritic Cell
-#&gt; 14      0.895      0.41 1.25859514370406e-05    HLA-DPA1 Dendritic Cell
-#&gt; 15      0.632     0.213 2.54673813769652e-05     HLA-DMB Dendritic Cell
-#&gt; 16      0.632      0.23 6.67716322621332e-05    HLA-DQA1 Dendritic Cell</div></pre>
+#&gt;              geneID  avgLogFC  cluster        name        padj      pct1
+#&gt;         &lt;character&gt; &lt;numeric&gt; &lt;factor&gt; &lt;character&gt;   &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1   ENSG00000215048  -4.03469        0    HLA-DPB1 2.20174e-10     0.083
+#&gt; 2   ENSG00000196126  -3.76097        0    HLA-DRB1 1.76482e-09     0.083
+#&gt; 3   ENSG00000168384  -3.03213        0    HLA-DPA1 8.44830e-09     0.111
+#&gt; 4   ENSG00000204287  -2.95497        0     HLA-DRA 2.78096e-08     0.417
+#&gt; 5   ENSG00000179344  -3.00075        0    HLA-DQB1 6.98096e-06     0.028
+#&gt; ...             ...       ...      ...         ...         ...       ...
+#&gt; 12  ENSG00000196126   1.65909        2    HLA-DRB1 0.000308634     0.842
+#&gt; 13  ENSG00000204287   1.81242        2     HLA-DRA 0.001062242     0.895
+#&gt; 14  ENSG00000168384   1.21233        2    HLA-DPA1 0.002894769     0.895
+#&gt; 15  ENSG00000226264   2.07187        2     HLA-DMB 0.005857498     0.632
+#&gt; 16  ENSG00000196735   1.72399        2    HLA-DQA1 0.015357475     0.632
+#&gt;          pct2      pvalue    geneName       cellType
+#&gt;     &lt;numeric&gt;   &lt;numeric&gt; &lt;character&gt;       &lt;factor&gt;
+#&gt; 1       0.909 9.57278e-13    HLA-DPB1 Dendritic Cell
+#&gt; 2       0.864 7.67313e-12    HLA-DRB1 Dendritic Cell
+#&gt; 3       0.864 3.67317e-11    HLA-DPA1 Dendritic Cell
+#&gt; 4       0.909 1.20911e-10     HLA-DRA Dendritic Cell
+#&gt; 5       0.659 3.03520e-08    HLA-DQB1 Dendritic Cell
+#&gt; ...       ...         ...         ...            ...
+#&gt; 12      0.410 1.34188e-06    HLA-DRB1 Dendritic Cell
+#&gt; 13      0.623 4.61845e-06     HLA-DRA Dendritic Cell
+#&gt; 14      0.410 1.25860e-05    HLA-DPA1 Dendritic Cell
+#&gt; 15      0.213 2.54674e-05     HLA-DMB Dendritic Cell
+#&gt; 16      0.230 6.67716e-05    HLA-DQA1 Dendritic Cell</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -184,7 +182,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

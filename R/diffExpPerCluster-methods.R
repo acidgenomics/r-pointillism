@@ -1,3 +1,7 @@
+## Consider adding pseudobulk support here in a future update.
+
+
+
 #' @name diffExpPerCluster
 #' @inherit acidgenerics::diffExpPerCluster
 #' @note Updated 2020-01-30.
