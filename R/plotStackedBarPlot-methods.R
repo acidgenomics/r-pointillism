@@ -42,9 +42,9 @@ NULL
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
-        data <- metrics(object) %>%
-            group_by(!!!syms(c("interestingGroups", "ident"))) %>%
-            summarize(n = n(), .groups = "keep")
+        data <- metrics(object)
+        data <- group_by(data, !!!syms(c("interestingGroups", "ident")))
+        data <- summarize(data, n = n(), .groups = "keep")
         p <- ggplot(
             data = data,
             mapping = aes(
