@@ -1,7 +1,7 @@
 #' Run Seurat
 #'
 #' @name runSeurat
-#' @note Updated 2020-02-21.
+#' @note Updated 2020-06-26.
 #'
 #' @section reticulate:
 #'
@@ -37,11 +37,16 @@
 #'   Resolutions to calculate for clustering.
 #'   Passes to [Seurat::FindClusters()] internally.
 #' @param tsneMethod `character(1)`.
-#'   t-SNE algorithm. Using the current default in Seurat.
+#'   t-SNE algorithm passed to [Seurat::RunTSNE()].
+#'   Using the current default in Seurat.
 #' @param umapMethod `character(1)`.
-#'   UMAP algorithm. Use either `"umap-learn"`, which requires reticulate, or
-#'   `"uwot"`. Note that Seurat 3 changed the default from umap-learn to uwot,
-#'   but I prefer to call the python package directly.
+#'   UMAP algorithm passed to [Seurat::RunUMAP()].
+#'
+#'   Currently supported:
+#'   - `"uwot"`, changed to default in Seurat 3.
+#'     Note that this sets `metric = "cosine"` automatically.
+#'   - `"umap-learn"`, which requires reticulate.
+#'     Note that this sets `metric = "correlation"` automatically.
 #' @param virtualenv `character(1)`.
 #'   Python virtual environment name.
 #'   Only evaluated when `umapMethod = "umap-learn"`.
@@ -59,7 +64,7 @@ NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2020-06-26.
 `runSeurat,Seurat` <-  # nolint
     function(
         object,
@@ -68,7 +73,7 @@ NULL
         dims = "auto",
         resolution = seq(from = 0.2, to = 1.2, by = 0.2),
         tsneMethod = "Rtsne",
-        umapMethod = "umap-learn",
+        umapMethod = "uwot",
         virtualenv = "r-reticulate",
         workers = "auto"
     ) {
@@ -106,13 +111,11 @@ NULL
         ## Pre-processing ------------------------------------------------------
         cli_alert("{.pkg Seurat}::{.fun NormalizeData}")
         object <- Seurat::NormalizeData(object)
-
         cli_alert("{.pkg Seurat}::{.fun FindVariableFeatures}")
         object <- Seurat::FindVariableFeatures(object)
 
         ## Cell-cycle regression -----------------------------------------------
         ## https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
-
         if (!identical(regressCellCycle, "no")) {
             env <- new.env()
             data(
@@ -141,7 +144,6 @@ NULL
                 g2m.features = g2mGenes
             )
         }
-
         ## Update the variables to regress, including cell cycle.
         if (identical(regressCellCycle, "s-g2m-diff")) {
             ## Note that Seurat uses non-standard '$' and '[[' methods.
@@ -165,10 +167,8 @@ NULL
             features = rownames(object),
             vars.to.regress = varsToRegress
         )
-
         cli_alert("{.pkg Seurat}::{.fun RunPCA}")
         object <- Seurat::RunPCA(object)
-
         if (identical(dims, "auto")) {
             cli_alert("{.fun plotElbow}")
             p <- plotPCElbow(object)
@@ -180,7 +180,6 @@ NULL
         cli_alert("{.pkg Seurat}::{.fun FindNeighbors}")
         cli_alert_info(paste("Using", length(dims), "dims."))
         object <- Seurat::FindNeighbors(object, dims = dims)
-
         cli_alert("{.pkg Seurat}::{.fun FindClusters}")
         cli_dl(c(resolution = deparse(resolution)))
         object <- Seurat::FindClusters(object, resolution = resolution)
@@ -192,19 +191,30 @@ NULL
             object = object,
             tsne.method = tsneMethod
         )
-
         if (identical(umapMethod, "umap-learn")) {
             assert(requireNamespace("reticulate", quietly = TRUE))
             reticulate::use_virtualenv(virtualenv = virtualenv, required = TRUE)
             assert(reticulate::py_module_available(module = "umap"))
         }
-
         cli_alert("{.pkg Seurat}::{.fun RunUMAP}")
-        cli_dl(c(method = umapMethod))
+        metric <- switch(
+            EXPR = umapMethod,
+            "umap-learn" = "correlation",
+            "uwot" = "cosine"
+        )
+        cli_dl(c(
+            "method" = umapMethod,
+            "metric" = metric
+        ))
         cli_alert_info(paste("Using", length(dims), "dims."))
+        ## The default method for RunUMAP has changed from calling Python UMAP
+        ## via reticulate to the R-native UWOT using the cosine metric. To use
+        ## Python UMAP via reticulate, set umap.method to 'umap-learn' and
+        ## metric to 'correlation'.
         object <- Seurat::RunUMAP(
             object = object,
             umap.method = umapMethod,
+            metric = metric,
             dims = dims
         )
 
@@ -224,13 +234,13 @@ setMethod(
 
 
 
-## Updated 2020-02-20.
+## Updated 2020-06-26.
 `runSeurat,SingleCellExperiment` <-  # nolint
     function(object, ...) {
-        runSeurat(
-            object = as(object, "Seurat"),
-            ...
-        )
+        object <- as(object, "SingleCellExperiment")
+        object <- convertGenesToSymbols(object)
+        object <- as(object, "Seurat")
+        runSeurat(object, ...)
     }
 
 
