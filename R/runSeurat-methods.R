@@ -54,6 +54,8 @@
 #' @param workers `"auto"`, `integer(1)`, or `NULL`.
 #'   Disable parallelization with future by setting to `NULL`.
 #'
+#' @return `Seurat`.
+#'
 #' @seealso
 #' - https://github.com/satijalab/seurat/wiki
 #' - https://satijalab.org/seurat/essential_commands.html

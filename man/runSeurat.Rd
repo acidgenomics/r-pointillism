@@ -76,6 +76,9 @@ See reticulate section for details.}
 \item{workers}{\code{"auto"}, \code{integer(1)}, or \code{NULL}.
 Disable parallelization with future by setting to \code{NULL}.}
 }
+\value{
+\code{Seurat}.
+}
 \description{
 Run Seurat
 }
