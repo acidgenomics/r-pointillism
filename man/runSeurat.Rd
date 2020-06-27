@@ -15,7 +15,7 @@ runSeurat(object, ...)
   dims = "auto",
   resolution = seq(from = 0.2, to = 1.2, by = 0.2),
   tsneMethod = "Rtsne",
-  umapMethod = "umap-learn",
+  umapMethod = "uwot",
   virtualenv = "r-reticulate",
   workers = "auto"
 )
@@ -54,12 +54,19 @@ Resolutions to calculate for clustering.
 Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.}
 
 \item{tsneMethod}{\code{character(1)}.
-t-SNE algorithm. Using the current default in Seurat.}
+t-SNE algorithm passed to \code{\link[Seurat:RunTSNE]{Seurat::RunTSNE()}}.
+Using the current default in Seurat.}
 
 \item{umapMethod}{\code{character(1)}.
-UMAP algorithm. Use either \code{"umap-learn"}, which requires reticulate, or
-\code{"uwot"}. Note that Seurat 3 changed the default from umap-learn to uwot,
-but I prefer to call the python package directly.}
+UMAP algorithm passed to \code{\link[Seurat:RunUMAP]{Seurat::RunUMAP()}}.
+
+Currently supported:
+\itemize{
+\item \code{"uwot"}, changed to default in Seurat 3.
+Note that this sets \code{metric = "cosine"} automatically.
+\item \code{"umap-learn"}, which requires reticulate.
+Note that this sets \code{metric = "correlation"} automatically.
+}}
 
 \item{virtualenv}{\code{character(1)}.
 Python virtual environment name.
@@ -69,11 +76,14 @@ See reticulate section for details.}
 \item{workers}{\code{"auto"}, \code{integer(1)}, or \code{NULL}.
 Disable parallelization with future by setting to \code{NULL}.}
 }
+\value{
+\code{Seurat}.
+}
 \description{
 Run Seurat
 }
 \note{
-Updated 2020-02-21.
+Updated 2020-06-26.
 }
 \section{reticulate}{
 
