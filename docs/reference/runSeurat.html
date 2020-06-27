@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
   <span class='kw'>dims</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
   <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
   <span class='kw'>tsneMethod</span> <span class='kw'>=</span> <span class='st'>"Rtsne"</span>,
-  <span class='kw'>umapMethod</span> <span class='kw'>=</span> <span class='st'>"umap-learn"</span>,
+  <span class='kw'>umapMethod</span> <span class='kw'>=</span> <span class='st'>"uwot"</span>,
   <span class='kw'>virtualenv</span> <span class='kw'>=</span> <span class='st'>"r-reticulate"</span>,
   <span class='kw'>workers</span> <span class='kw'>=</span> <span class='st'>"auto"</span>
 )
@@ -190,14 +190,19 @@ Passes to <code><a href='https://rdrr.io/pkg/Seurat/man/FindClusters.html'>Seura
     <tr>
       <th>tsneMethod</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-t-SNE algorithm. Using the current default in Seurat.</p></td>
+t-SNE algorithm passed to <code><a href='https://rdrr.io/pkg/Seurat/man/RunTSNE.html'>Seurat::RunTSNE()</a></code>.
+Using the current default in Seurat.</p></td>
     </tr>
     <tr>
       <th>umapMethod</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-UMAP algorithm. Use either <code>"umap-learn"</code>, which requires reticulate, or
-<code>"uwot"</code>. Note that Seurat 3 changed the default from umap-learn to uwot,
-but I prefer to call the python package directly.</p></td>
+UMAP algorithm passed to <code><a href='https://rdrr.io/pkg/Seurat/man/RunUMAP.html'>Seurat::RunUMAP()</a></code>.</p>
+<p>Currently supported:</p><ul>
+<li><p><code>"uwot"</code>, changed to default in Seurat 3.
+Note that this sets <code>metric = "cosine"</code> automatically.</p></li>
+<li><p><code>"umap-learn"</code>, which requires reticulate.
+Note that this sets <code>metric = "correlation"</code> automatically.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>virtualenv</th>
@@ -213,9 +218,12 @@ Disable parallelization with future by setting to <code>NULL</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>Seurat</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-02-21.</p>
+    <p>Updated 2020-06-26.</p>
     <h2 class="hasAnchor" id="reticulate"><a class="anchor" href="#reticulate"></a>reticulate</h2>
 
     
