@@ -42,8 +42,7 @@
   
 
 <meta property="og:title" content="Run ZINB-WaVE — runZinbwave" />
-<meta property="og:description" content="Given an object with the data, it performs dimensionality reduction using
-a ZINB regression model with gene and cell-level covariates." />
+<meta property="og:description" content="Run ZINB-WaVE" />
 
 
 
@@ -75,7 +74,7 @@ a ZINB regression model with gene and cell-level covariates." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -123,8 +122,7 @@ a ZINB regression model with gene and cell-level covariates." />
     </div>
 
     <div class="ref-description">
-    <p>Given an object with the data, it performs dimensionality reduction using
-a ZINB regression model with gene and cell-level covariates.</p>
+    <p>Run ZINB-WaVE</p>
     </div>
 
     <pre class="usage"><span class='fu'>runZinbwave</span>(<span class='no'>Y</span>, <span class='no'>...</span>)
@@ -144,18 +142,15 @@ a ZINB regression model with gene and cell-level covariates.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Y</th>
-      <td><p>The data (genes in rows, samples in columns). Currently implemented
-only for <code>SummarizedExperiment</code>.</p></td>
+      <td><p>The data (genes in rows, samples in columns).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to describe the model, see
-<code><a href='https://rdrr.io/pkg/zinbwave/man/zinbModel.html'>zinbModel</a></code>.</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>K</th>
-      <td><p>integer. Number of latent factors. Specify <code>K = 0</code> if only
-computing observational weights.</p></td>
+      <td><p>integer. Number of latent factors.</p></td>
     </tr>
     <tr>
       <th>epsilon</th>
@@ -163,9 +158,13 @@ computing observational weights.</p></td>
     </tr>
     <tr>
       <th>BPPARAM</th>
-      <td><p>object of class <code>bpparamClass</code> that specifies the
-back-end to be used for computations. See
-<code><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></code> for details.</p></td>
+      <td><p><code>bpparamClass</code>.
+BiocParallel parameter to specify the desired processor configuration.<br />
+We recommend using one of the following:</p><ul>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a>.</p></li>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/SerialParam-class.html'>SerialParam</a>.</p></li>
+<li><p><a href='https://rdrr.io/pkg/BiocParallel/man/MulticoreParam-class.html'>MulticoreParam</a>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>recalculate</th>
@@ -190,7 +189,7 @@ will be defined in the <code>assays</code> slot. If these values have already be
 calculated, the object will be returned unmodified, unless <code>recalculate = TRUE</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-03-19.</p>
+    <p>Updated 2020-07-23.</p>
     <h2 class="hasAnchor" id="parallelization"><a class="anchor" href="#parallelization"></a>Parallelization</h2>
 
     
@@ -224,9 +223,9 @@ to run with multiple cores.</p>
 #&gt; <span class='message'>  bpresultdir: NA</span>
 #&gt; <span class='message'>  cluster type: FORK</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbFit()`</span><span>: Fitting a ZINB regression model.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
 #&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'> 10.300   6.151   4.461 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel. 100 samples; 483 genes. 1 sample-level covariate(s)</span>
+#&gt; <span class='message'> 10.860   6.723   5.046 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel. 100 samples; 483 genes. 1 sample-level covariate(s)</span>
 #&gt; <span class='message'>(mu); 1 sample-level covariate(s) (pi); 1 gene-level covariate(s) (mu); 1</span>
-#&gt; <span class='message'>gene-level covariate(s) (pi); 0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbwave()`</span><span>: Performing dimensionality reduction using a ZINB regression model with gene and cell-level covariates.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used: user system elapsed 0.004 0.000 0.005</span></div></span></pre>
+#&gt; <span class='message'>gene-level covariate(s) (pi); 0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbwave()`</span><span>: Performing dimensionality reduction using a ZINB regression model with gene and cell-level covariates.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used: user system elapsed 0.005 0.001 0.005</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

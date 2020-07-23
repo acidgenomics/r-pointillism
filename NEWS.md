@@ -1,4 +1,12 @@
+## pointillism 0.4.12 (2020-07-23)
+
+### Minor changes
+
+- Maintenance release, updating R dependency to 4.0.
+
 ## pointillism 0.4.11 (2020-06-27)
+
+### Major changes
 
 - `runSeurat`: Changed `umapMethod` default from "umap-learn" to "uwot". I'm
   having trouble getting the latest version of umap-learn (0.4.4) to play
