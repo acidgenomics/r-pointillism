@@ -17,20 +17,22 @@ runZinbwave(Y, ...)
 )
 }
 \arguments{
-\item{Y}{The data (genes in rows, samples in columns). Currently implemented
-only for \code{SummarizedExperiment}.}
+\item{Y}{The data (genes in rows, samples in columns).}
 
-\item{...}{Additional parameters to describe the model, see
-\code{\link[zinbwave]{zinbModel}}.}
+\item{...}{Additional arguments.}
 
-\item{K}{integer. Number of latent factors. Specify \code{K = 0} if only
-computing observational weights.}
+\item{K}{integer. Number of latent factors.}
 
 \item{epsilon}{nonnegative scalar. Regularization parameter.}
 
-\item{BPPARAM}{object of class \code{bpparamClass} that specifies the
-back-end to be used for computations. See
-\code{\link[BiocParallel]{bpparam}} for details.}
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:register]{bpparam}.
+\item \link[BiocParallel:SerialParam-class]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam-class]{MulticoreParam}.
+}}
 
 \item{recalculate}{\code{logical}. Force recalculation of weights.}
 
@@ -43,8 +45,7 @@ and optionally normalized values and residuals are added in the list
 of assays.
 }
 \description{
-Given an object with the data, it performs dimensionality reduction using
-a ZINB regression model with gene and cell-level covariates.
+Run ZINB-WaVE
 }
 \details{
 \href{https://bioconductor.org/packages/release/bioc/html/zinbwave.html}{zinbwave} will calculate \code{normalizedValues} and \code{weights} matrices, which
@@ -52,7 +53,7 @@ will be defined in the \code{assays} slot. If these values have already been
 calculated, the object will be returned unmodified, unless \code{recalculate = TRUE}.
 }
 \note{
-Updated 2020-03-19.
+Updated 2020-07-23.
 }
 \section{Parallelization}{
 

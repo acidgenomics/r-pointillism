@@ -17,7 +17,7 @@ diffExpPerCluster(object, ...)
 
 \item{group}{\code{character(1)}.
 Group of interest for differential expression per cluster. Must be a
-\code{factor} column in \code{\link[SummarizedExperiment:colData]{colData()}}.}
+\code{factor} column in \code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData()}}.}
 
 \item{numerator}{\code{character}.
 Cells to use in the numerator of the contrast (e.g. treatment).}
@@ -41,7 +41,7 @@ Differential expression per cluster
 Updated 2020-01-30.
 
 Cluster identity (\code{ident}) must be defined in
-\code{\link[SummarizedExperiment:colData]{colData()}} for this function to work.
+\code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData()}} for this function to work.
 }
 \examples{
 data(Seurat, package = "acidtest")
