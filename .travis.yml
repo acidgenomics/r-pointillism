@@ -20,9 +20,6 @@ jobs:
       name: "bioc-release"
       script: image="acidgenomics/r-singlecell" tag="bioc-release" ./.Rcheck/docker
     - stage: test
-      name: "bioc-oldrel"
-      script: image="acidgenomics/r-singlecell" tag="bioc-oldrel" ./.Rcheck/docker
-    - stage: test
       name: "bioc-devel"
       script: image="acidgenomics/r-singlecell" tag="bioc-devel" ./.Rcheck/docker
   allow_failures:
