@@ -1,8 +1,7 @@
 #' Run ZINB-WaVE
 #'
 #' @name runZinbwave
-#' @inherit zinbwave::zinbwave title description params
-#' @note Updated 2020-03-19.
+#' @note Updated 2020-07-23.
 #'
 #' @details
 #' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
@@ -24,6 +23,7 @@
 #' @inheritParams acidroxygen::params
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
+#' @inheritParams zinbwave::zinbwave
 #'
 #' @param recalculate `logical`. Force recalculation of weights.
 #' @param verbose `logical`. Run zinbwave in verbose mode (for debugging).

@@ -49,7 +49,7 @@ mean(cpm)
 }
 \seealso{
 \itemize{
-\item \code{\link[SingleCellExperiment:cpm]{SingleCellExperiment::cpm()}}.
+\item \code{\link[SingleCellExperiment:assays]{SingleCellExperiment::cpm()}}.
 \item \code{\link[edgeR:cpm]{edgeR::cpm()}}.
 \item \code{\link[scater:calculateCPM]{scater::calculateCPM()}}.
 }

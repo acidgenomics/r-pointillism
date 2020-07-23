@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -255,12 +255,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 
 <span class='co'>## Compare expression in cluster 2 relative to 1.</span>
-<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusters.html'>clusters</a></span>(<span class='no'>object</span>)
-<span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"2"</span>]
-<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;        19 character character </div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"1"</span>]
-<span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;        25 character character </div><div class='input'>
+<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusters.html'>clusters</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"2"</span>]</div><div class='output co'>#&gt; <span class='error'>Error in clusters == "2": comparison (1) is possible only for atomic and list types</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'numerator' not found</span></div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"1"</span>]</div><div class='output co'>#&gt; <span class='error'>Error in clusters == "1": comparison (1) is possible only for atomic and list types</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'denominator' not found</span></div><div class='input'>
 ## edgeR ====
 ## &gt; x &lt;- diffExp(
 ## &gt;     object = object,

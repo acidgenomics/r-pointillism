@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -136,9 +136,9 @@
 <li>Now exporting <code>runZinbwave</code> and <code>hasZinbwave</code>, which were previously internal functions called by <code>diffExp</code>.</li>
 </ul>
 </div>
-<div id="minor-changes-18" class="section level3">
+<div id="minor-changes-19" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-18" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-19" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved internal handling of <code>assays</code> for objects that have zinbwave calculations applied. Now it doesn’t attempt to keep only the <code>counts</code> assay.</li>
 </ul>
@@ -157,9 +157,9 @@
 <code>findMarkers</code>: Utility function that wraps <code>diffExp</code> to identify cluster- specific genes across all clusters.</li>
 </ul>
 </div>
-<div id="minor-changes-17" class="section level3">
+<div id="minor-changes-18" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-18" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Converted <code>runZinbwave</code> to an S4 method that works on <code>SingleCellExperiment</code>. For <code>seurat</code> objects, coerce to <code>SingleCellExperiment</code> before calculating weights.</li>
 <li>
@@ -172,17 +172,17 @@
     <div id="pointilism-013-2018-09-19" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointilism-013-2018-09-19" class="anchor"></a>pointilism 0.1.3 (2018-09-19)</h2>
-<div id="major-changes-9" class="section level3">
+<div id="major-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-9" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-10" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>as(seurat, "SingleCellExperiment")</code> now returns <code>scaleData</code> in assays, along with <code>varGenes</code> in <code>metadata</code> and ensures that <code>colData</code> and <code>rowRanges</code> are sanitized into camel case using the <code>camel</code> function internally.</li>
 </ul>
 </div>
-<div id="minor-changes-16" class="section level3">
+<div id="minor-changes-17" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-16" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Removed <code>convertGenesToSymbols</code> support for <code>seurat</code> class. Coerce genes to symbols manually prior to <code>seurat</code> coercion from <code>SingleCellExperiment</code>.</li>
 <li>

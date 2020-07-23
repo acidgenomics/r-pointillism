@@ -48,7 +48,7 @@ filtering. The number of cells is defined by \code{minCellsPerGene}.}
 
 \item{BPPARAM}{\code{bpparamClass}.
 Back-end method to be used for computations.
-See \code{\link[BiocParallel:bpparam]{bpparam}} for details.
+See \code{\link[BiocParallel:register]{bpparam}} for details.
 Currently only used by DESeq2 but not edgeR for calculations here.}
 
 \item{...}{Additional arguments.}
@@ -100,7 +100,7 @@ zinbwave (which is no longer recommended for droplet scRNA-seq).
 
 
 The LRT has been shown to perform better for null hypothesis testing with
-droplet scRNA-seq data. Here we are using \code{\link[edgeR:glmLRT]{edgeR::glmLRT()}} internally.
+droplet scRNA-seq data. Here we are using \code{\link[edgeR:glmfit]{edgeR::glmLRT()}} internally.
 
 edgeR is currently significantly faster than DESeq2 for large datasets.
 }
