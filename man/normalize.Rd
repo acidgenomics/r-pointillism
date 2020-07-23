@@ -45,7 +45,7 @@ due to differences in sequencing coverage or capture efficiency.
 
 
 Log-normalized values are calculated by adding a pseudocount offset of 1 to
-the normalized count and performing a \code{\link[base:log2]{log2()}} transformation.
+the normalized count and performing a \code{\link[base:Log]{log2()}} transformation.
 }
 
 \section{Centering at unity}{
