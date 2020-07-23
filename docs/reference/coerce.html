@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -183,19 +183,9 @@ the filtered cells into a new <code>Seurat</code> class object. Use
 #&gt; 500 features across 100 samples within 1 assay 
 #&gt; Active assay: RNA (500 features, 0 variable features)</div><div class='input'>
 <span class='co'>## Seurat to SingleCellExperiment ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>Seurat</span>, <span class='st'>"SingleCellExperiment"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
-#&gt; dim: 230 80 
-#&gt; metadata(2): scaleData variableFeatures
-#&gt; assays(2): counts logcounts
-#&gt; rownames(230): MS4A1 CD79B ... SPON2 S100B
-#&gt; rowData names(11): broadClass entrezID ... vst.variance.standardized
-#&gt;   vst.variable
-#&gt; colnames(80): ATGCCAGAACGACT CATGGCCTGTGCAT ... GGAACACTTCAGAC
-#&gt;   CTTGATTGATCTTC
-#&gt; colData names(8): orig.ident nCount_RNA ... RNA_snn_res.1 ident
-#&gt; reducedDimNames(3): PCA TSNE UMAP
-#&gt; altExpNames(0):</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>as</span>(<span class='no'>Seurat</span>, <span class='st'>"SingleCellExperiment"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(from): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; An object of class Seurat 
+#&gt; 500 features across 100 samples within 1 assay 
+#&gt; Active assay: RNA (500 features, 0 variable features)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

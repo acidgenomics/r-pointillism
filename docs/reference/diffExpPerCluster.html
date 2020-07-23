@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -181,8 +181,7 @@ Cells to use in the denominator of the contrast (e.g. control).</p></td>
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
 <span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"group1"</span>, <span class='st'>"group2"</span>))
-<span class='fu'>colData</span>(<span class='no'>object</span>)$<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='no'>group</span>
-<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(
+<span class='fu'>colData</span>(<span class='no'>object</span>)$<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='no'>group</span></div><div class='output co'>#&gt; <span class='error'>Error in validObject(x): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(
     <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExpPerCluster</span>(
         <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
         <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"group"</span>,
@@ -190,22 +189,7 @@ Cells to use in the denominator of the contrast (e.g. control).</p></td>
         <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='st'>"group1"</span>,
         <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
     )
-)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; $`0`
-#&gt; [1] "DGELRT"
-#&gt; attr(,"package")
-#&gt; [1] "edgeR"
-#&gt; 
-#&gt; $`1`
-#&gt; [1] "DGELRT"
-#&gt; attr(,"package")
-#&gt; [1] "edgeR"
-#&gt; 
-#&gt; $`2`
-#&gt; [1] "DGELRT"
-#&gt; attr(,"package")
-#&gt; [1] "edgeR"
-#&gt; </div></pre>
+)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(from): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'X' in selecting a method for function 'lapply': object 'x' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
       </span>
     </div>
 
@@ -158,13 +158,7 @@
 
 <span class='co'>## Seurat ====</span>
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 3 rows and 7 columns
-#&gt;      ident sampleID sampleName interestingGroups         n nPerIdent     ratio
-#&gt;   &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt;          &lt;factor&gt; &lt;integer&gt; &lt;integer&gt; &lt;numeric&gt;
-#&gt; 1        0  unknown    unknown           unknown        36        36         1
-#&gt; 2        1  unknown    unknown           unknown        25        25         1
-#&gt; 3        2  unknown    unknown           unknown        19        19         1</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cellCountsPerCluster</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(x): object 'x' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
