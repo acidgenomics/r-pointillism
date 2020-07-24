@@ -39,9 +39,9 @@
 #' summary(x)
 #'
 #' ## `FindAllMarkers()` return.
-#' invisible(capture.output(suppressWarnings(
+#' invisible(capture.output(suppressWarnings({
 #'     markers <- Seurat::FindAllMarkers(object)
-#' )))
+#' })))
 #' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
 NULL
