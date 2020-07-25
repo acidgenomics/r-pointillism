@@ -105,7 +105,7 @@ NULL
             "CPU time used:",
             printString(system.time({
                 # Wrapping here to disable progress bars.
-                invisible(capture.output(
+                invisible(capture.output({
                     fittedModel <- zinbwave::zinbFit(
                         Y = Y,
                         K = K,
@@ -113,7 +113,7 @@ NULL
                         BPPARAM = BPPARAM,
                         verbose = verbose
                     )
-                ))
+                }))
             })),
             sep = "\n"
         ))
@@ -131,7 +131,7 @@ NULL
             "CPU time used:",
             printString(system.time({
                 # Wrapping here to disable progress bars.
-                invisible(capture.output(
+                invisible(capture.output({
                     zinb <- zinbwave::zinbwave(
                         Y = Y,
                         fitted_model = fittedModel,
@@ -140,7 +140,7 @@ NULL
                         BPPARAM = BPPARAM,
                         verbose = verbose
                     )
-                ))
+                }))
             })),
             sep = "\n"
         ))
