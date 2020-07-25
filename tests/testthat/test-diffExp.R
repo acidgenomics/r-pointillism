@@ -11,8 +11,8 @@ rm(object)
 
 context("diffExp")
 
-with_parameters_test_that(
-    "diffExp", {
+test_that("diffExp", {
+    for (object in objects) {
         ## edgeR.
         x <- diffExp(
             object = object,
@@ -21,7 +21,6 @@ with_parameters_test_that(
             caller = "edgeR"
         )
         expect_s4_class(x, "DGELRT")
-
         ## DESeq2. Slow for large datasets.
         ## Expecting warning about degenerate design matrix.
         suppressWarnings({
@@ -33,19 +32,15 @@ with_parameters_test_that(
             )
         })
         expect_s4_class(x, "DESeqResults")
-    },
-    object = list(
-        SingleCellExperiment = sce,
-        seurat = seurat
-    )
-)
+    }
+})
 
 
 
 context("findMarkers")
 
-with_parameters_test_that(
-    "findMarkers", {
+test_that("findMarkers", {
+    for (object in objects) {
         ## edgeR.
         x <- findMarkers(object, caller = "edgeR")
         expect_is(x, "list")
@@ -55,7 +50,6 @@ with_parameters_test_that(
                 expect_is(x, "DGELRT")
             }
         ))
-
         ## DESeq2. Slow for large datasets.
         ## Expecting warning about degenerate design matrix.
         suppressWarnings({
@@ -68,9 +62,5 @@ with_parameters_test_that(
                 expect_is(x, "DESeqResults")
             }
         ))
-    },
-    object = list(
-        SingleCellExperiment = sce,
-        seurat = seurat
-    )
-)
+    }
+})

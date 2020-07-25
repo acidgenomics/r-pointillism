@@ -1,7 +1,7 @@
 context("cellCountsPerCluster")
 
-with_parameters_test_that(
-    "cellCountsPerCluster", {
+test_that("cellCountsPerCluster", {
+    for (object in objects) {
         ## Simulate multiple samples.
         samples <- factor(paste0("sample", seq_len(2L)))
         colData(object)[["sampleID"]] <- samples
@@ -18,9 +18,5 @@ with_parameters_test_that(
         )
         expected[["ratio"]] <- expected[["n"]] / expected[["nPerIdent"]]
         expect_identical(object, expected)
-    },
-    object = list(
-        SingleCellExperiment = sce,
-        Seurat = seurat
-    )
-)
+    }
+})

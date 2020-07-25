@@ -1,7 +1,7 @@
 context("plotReducedDim")
 
-with_parameters_test_that(
-    "plotReducedDim", {
+test_that("plotReducedDim", {
+    for (object in objects) {
         p <- plotReducedDim(
             object = object,
             pointsAsNumbers = TRUE,
@@ -9,14 +9,12 @@ with_parameters_test_that(
             label = FALSE
         )
         expect_s3_class(p, "ggplot")
-    },
-    object = objects
-)
+    }
+})
 
 funs <- list(plotPCA, plotTSNE, plotUMAP)
-
-with_parameters_test_that(
-    "Aliases", {
+test_that("Aliases", {
+    for (fun in funs) {
         lapply(
             X = objects,
             FUN = function(object) {
@@ -24,6 +22,5 @@ with_parameters_test_that(
                 expect_s3_class(p, "ggplot")
             }
         )
-    },
-    fun = funs
-)
+    }
+})

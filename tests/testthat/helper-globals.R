@@ -10,7 +10,6 @@ data(
     package = "acidtest",
     envir = environment()
 )
-
 data(
     ## cell_data_set,
     seurat_all_markers,
@@ -21,15 +20,11 @@ data(
 
 ## > cds <- cell_data_set
 ## > rm(cell_data_set)
-
 sce <- SingleCellExperiment
 rm(SingleCellExperiment)
-
 seurat <- Seurat
 rm(Seurat)
-
 genes <- head(rownames(seurat))
-
 sce <- as(seurat, "SingleCellExperiment")
 objects <- list(
     SingleCellExperiment = sce,
