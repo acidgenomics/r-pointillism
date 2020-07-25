@@ -25,12 +25,12 @@ context("plotKnownMarkers")
 markers <- head(seurat_known_markers, n = 2L)
 with_parameters_test_that(
     "plotKnownMarkers", {
-        invisible(capture.output(
+        invisible(capture.output({
             x <- plotKnownMarkers(
                 object = object,
                 markers = markers
             )
-        ))
+        }))
         expect_type(x, "list")
         expect_s3_class(x[[1L]][[1L]], "ggplot")
     },
@@ -44,12 +44,12 @@ context("plotTopMarkers")
 test_that("Seurat", {
     object <- seurat
     markers <- head(seurat_all_markers, n = 2L)
-    invisible(capture.output(
+    invisible(capture.output({
         x <- plotTopMarkers(
             object = object,
             markers = markers
         )
-    ))
+    }))
     expect_type(x, "list")
     expect_s3_class(x[[1L]][[1L]], "ggplot")
 })
