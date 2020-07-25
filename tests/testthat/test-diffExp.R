@@ -1,6 +1,6 @@
 ## Compare expression in cluster 3 relative to 2.
 object <- seurat
-ident <- clusterID(object)
+ident <- clusters(object)
 numerator <- names(ident)[ident == "2"]
 denominator <- names(ident)[ident == "1"]
 expect_true(length(intersect(numerator, colnames(object))) > 0L)
