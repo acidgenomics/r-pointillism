@@ -24,14 +24,14 @@ with_parameters_test_that(
 
         ## DESeq2. Slow for large datasets.
         ## Expecting warning about degenerate design matrix.
-        suppressWarnings(
+        suppressWarnings({
             x <- diffExp(
                 object = object,
                 numerator = numerator,
                 denominator = denominator,
                 caller = "DESeq2"
             )
-        )
+        })
         expect_s4_class(x, "DESeqResults")
     },
     object = list(
@@ -58,9 +58,9 @@ with_parameters_test_that(
 
         ## DESeq2. Slow for large datasets.
         ## Expecting warning about degenerate design matrix.
-        suppressWarnings(
+        suppressWarnings({
             x <- findMarkers(object, caller = "DESeq2")
-        )
+        })
         expect_is(x, "list")
         invisible(lapply(
             X = x,

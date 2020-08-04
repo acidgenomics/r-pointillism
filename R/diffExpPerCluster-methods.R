@@ -27,7 +27,7 @@
 #' object <- Seurat
 #' group <- factor(c("group1", "group2"))
 #' colData(object)$group <- group
-#' suppressMessages(
+#' suppressMessages({
 #'     x <- diffExpPerCluster(
 #'         object = object,
 #'         group = "group",
@@ -35,7 +35,7 @@
 #'         denominator = "group1",
 #'         caller = "edgeR"
 #'     )
-#' )
+#' })
 #' class(x)
 #' lapply(x, class)
 NULL
