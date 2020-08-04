@@ -1,8 +1,8 @@
 context("plotMarker")
 
 expression <- eval(formals(`plotMarker,Seurat`)[["expression"]])
-with_parameters_test_that(
-    "plotMarker", {
+test_that("plotMarker", {
+    for (object in objects) {
         invisible(lapply(
             X = expression,
             FUN = function(expression) {
@@ -14,28 +14,26 @@ with_parameters_test_that(
                 expect_s3_class(p, "ggplot")
             }
         ))
-    },
-    object = objects
-)
+    }
+})
 
 
 
 context("plotKnownMarkers")
 
 markers <- head(seurat_known_markers, n = 2L)
-with_parameters_test_that(
-    "plotKnownMarkers", {
-        invisible(capture.output(
+test_that("plotKnownMarkers", {
+    for (object in objects) {
+        invisible(capture.output({
             x <- plotKnownMarkers(
                 object = object,
                 markers = markers
             )
-        ))
+        }))
         expect_type(x, "list")
         expect_s3_class(x[[1L]][[1L]], "ggplot")
-    },
-    object = objects
-)
+    }
+})
 
 
 
@@ -44,12 +42,12 @@ context("plotTopMarkers")
 test_that("Seurat", {
     object <- seurat
     markers <- head(seurat_all_markers, n = 2L)
-    invisible(capture.output(
+    invisible(capture.output({
         x <- plotTopMarkers(
             object = object,
             markers = markers
         )
-    ))
+    }))
     expect_type(x, "list")
     expect_s3_class(x[[1L]][[1L]], "ggplot")
 })

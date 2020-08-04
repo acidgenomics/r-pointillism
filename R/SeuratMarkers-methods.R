@@ -28,13 +28,13 @@
 #' ranges <- rowRanges(object)
 #'
 #' ## `FindMarkers()` return.
-#' invisible(capture.output(
+#' invisible(capture.output({
 #'     markers <- Seurat::FindMarkers(
 #'         object = object,
 #'         ident.1 = "1",
 #'         ident.2 = NULL
 #'     )
-#' ))
+#' }))
 #' x <- SeuratMarkers(object = markers, ranges = ranges)
 #' summary(x)
 #'

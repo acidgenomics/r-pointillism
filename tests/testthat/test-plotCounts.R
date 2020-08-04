@@ -1,7 +1,7 @@
 context("plotCounts")
 
-with_parameters_test_that(
-    "plotCounts", {
+test_that("plotCounts", {
+    for (object in objects) {
         ## Dot.
         p <- plotCounts(
             object = object,
@@ -9,7 +9,6 @@ with_parameters_test_that(
             geom = "dot"
         )
         expect_s3_class(p, "ggplot")
-
         ## Violin.
         p <- plotCounts(
             object = object,
@@ -17,30 +16,27 @@ with_parameters_test_that(
             geom = "violin"
         )
         expect_s3_class(p, "ggplot")
-    },
-    object = objects
-)
+    }
+})
 
 
 
 context("plotDots")
 
-with_parameters_test_that(
-    "plotDots", {
+test_that("plotDots", {
+    for (object in objects) {
         p <- plotDots(object, genes = genes)
         expect_s3_class(p, "ggplot")
-    },
-    object = objects
-)
+    }
+})
 
 
 
 context("plotViolin")
 
-with_parameters_test_that(
-    "plotViolin", {
+test_that("plotViolin", {
+    for (object in objects) {
         p <- plotViolin(object, genes = genes)
         expect_s3_class(p, "ggplot")
-    },
-    object = objects
-)
+    }
+})
