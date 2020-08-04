@@ -32,22 +32,18 @@ test_that("SingleCellExperiment to Seurat", {
 
 test_that("SCE-seurat interconversion with subsetting", {
     a <- sce
-
     ## Coerce to seurat.
     b <- as(a, "Seurat")
     expect_s4_class(b, "Seurat")
-
     ## Coerce back to SCE.
     c <- as(b, "SingleCellExperiment")
     expect_s4_class(c, "SingleCellExperiment")
-
     ## Subset to contain n-1 genes, n-1 cells.
     nr <- nrow(c) - 1L
     nc <- ncol(c) - 1L
     d <- c[seq_len(nr), seq_len(nc)]
     expect_s4_class(d, "SingleCellExperiment")
     expect_identical(dim(d), c(nr, nc))
-
     ## Coerce back to seurat.
     e <- as(d, "Seurat")
     expect_s4_class(e, "Seurat")

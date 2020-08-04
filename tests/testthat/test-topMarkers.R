@@ -19,14 +19,13 @@ test_that("Default", {
     )
 })
 
-direction <- formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]]
-with_parameters_test_that(
-    "direction", {
+directions <- formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]]
+test_that("direction", {
+    for (direction in directions) {
         object <- topMarkers(
             object = seurat_all_markers,
             direction = direction
         )
         expect_s4_class(object, "DataFrame")
-    },
-    direction = direction
-)
+    }
+})
