@@ -20,11 +20,11 @@ context("SeuratMarkersPerCluster")
 test_that("SeuratMarkersPerCluster", {
     ranges <- rowRanges(seurat)
     ## Suppressing expected warning: "cannot compute exact p-value with ties"
-    suppressWarnings(
+    suppressWarnings({
         invisible(capture.output(
             markers <- Seurat::FindAllMarkers(seurat)
         ))
-    )
+    })
     x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
     expect_s4_class(x, "SeuratMarkersPerCluster")
 })
