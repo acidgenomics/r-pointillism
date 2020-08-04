@@ -1,3 +1,11 @@
+## pointillism 0.4.13 (2020-08-04)
+
+### Minor changes
+
+- Removed patrick dependency for unit tests.
+- Updated other package dependency versions.
+- Wrapped suppression calls with `{` where necessary.
+
 ## pointillism 0.4.12 (2020-07-23)
 
 ### Minor changes
