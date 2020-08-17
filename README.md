@@ -10,28 +10,16 @@
 ### [R][] method
 
 ```r
-if (!requireNamespace("remotes", quietly = TRUE)) {
-    install.packages("remotes")
-}
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-# Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
-remotes::install_github("acidgenomics/pointillism")
-```
-
-Here's how to update to the latest version on GitHub:
-
-```r
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-remotes::update_packages()
-```
-
-Always check that your Bioconductor installation is valid before proceeding.
-
-```r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
-BiocManager::valid()
+install.packages(
+    pkgs = "basejump",
+    repos = c(
+        "r.acidgenomics.com",
+        BiocManager::repositories()
+    )
+)
 ```
 
 ## Supported data classes
@@ -67,14 +55,14 @@ For more information on this issue, consult `help("dyn.load")` in the [R][] docu
 
 The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[BiocManager]: https://cran.r-project.org/package=BiocManager
-[Bioconductor]: https://bioconductor.org/
-[CRAN]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
-[Michael Steinbaugh]: https://mike.steinbaugh.com/
-[Paperpile]: https://paperpile.com/
-[R]: https://www.r-project.org/
-[Seurat]: https://satijalab.org/seurat/
-[SingleCellExperiment]: https://bioconductor.org/packages/SingleCellExperiment/
+[biocmanager]: https://cran.r-project.org/package=BiocManager
+[bioconductor]: https://bioconductor.org/
 [conda]: https://conda.io/
+[cran]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
+[michael steinbaugh]: https://mike.steinbaugh.com/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
+[paperpile]: https://paperpile.com/
 [pointillism]: https://pointillism.acidgenomics.com/
+[r]: https://www.r-project.org/
+[seurat]: https://satijalab.org/seurat/
+[singlecellexperiment]: https://bioconductor.org/packages/SingleCellExperiment/
