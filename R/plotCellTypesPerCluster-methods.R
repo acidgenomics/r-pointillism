@@ -75,7 +75,7 @@ NULL
                     cli_alert_warning(sprintf(
                         "No markers for cluster %s.", cluster
                     ))
-                    return()
+                    return(invisible())
                 }
                 cellTypes <- clusterData[["cellType"]]
                 assert(is.factor(cellTypes))
@@ -100,7 +100,7 @@ NULL
                         genes <- as.character(genes)
                         genes <- strsplit(genes, split = ", ")[[1L]]
                         if (!hasLength(genes)) {
-                            return()
+                            return(invisible())
                         }
                         p <- plotMarker(
                             object = object,

@@ -76,7 +76,7 @@ NULL
                     cli_alert_warning(sprintf(
                         "No genes for cluster %s.", cluster
                     ))
-                    return()
+                    return(invisible())
                 } else if (length(genes) > 10L) {
                     cli_alert_warning(
                         "Maximum of 10 genes per cluster is recommended."
