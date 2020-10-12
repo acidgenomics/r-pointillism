@@ -138,9 +138,11 @@ are desired, we recommend using \code{ggplot2::scale_color_manual()}.
 To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 
-\item{scale}{if "area" (default), all violins have the same area (before trimming
-the tails). If "count", areas are scaled proportionally to the number of
-observations. If "width", all violins have the same maximum width.}
+\item{scale}{\code{character(1)}.
+If "area" (default), all violins have the same area (before trimming the
+tails). If "count", areas are scaled proportionally to the number of
+observartions. If "width", all violins have the same maximum width.
+See \code{ggplot2::geom_violin} for details.}
 
 \item{...}{Additional arguments.}
 }
@@ -153,7 +155,7 @@ Visualize genes on a dot or violin plot.
 \note{
 Dot geom currently only supports logcounts.
 
-Updated 2020-02-21.
+Updated 2020-10-12.
 }
 \examples{
 data(Seurat, package = "AcidTest")

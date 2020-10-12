@@ -3,12 +3,11 @@
 #' @inherit AcidGenerics::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
-#' @note Updated 2020-02-21.
+#' @note Updated 2020-10-12.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @inheritParams ggplot2::geom_violin
 #' @param colMin `numeric(1)`.
 #'   Minimum scaled average expression threshold. Everything smaller will be
 #'   set to this.
@@ -23,6 +22,12 @@
 #' @param geom `character(1)`.
 #'   Plot type. Uses [`match.arg()`][base::match.arg] to pick the type.
 #'   Currently supports `"dot"` and `"violin"`.
+#' @param scale `character(1)`.
+#'   If "area" (default), all violins have the same area (before trimming the
+#'   tails). If "count", areas are scaled proportionally to the number of
+#'   observartions. If "width", all violins have the same maximum width.
+#'   See `ggplot2::geom_violin` for details.
+
 #' @param ... Additional arguments.
 #'
 #' @seealso
