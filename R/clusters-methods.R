@@ -1,8 +1,8 @@
 #' @name clusters
-#' @inherit acidgenerics::clusters
+#' @inherit AcidGenerics::clusters
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @seealso
@@ -10,22 +10,13 @@
 #' - `monocle3::clusters()`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' x <- clusters(object)
 #' head(x)
 #' table(x)
-NULL
-
-
-
-#' @rdname clusters
-#' @name clusters
-#' @importFrom acidgenerics clusters
-#' @usage clusters(object, ...)
-#' @export
 NULL
 
 

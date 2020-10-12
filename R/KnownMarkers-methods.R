@@ -5,9 +5,9 @@
 #'   identifiers in the `geneID` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-10-12.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`.
 #'   Grouped by `cellType` column. Known markers `data.frame` imported by
@@ -44,8 +44,8 @@ NULL
             allAreNonNegative(promiscuousThreshold)
         )
         promiscuousThreshold <- as.integer(promiscuousThreshold)
-        alpha <- metadata(markers)[["alpha"]]
-        assert(isAlpha(alpha))
+        alphaThreshold <- metadata(markers)[["alphaThreshold"]]
+        assert(isAlpha(alphaThreshold))
         markers <- unlist(markers, recursive = FALSE, use.names = FALSE)
         ranges <- markers[["ranges"]]
         markers[["ranges"]] <- NULL
@@ -59,7 +59,7 @@ NULL
         keep <- markers[["geneID"]] %in% known[["geneID"]]
         x <- markers[keep, , drop = FALSE]
         ## Apply our alpha level cutoff.
-        keep <- x[["padj"]] < alpha
+        keep <- x[["padj"]] < alphaThreshold
         x <- x[keep, , drop = FALSE]
         ## Add the `cellType` column.
         x <- leftJoin(x, known, by = "geneID")
@@ -68,8 +68,8 @@ NULL
             x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)
         }
         metadata(x) <- list(
-            alpha = alpha,
-            version = packageVersion("pointillism"),
+            alphaThreshold = alphaThreshold,
+            version = packageVersion(packageName()),
             date = Sys.Date()
         )
         new(Class = "KnownMarkers", x)

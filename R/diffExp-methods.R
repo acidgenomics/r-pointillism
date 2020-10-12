@@ -1,5 +1,5 @@
 #' @name diffExp
-#' @inherit acidgenerics::diffExp
+#' @inherit AcidGenerics::diffExp
 #'
 #' @note We are no longer recommending the use of software that attempts to
 #'   mitigate zero count inflation (e.g. zinbwave, zingeR) for UMI droplet-based
@@ -41,7 +41,7 @@
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
 #' and `cells.2` for the denominator. See [Seurat::FindMarkers()] for details.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param numerator `character`.
 #'   Cells to use in the numerator of the contrast (e.g. treatment).
 #' @param denominator `character`.
@@ -73,7 +73,7 @@
 #' @seealso [Seurat::WhichCells()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #' object <- Seurat
 #'
 #' ## Compare expression in cluster 2 relative to 1.
@@ -103,15 +103,6 @@
 #' ## > )
 #' ## > class(x)
 #' ## > summary(x)
-NULL
-
-
-
-#' @rdname diffExp
-#' @name diffExp
-#' @importFrom acidgenerics diffExp
-#' @usage diffExp(object, ...)
-#' @export
 NULL
 
 

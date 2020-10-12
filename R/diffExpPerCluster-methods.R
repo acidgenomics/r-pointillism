@@ -3,10 +3,10 @@
 
 
 #' @name diffExpPerCluster
-#' @inherit acidgenerics::diffExpPerCluster
+#' @inherit AcidGenerics::diffExpPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams diffExp
 #' @param group `character(1)`.
 #'   Group of interest for differential expression per cluster. Must be a
@@ -21,7 +21,7 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -38,15 +38,6 @@
 #' })
 #' class(x)
 #' lapply(x, class)
-NULL
-
-
-
-#' @rdname diffExpPerCluster
-#' @name diffExpPerCluster
-#' @importFrom acidgenerics diffExpPerCluster
-#' @usage diffExpPerCluster(object, ...)
-#' @export
 NULL
 
 

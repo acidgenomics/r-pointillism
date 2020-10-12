@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,17 +131,17 @@
     <p>Run ZINB-WaVE</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runZinbwave</span>(<span class='no'>Y</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>runZinbwave</span><span class='op'>(</span><span class='va'>Y</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>runZinbwave</span>(
-  <span class='no'>Y</span>,
-  <span class='kw'>K</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
-  <span class='kw'>epsilon</span> <span class='kw'>=</span> <span class='fl'>1e+12</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>(),
-  <span class='kw'>recalculate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>runZinbwave</span><span class='op'>(</span>
+  <span class='va'>Y</span>,
+  K <span class='op'>=</span> <span class='fl'>0L</span>,
+  epsilon <span class='op'>=</span> <span class='fl'>1e+12</span>,
+  BPPARAM <span class='op'>=</span> <span class='fu'>BiocParallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span><span class='op'>(</span><span class='op'>)</span>,
+  recalculate <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,12 +212,13 @@ to run with multiple cores.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/zinbwave/man/zinbwave.html'>zinbwave::zinbwave</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"zinbwave"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SingleCellExperiment</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-    <span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-    <span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='fu'>nonzeroRowsAndCols</span>(<span class='no'>Y</span>)
-    <span class='no'>Y</span> <span class='kw'>&lt;-</span> <span class='fu'>runZinbwave</span>(<span class='no'>Y</span>)
-}</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Filtered zero count rows and columns:</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"zinbwave"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SingleCellExperiment</span>, package <span class='op'>=</span> <span class='st'>"AcidTest"</span><span class='op'>)</span>
+    <span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='va'>SingleCellExperiment</span>
+    <span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>nonzeroRowsAndCols</span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
+    <span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'>runZinbwave</span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Filtered zero count rows and columns:</span>
 #&gt; <span class='message'>- 483 / 500 rows (97%)</span>
 #&gt; <span class='message'>- 100 / 100 columns (100%)</span></div><div class='output co'>#&gt; <span class='message'>→ Running zinbwave.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> </span><span style='color: #0000BB;'>BiocParallel</span><span> param registered.</span>
 #&gt; <span class='message'>class: MulticoreParam</span>
@@ -223,9 +230,9 @@ to run with multiple cores.</p>
 #&gt; <span class='message'>  bpresultdir: NA</span>
 #&gt; <span class='message'>  cluster type: FORK</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbFit()`</span><span>: Fitting a ZINB regression model.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used:</span>
 #&gt; <span class='message'>   user  system elapsed </span>
-#&gt; <span class='message'> 10.860   6.723   5.046 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel. 100 samples; 483 genes. 1 sample-level covariate(s)</span>
+#&gt; <span class='message'>  9.465   5.804   3.686 </span></div><div class='output co'>#&gt; <span class='message'>Object of class ZinbModel. 100 samples; 483 genes. 1 sample-level covariate(s)</span>
 #&gt; <span class='message'>(mu); 1 sample-level covariate(s) (pi); 1 gene-level covariate(s) (mu); 1</span>
-#&gt; <span class='message'>gene-level covariate(s) (pi); 0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbwave()`</span><span>: Performing dimensionality reduction using a ZINB regression model with gene and cell-level covariates.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used: user system elapsed 0.005 0.001 0.005</span></div></span></pre>
+#&gt; <span class='message'>gene-level covariate(s) (pi); 0 latent factor(s).</span></div><div class='output co'>#&gt; <span class='message'>→ </span><span style='color: #000000;background-color: #BBBBBB;'>`zinbwave()`</span><span>: Performing dimensionality reduction using a ZINB regression model with gene and cell-level covariates.</span></div><div class='output co'>#&gt; <span class='message'>CPU time used: user system elapsed 0.004 0.000 0.004</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -241,7 +248,7 @@ to run with multiple cores.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

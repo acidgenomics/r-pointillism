@@ -11,9 +11,9 @@ SeuratMarkers(object, ...)
 
 SeuratMarkersPerCluster(object, ...)
 
-\S4method{SeuratMarkers}{data.frame}(object, ranges, alpha = 0.05)
+\S4method{SeuratMarkers}{data.frame}(object, ranges, alphaThreshold = 0.05)
 
-\S4method{SeuratMarkersPerCluster}{data.frame}(object, ranges, alpha = 0.05)
+\S4method{SeuratMarkersPerCluster}{data.frame}(object, ranges, alphaThreshold = 0.05)
 }
 \arguments{
 \item{object}{Unmodified Seurat marker return \code{data.frame}.
@@ -28,7 +28,7 @@ SeuratMarkersPerCluster(object, ...)
 Gene annotations. Names must correspond to the rownames. The function will
 automatically subset the ranges and arrange them alphabetically.}
 
-\item{alpha}{\code{numeric(1)} or \code{NULL}.
+\item{alphaThreshold}{\code{numeric(1)} or \code{NULL}.
 Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 }
@@ -43,30 +43,30 @@ marker analysis and add corresponding gene annotations.
 For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
 in the \code{gene} column.
 
-Updated 2020-01-30.
+Updated 2020-10-12.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat
 ranges <- rowRanges(object)
 
 ## `FindMarkers()` return.
-invisible(capture.output(
+invisible(capture.output({
     markers <- Seurat::FindMarkers(
         object = object,
         ident.1 = "1",
         ident.2 = NULL
     )
-))
+}))
 x <- SeuratMarkers(object = markers, ranges = ranges)
 summary(x)
 
 ## `FindAllMarkers()` return.
-invisible(capture.output(suppressWarnings(
+invisible(capture.output(suppressWarnings({
     markers <- Seurat::FindAllMarkers(object)
-)))
+})))
 x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 summary(x)
 }

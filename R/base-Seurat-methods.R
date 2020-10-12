@@ -10,7 +10,7 @@
 #' @keywords internal
 #' @note Updated 2019-08-05.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @seealso
 #' - `Seurat::GetAssayData()`.

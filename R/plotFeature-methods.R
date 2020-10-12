@@ -1,8 +1,8 @@
 #' @name plotFeature
-#' @inherit acidgenerics::plotFeature
+#' @inherit AcidGenerics::plotFeature
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #' @param ... Additional arguments.
@@ -12,7 +12,7 @@
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -21,15 +21,6 @@
 #'     features = c("nCount_RNA", "nFeature_RNA", "PC_1", "PC_2"),
 #'     reduction = "UMAP"
 #' )
-NULL
-
-
-
-#' @rdname plotFeature
-#' @name plotFeature
-#' @importFrom acidgenerics plotFeature
-#' @usage plotFeature(object, ...)
-#' @export
 NULL
 
 

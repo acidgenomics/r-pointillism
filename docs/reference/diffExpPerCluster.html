@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -117,7 +123,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Differential expression per cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/diffExpPerCluster-methods.R'><code>R/diffExpPerCluster-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/diffExpPerCluster-methods.R'><code>R/diffExpPerCluster-methods.R</code></a></small>
     <div class="hidden name"><code>diffExpPerCluster.Rd</code></div>
     </div>
 
@@ -125,13 +131,13 @@
     <p>Differential expression per cluster</p>
     </div>
 
-    <pre class="usage"><span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>diffExpPerCluster</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>group</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>, <span class='no'>...</span>)
+<span class='fu'>diffExpPerCluster</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>group</span>, <span class='va'>numerator</span>, <span class='va'>denominator</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>diffExpPerCluster</span>(<span class='no'>object</span>, <span class='no'>group</span>, <span class='no'>numerator</span>, <span class='no'>denominator</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>diffExpPerCluster</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>group</span>, <span class='va'>numerator</span>, <span class='va'>denominator</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,20 +182,38 @@ Cells to use in the denominator of the contrast (e.g. control).</p></td>
 <code><a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>colData()</a></code> for this function to work.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Seurat</span>, package <span class='op'>=</span> <span class='st'>"AcidTest"</span><span class='op'>)</span>
 
 <span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"group1"</span>, <span class='st'>"group2"</span>))
-<span class='fu'>colData</span>(<span class='no'>object</span>)$<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='no'>group</span></div><div class='output co'>#&gt; <span class='error'>Error in validObject(x): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span>(
-    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>diffExpPerCluster</span>(
-        <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
-        <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"group"</span>,
-        <span class='kw'>numerator</span> <span class='kw'>=</span> <span class='st'>"group2"</span>,
-        <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='st'>"group1"</span>,
-        <span class='kw'>caller</span> <span class='kw'>=</span> <span class='st'>"edgeR"</span>
-    )
-)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(from): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>x</span>, <span class='no'>class</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'X' in selecting a method for function 'lapply': object 'x' not found</span></div></pre>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>Seurat</span>
+<span class='va'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"group1"</span>, <span class='st'>"group2"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>colData</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span><span class='op'>$</span><span class='va'>group</span> <span class='op'>&lt;-</span> <span class='va'>group</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>diffExpPerCluster</span><span class='op'>(</span>
+        object <span class='op'>=</span> <span class='va'>object</span>,
+        group <span class='op'>=</span> <span class='st'>"group"</span>,
+        numerator <span class='op'>=</span> <span class='st'>"group2"</span>,
+        denominator <span class='op'>=</span> <span class='st'>"group1"</span>,
+        caller <span class='op'>=</span> <span class='st'>"edgeR"</span>
+    <span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>class</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $`0`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`1`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; 
+#&gt; $`2`
+#&gt; [1] "DGELRT"
+#&gt; attr(,"package")
+#&gt; [1] "edgeR"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -205,7 +229,7 @@ Cells to use in the denominator of the contrast (e.g. control).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

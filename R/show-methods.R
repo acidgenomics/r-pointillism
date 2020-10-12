@@ -1,7 +1,7 @@
 #' Show an object
 #' @name show
 #' @author Michael Steinbuagh
-#' @inherit methods::show title description details params
+#' @inherit methods::show title description params
 #' @note Updated 2020-02-20.
 #'
 #' @return No return.
