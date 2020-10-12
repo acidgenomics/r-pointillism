@@ -1,8 +1,8 @@
 ## Seurat example markers return data.
-## Updated 2020-07-24.
+## Updated 2020-10-12.
 
 library(usethis)
-library(Seurat)   # 3.2.0
+library(Seurat)   # 3.2.2
 
 data(cell_type_markers_list)
 data(Seurat, package = "AcidTest")
