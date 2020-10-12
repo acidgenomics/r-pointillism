@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Object summaries — summary • pointillism</title>
+<title>Object Summaries — summary • pointillism</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Object summaries — summary" />
-<meta property="og:description" content="Object summaries" />
+<meta property="og:title" content="Object Summaries — summary" />
+<meta property="og:description" content="summary is a generic function used to produce result summaries
+  of the results of various model fitting functions.  The function
+  invokes particular methods which depend on the
+  class of the first argument." />
 
 
 
@@ -74,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +90,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -116,22 +125,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Object summaries</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/summary-methods.R'><code>R/summary-methods.R</code></a></small>
+    <h1>Object Summaries</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/summary-methods.R'><code>R/summary-methods.R</code></a></small>
     <div class="hidden name"><code>summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Object summaries</p>
+    <p><code>summary</code> is a generic function used to produce result summaries
+  of the results of various model fitting functions.  The function
+  invokes particular <code><a href='https://rdrr.io/r/utils/methods.html'>methods</a></code> which depend on the
+  <code><a href='https://rdrr.io/r/base/class.html'>class</a></code> of the first argument.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>summary</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SeuratMarkers</span>
-<span class='fu'>summary</span>(<span class='no'>object</span>)
+<span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SeuratMarkersPerCluster</span>
-<span class='fu'>summary</span>(<span class='no'>object</span>)</pre>
+<span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,19 +160,30 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisible <code>NULL</code>.</p>
+    <p>The form of the value returned by <code>summary</code> depends on the
+    class of its argument.  See the documentation of the particular
+    methods for details of what is produced by that method.</p>
+<p>The default method returns an object of class
+    <code><a href='https://rdrr.io/r/base/c.html'>c("summaryDefault", "<a href='https://rdrr.io/r/base/table.html'>table</a>")</a></code> which has specialized
+    <code><a href='https://rdrr.io/r/base/format.html'>format</a></code> and <code><a href='https://rdrr.io/r/base/print.html'>print</a></code> methods.  The
+    <code><a href='https://rdrr.io/r/base/factor.html'>factor</a></code> method returns an integer vector.</p>
+<p>The matrix and data frame methods return a matrix of class
+    <code>"<a href='https://rdrr.io/r/base/table.html'>table</a>"</code>, obtained by applying <code>summary</code> to each
+    column and collating the results.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-30.</p>
+    <p>Updated 2020-10-12.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_all_markers</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>seurat_all_markers</span><span class='op'>)</span>
 
 <span class='co'>## SeuratMarkersPerCluster ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_all_markers</span>
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; [1] "SeuratMarkersPerCluster"
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>seurat_all_markers</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "SeuratMarkersPerCluster"
 #&gt; attr(,"package")
-#&gt; [1] "pointillism"</div><div class='input'><span class='fu'>summary</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; 3 clusters
+#&gt; [1] "pointillism"</div><div class='input'><span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 3 clusters
 #&gt; organism: Homo sapiens
 #&gt; genomeBuild: GRCh37
 #&gt; ensemblRelease: 75</div></pre>
@@ -179,7 +202,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
