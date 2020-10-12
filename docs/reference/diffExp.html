@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -117,7 +123,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Differential expression</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/diffExp-methods.R'><code>R/diffExp-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/diffExp-methods.R'><code>R/diffExp-methods.R</code></a></small>
     <div class="hidden name"><code>diffExp.Rd</code></div>
     </div>
 
@@ -125,22 +131,22 @@
     <p>Differential expression</p>
     </div>
 
-    <pre class="usage"><span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>diffExp</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>diffExp</span>(
-  <span class='no'>object</span>,
-  <span class='no'>numerator</span>,
-  <span class='no'>denominator</span>,
-  <span class='kw'>caller</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span>),
-  <span class='kw'>minCells</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>minCellsPerGene</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>minCountsPerCell</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)
+<span class='fu'>diffExp</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  <span class='va'>numerator</span>,
+  <span class='va'>denominator</span>,
+  caller <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"edgeR"</span>, <span class='st'>"DESeq2"</span><span class='op'>)</span>,
+  minCells <span class='op'>=</span> <span class='fl'>2L</span>,
+  minCellsPerGene <span class='op'>=</span> <span class='fl'>1L</span>,
+  minCountsPerCell <span class='op'>=</span> <span class='fl'>1L</span>,
+  BPPARAM <span class='op'>=</span> <span class='fu'>BiocParallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>diffExp</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>diffExp</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,31 +257,38 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/Seurat/man/WhichCells.html'>Seurat::WhichCells()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Seurat</span>, package <span class='op'>=</span> <span class='st'>"AcidTest"</span><span class='op'>)</span>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>Seurat</span>
 
 <span class='co'>## Compare expression in cluster 2 relative to 1.</span>
-<span class='no'>clusters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='clusters.html'>clusters</a></span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div><div class='input'><span class='no'>numerator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"2"</span>]</div><div class='output co'>#&gt; <span class='error'>Error in clusters == "2": comparison (1) is possible only for atomic and list types</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>numerator</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'numerator' not found</span></div><div class='input'><span class='no'>denominator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>clusters</span>)[<span class='no'>clusters</span> <span class='kw'>==</span> <span class='st'>"1"</span>]</div><div class='output co'>#&gt; <span class='error'>Error in clusters == "1": comparison (1) is possible only for atomic and list types</span></div><div class='input'><span class='fu'><a href='summary.html'>summary</a></span>(<span class='no'>denominator</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'object' in selecting a method for function 'summary': object 'denominator' not found</span></div><div class='input'>
-## edgeR ====
-## &gt; x &lt;- diffExp(
-## &gt;     object = object,
-## &gt;     numerator = numerator,
-## &gt;     denominator = denominator,
-## &gt;     caller = "edgeR"
-## &gt; )
-## &gt; class(x)
-## &gt; summary(x)
+<span class='va'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='clusters.html'>clusters</a></span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+<span class='va'>numerator</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>clusters</span><span class='op'>)</span><span class='op'>[</span><span class='va'>clusters</span> <span class='op'>==</span> <span class='st'>"2"</span><span class='op'>]</span>
+<span class='fu'><a href='summary.html'>summary</a></span><span class='op'>(</span><span class='va'>numerator</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Length     Class      Mode 
+#&gt;        19 character character </div><div class='input'><span class='va'>denominator</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>clusters</span><span class='op'>)</span><span class='op'>[</span><span class='va'>clusters</span> <span class='op'>==</span> <span class='st'>"1"</span><span class='op'>]</span>
+<span class='fu'><a href='summary.html'>summary</a></span><span class='op'>(</span><span class='va'>denominator</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Length     Class      Mode 
+#&gt;        25 character character </div><div class='input'>
+<span class='co'>## edgeR ====</span>
+<span class='co'>## &gt; x &lt;- diffExp(</span>
+<span class='co'>## &gt;     object = object,</span>
+<span class='co'>## &gt;     numerator = numerator,</span>
+<span class='co'>## &gt;     denominator = denominator,</span>
+<span class='co'>## &gt;     caller = "edgeR"</span>
+<span class='co'>## &gt; )</span>
+<span class='co'>## &gt; class(x)</span>
+<span class='co'>## &gt; summary(x)</span>
 
-## DESeq2 ====
-## This will warn about weights with the minimal example.
-## &gt; x &lt;- diffExp(
-## &gt;     object = object,
-## &gt;     numerator = numerator,
-## &gt;     denominator = denominator,
-## &gt;     caller = "DESeq2"
-## &gt; )
-## &gt; class(x)
-## &gt; summary(x)
+<span class='co'>## DESeq2 ====</span>
+<span class='co'>## This will warn about weights with the minimal example.</span>
+<span class='co'>## &gt; x &lt;- diffExp(</span>
+<span class='co'>## &gt;     object = object,</span>
+<span class='co'>## &gt;     numerator = numerator,</span>
+<span class='co'>## &gt;     denominator = denominator,</span>
+<span class='co'>## &gt;     caller = "DESeq2"</span>
+<span class='co'>## &gt; )</span>
+<span class='co'>## &gt; class(x)</span>
+<span class='co'>## &gt; summary(x)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -292,7 +305,7 @@ and <code>cells.2</code> for the denominator. See <code><a href='https://rdrr.io
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

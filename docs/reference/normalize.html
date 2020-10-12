@@ -76,7 +76,7 @@ normcounts() and logcounts() slots in assays(), respectively." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -89,17 +89,23 @@ normcounts() and logcounts() slots in assays(), respectively." />
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -119,7 +125,7 @@ normcounts() and logcounts() slots in assays(), respectively." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Normalize expression using pre-computed size factors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/normalize-methods.R'><code>R/normalize-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/normalize-methods.R'><code>R/normalize-methods.R</code></a></small>
     <div class="hidden name"><code>normalize.Rd</code></div>
     </div>
 
@@ -129,13 +135,13 @@ from the raw count matrix defined in <code>counts()</code>. These matrices are s
 <code>normcounts()</code> and <code>logcounts()</code> slots in <code>assays()</code>, respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>normalize</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>normalize</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>normalize</span>(<span class='no'>object</span>)
+<span class='fu'>normalize</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>normalize</span>(<span class='no'>object</span>)</pre>
+<span class='fu'>normalize</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,20 +206,22 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 <li><p><code><a href='https://rdrr.io/pkg/scater/man/normalizeCounts.html'>scater::normalizeCounts()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/scater/man/logNormCounts.html'>scater::logNormCounts()</a></code>.</p></li>
 <li><p><code><a href='https://rdrr.io/pkg/Seurat/man/NormalizeData.html'>Seurat::NormalizeData()</a></code>.</p></li>
-<li><p><code>monocle3::preprocess_cds()</code>.</p></li>
-<li><p><code>monocle3::normalized_counts()</code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/preprocess_cds.html'>monocle3::preprocess_cds()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/monocle3/man/normalized_counts.html'>monocle3::normalized_counts()</a></code>.</p></li>
 </ul>
 </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='no'>SingleCellExperiment</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Seurat</span>, <span class='va'>SingleCellExperiment</span>, package <span class='op'>=</span> <span class='st'>"AcidTest"</span><span class='op'>)</span>
 
 <span class='co'>## SingleCellExperiment ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>SingleCellExperiment</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Calculating library size factors using <span style='color: #0000BB;'>mean-ratio</span><span> method.</span></div><div class='output co'>#&gt; <span class='message'>→ Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>→ Computing </span><span style='color: #000000;background-color: #BBBBBB;'>`normcounts`</span><span> and </span><span style='color: #000000;background-color: #BBBBBB;'>`logcounts`</span><span> assays using </span><span style='color: #0000BB;'>scater</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`normalizeCounts()`</span><span>.</span></div><div class='input'>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>SingleCellExperiment</span>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='fu'>normalize</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Calculating library size factors using <span style='color: #0000BB;'>mean-ratio</span><span> method.</span></div><div class='output co'>#&gt; <span class='message'>→ Centering size factors at 1.</span></div><div class='output co'>#&gt; <span class='message'>→ Computing </span><span style='color: #000000;background-color: #BBBBBB;'>`normcounts`</span><span> and </span><span style='color: #000000;background-color: #BBBBBB;'>`logcounts`</span><span> assays using </span><span style='color: #0000BB;'>scater</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`normalizeCounts()`</span><span>.</span></div><div class='input'>
 <span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='fu'>normalize</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='message'>→ Normalizing with </span><span style='color: #0000BB;'>Seurat</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`NormalizeData()`</span><span>.</span></div></span></pre>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>Seurat</span>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='fu'>normalize</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Normalizing with </span><span style='color: #0000BB;'>Seurat</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`NormalizeData()`</span><span>.</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -229,7 +237,7 @@ pseudo-count (i.e., on the same scale as the counts).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,23 +131,23 @@
     <p>Run Seurat</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runSeurat</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>runSeurat</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>runSeurat</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>regressCellCycle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"s-g2m-diff"</span>, <span class='st'>"yes"</span>, <span class='st'>"no"</span>),
-  <span class='kw'>varsToRegress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"nCount_RNA"</span>, <span class='st'>"mitoRatio"</span>),
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
-  <span class='kw'>tsneMethod</span> <span class='kw'>=</span> <span class='st'>"Rtsne"</span>,
-  <span class='kw'>umapMethod</span> <span class='kw'>=</span> <span class='st'>"uwot"</span>,
-  <span class='kw'>virtualenv</span> <span class='kw'>=</span> <span class='st'>"r-reticulate"</span>,
-  <span class='kw'>workers</span> <span class='kw'>=</span> <span class='st'>"auto"</span>
-)
+<span class='fu'>runSeurat</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  regressCellCycle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s-g2m-diff"</span>, <span class='st'>"yes"</span>, <span class='st'>"no"</span><span class='op'>)</span>,
+  varsToRegress <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nCount_RNA"</span>, <span class='st'>"mitoRatio"</span><span class='op'>)</span>,
+  dims <span class='op'>=</span> <span class='st'>"auto"</span>,
+  resolution <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.2</span>, to <span class='op'>=</span> <span class='fl'>1.2</span>, by <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
+  tsneMethod <span class='op'>=</span> <span class='st'>"Rtsne"</span>,
+  umapMethod <span class='op'>=</span> <span class='st'>"uwot"</span>,
+  virtualenv <span class='op'>=</span> <span class='st'>"r-reticulate"</span>,
+  workers <span class='op'>=</span> <span class='st'>"auto"</span>
+<span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment</span>
-<span class='fu'>runSeurat</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>runSeurat</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -263,7 +269,7 @@ https://satijalab.org/seurat/v3.0/future_vignette.html</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

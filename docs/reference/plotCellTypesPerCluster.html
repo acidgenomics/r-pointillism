@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -117,7 +123,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot cell types per cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCellTypesPerCluster-methods.R'><code>R/plotCellTypesPerCluster-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pointillism/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pointillism/blob/master/R/plotCellTypesPerCluster-methods.R'><code>R/plotCellTypesPerCluster-methods.R</code></a></small>
     <div class="hidden name"><code>plotCellTypesPerCluster.Rd</code></div>
     </div>
 
@@ -125,33 +131,33 @@
     <p>Plot cell types per cluster</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotCellTypesPerCluster</span>(<span class='no'>object</span>, <span class='no'>markers</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotCellTypesPerCluster</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>markers</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for SingleCellExperiment,KnownMarkers</span>
-<span class='fu'>plotCellTypesPerCluster</span>(
-  <span class='no'>object</span>,
-  <span class='no'>markers</span>,
-  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)
+<span class='fu'>plotCellTypesPerCluster</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  <span class='va'>markers</span>,
+  min <span class='op'>=</span> <span class='fl'>1L</span>,
+  max <span class='op'>=</span> <span class='cn'>Inf</span>,
+  reduction <span class='op'>=</span> <span class='st'>"UMAP"</span>,
+  expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mean"</span>, <span class='st'>"sum"</span><span class='op'>)</span>,
+  headerLevel <span class='op'>=</span> <span class='fl'>2L</span>,
+  <span class='va'>...</span>,
+  BPPARAM <span class='op'>=</span> <span class='fu'>BiocParallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,KnownMarkers</span>
-<span class='fu'>plotCellTypesPerCluster</span>(
-  <span class='no'>object</span>,
-  <span class='no'>markers</span>,
-  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
-  <span class='kw'>expression</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"sum"</span>),
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)</pre>
+<span class='fu'>plotCellTypesPerCluster</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  <span class='va'>markers</span>,
+  min <span class='op'>=</span> <span class='fl'>1L</span>,
+  max <span class='op'>=</span> <span class='cn'>Inf</span>,
+  reduction <span class='op'>=</span> <span class='st'>"UMAP"</span>,
+  expression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mean"</span>, <span class='st'>"sum"</span><span class='op'>)</span>,
+  headerLevel <span class='op'>=</span> <span class='fl'>2L</span>,
+  <span class='va'>...</span>,
+  BPPARAM <span class='op'>=</span> <span class='fu'>BiocParallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,18 +226,20 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
     <p>Updated 2020-02-21.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Seurat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>seurat_known_markers</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Seurat</span>, package <span class='op'>=</span> <span class='st'>"AcidTest"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>seurat_known_markers</span><span class='op'>)</span>
 
 <span class='co'>## Seurat ====</span>
-<span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='no'>Seurat</span>
-<span class='no'>markers</span> <span class='kw'>&lt;-</span> <span class='no'>seurat_known_markers</span>
+<span class='va'>object</span> <span class='op'>&lt;-</span> <span class='va'>Seurat</span>
+<span class='va'>markers</span> <span class='op'>&lt;-</span> <span class='va'>seurat_known_markers</span>
 
-<span class='fu'>plotCellTypesPerCluster</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>object</span>,
-    <span class='kw'>markers</span> <span class='kw'>=</span> <span class='no'>markers</span>,
-    <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "Seurat" object: slots in class definition but not in object: "images"</span></div></pre>
+<span class='fu'>plotCellTypesPerCluster</span><span class='op'>(</span>
+    object <span class='op'>=</span> <span class='va'>object</span>,
+    markers <span class='op'>=</span> <span class='va'>markers</span>,
+    reduction <span class='op'>=</span> <span class='st'>"UMAP"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in validObject(markers): invalid class "KnownMarkers" object: isSubset(x = c("alphaThreshold", "date", "version"), y = names(metadata(object))) is not TRUE.</span>
+#&gt; <span class='error'>Cause: 'c("alphaThreshold", "date", "version")' has elements not in 'names(metadata(object))': alphaThreshold</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -247,7 +255,7 @@ many (<code>max</code> cutoff) marker genes will be skipped.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
