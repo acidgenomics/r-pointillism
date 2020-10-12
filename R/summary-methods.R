@@ -1,3 +1,4 @@
+#' @name summary
 #' @inherit base::summary description return title
 #' @note Updated 2020-10-12.
 #'
