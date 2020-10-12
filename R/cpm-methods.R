@@ -33,15 +33,6 @@ NULL
 
 
 
-#' @rdname cpm
-#' @name cpm
-#' @importFrom AcidGenerics cpm
-#' @usage cpm(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-01-30.
 `cpm,SingleCellExperiment` <-  # nolint
     function(object) {

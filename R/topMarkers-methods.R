@@ -21,15 +21,6 @@ NULL
 
 
 
-#' @rdname topMarkers
-#' @name topMarkers
-#' @importFrom AcidGenerics topMarkers
-#' @usage topMarkers(object, ...)
-#' @export
-NULL
-
-
-
 ## Note that the validity method checks for sorting by adjusted P value.
 ## Updated 2020-02-21.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint

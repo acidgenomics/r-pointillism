@@ -41,37 +41,6 @@ NULL
 
 
 
-#' @rdname plotReducedDim
-#' @name plotReducedDim
-#' @importFrom AcidGenerics plotReducedDim
-#' @usage plotReducedDim(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotPCA
-#' @importFrom BiocGenerics plotPCA
-#' @usage plotPCA(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotTSNE
-#' @importFrom AcidGenerics plotTSNE
-#' @usage plotTSNE(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotUMAP
-#' @importFrom AcidGenerics plotUMAP
-#' @usage plotUMAP(object, ...)
-#' @export
-NULL
-
-
-
-## Constructors ================================================================
 ## Updated 2020-02-21.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(

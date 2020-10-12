@@ -25,15 +25,6 @@ NULL
 
 
 
-#' @rdname plotFeature
-#' @name plotFeature
-#' @importFrom AcidGenerics plotFeature
-#' @usage plotFeature(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-02-21.
 `plotFeature,SingleCellExperiment` <-  # nolint
     function(

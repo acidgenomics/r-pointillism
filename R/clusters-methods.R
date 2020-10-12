@@ -21,15 +21,6 @@ NULL
 
 
 
-#' @rdname clusters
-#' @name clusters
-#' @importFrom AcidGenerics clusters
-#' @usage clusters(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-08-06.
 `clusters,SingleCellExperiment` <-  # nolint
     function(object) {

@@ -17,15 +17,6 @@ NULL
 
 
 
-#' @rdname plotCellCountsPerCluster
-#' @name plotCellCountsPerCluster
-#' @importFrom AcidGenerics plotCellCountsPerCluster
-#' @usage plotCellCountsPerCluster(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-08-03.
 `plotCellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(

@@ -42,15 +42,6 @@ NULL
 
 
 
-#' @rdname diffExpPerCluster
-#' @name diffExpPerCluster
-#' @importFrom AcidGenerics diffExpPerCluster
-#' @usage diffExpPerCluster(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-01-30.
 `diffExpPerCluster,SingleCellExperiment` <-  # nolint
     function(

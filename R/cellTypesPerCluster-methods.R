@@ -25,15 +25,6 @@ NULL
 
 
 
-#' @rdname cellTypesPerCluster
-#' @name cellTypesPerCluster
-#' @importFrom AcidGenerics cellTypesPerCluster
-#' @usage cellTypesPerCluster(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-09-03.
 `cellTypesPerCluster,KnownMarkers` <-  # nolint
     function(
