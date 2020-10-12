@@ -36,7 +36,7 @@ ensembldb in use.}
 Cell-type markers
 }
 \note{
-Updated 2020-02-21.
+Updated 2020-10-12.
 }
 \examples{
 markers_dir <- system.file(
