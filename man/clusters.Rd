@@ -27,7 +27,7 @@ Cluster identifiers
 Updated 2019-08-02.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat

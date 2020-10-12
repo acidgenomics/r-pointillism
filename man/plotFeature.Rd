@@ -97,7 +97,7 @@ Plot feature
 Updated 2020-02-21.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat

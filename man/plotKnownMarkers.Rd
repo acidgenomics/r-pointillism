@@ -59,7 +59,7 @@ Plot known markers
 Updated 2020-01-30.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 data(seurat_known_markers)
 
 ## Seurat ====

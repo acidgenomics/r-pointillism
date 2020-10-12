@@ -48,7 +48,7 @@ Plot stacked bar plot
 Updated 2020-06-10.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat

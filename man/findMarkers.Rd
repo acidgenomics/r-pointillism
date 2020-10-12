@@ -39,7 +39,7 @@ Find cluster-specific marker genes
 Updated 2020-01-30.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat
