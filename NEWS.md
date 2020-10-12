@@ -1,3 +1,11 @@
+## pointillism 0.4.14 (2020-10-12)
+
+### Minor changes
+
+- Renamed `alpha` argument to `alphaThreshold`, matching naming conventions
+  used in other Acid Genomics packages. Applies to marker class objects.
+- Updated dependencies to support naming changes in Acid Genomics packages.
+
 ## pointillism 0.4.13 (2020-08-04)
 
 ### Minor changes
