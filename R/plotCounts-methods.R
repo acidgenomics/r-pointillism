@@ -1,13 +1,13 @@
 #' @name plotCounts
 #' @aliases plotDots plotViolin
-#' @inherit acidgenerics::plotCounts
+#' @inherit AcidGenerics::plotCounts
 #'
 #' @note Dot geom currently only supports logcounts.
 #' @note Updated 2020-02-21.
 #'
 #' @description Visualize genes on a dot or violin plot.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams ggplot2::geom_violin
 #' @param colMin `numeric(1)`.
 #'   Minimum scaled average expression threshold. Everything smaller will be
@@ -52,7 +52,7 @@ NULL
 
 #' @rdname plotCounts
 #' @name plotCounts
-#' @importFrom acidgenerics plotCounts
+#' @importFrom AcidGenerics plotCounts
 #' @usage plotCounts(object, ...)
 #' @export
 NULL

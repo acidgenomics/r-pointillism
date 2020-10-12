@@ -35,7 +35,7 @@ NULL
 #'   sizeFactors sizeFactors<-
 #' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
 #'   colData colData<- rowData rowData<- rowRanges rowRanges<-
-#' @importFrom acidplots acid_theme_dark acid_theme_light matchLabels
+#' @importFrom AcidPlots acid_theme_dark acid_theme_light matchLabels
 #' @importFrom basejump Gene2Symbol camelCase coerce convertGenesToSymbols
 #'   decode estimateSizeFactors geometricMean import interestingGroups
 #'   interestingGroups<- leftJoin makeGene2SymbolFromEnsembl makeNames

@@ -1,8 +1,8 @@
 #' @name plotStackedBarPlot
-#' @inherit acidgenerics::plotStackedBarPlot
+#' @inherit AcidGenerics::plotStackedBarPlot
 #' @note Updated 2020-06-10.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param absolute `logical(1)`.
 #'   Return absolute (`TRUE`) or relative/proportional (`FALSE`) cell count.
 #' @param ... Additional arguments.
@@ -19,7 +19,7 @@ NULL
 
 #' @rdname plotStackedBarPlot
 #' @name plotStackedBarPlot
-#' @importFrom acidgenerics plotStackedBarPlot
+#' @importFrom AcidGenerics plotStackedBarPlot
 #' @usage plotStackedBarPlot(object, ...)
 #' @export
 NULL

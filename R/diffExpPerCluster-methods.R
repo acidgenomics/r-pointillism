@@ -3,10 +3,10 @@
 
 
 #' @name diffExpPerCluster
-#' @inherit acidgenerics::diffExpPerCluster
+#' @inherit AcidGenerics::diffExpPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams diffExp
 #' @param group `character(1)`.
 #'   Group of interest for differential expression per cluster. Must be a
@@ -44,7 +44,7 @@ NULL
 
 #' @rdname diffExpPerCluster
 #' @name diffExpPerCluster
-#' @importFrom acidgenerics diffExpPerCluster
+#' @importFrom AcidGenerics diffExpPerCluster
 #' @usage diffExpPerCluster(object, ...)
 #' @export
 NULL

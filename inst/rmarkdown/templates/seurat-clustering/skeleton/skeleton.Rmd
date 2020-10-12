@@ -9,7 +9,7 @@ params:
   vars_to_regress: !r c("nUMI", "mitoRatio", "S.Score", "G2M.Score")
   resolution_calc: !r seq(from = 0.2, to = 1.2, by = 0.1)
   resolution_use: 0.6
-  ## Use dark mode theme (i.e. `acidplots::acid_theme_dark()`).
+  ## Use dark mode theme (i.e. `AcidPlots::acid_theme_dark()`).
   dark: FALSE
   data_dir: !r file.path("rds", Sys.Date())
 

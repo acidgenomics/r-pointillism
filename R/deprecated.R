@@ -20,7 +20,7 @@ clusterID <- function(...) {
 
 
 ## v0.4.5 ======================================================================
-#' @importFrom acidgenerics plotDot
+#' @importFrom AcidGenerics plotDot
 NULL
 
 `plotDot,ANY` <-  # nolint

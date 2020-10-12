@@ -7,7 +7,7 @@
 #'   easily.
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`.
 #'   Grouped by `cellType` column. Known markers `data.frame` imported by

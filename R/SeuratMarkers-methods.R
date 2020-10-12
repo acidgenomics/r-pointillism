@@ -8,7 +8,7 @@
 #'   in the `gene` column.
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @param object
 #'   Unmodified Seurat marker return `data.frame`.

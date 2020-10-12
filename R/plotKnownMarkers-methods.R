@@ -1,8 +1,8 @@
 #' @name plotKnownMarkers
-#' @inherit acidgenerics::plotKnownMarkers
+#' @inherit AcidGenerics::plotKnownMarkers
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
@@ -24,7 +24,7 @@ NULL
 
 #' @rdname plotKnownMarkers
 #' @name plotKnownMarkers
-#' @importFrom acidgenerics plotKnownMarkers
+#' @importFrom AcidGenerics plotKnownMarkers
 #' @usage plotKnownMarkers(object, markers, ...)
 #' @export
 NULL

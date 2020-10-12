@@ -1,9 +1,9 @@
 #' @name cpm
-#' @inherit acidgenerics::cpm
+#' @inherit AcidGenerics::cpm
 #' @keywords internal
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @seealso
 #' - [SingleCellExperiment::cpm()].
@@ -35,7 +35,7 @@ NULL
 
 #' @rdname cpm
 #' @name cpm
-#' @importFrom acidgenerics cpm
+#' @importFrom AcidGenerics cpm
 #' @usage cpm(object, ...)
 #' @export
 NULL

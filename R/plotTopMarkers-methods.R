@@ -1,5 +1,5 @@
 #' @name plotTopMarkers
-#' @inherit acidgenerics::plotTopMarkers
+#' @inherit AcidGenerics::plotTopMarkers
 #' @note Updated 2020-01-30.
 #'
 #' @details
@@ -9,7 +9,7 @@
 #' for the number of genes to plot here in a future update.
 #'
 #' @inheritParams topMarkers
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
@@ -30,7 +30,7 @@ NULL
 
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
-#' @importFrom acidgenerics plotTopMarkers
+#' @importFrom AcidGenerics plotTopMarkers
 #' @usage plotTopMarkers(object, markers, ...)
 #' @export
 NULL

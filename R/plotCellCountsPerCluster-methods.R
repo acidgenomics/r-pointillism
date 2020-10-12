@@ -1,8 +1,8 @@
 #' @name plotCellCountsPerCluster
-#' @inherit acidgenerics::plotCellCountsPerCluster
+#' @inherit AcidGenerics::plotCellCountsPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return Show graphical output. Invisibly return `ggplot`.
@@ -19,7 +19,7 @@ NULL
 
 #' @rdname plotCellCountsPerCluster
 #' @name plotCellCountsPerCluster
-#' @importFrom acidgenerics plotCellCountsPerCluster
+#' @importFrom AcidGenerics plotCellCountsPerCluster
 #' @usage plotCellCountsPerCluster(object, ...)
 #' @export
 NULL

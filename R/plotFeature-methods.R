@@ -1,8 +1,8 @@
 #' @name plotFeature
-#' @inherit acidgenerics::plotFeature
+#' @inherit AcidGenerics::plotFeature
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
 #'   scores, number of genes detected).
 #' @param ... Additional arguments.
@@ -27,7 +27,7 @@ NULL
 
 #' @rdname plotFeature
 #' @name plotFeature
-#' @importFrom acidgenerics plotFeature
+#' @importFrom AcidGenerics plotFeature
 #' @usage plotFeature(object, ...)
 #' @export
 NULL

@@ -34,7 +34,7 @@
 #' @name normalize
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return Modified object.
