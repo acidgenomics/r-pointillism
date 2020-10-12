@@ -14,7 +14,7 @@
 #' data(
 #'     Seurat,
 #'     SingleCellExperiment,
-#'     package = "acidtest"
+#'     package = "AcidTest"
 #' )
 #'
 #' ## SingleCellExperiment ====

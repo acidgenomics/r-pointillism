@@ -21,7 +21,7 @@
 #' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat

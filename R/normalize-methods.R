@@ -50,7 +50,7 @@
 #' - `monocle3::normalized_counts()`.
 #'
 #' @examples
-#' data(Seurat, SingleCellExperiment, package = "acidtest")
+#' data(Seurat, SingleCellExperiment, package = "AcidTest")
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
