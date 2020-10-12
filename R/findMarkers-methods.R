@@ -28,15 +28,6 @@ NULL
 
 
 
-#' @rdname findMarkers
-#' @name findMarkers
-#' @importFrom AcidGenerics findMarkers
-#' @usage findMarkers(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-05-21.
 `findMarkers,SingleCellExperiment` <-  # nolint
     function(

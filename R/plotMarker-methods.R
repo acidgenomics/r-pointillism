@@ -26,15 +26,6 @@ NULL
 
 
 
-#' @rdname plotMarker
-#' @name plotMarker
-#' @importFrom AcidGenerics plotMarker
-#' @usage plotMarker(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-02-21.
 `plotMarker,SingleCellExperiment` <-  # nolint
     function(

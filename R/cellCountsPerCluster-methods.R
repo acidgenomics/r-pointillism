@@ -18,15 +18,6 @@ NULL
 
 
 
-#' @rdname cellCountsPerCluster
-#' @name cellCountsPerCluster
-#' @importFrom AcidGenerics cellCountsPerCluster
-#' @usage cellCountsPerCluster(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-10-30.
 `cellCountsPerCluster,SingleCellExperiment` <-  # nolint
     function(object) {

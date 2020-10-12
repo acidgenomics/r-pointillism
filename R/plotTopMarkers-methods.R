@@ -28,15 +28,6 @@ NULL
 
 
 
-#' @rdname plotTopMarkers
-#' @name plotTopMarkers
-#' @importFrom AcidGenerics plotTopMarkers
-#' @usage plotTopMarkers(object, markers, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-08-23.
 `plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(

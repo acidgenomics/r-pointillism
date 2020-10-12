@@ -1,5 +1,3 @@
-#' @name summary
-#' @importFrom S4Vectors summary
 #' @inherit base::summary description return title
 #' @note Updated 2020-10-12.
 #'
@@ -13,15 +11,6 @@
 #' object <- seurat_all_markers
 #' class(object)
 #' summary(object)
-NULL
-
-
-
-#' @rdname summary
-#' @name summary
-#' @importFrom S4Vectors summary
-#' @usage summary(object, ...)
-#' @export
 NULL
 
 

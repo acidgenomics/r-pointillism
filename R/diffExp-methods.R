@@ -107,15 +107,6 @@ NULL
 
 
 
-#' @rdname diffExp
-#' @name diffExp
-#' @importFrom AcidGenerics diffExp
-#' @usage diffExp(object, ...)
-#' @export
-NULL
-
-
-
 .designFormula <- ~group
 
 

@@ -50,15 +50,6 @@ NULL
 
 
 
-#' @rdname plotCounts
-#' @name plotCounts
-#' @importFrom AcidGenerics plotCounts
-#' @usage plotCounts(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-02-21.
 `plotCounts,SingleCellExperiment` <-  # nolint
     function(

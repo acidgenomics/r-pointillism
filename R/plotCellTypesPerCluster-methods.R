@@ -27,15 +27,6 @@ NULL
 
 
 
-#' @rdname plotCellTypesPerCluster
-#' @name plotCellTypesPerCluster
-#' @importFrom AcidGenerics plotCellTypesPerCluster
-#' @usage plotCellTypesPerCluster(object, markers, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-02-21.
 `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(

@@ -30,15 +30,6 @@ NULL
 
 
 
-#' @rdname plotPCElbow
-#' @name plotPCElbow
-#' @importFrom AcidGenerics plotPCElbow
-#' @usage plotPCElbow(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-09-03.
 .plotPCElbow <-
     function(

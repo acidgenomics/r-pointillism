@@ -63,15 +63,6 @@ NULL
 
 
 
-#' @rdname normalize
-#' @name normalize
-#' @importFrom BiocGenerics normalize
-#' @usage normalize(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-01-30.
 `normalize,SingleCellExperiment` <-  # nolint
     function(object) {

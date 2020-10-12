@@ -17,15 +17,6 @@ NULL
 
 
 
-#' @rdname plotStackedBarPlot
-#' @name plotStackedBarPlot
-#' @importFrom AcidGenerics plotStackedBarPlot
-#' @usage plotStackedBarPlot(object, ...)
-#' @export
-NULL
-
-
-
 `plotStackedBarPlot,SingleCellExperiment` <-  # nolint
     function(
         object,

@@ -22,15 +22,6 @@ NULL
 
 
 
-#' @rdname plotKnownMarkers
-#' @name plotKnownMarkers
-#' @importFrom AcidGenerics plotKnownMarkers
-#' @usage plotKnownMarkers(object, markers, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-09-03.
 `plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
     function(
