@@ -104,7 +104,7 @@ Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 Updated 2020-02-21.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat

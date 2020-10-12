@@ -80,7 +80,7 @@ many (\code{max} cutoff) marker genes will be skipped.
 Updated 2020-02-21.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 data(seurat_known_markers)
 
 ## Seurat ====

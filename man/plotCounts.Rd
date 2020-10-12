@@ -76,7 +76,7 @@ plotViolin(object, ...)
   perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
+    AcidPlots::scale_color_synesthesia_d()),
   legend = getOption("acid.legend", default = TRUE),
   title = NULL
 )
@@ -88,7 +88,7 @@ plotViolin(object, ...)
   perSample = TRUE,
   scale = c("count", "width", "area"),
   color = getOption("acid.discrete.color", default =
-    acidplots::scale_color_synesthesia_d()),
+    AcidPlots::scale_color_synesthesia_d()),
   legend = getOption("acid.legend", default = TRUE),
   title = NULL
 )
@@ -156,7 +156,7 @@ Dot geom currently only supports logcounts.
 Updated 2020-02-21.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat

@@ -63,7 +63,7 @@ for the number of genes to plot here in a future update.
 Updated 2020-01-30.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 data(seurat_all_markers)
 
 ## Seurat, SeuratMarkersPerCluster ====

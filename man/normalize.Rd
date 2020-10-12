@@ -63,7 +63,7 @@ pseudo-count (i.e., on the same scale as the counts).
 }
 
 \examples{
-data(Seurat, SingleCellExperiment, package = "acidtest")
+data(Seurat, SingleCellExperiment, package = "AcidTest")
 
 ## SingleCellExperiment ====
 object <- SingleCellExperiment

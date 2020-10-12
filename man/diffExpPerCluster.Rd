@@ -44,13 +44,13 @@ Cluster identity (\code{ident}) must be defined in
 \code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData()}} for this function to work.
 }
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat
 group <- factor(c("group1", "group2"))
 colData(object)$group <- group
-suppressMessages(
+suppressMessages({
     x <- diffExpPerCluster(
         object = object,
         group = "group",
@@ -58,7 +58,7 @@ suppressMessages(
         denominator = "group1",
         caller = "edgeR"
     )
-)
+})
 class(x)
 lapply(x, class)
 }

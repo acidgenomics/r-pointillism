@@ -113,7 +113,7 @@ and \code{cells.2} for the denominator. See \code{\link[Seurat:FindMarkers]{Seur
 }
 
 \examples{
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 object <- Seurat
 
 ## Compare expression in cluster 2 relative to 1.

@@ -31,7 +31,7 @@ Updated 2020-01-30.
 data(
     Seurat,
     SingleCellExperiment,
-    package = "acidtest"
+    package = "AcidTest"
 )
 
 ## SingleCellExperiment ====
