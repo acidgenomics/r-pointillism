@@ -7,7 +7,7 @@
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #' data(seurat_known_markers)
 #'
 #' ## Seurat ====

@@ -8,7 +8,7 @@
 #' @return Show graphical output. Invisibly return `ggplot`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat

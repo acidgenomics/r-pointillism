@@ -32,7 +32,7 @@
 #' - `monocle3::plot_genes_violin()`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat

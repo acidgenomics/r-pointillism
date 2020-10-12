@@ -5,7 +5,7 @@ library(usethis)
 library(Seurat)   # 3.2.0
 
 data(cell_type_markers_list)
-data(Seurat, package = "acidtest")
+data(Seurat, package = "AcidTest")
 
 ## seurat_all_markers ===========================================================
 seurat_all_markers <- withCallingHandlers(

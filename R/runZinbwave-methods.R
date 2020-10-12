@@ -37,7 +37,7 @@
 #'
 #' @examples
 #' if (requireNamespace("zinbwave", quietly = TRUE)) {
-#'     data(SingleCellExperiment, package = "acidtest")
+#'     data(SingleCellExperiment, package = "AcidTest")
 #'     Y <- SingleCellExperiment
 #'     Y <- nonzeroRowsAndCols(Y)
 #'     Y <- runZinbwave(Y)

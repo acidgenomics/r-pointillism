@@ -1,6 +1,6 @@
 ## Updated 2019-07-31.
 .prototypeMetadata <- list(
-    version = packageVersion("pointillism"),
+    version = packageVersion(packageName()),
     date = Sys.Date()
 )
 

@@ -69,13 +69,6 @@ Suggests:
     splatter,
     testthat,
     zinbwave
-Remotes:
-    acidgenomics/acidgenerics,
-    acidgenomics/acidgsea,
-    acidgenomics/acidplots,
-    acidgenomics/acidtest,
-    acidgenomics/basejump,
-    acidgenomics/goalie
 biocViews:
     Clustering,
     DataRepresentation,

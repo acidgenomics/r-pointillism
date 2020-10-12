@@ -69,7 +69,7 @@ NULL
         }
         metadata(x) <- list(
             alpha = alpha,
-            version = packageVersion("pointillism"),
+            version = packageVersion(packageName()),
             date = Sys.Date()
         )
         new(Class = "KnownMarkers", x)
