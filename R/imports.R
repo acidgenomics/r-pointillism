@@ -66,7 +66,7 @@ NULL
 #' @importFrom scater calculateCPM normalizeCounts
 #' @importFrom sessioninfo session_info
 #' @importFrom stats median model.matrix relevel
-#' @importFrom utils capture.output data globalVariables packageVersion
+#' @importFrom utils capture.output data packageName packageVersion
 NULL
 
 
