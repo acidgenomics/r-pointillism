@@ -1,9 +1,9 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @inherit acidgenerics::plotMarker
+#' @inherit AcidGenerics::plotMarker
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -28,7 +28,7 @@ NULL
 
 #' @rdname plotMarker
 #' @name plotMarker
-#' @importFrom acidgenerics plotMarker
+#' @importFrom AcidGenerics plotMarker
 #' @usage plotMarker(object, ...)
 #' @export
 NULL

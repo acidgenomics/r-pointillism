@@ -1,8 +1,8 @@
 #' @name topMarkers
-#' @inherit acidgenerics::topMarkers
+#' @inherit AcidGenerics::topMarkers
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param n `integer(1)`.
 #'   Number of genes per cluster.
 #' @param direction `character(1)`.
@@ -23,7 +23,7 @@ NULL
 
 #' @rdname topMarkers
 #' @name topMarkers
-#' @importFrom acidgenerics topMarkers
+#' @importFrom AcidGenerics topMarkers
 #' @usage topMarkers(object, ...)
 #' @export
 NULL

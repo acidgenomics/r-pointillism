@@ -46,7 +46,7 @@
 
 - `plotReducedDim`, `plotMarker`: Changed title handling support. Switched from
   using `title` argument in favor of `labels`, which better matches the
-  conventions now used in acidplots.
+  conventions now used in AcidPlots.
 
 ### Minor changes
 
@@ -64,7 +64,7 @@
 
 ### Minor changes
 
-- Reworked NAMESPACE to support migration of bioverbs package to acidgenerics.
+- Reworked NAMESPACE to support migration of bioverbs package to AcidGenerics.
 
 ## pointillism 0.4.5 (2020-01-03)
 
@@ -136,7 +136,7 @@ Initial support for monocle3 `cell_data_set` class.
 
 ### Minor changes
 
-- Switch to importing ggplot2 code from new [acidplots][] package. Recommended
+- Switch to importing ggplot2 code from new [AcidPlots][] package. Recommended
   default ggplot2 themes are now named `acid_theme_light` and `acid_theme_dark`.
 - Consolidated S4 class and generator function documentation into single Rd
   files, where applicable.
@@ -328,7 +328,7 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 
 - Initial release.
 
-[acidplots]: https://acidplots.acidgenomics.com/
+[AcidPlots]: https://AcidPlots.acidgenomics.com/
 [Acid Genomics]: https://acidgenomics.com/
 [basejump]: https://basejump.acidgenomics.com/
 [bioverbs]: https://bioverbs.acidgenomics.com/

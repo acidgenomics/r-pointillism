@@ -1,8 +1,8 @@
 #' @name cellCountsPerCluster
-#' @inherit acidgenerics::cellCountsPerCluster
+#' @inherit AcidGenerics::cellCountsPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return `DataFrame`.
@@ -20,7 +20,7 @@ NULL
 
 #' @rdname cellCountsPerCluster
 #' @name cellCountsPerCluster
-#' @importFrom acidgenerics cellCountsPerCluster
+#' @importFrom AcidGenerics cellCountsPerCluster
 #' @usage cellCountsPerCluster(object, ...)
 #' @export
 NULL

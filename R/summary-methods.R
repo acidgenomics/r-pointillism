@@ -1,9 +1,9 @@
 #' @name summary
 #' @importFrom S4Vectors summary
-#' @inherit basejump::summary
-#' @note Updated 2020-01-30.
+#' @inherit base::summary description return title
+#' @note Updated 2020-10-12.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples

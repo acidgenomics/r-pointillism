@@ -1,8 +1,8 @@
 #' @name clusters
-#' @inherit acidgenerics::clusters
+#' @inherit AcidGenerics::clusters
 #' @note Updated 2019-08-02.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @seealso
@@ -23,7 +23,7 @@ NULL
 
 #' @rdname clusters
 #' @name clusters
-#' @importFrom acidgenerics clusters
+#' @importFrom AcidGenerics clusters
 #' @usage clusters(object, ...)
 #' @export
 NULL

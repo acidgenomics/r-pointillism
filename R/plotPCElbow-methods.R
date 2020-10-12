@@ -1,12 +1,12 @@
 #' @name plotPCElbow
-#' @inherit acidgenerics::plotPCElbow
+#' @inherit AcidGenerics::plotPCElbow
 #' @note Updated 2020-01-30.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param minPct `numeric(1)` (`0`-`1`).
 #'   Minimum percent standard deviation.
 #' @param maxCumPct `numeric(1)` (`0`-`1`).
@@ -32,7 +32,7 @@ NULL
 
 #' @rdname plotPCElbow
 #' @name plotPCElbow
-#' @importFrom acidgenerics plotPCElbow
+#' @importFrom AcidGenerics plotPCElbow
 #' @usage plotPCElbow(object, ...)
 #' @export
 NULL

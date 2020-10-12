@@ -1,6 +1,6 @@
 #' @rdname plotCounts
 #' @name plotViolin
-#' @importFrom acidgenerics plotViolin
+#' @importFrom AcidGenerics plotViolin
 #' @usage plotViolin(object, ...)
 #' @export
 NULL

@@ -1,8 +1,8 @@
 #' @name findMarkers
-#' @inherit acidgenerics::findMarkers
+#' @inherit AcidGenerics::findMarkers
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param clusters `character` or `NULL`.
 #'   Cluster identifiers.
 #'   Must correspond to values in [clusters()].
@@ -30,7 +30,7 @@ NULL
 
 #' @rdname findMarkers
 #' @name findMarkers
-#' @importFrom acidgenerics findMarkers
+#' @importFrom AcidGenerics findMarkers
 #' @usage findMarkers(object, ...)
 #' @export
 NULL

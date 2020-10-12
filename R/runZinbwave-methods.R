@@ -20,7 +20,7 @@
 #' single core. On Linux or macOS, `BiocParallel::MulticoreParam` should work
 #' to run with multiple cores.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams zinbwave::zinbFit
 #' @inheritParams zinbwave::zinbModel
 #' @inheritParams zinbwave::zinbwave

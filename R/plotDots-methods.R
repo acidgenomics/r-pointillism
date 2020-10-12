@@ -1,6 +1,6 @@
 #' @rdname plotCounts
 #' @name plotDots
-#' @importFrom acidgenerics plotDots
+#' @importFrom AcidGenerics plotDots
 #' @usage plotDots(object, ...)
 #' @export
 NULL
