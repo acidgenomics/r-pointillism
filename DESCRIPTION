@@ -60,8 +60,8 @@ Imports:
     stats,
     utils
 Suggests:
+    AcidTest (>= 0.4.0),
     BiocStyle,
-    acidtest (>= 0.3.2),
     future,
     knitr,
     reticulate,
