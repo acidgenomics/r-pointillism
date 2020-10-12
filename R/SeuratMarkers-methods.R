@@ -6,9 +6,9 @@
 #' @name SeuratMarkers
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
-#' @note Updated 2020-01-30.
+#' @note Updated 2020-10-12.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @param object
 #'   Unmodified Seurat marker return `data.frame`.
@@ -21,7 +21,7 @@
 #' @return `SeuratMarkers`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -53,7 +53,7 @@ NULL
     function(
         object,
         ranges,
-        alpha = 0.05
+        alphaThreshold = 0.05
     ) {
         assert(
             hasRows(object),
@@ -63,7 +63,7 @@ NULL
                 x = c("geneID", "geneName"),
                 y = colnames(mcols(ranges))
             ),
-            isAlpha(alpha)
+            isAlpha(alphaThreshold)
         )
         ## Detect function from column names.
         cols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
@@ -123,7 +123,7 @@ NULL
         metadata(x) <- c(
             .prototypeMetadata,
             list(
-                alpha = alpha,
+                alphaThreshold = alphaThreshold,
                 sessionInfo = session_info(include_base = TRUE)
             )
         )

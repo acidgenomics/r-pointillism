@@ -1,7 +1,3 @@
-globalVariables(".")
-
-
-
 .formalsList <- list(
     BPPARAM = quote(BiocParallel::bpparam()),  # nolint
     continuousColor =
@@ -25,7 +21,7 @@ globalVariables(".")
     discreteColor =
         quote(getOption(
             "acid.discrete.color",
-            default = acidplots::scale_color_synesthesia_d()
+            default = AcidPlots::scale_color_synesthesia_d()
         )),
     dark = quote(getOption("acid.dark", default = FALSE)),
     dims = quote(c(1L, 2L)),
@@ -51,9 +47,9 @@ globalVariables(".")
 
 ## > ## Set default ggplot2 theme.
 ## > if (isTRUE(getOption("acid.dark"))) {
-## >     theme <- acidplots::acid_theme_dark
+## >     theme <- AcidPlots::acid_theme_dark
 ## > } else {
-## >     theme <- acidplots::acid_theme_light
+## >     theme <- AcidPlots::acid_theme_light
 ## > }
 ## > theme <- theme(base_size = 14L, legend_position = "right")
 ## > ggplot2::theme_set(new = theme)

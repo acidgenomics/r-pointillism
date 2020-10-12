@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extend base S4 methods for <code>Seurat</code> class — base-Seurat • pointillism</title>
+<title>Extend base S4 methods for Seurat class — base-Seurat • pointillism</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extend base S4 methods for <code>Seurat</code> class — base-Seurat" />
+<meta property="og:title" content="Extend base S4 methods for Seurat class — base-Seurat" />
 <meta property="og:description" content="Provide limited SingleCellExperiment-like method support." />
 
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -126,94 +132,94 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for Seurat</span>
-<span class='fu'>Gene2Symbol</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>Gene2Symbol</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,ANY</span>
-<span class='fu'>assay</span>(<span class='no'>x</span>, <span class='no'>i</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>assay</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span>, withDimnames <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>assayNames</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>assayNames</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>assays</span>(<span class='no'>x</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>assays</span><span class='op'>(</span><span class='va'>x</span>, withDimnames <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>colData</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>colData</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,DataFrame</span>
-<span class='fu'>colData</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>colData</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>counts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>counts</span><span class='op'>(</span><span class='va'>object</span>, assay <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>interestingGroups</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>interestingGroups</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,character</span>
-<span class='fu'>interestingGroups</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>interestingGroups</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>logcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>logcounts</span><span class='op'>(</span><span class='va'>object</span>, assay <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>mapGenesToIDs</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>mapGenesToIDs</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>genes</span>, strict <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>mapGenesToRownames</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>mapGenesToRownames</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>genes</span>, strict <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>mapGenesToSymbols</span>(<span class='no'>object</span>, <span class='no'>genes</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>mapGenesToSymbols</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>genes</span>, strict <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>metadata</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>metadata</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>metrics</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'>metrics</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>normcounts</span>(<span class='no'>object</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>normcounts</span><span class='op'>(</span><span class='va'>object</span>, assay <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>organism</span>(<span class='no'>object</span>)
+<span class='fu'>organism</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>organism</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>organism</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat,ANY</span>
-<span class='fu'>reducedDim</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>withDimnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>reducedDim</span><span class='op'>(</span><span class='va'>x</span>, type <span class='op'>=</span> <span class='fl'>1L</span>, withDimnames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>reducedDimNames</span>(<span class='no'>x</span>)
+<span class='fu'>reducedDimNames</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>reducedDims</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>reducedDims</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>rowData</span>(<span class='no'>x</span>, <span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>rowData</span><span class='op'>(</span><span class='va'>x</span>, use.names <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>rowRanges</span>(<span class='no'>x</span>)
+<span class='fu'>rowRanges</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,ANY</span>
-<span class='fu'>rowRanges</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>rowRanges</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>sampleData</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ignoreCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>, <span class='st'>"^samRef$"</span>),
-  <span class='kw'>blacklistCols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"^ident$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^sScore$"</span>, <span class='st'>"^phase$"</span>, <span class='st'>"^oldIdent$"</span>,
-    <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[0-9]+"</span>)
-)
+<span class='fu'>sampleData</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  clean <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ignoreCols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^description$"</span>, <span class='st'>"^genomeBuild$"</span>, <span class='st'>"^qualityFormat$"</span>, <span class='st'>"^samRef$"</span><span class='op'>)</span>,
+  blacklistCols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^ident$"</span>, <span class='st'>"^g2mScore$"</span>, <span class='st'>"^sScore$"</span>, <span class='st'>"^phase$"</span>, <span class='st'>"^oldIdent$"</span>,
+    <span class='st'>"^origIdent$"</span>, <span class='st'>"^res[0-9]+"</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># S4 method for Seurat,DataFrame</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>sampleData</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for Seurat</span>
-<span class='fu'>sampleNames</span>(<span class='no'>object</span>)</pre>
+<span class='fu'>sampleNames</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -234,7 +240,8 @@
       <th>i</th>
       <td><p>Indices specifying elements to extract or replace. Indices are <code>numeric</code> or
 <code>character</code> vectors, empty (<code>missing</code>), or <code>NULL</code>.</p>
-<p>For more information:</p><pre><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span>(<span class='kw'>topic</span> <span class='kw'>=</span> <span class='st'>"Extract"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</pre></td>
+<p>For more information:</p><pre><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span>topic <span class='op'>=</span> <span class='st'>"Extract"</span>, package <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+</pre></td>
     </tr>
     <tr>
       <th>value</th>
@@ -281,7 +288,7 @@ Gene identifiers.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

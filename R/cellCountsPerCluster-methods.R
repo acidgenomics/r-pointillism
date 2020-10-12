@@ -1,28 +1,19 @@
 #' @name cellCountsPerCluster
-#' @inherit acidgenerics::cellCountsPerCluster
+#' @inherit AcidGenerics::cellCountsPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return `DataFrame`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' x <- cellCountsPerCluster(object)
 #' print(x)
-NULL
-
-
-
-#' @rdname cellCountsPerCluster
-#' @name cellCountsPerCluster
-#' @importFrom acidgenerics cellCountsPerCluster
-#' @usage cellCountsPerCluster(object, ...)
-#' @export
 NULL
 
 

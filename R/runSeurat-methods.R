@@ -15,7 +15,7 @@
 #' Check `Sys.getenv("WORKON_HOME")` path, which is the current approach used
 #' in `Rprofile.site`.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param regressCellCycle `character(1)`.
 #'   - `"s-g2m-diff"`: Calculate the difference between S and G2/M phases and
 #'     use that to regress. See `CC.Difference` metric in Seurat vignette.

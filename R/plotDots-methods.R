@@ -1,12 +1,3 @@
-#' @rdname plotCounts
-#' @name plotDots
-#' @importFrom acidgenerics plotDots
-#' @usage plotDots(object, ...)
-#' @export
-NULL
-
-
-
 #' Min max
 #' @note Updated 2019-08-03.
 #' @seealso `Seurat:::MinMax`.

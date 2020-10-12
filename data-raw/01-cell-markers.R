@@ -1,6 +1,6 @@
 ## """
 ## Cell-cycle and cell-type markers.
-## Updated 2020-02-20.
+## Updated 2020-10-12.
 ##
 ## Here we're matching the stored Ensembl identifiers (`geneID`) using
 ## ensembldb to obtain the latest symbol names from Ensembl.
@@ -14,8 +14,9 @@ library(usethis)
 library(stringr)
 
 markers_dir <- system.file(
-    file.path("inst", "extdata", "markers"),
-    package = "pointillism"
+    "extdata", "markers",
+    package = "pointillism",
+    mustWork = TRUE
 )
 stopifnot(dir.exists(markers_dir))
 

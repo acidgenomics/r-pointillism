@@ -1,5 +1,5 @@
 #' @name plotCellTypesPerCluster
-#' @inherit acidgenerics::plotCellTypesPerCluster
+#' @inherit AcidGenerics::plotCellTypesPerCluster
 #' @note Updated 2020-02-21.
 #'
 #' @details
@@ -7,11 +7,11 @@
 #' type (per unbiased cluster). Cell types with too few (`min` cutoff) or too
 #' many (`max` cutoff) marker genes will be skipped.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #' data(seurat_known_markers)
 #'
 #' ## Seurat ====
@@ -23,15 +23,6 @@
 #'     markers = markers,
 #'     reduction = "UMAP"
 #' )
-NULL
-
-
-
-#' @rdname plotCellTypesPerCluster
-#' @name plotCellTypesPerCluster
-#' @importFrom acidgenerics plotCellTypesPerCluster
-#' @usage plotCellTypesPerCluster(object, markers, ...)
-#' @export
 NULL
 
 

@@ -1,6 +1,6 @@
 ## Updated 2019-07-31.
 .prototypeMetadata <- list(
-    version = packageVersion("pointillism"),
+    version = packageVersion(packageName()),
     date = Sys.Date()
 )
 
@@ -76,7 +76,7 @@ setValidity(
 #' (`padj`).
 #'
 #' @export
-#' @note Updated 2019-07-31.
+#' @note Updated 2020-10-12.
 #'
 #' @return `KnownMarkers`.
 setClass(
@@ -101,7 +101,7 @@ setValidity(
                 y = colnames(object)
             ),
             isSubset(
-                x = c("alpha", "date", "version"),
+                x = c("alphaThreshold", "date", "version"),
                 y = names(metadata(object))
             )
         )

@@ -1,5 +1,5 @@
 #' @name plotTopMarkers
-#' @inherit acidgenerics::plotTopMarkers
+#' @inherit AcidGenerics::plotTopMarkers
 #' @note Updated 2020-01-30.
 #'
 #' @details
@@ -9,11 +9,11 @@
 #' for the number of genes to plot here in a future update.
 #'
 #' @inheritParams topMarkers
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #' data(seurat_all_markers)
 #'
 #' ## Seurat, SeuratMarkersPerCluster ====
@@ -24,15 +24,6 @@
 #'     markers = markers,
 #'     reduction = "UMAP"
 #' )
-NULL
-
-
-
-#' @rdname plotTopMarkers
-#' @name plotTopMarkers
-#' @importFrom acidgenerics plotTopMarkers
-#' @usage plotTopMarkers(object, markers, ...)
-#' @export
 NULL
 
 

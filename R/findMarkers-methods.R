@@ -1,8 +1,8 @@
 #' @name findMarkers
-#' @inherit acidgenerics::findMarkers
+#' @inherit AcidGenerics::findMarkers
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param clusters `character` or `NULL`.
 #'   Cluster identifiers.
 #'   Must correspond to values in [clusters()].
@@ -17,22 +17,13 @@
 #' - `caller = "DESeq2"`: `DESeqResults`.
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
 #' x <- findMarkers(object, caller = "edgeR")
 #' class(x)
 #' lapply(x, class)
-NULL
-
-
-
-#' @rdname findMarkers
-#' @name findMarkers
-#' @importFrom acidgenerics findMarkers
-#' @usage findMarkers(object, ...)
-#' @export
 NULL
 
 

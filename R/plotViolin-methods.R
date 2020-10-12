@@ -1,12 +1,3 @@
-#' @rdname plotCounts
-#' @name plotViolin
-#' @importFrom acidgenerics plotViolin
-#' @usage plotViolin(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2019-09-03.
 `plotViolin,SingleCellExperiment` <-  # nolint
     function(

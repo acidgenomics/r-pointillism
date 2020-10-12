@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pointillism</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.14</span>
       </span>
     </div>
 
@@ -86,17 +86,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pointillism.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/pointillism.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/pointillism/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -137,9 +143,9 @@
     <div id="pointillism-041-2019-08-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-041-2019-08-12" class="anchor"></a>pointillism 0.4.1 (2019-08-12)</h2>
-<div id="minor-changes-9" class="section level3">
+<div id="minor-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Bug fix for gene symbols being sanitized by <code>as.data.frame</code> or <code>as_tibble</code> coercion inconsitently across R versions. Switched to using <code>as</code> coercion from <code>DataFrame</code> to <code>data.frame</code> instead.</li>
 <li>Improved message consistency, removing use of backticks in favor of single quotes, which is now the convention across basejump.</li>
@@ -161,9 +167,9 @@
     <div id="pointillism-043-2019-10-26" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-043-2019-10-26" class="anchor"></a>pointillism 0.4.3 (2019-10-26)</h2>
-<div id="minor-changes-8" class="section level3">
+<div id="minor-changes-9" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Bug fix for legacy Seurat objects created via pointillism with named rownames containing gene identifiers mapped to the gene symbols. Now the coercion method for <code>Seurat</code> to <code>SingleCellExperiment</code> checks for this and sanitizes the names automatically so the resulting <code>SingleCellExperiment</code> is valid.</li>
 </ul>
@@ -186,9 +192,9 @@
 <li>Deprecated <code>plotDot</code> in favor of <code>plotDots</code> (note plural spelling change). This reads better and improves consistency with conventions used in scater.</li>
 </ul>
 </div>
-<div id="minor-changes-7" class="section level3">
+<div id="minor-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Removed user-defined option to reduce verbosity, where applicable. If these functions are too noisy, we’ll tone it down in the future.</li>
 </ul>
@@ -197,20 +203,20 @@
     <div id="pointillism-046-2020-01-20" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-046-2020-01-20" class="anchor"></a>pointillism 0.4.6 (2020-01-20)</h2>
-<div id="minor-changes-6" class="section level3">
+<div id="minor-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Reworked NAMESPACE to support migration of bioverbs package to acidgenerics.</li>
+<li>Reworked NAMESPACE to support migration of bioverbs package to AcidGenerics.</li>
 </ul>
 </div>
 </div>
     <div id="pointillism-047-2020-01-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-047-2020-01-30" class="anchor"></a>pointillism 0.4.7 (2020-01-30)</h2>
-<div id="minor-changes-5" class="section level3">
+<div id="minor-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Now using cli package for messages.</li>
 <li>Updated basejump dependencies.</li>
@@ -225,12 +231,12 @@
 <a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
-<code>plotReducedDim</code>, <code>plotMarker</code>: Changed title handling support. Switched from using <code>title</code> argument in favor of <code>labels</code>, which better matches the conventions now used in acidplots.</li>
+<code>plotReducedDim</code>, <code>plotMarker</code>: Changed title handling support. Switched from using <code>title</code> argument in favor of <code>labels</code>, which better matches the conventions now used in AcidPlots.</li>
 </ul>
 </div>
-<div id="minor-changes-4" class="section level3">
+<div id="minor-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Seurat methods now show resolution parameter used to map idents, where applicable. Currently this applies to <code>plotReducedDim</code> family of functions.</li>
 </ul>
@@ -239,9 +245,9 @@
     <div id="pointillism-049-2020-02-21" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-049-2020-02-21" class="anchor"></a>pointillism 0.4.9 (2020-02-21)</h2>
-<div id="minor-changes-3" class="section level3">
+<div id="minor-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>runZinbwave</code>: Updated internal zinbwave code to be compatible with Bioconductor 3.11 release.</li>
@@ -260,9 +266,9 @@
 <code>plotStackedBarPlot</code>: Added support for quickly generating stacked bar plots of cluster frequencies.</li>
 </ul>
 </div>
-<div id="minor-changes-2" class="section level3">
+<div id="minor-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Dependency updates.</li>
 </ul>
@@ -283,9 +289,9 @@
     <div id="pointillism-0412-2020-07-23" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0412-2020-07-23" class="anchor"></a>pointillism 0.4.12 (2020-07-23)</h2>
-<div id="minor-changes-1" class="section level3">
+<div id="minor-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Maintenance release, updating R dependency to 4.0.</li>
 </ul>
@@ -294,13 +300,25 @@
     <div id="pointillism-0413-2020-08-04" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pointillism-0413-2020-08-04" class="anchor"></a>pointillism 0.4.13 (2020-08-04)</h2>
-<div id="minor-changes" class="section level3">
+<div id="minor-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Removed patrick dependency for unit tests.</li>
 <li>Updated other package dependency versions.</li>
 <li>Wrapped suppression calls with <code>{</code> where necessary.</li>
+</ul>
+</div>
+</div>
+    <div id="pointillism-0414-2020-10-12" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pointillism-0414-2020-10-12" class="anchor"></a>pointillism 0.4.14 (2020-10-12)</h2>
+<div id="minor-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Renamed <code>alpha</code> argument to <code>alphaThreshold</code>, matching naming conventions used in other Acid Genomics packages. Applies to marker class objects.</li>
+<li>Updated dependencies to support naming changes in Acid Genomics packages.</li>
 </ul>
 </div>
 </div>
@@ -321,7 +339,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

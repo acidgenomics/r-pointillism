@@ -7,7 +7,7 @@ options(
 data(
     Seurat,
     SingleCellExperiment,
-    package = "acidtest",
+    package = "AcidTest",
     envir = environment()
 )
 data(

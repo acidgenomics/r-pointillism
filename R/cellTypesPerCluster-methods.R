@@ -1,8 +1,8 @@
 #' @name cellTypesPerCluster
-#' @inherit acidgenerics::cellTypesPerCluster
+#' @inherit AcidGenerics::cellTypesPerCluster
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param min `integer(1)`.
 #'   Minimum number of marker genes per cluster.
 #' @param max `integer(1)`.
@@ -21,15 +21,6 @@
 #' )
 #' x <- cellTypesPerCluster(markers)
 #' print(x)
-NULL
-
-
-
-#' @rdname cellTypesPerCluster
-#' @name cellTypesPerCluster
-#' @importFrom acidgenerics cellTypesPerCluster
-#' @usage cellTypesPerCluster(object, ...)
-#' @export
 NULL
 
 

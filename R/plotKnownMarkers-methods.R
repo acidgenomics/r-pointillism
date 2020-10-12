@@ -1,13 +1,13 @@
 #' @name plotKnownMarkers
-#' @inherit acidgenerics::plotKnownMarkers
+#' @inherit AcidGenerics::plotKnownMarkers
 #' @note Updated 2020-01-30.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param markers Object.
 #' @param ... Passthrough arguments to [plotMarker()].
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #' data(seurat_known_markers)
 #'
 #' ## Seurat ====
@@ -18,15 +18,6 @@
 #'     markers = markers,
 #'     reduction = "UMAP"
 #' )
-NULL
-
-
-
-#' @rdname plotKnownMarkers
-#' @name plotKnownMarkers
-#' @importFrom acidgenerics plotKnownMarkers
-#' @usage plotKnownMarkers(object, markers, ...)
-#' @export
 NULL
 
 

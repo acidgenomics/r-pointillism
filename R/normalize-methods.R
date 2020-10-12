@@ -34,7 +34,7 @@
 #' @name normalize
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @return Modified object.
@@ -50,7 +50,7 @@
 #' - `monocle3::normalized_counts()`.
 #'
 #' @examples
-#' data(Seurat, SingleCellExperiment, package = "acidtest")
+#' data(Seurat, SingleCellExperiment, package = "AcidTest")
 #'
 #' ## SingleCellExperiment ====
 #' object <- SingleCellExperiment
@@ -59,15 +59,6 @@
 #' ## Seurat ====
 #' object <- Seurat
 #' object <- normalize(object)
-NULL
-
-
-
-#' @rdname normalize
-#' @name normalize
-#' @importFrom BiocGenerics normalize
-#' @usage normalize(object, ...)
-#' @export
 NULL
 
 

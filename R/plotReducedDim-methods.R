@@ -1,10 +1,10 @@
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @inherit acidgenerics::plotReducedDim
+#' @inherit AcidGenerics::plotReducedDim
 #' @note Updated 2020-02-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @details
@@ -32,7 +32,7 @@
 #' - [Seurat Mouse Cell Atlas vignette](https://satijalab.org/seurat/mca.html).
 #'
 #' @examples
-#' data(Seurat, package = "acidtest")
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -41,37 +41,6 @@ NULL
 
 
 
-#' @rdname plotReducedDim
-#' @name plotReducedDim
-#' @importFrom acidgenerics plotReducedDim
-#' @usage plotReducedDim(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotPCA
-#' @importFrom BiocGenerics plotPCA
-#' @usage plotPCA(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotTSNE
-#' @importFrom acidgenerics plotTSNE
-#' @usage plotTSNE(object, ...)
-#' @export
-NULL
-
-#' @rdname plotReducedDim
-#' @name plotUMAP
-#' @importFrom acidgenerics plotUMAP
-#' @usage plotUMAP(object, ...)
-#' @export
-NULL
-
-
-
-## Constructors ================================================================
 ## Updated 2020-02-21.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(

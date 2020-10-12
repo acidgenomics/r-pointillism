@@ -1,9 +1,8 @@
 #' @name summary
-#' @importFrom S4Vectors summary
-#' @inherit basejump::summary
-#' @note Updated 2020-01-30.
+#' @inherit base::summary description return title
+#' @note Updated 2020-10-12.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -17,16 +16,7 @@ NULL
 
 
 
-#' @rdname summary
-#' @name summary
-#' @importFrom S4Vectors summary
-#' @usage summary(object, ...)
-#' @export
-NULL
-
-
-
-## Updated 2019-07-31.
+## Updated 2020-10-12.
 `summary,SeuratMarkers` <-  # nolint
     function(object) {
         ## Metadata.
@@ -34,7 +24,7 @@ NULL
         ## Row ranges metadata.
         rrm <- metadata(object[["ranges"]])
         showSlotInfo(list(
-            alpha = m[["alpha"]],
+            alphaThreshold = m[["alphaThreshold"]],
             organism = rrm[["organism"]],
             genomeBuild = rrm[["genomeBuild"]],
             ensemblRelease = rrm[["ensemblRelease"]],
@@ -55,7 +45,7 @@ setMethod(
 
 
 
-## Updated 2019-07-31.
+## Updated 2020-10-12.
 `summary,SeuratMarkersPerCluster` <-  # nolint
     function(object) {
         cat(paste(length(object), "clusters"), sep = "\n")
@@ -65,7 +55,7 @@ setMethod(
         ## Row ranges metadata.
         rrm <- metadata(data[["ranges"]])
         showSlotInfo(list(
-            alpha = m[["alpha"]],
+            alphaThreshold = m[["alphaThreshold"]],
             organism = rrm[["organism"]],
             genomeBuild = rrm[["genomeBuild"]],
             ensemblRelease = rrm[["ensemblRelease"]],

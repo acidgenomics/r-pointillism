@@ -4,7 +4,7 @@
 ## > #' @keywords internal
 ## > #' @note Updated 2020-01-30.
 ## > #'
-## > #' @inheritParams acidroxygen::params
+## > #' @inheritParams AcidRoxygen::params
 ## > #'
 ## > #' @return Varies, depending on the generic.
 ## > NULL

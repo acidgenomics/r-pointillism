@@ -1,10 +1,10 @@
 #' Cell-type markers
 #'
 #' @name CellTypeMarkers
-#' @note Updated 2020-02-21.
+#' @note Updated 2020-10-12.
 #'
-#' @inheritParams acidroxygen::params
-#' @inheritParams basejump::makeGene2SymbolFromEnsembl
+#' @inheritParams AcidRoxygen::params
+#' @inheritParams AcidGenomes::makeGene2SymbolFromEnsembl
 #'
 #' @return `CellTypeMarkers`.
 #'
