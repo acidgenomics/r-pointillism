@@ -1,7 +1,3 @@
-globalVariables(".")
-
-
-
 .formalsList <- list(
     BPPARAM = quote(BiocParallel::bpparam()),  # nolint
     continuousColor =
