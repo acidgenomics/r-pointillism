@@ -1,8 +1,5 @@
 # pointillism
 
-[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Travis CI build status](https://travis-ci.com/acidgenomics/pointillism.svg?branch=master)](https://travis-ci.com/acidgenomics/pointillism)
-
 [R][] package for for single-cell RNA-seq clustering analysis.
 
 ## Installation
