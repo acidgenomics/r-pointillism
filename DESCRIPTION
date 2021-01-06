@@ -23,9 +23,9 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ))
 URL:
-    https://pointillism.acidgenomics.com/,
-    https://github.com/acidgenomics/pointillism/
-BugReports: https://github.com/acidgenomics/pointillism/issues/
+    https://r.acidgenomics.com/packages/pointillism/,
+    https://github.com/acidgenomics/r-pointillism/
+BugReports: https://github.com/acidgenomics/r-pointillism/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
