@@ -6,15 +6,15 @@ test_that("Default", {
     expect_identical(
         lapply(object, class) %>% .[sort(names(.))],
         list(
-            avgLogFC = "numeric",
-            cluster = "factor",
-            geneID = "factor",
-            geneName = "factor",
-            name = "factor",
-            padj = "numeric",
-            pct1 = "numeric",
-            pct2 = "numeric",
-            pvalue = "numeric"
+            "avgLogFc" = "numeric",  ## FIXME Breaking change
+            "cluster" = "factor",
+            "geneId" = "factor",
+            "geneName" = "factor",
+            "name" = "factor",
+            "padj" = "numeric",
+            "pct1" = "numeric",
+            "pct2" = "numeric",
+            "pvalue" = "numeric"
         )
     )
 })

@@ -51,7 +51,7 @@ mean(cpm)
 \itemize{
 \item \code{\link[SingleCellExperiment:assays]{SingleCellExperiment::cpm()}}.
 \item \code{\link[edgeR:cpm]{edgeR::cpm()}}.
-\item \code{\link[scater:calculateCPM]{scater::calculateCPM()}}.
+\item \code{\link[scater:reexports]{scater::calculateCPM()}}.
 }
 }
 \keyword{internal}

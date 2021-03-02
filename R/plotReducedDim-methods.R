@@ -107,7 +107,7 @@ NULL
         ## Check if interesting groups input is supported.
         supported <- bapply(data, is.factor)
         supported <- names(supported)[supported]
-        blacklist <- c("interestingGroups", "orig.ident", "sampleID")
+        blacklist <- c("interestingGroups", "orig.ident", "sampleId")
         supported <- setdiff(supported, blacklist)
         if (!isSubset(interestingGroups, supported)) {
             setdiff <- setdiff(interestingGroups, supported)

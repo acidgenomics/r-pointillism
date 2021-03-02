@@ -53,12 +53,12 @@ NULL
             X = split,
             FUN = function(x) {
                 DataFrame(
-                    cluster = x[["cluster"]][[1L]],
-                    cellType = x[["cellType"]][[1L]],
-                    name = toString(x[["name"]]),
-                    geneID = toString(x[["geneID"]]),
-                    geneName = toString(x[["geneName"]]),
-                    n = nrow(x)
+                    "cluster" = x[["cluster"]][[1L]],
+                    "cellType" = x[["cellType"]][[1L]],
+                    "name" = toString(x[["name"]]),
+                    "geneId" = toString(x[["geneId"]]),
+                    "geneName" = toString(x[["geneName"]]),
+                    "n" = nrow(x)
                 )
             }
         ))

@@ -126,7 +126,7 @@ NULL
                 envir = env
             )
             ccm <- env[["cell_cycle_markers_list"]]
-            organism <- camelCase(organism(object))
+            organism <- camelCase(organism(object), strict = TRUE)
             if (!isSubset(organism, names(ccm))) {
                 stop(paste0(
                     "Failed to obtain cell-cycle markers.\n",
