@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.4.14
-Date: 2020-10-11
+Version: 0.4.15
+Date: 2021-03-02
 Authors@R: c(
     person(
         given = "Michael",
@@ -23,16 +23,15 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ))
 URL:
-    https://pointillism.acidgenomics.com/,
-    https://github.com/acidgenomics/pointillism/
-BugReports: https://github.com/acidgenomics/pointillism/issues/
-License: GPL-3
+    https://r.acidgenomics.com/packages/pointillism/,
+    https://github.com/acidgenomics/r-pointillism/
+BugReports: https://github.com/acidgenomics/r-pointillism/issues/
+License: AGPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    SingleCellExperiment (>= 1.10),
-    basejump (>= 0.13.2)
+    basejump (>= 0.14.15)
 Imports:
     AcidGenerics (>= 0.4.0),
     AcidPlots (>= 0.3.0),
@@ -63,7 +62,6 @@ Suggests:
     AcidTest (>= 0.4.0),
     BiocStyle,
     future,
-    knitr,
     reticulate,
     roxygen2,
     splatter,
@@ -79,5 +77,4 @@ biocViews:
     Visualization
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-VignetteBuilder: knitr
 Additional_repositories: https://r.acidgenomics.com
