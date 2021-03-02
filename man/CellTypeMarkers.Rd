@@ -13,7 +13,7 @@ importCellTypeMarkers(file, organism, release)
 \item{object}{Object.}
 
 \item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
 \code{Gene2Symbol} for more information.}
 
 \item{file}{\code{character(1)}.

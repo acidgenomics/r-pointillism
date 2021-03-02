@@ -179,7 +179,7 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-02.
 `interestingGroups<-,Seurat,character` <-  # nolint
     getMethod(
         f = "interestingGroups<-",
@@ -187,7 +187,7 @@ setMethod(
             object = "SummarizedExperiment",
             value = "character"
         ),
-        where = asNamespace("basejump")
+        where = asNamespace("AcidExperiment")
     )
 
 
@@ -579,12 +579,12 @@ setReplaceMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-02.
 `sampleData,Seurat` <-  # nolint
     getMethod(
         f = "sampleData",
         signature = signature("SingleCellExperiment"),
-        where = asNamespace("basejump")
+        where = asNamespace("AcidSingleCell")
     )
 
 
@@ -599,7 +599,7 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-02.
 `sampleData<-,Seurat,DataFrame` <-  # nolint
     getMethod(
         f = "sampleData<-",
@@ -607,7 +607,7 @@ setMethod(
             object = "SingleCellExperiment",
             value = "DataFrame"
         ),
-        where = asNamespace("basejump")
+        where = asNamespace("AcidSingleCell")
     )
 
 

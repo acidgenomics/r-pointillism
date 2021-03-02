@@ -2,7 +2,7 @@
 ## Cell-cycle and cell-type markers.
 ## Updated 2020-10-12.
 ##
-## Here we're matching the stored Ensembl identifiers (`geneID`) using
+## Here we're matching the stored Ensembl identifiers (`geneId`) using
 ## ensembldb to obtain the latest symbol names from Ensembl.
 ##
 ## Cell-cycle markers devied from:

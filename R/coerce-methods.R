@@ -68,6 +68,8 @@ NULL
 
 
 
+## FIXME Enforce strict lower camel case here.
+
 ## Updated 2020-02-20.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {

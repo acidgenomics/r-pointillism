@@ -65,13 +65,13 @@
         object = counts,
         colnames = c("rowname", "colname", assay)
     )
-    ## Join cell-level metrics. Always include "ident" and "sampleName" using
+    ## Join cell-level metrics. Always include `ident` and `sampleName` using
     ## `metrics` here. This ensures `sampleName` and `interestingGroups` are
     ## always defined.
     colData <- metrics(object, return = "DataFrame")
     colData[["colname"]] <- rownames(colData)
     data <- leftJoin(data, colData, by = "colname")
-    ## Join the geneID and geneName columns by the "rowname" column.
+    ## Join the `geneId` and `geneName` columns by the `rowname` column.
     g2s <- Gene2Symbol(object)
     assert(hasLength(g2s), hasRownames(g2s))
     g2s <- as(g2s, "DataFrame")

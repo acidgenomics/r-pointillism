@@ -26,7 +26,7 @@ NULL
         interestingGroups <- interestingGroups(object)
         x <- metrics(object, return = "DataFrame")
         ## Contingency table.
-        tbl <- table(x[["ident"]], x[["sampleID"]])
+        tbl <- table(x[["ident"]], x[["sampleId"]])
         ## Get the number of cells per ident.
         nPerIdent <- rowSums(tbl)
         nPerIdent <- DataFrame(
@@ -35,16 +35,16 @@ NULL
         )
         ## Summarize to cluster/sample-level metadata.
         cols <- unique(c(
-            "ident", "sampleID", "sampleName",
+            "ident", "sampleId", "sampleName",
             interestingGroups, "interestingGroups"
         ))
         x <- unique(x[, cols, drop = FALSE])
         rownames(x) <- NULL
-        x <- x[order(x[["ident"]], x[["sampleID"]]), , drop = FALSE]
+        x <- x[order(x[["ident"]], x[["sampleId"]]), , drop = FALSE]
         ## Melt the contingency table into long format.
-        melt <- melt(tbl, colnames = c("ident", "sampleID", "n"))
+        melt <- melt(tbl, colnames = c("ident", "sampleId", "n"))
         ## Join and calculate ratio.
-        x <- leftJoin(x, melt, by = c("ident", "sampleID"))
+        x <- leftJoin(x, melt, by = c("ident", "sampleId"))
         x <- leftJoin(x, nPerIdent, by = "ident")
         x[["ratio"]] <- x[["n"]] / x[["nPerIdent"]]
         x

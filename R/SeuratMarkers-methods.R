@@ -60,7 +60,7 @@ NULL
             hasRownames(object),
             is(ranges, "GRanges"),
             isSubset(
-                x = c("geneID", "geneName"),
+                x = c("geneId", "geneName"),
                 y = colnames(mcols(ranges))
             ),
             isAlpha(alphaThreshold)
@@ -77,7 +77,7 @@ NULL
         cli_alert_info(sprintf("{.fun %s} return detected.", fun))
         ## Sanitize markers.
         x <- as(object, "DataFrame")
-        x <- camelCase(x)
+        x <- camelCase(x, strict = TRUE)
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
         if (identical(fun, "FindMarkers")) {
             x[["name"]] <- rownames(x)

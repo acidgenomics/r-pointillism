@@ -2,7 +2,7 @@
 #'
 #' @name KnownMarkers
 #' @note Both the `markers` and `known` objects must contain Ensembl gene
-#'   identifiers in the `geneID` column. We must avoid any matching operations
+#'   identifiers in the `geneId` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
 #' @note Updated 2020-10-12.
@@ -49,20 +49,20 @@ NULL
         markers <- unlist(markers, recursive = FALSE, use.names = FALSE)
         ranges <- markers[["ranges"]]
         markers[["ranges"]] <- NULL
-        markers[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        markers[["geneId"]] <- as.character(mcols(ranges)[["geneId"]])
         markers[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
         known <- unlist(known, recursive = FALSE, use.names = FALSE)
         known[["geneName"]] <- NULL
         ## Determine where the known markers are located in the markers data.
         ## Here we have slotted the gene IDs inside a "ranges" column.
-        assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
-        keep <- markers[["geneID"]] %in% known[["geneID"]]
+        assert(areIntersectingSets(markers[["geneId"]], known[["geneId"]]))
+        keep <- markers[["geneId"]] %in% known[["geneId"]]
         x <- markers[keep, , drop = FALSE]
         ## Apply our alpha level cutoff.
         keep <- x[["padj"]] < alphaThreshold
         x <- x[keep, , drop = FALSE]
         ## Add the `cellType` column.
-        x <- leftJoin(x, known, by = "geneID")
+        x <- leftJoin(x, known, by = "geneId")
         ## Filter out promiscuous markers present in multiple clusters.
         if (isTRUE(promiscuousThreshold > 1L)) {
             x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)

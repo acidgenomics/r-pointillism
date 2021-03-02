@@ -86,7 +86,7 @@
   object,
   clean = TRUE,
   ignoreCols = c("^description$", "^genomeBuild$", "^qualityFormat$", "^samRef$"),
-  blacklistCols = c("^ident$", "^g2mScore$", "^sScore$", "^phase$", "^oldIdent$",
+  denylistCols = c("^ident$", "^g2mScore$", "^sScore$", "^phase$", "^oldIdent$",
     "^origIdent$", "^res[0-9]+")
 )
 
