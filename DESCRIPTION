@@ -41,7 +41,7 @@ Imports:
     Matrix (>= 1.2),
     Seurat (>= 4.0),
     dplyr (>= 1.0),
-    edgeR (>= 3.30),
+    edgeR (>= 3.32),
     ggplot2 (>= 3.3),
     goalie (>= 0.5.0),
     methods,
@@ -54,7 +54,6 @@ Suggests:
     BiocParallel,
     future,
     reticulate,
-    roxygen2,
     splatter,
     testthat,
     zinbwave
