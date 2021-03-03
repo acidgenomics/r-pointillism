@@ -19,11 +19,11 @@
 #' @return `KnownMarkers`.
 #'
 #' @examples
-#' data(cell_type_markers_list, seurat_all_markers)
+#' data(cellTypeMarkersList, seuratAllMarkers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' markers <- seurat_all_markers
-#' known <- cell_type_markers_list[["homoSapiens"]]
+#' markers <- seuratAllMarkers
+#' known <- cellTypeMarkersList[["homoSapiens"]]
 #' x <- KnownMarkers(markers = markers, known = known)
 #' summary(x)
 NULL

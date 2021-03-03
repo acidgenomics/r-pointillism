@@ -21,7 +21,7 @@ test_that("plotMarker", {
 
 context("plotKnownMarkers")
 
-markers <- head(seurat_known_markers, n = 2L)
+markers <- head(seuratKnownMarkers, n = 2L)
 test_that("plotKnownMarkers", {
     for (object in objects) {
         invisible(capture.output({
@@ -41,7 +41,7 @@ context("plotTopMarkers")
 
 test_that("Seurat", {
     object <- seurat
-    markers <- head(seurat_all_markers, n = 2L)
+    markers <- head(seuratAllMarkers, n = 2L)
     invisible(capture.output({
         x <- plotTopMarkers(
             object = object,

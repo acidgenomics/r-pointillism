@@ -7,14 +7,14 @@
 #' @return No return.
 #'
 #' @examples
-#' data(cell_cycle_markers_list, cell_type_markers_list)
+#' data(cell_cycle_markers_list, cellTypeMarkersList)
 #'
 #' ## CellCycleMarkers ====
 #' object <- cell_cycle_markers_list[[1L]]
 #' show(object)
 #'
 #' ## CellTypeMarkers ====
-#' object <- cell_type_markers_list[[1L]]
+#' object <- cellTypeMarkersList[[1L]]
 #' show(object)
 NULL
 
