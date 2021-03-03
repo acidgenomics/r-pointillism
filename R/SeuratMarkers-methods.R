@@ -104,6 +104,8 @@ NULL
         )
         alertInfo(sprintf("{.fun %s} return detected.", fun))
         ## Map the Seurat matrix rownames to `rownames` column in tibble.
+        ## NOTE Using "name" here instead of "geneName", which is intended
+        ## to map to the rownames, which can be altered by `make.names`.
         switch(
             EXPR = fun,
             "FindMarkers" = {
