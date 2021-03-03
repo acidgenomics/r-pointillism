@@ -27,7 +27,7 @@ Maximum number of marker genes per cluster.}
 Cell types per cluster
 }
 \note{
-Updated 2020-01-30.
+Updated 2021-03-03.
 }
 \examples{
 data(cellTypeMarkersList, seuratAllMarkers)

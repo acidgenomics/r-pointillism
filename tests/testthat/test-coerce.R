@@ -9,8 +9,7 @@ test_that("Seurat to SingleCellExperiment", {
     )
     expect_identical(
         object = reducedDimNames(x),
-        expected = c("PCA", "TSNE", "UMAP")
-
+        expected = c("pca", "tsne", "umap")
     )
     expect_identical(
         object = names(metadata(x)),

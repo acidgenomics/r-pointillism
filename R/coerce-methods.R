@@ -110,7 +110,9 @@ NULL
             )
             colData(to)[["ident"]] <- unname(idents)
         }
-        ## Sanitize dimensional reduction names.
+        ## Assays.
+        assayNames(to) <- camelCase(assayNames(to), strict = TRUE)
+        ## Reduced dimensions.
         reducedDimNames(to) <- camelCase(reducedDimNames(to), strict = TRUE)
         reducedDims(to) <- lapply(
             X = reducedDims(to),

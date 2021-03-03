@@ -30,7 +30,7 @@
 
 
 
-## Updated 2019-09-03.
+## Updated 2021-03-03.
 .fetchGeneData <- function(
     object,
     genes,
@@ -76,12 +76,13 @@
     data <- leftJoin(data, g2s, by = "rowname")
     data <- mutateIf(data, is.character, as.factor)
     data <- data[, unique(c("rowname", sort(colnames(data))))]
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 .fetchReductionData <- function(
     object,
     reduction = 1L,
@@ -150,6 +151,7 @@
         areSetEqual(rownames(data), colnames(object))
     )
     data <- data[colnames(object), , drop = FALSE]
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
@@ -159,7 +161,7 @@ formals(.fetchReductionData)[args] <-
 
 
 
-## Updated 2021-03-02.
+## Updated 2021-03-03.
 .fetchReductionExpressionData <- function(
     object,
     genes,
@@ -195,6 +197,7 @@ formals(.fetchReductionData)[args] <-
     )
     data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
