@@ -63,7 +63,7 @@ NULL
                 keep <- markers[["cluster"]] == cluster
                 clusterData <- markers[keep, , drop = FALSE]
                 if (!hasRows(clusterData)) {
-                    cli_alert_warning(sprintf(
+                    alertWarning(sprintf(
                         "No markers for cluster %s.", cluster
                     ))
                     return(invisible(NULL))

@@ -66,14 +66,14 @@ NULL
             isFlag(recalculate),
             isFlag(verbose)
         )
-        cli_alert("Running zinbwave.")
+        alert("Running zinbwave.")
         # Early return if weights are calculated.
         weights <- tryCatch(
             expr = weights(Y),
             error = function(e) NULL
         )
         if (is.matrix(weights) && !isTRUE(recalculate)) {
-            cli_alert_success("Object already contains pre-calculated weights.")
+            alertSuccess("Object already contains pre-calculated weights.")
             return(Y)
         }
         # BiocParallel ---------------------------------------------------------
@@ -81,7 +81,7 @@ NULL
         bpprogressbar(BPPARAM) <- TRUE
         # Inform the user whether running in parallel or serial.
         bpparamInfo <- capture.output(BPPARAM)
-        cli_alert_info(paste(
+        alertInfo(paste(
             "{.pkg BiocParallel} param registered.",
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
@@ -97,7 +97,7 @@ NULL
         # Keep an original copy in case they're sparse, and reslot.
         counts(Y) <- as.matrix(counts(Y))
         # Fit a ZINB regression model ------------------------------------------
-        cli_alert("{.fun zinbFit}: Fitting a ZINB regression model.")
+        alert("{.fun zinbFit}: Fitting a ZINB regression model.")
         message(paste(
             "CPU time used:",
             printString(system.time({

@@ -64,12 +64,12 @@ NULL
                     ]
                 genes <- as.character(genes)
                 if (!hasLength(genes)) {
-                    cli_alert_warning(sprintf(
+                    alertWarning(sprintf(
                         "No genes for cluster %s.", cluster
                     ))
                     return(invisible(NULL))
                 } else if (length(genes) > 10L) {
-                    cli_alert_warning(
+                    alertWarning(
                         "Maximum of 10 genes per cluster is recommended."
                     )
                 }

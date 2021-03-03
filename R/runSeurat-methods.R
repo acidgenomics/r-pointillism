@@ -103,7 +103,7 @@ NULL
                 workers <- max(getOption("mc.cores"), 1L)
             }
             assert(isInt(workers))
-            cli_alert(paste(
+            alert(paste(
                 "Enabling {.pkg future} multiprocess with",
                 workers, "workers."
             ))
@@ -111,9 +111,9 @@ NULL
         }
 
         ## Pre-processing ------------------------------------------------------
-        cli_alert("{.pkg Seurat}::{.fun NormalizeData}")
+        alert("{.pkg Seurat}::{.fun NormalizeData}")
         object <- Seurat::NormalizeData(object)
-        cli_alert("{.pkg Seurat}::{.fun FindVariableFeatures}")
+        alert("{.pkg Seurat}::{.fun FindVariableFeatures}")
         object <- Seurat::FindVariableFeatures(object)
 
         ## Cell-cycle regression -----------------------------------------------
@@ -139,7 +139,7 @@ NULL
             assert(is(ccm, "CellCycleMarkers"))
             g2mGenes <- as.character(ccm[["g2m"]][["geneName"]])
             sGenes <- as.character(ccm[["s"]][["geneName"]])
-            cli_alert("{.pkg Seurat}::{.fun CellCycleScoring}")
+            alert("{.pkg Seurat}::{.fun CellCycleScoring}")
             object <- Seurat::CellCycleScoring(
                 object = object,
                 s.features = sGenes,
@@ -156,7 +156,7 @@ NULL
         }
 
         ## Scaling and projection ----------------------------------------------
-        cli_alert("{.pkg Seurat}::{.fun ScaleData}")
+        alert("{.pkg Seurat}::{.fun ScaleData}")
         dl(c("varsToRegress" = toString(varsToRegress)))
         ## Scaling all features is very slow for large datasets.
         ## Current default in Seurat scales variable features only.
@@ -169,25 +169,25 @@ NULL
             features = rownames(object),
             vars.to.regress = varsToRegress
         )
-        cli_alert("{.pkg Seurat}::{.fun RunPCA}")
+        alert("{.pkg Seurat}::{.fun RunPCA}")
         object <- Seurat::RunPCA(object)
         if (identical(dims, "auto")) {
-            cli_alert("{.fun plotElbow}")
+            alert("{.fun plotElbow}")
             p <- plotPCElbow(object)
             elbow <- attr(p, "elbow")
             dims <- seq(from = 1L, to = elbow, by = 1L)
         }
 
         ## Clustering ----------------------------------------------------------
-        cli_alert("{.pkg Seurat}::{.fun FindNeighbors}")
-        cli_alert_info(paste("Using", length(dims), "dims."))
+        alert("{.pkg Seurat}::{.fun FindNeighbors}")
+        alertInfo(paste("Using", length(dims), "dims."))
         object <- Seurat::FindNeighbors(object, dims = dims)
-        cli_alert("{.pkg Seurat}::{.fun FindClusters}")
+        alert("{.pkg Seurat}::{.fun FindClusters}")
         dl(c("resolution" = deparse(resolution)))
         object <- Seurat::FindClusters(object, resolution = resolution)
 
         ## tSNE / UMAP ---------------------------------------------------------
-        cli_alert("{.pkg Seurat}::{.fun RunTSNE}")
+        alert("{.pkg Seurat}::{.fun RunTSNE}")
         dl(c("method" = tsneMethod))
         object <- Seurat::RunTSNE(
             object = object,
@@ -198,7 +198,7 @@ NULL
             reticulate::use_virtualenv(virtualenv = virtualenv, required = TRUE)
             assert(reticulate::py_module_available(module = "umap"))
         }
-        cli_alert("{.pkg Seurat}::{.fun RunUMAP}")
+        alert("{.pkg Seurat}::{.fun RunUMAP}")
         metric <- switch(
             EXPR = umapMethod,
             "umap-learn" = "correlation",
@@ -208,7 +208,7 @@ NULL
             "method" = umapMethod,
             "metric" = metric
         ))
-        cli_alert_info(paste("Using", length(dims), "dims."))
+        alertInfo(paste("Using", length(dims), "dims."))
         ## The default method for RunUMAP has changed from calling Python UMAP
         ## via reticulate to the R-native UWOT using the cosine metric. To use
         ## Python UMAP via reticulate, set umap.method to 'umap-learn' and
@@ -220,7 +220,7 @@ NULL
             dims = dims
         )
 
-        cli_alert_success("Seurat run was successful.")
+        alertSuccess("Seurat run was successful.")
         object
     }
 
