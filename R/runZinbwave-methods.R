@@ -46,7 +46,7 @@ NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 `runZinbwave,SingleCellExperiment` <-  # nolint
     function(
         Y,  # nolint
@@ -76,7 +76,6 @@ NULL
             cli_alert_success("Object already contains pre-calculated weights.")
             return(Y)
         }
-
         # BiocParallel ---------------------------------------------------------
         # Use a progress bar (only applies to multicore).
         bpprogressbar(BPPARAM) <- TRUE
@@ -87,7 +86,6 @@ NULL
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
         ))
-
         # Prepare Y object for zinbwave ----------------------------------------
         # We're returnining original object class, with modified assays.
         # Note that `zinbwave` otherwise returns `SingleCellExperiment`.
@@ -98,7 +96,6 @@ NULL
         # Ensure they are coerced to a dense matrix.
         # Keep an original copy in case they're sparse, and reslot.
         counts(Y) <- as.matrix(counts(Y))
-
         # Fit a ZINB regression model ------------------------------------------
         cli_alert("{.fun zinbFit}: Fitting a ZINB regression model.")
         message(paste(
@@ -117,17 +114,16 @@ NULL
             })),
             sep = "\n"
         ))
-        cli_text(paste(
+        verbatim(paste(
             capture.output(print(fittedModel)),
             collapse = "\n"
         ))
-
         # zinbwave -------------------------------------------------------------
-        cli_alert(paste(
+        alert(paste(
             "{.fun zinbwave}: Performing dimensionality reduction using a",
             "ZINB regression model with gene and cell-level covariates."
         ))
-        cli_text(paste(
+        verbatim(paste(
             "CPU time used:",
             printString(system.time({
                 # Wrapping here to disable progress bars.
@@ -145,7 +141,6 @@ NULL
             sep = "\n"
         ))
         assert(is(zinb, "SingleCellExperiment"))
-
         # Return ---------------------------------------------------------------
         output <- zinb
         assert(identical(dimnames(input), dimnames(output)))

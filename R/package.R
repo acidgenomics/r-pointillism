@@ -4,6 +4,7 @@
 #'
 #' @keywords internal
 #'
+#' @importClassesFrom basejump SingleCellExperiment
 #' @importClassesFrom Seurat Seurat
 #'
 #' @importMethodsFrom basejump coerce
@@ -14,8 +15,8 @@
 #' @importFrom AcidPlots !! !!! acid_theme_dark acid_theme_light matchLabels
 #'   plot_grid pretty_breaks sym syms
 #' @importFrom basejump DataFrame Gene2Symbol SingleCellExperiment
-#'   SplitDataFrameList as.data.frame as.matrix assay assay<- assayNames assays
-#'   assays<- camelCase capture.output cbind coerce colData colData<-
+#'   SplitDataFrameList alert as.data.frame as.matrix assay assay<- assayNames
+#'   assays assays<- camelCase capture.output cbind coerce colData colData<-
 #'   complete.cases convertGenesToSymbols counts counts<- decode do.call
 #'   estimateSizeFactors geometricMean head import interestingGroups
 #'   interestingGroups<- lapply leftJoin makeGene2SymbolFromEnsembl makeNames
@@ -25,10 +26,10 @@
 #'   packageVersion printString reducedDim reducedDim<- reducedDimNames
 #'   reducedDims relevel rowData rowData<- rowMeans rowRanges rowRanges<-
 #'   rowSums sampleData sampleData<- sampleNames separator session_info
-#'   showSlotInfo sizeFactors sizeFactors<- snakeCase split t table tail
-#'   uniteInterestingGroups unsplit
+#'   showSlotInfo sizeFactors sizeFactors<- snakeCase split t table tail ul
+#'   uniteInterestingGroups unsplit verbatim
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
-#'   cli_div cli_dl cli_end cli_h1 cli_h2 cli_text cli_ul
+#'   cli_div cli_dl cli_end cli_h1 cli_h2
 #' @importFrom dplyr group_by n summarize
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
