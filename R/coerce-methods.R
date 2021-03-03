@@ -68,7 +68,7 @@ NULL
 
 
 
-## Updated 2020-02-20.
+## Updated 2021-03-03.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
         validObject(from)
@@ -110,6 +110,15 @@ NULL
             )
             colData(to)[["ident"]] <- unname(idents)
         }
+        ## Sanitize dimensional reduction names.
+        reducedDimNames(to) <- camelCase(reducedDimNames(to), strict = TRUE)
+        reducedDims(to) <- lapply(
+            X = reducedDims(to),
+            FUN = function(x) {
+                colnames(x) <- camelCase(colnames(x), strict = TRUE)
+                x
+            }
+        )
         ## Row and column data.
         rowRanges(to) <- rowRanges(from)
         if (hasColnames(mcols(rowRanges(to)))) {
