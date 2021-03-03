@@ -1,4 +1,4 @@
-## Updated 2020-02-20.
+## Updated 2021-03-02.
 .CellMarkers <- function(  # nolint
     object,
     gene2symbol,
@@ -33,7 +33,11 @@
     assert(hasLength(intersect))
     keep <- x[["geneId"]] %in% intersect
     x <- x[keep, , drop = FALSE]
-    x <- leftJoin(x, gene2symbol, by = "geneId")
+    x <- leftJoin(
+        x = x,
+        y = as(gene2symbol, "DataFrame"),
+        by = "geneId"
+    )
     x <- x[, sort(colnames(x)), drop = FALSE]
     x <- x[order(x[[group]], x[["geneName"]]), , drop = FALSE]
     x <- mutateIf(x, is.character, as.factor)
@@ -41,6 +45,9 @@
     names(x) <- snakeCase(names(x))
     ## Specific fix for G2/M input (cell-cycle markers).
     names(x) <- sub("g2_slash_m", "g2m", names(x))
+    ## FIXME This isn't passing through to the valiidty check sufficiently...
+    ## FIXME makeGene2SymbolFromEnsembl isn't defining metadata correctly.
+    ## Need to update this in AcidGenomes.
     metadata(x) <- metadata(gene2symbol)
     x
 }
