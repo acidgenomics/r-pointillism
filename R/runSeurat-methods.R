@@ -157,7 +157,7 @@ NULL
 
         ## Scaling and projection ----------------------------------------------
         cli_alert("{.pkg Seurat}::{.fun ScaleData}")
-        cli_dl(c(varsToRegress = toString(varsToRegress)))
+        dl(c("varsToRegress" = toString(varsToRegress)))
         ## Scaling all features is very slow for large datasets.
         ## Current default in Seurat scales variable features only.
         ## All features:
@@ -183,12 +183,12 @@ NULL
         cli_alert_info(paste("Using", length(dims), "dims."))
         object <- Seurat::FindNeighbors(object, dims = dims)
         cli_alert("{.pkg Seurat}::{.fun FindClusters}")
-        cli_dl(c(resolution = deparse(resolution)))
+        dl(c("resolution" = deparse(resolution)))
         object <- Seurat::FindClusters(object, resolution = resolution)
 
         ## tSNE / UMAP ---------------------------------------------------------
         cli_alert("{.pkg Seurat}::{.fun RunTSNE}")
-        cli_dl(c(method = tsneMethod))
+        dl(c("method" = tsneMethod))
         object <- Seurat::RunTSNE(
             object = object,
             tsne.method = tsneMethod
@@ -204,7 +204,7 @@ NULL
             "umap-learn" = "correlation",
             "uwot" = "cosine"
         )
-        cli_dl(c(
+        dl(c(
             "method" = umapMethod,
             "metric" = metric
         ))
