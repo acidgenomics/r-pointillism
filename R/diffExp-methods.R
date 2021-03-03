@@ -181,7 +181,7 @@ NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 `diffExp,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -221,8 +221,7 @@ NULL
         ))
         ## Subset the SCE object to contain the input cells.
         cells <- c(numerator, denominator)
-        cli_div(theme = list(body = list("margin-left" = 4L)))
-        cli_ul(c(
+        ul(c(
             sprintf(
                 "Total: %d %s",
                 length(cells),
@@ -239,12 +238,10 @@ NULL
                 ngettext(length(denominator), "cell", "cells")
             )
         ))
-        cli_end()
         object <- object[, cells, drop = FALSE]
         ## Ensure we're using a sparse matrix to calculate the logical matrix.
         counts <- counts(object)
         counts <- as(counts, "sparseMatrix")
-
         ## Gene filter ---------------------------------------------------------
         cli_alert("Applying gene expression low pass filter.")
         cli_div(theme = list(body = list("margin-left" = 4L)))
@@ -261,7 +258,7 @@ NULL
         ## Filter the genes based on our expression threshold criteria.
         ## Note that this step generates a logical matrix, and will calculate
         ## a lot faster when using a sparse matrix (see above).
-        genes <- Matrix::rowSums(counts >= minCountsPerCell) >= minCellsPerGene
+        genes <- rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
         cli_alert_info(sprintf(
             "%d of %d %s passed filter.",
@@ -281,7 +278,6 @@ NULL
         ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
         cli_end()
-
         ## Cell filter ---------------------------------------------------------
         cli_alert("Applying cell low pass filter.")
         ## Inform the user if any cells have been removed.
@@ -310,7 +306,6 @@ NULL
             .underpoweredContrast()
             return(NULL)
         }
-
         ## Design formula ------------------------------------------------------
         ## Create a cell factor to define the group.
         numeratorFactor <- as.factor(replicate(
@@ -334,7 +329,6 @@ NULL
         ## Set up the design matrix.
         design <- model.matrix(~group)
         metadata(object)[["design"]] <- design
-
         ## Run differential expression -----------------------------------------
         ## Ensure count matrix is dense before running DE.
         counts(object) <- as.matrix(counts(object))

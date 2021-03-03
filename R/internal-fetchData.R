@@ -53,9 +53,6 @@
     ## This return is used by `.fetchReductionExpressionData()`.
     if (!isTRUE(metadata)) {
         ## Transpose, putting genes into the columns.
-        if (is(counts, "Matrix")) {
-            t <- Matrix::t
-        }
         out <- t(counts)
         assert(identical(class(counts), class(out)))
         return(out)
@@ -162,7 +159,7 @@ formals(.fetchReductionData)[args] <-
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 .fetchReductionExpressionData <- function(
     object,
     genes,
@@ -187,11 +184,6 @@ formals(.fetchReductionData)[args] <-
         x = colnames(geneCounts),
         y = as.character(rownames)
     ))
-    ## Keep the supported operations sparse.
-    if (is(geneCounts, "sparseMatrix")) {
-        rowMeans <- Matrix::rowMeans
-        rowSums <- Matrix::rowSums
-    }
     ## Calculate the expression summary columns.
     ## Note that `rowMedians` currently isn't supported for sparse data.
     mean <- rowMeans(geneCounts)
