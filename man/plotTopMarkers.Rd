@@ -64,11 +64,11 @@ Updated 2020-01-30.
 }
 \examples{
 data(Seurat, package = "AcidTest")
-data(seurat_all_markers)
+data(seuratAllMarkers)
 
 ## Seurat, SeuratMarkersPerCluster ====
 object <- Seurat
-markers <- seurat_all_markers
+markers <- seuratAllMarkers
 plotTopMarkers(
     object = object,
     markers = markers,

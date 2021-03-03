@@ -41,10 +41,10 @@ The form of the value returned by \code{summary} depends on the
 Updated 2020-10-12.
 }
 \examples{
-data(seurat_all_markers)
+data(seuratAllMarkers)
 
 ## SeuratMarkersPerCluster ====
-object <- seurat_all_markers
+object <- seuratAllMarkers
 class(object)
 summary(object)
 }
