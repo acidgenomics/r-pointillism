@@ -96,6 +96,8 @@ NULL
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
+        ## FIXME THIS STEP IS ERRORING FOR "UMAP" (in capital)
+        ## But weirdly it's working here interactively...come back to this.
         data <- .fetchReductionData(
             object = object,
             reduction = reduction,
@@ -111,7 +113,7 @@ NULL
         ## Check if interesting groups input is supported.
         supported <- bapply(data, is.factor)
         supported <- names(supported)[supported]
-        blacklist <- c("interestingGroups", "orig.ident", "sampleId")
+        blacklist <- c("interestingGroups", "origIdent", "sampleId")
         supported <- setdiff(supported, blacklist)
         if (!isSubset(interestingGroups, supported)) {
             setdiff <- setdiff(interestingGroups, supported)
