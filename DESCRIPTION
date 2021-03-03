@@ -35,6 +35,7 @@ Depends:
 Imports:
     AcidGenerics (>= 0.5.16),
     AcidPlots (>= 0.3.3),
+    BiocParallel (>= 1.24),
     DESeq2 (>= 1.30),
     Matrix (>= 1.2),
     Seurat (>= 4.0),
