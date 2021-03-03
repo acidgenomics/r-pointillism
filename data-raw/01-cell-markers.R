@@ -1,6 +1,6 @@
 ## """
 ## Cell-cycle and cell-type markers.
-## Updated 2020-10-12.
+## Updated 2021-03-03.
 ##
 ## Here we're matching the stored Ensembl identifiers (`geneId`) using
 ## ensembldb to obtain the latest symbol names from Ensembl.
@@ -13,54 +13,66 @@
 library(usethis)
 library(stringr)
 
-markers_dir <- system.file(
+markersDir <- system.file(
     "extdata", "markers",
     package = "pointillism",
     mustWork = TRUE
 )
-stopifnot(dir.exists(markers_dir))
+stopifnot(dir.exists(markersDir))
 
 ## Ensembl release version.
-release <- as.integer(readLines(file.path(markers_dir, "ensembl-release.txt")))
+release <- as.integer(readLines(file.path(markersDir, "ensembl-release.txt")))
 
 ## Cell-cycle markers ==========================================================
-cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
-stopifnot(dir.exists(cell_cycle_dir))
-files <- list.files(path = cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
-cell_cycle_markers_list <- lapply(
+cellCycleDir <- file.path(markersDir, "cell-cycle")
+stopifnot(dir.exists(cellCycleDir))
+files <- sort(list.files(
+    path = cellCycleDir,
+    pattern = "*.csv",
+    full.names = TRUE
+))
+cellCycleMarkersList <- lapply(
     X = files,
     FUN = function(file) {
+        organism <- sentenceCase(gsub("-", " ", basenameSansExt(file)))
         importCellCycleMarkers(
             file = file,
-            organism = basenameSansExt(file),
-            release = release
+            organism = organism,
+            release = release,
+            ignoreVersion = TRUE
         )
     }
 )
 names <- camelCase(basenameSansExt(files))
-names(cell_cycle_markers_list) <- names
+names(cellCycleMarkersList) <- names
 
 ## Cell-type markers ===========================================================
-cell_type_dir <- file.path(markers_dir, "cell-type")
-stopifnot(dir.exists(cell_type_dir))
-files <- list.files(path = cell_type_dir, pattern = "*.csv", full.names = TRUE)
-cell_type_markers_list <- lapply(
+cellTypeDir <- file.path(markersDir, "cell-type")
+stopifnot(dir.exists(cellTypeDir))
+files <- sort(list.files(
+    path = cellTypeDir,
+    pattern = "*.csv",
+    full.names = TRUE
+))
+cellTypeMarkersList <- lapply(
     X = files,
     FUN = function(file) {
+        organism <- sentenceCase(gsub("-", " ", basenameSansExt(file)))
         importCellTypeMarkers(
             file = file,
-            organism = basenameSansExt(file),
-            release = release
+            organism = organism,
+            release = release,
+            ignoreVersion = TRUE
         )
     }
 )
 names <- camelCase(basenameSansExt(files))
-names(cell_type_markers_list) <- names
+names(cellTypeMarkersList) <- names
 
 ## Save R data ==================================================================
 use_data(
-    cell_cycle_markers_list,
-    cell_type_markers_list,
+    cellCycleMarkersList,
+    cellTypeMarkersList,
     compress = "xz",
     overwrite = TRUE
 )
