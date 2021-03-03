@@ -29,7 +29,7 @@
 #'   showSlotInfo sizeFactors sizeFactors<- snakeCase split t table tail ul
 #'   uniteInterestingGroups unsplit verbatim
 #' @importFrom cli cli_alert cli_alert_info cli_alert_success cli_alert_warning
-#'   cli_div cli_dl cli_end cli_h1 cli_h2
+#'   cli_div cli_end cli_h1 cli_h2
 #' @importFrom dplyr group_by n summarize
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap

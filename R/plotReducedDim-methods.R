@@ -82,9 +82,9 @@ NULL
             labels = labels,
             choices = eval(formals()[["labels"]])
         )
-        cli_dl(c(
-            reduction = reduction,
-            dims = deparse(dims)
+        dl(c(
+            "reduction" = reduction,
+            "dims" = deparse(dims)
         ))
         ## Note that we're not slotting interesting groups back into object
         ## here because we're allowing visualization of cluster identity, which
@@ -243,12 +243,12 @@ setMethod(
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 `plotReducedDim,Seurat` <-  # nolint
     function(object, ...) {
         validObject(object)
         idents <- .seuratWhichIdents(object)
-        cli_dl(c(idents = idents))
+        dl(c("idents" = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }
 
