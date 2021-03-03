@@ -18,11 +18,11 @@ setValidity(
             areSetEqual(
                 x = colnames(object[[1L]]),
                 y = c("geneId", "geneName", "phase")
-            ),
-            isSubset(
-                x = c("date", "organism", "provider", "release"),
-                y = names(metadata(object))
             )
+            ## > isSubset(
+            ## >     x = c("date", "organism", "provider", "release"),
+            ## >     y = names(metadata(object))
+            ## > )
         )
     }
 )
@@ -49,11 +49,11 @@ setValidity(
             areSetEqual(
                 x = colnames(object[[1L]]),
                 y = c("cellType", "geneId", "geneName")
-            ),
-            isSubset(
-                x = c("date", "organism", "provider", "release"),
-                y = names(metadata(object))
             )
+            ## > isSubset(
+            ## >     x = c("date", "organism", "provider", "release"),
+            ## >     y = names(metadata(object))
+            ## > )
         )
     }
 )
