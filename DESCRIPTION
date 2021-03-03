@@ -36,8 +36,6 @@ Imports:
     AcidGenerics (>= 0.5.16),
     AcidPlots (>= 0.3.3),
     DESeq2 (>= 1.30),
-    DelayedArray,
-    DelayedMatrixStats,
     Matrix (>= 1.2),
     Seurat (>= 4.0),
     dplyr (>= 1.0),
