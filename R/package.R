@@ -9,6 +9,7 @@
 #'
 #' @importMethodsFrom basejump coerce
 #'
+#' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<-
 #' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
 #'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
@@ -51,8 +52,3 @@
 
 ## Disabled until monocle3 is on Bioconductor.
 ## > #' @importClassesFrom monocle3 cell_data_set
-
-## FIXME Take these out?
-#' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
-#'   bpprogressbar<-
-NULL
