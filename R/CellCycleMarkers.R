@@ -54,13 +54,15 @@ CellCycleMarkers <-  # nolint
 importCellCycleMarkers <- function(
     file,
     organism,
-    release
+    release,
+    ignoreVersion = TRUE
 ) {
     object <- import(file)
     object <- as(object, "DataFrame")
     gene2symbol <- makeGene2SymbolFromEnsembl(
         organism = organism,
-        release = release
+        release = release,
+        ignoreVersion = ignoreVersion
     )
     CellCycleMarkers(
         object = object,
