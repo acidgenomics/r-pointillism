@@ -53,3 +53,17 @@
 ## > }
 ## > theme <- theme(base_size = 14L, legend_position = "right")
 ## > ggplot2::theme_set(new = theme)
+
+
+
+## Updated 2021-03-03.
+.pkgName <- packageName()
+.pkgVersion <- packageVersion(.pkgName)
+
+
+
+## Updated 2021-03-03.
+.prototypeMetadata <- list(
+    "date" = Sys.Date(),
+    "packageVersion" = .pkgVersion
+)

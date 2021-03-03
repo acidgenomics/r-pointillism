@@ -2,13 +2,12 @@
 ## Updated 2020-10-12.
 
 library(usethis)
-library(Seurat)   # 3.2.2
+library(Seurat)   # 4.0.0
 
-data(cell_type_markers_list)
+data(cellTypeMarkersList)
 data(Seurat, package = "AcidTest")
 
-## seurat_all_markers ===========================================================
-seurat_all_markers <- withCallingHandlers(
+seuratAllMarkers <- withCallingHandlers(
     expr = SeuratMarkersPerCluster(
         object = FindAllMarkers(Seurat),
         ranges = rowRanges(Seurat)
@@ -22,13 +21,11 @@ seurat_all_markers <- withCallingHandlers(
     }
 )
 
-## known_markers_small ==========================================================
-seurat_known_markers <- KnownMarkers(
+seuratKnownMarkers <- KnownMarkers(
     markers = seurat_all_markers,
     known = cell_type_markers_list[["homoSapiens"]]
 )
 
-## Save =========================================================================
 use_data(
     seurat_all_markers,
     seurat_known_markers,

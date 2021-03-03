@@ -67,10 +67,9 @@ NULL
         if (isTRUE(promiscuousThreshold > 1L)) {
             x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)
         }
-        metadata(x) <- list(
-            alphaThreshold = alphaThreshold,
-            version = packageVersion(packageName()),
-            date = Sys.Date()
+        metadata(x) <- append(
+            x = .prototypeMetadata,
+            values = list("alphaThreshold" = alphaThreshold)
         )
         new(Class = "KnownMarkers", x)
     }

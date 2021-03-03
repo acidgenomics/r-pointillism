@@ -17,25 +17,25 @@
 
 #' Cell-cycle markers list
 #'
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #' @return `list`.
-#' @usage data(cell_cycle_markers_list)
+#' @usage data(cellCycleMarkersList)
 #' @examples
-#' data(cell_cycle_markers_list)
-#' names(cell_cycle_markers_list)
-"cell_cycle_markers_list"
+#' data(cellCycleMarkersList)
+#' names(cellCycleMarkersList)
+"cellCycleMarkersList"
 
 
 
 #' Cell-type markers list
 #'
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #' @return `list`.
-#' @usage data(cell_type_markers_list)
+#' @usage data(cellTypeMarkersList)
 #' @examples
-#' data(cell_type_markers_list)
-#' names(cell_type_markers_list)
-"cell_type_markers_list"
+#' data(cellTypeMarkersList)
+#' names(cellTypeMarkersList)
+"cellTypeMarkersList"
 
 
 
