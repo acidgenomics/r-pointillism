@@ -63,8 +63,6 @@
 ## FIXME Take these out?
 #' @importFrom BiocParallel MulticoreParam SerialParam bpparam bpprogressbar
 #'   bpprogressbar<-
-#' @importFrom DelayedArray DelayedArray
-#' @importFrom DelayedMatrixStats colSums2 rowSums2
 #' @importFrom scales percent pretty_breaks
 #' @importFrom stats median model.matrix relevel
 #' @importFrom utils data
