@@ -34,7 +34,7 @@ identifiers in the \code{geneId} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 
-Updated 2020-10-12.
+Updated 2021-03-03.
 }
 \examples{
 data(cell_type_markers_list, seurat_all_markers)

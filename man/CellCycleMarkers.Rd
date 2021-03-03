@@ -7,7 +7,7 @@
 \usage{
 CellCycleMarkers(object, gene2symbol)
 
-importCellCycleMarkers(file, organism, release)
+importCellCycleMarkers(file, organism, release, ignoreVersion = TRUE)
 }
 \arguments{
 \item{object}{Object.}
@@ -28,6 +28,12 @@ possible, for improved reproducibility. When left unset, the latest release
 available via AnnotationHub/ensembldb is used. Note that the latest version
 available can vary, depending on the versions of AnnotationHub and
 ensembldb in use.}
+
+\item{ignoreVersion}{\code{logical(1)}.
+Ignore identifier (e.g. transcript, gene) versions.
+When applicable, the identifier containing version numbers will be stored
+in \code{txIdVersion} and \code{geneIdVersion}, and the variants without versions
+will be stored in \code{txId}, \code{txIdNoVersion}, \code{geneId}, and \code{geneIdNoVersion}.}
 }
 \value{
 \code{CellCycleMarkers}.

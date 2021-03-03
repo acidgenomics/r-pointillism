@@ -1,11 +1,3 @@
-## Updated 2019-07-31.
-.prototypeMetadata <- list(
-    version = packageVersion(packageName()),
-    date = Sys.Date()
-)
-
-
-
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
