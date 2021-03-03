@@ -1,6 +1,10 @@
+## FIXME This is setting names on `ident` column, which we don't want.
+
+
+
 #' @name cellCountsPerCluster
 #' @inherit AcidGenerics::cellCountsPerCluster
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.

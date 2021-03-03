@@ -1,3 +1,11 @@
+## pointillism 0.5.0 (2021-03-03)
+
+### Major changes
+
+- Simplified NAMESPACE, incorporating changes in basejump v0.14 release series.
+- `Seurat` to `SingleCellExperiment` now enforces strict lower camel case
+  formatting for `colData`, `rowData`, and `metadata` slots.
+
 ## pointillism 0.4.14 (2020-10-12)
 
 ### Minor changes
