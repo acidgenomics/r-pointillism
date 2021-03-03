@@ -31,10 +31,10 @@ Top markers
 Updated 2020-01-30.
 }
 \examples{
-data(seurat_all_markers)
+data(seuratAllMarkers)
 
 ## SeuratMarkersPerCluster ====
-object <- seurat_all_markers
+object <- seuratAllMarkers
 x <- topMarkers(object, n = 2L)
 print(x)
 }
