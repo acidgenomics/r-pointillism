@@ -117,7 +117,7 @@ Colors using \code{ident} column defined in
 \code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData()}} by default.
 }
 \note{
-Updated 2020-02-21.
+Updated 2021-03-03.
 }
 \section{Reduction types}{
 

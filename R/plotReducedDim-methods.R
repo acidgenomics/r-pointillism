@@ -1,8 +1,12 @@
+## FIXME THIS IS NOW FAILING DUE TO "REDUCTION" BEING IN CAPS.
+
+
+
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit AcidGenerics::plotReducedDim
-#' @note Updated 2020-02-21.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -41,7 +45,7 @@ NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
