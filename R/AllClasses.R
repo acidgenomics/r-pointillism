@@ -93,7 +93,7 @@ setValidity(
                 y = colnames(object)
             ),
             isSubset(
-                x = c("alphaThreshold", "date", "version"),
+                x = c("alphaThreshold", "date", "packageVersion"),
                 y = names(metadata(object))
             )
         )
@@ -109,7 +109,7 @@ setValidity(
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `SeuratMarkers`.
 setClass(
@@ -124,7 +124,7 @@ setValidity(
             identical(
                 x = sort(colnames(object)),
                 y = c(
-                    "avgLogFC",
+                    "avgLog2Fc",
                     "padj",
                     "pct1",
                     "pct2",
@@ -147,7 +147,7 @@ setValidity(
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
@@ -162,7 +162,7 @@ setValidity(
             identical(
                 x = sort(colnames(object)[[1L]]),
                 y = c(
-                    "avgLogFC",
+                    "avgLog2Fc",
                     "cluster",
                     "name",
                     "padj",

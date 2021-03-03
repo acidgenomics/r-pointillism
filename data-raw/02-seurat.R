@@ -1,8 +1,8 @@
 ## Seurat example markers return data.
-## Updated 2020-10-12.
+## Updated 2021-03-03.
 
 library(usethis)
-library(Seurat)   # 4.0.0
+library(Seurat)  # 4.0.0
 
 data(cellTypeMarkersList)
 data(Seurat, package = "AcidTest")
@@ -22,13 +22,13 @@ seuratAllMarkers <- withCallingHandlers(
 )
 
 seuratKnownMarkers <- KnownMarkers(
-    markers = seurat_all_markers,
-    known = cell_type_markers_list[["homoSapiens"]]
+    markers = seuratAllMarkers,
+    known = cellTypeMarkersList[["homoSapiens"]]
 )
 
 use_data(
-    seurat_all_markers,
-    seurat_known_markers,
+    seuratAllMarkers,
+    seuratKnownMarkers,
     compress = "xz",
     overwrite = TRUE
 )
