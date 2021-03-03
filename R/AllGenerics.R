@@ -101,7 +101,7 @@ NULL
 
 #' @rdname normalize
 #' @name normalize
-#' @importFrom BiocGenerics normalize
+#' @importFrom AcidGenerics normalize
 #' @usage normalize(object, ...)
 #' @export
 NULL
@@ -194,7 +194,7 @@ NULL
 
 #' @rdname plotReducedDim
 #' @name plotPCA
-#' @importFrom BiocGenerics plotPCA
+#' @importFrom AcidGenerics plotPCA
 #' @usage plotPCA(object, ...)
 #' @export
 NULL
