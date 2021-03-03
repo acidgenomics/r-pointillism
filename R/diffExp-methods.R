@@ -123,7 +123,7 @@ NULL
 ## Updated 2020-01-30.
 .diffExp.DESeq2 <- function(object, BPPARAM) {  # nolint
     assert(.hasDesignFormula(object))
-    cli_alert("Running {.pkg DESeq2}.")
+    alert("Running {.pkg DESeq2}.")
     dds <- DESeqDataSet(
         se = object,
         design = .designFormula
@@ -158,7 +158,7 @@ NULL
 ## Updated 2020-01-30.
 .diffExp.edgeR <- function(object) {  # nolint
     assert(.hasDesignFormula(object))
-    cli_alert("Running {.pkg edgeR}.")
+    alert("Running {.pkg edgeR}.")
     ## Ensure sparseMatrix gets coerced to dense matrix.
     counts <- as.matrix(counts(object))
     design <- metadata(object)[["design"]]
@@ -215,7 +215,7 @@ NULL
             .isBPPARAM(BPPARAM)
         )
         caller <- match.arg(caller)
-        cli_alert(sprintf(
+        alert(sprintf(
             "Performing differential expression with {.pkg %s}.",
             caller
         ))
@@ -243,9 +243,8 @@ NULL
         counts <- counts(object)
         counts <- as(counts, "sparseMatrix")
         ## Gene filter ---------------------------------------------------------
-        cli_alert("Applying gene expression low pass filter.")
-        cli_div(theme = list(body = list("margin-left" = 4L)))
-        cli_alert_info(sprintf(
+        alert("Applying gene expression low pass filter.")
+        alertInfo(sprintf(
             "Requiring at least %d %s with counts of %d or more per gene.",
             minCellsPerGene,
             ngettext(
@@ -260,7 +259,7 @@ NULL
         ## a lot faster when using a sparse matrix (see above).
         genes <- rowSums(counts >= minCountsPerCell) >= minCellsPerGene
         genes <- names(genes[genes])
-        cli_alert_info(sprintf(
+        alertInfo(sprintf(
             "%d of %d %s passed filter.",
             length(genes),
             nrow(object),
@@ -272,19 +271,17 @@ NULL
         ))
         ## Early return NULL if no genes pass.
         if (!hasLength(genes)) {
-            cli_alert_warning("No genes passed the low count filter.")
+            alertWarning("No genes passed the low count filter.")
             return(NULL)
         }
         ## Now subset the object by applying our low pass expression filter.
         object <- object[genes, , drop = FALSE]
-        cli_end()
         ## Cell filter ---------------------------------------------------------
-        cli_alert("Applying cell low pass filter.")
+        alert("Applying cell low pass filter.")
         ## Inform the user if any cells have been removed.
         trash <- setdiff(cells, colnames(object))
         if (hasLength(trash)) {
-            cli_div(theme = list(body = list("margin-left" = 4L)))
-            cli_alert_warning(sprintf(
+            alertWarning(sprintf(
                 "Removed %d low quality %s.",
                 length(trash),
                 ngettext(
@@ -293,7 +290,6 @@ NULL
                     msg2 = "cells"
                 )
             ))
-            cli_end()
         }
         ## Resize the numerator and denominator after our QC filters.
         ## Early return `NULL` if there are less than n cells in either.

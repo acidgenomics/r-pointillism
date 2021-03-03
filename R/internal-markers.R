@@ -24,7 +24,7 @@
     ## useful for informing about putative markers that aren't expressed.
     setdiff <- setdiff(x[["geneId"]], gene2symbol[["geneId"]])
     if (hasLength(setdiff)) {
-        cli_alert_warning(sprintf(
+        alertWarning(sprintf(
             "Markers missing from gene2symbol: %s.",
             toString(setdiff, width = 200L)
         ))
@@ -67,7 +67,7 @@
     genes <- unlist(genes, use.names = FALSE)
     genes <- sort(unique(genes))
     if (hasLength(genes)) {
-        cli_alert_warning(sprintf(
+        alertWarning(sprintf(
             "Filtering promiscuous marker genes: %s.",
             toString(genes, width = 100L)
         ))

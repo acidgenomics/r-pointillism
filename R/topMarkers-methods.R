@@ -32,7 +32,7 @@ NULL
         validObject(object)
         assert(isInt(n))
         direction <- match.arg(direction)
-        cli_alert_info(switch(
+        alertInfo(switch(
             EXPR = direction,
             "both" = "Including both up- and down-regulated markers.",
             "down" = "Including downregulated markers.",

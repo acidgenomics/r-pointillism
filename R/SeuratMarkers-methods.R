@@ -74,7 +74,7 @@ NULL
             perCluster <- TRUE
             fun <- "FindAllMarkers"
         }
-        cli_alert_info(sprintf("{.fun %s} return detected.", fun))
+        alertInfo(sprintf("{.fun %s} return detected.", fun))
         ## Sanitize markers.
         x <- as(object, "DataFrame")
         x <- camelCase(x, strict = TRUE)
@@ -87,7 +87,7 @@ NULL
         rownames(x) <- NULL
         ## Update legacy columns.
         if (isSubset("avgDiff", colnames(x))) {
-            cli_alert_warning(paste(
+            alertWarning(paste(
                 "Renaming legacy {.var avgDiff} column to {.var avgLogFC}",
                 "(changed in {.pkg Seurat} v2.1)."
             ))
