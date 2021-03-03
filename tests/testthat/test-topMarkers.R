@@ -1,7 +1,7 @@
 context("topMarkers")
 
 test_that("Default", {
-    object <- topMarkers(seurat_all_markers, direction = "up", n = 2L)
+    object <- topMarkers(seuratAllMarkers, direction = "up", n = 2L)
     expect_s4_class(object, "DataFrame")
     expect_identical(
         lapply(object, class) %>% .[sort(names(.))],
@@ -23,7 +23,7 @@ directions <- formals(`topMarkers,SeuratMarkersPerCluster`)[["direction"]]
 test_that("direction", {
     for (direction in directions) {
         object <- topMarkers(
-            object = seurat_all_markers,
+            object = seuratAllMarkers,
             direction = direction
         )
         expect_s4_class(object, "DataFrame")

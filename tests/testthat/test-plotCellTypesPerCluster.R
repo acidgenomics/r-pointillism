@@ -5,7 +5,7 @@ test_that("Homo sapiens", {
         invisible(capture.output({
             list <- plotCellTypesPerCluster(
                 object = object,
-                markers = seurat_known_markers
+                markers = seuratKnownMarkers
             )
         }))
         expect_type(list, "list")
