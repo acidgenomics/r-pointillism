@@ -48,13 +48,15 @@ cell_type_dir <- file.path(markers_dir, "cell-type")
 files <- list.files(cell_type_dir, pattern = "*.csv", full.names = TRUE)
 file <- files[[1L]]
 
+organism <- sentenceCase(gsub("-", " ", basenameSansExt(file)))
+
 ## Ensembl release version.
 release_file <- file.path(markers_dir, "ensembl-release.txt")
 release <- as.integer(readLines(release_file))
 
 importCellTypeMarkers(
     file = file,
-   organism = basenameSansExt(file),
+   organism = organism,
     release = release
 )
 }

@@ -12,7 +12,7 @@
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -28,7 +28,7 @@ setValidity(
                 y = c("geneId", "geneName", "phase")
             ),
             isSubset(
-                x = c("version", "organism", "ensemblRelease", "date"),
+                x = c("date", "organism", "provider", "release"),
                 y = names(metadata(object))
             )
         )
@@ -43,7 +43,7 @@ setValidity(
 #' defined in [`metadata()`][S4Vectors::metadata].
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -59,7 +59,7 @@ setValidity(
                 y = c("cellType", "geneId", "geneName")
             ),
             isSubset(
-                x = c("date", "ensemblRelease", "organism", "version"),
+                x = c("date", "organism", "provider", "release"),
                 y = names(metadata(object))
             )
         )

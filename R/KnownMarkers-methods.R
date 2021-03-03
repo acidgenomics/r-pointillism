@@ -5,7 +5,7 @@
 #'   identifiers in the `geneId` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2020-10-12.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
