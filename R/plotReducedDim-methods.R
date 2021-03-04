@@ -1,7 +1,3 @@
-## FIXME THIS IS NOW FAILING DUE TO "REDUCTION" BEING IN CAPS.
-
-
-
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
@@ -96,8 +92,6 @@ NULL
         if (is.null(interestingGroups)) {
             interestingGroups <- "ident"
         }
-        ## FIXME THIS STEP IS ERRORING FOR "UMAP" (in capital)
-        ## But weirdly it's working here interactively...come back to this.
         data <- .fetchReductionData(
             object = object,
             reduction = reduction,
@@ -211,10 +205,9 @@ NULL
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
         ## Labels.
-        ## FIXME NEED TO IMPROVE THE APPEARANCE HERE?
         if (is.list(labels)) {
-            labels[["x"]] <- axes[[1L]]
-            labels[["y"]] <- axes[[2L]]
+            labels[["x"]] <- makeLabel(axes[[1L]])
+            labels[["y"]] <- makeLabel(axes[[2L]])
             labels[["color"]] <- paste(interestingGroups, collapse = ":\n")
             labels[["fill"]] <- labels[["color"]]
             p <- p + do.call(what = labs, args = labels)

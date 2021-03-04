@@ -39,7 +39,6 @@ test_that("plotKnownMarkers", {
 
 context("plotTopMarkers")
 
-## FIXME THIS ISNT RETURNING ANY MATCHES NOW...
 test_that("Seurat", {
     object <- seurat
     markers <- seuratAllMarkers
