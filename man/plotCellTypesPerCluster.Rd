@@ -87,8 +87,7 @@ data(seuratKnownMarkers)
 ## Seurat ====
 object <- Seurat
 markers <- seuratKnownMarkers
-
-plotCellTypesPerCluster(
+p <- plotCellTypesPerCluster(
     object = object,
     markers = markers,
     reduction = "UMAP"

@@ -82,13 +82,7 @@
 
 \S4method{rowRanges}{Seurat,ANY}(x) <- value
 
-\S4method{sampleData}{Seurat}(
-  object,
-  clean = TRUE,
-  ignoreCols = c("^description$", "^genomeBuild$", "^qualityFormat$", "^samRef$"),
-  denylistCols = c("^ident$", "^g2mScore$", "^sScore$", "^phase$", "^oldIdent$",
-    "^origIdent$", "^res[0-9]+")
-)
+\S4method{sampleData}{Seurat}(object, ...)
 
 \S4method{sampleData}{Seurat,DataFrame}(object) <- value
 
@@ -122,7 +116,7 @@ Varies, depending on the generic.
 Provide limited \code{SingleCellExperiment}-like method support.
 }
 \note{
-Updated 2019-08-05.
+Updated 2021-03-03.
 }
 \seealso{
 \itemize{

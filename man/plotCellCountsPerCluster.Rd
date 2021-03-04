@@ -36,5 +36,5 @@ data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat
-plotCellCountsPerCluster(object)
+p <- plotCellCountsPerCluster(object)
 }
