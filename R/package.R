@@ -30,7 +30,6 @@
 #'   rowSums sampleData sampleData<- sampleNames sapply separator session_info
 #'   showSlotInfo sizeFactors sizeFactors<- snakeCase split t table tail ul
 #'   uniteInterestingGroups unsplit verbatim
-#' @importFrom dplyr group_by n summarize
 #' @importFrom edgeR DGEList calcNormFactors estimateDisp glmFit glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
@@ -52,3 +51,9 @@
 
 ## Disabled until monocle3 is on Bioconductor.
 ## > #' @importClassesFrom monocle3 cell_data_set
+
+
+
+## FIXME Can we take out this dependency?
+#' @importFrom dplyr group_by n summarize
+NULL

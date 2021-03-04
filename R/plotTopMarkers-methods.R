@@ -1,6 +1,6 @@
 #' @name plotTopMarkers
 #' @inherit AcidGenerics::plotTopMarkers
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -28,14 +28,14 @@ NULL
 
 
 
-## Updated 2019-08-23.
+## Updated 2021-03-03.
 `plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
         markers,
-        n = 1L,
         direction,
         reduction,
+        n = 1L,
         headerLevel = 2L,
         ...
     ) {
@@ -44,15 +44,15 @@ NULL
         validObject(markers)
         markers <- topMarkers(
             object = markers,
-            n = n,
-            direction = direction
+            direction = direction,
+            n = n
         )
         assert(
             is(markers, "DataFrame"),
             isScalar(reduction),
             isHeaderLevel(headerLevel)
         )
-        assert(isSubset("cluster", colnames(markers)))
+        assert(is.factor(markers[["cluster"]]))
         clusters <- levels(markers[["cluster"]])
         list <- lapply(
             X = clusters,

@@ -39,9 +39,11 @@ test_that("plotKnownMarkers", {
 
 context("plotTopMarkers")
 
+## FIXME THIS ISNT RETURNING ANY MATCHES NOW...
 test_that("Seurat", {
     object <- seurat
-    markers <- head(seuratAllMarkers, n = 2L)
+    markers <- seuratAllMarkers
+    expect_s4_class(markers, "SeuratMarkersPerCluster")
     invisible(capture.output({
         x <- plotTopMarkers(
             object = object,
