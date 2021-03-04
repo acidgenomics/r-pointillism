@@ -8,7 +8,7 @@
 #'
 #' @name base-Seurat
 #' @keywords internal
-#' @note Updated 2019-08-05.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -41,11 +41,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `assay,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as.SingleCellExperiment(x)
-        assay(x, ...)
+        assay(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -60,11 +62,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `assayNames,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as.SingleCellExperiment(x)
-        assayNames(x, ...)
+        assayNames(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -79,11 +83,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `assays,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as.SingleCellExperiment(x)
-        assays(x, ...)
+        assays(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -98,11 +104,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `colData,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as.SingleCellExperiment(x)
-        colData(x, ...)
+        colData(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -141,7 +149,7 @@ setReplaceMethod(
 
 
 
-## Upated 2019-08-06.
+## Upated 2021-03-03.
 `counts,Seurat` <-  # nolint
     function(object, assay = NULL) {
         object <- as.SingleCellExperiment(object, assay = assay)
@@ -160,11 +168,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `interestingGroups,Seurat` <-  # nolint
     function(object, ...) {
-        object <- as(object, "SingleCellExperiment")
-        interestingGroups(object, ...)
+        interestingGroups(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -231,12 +241,11 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `mapGenesToIDs,Seurat` <-  # nolint
     function(object, genes, strict = TRUE) {
-        object <- as(object, "SingleCellExperiment")
         mapGenesToIDs(
-            object = object,
+            object = as(object, "SingleCellExperiment"),
             genes = genes,
             strict = strict
         )
@@ -254,12 +263,11 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `mapGenesToRownames,Seurat` <-  # nolint
     function(object, genes, strict = TRUE) {
-        object <- as(object, "SingleCellExperiment")
         mapGenesToRownames(
-            object = object,
+            object = as(object, "SingleCellExperiment"),
             genes = genes,
             strict = strict
         )
@@ -277,12 +285,11 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `mapGenesToSymbols,Seurat` <-  # nolint
     function(object, genes, strict = TRUE) {
-        object <- as(object, "SingleCellExperiment")
         mapGenesToSymbols(
-            object = object,
+            object = as(object, "SingleCellExperiment"),
             genes = genes,
             strict = strict
         )
@@ -300,13 +307,14 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `metadata,Seurat` <-  # nolint
     function(x, ...) {
         stash <- .getSeuratStash(x, "metadata")
         if (!is.null(stash)) {
             return(stash)
         }
+        ## NOTE Do not use our `as()` coercion method here.
         x <- as.SingleCellExperiment(x)
         metadata(x, ...)
     }
@@ -349,11 +357,13 @@ setReplaceMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `metrics,Seurat` <-  # nolint
     function(object, ...) {
-        object <- as(object, "SingleCellExperiment")
-        metrics(object, ...)
+        metrics(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -397,11 +407,10 @@ setMethod(
 
 
 
-## Updated 2019-08-06.
+## Updated 2021-03-03.
 `organism,Seurat` <-  # nolint
     function(object) {
-        object <- as(object, "SingleCellExperiment")
-        organism(object)
+        organism(object = as(object, "SingleCellExperiment"))
     }
 
 
@@ -435,11 +444,17 @@ setReplaceMethod(
 
 
 
-## Updated 2019-08-06.
+## Updated 2021-03-03.
 `reducedDim,Seurat` <-  # nolint
     function(x, type = 1L, withDimnames = TRUE) {
-        x <- as.SingleCellExperiment(x)
-        reducedDim(x = x, type = type, withDimnames = withDimnames)
+        if (isString(type)) {
+            type <- camelCase(type, strict = TRUE)
+        }
+        reducedDim(
+            x = as(x, "SingleCellExperiment"),
+            type = type,
+            withDimnames = withDimnames
+        )
     }
 
 
@@ -454,11 +469,10 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `reducedDimNames,Seurat` <-  # nolint
     function(x) {
-        x <- as.SingleCellExperiment(x)
-        reducedDimNames(x)
+        reducedDimNames(x = as(x, "SingleCellExperiment"))
     }
 
 
@@ -473,11 +487,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `reducedDims,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as.SingleCellExperiment(x)
-        reducedDims(x, ...)
+        reducedDims(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -492,11 +508,13 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `rowData,Seurat` <-  # nolint
     function(x, ...) {
-        x <- as(x, "SingleCellExperiment")
-        rowData(x, ...)
+        rowData(
+            x = as(x, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -511,12 +529,24 @@ setMethod(
 
 
 
-## Updated 2020-02-20.
+## Updated 2021-03-03.
 `rowRanges,Seurat` <-  # nolint
     function(x) {
+        ## NOTE Do not use our `as()` coercion method here.
         sce <- as.SingleCellExperiment(x)
         gr <- rowRanges(sce)
+        assert(
+            is(gr, "GRangesList"),
+            all(
+                vapply(
+                    X = gr,
+                    FUN = length,
+                    FUN.VALUE = integer(1L)
+                ) == 0L
+            )
+        )
         ## Attempt to use stashed rowRanges, if defined.
+        ## Otherwise, return the empty placeholder.
         stash <- .getSeuratStash(x, "rowRanges")
         if (!is(stash, "GRanges")) {
             return(gr)
@@ -539,6 +569,7 @@ setMethod(
             drop = FALSE
             ]
         mcols <- cbind(mcols1, mcols2)
+        colnames(mcols) <- camelCase(colnames(mcols), strict = TRUE)
         gr <- stash
         mcols(gr) <- mcols
         gr
@@ -579,13 +610,14 @@ setReplaceMethod(
 
 
 
-## Updated 2021-03-02.
+## Updated 2021-03-03.
 `sampleData,Seurat` <-  # nolint
-    getMethod(
-        f = "sampleData",
-        signature = signature("SingleCellExperiment"),
-        where = asNamespace("AcidSingleCell")
-    )
+    function(object, ...) {
+        sampleData(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -599,7 +631,7 @@ setMethod(
 
 
 
-## Updated 2021-03-02.
+## Updated 2021-03-03.
 `sampleData<-,Seurat,DataFrame` <-  # nolint
     getMethod(
         f = "sampleData<-",
@@ -625,11 +657,10 @@ setReplaceMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-03-03.
 `sampleNames,Seurat` <-  # nolint
     function(object) {
-        object <- as(object, "SingleCellExperiment")
-        sampleNames(object)
+        sampleNames(object = as(object, "SingleCellExperiment"))
     }
 
 

@@ -68,6 +68,9 @@ NULL
 
 
 
+## FIXME RETHINK THE CAMEL CASE APPROACH HERE...DEFINE IN THE SEURAT METHODS
+## INSTEAD???
+
 ## Updated 2021-03-03.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
@@ -127,7 +130,6 @@ NULL
             colnames(mcols(rowRanges(to))) <-
                 camelCase(colnames(mcols(rowRanges(to))), strict = TRUE)
         }
-        colData(to) <- colData(to)
         if (hasColnames(colData(to))) {
             colnames(colData(to)) <-
                 camelCase(colnames(colData(to)), strict = TRUE)
