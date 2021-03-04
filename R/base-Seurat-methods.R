@@ -447,9 +447,6 @@ setReplaceMethod(
 ## Updated 2021-03-03.
 `reducedDim,Seurat` <-  # nolint
     function(x, type = 1L, withDimnames = TRUE) {
-        if (isString(type)) {
-            type <- camelCase(type, strict = TRUE)
-        }
         reducedDim(
             x = as(x, "SingleCellExperiment"),
             type = type,
