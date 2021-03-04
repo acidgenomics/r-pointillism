@@ -37,34 +37,23 @@ NULL
         data <- metrics(object, return = "DataFrame")
         ## Generate the summary count table to pass to ggplot.
         cols <- c("interestingGroups", "ident")
-
-        data[, cols]
-
-        f <- as.factor(paste(
-            data[["interestingGroups"]],
-            data[["ident"]],
-            sep = ":"
+        data <- data[, cols, drop = FALSE]
+        ## See also our `uniteInterestingGroups()` method, which uses a
+        ## similar approach internally.
+        f <- as.factor(apply(
+            X = as.data.frame(data),
+            MARGIN = 1L,
+            FUN = paste,
+            collapse = ":"
         ))
         split <- split(x = data, f = f)
         assert(is(split, "SplitDataFrameList"))
-
-        strsplit(x = levels(f), split = ":", fixed = TRUE)
-
-        nrow(split)
-        ## unknown:0 unknown:1 unknown:2
-        ##        36        25        19
-
-        ## Legacy dplyr alternative approach:
-        ## > data <- group_by(data, !!!syms(cols))
-        ## > data <- summarize(data, n = n(), .groups = "keep")
-
-        # Groups:   interestingGroups, ident [3]
-        ## interestingGroups ident     n
-        ## <fct>             <fct> <int>
-        ## 1 unknown           0        36
-        ## 2 unknown           1        25
-        ## 3 unknown           2        19
-
+        data <- as.data.frame(do.call(
+            what = rbind,
+            args = strsplit(x = levels(f), split = ":", fixed = TRUE)
+        ))
+        colnames(data) <- cols
+        data[["n"]] <- unname(nrow(split))
         p <- ggplot(
             data = data,
             mapping = aes(
