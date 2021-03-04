@@ -68,9 +68,6 @@ NULL
 
 
 
-## FIXME RETHINK THE CAMEL CASE APPROACH HERE...DEFINE IN THE SEURAT METHODS
-## INSTEAD???
-
 ## Updated 2021-03-03.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
