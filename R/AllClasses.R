@@ -1,7 +1,7 @@
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [`metadata()`][S4Vectors::metadata].
+#' defined in `metadata()`.
 #'
 #' @export
 #' @note Updated 2021-03-03.
@@ -32,7 +32,7 @@ setValidity(
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [`metadata()`][S4Vectors::metadata].
+#' defined in `metadata()`.
 #'
 #' @export
 #' @note Updated 2021-03-03.

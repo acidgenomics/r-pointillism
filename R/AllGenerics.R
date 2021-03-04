@@ -252,7 +252,7 @@ setGeneric(
 
 #' @rdname summary
 #' @name summary
-#' @importFrom S4Vectors summary
+#' @importFrom AcidGenerics summary
 #' @usage summary(object, ...)
 #' @export
 NULL
