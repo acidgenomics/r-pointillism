@@ -13,8 +13,8 @@
 #' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
 #'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
-#' @importFrom AcidPlots !! !!! acid_theme_dark acid_theme_light matchLabels
-#'   percent plot_grid pretty_breaks sym syms
+#' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
+#'   plot_grid pretty_breaks sym syms
 #' @importFrom basejump DataFrame Gene2Symbol SingleCellExperiment
 #'   SplitDataFrameList alert alertInfo alertSuccess alertWarning as.data.frame
 #'   as.matrix assay assay<- assayNames assays assays<- camelCase capture.output
@@ -55,5 +55,6 @@
 
 
 ## FIXME Can we take out this dependency?
+#' @importFrom AcidPlots !!!
 #' @importFrom dplyr group_by n summarize
 NULL

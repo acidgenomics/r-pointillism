@@ -1,6 +1,6 @@
 #' @name plotStackedBarPlot
 #' @inherit AcidGenerics::plotStackedBarPlot
-#' @note Updated 2020-06-10.
+#' @note Updated 2021-03-04.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param absolute `logical(1)`.
@@ -17,6 +17,7 @@ NULL
 
 
 
+## Updated 2021-03-04.
 `plotStackedBarPlot,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -34,8 +35,10 @@ NULL
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
         data <- metrics(object)
-        data <- group_by(data, !!!syms(c("interestingGroups", "ident")))
-        data <- summarize(data, n = n(), .groups = "keep")
+        ## FIXME Can we take the dplyr code out here???
+        requireNamespaces("dplyr")
+        data <- dplyr::group_by(data, !!!syms(c("interestingGroups", "ident")))
+        data <- dplyr::summarize(data, n = dplyr::n(), .groups = "keep")
         p <- ggplot(
             data = data,
             mapping = aes(
