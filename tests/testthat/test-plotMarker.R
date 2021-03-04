@@ -47,7 +47,9 @@ test_that("Seurat", {
     invisible(capture.output({
         x <- plotTopMarkers(
             object = object,
-            markers = markers
+            markers = markers,
+            direction = "up",
+            n = 1L
         )
     }))
     expect_type(x, "list")
