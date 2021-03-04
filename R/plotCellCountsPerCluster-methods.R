@@ -12,7 +12,7 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotCellCountsPerCluster(object)
+#' p <- plotCellCountsPerCluster(object)
 NULL
 
 
