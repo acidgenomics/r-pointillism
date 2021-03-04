@@ -211,6 +211,7 @@ NULL
             scale_x_continuous(breaks = pretty_breaks(n = 4L)) +
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
         ## Labels.
+        ## FIXME NEED TO IMPROVE THE APPEARANCE HERE?
         if (is.list(labels)) {
             labels[["x"]] <- axes[[1L]]
             labels[["y"]] <- axes[[2L]]

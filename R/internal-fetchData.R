@@ -76,6 +76,7 @@
     data <- leftJoin(data, g2s, by = "rowname")
     data <- mutateIf(data, is.character, as.factor)
     data <- data[, unique(c("rowname", sort(colnames(data))))]
+    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
@@ -101,7 +102,11 @@
         reduction <- reducedDimNames(object)[[reduction]]
     }
     ## This step will run through on mismatch, unless we check for error above.
+    ## FIXME This step is now erroring out due to capitalization...
+    ## FIXME THIS STEP WORKS INTERACTIVELY BUT FAILS INSIDE FUNCTION CALL...
     redData <- reducedDim(object, type = reduction)
+    print(reduction)
+    stop("FIXME FUCK YOU R")
     assert(hasLength(redData))
     ## Handle undefined column names here, which is currently the case with
     ## monocle3 UMAP (but not PCA) output.
@@ -151,6 +156,7 @@
         areSetEqual(rownames(data), colnames(object))
     )
     data <- data[colnames(object), , drop = FALSE]
+    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
@@ -197,6 +203,7 @@ formals(.fetchReductionData)[args] <-
     )
     data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
+    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }

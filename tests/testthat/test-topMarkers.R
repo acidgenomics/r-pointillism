@@ -6,7 +6,7 @@ test_that("Default", {
     expect_identical(
         lapply(object, class) %>% .[sort(names(.))],
         list(
-            "avgLogFc" = "numeric",  ## FIXME Breaking change
+            "avgLog2Fc" = "numeric",
             "cluster" = "factor",
             "geneId" = "factor",
             "geneName" = "factor",
