@@ -31,26 +31,20 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    basejump (>= 0.14.15)
+    basejump (>= 0.14.16)
 Imports:
-    AcidGenerics (>= 0.5.16),
+    AcidGenerics (>= 0.5.17),
     AcidPlots (>= 0.3.3),
     BiocParallel (>= 1.24),
     DESeq2 (>= 1.30),
-    Matrix (>= 1.2),
     Seurat (>= 4.0),
-    dplyr (>= 1.0),
     edgeR (>= 3.32),
     ggplot2 (>= 3.3),
     goalie (>= 0.5.0),
     methods,
-    scales,
-    scater (>= 1.18),
-    stats,
-    utils
+    scater (>= 1.18)
 Suggests:
     AcidTest (>= 0.4.0),
-    BiocParallel,
     future,
     reticulate,
     splatter,
