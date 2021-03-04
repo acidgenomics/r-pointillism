@@ -141,9 +141,9 @@ NULL
                 p <- p +
                     labs(
                         color = NULL,
-                        x = axes[[1L]],
-                        y = axes[[2L]],
-                        title = feature
+                        x = makeLabel(axes[[1L]]),
+                        y = makeLabel(axes[[2L]]),
+                        title = makeLabel(feature)
                     )
                 if (isTRUE(label)) {
                     if (isTRUE(dark)) {
