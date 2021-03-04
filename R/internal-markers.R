@@ -45,9 +45,6 @@
     names(x) <- snakeCase(names(x))
     ## Specific fix for G2/M input (cell-cycle markers).
     names(x) <- sub("g2_slash_m", "g2m", names(x))
-    ## FIXME This isn't passing through to the valiidty check sufficiently...
-    ## FIXME makeGene2SymbolFromEnsembl isn't defining metadata correctly.
-    ## Need to update this in AcidGenomes.
     metadata(x) <- metadata(gene2symbol)
     x
 }
