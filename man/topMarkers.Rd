@@ -7,17 +7,17 @@
 \usage{
 topMarkers(object, ...)
 
-\S4method{topMarkers}{SeuratMarkersPerCluster}(object, n = 10L, direction = c("up", "down", "both"))
+\S4method{topMarkers}{SeuratMarkersPerCluster}(object, direction = c("both", "up", "down"), n = 10L)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{n}{\code{integer(1)}.
-Number of genes per cluster.}
-
 \item{direction}{\code{character(1)}.
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
+
+\item{n}{\code{integer(1)}.
+Number of genes per cluster.}
 
 \item{...}{Additional arguments.}
 }
@@ -28,13 +28,17 @@ Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 Top markers
 }
 \note{
-Updated 2020-01-30.
+Updated 2021-03-03.
 }
 \examples{
 data(seuratAllMarkers)
 
 ## SeuratMarkersPerCluster ====
 object <- seuratAllMarkers
-x <- topMarkers(object, n = 2L)
+x <- topMarkers(
+    object = object,
+    direction = "up",
+    n = 2L
+)
 print(x)
 }

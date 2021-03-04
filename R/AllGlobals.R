@@ -25,7 +25,7 @@
         )),
     dark = quote(getOption("acid.dark", default = FALSE)),
     dims = quote(c(1L, 2L)),
-    direction = c("up", "down", "both"),
+    direction = c("both", "up", "down"),
     expression = c("mean", "sum"),
     headerLevel = 2L,
     label = quote(getOption("acid.label", default = TRUE)),

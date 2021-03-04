@@ -1,13 +1,13 @@
 #' @name topMarkers
 #' @inherit AcidGenerics::topMarkers
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @param n `integer(1)`.
-#'   Number of genes per cluster.
 #' @param direction `character(1)`.
 #'   Whether to include upregulated (`"up"`; positive LFC), downregulated
 #'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
+#' @param n `integer(1)`.
+#'   Number of genes per cluster.
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -15,22 +15,30 @@
 #'
 #' ## SeuratMarkersPerCluster ====
 #' object <- seuratAllMarkers
-#' x <- topMarkers(object, n = 2L)
+#' x <- topMarkers(
+#'     object = object,
+#'     direction = "up",
+#'     n = 2L
+#' )
 #' print(x)
 NULL
 
 
 
 ## Note that the validity method checks for sorting by adjusted P value.
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
-        n = 10L,
-        direction
+        direction,
+        n = 10L
     ) {
         validObject(object)
-        assert(isInt(n))
+        lfcCol <- "avgLog2Fc"
+        assert(
+            isInt(n),
+            isSubset(lfcCol, colnames(object[[1L]]))
+        )
         direction <- match.arg(direction)
         alertInfo(switch(
             EXPR = direction,
@@ -44,10 +52,10 @@ NULL
             FUN = function(x) {
                 ## Subset to positive or negative correlation, if desired.
                 if (identical(direction, "up")) {
-                    keep <- x[["avgLogFC"]] > 0L
+                    keep <- x[[lfcCol]] > 0L
                     x <- x[keep, , drop = FALSE]
                 } else if (identical(direction, "down")) {
-                    keep <- x[["avgLogFC"]] < 0L
+                    keep <- x[[lfcCol]] < 0L
                     x <- x[keep, , drop = FALSE]
                 }
                 x <- head(x, n = n)
