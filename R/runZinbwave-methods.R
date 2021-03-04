@@ -1,7 +1,7 @@
 #' Run ZINB-WaVE
 #'
 #' @name runZinbwave
-#' @note Updated 2020-07-23.
+#' @note Updated 2021-03-03.
 #'
 #' @details
 #' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
@@ -36,12 +36,13 @@
 #' @seealso `zinbwave::zinbwave`.
 #'
 #' @examples
-#' if (requireNamespace("zinbwave", quietly = TRUE)) {
-#'     data(SingleCellExperiment, package = "AcidTest")
-#'     Y <- SingleCellExperiment
-#'     Y <- nonzeroRowsAndCols(Y)
-#'     Y <- runZinbwave(Y)
-#' }
+#' ## This example is CPU intensive.
+#' ## > if (requireNamespace("zinbwave", quietly = TRUE)) {
+#' ## >     data(SingleCellExperiment, package = "AcidTest")
+#' ## >     Y <- SingleCellExperiment
+#' ## >     Y <- nonzeroRowsAndCols(Y)
+#' ## >     Y <- runZinbwave(Y)
+#' ## > }
 NULL
 
 

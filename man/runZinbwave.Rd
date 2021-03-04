@@ -53,7 +53,7 @@ will be defined in the \code{assays} slot. If these values have already been
 calculated, the object will be returned unmodified, unless \code{recalculate = TRUE}.
 }
 \note{
-Updated 2020-07-23.
+Updated 2021-03-03.
 }
 \section{Parallelization}{
 
@@ -67,12 +67,13 @@ to run with multiple cores.
 }
 
 \examples{
-if (requireNamespace("zinbwave", quietly = TRUE)) {
-    data(SingleCellExperiment, package = "AcidTest")
-    Y <- SingleCellExperiment
-    Y <- nonzeroRowsAndCols(Y)
-    Y <- runZinbwave(Y)
-}
+## This example is CPU intensive.
+## > if (requireNamespace("zinbwave", quietly = TRUE)) {
+## >     data(SingleCellExperiment, package = "AcidTest")
+## >     Y <- SingleCellExperiment
+## >     Y <- nonzeroRowsAndCols(Y)
+## >     Y <- runZinbwave(Y)
+## > }
 }
 \seealso{
 \code{zinbwave::zinbwave}.
