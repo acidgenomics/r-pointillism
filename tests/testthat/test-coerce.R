@@ -29,6 +29,8 @@ test_that("SingleCellExperiment to Seurat", {
     expect_identical(dim(counts), dim(sce))
 })
 
+## FIXME NEED TO TEST FOR MESSED UP COLUMN NAMES HERE...
+## CANT CAMELCASE THE SCE, OTHERWISE WE GET DUPES IN SEURAT ARGH...
 test_that("SCE-seurat interconversion with subsetting", {
     a <- sce
     ## Coerce to seurat.

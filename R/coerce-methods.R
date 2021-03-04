@@ -111,37 +111,41 @@ NULL
             colData(to)[["ident"]] <- unname(idents)
         }
         ## Assays.
-        if (isCharacter(assayNames(to))) {
-            assayNames(to) <- camelCase(assayNames(to), strict = TRUE)
-        }
+        ## > if (isCharacter(assayNames(to))) {
+        ## >     assayNames(to) <-
+        ## >         camelCase(assayNames(to), strict = TRUE)
+        ## > }
         ## Reduced dimensions.
-        if (isCharacter(reducedDimNames(to))) {
-            reducedDimNames(to) <- camelCase(reducedDimNames(to), strict = TRUE)
-        }
-        reducedDims(to) <- lapply(
-            X = reducedDims(to),
-            FUN = function(x) {
-                if (hasColnames(x)) {
-                    colnames(x) <- camelCase(colnames(x), strict = TRUE)
-                }
-                x
-            }
-        )
+        ## > if (isCharacter(reducedDimNames(to))) {
+        ## >     reducedDimNames(to) <-
+        ## >         camelCase(reducedDimNames(to), strict = TRUE)
+        ## > }
+        ## > reducedDims(to) <- lapply(
+        ## >     X = reducedDims(to),
+        ## >     FUN = function(x) {
+        ## >         if (hasColnames(x)) {
+        ## >             colnames(x) <-
+        ## >                 camelCase(colnames(x), strict = TRUE)
+        ## >         }
+        ## >         x
+        ## >     }
+        ## > )
         ## Row and column data.
         rowRanges(to) <- rowRanges(from)
-        if (hasColnames(mcols(rowRanges(to)))) {
-            colnames(mcols(rowRanges(to))) <-
-                camelCase(colnames(mcols(rowRanges(to))), strict = TRUE)
-        }
-        if (hasColnames(colData(to))) {
-            colnames(colData(to)) <-
-                camelCase(colnames(colData(to)), strict = TRUE)
-        }
+        ## > if (hasColnames(mcols(rowRanges(to)))) {
+        ## >     colnames(mcols(rowRanges(to))) <-
+        ## >         camelCase(colnames(mcols(rowRanges(to))), strict = TRUE)
+        ## > }
+        ## > if (hasColnames(colData(to))) {
+        ## >     colnames(colData(to)) <-
+        ## >         camelCase(colnames(colData(to)), strict = TRUE)
+        ## > }
         ## Metadata.
         metadata(to) <- metadata(from)
         metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
         metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
-        names(metadata(to)) <- camelCase(names(metadata(to)), strict = TRUE)
+        ## > names(metadata(to)) <-
+        ## >     camelCase(names(metadata(to)), strict = TRUE)
         validObject(to)
         to
     }
