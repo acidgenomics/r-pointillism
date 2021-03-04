@@ -111,13 +111,19 @@ NULL
             colData(to)[["ident"]] <- unname(idents)
         }
         ## Assays.
-        assayNames(to) <- camelCase(assayNames(to), strict = TRUE)
+        if (isCharacter(assayNames(to))) {
+            assayNames(to) <- camelCase(assayNames(to), strict = TRUE)
+        }
         ## Reduced dimensions.
-        reducedDimNames(to) <- camelCase(reducedDimNames(to), strict = TRUE)
+        if (isCharacter(reducedDimNames(to))) {
+            reducedDimNames(to) <- camelCase(reducedDimNames(to), strict = TRUE)
+        }
         reducedDims(to) <- lapply(
             X = reducedDims(to),
             FUN = function(x) {
-                colnames(x) <- camelCase(colnames(x), strict = TRUE)
+                if (hasColnames(x)) {
+                    colnames(x) <- camelCase(colnames(x), strict = TRUE)
+                }
                 x
             }
         )
