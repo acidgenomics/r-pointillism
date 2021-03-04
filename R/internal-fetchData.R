@@ -1,7 +1,9 @@
-#' Bind all dimension reduction matrices into a single data frame.
-#' @note Updated 2019-08-06.
+#' Bind all dimension reduction matrices into a single data frame
+#'
+#' @note Updated 2021-03-03.
 #' @noRd
 .bindReducedDims <- function(object) {
+    object <- as(object, "SingleCellExperiment")
     reducedDims <- reducedDims(object)
     assert(hasNames(reducedDims))
     ## Handle undefined column names here, which is currently the case with
@@ -30,14 +32,17 @@
 
 
 
-## Updated 2021-03-03.
+#' Fetch gene data
+#'
+#' @note Updated 2021-03-03.
+#' @noRd
 .fetchGeneData <- function(
     object,
     genes,
     assay = c("logcounts", "normcounts"),
     metadata = FALSE
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         isCharacter(genes),
         isFlag(metadata)
@@ -76,40 +81,36 @@
     data <- leftJoin(data, g2s, by = "rowname")
     data <- mutateIf(data, is.character, as.factor)
     data <- data[, unique(c("rowname", sort(colnames(data))))]
-    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
 
 
-## Updated 2021-03-03.
+#' Fetch reduction data
+#'
+#' @note Updated 2021-03-03.
+#' @noRd
 .fetchReductionData <- function(
     object,
     reduction = 1L,
     dims = seq_len(2L)
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         .hasClusters(object),
         isScalar(reduction),
         hasLength(dims, n = 2L),
         all(isIntegerish(dims))
     )
-    ## Get reduced dimension coordinates. Map assay position to name, which
-    ## we're using below to fix the naming inconsistencies in monocle3.
-    if (!isString(reduction)) {
-        reduction <- reducedDimNames(object)[[reduction]]
+    if (isString(reduction)) {
+        reduction <- camelCase(reduction, strict = TRUE)
+        assert(isCharacter(reducedDimNames(object)))
+        reducedDimNames(object) <-
+            camelCase(reducedDimNames(object), strict = TRUE)
     }
-    ## This step will run through on mismatch, unless we check for error above.
-    ## FIXME This step is now erroring out due to capitalization...
-    ## FIXME THIS STEP WORKS INTERACTIVELY BUT FAILS INSIDE FUNCTION CALL...
     redData <- reducedDim(object, type = reduction)
-    print(reduction)
-    stop("FIXME FUCK YOU R")
     assert(hasLength(redData))
-    ## Handle undefined column names here, which is currently the case with
-    ## monocle3 UMAP (but not PCA) output.
     if (!hasColnames(redData)) {
         colnames(redData) <- paste0(reduction, seq_len(ncol(redData)))
     }
@@ -140,6 +141,7 @@
         !all(is.na(f))
     )
     split <- split(x = data, f = f)
+    assert(is(split, "SplitDataFrameList"))
     split <- SplitDataFrameList(lapply(
         X = split,
         FUN = function(x) {
@@ -156,7 +158,6 @@
         areSetEqual(rownames(data), colnames(object))
     )
     data <- data[colnames(object), , drop = FALSE]
-    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
@@ -174,7 +175,7 @@ formals(.fetchReductionData)[args] <-
     reduction,
     assay = "logcounts"
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         is.character(genes),
         isScalar(reduction),
@@ -203,7 +204,6 @@ formals(.fetchReductionData)[args] <-
     )
     data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
-    ## FIXME Rethink this??
     colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
