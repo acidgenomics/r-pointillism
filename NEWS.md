@@ -3,8 +3,9 @@
 ### Major changes
 
 - Simplified NAMESPACE, incorporating changes in basejump v0.14 release series.
-- `Seurat` to `SingleCellExperiment` now enforces strict lower camel case
-  formatting for `colData`, `rowData`, and `metadata` slots.
+- Hardened `Seurat` to `SingleCellExperiment` interconversion methods and
+  unit tests.
+- `plotStackedBarPlot`: Removed internal dplyr dependency.
 
 ## pointillism 0.4.14 (2020-10-12)
 
