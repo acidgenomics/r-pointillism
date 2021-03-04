@@ -51,10 +51,3 @@
 
 ## Disabled until monocle3 is on Bioconductor.
 ## > #' @importClassesFrom monocle3 cell_data_set
-
-
-
-## FIXME Can we take out this dependency?
-#' @importFrom AcidPlots !!!
-#' @importFrom dplyr group_by n summarize
-NULL

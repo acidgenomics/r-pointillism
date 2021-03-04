@@ -34,11 +34,37 @@ NULL
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)
-        data <- metrics(object)
-        ## FIXME Can we take the dplyr code out here???
-        requireNamespaces("dplyr")
-        data <- dplyr::group_by(data, !!!syms(c("interestingGroups", "ident")))
-        data <- dplyr::summarize(data, n = dplyr::n(), .groups = "keep")
+        data <- metrics(object, return = "DataFrame")
+        ## Generate the summary count table to pass to ggplot.
+        cols <- c("interestingGroups", "ident")
+
+        data[, cols]
+
+        f <- as.factor(paste(
+            data[["interestingGroups"]],
+            data[["ident"]],
+            sep = ":"
+        ))
+        split <- split(x = data, f = f)
+        assert(is(split, "SplitDataFrameList"))
+
+        strsplit(x = levels(f), split = ":", fixed = TRUE)
+
+        nrow(split)
+        ## unknown:0 unknown:1 unknown:2
+        ##        36        25        19
+
+        ## Legacy dplyr alternative approach:
+        ## > data <- group_by(data, !!!syms(cols))
+        ## > data <- summarize(data, n = n(), .groups = "keep")
+
+        # Groups:   interestingGroups, ident [3]
+        ## interestingGroups ident     n
+        ## <fct>             <fct> <int>
+        ## 1 unknown           0        36
+        ## 2 unknown           1        25
+        ## 3 unknown           2        19
+
         p <- ggplot(
             data = data,
             mapping = aes(
