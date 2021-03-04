@@ -9,7 +9,7 @@
 }
 \description{
 Data provenence information, including the organism and Ensembl release are
-defined in \code{\link[S4Vectors:Annotated-class]{metadata()}}.
+defined in \code{metadata()}.
 }
 \note{
 Updated 2021-03-03.
