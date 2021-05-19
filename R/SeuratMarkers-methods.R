@@ -6,7 +6,7 @@
 #' @name SeuratMarkers
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
-#' @note Updated 2020-10-12.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -48,7 +48,7 @@ NULL
 
 
 
-## Updated 2020-01-30.
+## Updated 2021-03-03.
 `SeuratMarkers,data.frame` <-  # nolint
     function(
         object,
@@ -60,39 +60,64 @@ NULL
             hasRownames(object),
             is(ranges, "GRanges"),
             isSubset(
-                x = c("geneID", "geneName"),
+                x = c("geneId", "geneName"),
                 y = colnames(mcols(ranges))
             ),
             isAlpha(alphaThreshold)
         )
-        ## Detect function from column names.
-        cols <- c("p_val", "avg_logFC", "pct.1", "pct.2", "p_val_adj")
-        if (identical(colnames(object), cols)) {
-            perCluster <- FALSE
-            fun <- "FindMarkers"
-        } else if (identical(colnames(object), c(cols, "cluster", "gene"))) {
-            perCluster <- TRUE
-            fun <- "FindAllMarkers"
-        }
-        cli_alert_info(sprintf("{.fun %s} return detected.", fun))
-        ## Sanitize markers.
         x <- as(object, "DataFrame")
-        x <- camelCase(x)
-        ## Map the Seurat matrix rownames to `rownames` column in tibble.
-        if (identical(fun, "FindMarkers")) {
-            x[["name"]] <- rownames(x)
-        } else if (identical(fun, "FindAllMarkers")) {
-            colnames(x)[colnames(x) == "gene"] <- "name"
-        }
-        rownames(x) <- NULL
         ## Update legacy columns.
-        if (isSubset("avgDiff", colnames(x))) {
-            cli_alert_warning(paste(
-                "Renaming legacy {.var avgDiff} column to {.var avgLogFC}",
-                "(changed in {.pkg Seurat} v2.1)."
+        if (isSubset("avg_diff", colnames(x))) {
+            alertWarning(sprintf(
+                paste(
+                    "Renaming legacy {.var %s} column to {.var %s}",
+                    "(changed in {.pkg %s} v%s)."
+                ),
+                "avg_diff", "avg_log2FC", "Seurat", "2.1"
             ))
-            colnames(x)[colnames(x) == "avgDiff"] <- "avgLogFC"
+            colnames(x)[colnames(x) == "avg_diff"] <- "avg_log2FC"
         }
+        if (isSubset("avg_logFC", colnames(x))) {
+            alertWarning(sprintf(
+                paste(
+                    "Renaming legacy {.var %s} column to {.var %s}",
+                    "(changed in {.pkg %s} v%s)."
+                ),
+                "avg_logFC", "avg_log2FC", "Seurat", "4.0"
+            ))
+            colnames(x)[colnames(x) == "avg_logFC"] <- "avg_log2FC"
+        }
+        ## Sanitize the column names in to camel case.
+        cols <- snakeCase(colnames(x))
+        ## Handle "avg_log2FC" column.
+        cols <- gsub(
+            pattern = "([0-9]+)([a-z]+)",
+            replacement = "\\1_\\2",
+            x = cols
+        )
+        cols <- camelCase(cols, strict = TRUE)
+        colnames(x) <- cols
+        fun <- ifelse(
+            test = isSubset(c("cluster", "gene"), colnames(x)),
+            yes = "FindAllMarkers",
+            no = "FindMarkers"
+        )
+        alertInfo(sprintf("{.fun %s} return detected.", fun))
+        ## Map the Seurat matrix rownames to `rownames` column in tibble.
+        ## NOTE Using "name" here instead of "geneName", which is intended
+        ## to map to the rownames, which can be altered by `make.names`.
+        switch(
+            EXPR = fun,
+            "FindMarkers" = {
+                perCluster <- FALSE
+                x[["name"]] <- rownames(x)
+            },
+            "FindAllMarkers" = {
+                perCluster <- TRUE
+                colnames(x)[colnames(x) == "gene"] <- "name"
+            }
+        )
+        rownames(x) <- NULL
         ## Rename P value columns to match DESeq2 conventions.
         if (isSubset("pVal", colnames(x))) {
             colnames(x)[colnames(x) == "pVal"] <- "pvalue"
@@ -105,9 +130,9 @@ NULL
             "name",
             "pct1",
             "pct2",
-            "avgLogFC",  # Seurat v2.1.
+            "avgLog2Fc",
             "padj",
-            "pvalue"     # Renamed from `p_val`.
+            "pvalue"
         )
         assert(isSubset(requiredCols, colnames(x)))
         ## Bind ranges as column.
@@ -120,11 +145,11 @@ NULL
             x <- split(x, f = x[["cluster"]])
         }
         ## Add metadata and return.
-        metadata(x) <- c(
-            .prototypeMetadata,
-            list(
-                alphaThreshold = alphaThreshold,
-                sessionInfo = session_info(include_base = TRUE)
+        metadata(x) <- append(
+            x = .prototypeMetadata,
+            values = list(
+                "alphaThreshold" = alphaThreshold,
+                "sessionInfo" = session_info(include_base = TRUE)
             )
         )
         if (isTRUE(perCluster)) {

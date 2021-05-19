@@ -7,13 +7,13 @@
 \usage{
 CellCycleMarkers(object, gene2symbol)
 
-importCellCycleMarkers(file, organism, release)
+importCellCycleMarkers(file, organism, release, ignoreVersion = TRUE)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
 \code{Gene2Symbol} for more information.}
 
 \item{file}{\code{character(1)}.
@@ -28,6 +28,12 @@ possible, for improved reproducibility. When left unset, the latest release
 available via AnnotationHub/ensembldb is used. Note that the latest version
 available can vary, depending on the versions of AnnotationHub and
 ensembldb in use.}
+
+\item{ignoreVersion}{\code{logical(1)}.
+Ignore identifier (e.g. transcript, gene) versions.
+When applicable, the identifier containing version numbers will be stored
+in \code{txIdVersion} and \code{geneIdVersion}, and the variants without versions
+will be stored in \code{txId}, \code{txIdNoVersion}, \code{geneId}, and \code{geneIdNoVersion}.}
 }
 \value{
 \code{CellCycleMarkers}.
@@ -36,25 +42,27 @@ ensembldb in use.}
 Cell-cycle markers
 }
 \note{
-Updated 2020-10-12.
+Updated 2021-03-02.
 }
 \examples{
-markers_dir <- system.file(
+markersDir <- system.file(
     file.path("extdata", "markers"),
     package = "pointillism"
 )
 
-cell_cycle_dir <- file.path(markers_dir, "cell-cycle")
-files <- list.files(cell_cycle_dir, pattern = "*.csv", full.names = TRUE)
+cellCycleDir <- file.path(markersDir, "cell-cycle")
+files <- list.files(cellCycleDir, pattern = "*.csv", full.names = TRUE)
 file <- files[[1L]]
 
+organism <- sentenceCase(gsub("-", " ", basenameSansExt(file)))
+
 ## Ensembl release version.
-release_file <- file.path(markers_dir, "ensembl-release.txt")
-release <- as.integer(readLines(release_file))
+releaseFile <- file.path(markersDir, "ensembl-release.txt")
+release <- as.integer(readLines(releaseFile))
 
 importCellCycleMarkers(
     file = file,
-    organism = basenameSansExt(file),
+    organism = organism,
     release = release
 )
 }

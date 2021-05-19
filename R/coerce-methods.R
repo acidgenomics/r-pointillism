@@ -3,7 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2020-02-21.
+#' @note Updated 2021-03-03.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
@@ -68,7 +68,7 @@ NULL
 
 
 
-## Updated 2020-02-20.
+## Updated 2021-03-03.
 `coerce,Seurat,SingleCellExperiment` <-  # nolint
     function(from) {
         validObject(from)
@@ -108,15 +108,44 @@ NULL
                 is.factor(idents),
                 !all(is.na(idents))
             )
-            colData(to)[["ident"]] <- idents
+            colData(to)[["ident"]] <- unname(idents)
         }
+        ## Assays.
+        ## > if (isCharacter(assayNames(to))) {
+        ## >     assayNames(to) <-
+        ## >         camelCase(assayNames(to), strict = TRUE)
+        ## > }
+        ## Reduced dimensions.
+        ## > if (isCharacter(reducedDimNames(to))) {
+        ## >     reducedDimNames(to) <-
+        ## >         camelCase(reducedDimNames(to), strict = TRUE)
+        ## > }
+        ## > reducedDims(to) <- lapply(
+        ## >     X = reducedDims(to),
+        ## >     FUN = function(x) {
+        ## >         if (hasColnames(x)) {
+        ## >             colnames(x) <-
+        ## >                 camelCase(colnames(x), strict = TRUE)
+        ## >         }
+        ## >         x
+        ## >     }
+        ## > )
         ## Row and column data.
         rowRanges(to) <- rowRanges(from)
-        colData(to) <- colData(to)
+        ## > if (hasColnames(mcols(rowRanges(to)))) {
+        ## >     colnames(mcols(rowRanges(to))) <-
+        ## >         camelCase(colnames(mcols(rowRanges(to))), strict = TRUE)
+        ## > }
+        ## > if (hasColnames(colData(to))) {
+        ## >     colnames(colData(to)) <-
+        ## >         camelCase(colnames(colData(to)), strict = TRUE)
+        ## > }
         ## Metadata.
         metadata(to) <- metadata(from)
         metadata(to)[["scaleData"]] <- GetAssayData(from, slot = "scale.data")
         metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
+        ## > names(metadata(to)) <-
+        ## >     camelCase(names(metadata(to)), strict = TRUE)
         validObject(to)
         to
     }

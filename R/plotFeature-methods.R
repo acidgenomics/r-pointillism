@@ -1,6 +1,6 @@
 #' @name plotFeature
 #' @inherit AcidGenerics::plotFeature
-#' @note Updated 2020-02-21.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param features `character`. Features to plot (e.g. gene expression, PC
@@ -24,6 +24,9 @@
 NULL
 
 
+
+## NOTE Consider using snake case here instead.
+## The plot labels are more readable in that case.
 
 ## Updated 2020-02-21.
 `plotFeature,SingleCellExperiment` <-  # nolint
@@ -57,6 +60,7 @@ NULL
             isFlag(dark),
             isFlag(legend)
         )
+        features <- camelCase(features, strict = TRUE)
         ## Dark mode setup.
         if (isTRUE(dark)) {
             fill <- "black"
@@ -74,6 +78,8 @@ NULL
         ## information before stopping.
         if (!isSubset(features, colnames(data))) {
             reductionData <- .bindReducedDims(object)
+            colnames(reductionData) <-
+                camelCase(colnames(reductionData), strict = TRUE)
             data <- data[, setdiff(colnames(data), colnames(reductionData))]
             data <- cbind(data, reductionData)
         }
@@ -135,9 +141,9 @@ NULL
                 p <- p +
                     labs(
                         color = NULL,
-                        x = axes[[1L]],
-                        y = axes[[2L]],
-                        title = feature
+                        x = makeLabel(axes[[1L]]),
+                        y = makeLabel(axes[[2L]]),
+                        title = makeLabel(feature)
                     )
                 if (isTRUE(label)) {
                     if (isTRUE(dark)) {
@@ -172,7 +178,6 @@ NULL
                 p
             }
         )
-
         ## Return --------------------------------------------------------------
         if (isTRUE(length(features) > 1L)) {
             plot_grid(plotlist = plotlist) +

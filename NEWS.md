@@ -1,3 +1,12 @@
+## pointillism 0.5.0 (2021-03-03)
+
+### Major changes
+
+- Simplified NAMESPACE, incorporating changes in basejump v0.14 release series.
+- Hardened `Seurat` to `SingleCellExperiment` interconversion methods and
+  unit tests.
+- `plotStackedBarPlot`: Removed internal dplyr dependency.
+
 ## pointillism 0.4.14 (2020-10-12)
 
 ### Minor changes

@@ -16,8 +16,8 @@
 ## >     function(object, ...) {
 ## >         assert(isSubset("gene_short_name", colnames(rowData(object))))
 ## >         df <- DataFrame(
-## >             geneID = rownames(object),
-## >             geneName = rowData(object)[["gene_short_name"]],
+## >             "geneId" = rownames(object),
+## >             "geneName" = rowData(object)[["gene_short_name"]],
 ## >             row.names = rownames(object)
 ## >         )
 ## >         Gene2Symbol(object = df, ...)

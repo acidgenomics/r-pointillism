@@ -11,8 +11,10 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' genes <- counts(object) %>%
-#'     Matrix::rowSums(.) %>%
+#' genes <-
+#'     object %>%
+#'     counts() %>%
+#'     rowSums() %>%
 #'     sort(decreasing = TRUE) %>%
 #'     head(n = 4L) %>%
 #'     names()

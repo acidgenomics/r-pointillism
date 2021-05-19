@@ -36,7 +36,7 @@ NULL
         ...
     ) {
         assert(isCharacter(clusters, nullOK = TRUE))
-        cli_h1("{.fun findMarkers}")
+        h1("{.fun findMarkers}")
         object <- as(object, "SingleCellExperiment")
         ## Get the cluster mappings. Following the Seurat nomenclature here of
         ## using "ident" to denote the cluster identifier mapping factor.
@@ -48,13 +48,13 @@ NULL
         if (is.null(clusters)) {
             clusters <- levels(ident)
         }
-        cli_alert_info(sprintf("%d clusters detected.", length(clusters)))
+        alertInfo(sprintf("%d clusters detected.", length(clusters)))
         ## Loop across the clusters and calculate gene enrichment relative to
         ## all of the other clusters combined.
         list <- lapply(
             X = clusters,
             FUN = function(cluster) {
-                cli_h2(sprintf("Cluster %s", as.character(cluster)))
+                h2(sprintf("Cluster %s", as.character(cluster)))
                 ## Numerator: cells in the current cluster.
                 numerator <- ident[which(ident == cluster)]
                 assert(all(numerator == cluster))

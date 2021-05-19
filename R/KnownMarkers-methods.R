@@ -2,10 +2,10 @@
 #'
 #' @name KnownMarkers
 #' @note Both the `markers` and `known` objects must contain Ensembl gene
-#'   identifiers in the `geneID` column. We must avoid any matching operations
+#'   identifiers in the `geneId` column. We must avoid any matching operations
 #'   based on the gene names, since these change often and can mismatch
 #'   easily.
-#' @note Updated 2020-10-12.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
@@ -19,11 +19,11 @@
 #' @return `KnownMarkers`.
 #'
 #' @examples
-#' data(cell_type_markers_list, seurat_all_markers)
+#' data(cellTypeMarkersList, seuratAllMarkers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' markers <- seurat_all_markers
-#' known <- cell_type_markers_list[["homoSapiens"]]
+#' markers <- seuratAllMarkers
+#' known <- cellTypeMarkersList[["homoSapiens"]]
 #' x <- KnownMarkers(markers = markers, known = known)
 #' summary(x)
 NULL
@@ -49,28 +49,27 @@ NULL
         markers <- unlist(markers, recursive = FALSE, use.names = FALSE)
         ranges <- markers[["ranges"]]
         markers[["ranges"]] <- NULL
-        markers[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        markers[["geneId"]] <- as.character(mcols(ranges)[["geneId"]])
         markers[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
         known <- unlist(known, recursive = FALSE, use.names = FALSE)
         known[["geneName"]] <- NULL
         ## Determine where the known markers are located in the markers data.
         ## Here we have slotted the gene IDs inside a "ranges" column.
-        assert(areIntersectingSets(markers[["geneID"]], known[["geneID"]]))
-        keep <- markers[["geneID"]] %in% known[["geneID"]]
+        assert(areIntersectingSets(markers[["geneId"]], known[["geneId"]]))
+        keep <- markers[["geneId"]] %in% known[["geneId"]]
         x <- markers[keep, , drop = FALSE]
         ## Apply our alpha level cutoff.
         keep <- x[["padj"]] < alphaThreshold
         x <- x[keep, , drop = FALSE]
         ## Add the `cellType` column.
-        x <- leftJoin(x, known, by = "geneID")
+        x <- leftJoin(x, known, by = "geneId")
         ## Filter out promiscuous markers present in multiple clusters.
         if (isTRUE(promiscuousThreshold > 1L)) {
             x <- .filterPromiscuousMarkers(x, n = promiscuousThreshold)
         }
-        metadata(x) <- list(
-            alphaThreshold = alphaThreshold,
-            version = packageVersion(packageName()),
-            date = Sys.Date()
+        metadata(x) <- append(
+            x = .prototypeMetadata,
+            values = list("alphaThreshold" = alphaThreshold)
         )
         new(Class = "KnownMarkers", x)
     }

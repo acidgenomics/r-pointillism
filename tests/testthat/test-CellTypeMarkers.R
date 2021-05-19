@@ -6,8 +6,9 @@ test_that("CellTypeMarkers", {
         package = "pointillism"
     )
     markers <- as(import(file), "DataFrame")
+    colnames(markers) <- camelCase(colnames(markers), strict = TRUE)
     gene2symbol <- Gene2Symbol(seurat)
-    keep <- markers[["geneID"]] %in% gene2symbol[["geneID"]]
+    keep <- markers[["geneId"]] %in% gene2symbol[["geneId"]]
     expect_true(any(keep))
     markers <- markers[keep, , drop = FALSE]
     x <- CellTypeMarkers(

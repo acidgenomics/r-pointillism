@@ -12,8 +12,8 @@ data(
 )
 data(
     ## cell_data_set,
-    seurat_all_markers,
-    seurat_known_markers,
+    seuratAllMarkers,
+    seuratKnownMarkers,
     package = "pointillism",
     envir = environment()
 )

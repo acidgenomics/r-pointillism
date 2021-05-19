@@ -1,6 +1,6 @@
 #' @name cellTypesPerCluster
 #' @inherit AcidGenerics::cellTypesPerCluster
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param min `integer(1)`.
@@ -12,12 +12,12 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' data(cell_type_markers_list, seurat_all_markers)
+#' data(cellTypeMarkersList, seuratAllMarkers)
 #'
 #' ## KnownMarkers ====
 #' markers <- KnownMarkers(
-#'     markers = seurat_all_markers,
-#'     known = cell_type_markers_list[["homoSapiens"]]
+#'     markers = seuratAllMarkers,
+#'     known = cellTypeMarkersList[["homoSapiens"]]
 #' )
 #' x <- cellTypesPerCluster(markers)
 #' print(x)
@@ -25,7 +25,7 @@ NULL
 
 
 
-## Updated 2019-09-03.
+## Updated 2021-03-03.
 `cellTypesPerCluster,KnownMarkers` <-  # nolint
     function(
         object,
@@ -34,13 +34,25 @@ NULL
     ) {
         validObject(object)
         assert(
+            isSubset(
+                x = c(
+                    "avgLog2Fc",
+                    "cellType",
+                    "cluster",
+                    "geneId",
+                    "geneName",
+                    "name",
+                    "padj"
+                ),
+                y = colnames(object)
+            ),
             allArePositive(c(min, max)),
             isInt(min),
             isInt(max)
         )
         x <- as(object, "DataFrame")
         ## Only positive markers are informative here.
-        keep <- x[["avgLogFC"]] > 0L
+        keep <- x[["avgLog2Fc"]] > 0L
         x <- x[keep, , drop = FALSE]
         x <- x[order(x[["padj"]]), , drop = FALSE]
         vars <- c("cluster", "cellType")
@@ -52,13 +64,14 @@ NULL
         split <- SplitDataFrameList(lapply(
             X = split,
             FUN = function(x) {
+                ## NOTE Consider using `CharacterList` here instead?
                 DataFrame(
-                    cluster = x[["cluster"]][[1L]],
-                    cellType = x[["cellType"]][[1L]],
-                    name = toString(x[["name"]]),
-                    geneID = toString(x[["geneID"]]),
-                    geneName = toString(x[["geneName"]]),
-                    n = nrow(x)
+                    "cluster" = x[["cluster"]][[1L]],
+                    "cellType" = x[["cellType"]][[1L]],
+                    "name" = toString(x[["name"]]),
+                    "geneId" = toString(x[["geneId"]]),
+                    "geneName" = toString(x[["geneName"]]),
+                    "n" = nrow(x)
                 )
             }
         ))

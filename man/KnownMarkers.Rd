@@ -30,18 +30,18 @@ Known markers
 }
 \note{
 Both the \code{markers} and \code{known} objects must contain Ensembl gene
-identifiers in the \code{geneID} column. We must avoid any matching operations
+identifiers in the \code{geneId} column. We must avoid any matching operations
 based on the gene names, since these change often and can mismatch
 easily.
 
-Updated 2020-10-12.
+Updated 2021-03-03.
 }
 \examples{
-data(cell_type_markers_list, seurat_all_markers)
+data(cellTypeMarkersList, seuratAllMarkers)
 
 ## SeuratMarkersPerCluster ====
-markers <- seurat_all_markers
-known <- cell_type_markers_list[["homoSapiens"]]
+markers <- seuratAllMarkers
+known <- cellTypeMarkersList[["homoSapiens"]]
 x <- KnownMarkers(markers = markers, known = known)
 summary(x)
 }

@@ -25,17 +25,17 @@ Display the object, by printing, plotting or whatever suits its
   usually be invoked for automatic printing (see the details).
 }
 \note{
-Updated 2020-02-20.
+Updated 2021-03-03.
 }
 \examples{
-data(cell_cycle_markers_list, cell_type_markers_list)
+data(cellCycleMarkersList, cellTypeMarkersList)
 
 ## CellCycleMarkers ====
-object <- cell_cycle_markers_list[[1L]]
+object <- cellCycleMarkersList[[1L]]
 show(object)
 
 ## CellTypeMarkers ====
-object <- cell_type_markers_list[[1L]]
+object <- cellTypeMarkersList[[1L]]
 show(object)
 }
 \author{

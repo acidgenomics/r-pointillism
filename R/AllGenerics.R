@@ -96,7 +96,7 @@ NULL
 
 #' @rdname normalize
 #' @name normalize
-#' @importFrom BiocGenerics normalize
+#' @importFrom AcidGenerics normalize
 #' @usage normalize(object, ...)
 #' @export
 NULL
@@ -189,7 +189,7 @@ NULL
 
 #' @rdname plotReducedDim
 #' @name plotPCA
-#' @importFrom BiocGenerics plotPCA
+#' @importFrom AcidGenerics plotPCA
 #' @usage plotPCA(object, ...)
 #' @export
 NULL
@@ -252,7 +252,7 @@ setGeneric(
 
 #' @rdname summary
 #' @name summary
-#' @importFrom S4Vectors summary
+#' @importFrom AcidGenerics summary
 #' @usage summary(object, ...)
 #' @export
 NULL

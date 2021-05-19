@@ -10,9 +10,9 @@ plotTopMarkers(object, markers, ...)
 \S4method{plotTopMarkers}{Seurat,SeuratMarkersPerCluster}(
   object,
   markers,
-  n = 1L,
-  direction = c("up", "down", "both"),
+  direction = c("both", "up", "down"),
   reduction = "UMAP",
+  n = 1L,
   headerLevel = 2L,
   ...,
   BPPARAM = BiocParallel::bpparam()
@@ -23,15 +23,15 @@ plotTopMarkers(object, markers, ...)
 
 \item{markers}{Object containing cell marker expression data.}
 
-\item{n}{\code{integer(1)}.
-Number of genes per cluster.}
-
 \item{direction}{\code{character(1)}.
 Whether to include upregulated (\code{"up"}; positive LFC), downregulated
 (\code{"down"}; negative LFC) or \code{"both"} directions of association per cluster.}
 
 \item{reduction}{\code{vector(1)}.
 Dimension reduction name or index position.}
+
+\item{n}{\code{integer(1)}.
+Number of genes per cluster.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
@@ -60,15 +60,15 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \note{
-Updated 2020-01-30.
+Updated 2021-03-03.
 }
 \examples{
 data(Seurat, package = "AcidTest")
-data(seurat_all_markers)
+data(seuratAllMarkers)
 
 ## Seurat, SeuratMarkersPerCluster ====
 object <- Seurat
-markers <- seurat_all_markers
+markers <- seuratAllMarkers
 plotTopMarkers(
     object = object,
     markers = markers,

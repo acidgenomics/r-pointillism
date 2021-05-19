@@ -2,7 +2,7 @@
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit AcidGenerics::plotReducedDim
-#' @note Updated 2020-02-21.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -41,7 +41,7 @@ NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 `plotReducedDim,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -82,9 +82,9 @@ NULL
             labels = labels,
             choices = eval(formals()[["labels"]])
         )
-        cli_dl(c(
-            reduction = reduction,
-            dims = deparse(dims)
+        dl(c(
+            "reduction" = reduction,
+            "dims" = deparse(dims)
         ))
         ## Note that we're not slotting interesting groups back into object
         ## here because we're allowing visualization of cluster identity, which
@@ -107,7 +107,7 @@ NULL
         ## Check if interesting groups input is supported.
         supported <- bapply(data, is.factor)
         supported <- names(supported)[supported]
-        blacklist <- c("interestingGroups", "orig.ident", "sampleID")
+        blacklist <- c("interestingGroups", "origIdent", "sampleId")
         supported <- setdiff(supported, blacklist)
         if (!isSubset(interestingGroups, supported)) {
             setdiff <- setdiff(interestingGroups, supported)
@@ -150,7 +150,7 @@ NULL
         if (isTRUE(pointsAsNumbers)) {
             ## Increase the size, if necessary.
             if (pointSize < 4L) {
-                cli_alert_warning("Increase pointSize to 4.")
+                alertWarning("Increase pointSize to 4.")
                 pointSize <- 4L
             }
             p <- p +
@@ -206,8 +206,8 @@ NULL
             scale_y_continuous(breaks = pretty_breaks(n = 4L))
         ## Labels.
         if (is.list(labels)) {
-            labels[["x"]] <- axes[[1L]]
-            labels[["y"]] <- axes[[2L]]
+            labels[["x"]] <- makeLabel(axes[[1L]])
+            labels[["y"]] <- makeLabel(axes[[2L]])
             labels[["color"]] <- paste(interestingGroups, collapse = ":\n")
             labels[["fill"]] <- labels[["color"]]
             p <- p + do.call(what = labs, args = labels)
@@ -243,12 +243,12 @@ setMethod(
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 `plotReducedDim,Seurat` <-  # nolint
     function(object, ...) {
         validObject(object)
         idents <- .seuratWhichIdents(object)
-        cli_dl(c(idents = idents))
+        dl(c("idents" = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }
 

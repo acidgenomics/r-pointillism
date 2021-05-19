@@ -25,7 +25,7 @@
         )),
     dark = quote(getOption("acid.dark", default = FALSE)),
     dims = quote(c(1L, 2L)),
-    direction = c("up", "down", "both"),
+    direction = c("both", "up", "down"),
     expression = c("mean", "sum"),
     headerLevel = 2L,
     label = quote(getOption("acid.label", default = TRUE)),
@@ -53,3 +53,17 @@
 ## > }
 ## > theme <- theme(base_size = 14L, legend_position = "right")
 ## > ggplot2::theme_set(new = theme)
+
+
+
+## Updated 2021-03-03.
+.pkgName <- packageName()
+.pkgVersion <- packageVersion(.pkgName)
+
+
+
+## Updated 2021-03-03.
+.prototypeMetadata <- list(
+    "date" = Sys.Date(),
+    "packageVersion" = .pkgVersion
+)
