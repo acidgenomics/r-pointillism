@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.4.14
-Date: 2020-10-11
+Version: 0.5.0
+Date: 2021-03-03
 Authors@R: c(
     person(
         given = "Michael",
@@ -26,46 +26,27 @@ URL:
     https://r.acidgenomics.com/packages/pointillism/,
     https://github.com/acidgenomics/r-pointillism/
 BugReports: https://github.com/acidgenomics/r-pointillism/issues/
-License: GPL-3
+License: AGPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    SingleCellExperiment (>= 1.10),
-    basejump (>= 0.13.2)
+    basejump (>= 0.14.16)
 Imports:
-    AcidGenerics (>= 0.4.0),
-    AcidPlots (>= 0.3.0),
-    BiocGenerics,
-    BiocParallel,
-    DESeq2 (>= 1.28),
-    DelayedArray,
-    DelayedMatrixStats,
-    IRanges,
-    Matrix (>= 1.2),
-    S4Vectors,
-    Seurat (>= 3.2),
-    SummarizedExperiment,
-    cli (>= 2.0),
-    cowplot (>= 1.0),
-    dplyr (>= 1.0),
-    edgeR (>= 3.30),
+    AcidGenerics (>= 0.5.17),
+    AcidPlots (>= 0.3.3),
+    BiocParallel (>= 1.24),
+    DESeq2 (>= 1.30),
+    Seurat (>= 4.0),
+    edgeR (>= 3.32),
     ggplot2 (>= 3.3),
-    goalie (>= 0.4.9),
+    goalie (>= 0.5.0),
     methods,
-    rlang (>= 0.4),
-    scales,
-    scater,
-    sessioninfo (>= 1.1),
-    stats,
-    utils
+    scater (>= 1.18)
 Suggests:
     AcidTest (>= 0.4.0),
-    BiocStyle,
     future,
-    knitr,
     reticulate,
-    roxygen2,
     splatter,
     testthat,
     zinbwave
@@ -79,4 +60,4 @@ biocViews:
     Visualization
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-VignetteBuilder: knitr
+Additional_repositories: https://r.acidgenomics.com

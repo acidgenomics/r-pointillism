@@ -60,11 +60,11 @@ Updated 2020-01-30.
 }
 \examples{
 data(Seurat, package = "AcidTest")
-data(seurat_known_markers)
+data(seuratKnownMarkers)
 
 ## Seurat ====
 object <- Seurat
-markers <- seurat_known_markers
+markers <- seuratKnownMarkers
 plotKnownMarkers(
     object = object,
     markers = markers,

@@ -75,7 +75,7 @@ NULL
             )
         }
         assert(!is.null(sizeFactors(object)))
-        cli_alert(paste(
+        alert(paste(
             "Computing {.var normcounts} and {.var logcounts} assays using",
             "{.pkg scater}::{.fun normalizeCounts}."
         ))
@@ -116,7 +116,7 @@ setMethod(
 ## Updated 2020-01-30.
 `normalize,Seurat` <-  # nolint
     function(object) {
-        cli_alert("Normalizing with {.pkg Seurat}::{.fun NormalizeData}.")
+        alert("Normalizing with {.pkg Seurat}::{.fun NormalizeData}.")
         NormalizeData(object = object, verbose = TRUE)
     }
 
@@ -135,7 +135,7 @@ setMethod(
 ## > ## Updated 2020-01-30.
 ## > `normalize,cell_data_set` <-  # nolint
 ## >     function(object) {
-## >         cli_alert(
+## >         alert(
 ## >             "Normalizing with {.pkg monocle3}::{.fun preprocess_cds}."
 ## >         )
 ## >         monocle3::preprocess_cds(

@@ -1,38 +1,46 @@
 #' @name topMarkers
 #' @inherit AcidGenerics::topMarkers
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-03-03.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @param n `integer(1)`.
-#'   Number of genes per cluster.
 #' @param direction `character(1)`.
 #'   Whether to include upregulated (`"up"`; positive LFC), downregulated
 #'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
+#' @param n `integer(1)`.
+#'   Number of genes per cluster.
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seurat_all_markers)
+#' data(seuratAllMarkers)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seurat_all_markers
-#' x <- topMarkers(object, n = 2L)
+#' object <- seuratAllMarkers
+#' x <- topMarkers(
+#'     object = object,
+#'     direction = "up",
+#'     n = 2L
+#' )
 #' print(x)
 NULL
 
 
 
 ## Note that the validity method checks for sorting by adjusted P value.
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 `topMarkers,SeuratMarkersPerCluster` <-  # nolint
     function(
         object,
-        n = 10L,
-        direction
+        direction,
+        n = 10L
     ) {
         validObject(object)
-        assert(isInt(n))
+        lfcCol <- "avgLog2Fc"
+        assert(
+            isInt(n),
+            isSubset(lfcCol, colnames(object[[1L]]))
+        )
         direction <- match.arg(direction)
-        cli_alert_info(switch(
+        alertInfo(switch(
             EXPR = direction,
             "both" = "Including both up- and down-regulated markers.",
             "down" = "Including downregulated markers.",
@@ -44,10 +52,10 @@ NULL
             FUN = function(x) {
                 ## Subset to positive or negative correlation, if desired.
                 if (identical(direction, "up")) {
-                    keep <- x[["avgLogFC"]] > 0L
+                    keep <- x[[lfcCol]] > 0L
                     x <- x[keep, , drop = FALSE]
                 } else if (identical(direction, "down")) {
-                    keep <- x[["avgLogFC"]] < 0L
+                    keep <- x[[lfcCol]] < 0L
                     x <- x[keep, , drop = FALSE]
                 }
                 x <- head(x, n = n)
@@ -57,7 +65,7 @@ NULL
         x <- unlist(x, recursive = FALSE, use.names = FALSE)
         ranges <- x[["ranges"]]
         x[["ranges"]] <- NULL
-        x[["geneID"]] <- as.character(mcols(ranges)[["geneID"]])
+        x[["geneId"]] <- as.character(mcols(ranges)[["geneId"]])
         x[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
         x <- mutateIf(x, is.character, as.factor)
         x

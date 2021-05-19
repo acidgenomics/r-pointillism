@@ -1,7 +1,9 @@
-#' Bind all dimension reduction matrices into a single data frame.
-#' @note Updated 2019-08-06.
+#' Bind all dimension reduction matrices into a single data frame
+#'
+#' @note Updated 2021-03-03.
 #' @noRd
 .bindReducedDims <- function(object) {
+    object <- as(object, "SingleCellExperiment")
     reducedDims <- reducedDims(object)
     assert(hasNames(reducedDims))
     ## Handle undefined column names here, which is currently the case with
@@ -30,14 +32,17 @@
 
 
 
-## Updated 2019-09-03.
+#' Fetch gene data
+#'
+#' @note Updated 2021-03-03.
+#' @noRd
 .fetchGeneData <- function(
     object,
     genes,
     assay = c("logcounts", "normcounts"),
     metadata = FALSE
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         isCharacter(genes),
         isFlag(metadata)
@@ -53,9 +58,6 @@
     ## This return is used by `.fetchReductionExpressionData()`.
     if (!isTRUE(metadata)) {
         ## Transpose, putting genes into the columns.
-        if (is(counts, "Matrix")) {
-            t <- Matrix::t
-        }
         out <- t(counts)
         assert(identical(class(counts), class(out)))
         return(out)
@@ -65,13 +67,13 @@
         object = counts,
         colnames = c("rowname", "colname", assay)
     )
-    ## Join cell-level metrics. Always include "ident" and "sampleName" using
+    ## Join cell-level metrics. Always include `ident` and `sampleName` using
     ## `metrics` here. This ensures `sampleName` and `interestingGroups` are
     ## always defined.
     colData <- metrics(object, return = "DataFrame")
     colData[["colname"]] <- rownames(colData)
     data <- leftJoin(data, colData, by = "colname")
-    ## Join the geneID and geneName columns by the "rowname" column.
+    ## Join the `geneId` and `geneName` columns by the `rowname` column.
     g2s <- Gene2Symbol(object)
     assert(hasLength(g2s), hasRownames(g2s))
     g2s <- as(g2s, "DataFrame")
@@ -79,34 +81,36 @@
     data <- leftJoin(data, g2s, by = "rowname")
     data <- mutateIf(data, is.character, as.factor)
     data <- data[, unique(c("rowname", sort(colnames(data))))]
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
 
 
-## Updated 2020-02-21.
+#' Fetch reduction data
+#'
+#' @note Updated 2021-03-03.
+#' @noRd
 .fetchReductionData <- function(
     object,
     reduction = 1L,
     dims = seq_len(2L)
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         .hasClusters(object),
         isScalar(reduction),
         hasLength(dims, n = 2L),
         all(isIntegerish(dims))
     )
-    ## Get reduced dimension coordinates. Map assay position to name, which
-    ## we're using below to fix the naming inconsistencies in monocle3.
-    if (!isString(reduction)) {
-        reduction <- reducedDimNames(object)[[reduction]]
+    if (isString(reduction)) {
+        reduction <- camelCase(reduction, strict = TRUE)
+        assert(isCharacter(reducedDimNames(object)))
+        reducedDimNames(object) <-
+            camelCase(reducedDimNames(object), strict = TRUE)
     }
-    ## This step will run through on mismatch, unless we check for error above.
     redData <- reducedDim(object, type = reduction)
     assert(hasLength(redData))
-    ## Handle undefined column names here, which is currently the case with
-    ## monocle3 UMAP (but not PCA) output.
     if (!hasColnames(redData)) {
         colnames(redData) <- paste0(reduction, seq_len(ncol(redData)))
     }
@@ -137,6 +141,7 @@
         !all(is.na(f))
     )
     split <- split(x = data, f = f)
+    assert(is(split, "SplitDataFrameList"))
     split <- SplitDataFrameList(lapply(
         X = split,
         FUN = function(x) {
@@ -153,6 +158,7 @@
         areSetEqual(rownames(data), colnames(object))
     )
     data <- data[colnames(object), , drop = FALSE]
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 
@@ -162,14 +168,14 @@ formals(.fetchReductionData)[args] <-
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-03.
 .fetchReductionExpressionData <- function(
     object,
     genes,
     reduction,
     assay = "logcounts"
 ) {
-    validObject(object)
+    object <- as(object, "SingleCellExperiment")
     assert(
         is.character(genes),
         isScalar(reduction),
@@ -187,11 +193,6 @@ formals(.fetchReductionData)[args] <-
         x = colnames(geneCounts),
         y = as.character(rownames)
     ))
-    ## Keep the supported operations sparse.
-    if (is(geneCounts, "sparseMatrix")) {
-        rowMeans <- Matrix::rowMeans
-        rowSums <- Matrix::rowSums
-    }
     ## Calculate the expression summary columns.
     ## Note that `rowMedians` currently isn't supported for sparse data.
     mean <- rowMeans(geneCounts)
@@ -203,6 +204,7 @@ formals(.fetchReductionData)[args] <-
     )
     data <- cbind(reductionData, mean, sum)
     assert(is(data, "DataFrame"))
+    colnames(data) <- camelCase(colnames(data), strict = TRUE)
     data
 }
 

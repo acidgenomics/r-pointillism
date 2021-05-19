@@ -12,12 +12,11 @@
 #'
 #' @examples
 #' data(Seurat, package = "AcidTest")
-#' data(seurat_known_markers)
+#' data(seuratKnownMarkers)
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' markers <- seurat_known_markers
-#'
+#' markers <- seuratKnownMarkers
 #' plotCellTypesPerCluster(
 #'     object = object,
 #'     markers = markers,
@@ -63,7 +62,7 @@ NULL
                 keep <- markers[["cluster"]] == cluster
                 clusterData <- markers[keep, , drop = FALSE]
                 if (!hasRows(clusterData)) {
-                    cli_alert_warning(sprintf(
+                    alertWarning(sprintf(
                         "No markers for cluster %s.", cluster
                     ))
                     return(invisible(NULL))

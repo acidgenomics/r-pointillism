@@ -7,13 +7,13 @@
 \usage{
 CellTypeMarkers(object, gene2symbol)
 
-importCellTypeMarkers(file, organism, release)
+importCellTypeMarkers(file, organism, release, ignoreVersion = TRUE)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
 \code{Gene2Symbol} for more information.}
 
 \item{file}{\code{character(1)}.
@@ -28,6 +28,12 @@ possible, for improved reproducibility. When left unset, the latest release
 available via AnnotationHub/ensembldb is used. Note that the latest version
 available can vary, depending on the versions of AnnotationHub and
 ensembldb in use.}
+
+\item{ignoreVersion}{\code{logical(1)}.
+Ignore identifier (e.g. transcript, gene) versions.
+When applicable, the identifier containing version numbers will be stored
+in \code{txIdVersion} and \code{geneIdVersion}, and the variants without versions
+will be stored in \code{txId}, \code{txIdNoVersion}, \code{geneId}, and \code{geneIdNoVersion}.}
 }
 \value{
 \code{CellTypeMarkers}.
@@ -48,13 +54,15 @@ cell_type_dir <- file.path(markers_dir, "cell-type")
 files <- list.files(cell_type_dir, pattern = "*.csv", full.names = TRUE)
 file <- files[[1L]]
 
+organism <- sentenceCase(gsub("-", " ", basenameSansExt(file)))
+
 ## Ensembl release version.
 release_file <- file.path(markers_dir, "ensembl-release.txt")
 release <- as.integer(readLines(release_file))
 
 importCellTypeMarkers(
     file = file,
-   organism = basenameSansExt(file),
+   organism = organism,
     release = release
 )
 }

@@ -1,18 +1,10 @@
-## Updated 2019-07-31.
-.prototypeMetadata <- list(
-    version = packageVersion(packageName()),
-    date = Sys.Date()
-)
-
-
-
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [`metadata()`][S4Vectors::metadata].
+#' defined in `metadata()`.
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -25,12 +17,12 @@ setValidity(
         validate(
             areSetEqual(
                 x = colnames(object[[1L]]),
-                y = c("geneID", "geneName", "phase")
-            ),
-            isSubset(
-                x = c("version", "organism", "ensemblRelease", "date"),
-                y = names(metadata(object))
+                y = c("geneId", "geneName", "phase")
             )
+            ## > isSubset(
+            ## >     x = c("date", "organism", "provider", "release"),
+            ## >     y = names(metadata(object))
+            ## > )
         )
     }
 )
@@ -40,10 +32,10 @@ setValidity(
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
-#' defined in [`metadata()`][S4Vectors::metadata].
+#' defined in `metadata()`.
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `CellTypeMarkers`
 setClass(
@@ -56,12 +48,12 @@ setValidity(
         validate(
             areSetEqual(
                 x = colnames(object[[1L]]),
-                y = c("cellType", "geneID", "geneName")
-            ),
-            isSubset(
-                x = c("date", "ensemblRelease", "organism", "version"),
-                y = names(metadata(object))
+                y = c("cellType", "geneId", "geneName")
             )
+            ## > isSubset(
+            ## >     x = c("date", "organism", "provider", "release"),
+            ## >     y = names(metadata(object))
+            ## > )
         )
     }
 )
@@ -83,7 +75,7 @@ setClass(
     Class = "KnownMarkers",
     contains = "DataFrame"
 )
-## Consider requiring "avgLogFC" column.
+## Consider requiring "avgLog2Fc" column.
 setValidity(
     Class = "KnownMarkers",
     method = function(object) {
@@ -92,7 +84,7 @@ setValidity(
                 x = c(
                     "cellType",
                     "cluster",
-                    "geneID",
+                    "geneId",
                     "geneName",
                     "name",
                     "padj",
@@ -101,7 +93,7 @@ setValidity(
                 y = colnames(object)
             ),
             isSubset(
-                x = c("alphaThreshold", "date", "version"),
+                x = c("alphaThreshold", "date", "packageVersion"),
                 y = names(metadata(object))
             )
         )
@@ -117,7 +109,7 @@ setValidity(
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `SeuratMarkers`.
 setClass(
@@ -132,7 +124,7 @@ setValidity(
             identical(
                 x = sort(colnames(object)),
                 y = c(
-                    "avgLogFC",
+                    "avgLog2Fc",
                     "padj",
                     "pct1",
                     "pct2",
@@ -155,7 +147,7 @@ setValidity(
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2019-09-03.
+#' @note Updated 2021-03-03.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
@@ -170,7 +162,7 @@ setValidity(
             identical(
                 x = sort(colnames(object)[[1L]]),
                 y = c(
-                    "avgLogFC",
+                    "avgLog2Fc",
                     "cluster",
                     "name",
                     "padj",

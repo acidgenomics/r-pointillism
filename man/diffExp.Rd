@@ -145,5 +145,5 @@ summary(denominator)
 ## > summary(x)
 }
 \seealso{
-\code{\link[Seurat:WhichCells]{Seurat::WhichCells()}}.
+\code{\link[Seurat:reexports]{Seurat::WhichCells()}}.
 }

@@ -1,7 +1,7 @@
 #' Run ZINB-WaVE
 #'
 #' @name runZinbwave
-#' @note Updated 2020-07-23.
+#' @note Updated 2021-03-03.
 #'
 #' @details
 #' [zinbwave][] will calculate `normalizedValues` and `weights` matrices, which
@@ -36,17 +36,18 @@
 #' @seealso `zinbwave::zinbwave`.
 #'
 #' @examples
-#' if (requireNamespace("zinbwave", quietly = TRUE)) {
-#'     data(SingleCellExperiment, package = "AcidTest")
-#'     Y <- SingleCellExperiment
-#'     Y <- nonzeroRowsAndCols(Y)
-#'     Y <- runZinbwave(Y)
-#' }
+#' ## This example is CPU intensive.
+#' ## > if (requireNamespace("zinbwave", quietly = TRUE)) {
+#' ## >     data(SingleCellExperiment, package = "AcidTest")
+#' ## >     Y <- SingleCellExperiment
+#' ## >     Y <- nonzeroRowsAndCols(Y)
+#' ## >     Y <- runZinbwave(Y)
+#' ## > }
 NULL
 
 
 
-## Updated 2020-02-21.
+## Updated 2021-03-02.
 `runZinbwave,SingleCellExperiment` <-  # nolint
     function(
         Y,  # nolint
@@ -66,28 +67,26 @@ NULL
             isFlag(recalculate),
             isFlag(verbose)
         )
-        cli_alert("Running zinbwave.")
+        alert("Running zinbwave.")
         # Early return if weights are calculated.
         weights <- tryCatch(
             expr = weights(Y),
             error = function(e) NULL
         )
         if (is.matrix(weights) && !isTRUE(recalculate)) {
-            cli_alert_success("Object already contains pre-calculated weights.")
+            alertSuccess("Object already contains pre-calculated weights.")
             return(Y)
         }
-
         # BiocParallel ---------------------------------------------------------
         # Use a progress bar (only applies to multicore).
         bpprogressbar(BPPARAM) <- TRUE
         # Inform the user whether running in parallel or serial.
         bpparamInfo <- capture.output(BPPARAM)
-        cli_alert_info(paste(
+        alertInfo(paste(
             "{.pkg BiocParallel} param registered.",
             paste(bpparamInfo, collapse = "\n"),
             sep = "\n"
         ))
-
         # Prepare Y object for zinbwave ----------------------------------------
         # We're returnining original object class, with modified assays.
         # Note that `zinbwave` otherwise returns `SingleCellExperiment`.
@@ -98,9 +97,8 @@ NULL
         # Ensure they are coerced to a dense matrix.
         # Keep an original copy in case they're sparse, and reslot.
         counts(Y) <- as.matrix(counts(Y))
-
         # Fit a ZINB regression model ------------------------------------------
-        cli_alert("{.fun zinbFit}: Fitting a ZINB regression model.")
+        alert("{.fun zinbFit}: Fitting a ZINB regression model.")
         message(paste(
             "CPU time used:",
             printString(system.time({
@@ -117,17 +115,16 @@ NULL
             })),
             sep = "\n"
         ))
-        cli_text(paste(
+        verbatim(paste(
             capture.output(print(fittedModel)),
             collapse = "\n"
         ))
-
         # zinbwave -------------------------------------------------------------
-        cli_alert(paste(
+        alert(paste(
             "{.fun zinbwave}: Performing dimensionality reduction using a",
             "ZINB regression model with gene and cell-level covariates."
         ))
-        cli_text(paste(
+        verbatim(paste(
             "CPU time used:",
             printString(system.time({
                 # Wrapping here to disable progress bars.
@@ -145,7 +142,6 @@ NULL
             sep = "\n"
         ))
         assert(is(zinb, "SingleCellExperiment"))
-
         # Return ---------------------------------------------------------------
         output <- zinb
         assert(identical(dimnames(input), dimnames(output)))

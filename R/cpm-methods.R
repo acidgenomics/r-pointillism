@@ -42,7 +42,7 @@ NULL
         }
         ## Otherwise, calculate on the fly.
         assert(is.numeric(sizeFactors(object)))
-        cli_alert("Calculating CPM with {.pkg scater}::{.fun calculateCPM}.")
+        alert("Calculating CPM with {.pkg scater}::{.fun calculateCPM}.")
         calculateCPM(object)
     }
 
@@ -65,7 +65,7 @@ setMethod(
         method <- .seuratNormalizationMethod(object, assay = assay)
         scaleFactor <- .seuratScaleFactor(object, assay = assay)
         if (!(method == "RC" && scaleFactor == 1e6L)) {
-            cli_alert(
+            alert(
                 "Generating CPM with {.pkg Seurat}::{.fun NormalizeData}."
             )
             object <- NormalizeData(
