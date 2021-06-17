@@ -74,11 +74,11 @@ invisible(lapply(idents, function(ident) {
     master <- as_tibble(subset[[]])
     stopifnot("sampleName" %in% colnames(master))
     master[["ident"]] <- Idents(subset)
-    master %<>%
-        uniteInterestingGroups(interestingGroups) %>%
+    master %<>%                                                          # FIXME
+        uniteInterestingGroups(interestingGroups) %>%                    # FIXME
         select(sampleName, interestingGroups)
-    sampleStats <- master %>%
-        arrange(sampleName) %>%
+    sampleStats <- master %>%                                            # FIXME
+        arrange(sampleName) %>%                                          # FIXME
         group_by(sampleName) %>%
         summarize(count = n()) %>%
         mutate(pct = count / sum(count))

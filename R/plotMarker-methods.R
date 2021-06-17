@@ -1,7 +1,7 @@
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit AcidGenerics::plotMarker
-#' @note Updated 2020-02-21.
+#' @note Updated 2020-05-19.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -11,13 +11,8 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' genes <-
-#'     object %>%
-#'     counts() %>%
-#'     rowSums() %>%
-#'     sort(decreasing = TRUE) %>%
-#'     head(n = 4L) %>%
-#'     names()
+#' sums <- sort(rowSums(counts(object)), decreasing = TRUE),
+#' genes <- names(head(sums, n = 4L))
 #' print(genes)
 #' plotMarker(
 #'     object = object,
