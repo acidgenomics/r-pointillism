@@ -3,9 +3,11 @@ context("topMarkers")
 test_that("Default", {
     object <- topMarkers(seuratAllMarkers, direction = "up", n = 2L)
     expect_s4_class(object, "DataFrame")
+    object <- lapply(X = object, FUN = class)
+    object <- object[sort(names(object))]
     expect_identical(
-        lapply(object, class) %>% .[sort(names(.))],
-        list(
+        object = object,
+        expected = list(
             "avgLog2Fc" = "numeric",
             "cluster" = "factor",
             "geneId" = "factor",

@@ -13,15 +13,17 @@
 ## - https://github.com/cole-trapnell-lab/monocle3/blob/master/examples/
 ##       c_elegans_embryo.R
 
-library(usethis)     # 1.5.1
-library(pryr)        # 0.1.4
-library(magrittr)    # 1.5
-library(reticulate)  # 1.14
-library(goalie)      # 0.4.1
-library(basejump)    # 0.11.24
-library(Matrix)      # 1.2-18
-library(monocle3)    # 0.2.0
-library(dplyr)       # 0.8.3
+suppressPackageStartupMessages({
+    library(usethis)     # 1.5.1
+    library(pryr)        # 0.1.4
+    library(magrittr)    # 1.5
+    library(reticulate)  # 1.14
+    library(goalie)      # 0.4.1
+    library(basejump)    # 0.11.24
+    library(Matrix)      # 1.2-18
+    library(monocle3)    # 0.2.0
+    library(dplyr)       # 0.8.3
+})
 
 cores <- getOption("mc.cores")
 
