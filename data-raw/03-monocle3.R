@@ -1,11 +1,6 @@
 ## monocle3 cell_data_set example.
 ## Updated 2021-07-16.
-
-## This is currently failing to save with Bioconductor 3.10, due to changes in
-## SingleCellExperiment that now cause validity checks to fail.
-## See related issue on GitHub:
-## https://github.com/cole-trapnell-lab/monocle3/issues/246
-
+##
 ## See also:
 ## - https://cole-trapnell-lab.github.io/monocle3/monocle3_docs/
 ## - https://github.com/cole-trapnell-lab/monocle3/blob/master/examples/
