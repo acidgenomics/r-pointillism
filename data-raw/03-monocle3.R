@@ -13,13 +13,10 @@
 ## - https://github.com/cole-trapnell-lab/monocle3/blob/master/examples/
 ##       c_elegans_embryo.R
 
-## FIXME Need to switch to lobstr here for object size checks.
-
 suppressPackageStartupMessages({
     library(usethis)     # 2.0.1
     library(magrittr)    # 1.5
-    library(Matrix)      # 1.3-4
-    library(dplyr)       # 1.0.7
+    library(lobstr)      # 1.1.1
     library(reticulate)  # 1.20
     library(goalie)      # 0.5.1
     library(basejump)    # 0.14.19
