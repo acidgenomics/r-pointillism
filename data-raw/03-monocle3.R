@@ -34,7 +34,7 @@ py_config()
 ## numpy_version:  1.21.0
 
 ## Restrict object size to 2 MB.
-## Use `pryr::object_size()` instead of `utils::object.size()`.
+## Use `lobstr::obj_size()` instead of `utils::object.size()`.
 limit <- structure(2e6, class = "object_size")
 
 ## Load data ===================================================================
