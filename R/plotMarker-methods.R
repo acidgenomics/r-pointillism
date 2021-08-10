@@ -11,7 +11,7 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' sums <- sort(rowSums(counts(object)), decreasing = TRUE),
+#' sums <- sort(rowSums(counts(object)), decreasing = TRUE)
 #' genes <- names(head(sums, n = 4L))
 #' print(genes)
 #' plotMarker(
