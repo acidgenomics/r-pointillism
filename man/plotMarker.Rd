@@ -101,20 +101,15 @@ Invisibly return a \code{ggplot} \code{list}.
 Visualize gene markers on a reduced dimension plot (e.g. t-SNE, UMAP).
 }
 \note{
-Updated 2020-02-21.
+Updated 2020-05-19.
 }
 \examples{
 data(Seurat, package = "AcidTest")
 
 ## Seurat ====
 object <- Seurat
-genes <-
-    object \%>\%
-    counts() \%>\%
-    rowSums() \%>\%
-    sort(decreasing = TRUE) \%>\%
-    head(n = 4L) \%>\%
-    names()
+sums <- sort(rowSums(counts(object)), decreasing = TRUE)
+genes <- names(head(sums, n = 4L))
 print(genes)
 plotMarker(
     object = object,
