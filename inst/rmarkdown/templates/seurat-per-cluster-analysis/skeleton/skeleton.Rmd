@@ -18,7 +18,7 @@ suppressPackageStartupMessages({
     library(dplyr)
     library(pointillism)
 })
-prepareTemplate(package = "pointillism")
+prepareTemplate()
 source("_setup.R")
 ```
 
