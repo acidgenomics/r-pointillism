@@ -1,8 +1,10 @@
 ---
-## Updated 2019-08-06.
+## Updated 2021-09-03.
 params:
   title: "Per cluster analysis"
-  seurat_file: "rds/YYYY-MM-DD/seurat.rds"
+
+  ## Seurat object file.
+  seurat_file: !r file.path("rds", "YYYY-MM-DD", "seurat.rds")
 
 title: "`r params$title`"
 author: "`r getOption('author')`"
@@ -12,6 +14,8 @@ bibliography: bibliography.bib
 
 ```{r setup, cache=FALSE, message=FALSE}
 suppressPackageStartupMessages({
+    library(goalie)
+    library(dplyr)
     library(pointillism)
 })
 prepareTemplate(package = "pointillism")
@@ -24,7 +28,6 @@ source("_setup.R")
 # Load Seurat object
 
 ```{r load-object}
-## FIXME This needs to support direct object import as well.
 file <- params$seurat_file
 object <- import(file)
 name <- basenameSansExt(file)
@@ -39,33 +42,41 @@ print(object)
 
 ```{r metadata}
 idents <- levels(Idents(object))
-interesting_groups <- interestingGroups(object)
+interestingGroups <- interestingGroups(object)
+if (is.null(interestingGroups)) {
+    interestingGroups <- "sampleName"
+}
 ```
 
 # UMAP (all clusters) {.tabset}
 
 ```{r plot-tsne-all-clusters, results="asis"}
-groups <- unique(c("ident", "sampleName", interesting_groups))
-invisible(lapply(groups, function(group) {
-    markdownHeader(group, level = 2L, asis = TRUE)
-    show(plotUMAP(object, interestingGroups = group))
-}))
+groups <- unique(c("ident", "sampleName", interestingGroups))
+invisible(lapply(
+    X = groups,
+    FUN = function(group) {
+        markdownHeader(group, level = 2L, asis = TRUE)
+        show(plotUMAP(object, interestingGroups = group))
+    }
+))
 rm(groups)
 ```
 
 # UMAP per cluster {.tabset}
 
 ```{r plot-tsne-per-cluster, results="asis"}
-groups <- unique(c("sampleName", interesting_groups))
-invisible(lapply(idents, function(ident) {
-    subset <- subset(object, idents = ident)
-    markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
-    invisible(lapply(groups, function(group) {
-        markdownHeader(group, level = 3L, asis = TRUE)
-        ## FIXME This is now breaking in the package, argh...
-        show(plotUMAP(subset, interestingGroups = group))
-    }))
-}))
+groups <- unique(c("sampleName", interestingGroups))
+invisible(lapply(
+    X = idents,
+    FUN = function(ident) {
+        subset <- subset(object, idents = ident)
+        markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
+        invisible(lapply(groups, function(group) {
+            markdownHeader(group, level = 3L, asis = TRUE)
+            show(plotUMAP(subset, interestingGroups = group))
+        }))
+    }
+))
 rm(groups)
 ```
 
@@ -73,30 +84,35 @@ rm(groups)
 
 ```{r cell-counts-per-cluster, results="asis"}
 invisible(lapply(idents, function(ident) {
-    subset <- subset(object, idents = ident)
     markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
+    subset <- subset(object, idents = ident)
     master <- subset[[]]
+    assert(is.data.frame(master))
     master <- as(master, "DataFrame")
-    assert("sampleName" %in% colnames(master))
     master[["ident"]] <- Idents(subset)
-    ## FIXME This step is now breaking?
-    master <- uniteInterestingGroups(master, interestingGroups)
-    
-    
-    ## FIXME Rework these chains without dplyr...
-    ## >     select(sampleName, interestingGroups)
-    ## > sampleStats <- master %>%                                            # FIXME
-    ## >     arrange(sampleName) %>%                                          # FIXME
-    ## >     group_by(sampleName) %>%
-    ## >     summarize(count = n()) %>%
-    ## >     mutate(pct = count / sum(count))
-    ## > intgroupStats <- master %>%
-    ## >     arrange(interestingGroups) %>%
-    ## >     group_by(interestingGroups) %>%
-    ## >     summarize(count = n()) %>%
-    ## >     mutate(pct = count / sum(count))
-    ## > kable(sampleStats, digits = 2) %>% show()
-    ## > kable(intgroupStats, digits = 2) %>% show()
+    if (!isSubset("sampleName", colnames(master))) {
+        master[["sampleName"]] <- as.factor("unknown")
+    }
+    master <- uniteInterestingGroups(
+        object = master,
+        interestingGroups = interestingGroups
+    )
+    sampleStats <-
+        master |>
+        as_tibble() |>
+        arrange(sampleName) |>
+        group_by(sampleName) |>
+        summarize(count = n()) |>
+        mutate(pct = signif(x = count / sum(count), digits = 2L))
+    show(sampleStats)
+    intgroupStats <-
+        master |>
+        as_tibble() |>
+        arrange(interestingGroups) |>
+        group_by(interestingGroups) |>
+        summarize(count = n()) |>
+        mutate(pct = signif(x = count / sum(count), digits = 2L))
+    show(intgroupStats)
 }))
 ```
 
