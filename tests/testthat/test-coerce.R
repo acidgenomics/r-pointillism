@@ -36,12 +36,7 @@ test_that("Seurat to SingleCellExperiment", {
             "geneBiotype",
             "geneId",
             "geneName",
-            "seqCoordSystem",
-            "vstMean",
-            "vstVariance",
-            "vstVarianceExpected",
-            "vstVarianceStandardized",
-            "vstVariable"
+            "seqCoordSystem"
         )
     )
     expect_identical(

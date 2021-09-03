@@ -36,7 +36,7 @@ and other machines with limited amounts of RAM.}
 Find cluster-specific marker genes
 }
 \note{
-Updated 2020-01-30.
+Updated 2021-09-03.
 }
 \examples{
 data(Seurat, package = "AcidTest")
