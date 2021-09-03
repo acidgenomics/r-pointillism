@@ -69,7 +69,13 @@
 #' - `Seurat::Idents()`
 #' - `Seurat:::Idents.Seurat`
 .seuratWhichIdents <- function(object) {
-    data <- object@meta.data
+    data <- slot(object, name = "meta.data")
+    idents <- Idents(object)
+    assert(
+        is.data.frame(data),
+        is.factor(idents),
+        identical(rownames(data), names(idents))
+    )
     keep <- grepl("res\\.[.0-9]+$", colnames(data))
     assert(
         any(keep),
@@ -83,9 +89,17 @@
     ## are internally stashed in `object@active.ident`.
     keep <- bapply(
         X = data,
-        y = Idents(object),
+        y = idents,
         FUN = function(x, y) {
-            identical(unname(x), unname(y))
+            assert(
+                is.factor(x),
+                is.factor(y)
+            )
+            x <- unname(x)
+            x <- droplevels(x)
+            y <- unname(y)
+            y <- droplevels(y)
+            identical(x, y)
         }
     )
     assert(
