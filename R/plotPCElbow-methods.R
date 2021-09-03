@@ -106,7 +106,7 @@ NULL
             pct = ggpct,
             cumsum = ggcumsum
         )
-        p <- plot_grid(plotlist = plotlist)
+        p <- wrap_plots(plotlist)
         attr(p, "elbow") <- cutoff
         p
     }

@@ -1,6 +1,6 @@
 #' @name findMarkers
 #' @inherit AcidGenerics::findMarkers
-#' @note Updated 2020-01-30.
+#' @note Updated 2021-09-03.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param clusters `character` or `NULL`.
@@ -28,7 +28,7 @@ NULL
 
 
 
-## Updated 2020-05-21.
+## Updated 2020-09-03.
 `findMarkers,SingleCellExperiment` <-  # nolint
     function(
         object,
@@ -42,9 +42,10 @@ NULL
         ## using "ident" to denote the cluster identifier mapping factor.
         ident <- clusters(object)
         assert(is.factor(ident), hasNames(ident))
-        if (!length(levels(ident)) >= 2L) {
-            stop("Object does not contain 2 or more clusters.")
-        }
+        assert(
+            length(levels(ident)) >= 2L,
+            msg = "Object does not contain 2 or more clusters."
+        )
         if (is.null(clusters)) {
             clusters <- levels(ident)
         }

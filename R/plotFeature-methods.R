@@ -180,7 +180,7 @@ NULL
         )
         ## Return --------------------------------------------------------------
         if (isTRUE(length(features) > 1L)) {
-            plot_grid(plotlist = plotlist) +
+            wrap_plots(plotlist) +
                 theme(
                     plot.background = element_rect(color = NA, fill = fill)
                 )
