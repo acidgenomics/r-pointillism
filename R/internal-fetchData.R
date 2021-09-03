@@ -1,8 +1,3 @@
-## FIXME Double check Gene2Symbol handling after AcidGenomes update.
-## Ensure that nothing is getting messed up here.
-
-
-
 #' Bind all dimension reduction matrices into a single data frame
 #'
 #' @note Updated 2021-03-03.
@@ -39,7 +34,7 @@
 
 #' Fetch gene data
 #'
-#' @note Updated 2021-03-03.
+#' @note Updated 2021-09-03.
 #' @noRd
 .fetchGeneData <- function(
     object,
@@ -79,9 +74,7 @@
     colData[["colname"]] <- rownames(colData)
     data <- leftJoin(data, colData, by = "colname")
     ## Join the `geneId` and `geneName` columns by the `rowname` column.
-    ## FIXME Need to rethink this step.
-    ## FIXME Need to harden with `format = "makeUnique"`, correct?
-    g2s <- Gene2Symbol(object)
+    g2s <- Gene2Symbol(object, format = "makeUnique")
     assert(hasLength(g2s), hasRownames(g2s))
     g2s <- as(g2s, "DataFrame")
     g2s[["rowname"]] <- rownames(g2s)
