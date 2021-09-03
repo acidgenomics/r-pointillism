@@ -11,7 +11,9 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-library(pointillism)
+suppressPackageStartupMessages({
+    library(pointillism)
+})
 prepareTemplate(package = "pointillism")
 source("_setup.R")
 ```
@@ -22,11 +24,12 @@ source("_setup.R")
 # Load Seurat object
 
 ```{r load-object}
+## FIXME This needs to support direct object import as well.
 file <- params$seurat_file
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
-stopifnot(
+assert(
     is(object, "Seurat"),
     is.character(name)
 )
@@ -59,6 +62,7 @@ invisible(lapply(idents, function(ident) {
     markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
     invisible(lapply(groups, function(group) {
         markdownHeader(group, level = 3L, asis = TRUE)
+        ## FIXME This is now breaking in the package, argh...
         show(plotUMAP(subset, interestingGroups = group))
     }))
 }))
@@ -71,24 +75,28 @@ rm(groups)
 invisible(lapply(idents, function(ident) {
     subset <- subset(object, idents = ident)
     markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
-    master <- as_tibble(subset[[]])
-    stopifnot("sampleName" %in% colnames(master))
+    master <- subset[[]]
+    master <- as(master, "DataFrame")
+    assert("sampleName" %in% colnames(master))
     master[["ident"]] <- Idents(subset)
-    master %<>%                                                          # FIXME
-        uniteInterestingGroups(interestingGroups) %>%                    # FIXME
-        select(sampleName, interestingGroups)
-    sampleStats <- master %>%                                            # FIXME
-        arrange(sampleName) %>%                                          # FIXME
-        group_by(sampleName) %>%
-        summarize(count = n()) %>%
-        mutate(pct = count / sum(count))
-    intgroupStats <- master %>%
-        arrange(interestingGroups) %>%
-        group_by(interestingGroups) %>%
-        summarize(count = n()) %>%
-        mutate(pct = count / sum(count))
-    kable(sampleStats, digits = 2) %>% show()
-    kable(intgroupStats, digits = 2) %>% show()
+    ## FIXME This step is now breaking?
+    master <- uniteInterestingGroups(master, interestingGroups)
+    
+    
+    ## FIXME Rework these chains without dplyr...
+    ## >     select(sampleName, interestingGroups)
+    ## > sampleStats <- master %>%                                            # FIXME
+    ## >     arrange(sampleName) %>%                                          # FIXME
+    ## >     group_by(sampleName) %>%
+    ## >     summarize(count = n()) %>%
+    ## >     mutate(pct = count / sum(count))
+    ## > intgroupStats <- master %>%
+    ## >     arrange(interestingGroups) %>%
+    ## >     group_by(interestingGroups) %>%
+    ## >     summarize(count = n()) %>%
+    ## >     mutate(pct = count / sum(count))
+    ## > kable(sampleStats, digits = 2) %>% show()
+    ## > kable(intgroupStats, digits = 2) %>% show()
 }))
 ```
 

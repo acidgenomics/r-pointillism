@@ -1,6 +1,5 @@
 context("plotCellTypesPerCluster")
 
-## FIXME This unit test is now failing, following AcidExperiment update.
 test_that("Homo sapiens", {
     for (object in objects) {
         invisible(capture.output({
