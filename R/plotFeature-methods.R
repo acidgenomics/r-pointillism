@@ -91,7 +91,7 @@ NULL
         supported <- setdiff(supported, blacklist)
         if (!isSubset(features, supported)) {
             setdiff <- setdiff(features, supported)
-            stop(sprintf(
+            abort(sprintf(
                 fmt = paste0(
                     "%s ",
                     ngettext(
@@ -103,7 +103,7 @@ NULL
                     "Available:\n%s"
                 ),
                 length(setdiff),
-                toString(setdiff, width = 200L),
+                toInlineString(setdiff, n = 5L),
                 printString(supported)
             ))
         }
