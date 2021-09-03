@@ -62,7 +62,7 @@
 #' Internally this checks `Idents()` return against internal metadata columns
 #' slotted in `object@meta.data`.
 #'
-#' @note Updated 2020-02-21.
+#' @note Updated 2021-09-03.
 #' @noRd
 #'
 #' @seealso
@@ -71,9 +71,13 @@
 .seuratWhichIdents <- function(object) {
     data <- object@meta.data
     keep <- grepl("res\\.[.0-9]+$", colnames(data))
-    if (!any(keep)) {
-        stop("Failed to detect any resolutions in `object@meta.data`.")
-    }
+    assert(
+        any(keep),
+        msg = sprintf(
+            "Failed to detect any resolutions in '%s'.",
+            "object@meta.data"
+        )
+    )
     data <- data[, keep, drop = FALSE]
     ## Now check against cluster idents currently returned by `Idents()`, which
     ## are internally stashed in `object@active.ident`.
@@ -84,16 +88,22 @@
             identical(unname(x), unname(y))
         }
     )
-    if (!any(keep)) {
-        stop("Failed to match `Idents()` in `object@meta.data`.")
-    }
+    assert(
+        any(keep),
+        msg = sprintf(
+            "Failed to match '%s' in '%s'.",
+            "Idents()", "object@meta.data"
+        )
+    )
     col <- names(keep)[keep]
     ## Inform the user about multiple identical resolutions, which can happen
     ## with low complexity samples.
     if (!isString(col)) {
-        alertWarning(paste("Multiple resolutions matched:", toString(col)))
+        alertWarning(sprintf(
+            "Multiple resolutions matched: %s",
+            toInlineString(col, n = 5L)
+        ))
         col <- col[[1L]]
-        ## > alertWarning(paste("Picking the lowest resolution:", col))
     }
     col
 }
