@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.5.0
-Date: 2021-03-03
+Version: 0.5.0.9000
+Date: 2021-09-03
 Authors@R: c(
     person(
         given = "Michael",
@@ -31,25 +31,25 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    basejump (>= 0.14.16)
+    basejump (>= 0.14.21.9000)
 Imports:
-    AcidGenerics (>= 0.5.17),
-    AcidPlots (>= 0.3.3),
-    BiocParallel (>= 1.24),
-    DESeq2 (>= 1.30),
-    Seurat (>= 4.0),
-    edgeR (>= 3.32),
+    AcidGenerics (>= 0.5.19.9000),
+    AcidPlots (>= 0.4.0.9000),
+    BiocParallel (>= 1.26.0),
+    DESeq2 (>= 1.32.0),
+    Seurat (>= 4.0.4),
+    edgeR (>= 3.34.0),
     ggplot2 (>= 3.3),
-    goalie (>= 0.5.0),
+    goalie (>= 0.5.4),
     methods,
-    scater (>= 1.18)
+    scater (>= 1.20.1)
 Suggests:
     AcidTest (>= 0.4.0),
-    future,
-    reticulate,
-    splatter,
+    future (>= 1.22.1),
+    reticulate (>= 1.20),
+    splatter (>= 1.16.0),
     testthat,
-    zinbwave
+    zinbwave (>= 1.14.0)
 biocViews:
     Clustering,
     DataRepresentation,
