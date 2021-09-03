@@ -91,7 +91,6 @@ NULL
             identical(workers, "auto") || isInt(workers, nullOK = TRUE)
         )
         regressCellCycle <- match.arg(regressCellCycle)
-
         ## Parallelization (via future) ----------------------------------------
         ## Note that Seurat currently uses future package for parallelization.
         ## Multiprocess is currently unstable in RStudio and disabled.
@@ -103,19 +102,23 @@ NULL
                 workers <- max(getOption("mc.cores"), 1L)
             }
             assert(isInt(workers))
-            alert(paste(
-                "Enabling {.pkg future} multiprocess with",
-                workers, "workers."
+            alert(sprintf(
+                "Enabling {.pkg %s} multiprocess with %d workers.",
+                "future", workers
             ))
             future::plan("multiprocess", workers = workers)
         }
-
         ## Pre-processing ------------------------------------------------------
-        alert("{.pkg Seurat}::{.fun NormalizeData}")
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "NormalizeData"
+        ))
         object <- Seurat::NormalizeData(object)
-        alert("{.pkg Seurat}::{.fun FindVariableFeatures}")
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "FindVariableFeatures"
+        ))
         object <- Seurat::FindVariableFeatures(object)
-
         ## Cell-cycle regression -----------------------------------------------
         ## https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
         if (!identical(regressCellCycle, "no")) {
@@ -128,10 +131,14 @@ NULL
             ccm <- env[["cell_cycle_markers_list"]]
             organism <- camelCase(organism(object), strict = TRUE)
             if (!isSubset(organism, names(ccm))) {
-                stop(paste0(
-                    "Failed to obtain cell-cycle markers.\n",
-                    deparse(organism), " is not currently supported.\n",
-                    "Please file an issue on GitHub:\n",
+                abort(sprintf(
+                    fmt = paste(
+                        "Failed to obtain cell-cycle markers.",
+                        "{.val %s} is not currently supported.",
+                        "Please file an issue on GitHub: {.url %s}.",
+                        sep = "\n"
+                    ),
+                    organism,
                     "https://github.com/acidgenomics/pointillism/issues"
                 ))
             }
@@ -139,7 +146,10 @@ NULL
             assert(is(ccm, "CellCycleMarkers"))
             g2mGenes <- as.character(ccm[["g2m"]][["geneName"]])
             sGenes <- as.character(ccm[["s"]][["geneName"]])
-            alert("{.pkg Seurat}::{.fun CellCycleScoring}")
+            alert(sprintf(
+                "{.pkg %s}::{.fun %s}",
+                "Seurat", "CellCycleScoring"
+            ))
             object <- Seurat::CellCycleScoring(
                 object = object,
                 s.features = sGenes,
@@ -154,10 +164,12 @@ NULL
         } else if (identical(regressCellCycle, "yes")) {
             varsToRegress <- c("S.Score", "G2M.Score", varsToRegress)
         }
-
         ## Scaling and projection ----------------------------------------------
-        alert("{.pkg Seurat}::{.fun ScaleData}")
-        dl(c("varsToRegress" = toString(varsToRegress)))
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "ScaleData"
+        ))
+        dl(c("varsToRegress" = toInlineString(varsToRegress)))
         ## Scaling all features is very slow for large datasets.
         ## Current default in Seurat scales variable features only.
         ## All features:
@@ -169,25 +181,35 @@ NULL
             features = rownames(object),
             vars.to.regress = varsToRegress
         )
-        alert("{.pkg Seurat}::{.fun RunPCA}")
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "RunPCA"
+        ))
         object <- Seurat::RunPCA(object)
         if (identical(dims, "auto")) {
-            alert("{.fun plotElbow}")
+            alert(sprintf("{.fun %s}", "plotElbow"))
             p <- plotPCElbow(object)
             elbow <- attr(p, "elbow")
             dims <- seq(from = 1L, to = elbow, by = 1L)
         }
-
         ## Clustering ----------------------------------------------------------
-        alert("{.pkg Seurat}::{.fun FindNeighbors}")
-        alertInfo(paste("Using", length(dims), "dims."))
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "FindNeighbors"
+        ))
+        alertInfo(sprintf("Using %d dims,", length(dims)))
         object <- Seurat::FindNeighbors(object, dims = dims)
-        alert("{.pkg Seurat}::{.fun FindClusters}")
-        dl(c("resolution" = deparse(resolution)))
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "FindClusters"
+        ))
+        dl(c("resolution" = as.character(resolution)))
         object <- Seurat::FindClusters(object, resolution = resolution)
-
         ## tSNE / UMAP ---------------------------------------------------------
-        alert("{.pkg Seurat}::{.fun RunTSNE}")
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "RunTSNE"
+        ))
         dl(c("method" = tsneMethod))
         object <- Seurat::RunTSNE(
             object = object,
@@ -198,7 +220,10 @@ NULL
             reticulate::use_virtualenv(virtualenv = virtualenv, required = TRUE)
             assert(reticulate::py_module_available(module = "umap"))
         }
-        alert("{.pkg Seurat}::{.fun RunUMAP}")
+        alert(sprintf(
+            "{.pkg %s}::{.fun %s}",
+            "Seurat", "RunUMAP"
+        ))
         metric <- switch(
             EXPR = umapMethod,
             "umap-learn" = "correlation",
@@ -219,7 +244,6 @@ NULL
             metric = metric,
             dims = dims
         )
-
         alertSuccess("Seurat run was successful.")
         object
     }
