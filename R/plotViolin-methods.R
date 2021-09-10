@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 ## Updated 2019-09-03.
 `plotViolin,SingleCellExperiment` <-  # nolint
     function(

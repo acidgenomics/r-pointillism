@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotStackedBarPlot
 #' @inherit AcidGenerics::plotStackedBarPlot
 #' @note Updated 2021-03-04.
@@ -27,10 +31,7 @@ NULL
     ) {
         validObject(object)
         assert(isFlag(absolute))
-        labels <- matchLabels(
-            labels = labels,
-            choices = eval(formals()[["labels"]])
-        )
+        labels <- matchLabels(labels)
         interestingGroups(object) <-
             matchInterestingGroups(object, interestingGroups)
         interestingGroups <- interestingGroups(object)

@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' Min max
 #' @note Updated 2019-08-03.
 #' @seealso `Seurat:::MinMax`.

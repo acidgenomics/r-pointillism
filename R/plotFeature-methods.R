@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotFeature
 #' @inherit AcidGenerics::plotFeature
 #' @note Updated 2021-03-03.
