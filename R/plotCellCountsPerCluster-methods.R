@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotCellCountsPerCluster
 #' @inherit AcidGenerics::plotCellCountsPerCluster
 #' @note Updated 2020-01-30.

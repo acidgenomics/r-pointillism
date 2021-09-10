@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotCounts
 #' @aliases plotDots plotViolin
 #' @inherit AcidGenerics::plotCounts

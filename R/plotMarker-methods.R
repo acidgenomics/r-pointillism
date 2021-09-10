@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotMarker
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @inherit AcidGenerics::plotMarker
@@ -60,10 +64,7 @@ NULL
             isFlag(dark),
             isFlag(legend)
         )
-        labels <- matchLabels(
-            labels = labels,
-            choices = eval(formals()[["labels"]])
-        )
+        labels <- matchLabels(labels)
         geneNames <- mapGenesToSymbols(object, genes)
         expression <- match.arg(expression)
         ## Fetch reduced dimension data.

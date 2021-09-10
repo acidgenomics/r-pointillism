@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotCellTypesPerCluster
 #' @inherit AcidGenerics::plotCellTypesPerCluster
 #' @note Updated 2020-02-21.

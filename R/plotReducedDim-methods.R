@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidPlots.
+
+
+
 #' @name plotReducedDim
 #' @aliases plotPCA plotTSNE plotUMAP
 #' @author Michael Steinbaugh, Rory Kirchner
@@ -78,10 +82,7 @@ NULL
             isFlag(dark),
             isFlag(legend)
         )
-        labels <- matchLabels(
-            labels = labels,
-            choices = eval(formals()[["labels"]])
-        )
+        labels <- matchLabels(labels)
         dl(c(
             "reduction" = reduction,
             "dims" = deparse(dims)
