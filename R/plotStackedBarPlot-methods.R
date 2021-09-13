@@ -87,18 +87,14 @@ NULL
 
 
 
-#' @rdname plotStackedBarPlot
-#' @export
-setMethod(
-    f = "plotStackedBarPlot",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotStackedBarPlot,SCE`
-)
-
-
-
+## Updated 2021-09-13.
 `plotStackedBarPlot,Seurat` <-  # nolint
-    `plotStackedBarPlot,SCE`
+    function(object, ...) {
+        plotStackedBarPlot(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -108,4 +104,12 @@ setMethod(
     f = "plotStackedBarPlot",
     signature = signature("Seurat"),
     definition = `plotStackedBarPlot,Seurat`
+)
+
+#' @rdname plotStackedBarPlot
+#' @export
+setMethod(
+    f = "plotStackedBarPlot",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotStackedBarPlot,SCE`
 )

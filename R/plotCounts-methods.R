@@ -91,16 +91,6 @@ rm(args)
 
 
 
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotCounts",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotCounts,SCE`
-)
-
-
-
 ## Updated 2021-09-13.
 `plotCounts,Seurat` <-  # nolint
     function(object, ...) {
@@ -117,5 +107,13 @@ setMethod(
 setMethod(
     f = "plotCounts",
     signature = signature("Seurat"),
+    definition = `plotCounts,SCE`
+)
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotCounts",
+    signature = signature("SingleCellExperiment"),
     definition = `plotCounts,SCE`
 )

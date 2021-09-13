@@ -172,7 +172,7 @@ setAs(
 
 
 ## Updated 2019-07-31.
-`coerce,Seurat,RangedSummarizedExperiment` <-  # nolint
+`coerce,Seurat,RSE` <-  # nolint
     function(from) {
         to <- from
         to <- as(to, "SingleCellExperiment")
@@ -183,7 +183,7 @@ setAs(
 
 
 #' @rdname coerce
-#' @name coerce,Seurat,RangedSummarizedExperiment-method
+#' @name coerce,Seurat,RSE-method
 #'
 #' @section `Seurat` to `RangedSummarizedExperiment`:
 #' S4 coercion support for creating a `RangedSummarizedExperiment` from a
@@ -191,13 +191,13 @@ setAs(
 setAs(
     from = "Seurat",
     to = "RangedSummarizedExperiment",
-    def = `coerce,Seurat,RangedSummarizedExperiment`
+    def = `coerce,Seurat,RSE`
 )
 
 
 
 ## Updated 2019-07-31.
-`coerce,Seurat,SummarizedExperiment` <-  # nolint
+`coerce,Seurat,SE` <-  # nolint
     function(from) {
         to <- from
         to <- as(to, "RangedSummarizedExperiment")
@@ -208,14 +208,14 @@ setAs(
 
 
 #' @rdname coerce
-#' @name coerce,Seurat,SummarizedExperiment-method
+#' @name coerce,Seurat,SE-method
 #' @section `Seurat` to `SummarizedExperiment`:
 #' S4 coercion support for creating a `SummarizedExperiment` from a `Seurat`
 #' class object.
 setAs(
     from = "Seurat",
     to = "SummarizedExperiment",
-    def = `coerce,Seurat,SummarizedExperiment`
+    def = `coerce,Seurat,SE`
 )
 
 

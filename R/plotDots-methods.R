@@ -148,19 +148,14 @@ rm(args1, args2)
 
 
 
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotDots",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotDots,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `plotDots,Seurat` <-  # nolint
-    `plotDots,SCE`
+    function(object, ...) {
+        plotDots(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -170,4 +165,12 @@ setMethod(
     f = "plotDots",
     signature = signature("Seurat"),
     definition = `plotDots,Seurat`
+)
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotDots",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotDots,SCE`
 )

@@ -73,6 +73,17 @@ NULL
 
 
 
+## Updated 2021-09-13.
+`plotCellCountsPerCluster,Seurat` <-  # nolint
+    function(object, ...) {
+        plotCellCountsPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
 #' @rdname plotCellCountsPerCluster
 #' @export
 setMethod(
@@ -80,13 +91,6 @@ setMethod(
     signature = signature("SingleCellExperiment"),
     definition = `plotCellCountsPerCluster,SCE`
 )
-
-
-
-## Updated 2019-07-31.
-`plotCellCountsPerCluster,Seurat` <-  # nolint
-    `plotCellCountsPerCluster,SCE`
-
 
 
 #' @rdname plotCellCountsPerCluster

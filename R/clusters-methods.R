@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' @name clusters
 #' @inherit AcidGenerics::clusters
 #' @note Updated 2019-08-02.
@@ -34,32 +38,12 @@ NULL
 
 
 
-#' @rdname clusters
-#' @export
-setMethod(
-    f = "clusters",
-    signature = signature("SingleCellExperiment"),
-    definition = `clusters,SCE`
-)
-
-
-
 ## Updated 2019-08-02.
 `clusters,Seurat` <-  # nolint
     function(object) {
         validObject(object)
         Idents(object)
     }
-
-
-
-#' @rdname clusters
-#' @export
-setMethod(
-    f = "clusters",
-    signature = signature("Seurat"),
-    definition = `clusters,Seurat`
-)
 
 
 
@@ -87,8 +71,25 @@ setMethod(
 ## > formals(`clusters,cell_data_set`)[["reduction"]] <-
 ## >     f[["reduction_method"]]
 ## >
-## >
-## >
+
+
+
+#' @rdname clusters
+#' @export
+setMethod(
+    f = "clusters",
+    signature = signature("Seurat"),
+    definition = `clusters,Seurat`
+)
+
+#' @rdname clusters
+#' @export
+setMethod(
+    f = "clusters",
+    signature = signature("SingleCellExperiment"),
+    definition = `clusters,SCE`
+)
+
 ## > #' @rdname clusters
 ## > #' @export
 ## > setMethod(

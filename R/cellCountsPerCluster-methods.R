@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' @name cellCountsPerCluster
 #' @inherit AcidGenerics::cellCountsPerCluster
 #' @note Updated 2021-03-03.
@@ -52,19 +56,14 @@ NULL
 
 
 
-#' @rdname cellCountsPerCluster
-#' @export
-setMethod(
-    f = "cellCountsPerCluster",
-    signature = signature("SingleCellExperiment"),
-    definition = `cellCountsPerCluster,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `cellCountsPerCluster,Seurat` <-  # nolint
-    `cellCountsPerCluster,SCE`
+    function(object, ...) {
+        cellCountsPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -74,4 +73,12 @@ setMethod(
     f = "cellCountsPerCluster",
     signature = signature("Seurat"),
     definition = `cellCountsPerCluster,Seurat`
+)
+
+#' @rdname cellCountsPerCluster
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = `cellCountsPerCluster,SCE`
 )

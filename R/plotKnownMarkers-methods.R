@@ -1,3 +1,7 @@
+## FIXME Move this to AcidPlots.
+
+
+
 #' @name plotKnownMarkers
 #' @inherit AcidGenerics::plotKnownMarkers
 #' @note Updated 2020-01-30.
@@ -80,22 +84,15 @@ rm(args)
 
 
 
-#' @rdname plotKnownMarkers
-#' @export
-setMethod(
-    f = "plotKnownMarkers",
-    signature = signature(
-        object = "SingleCellExperiment",
-        markers = "KnownMarkers"
-    ),
-    definition = `plotKnownMarkers,SCE,KnownMarkers`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
-    `plotKnownMarkers,SCE,KnownMarkers`
+    function(object, markers, ...) {
+        plotKnownMarkers(
+            object = as(object, "SingleCellExperiment"),
+            markers = markers,
+            ...
+        )
+    }
 
 
 
@@ -108,4 +105,15 @@ setMethod(
         markers = "KnownMarkers"
     ),
     definition = `plotKnownMarkers,Seurat,KnownMarkers`
+)
+
+#' @rdname plotKnownMarkers
+#' @export
+setMethod(
+    f = "plotKnownMarkers",
+    signature = signature(
+        object = "SingleCellExperiment",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotKnownMarkers,SCE,KnownMarkers`
 )

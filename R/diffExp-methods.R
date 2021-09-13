@@ -1,3 +1,7 @@
+## FIXME Consider moving this to AcidSingleCell.
+
+
+
 #' @name diffExp
 #' @inherit AcidGenerics::diffExp
 #'
@@ -17,7 +21,7 @@
 #'
 #' We're trying to follow the conventions used in DESeq2 for contrasts, defining
 #' the name of the factor in the design formula, numerator, and denominator
-#' level for the fold change calculations. See [DESeq2::results()] for details.
+#' level for the fold change calculations. See `DESeq2::results()` for details.
 #'
 #' Van de Berge and Perraudeau and others have shown the LRT may perform better
 #' for null hypothesis testing, so we use the LRT. In order to use the Wald
@@ -32,14 +36,14 @@
 #' @section edgeR:
 #'
 #' The LRT has been shown to perform better for null hypothesis testing with
-#' droplet scRNA-seq data. Here we are using [edgeR::glmLRT()] internally.
+#' droplet scRNA-seq data. Here we are using `edgeR::glmLRT()` internally.
 #'
 #' edgeR is currently significantly faster than DESeq2 for large datasets.
 #'
 #' @section Seurat conventions:
 #'
 #' Note that Seurat currently uses the convention `cells.1` for the numerator
-#' and `cells.2` for the denominator. See [Seurat::FindMarkers()] for details.
+#' and `cells.2` for the denominator. See `Seurat::FindMarkers()` for details.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param numerator `character`.
@@ -345,16 +349,6 @@ rm(args)
 
 
 
-#' @rdname diffExp
-#' @export
-setMethod(
-    f = "diffExp",
-    signature = signature("SingleCellExperiment"),
-    definition = `diffExp,SCE`
-)
-
-
-
 ## Updated 2020-02-21.
 `diffExp,Seurat` <-  # nolint
     function(object, ...) {
@@ -369,4 +363,12 @@ setMethod(
     f = "diffExp",
     signature = signature("Seurat"),
     definition = `diffExp,Seurat`
+)
+
+#' @rdname diffExp
+#' @export
+setMethod(
+    f = "diffExp",
+    signature = signature("SingleCellExperiment"),
+    definition = `diffExp,SCE`
 )

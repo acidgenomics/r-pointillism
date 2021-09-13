@@ -1,11 +1,15 @@
+## FIXME Consider moving this to AcidSingleCell.
+
+
+
 #' Normalize expression using pre-computed size factors
 #'
 #' This function calculates size factor normalized and log normalized counts
-#' from the raw count matrix defined in [counts()]. These matrices are stored in
-#' [normcounts()] and [logcounts()] slots in [assays()], respectively.
+#' from the raw count matrix defined in `counts()`. These matrices are stored in
+#' `normcounts()` and `logcounts()` slots in `assays()`, respectively.
 #'
-#' If no library size factors are defined in [sizeFactors()], these values will
-#' be computed internally automatically using [estimateSizeFactors()] with the
+#' If no library size factors are defined in `sizeFactors()`, these values will
+#' be computed internally automatically using `estimateSizeFactors()` with the
 #' recommended default settings.
 #'
 #' @section Normalized counts:
@@ -17,7 +21,7 @@
 #' @section Log normalized counts:
 #'
 #' Log-normalized values are calculated by adding a pseudocount offset of 1 to
-#' the normalized count and performing a [`log2()`][base::log2] transformation.
+#' the normalized count and performing a `log2()` transformation.
 #'
 #' @section Centering at unity:
 #'
@@ -75,9 +79,13 @@ NULL
             )
         }
         assert(!is.null(sizeFactors(object)))
-        alert(paste(
-            "Computing {.var normcounts} and {.var logcounts} assays using",
-            "{.pkg scater}::{.fun normalizeCounts}."
+        alert(sprintf(
+            fmt = paste(
+                "Computing {.val %s} and {.val %s} assays using",
+                "{.pkg %s}::{.fun %s}."
+            ),
+            "normcounts", "logcounts",
+            "scater", "normalizeCounts"
         ))
         ## Get normcounts matrix.
         normcounts <- normalizeCounts(
@@ -103,32 +111,15 @@ NULL
 
 
 
-#' @rdname normalize
-#' @export
-setMethod(
-    f = "normalize",
-    signature = signature("SingleCellExperiment"),
-    definition = `normalize,SCE`
-)
-
-
-
 ## Updated 2020-01-30.
 `normalize,Seurat` <-  # nolint
     function(object) {
-        alert("Normalizing with {.pkg Seurat}::{.fun NormalizeData}.")
+        alert(sprintf(
+            "Normalizing with {.pkg %s}::{.fun %s}.",
+            "Seurat", "NormalizeData"
+        ))
         NormalizeData(object = object, verbose = TRUE)
     }
-
-
-
-#' @rdname normalize
-#' @export
-setMethod(
-    f = "normalize",
-    signature = signature("Seurat"),
-    definition = `normalize,Seurat`
-)
 
 
 
@@ -147,9 +138,25 @@ setMethod(
 ## >             verbose = TRUE
 ## >         )
 ## >     }
-## >
-## >
-## >
+
+
+
+#' @rdname normalize
+#' @export
+setMethod(
+    f = "normalize",
+    signature = signature("Seurat"),
+    definition = `normalize,Seurat`
+)
+
+#' @rdname normalize
+#' @export
+setMethod(
+    f = "normalize",
+    signature = signature("SingleCellExperiment"),
+    definition = `normalize,SCE`
+)
+
 ## > #' @rdname normalize
 ## > #' @export
 ## > setMethod(

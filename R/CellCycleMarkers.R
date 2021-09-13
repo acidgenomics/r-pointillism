@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' Cell-cycle markers
 #'
 #' @name CellCycleMarkers

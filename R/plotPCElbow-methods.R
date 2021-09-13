@@ -132,16 +132,6 @@ rm(args)
 
 
 
-#' @rdname plotPCElbow
-#' @export
-setMethod(
-    f = "plotPCElbow",
-    signature = signature("Seurat"),
-    definition = `plotPCElbow,Seurat`
-)
-
-
-
 ## > ## Updated 2019-08-02.
 ## > `plotPCElbow,cell_data_set` <-  # nolint
 ## >     function(object, minPct, maxCumPct) {
@@ -155,9 +145,17 @@ setMethod(
 ## >
 ## > args <- c("minPct", "maxCumPct")
 ## > formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
-## >
-## >
-## >
+
+
+
+#' @rdname plotPCElbow
+#' @export
+setMethod(
+    f = "plotPCElbow",
+    signature = signature("Seurat"),
+    definition = `plotPCElbow,Seurat`
+)
+
 ## > #' @rdname plotPCElbow
 ## > #' @export
 ## > setMethod(

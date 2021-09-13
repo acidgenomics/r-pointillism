@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' Cell-type markers
 #'
 #' @name CellTypeMarkers
