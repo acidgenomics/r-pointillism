@@ -8,7 +8,7 @@
 #'
 #' @name base-Seurat
 #' @keywords internal
-#' @note Updated 2021-03-03.
+#' @note Updated 2021-09-13.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -104,6 +104,27 @@ setMethod(
 
 
 
+## Updated 2021-09-13.
+`cellCountsPerCluster,Seurat` <-  # nolint
+    function(object, ...) {
+        cellCountsPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "cellCountsPerCluster",
+    signature = signature("Seurat"),
+    definition = `cellCountsPerCluster,Seurat`
+)
+
+
+
 ## Updated 2021-03-03.
 `colData,Seurat` <-  # nolint
     function(x, ...) {
@@ -164,6 +185,24 @@ setMethod(
     f = "counts",
     signature = signature("Seurat"),
     definition = `counts,Seurat`
+)
+
+
+
+## Updated 2020-02-21.
+`diffExp,Seurat` <-  # nolint
+    function(object, ...) {
+        diffExp(object = as(object, "SingleCellExperiment"), ...)
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "diffExp",
+    signature = signature("Seurat"),
+    definition = `diffExp,Seurat`
 )
 
 
