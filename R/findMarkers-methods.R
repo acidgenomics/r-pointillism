@@ -1,6 +1,10 @@
+## FIXME Consider moving this to AcidSingleCell.
+
+
+
 #' @name findMarkers
 #' @inherit AcidGenerics::findMarkers
-#' @note Updated 2021-09-03.
+#' @note Updated 2021-09-13.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param clusters `character` or `NULL`.
@@ -36,7 +40,7 @@ NULL
         ...
     ) {
         assert(isCharacter(clusters, nullOK = TRUE))
-        h1("{.fun findMarkers}")
+        h1(sprintf("{.fun %s}", "findMarkers"))
         object <- as(object, "SingleCellExperiment")
         ## Get the cluster mappings. Following the Seurat nomenclature here of
         ## using "ident" to denote the cluster identifier mapping factor.
@@ -78,19 +82,14 @@ NULL
 
 
 
-#' @rdname findMarkers
-#' @export
-setMethod(
-    f = "findMarkers",
-    signature = signature("SingleCellExperiment"),
-    definition = `findMarkers,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `findMarkers,Seurat` <-  # nolint
-    `findMarkers,SCE`
+    function(object, ...) {
+        findMarkers(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -100,4 +99,12 @@ setMethod(
     f = "findMarkers",
     signature = signature("Seurat"),
     definition = `findMarkers,Seurat`
+)
+
+#' @rdname findMarkers
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("SingleCellExperiment"),
+    definition = `findMarkers,SCE`
 )

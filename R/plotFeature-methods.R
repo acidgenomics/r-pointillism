@@ -211,19 +211,14 @@ rm(args, args1, args2)
 
 
 
-#' @rdname plotFeature
-#' @export
-setMethod(
-    f = "plotFeature",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotFeature,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `plotFeature,Seurat` <-  # nolint
-    `plotFeature,SCE`
+    function(object, ...) {
+        plotFeature(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -233,4 +228,12 @@ setMethod(
     f = "plotFeature",
     signature = signature("Seurat"),
     definition = `plotFeature,Seurat`
+)
+
+#' @rdname plotFeature
+#' @export
+setMethod(
+    f = "plotFeature",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotFeature,SCE`
 )

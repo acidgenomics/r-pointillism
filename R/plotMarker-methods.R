@@ -192,19 +192,14 @@ rm(args, args1, args2)
 
 
 
-#' @rdname plotMarker
-#' @export
-setMethod(
-    f = "plotMarker",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotMarker,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `plotMarker,Seurat` <-  # nolint
-    `plotMarker,SCE`
+    function(object, ...) {
+        plotMarker(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -214,4 +209,12 @@ setMethod(
     f = "plotMarker",
     signature = signature("Seurat"),
     definition = `plotMarker,Seurat`
+)
+
+#' @rdname plotMarker
+#' @export
+setMethod(
+    f = "plotMarker",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotMarker,SCE`
 )

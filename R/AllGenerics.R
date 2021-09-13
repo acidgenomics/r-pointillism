@@ -1,3 +1,5 @@
+## FIXME Move this to AcidSingleCell.
+
 #' @rdname KnownMarkers
 #' @export
 setGeneric(

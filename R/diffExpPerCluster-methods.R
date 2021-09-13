@@ -1,4 +1,5 @@
 ## Consider adding pseudobulk support here in a future update.
+## FIXME Consider moving this to AcidSingleCell.
 
 
 
@@ -9,12 +10,12 @@
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams diffExp
 #' @param group `character(1)`.
-#'   Group of interest for differential expression per cluster. Must be a
-#'   `factor` column in [`colData()`][SummarizedExperiment::colData].
-#' @param ... Passthrough arguments to [diffExp()].
+#'   Group of interest for differential expression per cluster.
+#'   Must be a `factor` column in `colData()`.
+#' @param ... Passthrough arguments to `diffExp()`.
 #'
-#' @note Cluster identity (`ident`) must be defined in
-#'   [`colData()`][SummarizedExperiment::colData] for this function to work.
+#' @note Cluster identity (`ident`) must be defined in `colData()` for this
+#'   function to work.
 #'
 #' @return `list` containing:
 #' - `caller = "edgeR"`: `DGELRT`.
@@ -106,19 +107,14 @@ NULL
 
 
 
-#' @rdname diffExpPerCluster
-#' @export
-setMethod(
-    f = "diffExpPerCluster",
-    signature = signature("SingleCellExperiment"),
-    definition = `diffExpPerCluster,SCE`
-)
-
-
-
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `diffExpPerCluster,Seurat` <-  # nolint
-    `diffExpPerCluster,SCE`
+    function(object, ...) {
+        diffExpPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -128,4 +124,12 @@ setMethod(
     f = "diffExpPerCluster",
     signature = signature("Seurat"),
     definition = `diffExpPerCluster,Seurat`
+)
+
+#' @rdname diffExpPerCluster
+#' @export
+setMethod(
+    f = "diffExpPerCluster",
+    signature = signature("SingleCellExperiment"),
+    definition = `diffExpPerCluster,SCE`
 )

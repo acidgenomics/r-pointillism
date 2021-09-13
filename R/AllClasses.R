@@ -1,3 +1,10 @@
+## FIXME Ensure any classes that get moved to AcidSingleCell get reexported
+## here as well.
+
+
+
+## FIXME Move this to AcidSingleCell?
+
 #' Cell-cycle markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
@@ -29,6 +36,8 @@ setValidity(
 
 
 
+## FIXME Move this to AcidSingleCell?
+
 #' Cell-type markers
 #'
 #' Data provenence information, including the organism and Ensembl release are
@@ -59,6 +68,8 @@ setValidity(
 )
 
 
+
+## FIXME Move this to AcidSingleCell.
 
 #' Known markers
 #'

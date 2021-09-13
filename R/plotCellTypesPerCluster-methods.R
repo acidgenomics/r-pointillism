@@ -1,7 +1,3 @@
-## FIXME Consider moving this to AcidPlots.
-
-
-
 #' @name plotCellTypesPerCluster
 #' @inherit AcidGenerics::plotCellTypesPerCluster
 #' @note Updated 2020-02-21.
@@ -119,22 +115,15 @@ rm(args)
 
 
 
-#' @rdname plotCellTypesPerCluster
-#' @export
-setMethod(
-    f = "plotCellTypesPerCluster",
-    signature = signature(
-        object = "SingleCellExperiment",
-        markers = "KnownMarkers"
-    ),
-    definition = `plotCellTypesPerCluster,SCE,KnownMarkers`
-)
-
-
-
-## Updated 2019-08-07.
+## Updated 2021-09-13.
 `plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
-    `plotCellTypesPerCluster,SCE,KnownMarkers`
+    function(object, markers, ...) {
+        plotCellTypesPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            markers = markers,
+            ...
+        )
+    }
 
 
 
@@ -147,4 +136,15 @@ setMethod(
         markers = "KnownMarkers"
     ),
     definition = `plotCellTypesPerCluster,Seurat,KnownMarkers`
+)
+
+#' @rdname plotCellTypesPerCluster
+#' @export
+setMethod(
+    f = "plotCellTypesPerCluster",
+    signature = signature(
+        object = "SingleCellExperiment",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotCellTypesPerCluster,SCE,KnownMarkers`
 )

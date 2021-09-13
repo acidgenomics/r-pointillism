@@ -108,6 +108,7 @@ NULL
         ## Check if interesting groups input is supported.
         supported <- bapply(data, is.factor)
         supported <- names(supported)[supported]
+        ## FIXME Rename this to "denylist" from "blacklist".
         blacklist <- c("interestingGroups", "origIdent", "sampleId")
         supported <- setdiff(supported, blacklist)
         if (!isSubset(interestingGroups, supported)) {
@@ -234,16 +235,6 @@ rm(args, args1, args2)
 
 
 
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotReducedDim",
-    signature = signature("SingleCellExperiment"),
-    definition = `plotReducedDim,SCE`
-)
-
-
-
 ## Updated 2021-03-02.
 `plotReducedDim,Seurat` <-  # nolint
     function(object, ...) {
@@ -251,6 +242,66 @@ setMethod(
         idents <- .seuratWhichIdents(object)
         dl(c("idents" = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
+    }
+
+
+
+## FIXME Move this to AcidPlots.
+## Updated 2020-02-21.
+`plotPCA,SCE` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "PCA", ...)
+    }
+
+
+
+## Updated 2021-09-13.
+`plotPCA,Seurat` <-  # nolint
+    function(object, ...) {
+        plotPCA(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+## FIXME Move this to AcidPlots.
+## Updated 2020-02-21.
+`plotTSNE,SCE` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "TSNE", ...)
+    }
+
+
+
+## Updated 2021-09-13.
+`plotTSNE,Seurat` <-  # nolint
+    function(object, ...) {
+        plotTSNE(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+## FIXME Move this to AcidPlots.
+## Updated 2020-02-21.
+`plotUMAP,SCE` <-  # nolint
+    function(object, ...) {
+        plotReducedDim(object = object, reduction = "UMAP", ...)
+    }
+
+
+
+## Updated 2021-09-13.
+`plotUMAP,Seurat` <-  # nolint
+    function(object, ...) {
+        plotUMAP(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
     }
 
 
@@ -263,29 +314,13 @@ setMethod(
     definition = `plotReducedDim,Seurat`
 )
 
-
-
-## Updated 2020-02-21.
-`plotPCA,SCE` <-  # nolint
-    function(object, ...) {
-        plotReducedDim(object = object, reduction = "PCA", ...)
-    }
-
-
-
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    f = "plotPCA",
+    f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
-    definition = `plotPCA,SCE`
+    definition = `plotReducedDim,SCE`
 )
-
-
-
-## Updated 2019-07-31.
-`plotPCA,Seurat` <-  # nolint
-    `plotPCA,SCE`
 
 
 
@@ -297,29 +332,13 @@ setMethod(
     definition = `plotPCA,Seurat`
 )
 
-
-
-## Updated 2020-02-21.
-`plotTSNE,SCE` <-  # nolint
-    function(object, ...) {
-        plotReducedDim(object = object, reduction = "TSNE", ...)
-    }
-
-
-
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    f = "plotTSNE",
+    f = "plotPCA",
     signature = signature("SingleCellExperiment"),
-    definition = `plotTSNE,SCE`
+    definition = `plotPCA,SCE`
 )
-
-
-
-## Updated 2020-02-21.
-`plotTSNE,Seurat` <-  # nolint
-    `plotTSNE,SCE`
 
 
 
@@ -331,29 +350,13 @@ setMethod(
     definition = `plotTSNE,Seurat`
 )
 
-
-
-## Updated 2020-02-21.
-`plotUMAP,SCE` <-  # nolint
-    function(object, ...) {
-        plotReducedDim(object = object, reduction = "UMAP", ...)
-    }
-
-
-
 #' @rdname plotReducedDim
 #' @export
 setMethod(
-    f = "plotUMAP",
+    f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
-    definition = `plotUMAP,SCE`
+    definition = `plotTSNE,SCE`
 )
-
-
-
-## Updated 2020-02-21.
-`plotUMAP,Seurat` <-  # nolint
-    `plotUMAP,SCE`
 
 
 
@@ -363,4 +366,12 @@ setMethod(
     f = "plotUMAP",
     signature = signature("Seurat"),
     definition = `plotUMAP,Seurat`
+)
+
+#' @rdname plotReducedDim
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("SingleCellExperiment"),
+    definition = `plotUMAP,SCE`
 )

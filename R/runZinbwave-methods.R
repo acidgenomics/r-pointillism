@@ -159,16 +159,6 @@ formals(`runZinbwave,SCE`)[args] <- .formalsList[args]
 
 
 
-#' @rdname runZinbwave
-#' @export
-setMethod(
-    f = "runZinbwave",
-    signature = signature(Y = "SingleCellExperiment"),
-    definition = `runZinbwave,SCE`
-)
-
-
-
 ## > ## Updated 2020-02-21.
 ## > `runZinbwave,Seurat` <-  # nolint
 ## >     function(Y, ...) {  # nolint
@@ -177,9 +167,9 @@ setMethod(
 ## >         metadata(Y)[["weights"]] <- "zinbwave"
 ## >         Y
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @describeIn runZinbwave Coerces to `SingleCellExperiment` and stashesss
 ## > #'   weights in the `weights()` slot.
 ## > #' @export
@@ -188,3 +178,11 @@ setMethod(
 ## >     signature = signature("Seurat"),
 ## >     definition = `runZinbwave,Seurat`
 ## > )
+
+#' @rdname runZinbwave
+#' @export
+setMethod(
+    f = "runZinbwave",
+    signature = signature(Y = "SingleCellExperiment"),
+    definition = `runZinbwave,SCE`
+)

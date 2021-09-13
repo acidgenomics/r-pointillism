@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' @name cellTypesPerCluster
 #' @inherit AcidGenerics::cellTypesPerCluster
 #' @note Updated 2021-03-03.

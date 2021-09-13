@@ -1,3 +1,8 @@
+## FIXME Consider moving this to AcidSingleCell.
+## FIXME If that is the case, scater needs to be added as a suggested package.
+
+
+
 #' @name cpm
 #' @inherit AcidGenerics::cpm
 #' @keywords internal
@@ -48,16 +53,6 @@ NULL
 
 
 
-#' @rdname cpm
-#' @export
-setMethod(
-    f = "cpm",
-    signature = signature("SingleCellExperiment"),
-    definition = `cpm,SCE`
-)
-
-
-
 ## Updated 2020-01-30.
 `cpm,Seurat` <-  # nolint
     function(object, assay = NULL) {
@@ -87,4 +82,12 @@ setMethod(
     f = "cpm",
     signature = signature("Seurat"),
     definition = `cpm,Seurat`
+)
+
+#' @rdname cpm
+#' @export
+setMethod(
+    f = "cpm",
+    signature = signature("SingleCellExperiment"),
+    definition = `cpm,SCE`
 )

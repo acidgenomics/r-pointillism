@@ -35,16 +35,6 @@ NULL
 
 
 
-#' @rdname summary
-#' @export
-setMethod(
-    f = "summary",
-    signature = signature("SeuratMarkers"),
-    definition = `summary,SeuratMarkers`
-)
-
-
-
 ## Updated 2020-10-12.
 `summary,SeuratMarkersPerCluster` <-  # nolint
     function(object) {
@@ -65,6 +55,14 @@ setMethod(
     }
 
 
+
+#' @rdname summary
+#' @export
+setMethod(
+    f = "summary",
+    signature = signature("SeuratMarkers"),
+    definition = `summary,SeuratMarkers`
+)
 
 #' @rdname summary
 #' @export

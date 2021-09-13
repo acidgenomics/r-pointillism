@@ -1,3 +1,7 @@
+## FIXME Move this to AcidSingleCell.
+
+
+
 #' Show an object
 #' @name show
 #' @author Michael Steinbuagh
