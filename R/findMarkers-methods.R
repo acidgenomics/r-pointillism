@@ -53,7 +53,15 @@ NULL
         if (is.null(clusters)) {
             clusters <- levels(ident)
         }
-        alertInfo(sprintf("%d clusters detected.", length(clusters)))
+        alertInfo(sprintf(
+            "%d %s detected.",
+            length(clusters),
+            ngettext(
+                n = length(clusters),
+                msg1 = "cluster",
+                msg2 = "clusters"
+            )
+        ))
         ## Loop across the clusters and calculate gene enrichment relative to
         ## all of the other clusters combined.
         list <- lapply(
