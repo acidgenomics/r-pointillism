@@ -1,13 +1,4 @@
-## FIXME Move this to AcidSingleCell.
-
-#' @rdname KnownMarkers
-#' @export
-setGeneric(
-    name = "KnownMarkers",
-    def = function(markers, known, ...) {
-        standardGeneric("KnownMarkers")
-    }
-)
+## FIXME Need to import and reexport KnownMarkers generic from AcidSingleCell.
 
 
 
