@@ -261,7 +261,7 @@ setMethod(
 
 
 ## Updated 2020-06-26.
-`runSeurat,SingleCellExperiment` <-  # nolint
+`runSeurat,SCE` <-  # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
         object <- convertGenesToSymbols(object)
@@ -276,5 +276,5 @@ setMethod(
 setMethod(
     f = "runSeurat",
     signature = signature("SingleCellExperiment"),
-    definition = `runSeurat,SingleCellExperiment`
+    definition = `runSeurat,SCE`
 )

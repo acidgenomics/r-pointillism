@@ -60,7 +60,7 @@ NULL
 
 
 ## Updated 2020-02-21.
-`plotCounts,SingleCellExperiment` <-  # nolint
+`plotCounts,SCE` <-  # nolint
     function(
         object,
         genes,
@@ -86,7 +86,7 @@ NULL
     }
 
 args <- "legend"
-formals(`plotCounts,SingleCellExperiment`)[args] <- .formalsList[args]
+formals(`plotCounts,SCE`)[args] <- .formalsList[args]
 rm(args)
 
 
@@ -96,14 +96,19 @@ rm(args)
 setMethod(
     f = "plotCounts",
     signature = signature("SingleCellExperiment"),
-    definition = `plotCounts,SingleCellExperiment`
+    definition = `plotCounts,SCE`
 )
 
 
 
-## Updated 2019-07-31.
+## Updated 2021-09-13.
 `plotCounts,Seurat` <-  # nolint
-    `plotCounts,SingleCellExperiment`
+    function(object, ...) {
+        plotCounts(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
 
 
 
@@ -112,5 +117,5 @@ setMethod(
 setMethod(
     f = "plotCounts",
     signature = signature("Seurat"),
-    definition = `plotCounts,SingleCellExperiment`
+    definition = `plotCounts,SCE`
 )

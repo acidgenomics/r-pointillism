@@ -48,7 +48,7 @@ NULL
 
 
 ## Updated 2021-03-02.
-`runZinbwave,SingleCellExperiment` <-  # nolint
+`runZinbwave,SCE` <-  # nolint
     function(
         Y,  # nolint
         K = 0L,  # nolint
@@ -155,7 +155,7 @@ NULL
     }
 
 args <- "BPPARAM"
-formals(`runZinbwave,SingleCellExperiment`)[args] <- .formalsList[args]
+formals(`runZinbwave,SCE`)[args] <- .formalsList[args]
 
 
 
@@ -164,7 +164,7 @@ formals(`runZinbwave,SingleCellExperiment`)[args] <- .formalsList[args]
 setMethod(
     f = "runZinbwave",
     signature = signature(Y = "SingleCellExperiment"),
-    definition = `runZinbwave,SingleCellExperiment`
+    definition = `runZinbwave,SCE`
 )
 
 

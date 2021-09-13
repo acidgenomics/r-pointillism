@@ -34,7 +34,7 @@ NULL
 
 
 ## Updated 2020-01-30.
-`cpm,SingleCellExperiment` <-  # nolint
+`cpm,SCE` <-  # nolint
     function(object) {
         ## Early return if cpm assay is defined.
         if (isSubset("cpm", assayNames(object))) {
@@ -53,7 +53,7 @@ NULL
 setMethod(
     f = "cpm",
     signature = signature("SingleCellExperiment"),
-    definition = `cpm,SingleCellExperiment`
+    definition = `cpm,SCE`
 )
 
 

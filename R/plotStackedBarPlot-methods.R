@@ -22,7 +22,7 @@ NULL
 
 
 ## Updated 2021-03-04.
-`plotStackedBarPlot,SingleCellExperiment` <-  # nolint
+`plotStackedBarPlot,SCE` <-  # nolint
     function(
         object,
         absolute = FALSE,
@@ -92,13 +92,13 @@ NULL
 setMethod(
     f = "plotStackedBarPlot",
     signature = signature("SingleCellExperiment"),
-    definition = `plotStackedBarPlot,SingleCellExperiment`
+    definition = `plotStackedBarPlot,SCE`
 )
 
 
 
 `plotStackedBarPlot,Seurat` <-  # nolint
-    `plotStackedBarPlot,SingleCellExperiment`
+    `plotStackedBarPlot,SCE`
 
 
 

@@ -19,7 +19,7 @@ NULL
 
 
 ## Updated 2019-10-30.
-`cellCountsPerCluster,SingleCellExperiment` <-  # nolint
+`cellCountsPerCluster,SCE` <-  # nolint
     function(object) {
         validObject(object)
         assert(.hasClusters(object))
@@ -57,14 +57,14 @@ NULL
 setMethod(
     f = "cellCountsPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = `cellCountsPerCluster,SingleCellExperiment`
+    definition = `cellCountsPerCluster,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `cellCountsPerCluster,Seurat` <-  # nolint
-    `cellCountsPerCluster,SingleCellExperiment`
+    `cellCountsPerCluster,SCE`
 
 
 

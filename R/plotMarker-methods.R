@@ -28,7 +28,7 @@ NULL
 
 
 ## Updated 2020-02-21.
-`plotMarker,SingleCellExperiment` <-  # nolint
+`plotMarker,SCE` <-  # nolint
     function(
         object,
         genes,
@@ -187,7 +187,7 @@ args <- c(
 )
 args1 <- c(args, "color")
 args2 <- c(args, "continuousColor")
-formals(`plotMarker,SingleCellExperiment`)[args1] <- .formalsList[args2]
+formals(`plotMarker,SCE`)[args1] <- .formalsList[args2]
 rm(args, args1, args2)
 
 
@@ -197,14 +197,14 @@ rm(args, args1, args2)
 setMethod(
     f = "plotMarker",
     signature = signature("SingleCellExperiment"),
-    definition = `plotMarker,SingleCellExperiment`
+    definition = `plotMarker,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotMarker,Seurat` <-  # nolint
-    `plotMarker,SingleCellExperiment`
+    `plotMarker,SCE`
 
 
 

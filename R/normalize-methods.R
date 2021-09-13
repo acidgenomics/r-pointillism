@@ -64,7 +64,7 @@ NULL
 
 
 ## Updated 2020-01-30.
-`normalize,SingleCellExperiment` <-  # nolint
+`normalize,SCE` <-  # nolint
     function(object) {
         validObject(object)
         if (is.null(sizeFactors(object))) {
@@ -108,7 +108,7 @@ NULL
 setMethod(
     f = "normalize",
     signature = signature("SingleCellExperiment"),
-    definition = `normalize,SingleCellExperiment`
+    definition = `normalize,SCE`
 )
 
 

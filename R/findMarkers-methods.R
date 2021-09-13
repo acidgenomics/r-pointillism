@@ -29,7 +29,7 @@ NULL
 
 
 ## Updated 2020-09-03.
-`findMarkers,SingleCellExperiment` <-  # nolint
+`findMarkers,SCE` <-  # nolint
     function(
         object,
         clusters = NULL,
@@ -83,14 +83,14 @@ NULL
 setMethod(
     f = "findMarkers",
     signature = signature("SingleCellExperiment"),
-    definition = `findMarkers,SingleCellExperiment`
+    definition = `findMarkers,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `findMarkers,Seurat` <-  # nolint
-    `findMarkers,SingleCellExperiment`
+    `findMarkers,SCE`
 
 
 
