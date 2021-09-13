@@ -8,9 +8,9 @@
 ## > #'
 ## > #' @return Varies, depending on the generic.
 ## > NULL
-## >
-## >
-## >
+
+
+
 ## > ## Updated 2019-08-02.
 ## > `Gene2Symbol,cell_data_set` <-  # nolint
 ## >     function(object, ...) {
@@ -22,9 +22,9 @@
 ## >         )
 ## >         Gene2Symbol(object = df, ...)
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
@@ -32,9 +32,46 @@
 ## >     signature = signature("cell_data_set"),
 ## >     definition = `Gene2Symbol,cell_data_set`
 ## > )
+
+
+
+## > ## Note that monocle3 currently defines the generic using "x" instead of
+## > ## "object", and requires "reduction_method" in definition.
+## > ##
+## > ## For `reduction`, note that positional scalar works.
+## > ##
+## > ## Updated 2019-08-02.
+## > `clusters,cell_data_set` <-  # nolint
+## >     function(object, reduction) {
+## >         validObject(object)
+## >         assert(isScalar(reduction))
+## >         monocle3::clusters(
+## >             x = object,
+## >             reduction_method = reduction
+## >         )
+## >     }
 ## >
+## > f <- methodFormals(
+## >     f = "clusters",
+## >     signature = signature(x = "cell_data_set"),
+## >     package = "monocle3"
+## > )
+## > formals(`clusters,cell_data_set`)[["reduction"]] <-
+## >     f[["reduction_method"]]
 ## >
-## >
+
+
+
+## > #' @rdname clusters
+## > #' @export
+## > setMethod(
+## >     f = "clusters",
+## >     signature = signature("cell_data_set"),
+## >     definition = `clusters,cell_data_set`
+## > )
+
+
+
 ## > ## Updated 2020-01-30.
 ## > `logcounts,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -44,9 +81,9 @@
 ## >             pseudocount = 1L
 ## >         )
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
@@ -54,9 +91,9 @@
 ## >     signature = signature("cell_data_set"),
 ## >     definition = `logcounts,cell_data_set`
 ## > )
-## >
-## >
-## >
+
+
+
 ## > ## This method will automatically add "ident" and strip "cell" column.
 ## > ## Updated 2019-08-06.
 ## > `metrics,cell_data_set` <-  # nolint
@@ -84,9 +121,9 @@
 ## >     package = "basejump"
 ## > )
 ## > formals(`metrics,cell_data_set`)[["return"]] <- f[["return"]]
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
@@ -94,9 +131,9 @@
 ## >     signature = signature("cell_data_set"),
 ## >     definition = `metrics,cell_data_set`
 ## > )
-## >
-## >
-## >
+
+
+
 ## > ## Updated 2020-01-30.
 ## > `normcounts,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -106,9 +143,9 @@
 ## >             pseudocount = NULL
 ## >         )
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
@@ -116,17 +153,17 @@
 ## >     signature = signature("cell_data_set"),
 ## >     definition = `normcounts,cell_data_set`
 ## > )
-## >
-## >
-## >
+
+
+
 ## > ## Updated 2019-08-06.
 ## > `sizeFactors,cell_data_set` <-  # nolint
 ## >     function(object) {
 ## >         colData(object)[["Size_Factor"]]
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
@@ -134,9 +171,9 @@
 ## >     signature = signature("cell_data_set"),
 ## >     definition = `sizeFactors,cell_data_set`
 ## > )
-## >
-## >
-## >
+
+
+
 ## > ## Updated 2019-08-06.
 ## > `sizeFactors<-,cell_data_set,ANY` <-  # nolint
 ## >     function(object, value) {
@@ -151,9 +188,9 @@
 ## >         colData(object)[["Size_Factor"]] <- value
 ## >         object
 ## >     }
-## >
-## >
-## >
+
+
+
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setReplaceMethod(

@@ -125,6 +125,25 @@ setMethod(
 
 
 
+## Updated 2019-08-02.
+`clusters,Seurat` <-  # nolint
+    function(object) {
+        validObject(object)
+        Idents(object)
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "clusters",
+    signature = signature("Seurat"),
+    definition = `clusters,Seurat`
+)
+
+
+
 ## Updated 2021-03-03.
 `colData,Seurat` <-  # nolint
     function(x, ...) {
