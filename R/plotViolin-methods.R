@@ -3,7 +3,7 @@
 
 
 ## Updated 2019-09-03.
-`plotViolin,SingleCellExperiment` <-  # nolint
+`plotViolin,SCE` <-  # nolint
     function(
         object,
         genes,
@@ -102,7 +102,7 @@
 
 args1 <- c("color", "legend")
 args2 <- c("discreteColor", "legend")
-formals(`plotViolin,SingleCellExperiment`)[args1] <- .formalsList[args2]
+formals(`plotViolin,SCE`)[args1] <- .formalsList[args2]
 rm(args1, args2)
 
 
@@ -112,14 +112,14 @@ rm(args1, args2)
 setMethod(
     f = "plotViolin",
     signature = signature("SingleCellExperiment"),
-    definition = `plotViolin,SingleCellExperiment`
+    definition = `plotViolin,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotViolin,Seurat` <-  # nolint
-    `plotViolin,SingleCellExperiment`
+    `plotViolin,SCE`
 
 
 

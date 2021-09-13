@@ -69,7 +69,7 @@ NULL
 
 
 ## Updated 2021-03-03.
-`coerce,Seurat,SingleCellExperiment` <-  # nolint
+`coerce,Seurat,SCE` <-  # nolint
     function(from) {
         validObject(from)
         ## Strip legacy names from row names, if necessary.
@@ -153,7 +153,7 @@ NULL
 
 
 #' @rdname coerce
-#' @name coerce,Seurat,SingleCellExperiment-method
+#' @name coerce,Seurat,SCE-method
 #'
 #' @section `Seurat` to `SingleCellExperiment`:
 #' S4 coercion support for creating a `SingleCellExperiment` from a `Seurat`
@@ -166,7 +166,7 @@ NULL
 setAs(
     from = "Seurat",
     to = "SingleCellExperiment",
-    def = `coerce,Seurat,SingleCellExperiment`
+    def = `coerce,Seurat,SCE`
 )
 
 
@@ -221,7 +221,7 @@ setAs(
 
 
 ## Updated 2019-07-31.
-`coerce,SingleCellExperiment,Seurat` <-  # nolint
+`coerce,SCE,Seurat` <-  # nolint
     function(from) {
         ## Create the Seurat object. Note that `as.Seurat()` method requires
         ## `logcounts` to be defined in `assays()`, so we're using
@@ -258,7 +258,7 @@ setAs(
 
 
 #' @rdname coerce
-#' @name coerce,SingleCellExperiment,Seurat-method
+#' @name coerce,SCE,Seurat-method
 #'
 #' @section `SingleCellExperiment` to `Seurat`:
 #' Interally `Seurat::CreateSeuratObject` is called without applying any
@@ -269,5 +269,5 @@ setAs(
 setAs(
     from = "SingleCellExperiment",
     to = "Seurat",
-    def = `coerce,SingleCellExperiment,Seurat`
+    def = `coerce,SCE,Seurat`
 )

@@ -43,7 +43,7 @@ NULL
 
 
 ## Updated 2020-01-30.
-`diffExpPerCluster,SingleCellExperiment` <-  # nolint
+`diffExpPerCluster,SCE` <-  # nolint
     function(
         object,
         group,
@@ -111,14 +111,14 @@ NULL
 setMethod(
     f = "diffExpPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = `diffExpPerCluster,SingleCellExperiment`
+    definition = `diffExpPerCluster,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `diffExpPerCluster,Seurat` <-  # nolint
-    `diffExpPerCluster,SingleCellExperiment`
+    `diffExpPerCluster,SCE`
 
 
 

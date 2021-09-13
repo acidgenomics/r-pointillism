@@ -31,7 +31,7 @@ NULL
 
 
 ## Updated 2020-02-21.
-`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers` <-  # nolint
+`plotCellTypesPerCluster,SCE,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -113,7 +113,7 @@ NULL
     }
 
 args <- c("reduction", "expression", "BPPARAM")
-formals(`plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`)[args] <-
+formals(`plotCellTypesPerCluster,SCE,KnownMarkers`)[args] <-
     .formalsList[args]
 rm(args)
 
@@ -127,14 +127,14 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`
+    definition = `plotCellTypesPerCluster,SCE,KnownMarkers`
 )
 
 
 
 ## Updated 2019-08-07.
 `plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
-    `plotCellTypesPerCluster,SingleCellExperiment,KnownMarkers`
+    `plotCellTypesPerCluster,SCE,KnownMarkers`
 
 
 

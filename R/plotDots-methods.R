@@ -25,7 +25,7 @@
 
 
 ## Updated 2020-02-21.
-`plotDots,SingleCellExperiment` <-  # nolint
+`plotDots,SCE` <-  # nolint
     function(
         object,
         genes,
@@ -143,7 +143,7 @@
 
 args1 <- c("color", "legend")
 args2 <- c("continuousColorPurpleOrange", "legend")
-formals(`plotDots,SingleCellExperiment`)[args1] <- .formalsList[args2]
+formals(`plotDots,SCE`)[args1] <- .formalsList[args2]
 rm(args1, args2)
 
 
@@ -153,14 +153,14 @@ rm(args1, args2)
 setMethod(
     f = "plotDots",
     signature = signature("SingleCellExperiment"),
-    definition = `plotDots,SingleCellExperiment`
+    definition = `plotDots,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotDots,Seurat` <-  # nolint
-    `plotDots,SingleCellExperiment`
+    `plotDots,SCE`
 
 
 

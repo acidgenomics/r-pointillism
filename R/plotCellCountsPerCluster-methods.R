@@ -22,7 +22,7 @@ NULL
 
 
 ## Updated 2019-08-03.
-`plotCellCountsPerCluster,SingleCellExperiment` <-  # nolint
+`plotCellCountsPerCluster,SCE` <-  # nolint
     function(
         object,
         interestingGroups = NULL
@@ -78,14 +78,14 @@ NULL
 setMethod(
     f = "plotCellCountsPerCluster",
     signature = signature("SingleCellExperiment"),
-    definition = `plotCellCountsPerCluster,SingleCellExperiment`
+    definition = `plotCellCountsPerCluster,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotCellCountsPerCluster,Seurat` <-  # nolint
-    `plotCellCountsPerCluster,SingleCellExperiment`
+    `plotCellCountsPerCluster,SCE`
 
 
 

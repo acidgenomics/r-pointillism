@@ -33,7 +33,7 @@ NULL
 ## The plot labels are more readable in that case.
 
 ## Updated 2020-02-21.
-`plotFeature,SingleCellExperiment` <-  # nolint
+`plotFeature,SCE` <-  # nolint
     function(
         object,
         features,
@@ -206,7 +206,7 @@ args <- c(
 )
 args1 <- c(args, "color")
 args2 <- c(args, "continuousColor")
-formals(`plotFeature,SingleCellExperiment`)[args1] <- .formalsList[args2]
+formals(`plotFeature,SCE`)[args1] <- .formalsList[args2]
 rm(args, args1, args2)
 
 
@@ -216,14 +216,14 @@ rm(args, args1, args2)
 setMethod(
     f = "plotFeature",
     signature = signature("SingleCellExperiment"),
-    definition = `plotFeature,SingleCellExperiment`
+    definition = `plotFeature,SCE`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotFeature,Seurat` <-  # nolint
-    `plotFeature,SingleCellExperiment`
+    `plotFeature,SCE`
 
 
 

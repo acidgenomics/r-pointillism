@@ -23,7 +23,7 @@ NULL
 
 
 ## Updated 2019-09-03.
-`plotKnownMarkers,SingleCellExperiment,KnownMarkers` <-  # nolint
+`plotKnownMarkers,SCE,KnownMarkers` <-  # nolint
     function(
         object,
         markers,
@@ -74,7 +74,7 @@ NULL
     }
 
 args <- c("headerLevel", "reduction", "BPPARAM")
-formals(`plotKnownMarkers,SingleCellExperiment,KnownMarkers`)[args] <-
+formals(`plotKnownMarkers,SCE,KnownMarkers`)[args] <-
     .formalsList[args]
 rm(args)
 
@@ -88,14 +88,14 @@ setMethod(
         object = "SingleCellExperiment",
         markers = "KnownMarkers"
     ),
-    definition = `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
+    definition = `plotKnownMarkers,SCE,KnownMarkers`
 )
 
 
 
 ## Updated 2019-07-31.
 `plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
-    `plotKnownMarkers,SingleCellExperiment,KnownMarkers`
+    `plotKnownMarkers,SCE,KnownMarkers`
 
 
 

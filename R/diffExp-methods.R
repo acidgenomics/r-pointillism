@@ -182,7 +182,7 @@ NULL
 
 
 ## Updated 2021-03-02.
-`diffExp,SingleCellExperiment` <-  # nolint
+`diffExp,SCE` <-  # nolint
     function(
         object,
         numerator,
@@ -339,7 +339,7 @@ NULL
     }
 
 args <- "BPPARAM"
-formals(`diffExp,SingleCellExperiment`)[args] <-
+formals(`diffExp,SCE`)[args] <-
     .formalsList[args]
 rm(args)
 
@@ -350,7 +350,7 @@ rm(args)
 setMethod(
     f = "diffExp",
     signature = signature("SingleCellExperiment"),
-    definition = `diffExp,SingleCellExperiment`
+    definition = `diffExp,SCE`
 )
 
 

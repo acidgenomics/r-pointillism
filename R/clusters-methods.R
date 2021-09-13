@@ -22,7 +22,7 @@ NULL
 
 
 ## Updated 2019-08-06.
-`clusters,SingleCellExperiment` <-  # nolint
+`clusters,SCE` <-  # nolint
     function(object) {
         validObject(object)
         assert(isSubset("ident", colnames(colData(object))))
@@ -39,7 +39,7 @@ NULL
 setMethod(
     f = "clusters",
     signature = signature("SingleCellExperiment"),
-    definition = `clusters,SingleCellExperiment`
+    definition = `clusters,SCE`
 )
 
 
