@@ -5,7 +5,7 @@
 \alias{KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers-method}
 \title{Known markers}
 \usage{
-KnownMarkers(markers, known, ...)
+KnownMarkers(object, ...)
 
 \S4method{KnownMarkers}{SeuratMarkersPerCluster,CellTypeMarkers}(markers, known, promiscuousThreshold = 0L)
 }
@@ -15,8 +15,6 @@ KnownMarkers(markers, known, ...)
 \item{known}{\code{CellTypeMarkers}.
 Grouped by \code{cellType} column. Known markers \code{data.frame} imported by
 \code{readCellTypeMarkers} or pulled from internal cell cycle markers data.}
-
-\item{...}{Additional arguments.}
 
 \item{promiscuousThreshold}{\code{integer(1)}.
 Minimum number of clusters required to consider a gene marker promiscuous.
