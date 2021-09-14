@@ -1,13 +1,7 @@
-#' Known markers
-#'
 #' @name KnownMarkers
-#' @note Both the `markers` and `known` objects must contain Ensembl gene
-#'   identifiers in the `geneId` column. We must avoid any matching operations
-#'   based on the gene names, since these change often and can mismatch
-#'   easily.
-#' @note Updated 2021-03-03.
+#' @inherit AcidSingleCell::KnownMarkers
+#' @note Updated 2021-09-14.
 #'
-#' @inheritParams AcidRoxygen::params
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`.
 #'   Grouped by `cellType` column. Known markers `data.frame` imported by
@@ -15,6 +9,7 @@
 #' @param promiscuousThreshold `integer(1)`.
 #'   Minimum number of clusters required to consider a gene marker promiscuous.
 #'   Set to `0` to disable promiscuous marker filtering.
+#' @param ... Additional arguments.
 #'
 #' @return `KnownMarkers`.
 #'
