@@ -208,6 +208,39 @@ setMethod(
 
 
 
+## Updated 2020-01-30.
+`cpm,Seurat` <-  # nolint
+    function(object, assay = NULL) {
+        ## Check for pre-calculated CPM (not typical).
+        method <- .seuratNormalizationMethod(object, assay = assay)
+        scaleFactor <- .seuratScaleFactor(object, assay = assay)
+        if (!(method == "RC" && scaleFactor == 1e6L)) {
+            alert(
+                "Generating CPM with {.pkg Seurat}::{.fun NormalizeData}."
+            )
+            object <- NormalizeData(
+                object = object,
+                assay = assay,
+                normalization.method = "RC",
+                scale.factor = 1e6L,
+                verbose = TRUE
+            )
+        }
+        GetAssayData(object = object, slot = "data", assay = assay)
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "cpm",
+    signature = signature("Seurat"),
+    definition = `cpm,Seurat`
+)
+
+
+
 ## Updated 2020-02-21.
 `diffExp,Seurat` <-  # nolint
     function(object, ...) {
@@ -222,6 +255,48 @@ setMethod(
     f = "diffExp",
     signature = signature("Seurat"),
     definition = `diffExp,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`diffExpPerCluster,Seurat` <-  # nolint
+    function(object, ...) {
+        diffExpPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "diffExpPerCluster",
+    signature = signature("Seurat"),
+    definition = `diffExpPerCluster,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`findMarkers,Seurat` <-  # nolint
+    function(object, ...) {
+        findMarkers(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "findMarkers",
+    signature = signature("Seurat"),
+    definition = `findMarkers,Seurat`
 )
 
 
@@ -437,6 +512,28 @@ setMethod(
 
 
 ## Updated 2020-01-30.
+`normalize,Seurat` <-  # nolint
+    function(object) {
+        alert(sprintf(
+            "Normalizing with {.pkg %s}::{.fun %s}.",
+            "Seurat", "NormalizeData"
+        ))
+        NormalizeData(object = object, verbose = TRUE)
+    }
+
+
+
+#' @rdname normalize
+#' @export
+setMethod(
+    f = "normalize",
+    signature = signature("Seurat"),
+    definition = `normalize,Seurat`
+)
+
+
+
+## Updated 2020-01-30.
 `normcounts,Seurat` <-  # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated relative counts (not typical).
@@ -498,6 +595,287 @@ setReplaceMethod(
     f = "organism",
     signature = "Seurat",
     definition = `organism<-,Seurat,character`
+)
+
+
+
+## Updated 2021-09-13.
+`plotCellCountsPerCluster,Seurat` <-  # nolint
+    function(object, ...) {
+        plotCellCountsPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotCellCountsPerCluster",
+    signature = signature("Seurat"),
+    definition = `plotCellCountsPerCluster,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
+    function(object, markers, ...) {
+        plotCellTypesPerCluster(
+            object = as(object, "SingleCellExperiment"),
+            markers = markers,
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotCellTypesPerCluster",
+    signature = signature(
+        object = "Seurat",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotCellTypesPerCluster,Seurat,KnownMarkers`
+)
+
+
+
+## Updated 2021-09-13.
+`plotCounts,Seurat` <-  # nolint
+    function(object, ...) {
+        plotCounts(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotCounts",
+    signature = signature("Seurat"),
+    definition = `plotCounts,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotDots,Seurat` <-  # nolint
+    function(object, ...) {
+        plotDots(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotDots",
+    signature = signature("Seurat"),
+    definition = `plotDots,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotFeature,Seurat` <-  # nolint
+    function(object, ...) {
+        plotFeature(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotFeature",
+    signature = signature("Seurat"),
+    definition = `plotFeature,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
+    function(object, markers, ...) {
+        plotKnownMarkers(
+            object = as(object, "SingleCellExperiment"),
+            markers = markers,
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotKnownMarkers",
+    signature = signature(
+        object = "Seurat",
+        markers = "KnownMarkers"
+    ),
+    definition = `plotKnownMarkers,Seurat,KnownMarkers`
+)
+
+
+
+## Updated 2021-09-13.
+`plotMarker,Seurat` <-  # nolint
+    function(object, ...) {
+        plotMarker(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotMarker",
+    signature = signature("Seurat"),
+    definition = `plotMarker,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotPCA,Seurat` <-  # nolint
+    function(object, ...) {
+        plotPCA(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotPCA",
+    signature = signature("Seurat"),
+    definition = `plotPCA,Seurat`
+)
+
+
+
+## Updated 2021-03-02.
+`plotReducedDim,Seurat` <-  # nolint
+    function(object, ...) {
+        validObject(object)
+        idents <- .seuratWhichIdents(object)
+        dl(c("idents" = idents))
+        plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotReducedDim",
+    signature = signature("Seurat"),
+    definition = `plotReducedDim,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotStackedBarPlot,Seurat` <-  # nolint
+    function(object, ...) {
+        plotStackedBarPlot(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotStackedBarPlot",
+    signature = signature("Seurat"),
+    definition = `plotStackedBarPlot,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotTSNE,Seurat` <-  # nolint
+    function(object, ...) {
+        plotTSNE(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotTSNE",
+    signature = signature("Seurat"),
+    definition = `plotTSNE,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotViolin,Seurat` <-  # nolint
+    function(object, ...) {
+        plotViolin(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotViolin",
+    signature = signature("Seurat"),
+    definition = `plotViolin,Seurat`
+)
+
+
+
+## Updated 2021-09-13.
+`plotUMAP,Seurat` <-  # nolint
+    function(object, ...) {
+        plotUMAP(
+            object = as(object, "SingleCellExperiment"),
+            ...
+        )
+    }
+
+
+
+#' @rdname base-Seurat
+#' @export
+setMethod(
+    f = "plotUMAP",
+    signature = signature("Seurat"),
+    definition = `plotUMAP,Seurat`
 )
 
 

@@ -16,7 +16,7 @@
 
 #' Percent Above
 #' @note Updated 2019-07-31.
-#' @seealso `Seurat:::PercentAbove`.
+#' @seealso `Seurat:::PercentAbove()`.
 #' @noRd
 .percentAbove <- function(x, threshold) {
     length(x[x > threshold]) / length(x)
@@ -147,25 +147,6 @@ formals(`plotDots,SCE`)[args1] <- .formalsList[args2]
 rm(args1, args2)
 
 
-
-## Updated 2021-09-13.
-`plotDots,Seurat` <-  # nolint
-    function(object, ...) {
-        plotDots(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotDots",
-    signature = signature("Seurat"),
-    definition = `plotDots,Seurat`
-)
 
 #' @rdname plotCounts
 #' @export

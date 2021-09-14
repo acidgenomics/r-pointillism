@@ -12,8 +12,7 @@
 #' @param ... Additional arguments.
 #'
 #' @details
-#' Colors using `ident` column defined in
-#' [`colData()`][SummarizedExperiment::colData] by default.
+#' Colors using `ident` column defined in `colData()` by default.
 #'
 #' @section Reduction types:
 #'
@@ -235,18 +234,6 @@ rm(args, args1, args2)
 
 
 
-## Updated 2021-03-02.
-`plotReducedDim,Seurat` <-  # nolint
-    function(object, ...) {
-        validObject(object)
-        idents <- .seuratWhichIdents(object)
-        dl(c("idents" = idents))
-        plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
-    }
-
-
-
-## FIXME Move this to AcidPlots.
 ## Updated 2020-02-21.
 `plotPCA,SCE` <-  # nolint
     function(object, ...) {
@@ -255,18 +242,6 @@ rm(args, args1, args2)
 
 
 
-## Updated 2021-09-13.
-`plotPCA,Seurat` <-  # nolint
-    function(object, ...) {
-        plotPCA(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-## FIXME Move this to AcidPlots.
 ## Updated 2020-02-21.
 `plotTSNE,SCE` <-  # nolint
     function(object, ...) {
@@ -275,18 +250,6 @@ rm(args, args1, args2)
 
 
 
-## Updated 2021-09-13.
-`plotTSNE,Seurat` <-  # nolint
-    function(object, ...) {
-        plotTSNE(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-## FIXME Move this to AcidPlots.
 ## Updated 2020-02-21.
 `plotUMAP,SCE` <-  # nolint
     function(object, ...) {
@@ -295,41 +258,12 @@ rm(args, args1, args2)
 
 
 
-## Updated 2021-09-13.
-`plotUMAP,Seurat` <-  # nolint
-    function(object, ...) {
-        plotUMAP(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotReducedDim",
-    signature = signature("Seurat"),
-    definition = `plotReducedDim,Seurat`
-)
-
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotReducedDim",
     signature = signature("SingleCellExperiment"),
     definition = `plotReducedDim,SCE`
-)
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotPCA",
-    signature = signature("Seurat"),
-    definition = `plotPCA,Seurat`
 )
 
 #' @rdname plotReducedDim
@@ -340,32 +274,12 @@ setMethod(
     definition = `plotPCA,SCE`
 )
 
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotTSNE",
-    signature = signature("Seurat"),
-    definition = `plotTSNE,Seurat`
-)
-
 #' @rdname plotReducedDim
 #' @export
 setMethod(
     f = "plotTSNE",
     signature = signature("SingleCellExperiment"),
     definition = `plotTSNE,SCE`
-)
-
-
-
-#' @rdname plotReducedDim
-#' @export
-setMethod(
-    f = "plotUMAP",
-    signature = signature("Seurat"),
-    definition = `plotUMAP,Seurat`
 )
 
 #' @rdname plotReducedDim

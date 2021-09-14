@@ -91,25 +91,6 @@ rm(args)
 
 
 
-## Updated 2021-09-13.
-`plotCounts,Seurat` <-  # nolint
-    function(object, ...) {
-        plotCounts(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotCounts",
-    signature = signature("Seurat"),
-    definition = `plotCounts,SCE`
-)
-
 #' @rdname plotCounts
 #' @export
 setMethod(

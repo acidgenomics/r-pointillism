@@ -11,9 +11,9 @@
 #' @inheritParams AcidRoxygen::params
 #'
 #' @seealso
-#' - [SingleCellExperiment::cpm()].
-#' - [edgeR::cpm()].
-#' - [scater::calculateCPM()].
+#' - `SingleCellExperiment::cpm()`.
+#' - `edgeR::cpm()`.
+#' - `scater::calculateCPM()`.
 #'
 #' @examples
 #' data(
@@ -52,37 +52,6 @@ NULL
     }
 
 
-
-## Updated 2020-01-30.
-`cpm,Seurat` <-  # nolint
-    function(object, assay = NULL) {
-        ## Check for pre-calculated CPM (not typical).
-        method <- .seuratNormalizationMethod(object, assay = assay)
-        scaleFactor <- .seuratScaleFactor(object, assay = assay)
-        if (!(method == "RC" && scaleFactor == 1e6L)) {
-            alert(
-                "Generating CPM with {.pkg Seurat}::{.fun NormalizeData}."
-            )
-            object <- NormalizeData(
-                object = object,
-                assay = assay,
-                normalization.method = "RC",
-                scale.factor = 1e6L,
-                verbose = TRUE
-            )
-        }
-        GetAssayData(object = object, slot = "data", assay = assay)
-    }
-
-
-
-#' @rdname cpm
-#' @export
-setMethod(
-    f = "cpm",
-    signature = signature("Seurat"),
-    definition = `cpm,Seurat`
-)
 
 #' @rdname cpm
 #' @export

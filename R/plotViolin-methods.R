@@ -107,25 +107,6 @@ rm(args1, args2)
 
 
 
-## Updated 2021-09-13.
-`plotViolin,Seurat` <-  # nolint
-    function(object, ...) {
-        plotViolin(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotCounts
-#' @export
-setMethod(
-    f = "plotViolin",
-    signature = signature("Seurat"),
-    definition = `plotViolin,Seurat`
-)
-
 #' @rdname plotCounts
 #' @export
 setMethod(

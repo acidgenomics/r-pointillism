@@ -192,25 +192,6 @@ rm(args, args1, args2)
 
 
 
-## Updated 2021-09-13.
-`plotMarker,Seurat` <-  # nolint
-    function(object, ...) {
-        plotMarker(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotMarker
-#' @export
-setMethod(
-    f = "plotMarker",
-    signature = signature("Seurat"),
-    definition = `plotMarker,Seurat`
-)
-
 #' @rdname plotMarker
 #' @export
 setMethod(

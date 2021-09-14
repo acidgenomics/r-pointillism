@@ -90,25 +90,6 @@ NULL
 
 
 
-## Updated 2021-09-13.
-`findMarkers,Seurat` <-  # nolint
-    function(object, ...) {
-        findMarkers(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname findMarkers
-#' @export
-setMethod(
-    f = "findMarkers",
-    signature = signature("Seurat"),
-    definition = `findMarkers,Seurat`
-)
-
 #' @rdname findMarkers
 #' @export
 setMethod(
