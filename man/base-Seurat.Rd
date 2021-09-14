@@ -24,6 +24,7 @@
 \alias{metadata,Seurat-method}
 \alias{metadata<-,Seurat-method}
 \alias{metrics,Seurat-method}
+\alias{normalize,Seurat-method}
 \alias{normcounts,Seurat-method}
 \alias{organism,Seurat-method}
 \alias{organism<-,Seurat-method}
@@ -94,6 +95,8 @@
 \S4method{metadata}{Seurat}(x) <- value
 
 \S4method{metrics}{Seurat}(object, ...)
+
+\S4method{normalize}{Seurat}(object)
 
 \S4method{normcounts}{Seurat}(object, assay = NULL)
 

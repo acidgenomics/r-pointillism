@@ -3,7 +3,7 @@
 \name{KnownMarkers}
 \alias{KnownMarkers}
 \alias{KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers-method}
-\title{Known markers}
+\title{Known cell markers}
 \usage{
 KnownMarkers(object, ...)
 
@@ -19,20 +19,17 @@ Grouped by \code{cellType} column. Known markers \code{data.frame} imported by
 \item{promiscuousThreshold}{\code{integer(1)}.
 Minimum number of clusters required to consider a gene marker promiscuous.
 Set to \code{0} to disable promiscuous marker filtering.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{KnownMarkers}.
 }
 \description{
-Known markers
+Known cell markers
 }
 \note{
-Both the \code{markers} and \code{known} objects must contain Ensembl gene
-identifiers in the \code{geneId} column. We must avoid any matching operations
-based on the gene names, since these change often and can mismatch
-easily.
-
-Updated 2021-03-03.
+Updated 2021-09-14.
 }
 \examples{
 data(cellTypeMarkersList, seuratAllMarkers)

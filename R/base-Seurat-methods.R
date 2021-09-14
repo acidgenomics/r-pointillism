@@ -523,7 +523,7 @@ setMethod(
 
 
 
-#' @rdname normalize
+#' @rdname base-Seurat
 #' @export
 setMethod(
     f = "normalize",
