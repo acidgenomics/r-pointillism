@@ -4,6 +4,7 @@
 #'
 #' @keywords internal
 #'
+#' @importClassesFrom AcidSingleCell KnownMarkers
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom basejump SingleCellExperiment
 #'
@@ -11,6 +12,8 @@
 #'
 #' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
 #'   pretty_breaks sym syms wrap_plots
+#' @importFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster clusters
+#'   cpm diffExp diffExpPerCluster findMarkers normalize
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<-
 #' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
@@ -45,7 +48,6 @@
 #'   isPositive isScalar isScalarNumeric isString isSubset validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity show slot slot<- validObject .hasSlot
-#' @importFrom scater calculateCPM normalizeCounts
 "_PACKAGE"
 
 

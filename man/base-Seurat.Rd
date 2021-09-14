@@ -6,9 +6,15 @@
 \alias{assay,Seurat,ANY-method}
 \alias{assayNames,Seurat-method}
 \alias{assays,Seurat-method}
+\alias{cellCountsPerCluster,Seurat-method}
+\alias{clusters,Seurat-method}
 \alias{colData,Seurat-method}
 \alias{colData<-,Seurat,DataFrame-method}
 \alias{counts,Seurat-method}
+\alias{cpm,Seurat-method}
+\alias{diffExp,Seurat-method}
+\alias{diffExpPerCluster,Seurat-method}
+\alias{findMarkers,Seurat-method}
 \alias{interestingGroups,Seurat-method}
 \alias{interestingGroups<-,Seurat,character-method}
 \alias{logcounts,Seurat-method}
@@ -21,6 +27,19 @@
 \alias{normcounts,Seurat-method}
 \alias{organism,Seurat-method}
 \alias{organism<-,Seurat-method}
+\alias{plotCellCountsPerCluster,Seurat-method}
+\alias{plotCellTypesPerCluster,Seurat,KnownMarkers-method}
+\alias{plotCounts,Seurat-method}
+\alias{plotDots,Seurat-method}
+\alias{plotFeature,Seurat-method}
+\alias{plotKnownMarkers,Seurat,KnownMarkers-method}
+\alias{plotMarker,Seurat-method}
+\alias{plotPCA,Seurat-method}
+\alias{plotReducedDim,Seurat-method}
+\alias{plotStackedBarPlot,Seurat-method}
+\alias{plotTSNE,Seurat-method}
+\alias{plotViolin,Seurat-method}
+\alias{plotUMAP,Seurat-method}
 \alias{reducedDim,Seurat,ANY-method}
 \alias{reducedDimNames,Seurat-method}
 \alias{reducedDims,Seurat-method}
@@ -40,11 +59,23 @@
 
 \S4method{assays}{Seurat}(x, withDimnames = TRUE, ...)
 
+\S4method{cellCountsPerCluster}{Seurat}(object, ...)
+
+\S4method{clusters}{Seurat}(object)
+
 \S4method{colData}{Seurat}(x, ...)
 
 \S4method{colData}{Seurat,DataFrame}(x) <- value
 
 \S4method{counts}{Seurat}(object, assay = NULL)
+
+\S4method{cpm}{Seurat}(object, assay = NULL)
+
+\S4method{diffExp}{Seurat}(object, ...)
+
+\S4method{diffExpPerCluster}{Seurat}(object, ...)
+
+\S4method{findMarkers}{Seurat}(object, ...)
 
 \S4method{interestingGroups}{Seurat}(object, ...)
 
@@ -69,6 +100,32 @@
 \S4method{organism}{Seurat}(object)
 
 \S4method{organism}{Seurat}(object) <- value
+
+\S4method{plotCellCountsPerCluster}{Seurat}(object, ...)
+
+\S4method{plotCellTypesPerCluster}{Seurat,KnownMarkers}(object, markers, ...)
+
+\S4method{plotCounts}{Seurat}(object, ...)
+
+\S4method{plotDots}{Seurat}(object, ...)
+
+\S4method{plotFeature}{Seurat}(object, ...)
+
+\S4method{plotKnownMarkers}{Seurat,KnownMarkers}(object, markers, ...)
+
+\S4method{plotMarker}{Seurat}(object, ...)
+
+\S4method{plotPCA}{Seurat}(object, ...)
+
+\S4method{plotReducedDim}{Seurat}(object, ...)
+
+\S4method{plotStackedBarPlot}{Seurat}(object, ...)
+
+\S4method{plotTSNE}{Seurat}(object, ...)
+
+\S4method{plotViolin}{Seurat}(object, ...)
+
+\S4method{plotUMAP}{Seurat}(object, ...)
 
 \S4method{reducedDim}{Seurat,ANY}(x, type = 1L, withDimnames = TRUE)
 
@@ -116,7 +173,7 @@ Varies, depending on the generic.
 Provide limited \code{SingleCellExperiment}-like method support.
 }
 \note{
-Updated 2021-03-03.
+Updated 2021-09-13.
 }
 \seealso{
 \itemize{

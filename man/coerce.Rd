@@ -2,10 +2,10 @@
 % Please edit documentation in R/coerce-methods.R
 \name{coerce}
 \alias{coerce}
-\alias{coerce,Seurat,SingleCellExperiment-method}
-\alias{coerce,Seurat,RangedSummarizedExperiment-method}
-\alias{coerce,Seurat,SummarizedExperiment-method}
-\alias{coerce,SingleCellExperiment,Seurat-method}
+\alias{coerce,Seurat,SCE-method}
+\alias{coerce,Seurat,RSE-method}
+\alias{coerce,Seurat,SE-method}
+\alias{coerce,SCE,Seurat-method}
 \title{Force an object to belong to a class}
 \description{
 Force an object to belong to a class
