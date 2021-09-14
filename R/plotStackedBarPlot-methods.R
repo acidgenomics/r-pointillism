@@ -87,25 +87,6 @@ NULL
 
 
 
-## Updated 2021-09-13.
-`plotStackedBarPlot,Seurat` <-  # nolint
-    function(object, ...) {
-        plotStackedBarPlot(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotStackedBarPlot
-#' @export
-setMethod(
-    f = "plotStackedBarPlot",
-    signature = signature("Seurat"),
-    definition = `plotStackedBarPlot,Seurat`
-)
-
 #' @rdname plotStackedBarPlot
 #' @export
 setMethod(

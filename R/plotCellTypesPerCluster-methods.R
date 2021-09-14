@@ -115,29 +115,6 @@ rm(args)
 
 
 
-## Updated 2021-09-13.
-`plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
-    function(object, markers, ...) {
-        plotCellTypesPerCluster(
-            object = as(object, "SingleCellExperiment"),
-            markers = markers,
-            ...
-        )
-    }
-
-
-
-#' @rdname plotCellTypesPerCluster
-#' @export
-setMethod(
-    f = "plotCellTypesPerCluster",
-    signature = signature(
-        object = "Seurat",
-        markers = "KnownMarkers"
-    ),
-    definition = `plotCellTypesPerCluster,Seurat,KnownMarkers`
-)
-
 #' @rdname plotCellTypesPerCluster
 #' @export
 setMethod(

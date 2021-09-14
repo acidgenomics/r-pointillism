@@ -107,25 +107,6 @@ NULL
 
 
 
-## Updated 2021-09-13.
-`diffExpPerCluster,Seurat` <-  # nolint
-    function(object, ...) {
-        diffExpPerCluster(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname diffExpPerCluster
-#' @export
-setMethod(
-    f = "diffExpPerCluster",
-    signature = signature("Seurat"),
-    definition = `diffExpPerCluster,Seurat`
-)
-
 #' @rdname diffExpPerCluster
 #' @export
 setMethod(

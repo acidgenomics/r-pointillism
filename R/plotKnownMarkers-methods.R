@@ -84,29 +84,6 @@ rm(args)
 
 
 
-## Updated 2021-09-13.
-`plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
-    function(object, markers, ...) {
-        plotKnownMarkers(
-            object = as(object, "SingleCellExperiment"),
-            markers = markers,
-            ...
-        )
-    }
-
-
-
-#' @rdname plotKnownMarkers
-#' @export
-setMethod(
-    f = "plotKnownMarkers",
-    signature = signature(
-        object = "Seurat",
-        markers = "KnownMarkers"
-    ),
-    definition = `plotKnownMarkers,Seurat,KnownMarkers`
-)
-
 #' @rdname plotKnownMarkers
 #' @export
 setMethod(

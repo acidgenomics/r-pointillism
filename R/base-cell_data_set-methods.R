@@ -135,6 +135,34 @@
 
 
 ## > ## Updated 2020-01-30.
+## > `normalize,cell_data_set` <-  # nolint
+## >     function(object) {
+## >         alert(
+## >             "Normalizing with {.pkg monocle3}::{.fun preprocess_cds}."
+## >         )
+## >         monocle3::preprocess_cds(
+## >             cds = object,
+## >             method = "PCA",
+## >             norm_method = "log",
+## >             pseudo_count = 1L,
+## >             scaling = TRUE,
+## >             verbose = TRUE
+## >         )
+## >     }
+
+
+
+## > #' @rdname normalize
+## > #' @export
+## > setMethod(
+## >     f = "normalize",
+## >     signature = signature("cell_data_set"),
+## >     definition = `normalize,cell_data_set`
+## > )
+
+
+
+## > ## Updated 2020-01-30.
 ## > `normcounts,cell_data_set` <-  # nolint
 ## >     function(object) {
 ## >         monocle3::normalized_counts(

@@ -111,44 +111,6 @@ NULL
 
 
 
-## Updated 2020-01-30.
-`normalize,Seurat` <-  # nolint
-    function(object) {
-        alert(sprintf(
-            "Normalizing with {.pkg %s}::{.fun %s}.",
-            "Seurat", "NormalizeData"
-        ))
-        NormalizeData(object = object, verbose = TRUE)
-    }
-
-
-
-## > ## Updated 2020-01-30.
-## > `normalize,cell_data_set` <-  # nolint
-## >     function(object) {
-## >         alert(
-## >             "Normalizing with {.pkg monocle3}::{.fun preprocess_cds}."
-## >         )
-## >         monocle3::preprocess_cds(
-## >             cds = object,
-## >             method = "PCA",
-## >             norm_method = "log",
-## >             pseudo_count = 1L,
-## >             scaling = TRUE,
-## >             verbose = TRUE
-## >         )
-## >     }
-
-
-
-#' @rdname normalize
-#' @export
-setMethod(
-    f = "normalize",
-    signature = signature("Seurat"),
-    definition = `normalize,Seurat`
-)
-
 #' @rdname normalize
 #' @export
 setMethod(
@@ -156,11 +118,3 @@ setMethod(
     signature = signature("SingleCellExperiment"),
     definition = `normalize,SCE`
 )
-
-## > #' @rdname normalize
-## > #' @export
-## > setMethod(
-## >     f = "normalize",
-## >     signature = signature("cell_data_set"),
-## >     definition = `normalize,cell_data_set`
-## > )

@@ -11,7 +11,8 @@
 #'   scores, number of genes detected).
 #' @param ... Additional arguments.
 #'
-#' @seealso [Seurat::FeaturePlot()].
+#' @seealso
+#' - `Seurat::FeaturePlot()`.
 #'
 #' @return `ggplot` (1 feature) or `list` (multiple features).
 #'
@@ -210,25 +211,6 @@ formals(`plotFeature,SCE`)[args1] <- .formalsList[args2]
 rm(args, args1, args2)
 
 
-
-## Updated 2021-09-13.
-`plotFeature,Seurat` <-  # nolint
-    function(object, ...) {
-        plotFeature(
-            object = as(object, "SingleCellExperiment"),
-            ...
-        )
-    }
-
-
-
-#' @rdname plotFeature
-#' @export
-setMethod(
-    f = "plotFeature",
-    signature = signature("Seurat"),
-    definition = `plotFeature,Seurat`
-)
 
 #' @rdname plotFeature
 #' @export
