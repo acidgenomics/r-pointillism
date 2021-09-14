@@ -11,7 +11,10 @@
 #' @importMethodsFrom basejump coerce
 #'
 #' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
-#'   pretty_breaks sym syms wrap_plots
+#'   plotCellCountsPerCluster plotCellTypesPerCluster plotCounts plotDots
+#'   plotFeature plotKnownMarkers plotMarker plotPCA plotReducedDim
+#'   plotStackedBarPlot plotTSNE plotUMAP plotViolin pretty_breaks sym syms
+#'   wrap_plots
 #' @importFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster clusters
 #'   cpm diffExp diffExpPerCluster findMarkers normalize
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<-
