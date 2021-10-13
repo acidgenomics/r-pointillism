@@ -1,7 +1,3 @@
-## Consider adding `rowData<-` assignment method.
-
-
-
 #' Extend base S4 methods for `Seurat` class
 #'
 #' Provide limited `SingleCellExperiment`-like method support.
@@ -29,13 +25,11 @@ NULL
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "Gene2Symbol",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `Gene2Symbol,Seurat`
 )
 
@@ -50,13 +44,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assay",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `assay,Seurat`
 )
 
@@ -71,13 +63,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assayNames",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `assayNames,Seurat`
 )
 
@@ -92,13 +82,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "assays",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `assays,Seurat`
 )
 
@@ -113,13 +101,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "cellCountsPerCluster",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `cellCountsPerCluster,Seurat`
 )
 
@@ -132,13 +118,11 @@ setMethod(
         Idents(object)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "clusters",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `clusters,Seurat`
 )
 
@@ -153,13 +137,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "colData",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `colData,Seurat`
 )
 
@@ -173,8 +155,6 @@ setMethod(
         validObject(x)
         x
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -196,13 +176,11 @@ setReplaceMethod(
         counts(object)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "counts",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `counts,Seurat`
 )
 
@@ -229,13 +207,11 @@ setMethod(
         GetAssayData(object = object, slot = "data", assay = assay)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "cpm",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `cpm,Seurat`
 )
 
@@ -247,13 +223,11 @@ setMethod(
         diffExp(object = as(object, "SingleCellExperiment"), ...)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "diffExp",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `diffExp,Seurat`
 )
 
@@ -268,13 +242,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "diffExpPerCluster",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `diffExpPerCluster,Seurat`
 )
 
@@ -289,13 +261,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "findMarkers",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `findMarkers,Seurat`
 )
 
@@ -310,13 +280,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "interestingGroups",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `interestingGroups,Seurat`
 )
 
@@ -332,8 +300,6 @@ setMethod(
         ),
         where = asNamespace("AcidExperiment")
     )
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -362,13 +328,11 @@ setReplaceMethod(
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "logcounts",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `logcounts,Seurat`
 )
 
@@ -384,13 +348,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToIDs",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `mapGenesToIDs,Seurat`
 )
 
@@ -406,13 +368,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToRownames",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `mapGenesToRownames,Seurat`
 )
 
@@ -428,13 +388,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "mapGenesToSymbols",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `mapGenesToSymbols,Seurat`
 )
 
@@ -452,13 +410,11 @@ setMethod(
         metadata(x, ...)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "metadata",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `metadata,Seurat`
 )
 
@@ -474,8 +430,6 @@ setMethod(
         x@misc[["metadata"]] <- value
         x
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -499,13 +453,11 @@ setReplaceMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "metrics",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `metrics,Seurat`
 )
 
@@ -521,13 +473,11 @@ setMethod(
         NormalizeData(object = object, verbose = TRUE)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "normalize",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `normalize,Seurat`
 )
 
@@ -550,13 +500,11 @@ setMethod(
         GetAssayData(object = object, assay = assay, slot = "data")
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "normcounts",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `normcounts,Seurat`
 )
 
@@ -568,13 +516,11 @@ setMethod(
         organism(object = as(object, "SingleCellExperiment"))
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "organism",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `organism,Seurat`
 )
 
@@ -586,8 +532,6 @@ setMethod(
         metadata(object)[["organism"]] <- value
         object
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -608,13 +552,11 @@ setReplaceMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotCellCountsPerCluster",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotCellCountsPerCluster,Seurat`
 )
 
@@ -629,8 +571,6 @@ setMethod(
             ...
         )
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -654,13 +594,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotCounts",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotCounts,Seurat`
 )
 
@@ -675,13 +613,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotDots",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotDots,Seurat`
 )
 
@@ -696,13 +632,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotFeature",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotFeature,Seurat`
 )
 
@@ -717,8 +651,6 @@ setMethod(
             ...
         )
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -742,13 +674,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotMarker",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotMarker,Seurat`
 )
 
@@ -763,13 +693,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotPCA",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotPCA,Seurat`
 )
 
@@ -784,13 +712,11 @@ setMethod(
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotReducedDim",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotReducedDim,Seurat`
 )
 
@@ -805,13 +731,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotStackedBarPlot",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotStackedBarPlot,Seurat`
 )
 
@@ -826,13 +750,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotTSNE",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotTSNE,Seurat`
 )
 
@@ -847,13 +769,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotViolin",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotViolin,Seurat`
 )
 
@@ -868,13 +788,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "plotUMAP",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotUMAP,Seurat`
 )
 
@@ -890,13 +808,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDim",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `reducedDim,Seurat`
 )
 
@@ -908,13 +824,11 @@ setMethod(
         reducedDimNames(x = as(x, "SingleCellExperiment"))
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDimNames",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `reducedDimNames,Seurat`
 )
 
@@ -929,13 +843,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "reducedDims",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `reducedDims,Seurat`
 )
 
@@ -950,13 +862,11 @@ setMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "rowData",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `rowData,Seurat`
 )
 
@@ -1008,13 +918,11 @@ setMethod(
         gr
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "rowRanges",
-    signature = signature("Seurat"),
+    signature = signature(x = "Seurat"),
     definition = `rowRanges,Seurat`
 )
 
@@ -1027,8 +935,6 @@ setMethod(
         x@misc[["rowRanges"]] <- value
         x
     }
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -1052,13 +958,11 @@ setReplaceMethod(
         )
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "sampleData",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `sampleData,Seurat`
 )
 
@@ -1074,8 +978,6 @@ setMethod(
         ),
         where = asNamespace("AcidSingleCell")
     )
-
-
 
 #' @rdname base-Seurat
 #' @export
@@ -1096,12 +998,10 @@ setReplaceMethod(
         sampleNames(object = as(object, "SingleCellExperiment"))
     }
 
-
-
 #' @rdname base-Seurat
 #' @export
 setMethod(
     f = "sampleNames",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `sampleNames,Seurat`
 )

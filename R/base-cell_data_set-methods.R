@@ -2,7 +2,7 @@
 ## > #'
 ## > #' @name base-cell_data_set
 ## > #' @keywords internal
-## > #' @note Updated 2020-01-30.
+## > #' @note Updated 2021-10-13.
 ## > #'
 ## > #' @inheritParams AcidRoxygen::params
 ## > #'
@@ -22,14 +22,12 @@
 ## >         )
 ## >         Gene2Symbol(object = df, ...)
 ## >     }
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
 ## >     f = "Gene2Symbol",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `Gene2Symbol,cell_data_set`
 ## > )
 
@@ -59,14 +57,11 @@
 ## > formals(`clusters,cell_data_set`)[["reduction"]] <-
 ## >     f[["reduction_method"]]
 ## >
-
-
-
 ## > #' @rdname clusters
 ## > #' @export
 ## > setMethod(
 ## >     f = "clusters",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `clusters,cell_data_set`
 ## > )
 
@@ -81,14 +76,12 @@
 ## >             pseudocount = 1L
 ## >         )
 ## >     }
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
 ## >     f = "logcounts",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `logcounts,cell_data_set`
 ## > )
 
@@ -121,14 +114,12 @@
 ## >     package = "basejump"
 ## > )
 ## > formals(`metrics,cell_data_set`)[["return"]] <- f[["return"]]
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
 ## >     f = "metrics",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `metrics,cell_data_set`
 ## > )
 
@@ -149,14 +140,12 @@
 ## >             verbose = TRUE
 ## >         )
 ## >     }
-
-
-
+## >
 ## > #' @rdname normalize
 ## > #' @export
 ## > setMethod(
 ## >     f = "normalize",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `normalize,cell_data_set`
 ## > )
 
@@ -171,14 +160,12 @@
 ## >             pseudocount = NULL
 ## >         )
 ## >     }
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
 ## >     f = "normcounts",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `normcounts,cell_data_set`
 ## > )
 
@@ -189,14 +176,12 @@
 ## >     function(object) {
 ## >         colData(object)[["Size_Factor"]]
 ## >     }
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
 ## >     f = "sizeFactors",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `sizeFactors,cell_data_set`
 ## > )
 
@@ -216,9 +201,7 @@
 ## >         colData(object)[["Size_Factor"]] <- value
 ## >         object
 ## >     }
-
-
-
+## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setReplaceMethod(
