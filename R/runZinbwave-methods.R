@@ -175,7 +175,7 @@ formals(`runZinbwave,SCE`)[args] <- .formalsList[args]
 ## > #' @export
 ## > setMethod(
 ## >     f = "runZinbwave",
-## >     signature = signature("Seurat"),
+## >     signature = signature(Y = "Seurat"),
 ## >     definition = `runZinbwave,Seurat`
 ## > )
 

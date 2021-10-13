@@ -100,10 +100,8 @@
         p
     }
 
-args1 <- c("color", "legend")
-args2 <- c("discreteColor", "legend")
-formals(`plotViolin,SCE`)[args1] <- .formalsList[args2]
-rm(args1, args2)
+formals(`plotViolin,SCE`)[c("color", "legend")] <-
+    .formalsList[c("discreteColor", "legend")]
 
 
 
@@ -111,6 +109,6 @@ rm(args1, args2)
 #' @export
 setMethod(
     f = "plotViolin",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotViolin,SCE`
 )

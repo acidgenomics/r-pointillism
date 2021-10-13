@@ -99,7 +99,7 @@ NULL
             !is.null(workers)
         ) {
             if (identical(workers, "auto")) {
-                workers <- max(getOption("mc.cores"), 1L)
+                workers <- max(getOption(x = "mc.cores", default = 1L), 1L)
             }
             assert(isInt(workers))
             alert(sprintf(
@@ -250,16 +250,6 @@ NULL
 
 
 
-#' @rdname runSeurat
-#' @export
-setMethod(
-    f = "runSeurat",
-    signature = signature("Seurat"),
-    definition = `runSeurat,Seurat`
-)
-
-
-
 ## Updated 2020-06-26.
 `runSeurat,SCE` <-  # nolint
     function(object, ...) {
@@ -275,6 +265,14 @@ setMethod(
 #' @export
 setMethod(
     f = "runSeurat",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "Seurat"),
+    definition = `runSeurat,Seurat`
+)
+
+#' @rdname runSeurat
+#' @export
+setMethod(
+    f = "runSeurat",
+    signature = signature(object = "SingleCellExperiment"),
     definition = `runSeurat,SCE`
 )

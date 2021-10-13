@@ -152,7 +152,7 @@ rm(args)
 #' @export
 setMethod(
     f = "plotPCElbow",
-    signature = signature("Seurat"),
+    signature = signature(object = "Seurat"),
     definition = `plotPCElbow,Seurat`
 )
 
@@ -160,6 +160,6 @@ setMethod(
 ## > #' @export
 ## > setMethod(
 ## >     f = "plotPCElbow",
-## >     signature = signature("cell_data_set"),
+## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `plotPCElbow,cell_data_set`
 ## > )

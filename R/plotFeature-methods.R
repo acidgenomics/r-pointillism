@@ -205,10 +205,9 @@ args <- c(
     "pointsAsNumbers",
     "reduction"
 )
-args1 <- c(args, "color")
-args2 <- c(args, "continuousColor")
-formals(`plotFeature,SCE`)[args1] <- .formalsList[args2]
-rm(args, args1, args2)
+formals(`plotFeature,SCE`)[c(args, "color")] <-
+    .formalsList[c(args, "continuousColor")]
+rm(args)
 
 
 
@@ -216,6 +215,6 @@ rm(args, args1, args2)
 #' @export
 setMethod(
     f = "plotFeature",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotFeature,SCE`
 )

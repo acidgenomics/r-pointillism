@@ -141,10 +141,8 @@
         p
     }
 
-args1 <- c("color", "legend")
-args2 <- c("continuousColorPurpleOrange", "legend")
-formals(`plotDots,SCE`)[args1] <- .formalsList[args2]
-rm(args1, args2)
+formals(`plotDots,SCE`)[c("color", "legend")] <-
+    .formalsList[c("continuousColorPurpleOrange", "legend")]
 
 
 
@@ -152,6 +150,6 @@ rm(args1, args2)
 #' @export
 setMethod(
     f = "plotDots",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotDots,SCE`
 )

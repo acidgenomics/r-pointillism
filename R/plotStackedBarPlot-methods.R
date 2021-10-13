@@ -91,6 +91,6 @@ NULL
 #' @export
 setMethod(
     f = "plotStackedBarPlot",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotStackedBarPlot,SCE`
 )

@@ -10,15 +10,15 @@
   genes,
   reduction = "UMAP",
   expression = c("mean", "sum"),
-  color = getOption("acid.continuous.color", default =
+  color = getOption(x = "acid.continuous.color", default =
     ggplot2::scale_color_gradient(low = "gray75", high = "purple")),
-  pointSize = getOption("acid.pointSize", default = 0.75),
-  pointAlpha = getOption("acid.pointAlpha", default = 0.85),
-  pointsAsNumbers = getOption("acid.pointsAsNumbers", default = FALSE),
-  label = getOption("acid.label", default = TRUE),
-  labelSize = getOption("acid.labelSize", default = 6L),
-  dark = getOption("acid.dark", default = FALSE),
-  legend = getOption("acid.legend", default = TRUE),
+  pointSize = getOption(x = "acid.pointSize", default = 0.75),
+  pointAlpha = getOption(x = "acid.pointAlpha", default = 0.85),
+  pointsAsNumbers = getOption(x = "acid.pointsAsNumbers", default = FALSE),
+  label = getOption(x = "acid.label", default = TRUE),
+  labelSize = getOption(x = "acid.labelSize", default = 6L),
+  dark = getOption(x = "acid.dark", default = FALSE),
+  legend = getOption(x = "acid.legend", default = TRUE),
   labels = list(title = "auto", subtitle = NULL)
 )
 }
