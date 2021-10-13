@@ -164,16 +164,6 @@ NULL
 
 
 
-#' @rdname SeuratMarkers
-#' @export
-setMethod(
-    f = "SeuratMarkers",
-    signature = signature("data.frame"),
-    definition = `SeuratMarkers,data.frame`
-)
-
-
-
 ## Updated 2019-08-06.
 `SeuratMarkersPerCluster,data.frame` <-  # nolint
     `SeuratMarkers,data.frame`
@@ -183,7 +173,17 @@ setMethod(
 #' @rdname SeuratMarkers
 #' @export
 setMethod(
+    f = "SeuratMarkers",
+    signature = signature(object = "data.frame"),
+    definition = `SeuratMarkers,data.frame`
+)
+
+
+
+#' @rdname SeuratMarkers
+#' @export
+setMethod(
     f = "SeuratMarkersPerCluster",
-    signature = signature("data.frame"),
+    signature = signature(object = "data.frame"),
     definition = `SeuratMarkersPerCluster,data.frame`
 )
