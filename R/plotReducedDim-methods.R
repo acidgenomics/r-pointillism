@@ -262,7 +262,7 @@ rm(args, args1, args2)
 #' @export
 setMethod(
     f = "plotReducedDim",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotReducedDim,SCE`
 )
 
@@ -270,7 +270,7 @@ setMethod(
 #' @export
 setMethod(
     f = "plotPCA",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotPCA,SCE`
 )
 
@@ -278,7 +278,7 @@ setMethod(
 #' @export
 setMethod(
     f = "plotTSNE",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotTSNE,SCE`
 )
 
@@ -286,6 +286,6 @@ setMethod(
 #' @export
 setMethod(
     f = "plotUMAP",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotUMAP,SCE`
 )

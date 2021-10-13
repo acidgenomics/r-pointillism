@@ -60,7 +60,7 @@ NULL
 #' @export
 setMethod(
     f = "summary",
-    signature = signature("SeuratMarkers"),
+    signature = signature(object = "SeuratMarkers"),
     definition = `summary,SeuratMarkers`
 )
 
@@ -68,6 +68,6 @@ setMethod(
 #' @export
 setMethod(
     f = "summary",
-    signature = signature("SeuratMarkersPerCluster"),
+    signature = signature(object = "SeuratMarkersPerCluster"),
     definition = `summary,SeuratMarkersPerCluster`
 )

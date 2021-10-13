@@ -85,9 +85,8 @@ NULL
         do.call(what = what, args = args)
     }
 
-args <- "legend"
-formals(`plotCounts,SCE`)[args] <- .formalsList[args]
-rm(args)
+formals(`plotCounts,SCE`)[["legend"]] <-
+    .formalsList[["legend"]]
 
 
 
@@ -95,6 +94,6 @@ rm(args)
 #' @export
 setMethod(
     f = "plotCounts",
-    signature = signature("SingleCellExperiment"),
+    signature = signature(object = "SingleCellExperiment"),
     definition = `plotCounts,SCE`
 )

@@ -82,6 +82,6 @@ rm(args)
 #' @export
 setMethod(
     f = "topMarkers",
-    signature = signature("SeuratMarkersPerCluster"),
+    signature = signature(object = "SeuratMarkersPerCluster"),
     definition = `topMarkers,SeuratMarkersPerCluster`
 )
