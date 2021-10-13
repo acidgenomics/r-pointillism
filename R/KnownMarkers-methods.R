@@ -1,5 +1,5 @@
 #' @name KnownMarkers
-#' @inherit AcidSingleCell::KnownMarkers
+#' @inherit AcidSingleCell::KnownMarkers description title
 #' @note Updated 2021-09-14.
 #'
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
