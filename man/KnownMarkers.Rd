@@ -26,7 +26,9 @@ Set to \code{0} to disable promiscuous marker filtering.}
 \code{KnownMarkers}.
 }
 \description{
-Known cell markers
+Both the \code{markers} and \code{known} objects must contain Ensembl gene identifiers
+in the \code{geneId} column. We must avoid any matching operations based on the
+gene names, since these change often and can mismatch easily.
 }
 \note{
 Updated 2021-09-14.
