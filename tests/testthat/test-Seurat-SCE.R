@@ -94,7 +94,7 @@ test_that("rownames", {
 })
 
 test_that("rowRanges", {
-    expect_s4_class(rowRanges(object), "GRanges")
+    expect_s4_class(rowRanges(object), "GenomicRanges")
 })
 
 test_that("sampleData", {

@@ -18,7 +18,6 @@
 #' @importFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster clusters
 #'   cpm diffExp diffExpPerCluster findMarkers normalize
 #' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<-
-#' @importFrom DESeq2 DESeqDataSet DESeq estimateSizeFactorsForMatrix results
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
 #'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
 #' @importFrom basejump DataFrame Gene2Symbol SingleCellExperiment
@@ -26,7 +25,7 @@
 #'   as.data.frame as.matrix assay assay<- assayNames assays assays<- camelCase
 #'   capture.output cbind coerce colData colData<- complete.cases
 #'   convertGenesToSymbols counts counts<- data decode dl do.call
-#'   estimateSizeFactors geometricMean h1 h2 head import interestingGroups
+#'   geometricMean h1 h2 head import interestingGroups
 #'   interestingGroups<- lapply leftJoin logcounts logcounts<-
 #'   makeGene2SymbolFromEnsembl makeLabel makeNames mapGenesToIDs
 #'   mapGenesToRownames mapGenesToSymbols markdownHeader matchInterestingGroups
