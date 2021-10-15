@@ -24,7 +24,7 @@ SeuratMarkersPerCluster(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{ranges}{\code{GRanges}.
+\item{ranges}{\code{GenomicRanges}.
 Gene annotations. Names must correspond to the rownames. The function will
 automatically subset the ranges and arrange them alphabetically.}
 
