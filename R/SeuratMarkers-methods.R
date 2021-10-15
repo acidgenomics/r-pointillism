@@ -14,7 +14,7 @@
 #'   Unmodified Seurat marker return `data.frame`.
 #'   - `SeuratMarkers()`: [Seurat::FindMarkers()].
 #'   - `SeuratMarkersPerCluster()`: [Seurat::FindAllMarkers()].
-#' @param ranges `GRanges`.
+#' @param ranges `GenomicRanges`.
 #'   Gene annotations. Names must correspond to the rownames. The function will
 #'   automatically subset the ranges and arrange them alphabetically.
 #'
