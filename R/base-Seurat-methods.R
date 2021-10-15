@@ -147,7 +147,7 @@ setMethod(
 
 
 
-## Updated 2019-08-05.
+## Updated 2021-10-13..
 `colData<-,Seurat,DataFrame` <-  # nolint
     function(x, value) {
         value <- as.data.frame(value)
@@ -879,7 +879,7 @@ setMethod(
         sce <- as.SingleCellExperiment(x)
         gr <- rowRanges(sce)
         assert(
-            is(gr, "GRangesList"),
+            is(gr, "GenomicRangesList"),
             all(
                 vapply(
                     X = gr,
@@ -891,7 +891,7 @@ setMethod(
         ## Attempt to use stashed rowRanges, if defined.
         ## Otherwise, return the empty placeholder.
         stash <- .getSeuratStash(x, "rowRanges")
-        if (!is(stash, "GRanges")) {
+        if (!is(stash, "GenomicRanges")) {
             return(gr)
         }
         ## Handle situation where we've changed from gene IDs to gene names
@@ -968,7 +968,7 @@ setMethod(
 
 
 
-## Updated 2021-03-03.
+## Updated 2021-10-13.
 `sampleData<-,Seurat,DataFrame` <-  # nolint
     getMethod(
         f = "sampleData<-",
