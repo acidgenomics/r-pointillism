@@ -58,7 +58,7 @@ NULL
         assert(
             hasRows(object),
             hasRownames(object),
-            is(ranges, "GRanges"),
+            is(ranges, "GenomicRanges"),
             isSubset(
                 x = c("geneId", "geneName"),
                 y = colnames(mcols(ranges))
