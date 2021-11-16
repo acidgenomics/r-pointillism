@@ -1,12 +1,3 @@
-#' @rdname KnownMarkers
-#' @name KnownMarkers
-#' @importFrom AcidSingleCell KnownMarkers
-#' @usage KnownMarkers(object, ...)
-#' @export
-NULL
-
-
-
 #' @rdname SeuratMarkers
 #' @export
 setGeneric(
@@ -15,8 +6,6 @@ setGeneric(
         standardGeneric("SeuratMarkers")
     }
 )
-
-
 
 #' @rdname SeuratMarkers
 #' @export
@@ -27,26 +16,6 @@ setGeneric(
     }
 )
 
-
-
-#' @rdname plotPCElbow
-#' @name plotPCElbow
-#' @importFrom AcidGenerics plotPCElbow
-#' @usage plotPCElbow(object, ...)
-#' @export
-NULL
-
-
-
-#' @rdname plotTopMarkers
-#' @name plotTopMarkers
-#' @importFrom AcidGenerics plotTopMarkers
-#' @usage plotTopMarkers(object, markers, ...)
-#' @export
-NULL
-
-
-
 #' @rdname runSeurat
 #' @export
 setGeneric(
@@ -55,8 +24,6 @@ setGeneric(
         standardGeneric("runSeurat")
     }
 )
-
-
 
 #' @rdname runZinbwave
 #' @export
@@ -69,14 +36,33 @@ setGeneric(
 
 
 
+#' @rdname KnownMarkers
+#' @name KnownMarkers
+#' @importFrom basejump KnownMarkers
+#' @usage KnownMarkers(object, ...)
+#' @export
+NULL
+
+#' @rdname plotPCElbow
+#' @name plotPCElbow
+#' @importFrom AcidGenerics plotPCElbow
+#' @usage plotPCElbow(object, ...)
+#' @export
+NULL
+
+#' @rdname plotTopMarkers
+#' @name plotTopMarkers
+#' @importFrom AcidGenerics plotTopMarkers
+#' @usage plotTopMarkers(object, markers, ...)
+#' @export
+NULL
+
 #' @rdname summary
 #' @name summary
 #' @importFrom AcidGenerics summary
 #' @usage summary(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname topMarkers
 #' @name topMarkers

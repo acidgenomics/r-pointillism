@@ -1,3 +1,8 @@
+## FIXME Need to think about NA gene symbol handling in call
+##       to convertGenesToSymbols.
+
+
+
 #' Run Seurat
 #'
 #' @name runSeurat
