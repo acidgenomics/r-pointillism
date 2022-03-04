@@ -1,6 +1,6 @@
 #' @name KnownMarkers
-#' @inherit AcidSingleCell::KnownMarkers description title
-#' @note Updated 2021-09-14.
+#' @inherit AcidGenerics::KnownMarkers description title
+#' @note Updated 2022-03-04.
 #'
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`.
