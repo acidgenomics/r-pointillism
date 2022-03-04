@@ -46,16 +46,23 @@ the filtered cells into a new \code{Seurat} class object. Use
 }
 
 \examples{
-data(Seurat, SingleCellExperiment, package = "AcidTest")
+data(
+    Seurat,
+    SingleCellExperiment_Seurat,
+    package = "AcidTest"
+)
 
 ## SingleCellExperiment to Seurat ====
-x <- as(SingleCellExperiment, "Seurat")
-class(x)
-print(x)
+from <- SingleCellExperiment_Seurat
+to <- as(from, "Seurat")
+class(to)
+print(to)
 
 ## Seurat to SingleCellExperiment ====
-x <- as(Seurat, "SingleCellExperiment")
-print(x)
+from <- Seurat
+to <- as(from, "SingleCellExperiment")
+class(to)
+print(to)
 }
 \seealso{
 \itemize{
