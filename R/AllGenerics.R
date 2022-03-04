@@ -1,3 +1,10 @@
+#' @rdname KnownMarkers
+#' @name KnownMarkers
+#' @importFrom AcidGenerics KnownMarkers
+#' @usage KnownMarkers(object, ...)
+#' @export
+NULL
+
 #' @rdname SeuratMarkers
 #' @export
 setGeneric(
@@ -16,33 +23,6 @@ setGeneric(
     }
 )
 
-#' @rdname runSeurat
-#' @export
-setGeneric(
-    name = "runSeurat",
-    def = function(object, ...) {
-        standardGeneric("runSeurat")
-    }
-)
-
-#' @rdname runZinbwave
-#' @export
-setGeneric(
-    name = "runZinbwave",
-    def = function(Y, ...) {  # nolint
-        standardGeneric("runZinbwave")
-    }
-)
-
-
-
-#' @rdname KnownMarkers
-#' @name KnownMarkers
-#' @importFrom basejump KnownMarkers
-#' @usage KnownMarkers(object, ...)
-#' @export
-NULL
-
 #' @rdname plotPCElbow
 #' @name plotPCElbow
 #' @importFrom AcidGenerics plotPCElbow
@@ -57,11 +37,19 @@ NULL
 #' @export
 NULL
 
-#' @rdname summary
-#' @name summary
-#' @importFrom AcidGenerics summary
-#' @usage summary(object, ...)
+#' @rdname runSeurat
 #' @export
+setGeneric(
+    name = "runSeurat",
+    def = function(object, ...) {
+        standardGeneric("runSeurat")
+    }
+)
+
+#' @export
+#' @name summary
+#' @rdname summary
+#' @usage summary(object, ...)
 NULL
 
 #' @rdname topMarkers
