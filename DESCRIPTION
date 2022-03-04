@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.6.0.9000
-Date: 2021-10-14
+Date: 2022-03-04
 Authors@R: c(
     person(
         given = "Michael",
@@ -30,33 +30,24 @@ License: AGPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
-    R (>= 4.0),
+    R (>= 4.1),
     basejump (>= 0.15.0)
 Imports:
     AcidGenerics (>= 0.6.0),
     AcidPlots (>= 0.4.0),
     AcidSingleCell (>= 0.2.0),
-    BiocParallel (>= 1.26.0),
-    Seurat (>= 4.0.4),
-    ggplot2 (>= 3.3.5),
+    BiocParallel,
+    Seurat,
+    ggplot2,
     goalie (>= 0.6.0),
     methods
 Suggests:
     AcidTest (>= 0.5.0),
-    dplyr (>= 1.0.7),
-    future (>= 1.22.1),
-    reticulate (>= 1.22),
-    splatter (>= 1.16.0),
-    testthat,
-    zinbwave (>= 1.14.0)
-biocViews:
-    Clustering,
-    DataRepresentation,
-    GeneExpression,
-    RNASeq,
-    SingleCell,
-    Transcription,
-    Visualization
+    dplyr,
+    future,
+    reticulate,
+    splatter,
+    testthat
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Additional_repositories: https://r.acidgenomics.com
