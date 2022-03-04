@@ -22,7 +22,7 @@
 #' @usage data(seuratAllMarkers)
 #' @examples
 #' data(seuratAllMarkers)
-#' seuratAllMarkers
+#' print(seuratAllMarkers)
 "seuratAllMarkers"
 
 
@@ -34,5 +34,5 @@
 #' @usage data(seuratKnownMarkers)
 #' @examples
 #' data(seuratKnownMarkers)
-#' seuratKnownMarkers
+#' print(seuratKnownMarkers)
 "seuratKnownMarkers"
