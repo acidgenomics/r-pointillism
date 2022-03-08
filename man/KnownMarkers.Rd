@@ -34,7 +34,8 @@ gene names, since these change often and can mismatch easily.
 Updated 2022-03-04.
 }
 \examples{
-data(cellTypeMarkersList, seuratAllMarkers)
+data(cellTypeMarkersList, package = "AcidSingleCell")
+data(seuratAllMarkers)
 
 ## SeuratMarkersPerCluster ====
 markers <- seuratAllMarkers
