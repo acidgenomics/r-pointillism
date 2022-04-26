@@ -14,7 +14,8 @@
 #' @return `KnownMarkers`.
 #'
 #' @examples
-#' data(cellTypeMarkersList, seuratAllMarkers)
+#' data(cellTypeMarkersList, package = "AcidSingleCell")
+#' data(seuratAllMarkers)
 #'
 #' ## SeuratMarkersPerCluster ====
 #' markers <- seuratAllMarkers
