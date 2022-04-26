@@ -1,3 +1,32 @@
+## Updated 2019-08-23.
+.getSeuratStash <- function(object, name) {
+    assert(
+        is(object, "Seurat"),
+        isString(name)
+    )
+    misc <- slot(object, name = "misc")
+    ## Early return if the `misc` slot is `NULL`.
+    if (is.null(misc)) {
+        return(NULL)
+    }
+    ## Look first directly in `object@misc` slot.
+    x <- misc[[name]]
+    if (!is.null(x)) {
+        return(x)
+    }
+    ## Next, handle legacy `bcbio` stash list inside `object@misc`.
+    ## As of v0.1.3, stashing directly into `object@misc`.
+    if ("bcbio" %in% names(misc)) {
+        x <- misc[["bcbio"]][[name]]
+        if (!is.null(x)) {
+            return(x)
+        }
+    }
+    NULL
+}
+
+
+
 ## Updated 2020-02-21.
 .seuratCommand <-
     function(object, name, assay = NULL) {

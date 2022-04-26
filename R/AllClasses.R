@@ -1,10 +1,3 @@
-## FIXME Need to reexport from AcidSingleCell:
-## - CellCycleMarkers
-## - CellTypeMarkers
-## - KnownMarkers
-
-
-
 #' Seurat markers
 #'
 #' Class containing essential elements for marker gene analysis.
