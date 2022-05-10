@@ -1,9 +1,9 @@
 ---
-## Updated 2019-08-06.
+## Updated 2022-05-10.
 params:
   title: "Seurat markers"
   ## Seurat
-  seurat_file: "rds/YYYY-MM-DD/seurat.rds"
+  seurat_file: !r file.path("rds", Sys.Date(), "seurat.rds")
   ## SeuratMarkersPerCluster
   all_markers_file: "rds/YYYY-MM-DD/all_markers.rds"
   ## KnownMarkers
@@ -20,8 +20,11 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
-library(Seurat)
-library(pointillism)
+suppressPackageStartupMessages({
+    library(basejump)
+    library(Seurat)
+    library(pointillism)
+})
 prepareTemplate(package = "pointillism")
 source("_setup.R")
 initDir(params$results_dir)
