@@ -255,7 +255,7 @@ setAs(
         ## Stash metadata.
         metadata <- metadata(from)
         ## Update the session information.
-        metadata[["sessionInfo"]] <- session_info()
+        metadata[["sessionInfo"]] <- sessionInfo()
         ## Seurat v3 still recommends using `misc` slot.
         misc <- list(
             rowRanges = rowRanges,

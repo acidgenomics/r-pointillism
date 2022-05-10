@@ -149,7 +149,7 @@ NULL
             x = .prototypeMetadata,
             values = list(
                 "alphaThreshold" = alphaThreshold,
-                "sessionInfo" = session_info(include_base = TRUE)
+                "sessionInfo" = sessionInfo()
             )
         )
         if (isTRUE(perCluster)) {
