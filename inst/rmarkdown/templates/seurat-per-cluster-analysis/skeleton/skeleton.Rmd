@@ -1,5 +1,5 @@
 ---
-## Updated 2021-09-03.
+## Updated 2022-05-10.
 params:
   title: "Per cluster analysis"
 
@@ -15,6 +15,7 @@ bibliography: bibliography.bib
 ```{r setup, cache=FALSE, message=FALSE}
 suppressPackageStartupMessages({
     library(goalie)
+    library(basejump)
     library(dplyr)
     library(pointillism)
 })

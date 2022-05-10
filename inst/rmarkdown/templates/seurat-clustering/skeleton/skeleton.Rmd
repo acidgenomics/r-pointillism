@@ -1,8 +1,8 @@
 ---
-## Updated 2019-08-06.
+## Updated 2022-05-10.
 params:
   title: "Seurat clustering"
-  seurat_file: "rds/YYYY-MM-DD/sce_filtered.rds"
+  seurat_file: !r file.path("rds", Sys.Date(), "sce_filtered.rds")
   seurat_name: "seurat"
   pc_compute: 20
   dims: FALSE
@@ -21,17 +21,13 @@ bibliography: bibliography.bib
 
 ```{r setup, cache=FALSE, message=FALSE}
 suppressPackageStartupMessages({
+    library(basejump)
+    library(dplyr)
     library(Seurat)
     library(pointillism)
-    library(dplyr)
 })
 prepareTemplate(package = "pointillism")
 source("_setup.R")
-
-## The reticulate package can check to see if UMAP module is installed.
-## This is required for `Seurat::RunUMAP()`.
-stopifnot(reticulate::py_module_available(module = "umap"))
-
 ## knitr arguments for `rmarkdown::render()` looping.
 ## > opts_chunk$set(
 ## >     cache.path = paste(
