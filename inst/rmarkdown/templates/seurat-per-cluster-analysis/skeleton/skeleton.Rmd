@@ -6,7 +6,7 @@ params:
   ## Seurat object file.
   seurat_file: !r file.path("rds", "YYYY-MM-DD", "seurat.rds")
 
-title: "`r params$title`"
+title: "`r params[["title"]]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib
