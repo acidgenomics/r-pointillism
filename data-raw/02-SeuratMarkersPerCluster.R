@@ -1,15 +1,15 @@
 suppressPackageStartupMessages({
     library(devtools)
     library(usethis)
-    library(AcidSingleCell)  # 0.2.0.9000
-    library(Seurat)          # 4.1.0
+    library(AcidSingleCell) # 0.3.0
+    library(Seurat) # 4.1.0
 })
 load_all()
 data(cellTypeMarkersList, package = "AcidSingleCell")
 data(Seurat)
 SeuratMarkersPerCluster <-  # nolint
     withCallingHandlers(
-        expr = SeuratMarkersPerCluster(
+        expr = pointillism::SeuratMarkersPerCluster(
             object = FindAllMarkers(Seurat),
             ranges = rowRanges(Seurat)
         ),
