@@ -17,7 +17,7 @@ NULL
 
 
 ## Updated 2020-10-12.
-`summary,SeuratMarkers` <-  # nolint
+`summary,SeuratMarkers` <- # nolint
     function(object) {
         ## Metadata.
         m <- metadata(object)
@@ -36,7 +36,7 @@ NULL
 
 
 ## Updated 2020-10-12.
-`summary,SeuratMarkersPerCluster` <-  # nolint
+`summary,SeuratMarkersPerCluster` <- # nolint
     function(object) {
         cat(paste(length(object), "clusters"), sep = "\n")
         data <- do.call(what = rbind, args = object)

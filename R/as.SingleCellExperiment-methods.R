@@ -33,10 +33,10 @@ NULL
 ## which are no longer considered valid for a SingleCellExperiment.
 ##
 ## For example:
-## ENSG00000000003 ENSG00000000005 ENSG00000000419
-##        "TSPAN6"          "TNMD"          "DPM1"
-## ENSG00000000457 ENSG00000000460 ENSG00000000971
-##         "SCYL3"      "C1orf112"           "CFH"
+## > ENSG00000000003 ENSG00000000005 ENSG00000000419
+## >        "TSPAN6"          "TNMD"          "DPM1"
+## > ENSG00000000457 ENSG00000000460 ENSG00000000971
+## >         "SCYL3"      "C1orf112"           "CFH"
 ##
 ## We need to ensure the dimnames themselves are unnamed in the Seurat object
 ## prior to coercine to SCE, otherwise we will hit a `.validate_names` error.
@@ -73,7 +73,7 @@ NULL
 
 
 ## Updated 2022-05-11.
-`as.SingleCellExperiment,Seurat` <-  # nolint
+`as.SingleCellExperiment,Seurat` <- # nolint
     function(x) {
         from <- x
         validObject(from)

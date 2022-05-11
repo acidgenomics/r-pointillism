@@ -33,7 +33,7 @@ NULL
 #' @details
 #' Note that `Seurat::as.Seurat()` method requires `logcounts` to be defined
 #' in `assays()`, so we're using `CreateSeuratObject()` here instead.
-`as.Seurat,SCE` <-  # nolint
+`as.Seurat,SCE` <- # nolint
     function(x) {
         from <- x
         to <- CreateSeuratObject(

@@ -7,14 +7,16 @@
 #' `minPct`, and `maxCumPct` cutoffs.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @param minPct `numeric(1)` (`0`-`1`).
-#'   Minimum percent standard deviation.
-#' @param maxCumPct `numeric(1)` (`0`-`1`).
-#'   Maximum cumulative percen standard deviation.
 #' @param ... Additional arguments.
 #'
+#' @param minPct `numeric(1)` (`0`-`1`).
+#' Minimum percent standard deviation.
+#'
+#' @param maxCumPct `numeric(1)` (`0`-`1`).
+#' Maximum cumulative percen standard deviation.
+#'
 #' @return `ggplot`.
-#'   Elbow point is saved in `attr(object, "elbow")`.
+#' Elbow point is saved in `attr(object, "elbow")`.
 #'
 #' @seealso
 #' - `Seurat::PCElbowPlot()`.
@@ -32,11 +34,9 @@ NULL
 
 ## Updated 2019-09-03.
 .plotPCElbow <-
-    function(
-        pctStdDev,
-        minPct = 0.01,
-        maxCumPct = 0.9
-    ) {
+    function(pctStdDev,
+             minPct = 0.01,
+             maxCumPct = 0.9) {
         assert(
             is.numeric(pctStdDev),
             isNumber(minPct),
@@ -114,11 +114,11 @@ NULL
 
 
 ## Updated 2019-08-02.
-`plotPCElbow,Seurat` <-  # nolint
+`plotPCElbow,Seurat` <- # nolint
     function(object, minPct, maxCumPct) {
         stdDev <- Stdev(object = object, reduction = "pca")
         assert(is.numeric(stdDev))
-        pctStdDev <- stdDev ^ 2L / sum(stdDev ^ 2L)
+        pctStdDev <- stdDev^2L / sum(stdDev^2L)
         .plotPCElbow(
             pctStdDev = pctStdDev,
             minPct = minPct,

@@ -28,16 +28,14 @@ NULL
 
 
 ## Updated 2021-03-03.
-`plotTopMarkers,Seurat,SeuratMarkersPerCluster` <-  # nolint
-    function(
-        object,
-        markers,
-        direction,
-        reduction,
-        n = 1L,
-        headerLevel = 2L,
-        ...
-    ) {
+`plotTopMarkers,Seurat,SeuratMarkersPerCluster` <- # nolint
+    function(object,
+             markers,
+             direction,
+             reduction,
+             n = 1L,
+             headerLevel = 2L,
+             ...) {
         ## Passthrough: n, direction, coding
         validObject(object)
         validObject(markers)
@@ -60,7 +58,7 @@ NULL
                     markers[["cluster"]] == cluster,
                     "name",
                     drop = TRUE
-                    ]
+                ]
                 genes <- as.character(genes)
                 if (!hasLength(genes)) {
                     alertWarning(sprintf(

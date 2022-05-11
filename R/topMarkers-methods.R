@@ -3,12 +3,13 @@
 #' @note Updated 2022-05-11.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @param direction `character(1)`.
-#'   Whether to include upregulated (`"up"`; positive LFC), downregulated
-#'   (`"down"`; negative LFC) or `"both"` directions of association per cluster.
-#' @param n `integer(1)`.
-#'   Number of genes per cluster.
 #' @param ... Additional arguments.
+#'
+#' @param direction `character(1)`.
+#' Whether to include upregulated (`"up"`; positive LFC), downregulated
+#' (`"down"`; negative LFC) or `"both"` directions of association per cluster.
+#' @param n `integer(1)`.
+#' Number of genes per cluster.
 #'
 #' @examples
 #' data(smpc)
@@ -27,12 +28,10 @@ NULL
 
 ## Note that the validity method checks for sorting by adjusted P value.
 ## Updated 2021-03-03.
-`topMarkers,SeuratMarkersPerCluster` <-  # nolint
-    function(
-        object,
-        direction,
-        n = 10L
-    ) {
+`topMarkers,SeuratMarkersPerCluster` <- # nolint
+    function(object,
+             direction,
+             n = 10L) {
         validObject(object)
         lfcCol <- "avgLog2Fc"
         assert(

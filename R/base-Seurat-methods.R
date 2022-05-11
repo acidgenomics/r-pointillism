@@ -17,7 +17,7 @@ NULL
 
 
 ## Updated 2019-08-02.
-`Gene2Symbol,Seurat` <-  # nolint
+`Gene2Symbol,Seurat` <- # nolint
     function(object, ...) {
         Gene2Symbol(
             object = as(object, "SummarizedExperiment"),
@@ -36,7 +36,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`assay,Seurat` <-  # nolint
+`assay,Seurat` <- # nolint
     function(x, ...) {
         assay(
             x = as(x, "SingleCellExperiment"),
@@ -55,7 +55,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`assayNames,Seurat` <-  # nolint
+`assayNames,Seurat` <- # nolint
     function(x, ...) {
         assayNames(
             x = as(x, "SingleCellExperiment"),
@@ -74,7 +74,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`assays,Seurat` <-  # nolint
+`assays,Seurat` <- # nolint
     function(x, ...) {
         assays(
             x = as(x, "SingleCellExperiment"),
@@ -93,7 +93,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`cellCountsPerCluster,Seurat` <-  # nolint
+`cellCountsPerCluster,Seurat` <- # nolint
     function(object, ...) {
         cellCountsPerCluster(
             object = as(object, "SingleCellExperiment"),
@@ -112,7 +112,7 @@ setMethod(
 
 
 ## Updated 2019-08-02.
-`clusters,Seurat` <-  # nolint
+`clusters,Seurat` <- # nolint
     function(object) {
         validObject(object)
         Idents(object)
@@ -129,7 +129,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`colData,Seurat` <-  # nolint
+`colData,Seurat` <- # nolint
     function(x, ...) {
         colData(
             x = as(x, "SingleCellExperiment"),
@@ -148,7 +148,7 @@ setMethod(
 
 
 ## Updated 2021-10-13..
-`colData<-,Seurat,DataFrame` <-  # nolint
+`colData<-,Seurat,DataFrame` <- # nolint
     function(x, value) {
         value <- as.data.frame(value)
         slot(x, "meta.data", check = TRUE) <- value
@@ -170,7 +170,7 @@ setReplaceMethod(
 
 
 ## Upated 2022-05-11.
-`counts,Seurat` <-  # nolint
+`counts,Seurat` <- # nolint
     function(object, assay = NULL) {
         object <- Seurat::as.SingleCellExperiment(x = object, assay = assay)
         counts(object)
@@ -187,7 +187,7 @@ setMethod(
 
 
 ## Updated 2020-01-30.
-`cpm,Seurat` <-  # nolint
+`cpm,Seurat` <- # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated CPM (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
@@ -218,7 +218,7 @@ setMethod(
 
 
 ## Updated 2020-02-21.
-`diffExp,Seurat` <-  # nolint
+`diffExp,Seurat` <- # nolint
     function(object, ...) {
         diffExp(object = as(object, "SingleCellExperiment"), ...)
     }
@@ -234,7 +234,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`diffExpPerCluster,Seurat` <-  # nolint
+`diffExpPerCluster,Seurat` <- # nolint
     function(object, ...) {
         diffExpPerCluster(
             object = as(object, "SingleCellExperiment"),
@@ -253,7 +253,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`findMarkers,Seurat` <-  # nolint
+`findMarkers,Seurat` <- # nolint
     function(object, ...) {
         findMarkers(
             object = as(object, "SingleCellExperiment"),
@@ -272,7 +272,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`interestingGroups,Seurat` <-  # nolint
+`interestingGroups,Seurat` <- # nolint
     function(object, ...) {
         interestingGroups(
             object = as(object, "SingleCellExperiment"),
@@ -291,7 +291,7 @@ setMethod(
 
 
 ## Updated 2021-03-02.
-`interestingGroups<-,Seurat,character` <-  # nolint
+`interestingGroups<-,Seurat,character` <- # nolint
     getMethod(
         f = "interestingGroups<-",
         signature = signature(
@@ -315,7 +315,7 @@ setReplaceMethod(
 
 
 ## Updated 2020-01-30.
-`logcounts,Seurat` <-  # nolint
+`logcounts,Seurat` <- # nolint
     function(object, assay = NULL) {
         norm <- .seuratNormalizationMethod(object, assay = assay)
         if (norm != "LogNormalize") {
@@ -339,7 +339,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`mapGenesToIDs,Seurat` <-  # nolint
+`mapGenesToIDs,Seurat` <- # nolint
     function(object, genes, strict = TRUE) {
         mapGenesToIDs(
             object = as(object, "SingleCellExperiment"),
@@ -359,7 +359,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`mapGenesToRownames,Seurat` <-  # nolint
+`mapGenesToRownames,Seurat` <- # nolint
     function(object, genes, strict = TRUE) {
         mapGenesToRownames(
             object = as(object, "SingleCellExperiment"),
@@ -379,7 +379,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`mapGenesToSymbols,Seurat` <-  # nolint
+`mapGenesToSymbols,Seurat` <- # nolint
     function(object, genes, strict = TRUE) {
         mapGenesToSymbols(
             object = as(object, "SingleCellExperiment"),
@@ -399,7 +399,7 @@ setMethod(
 
 
 ## Updated 2022-05-11.
-`metadata,Seurat` <-  # nolint
+`metadata,Seurat` <- # nolint
     function(x, ...) {
         stash <- .getSeuratStash(x, "metadata")
         if (!is.null(stash)) {
@@ -420,7 +420,7 @@ setMethod(
 
 
 ## Updated 2019-08-05.
-`metadata<-,Seurat,ANY` <-  # nolint
+`metadata<-,Seurat,ANY` <- # nolint
     function(x, value) {
         assert(is.list(value))
         if (!length(value)) {
@@ -444,7 +444,7 @@ setReplaceMethod(
 
 
 ## Updated 2021-03-03.
-`metrics,Seurat` <-  # nolint
+`metrics,Seurat` <- # nolint
     function(object, ...) {
         metrics(
             object = as(object, "SingleCellExperiment"),
@@ -463,7 +463,7 @@ setMethod(
 
 
 ## Updated 2020-01-30.
-`normalize,Seurat` <-  # nolint
+`normalize,Seurat` <- # nolint
     function(object) {
         alert(sprintf(
             "Normalizing with {.pkg %s}::{.fun %s}.",
@@ -483,7 +483,7 @@ setMethod(
 
 
 ## Updated 2020-01-30.
-`normcounts,Seurat` <-  # nolint
+`normcounts,Seurat` <- # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated relative counts (not typical).
         method <- .seuratNormalizationMethod(object, assay = assay)
@@ -510,7 +510,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`organism,Seurat` <-  # nolint
+`organism,Seurat` <- # nolint
     function(object) {
         organism(object = as(object, "SingleCellExperiment"))
     }
@@ -526,7 +526,7 @@ setMethod(
 
 
 ## Updated 2019-08-06.
-`organism<-,Seurat,character` <-  # nolint
+`organism<-,Seurat,character` <- # nolint
     function(object, value) {
         metadata(object)[["organism"]] <- value
         object
@@ -543,7 +543,7 @@ setReplaceMethod(
 
 
 ## Updated 2021-09-13.
-`plotCellCountsPerCluster,Seurat` <-  # nolint
+`plotCellCountsPerCluster,Seurat` <- # nolint
     function(object, ...) {
         plotCellCountsPerCluster(
             object = as(object, "SingleCellExperiment"),
@@ -562,7 +562,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotCellTypesPerCluster,Seurat,KnownMarkers` <-  # nolint
+`plotCellTypesPerCluster,Seurat,KnownMarkers` <- # nolint
     function(object, markers, ...) {
         plotCellTypesPerCluster(
             object = as(object, "SingleCellExperiment"),
@@ -585,7 +585,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotCounts,Seurat` <-  # nolint
+`plotCounts,Seurat` <- # nolint
     function(object, ...) {
         plotCounts(
             object = as(object, "SingleCellExperiment"),
@@ -604,7 +604,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotDots,Seurat` <-  # nolint
+`plotDots,Seurat` <- # nolint
     function(object, ...) {
         plotDots(
             object = as(object, "SingleCellExperiment"),
@@ -623,7 +623,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotFeature,Seurat` <-  # nolint
+`plotFeature,Seurat` <- # nolint
     function(object, ...) {
         plotFeature(
             object = as(object, "SingleCellExperiment"),
@@ -642,7 +642,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotKnownMarkers,Seurat,KnownMarkers` <-  # nolint
+`plotKnownMarkers,Seurat,KnownMarkers` <- # nolint
     function(object, markers, ...) {
         plotKnownMarkers(
             object = as(object, "SingleCellExperiment"),
@@ -665,7 +665,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotMarker,Seurat` <-  # nolint
+`plotMarker,Seurat` <- # nolint
     function(object, ...) {
         plotMarker(
             object = as(object, "SingleCellExperiment"),
@@ -684,7 +684,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotPCA,Seurat` <-  # nolint
+`plotPCA,Seurat` <- # nolint
     function(object, ...) {
         plotPCA(
             object = as(object, "SingleCellExperiment"),
@@ -703,7 +703,7 @@ setMethod(
 
 
 ## Updated 2021-03-02.
-`plotReducedDim,Seurat` <-  # nolint
+`plotReducedDim,Seurat` <- # nolint
     function(object, ...) {
         validObject(object)
         idents <- .seuratWhichIdents(object)
@@ -722,7 +722,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotStackedBarPlot,Seurat` <-  # nolint
+`plotStackedBarPlot,Seurat` <- # nolint
     function(object, ...) {
         plotStackedBarPlot(
             object = as(object, "SingleCellExperiment"),
@@ -741,7 +741,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotTSNE,Seurat` <-  # nolint
+`plotTSNE,Seurat` <- # nolint
     function(object, ...) {
         plotTSNE(
             object = as(object, "SingleCellExperiment"),
@@ -760,7 +760,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotViolin,Seurat` <-  # nolint
+`plotViolin,Seurat` <- # nolint
     function(object, ...) {
         plotViolin(
             object = as(object, "SingleCellExperiment"),
@@ -779,7 +779,7 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotUMAP,Seurat` <-  # nolint
+`plotUMAP,Seurat` <- # nolint
     function(object, ...) {
         plotUMAP(
             object = as(object, "SingleCellExperiment"),
@@ -798,7 +798,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`reducedDim,Seurat` <-  # nolint
+`reducedDim,Seurat` <- # nolint
     function(x, type = 1L, withDimnames = TRUE) {
         reducedDim(
             x = as(x, "SingleCellExperiment"),
@@ -818,7 +818,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`reducedDimNames,Seurat` <-  # nolint
+`reducedDimNames,Seurat` <- # nolint
     function(x) {
         reducedDimNames(x = as(x, "SingleCellExperiment"))
     }
@@ -834,7 +834,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`reducedDims,Seurat` <-  # nolint
+`reducedDims,Seurat` <- # nolint
     function(x, ...) {
         reducedDims(
             x = as(x, "SingleCellExperiment"),
@@ -853,7 +853,7 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`rowData,Seurat` <-  # nolint
+`rowData,Seurat` <- # nolint
     function(x, ...) {
         rowData(
             x = as(x, "SingleCellExperiment"),
@@ -872,7 +872,7 @@ setMethod(
 
 
 ## Updated 2022-05-11.
-`rowRanges,Seurat` <-  # nolint
+`rowRanges,Seurat` <- # nolint
     function(x) {
         sce <- Seurat::as.SingleCellExperiment(x)
         gr <- rowRanges(sce)
@@ -896,7 +896,7 @@ setMethod(
         ## using `convertGenesToSymbols`.
         if (
             identical(length(gr), length(stash)) &&
-            !identical(names(gr), names(stash))
+                !identical(names(gr), names(stash))
         ) {
             names(stash) <- names(gr)
         }
@@ -908,7 +908,7 @@ setMethod(
             ,
             setdiff(colnames(mcols2), colnames(mcols1)),
             drop = FALSE
-            ]
+        ]
         mcols <- cbind(mcols1, mcols2)
         colnames(mcols) <- camelCase(colnames(mcols), strict = TRUE)
         gr <- stash
@@ -927,7 +927,7 @@ setMethod(
 
 
 ## Updated 2019-08-05.
-`rowRanges<-,Seurat,ANY` <-  # nolint
+`rowRanges<-,Seurat,ANY` <- # nolint
     function(x, value) {
         assert(identical(rownames(x), names(value)))
         x@misc[["rowRanges"]] <- value
@@ -948,7 +948,7 @@ setReplaceMethod(
 
 
 ## Updated 2021-03-03.
-`sampleData,Seurat` <-  # nolint
+`sampleData,Seurat` <- # nolint
     function(object, ...) {
         sampleData(
             object = as(object, "SingleCellExperiment"),
@@ -967,7 +967,7 @@ setMethod(
 
 
 ## Updated 2021-10-13.
-`sampleData<-,Seurat,DataFrame` <-  # nolint
+`sampleData<-,Seurat,DataFrame` <- # nolint
     getMethod(
         f = "sampleData<-",
         signature = signature(
@@ -991,7 +991,7 @@ setReplaceMethod(
 
 
 ## Updated 2021-03-03.
-`sampleNames,Seurat` <-  # nolint
+`sampleNames,Seurat` <- # nolint
     function(object) {
         sampleNames(object = as(object, "SingleCellExperiment"))
     }

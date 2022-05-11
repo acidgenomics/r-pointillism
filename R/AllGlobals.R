@@ -1,5 +1,5 @@
 .formalsList <- list(
-    "BPPARAM" = quote(BiocParallel::bpparam()),  # nolint
+    "BPPARAM" = quote(BiocParallel::bpparam()), # nolint
     "continuousColor" =
         quote(getOption(
             x = "acid.continuous.color",
