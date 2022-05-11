@@ -4,7 +4,7 @@ suppressPackageStartupMessages({
     library(AcidSingleCell) # 0.3.0
     library(Seurat) # 4.1.0
 })
-load_all(helpers = FALSE)
+load_all() # helpers = FALSE
 data(seurat)
 data(cellTypeMarkersList, package = "AcidSingleCell")
 object <- seurat

@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
     library(Seurat) # 4.1.0
     library(SeuratObject) # 4.0.4
 })
-load_all(helpers = FALSE)
+load_all() # helpers = FALSE
 limit <- structure(1e6, class = "object_size")
 data(pbmc_small, package = "SeuratObject")
 object <- pbmc_small
