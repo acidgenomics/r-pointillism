@@ -1,9 +1,9 @@
 context("Seurat as SingleCellExperiment")
 
-object <- seurat
+object <- Seurat
 
 test_that("Gene2Symbol", {
-    x <- Gene2Symbol(seurat)
+    x <- Gene2Symbol(object)
     expect_is(x, "Gene2Symbol")
 })
 

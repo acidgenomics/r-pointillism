@@ -1,10 +1,11 @@
 context("SeuratMarkers")
 
 test_that("SeuratMarkers", {
-    ranges <- rowRanges(seurat)
+    object <- Seurat
+    ranges <- rowRanges(object)
     invisible(capture.output({
         markers <- Seurat::FindMarkers(
-            object = seurat,
+            object = object,
             ident.1 = "1",
             ident.2 = NULL
         )
@@ -18,11 +19,12 @@ test_that("SeuratMarkers", {
 context("SeuratMarkersPerCluster")
 
 test_that("SeuratMarkersPerCluster", {
-    ranges <- rowRanges(seurat)
+    object <- Seurat
+    ranges <- rowRanges(object)
     ## Suppressing expected warning: "cannot compute exact p-value with ties".
     suppressWarnings({
         invisible(capture.output({
-            markers <- Seurat::FindAllMarkers(seurat)
+            markers <- Seurat::FindAllMarkers(object)
         }))
     })
     x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)

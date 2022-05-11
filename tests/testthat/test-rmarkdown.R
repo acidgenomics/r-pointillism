@@ -1,10 +1,18 @@
-## FIXME Need to ensure all markdown templates defined in package are covered.
+## FIXME Need to cover "seurat-clustering"
+## FIXME Need to cover "seurat-markers"
 
 
 
 context("R Markdown templates")
 
 render <- rmarkdown::render
+
+seuratFile <- system.file(
+    "data",
+    "Seurat.rda",
+    package = "pointillism",
+    mustWork = TRUE
+)
 
 tmpdir <- file.path(tempdir(), "rmarkdown-render")
 unlink(tmpdir, recursive = TRUE)
@@ -30,14 +38,7 @@ test_that("Seurat per cluster analysis", {
         input = input,
         output_format = "md_document",
         clean = TRUE,
-        params = list(
-            "seurat_file" = system.file(
-                "data",
-                "Seurat.rda",
-                package = "pointillism",
-                mustWork = TRUE
-            )
-        ),
+        params = list("seurat_file" = seuratFile),
         quiet = TRUE
     )
     expect_true(file.exists(out))

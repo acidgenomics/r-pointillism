@@ -1,13 +1,13 @@
 context("CellTypeMarkers")
 
 test_that("CellTypeMarkers", {
+    gene2symbol <- Gene2Symbol(Seurat)
     file <- system.file(
         "extdata/markers/cell-type/homo-sapiens.csv",
         package = "AcidSingleCell"
     )
     markers <- as(import(file), "DataFrame")
     colnames(markers) <- camelCase(colnames(markers), strict = TRUE)
-    gene2symbol <- Gene2Symbol(seurat)
     keep <- markers[["geneId"]] %in% gene2symbol[["geneId"]]
     expect_true(any(keep))
     markers <- markers[keep, , drop = FALSE]
