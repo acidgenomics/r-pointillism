@@ -13,11 +13,11 @@
 #' @param ... Passthrough arguments to `plotMarker()`.
 #'
 #' @examples
-#' data(Seurat, SeuratMarkersPerCluster)
+#' data(seurat, smpc)
 #'
 #' ## Seurat, SeuratMarkersPerCluster ====
-#' object <- Seurat
-#' markers <- SeuratMarkersPerCluster
+#' object <- seurat
+#' markers <- smpc
 #' plotTopMarkers(
 #'     object = object,
 #'     markers = markers,

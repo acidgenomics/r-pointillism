@@ -21,10 +21,10 @@
 #' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
-#' data(Seurat)
+#' data(seurat)
 #'
 #' ## Seurat ====
-#' object <- Seurat
+#' object <- seurat
 #' plotPCElbow(object)
 NULL
 

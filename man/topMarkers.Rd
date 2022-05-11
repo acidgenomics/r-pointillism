@@ -31,10 +31,10 @@ Top markers
 Updated 2022-05-11.
 }
 \examples{
-data(SeuratMarkersPerCluster)
+data(smpc)
 
 ## SeuratMarkersPerCluster ====
-object <- SeuratMarkersPerCluster
+object <- smpc
 x <- topMarkers(
     object = object,
     direction = "up",

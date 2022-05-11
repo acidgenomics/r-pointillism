@@ -6,10 +6,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(SeuratMarkersPerCluster)
+#' data(smpc)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- SeuratMarkersPerCluster
+#' object <- smpc
 #' class(object)
 #' summary(object)
 NULL

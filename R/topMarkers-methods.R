@@ -11,10 +11,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(SeuratMarkersPerCluster)
+#' data(smpc)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- SeuratMarkersPerCluster
+#' object <- smpc
 #' x <- topMarkers(
 #'     object = object,
 #'     direction = "up",
