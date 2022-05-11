@@ -12,6 +12,8 @@ as.SingleCellExperiment(x, ...)
 }
 \arguments{
 \item{x}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{DESeqDataSet}.

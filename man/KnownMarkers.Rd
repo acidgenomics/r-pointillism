@@ -5,7 +5,7 @@
 \alias{KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers-method}
 \title{Known cell markers}
 \usage{
-KnownMarkers(object, ...)
+KnownMarkers(markers, known, ...)
 
 \S4method{KnownMarkers}{SeuratMarkersPerCluster,CellTypeMarkers}(markers, known, promiscuousThreshold = 0L)
 }
@@ -26,9 +26,9 @@ Set to \code{0} to disable promiscuous marker filtering.}
 \code{KnownMarkers}.
 }
 \description{
-Both the \code{markers} and \code{known} objects must contain Ensembl gene identifiers
-in the \code{geneId} column. We must avoid any matching operations based on the
-gene names, since these change often and can mismatch easily.
+Objects must contain Ensembl gene identifiers in the \code{geneId} column. We
+must avoid any matching operations based on the gene names, since these
+change often and can mismatch easily.
 }
 \note{
 Updated 2022-05-11.

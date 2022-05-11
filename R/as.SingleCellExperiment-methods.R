@@ -11,6 +11,9 @@
 #' `rowRanges` and `metadata` if the `Seurat` object was originally created
 #' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
 #'
+#' @inheritParams AcidRoxygen::params
+#' @param ... Additional arguments.
+#'
 #' @seealso
 #' - `Seurat::as.SingleCellExperiment()`.
 #'

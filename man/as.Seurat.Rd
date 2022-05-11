@@ -11,6 +11,8 @@ as.Seurat(x, ...)
 }
 \arguments{
 \item{x}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{Seurat}.
