@@ -21,13 +21,13 @@ NULL
 ## S4 generics and methods =====================================================
 
 #' @importFrom AcidExperiment sampleNames
-#' @importFrom AcidGenerics Gene2Symbol KnownMarkers camelCase
-#'   cellCountsPerCluster cellTypesPerCluster clusters convertGenesToSymbols cpm
-#'   diffExp diffExpPerCluster findMarkers geometricMean interestingGroups
-#'   interestingGroups<- leftJoin makeLabel makeNames mapGenesToIDs
-#'   mapGenesToRownames mapGenesToSymbols melt metrics mutateIf
-#'   plotCellCountsPerCluster plotCellTypesPerCluster plotCounts plotDots
-#'   plotFeature plotKnownMarkers plotMarker plotPCElbow plotReducedDim
+#' @importFrom AcidGenerics Gene2Symbol KnownMarkers as.Seurat
+#'   as.SingleCellExperiment camelCase cellCountsPerCluster cellTypesPerCluster
+#'   clusters convertGenesToSymbols cpm diffExp diffExpPerCluster findMarkers
+#'   geometricMean interestingGroups interestingGroups<- leftJoin makeLabel
+#'   makeNames mapGenesToIDs mapGenesToRownames mapGenesToSymbols melt metrics
+#'   mutateIf plotCellCountsPerCluster plotCellTypesPerCluster plotCounts
+#'   plotDots plotFeature plotKnownMarkers plotMarker plotPCElbow plotReducedDim
 #'   plotStackedBarPlot plotTSNE plotTopMarkers plotUMAP plotViolin sampleData
 #'   sampleData<- snakeCase topMarkers uniteInterestingGroups
 #' @importFrom BiocGenerics as.data.frame cbind counts counts<- do.call lapply
@@ -63,7 +63,7 @@ NULL
 ## S3 generics =================================================================
 
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
-#'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
+#'   NormalizeData Stdev VariableFeatures
 #' @importFrom edgeR calcNormFactors estimateDisp glmFit
 #' @importFrom stats median model.matrix relevel
 NULL
