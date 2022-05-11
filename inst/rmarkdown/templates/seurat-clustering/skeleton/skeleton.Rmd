@@ -28,7 +28,7 @@ suppressPackageStartupMessages({
 prepareTemplate(package = "pointillism")
 source("_setup.R")
 ## knitr arguments for `rmarkdown::render()` looping.
-## > opts_chunk$set(
+## > opts_chunk[["set"]](
 ## >     cache.path = paste(
 ## >         params[["seurat_name"]],
 ## >         "clustering",
