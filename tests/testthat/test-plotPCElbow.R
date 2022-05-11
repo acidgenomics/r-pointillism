@@ -1,12 +1,12 @@
 context("plotPCElbow")
 
 objects <- list(
-    Seurat = seurat
-    ## > cell_data_set = cds
+    "Seurat" = Seurat
+    ## > "cell_data_set" = cell_data_set
 )
 elbows <- list(
-    Seurat = 10L
-    ## > cell_data_set = 16L
+    "Seurat" = 10L
+    ## > "cell_data_set" = 16L
 )
 
 test_that("plotPCElbow", {

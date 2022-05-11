@@ -12,26 +12,17 @@ data(
 )
 data(
     KnownMarkers,
-    ## > SingleCellExperiment,
     package = "AcidTest",
     envir = environment()
 )
 
-## > ## > cds <- cell_data_set
-## > ## > rm(cell_data_set)
+SingleCellExperiment <- as(Seurat, "SingleCellExperiment")
+genes <- head(rownames(Seurat))
 
-## > sce <- SingleCellExperiment
-## > rm(SingleCellExperiment)
-
-seurat <- Seurat
-rm(Seurat)
-
-genes <- head(rownames(seurat))
-sce <- as(seurat, "SingleCellExperiment")
-
+## FIXME Rework this...take out.
 objects <- list(
-    "SingleCellExperiment" = sce,
-    "Seurat" = seurat
+    "SingleCellExperiment" = SingleCellExperiment,
+    "Seurat" = Seurat
 )
 
 ## nolint start

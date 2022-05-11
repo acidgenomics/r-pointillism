@@ -1,8 +1,8 @@
 context("plotTopMarkers")
 
 test_that("Seurat", {
-    object <- seurat
-    markers <- seuratAllMarkers
+    object <- Seurat
+    markers <- SeuratMarkersPerCluster
     expect_s4_class(markers, "SeuratMarkersPerCluster")
     invisible(capture.output({
         x <- plotTopMarkers(
