@@ -1,13 +1,13 @@
 ---
-## Updated 2022-05-10.
+## Updated 2022-05-11.
 params:
   title: "Seurat markers"
   ## Seurat
   seurat_file: !r file.path("rds", Sys.Date(), "seurat.rds")
   ## SeuratMarkersPerCluster
-  all_markers_file: "rds/YYYY-MM-DD/all_markers.rds"
+  all_markers_file: !r file.path("rds", Sys.Date(), "all_markers.rds")
   ## KnownMarkers
-  known_markers_file: "rds/YYYY-MM-DD/known_markers.rds"
+  known_markers_file: !r file.path("rds", Sys.Date(), "known_markers.rds")
   ## Use dark mode theme (`theme_midnight()`) for plots.
   dark: FALSE
   data_dir: !r file.path("rds", Sys.Date())
@@ -27,7 +27,7 @@ suppressPackageStartupMessages({
 })
 prepareTemplate(package = "pointillism")
 source("_setup.R")
-initDir(params$results_dir)
+initDir(params[["results_dir"]])
 ```
 
 ```{r header, child="_header.Rmd"}
@@ -36,7 +36,7 @@ initDir(params$results_dir)
 # Load objects
 
 ```{r load-objects}
-file <- params$seurat_file
+file <- params[["seurat_file"]]
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
@@ -45,25 +45,21 @@ stopifnot(
     is.character(name)
 )
 invisible(validObject(object))
-
-file <- params$all_markers_file
+file <- params[["all_markers_file"]]
 markers <- import(file)
 rm(file)
 stopifnot(is(markers, "SeuratMarkersPerCluster"))
 invisible(validObject(markers))
-
-file <- params$known_markers_file
-known_markers <- import(file)
+file <- params[["known_markers_file"]]
+knownMarkers <- import(file)
 rm(file)
-stopifnot(is(known_markers, "KnownMarkers"))
-invisible(validObject(known_markers))
-
+stopifnot(is(knownMarkers, "KnownMarkers"))
+invisible(validObject(knownMarkers))
 ## Check that object has organism and gene-to-symbol mappings defined.
 stopifnot(
     is.character(organism(object)),
     is(Gene2Symbol(object), "Gene2Symbol")
 )
-
 print(object)
 ```
 
@@ -77,8 +73,8 @@ topMarkers(markers)
 plotTopMarkers(
     object = object,
     markers = markers,
-    headerLevel = 2,
-    dark = params$dark
+    headerLevel = 2L,
+    dark = params[["dark"]]
 )
 ```
 
@@ -87,9 +83,9 @@ plotTopMarkers(
 ```{r plot-known-markers, results="asis"}
 plotKnownMarkers(
     object = object,
-    markers = known_markers,
-    headerLevel = 2,
-    dark = params$dark
+    markers = knownMarkers,
+    headerLevel = 2L,
+    dark = params[["dark"]]
 )
 ```
 
@@ -98,20 +94,20 @@ plotKnownMarkers(
 ```{r plot-cell-types-per-cluster, results="asis"}
 plotCellTypesPerCluster(
     object = object,
-    markers = known_markers,
-    headerLevel = 2,
-    dark = params$dark
+    markers = knownMarkers,
+    headerLevel = 2L,
+    dark = params[["dark"]]
 )
 ```
 
 ```{r cell-types-per-cluster}
-cell_types_per_cluster <- cellTypesPerCluster(known_markers)
+ctpc <- cellTypesPerCluster(knownMarkers)
 assignAndSaveData(
     name = paste(name, "cell_types_per_cluster", sep = "_"),
-    object = cell_types_per_cluster,
-    dir = params$data_dir
+    object = ctpc,
+    dir = params[["data_dir"]]
 )
-cell_types_per_cluster
+print(ctpc)
 ```
 
 ```{r footer, child="_footer.Rmd"}

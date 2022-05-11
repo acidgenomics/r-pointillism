@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-10.
+## Updated 2022-05-11.
 params:
   title: "Per cluster analysis"
 
@@ -29,7 +29,7 @@ source("_setup.R")
 # Load Seurat object
 
 ```{r load-object}
-file <- params$seurat_file
+file <- params[["seurat_file"]]
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
