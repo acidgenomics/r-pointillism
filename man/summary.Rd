@@ -41,10 +41,10 @@ The form of the value returned by \code{summary} depends on the
 Updated 2022-05-11.
 }
 \examples{
-data(SeuratMarkersPerCluster)
+data(smpc)
 
 ## SeuratMarkersPerCluster ====
-object <- SeuratMarkersPerCluster
+object <- smpc
 class(object)
 summary(object)
 }

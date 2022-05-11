@@ -35,10 +35,10 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 Updated 2020-01-30.
 }
 \examples{
-data(Seurat)
+data(seurat)
 
 ## Seurat ====
-object <- Seurat
+object <- seurat
 plotPCElbow(object)
 }
 \seealso{

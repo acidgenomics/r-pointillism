@@ -14,7 +14,7 @@ Force an object to belong to a class
 Updated 2022-05-11.
 }
 \examples{
-data(Seurat)
+data(seurat)
 data(SingleCellExperiment_Seurat, package = "AcidTest")
 
 ## SingleCellExperiment to Seurat ====
@@ -24,7 +24,7 @@ class(to)
 print(to)
 
 ## Seurat to SingleCellExperiment ====
-from <- Seurat
+from <- seurat
 to <- as(from, "SingleCellExperiment")
 class(to)
 print(to)

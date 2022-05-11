@@ -46,10 +46,10 @@ in the \code{gene} column.
 Updated 2022-05-11.
 }
 \examples{
-data(Seurat)
+data(seurat)
 
 ## Seurat ====
-object <- Seurat
+object <- seurat
 ranges <- rowRanges(object)
 
 ## `FindMarkers()` return.

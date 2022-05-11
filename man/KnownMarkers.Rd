@@ -35,10 +35,10 @@ Updated 2022-05-11.
 }
 \examples{
 data(cellTypeMarkersList, package = "AcidSingleCell")
-data(SeuratMarkersPerCluster)
+data(smpc)
 
 ## SeuratMarkersPerCluster ====
-markers <- SeuratMarkersPerCluster
+markers <- smpc
 known <- cellTypeMarkersList[["homoSapiens"]]
 x <- KnownMarkers(markers = markers, known = known)
 summary(x)

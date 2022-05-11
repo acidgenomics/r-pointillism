@@ -32,10 +32,10 @@ from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 Updated 2022-05-11.
 }
 \examples{
-data(Seurat)
+data(seurat)
 
 ## Seurat to SingleCellExperiment ====
-from <- Seurat
+from <- seurat
 to <- as.SingleCellExperiment(from)
 class(to)
 print(to)

@@ -21,10 +21,10 @@
 #' @return `SeuratMarkers`.
 #'
 #' @examples
-#' data(Seurat)
+#' data(seurat)
 #'
 #' ## Seurat ====
-#' object <- Seurat
+#' object <- seurat
 #' ranges <- rowRanges(object)
 #'
 #' ## `FindMarkers()` return.

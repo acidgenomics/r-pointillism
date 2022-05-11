@@ -9,7 +9,7 @@ render <- rmarkdown::render
 
 seuratFile <- system.file(
     "data",
-    "Seurat.rda",
+    "seurat.rda",
     package = "pointillism",
     mustWork = TRUE
 )

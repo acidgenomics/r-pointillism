@@ -15,10 +15,10 @@
 #' - `Seurat::as.SingleCellExperiment()`.
 #'
 #' @examples
-#' data(Seurat)
+#' data(seurat)
 #'
 #' ## Seurat to SingleCellExperiment ====
-#' from <- Seurat
+#' from <- seurat
 #' to <- as.SingleCellExperiment(from)
 #' class(to)
 #' print(to)

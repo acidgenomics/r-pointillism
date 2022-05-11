@@ -21,6 +21,6 @@ Updated 2022-05-11.
 }
 \examples{
 data(seurat)
-class(seurat)
+print(seurat)
 }
 \keyword{datasets}

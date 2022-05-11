@@ -63,11 +63,11 @@ for the number of genes to plot here in a future update.
 Updated 2022-05-11.
 }
 \examples{
-data(Seurat, SeuratMarkersPerCluster)
+data(seurat, smpc)
 
 ## Seurat, SeuratMarkersPerCluster ====
-object <- Seurat
-markers <- SeuratMarkersPerCluster
+object <- seurat
+markers <- smpc
 plotTopMarkers(
     object = object,
     markers = markers,
