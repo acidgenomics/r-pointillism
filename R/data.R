@@ -2,24 +2,24 @@
 #'
 #' Example `Seurat` (v4) object.
 #'
-#' @note Updated 2022-03-10.
-#' @usage data(Seurat)
+#' @note Updated 2022-05-11.
+#' @usage data(seurat)
 #' @return `Seurat`.
 #'
 #' @examples
-#' data(Seurat)
-#' print(Seurat)
-"Seurat"
+#' data(seurat)
+#' print(seurat)
+"seurat"
 
 
 
-#' Seurat markers per cluster
+#' Example `SeuratMarkersPerCluster` object
 #'
-#' @note Updated 2022-03-10.
-#' @usage data(SeuratMarkersPerCluster)
+#' @note Updated 2022-05-11.
+#' @usage data(smpc)
 #' @return `SeuratMarkersPerCluster`.
 #'
 #' @examples
-#' data(SeuratMarkersPerCluster)
-#' print(SeuratMarkersPerCluster)
-"SeuratMarkersPerCluster"
+#' data(smpc)
+#' print(smpc)
+"smpc"

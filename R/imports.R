@@ -27,7 +27,7 @@ NULL
 #'   sampleData<- snakeCase topMarkers uniteInterestingGroups
 #' @importFrom BiocGenerics as.data.frame cbind counts counts<- do.call lapply
 #'   normalize organism organism<- plotPCA rowMeans rowSums sapply sizeFactors
-#'   sizeFactors<- t table unsplit
+#'   sizeFactors<- sort t table unique unsplit
 #' @importFrom BiocParallel bpprogressbar bpprogressbar<-
 #' @importFrom S4Vectors as.matrix complete.cases decode head mcols mcols<-
 #'   metadata metadata<- na.omit split summary tail
