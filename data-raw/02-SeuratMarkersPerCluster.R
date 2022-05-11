@@ -9,7 +9,7 @@ data(cellTypeMarkersList, package = "AcidSingleCell")
 data(Seurat)
 SeuratMarkersPerCluster <-  # nolint
     withCallingHandlers(
-        expr = pointillism::SeuratMarkersPerCluster(
+        expr = SeuratMarkersPerCluster(
             object = FindAllMarkers(Seurat),
             ranges = rowRanges(Seurat)
         ),

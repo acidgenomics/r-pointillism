@@ -16,8 +16,12 @@ data(
     envir = environment()
 )
 
-SingleCellExperiment <- as(Seurat, "SingleCellExperiment")
+sce <- as(Seurat, "SingleCellExperiment")
 genes <- head(rownames(Seurat))
+seurat <- Seurat
+rm(Seurat)
+smpc <- SeuratMarkersPerCluster
+rm(SeuratMarkersPerCluster)
 
 ## nolint start
 CellTypeMarkers <- AcidSingleCell::CellTypeMarkers
