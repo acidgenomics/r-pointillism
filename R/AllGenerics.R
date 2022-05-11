@@ -1,6 +1,6 @@
 #' @rdname KnownMarkers
 #' @name KnownMarkers
-#' @usage KnownMarkers(object, ...)
+#' @usage KnownMarkers(markers, known, ...)
 #' @export
 NULL
 

@@ -6,6 +6,9 @@
 #' Note that `Seurat::as.Seurat()` method requires `logcounts` to be defined
 #' in `assays()`, so we're using `CreateSeuratObject()` here instead.
 #'
+#' @inheritParams AcidRoxygen::params
+#' @param ... Additional arguments.
+#'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
 #' - `Seurat::as.Seurat()`.
