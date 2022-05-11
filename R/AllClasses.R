@@ -5,12 +5,12 @@
 #' Results are arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @return `SeuratMarkers`.
 setClass(
     Class = "SeuratMarkers",
-    contains = "DataFrame"
+    contains = "DFrame"
 )
 setValidity(
     Class = "SeuratMarkers",
@@ -43,12 +43,12 @@ setValidity(
 #' Results are split per `cluster` and arranged by adjusted *P* value (`padj`).
 #'
 #' @export
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @return `SeuratMarkersPerCluster`.
 setClass(
     Class = "SeuratMarkersPerCluster",
-    contains = "CompressedSplitDataFrameList"
+    contains = "CompressedSplitDFrameList"
 )
 setValidity(
     Class = "SeuratMarkersPerCluster",
