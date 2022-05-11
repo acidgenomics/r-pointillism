@@ -1,10 +1,11 @@
-# pointillism 0.6.0 (2022-05-10
+# pointillism 0.6.0 (2022-05-11)
 
 ## Major changes
 
 - Now requiring R 4.2 / Bioconductor 3.15.
 - Split out basejump dependencies into individual packages.
 - `runSeurat`: Simplified processing of TSNE and UMAP.
+- Updated unit tests and working examples.
 
 ## Minor changes
 

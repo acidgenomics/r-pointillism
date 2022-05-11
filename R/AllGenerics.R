@@ -22,6 +22,18 @@ setGeneric(
     }
 )
 
+#' @rdname as.Seurat
+#' @name as.Seurat
+#' @usage as.Seurat(x, ...)
+#' @export
+NULL
+
+#' @rdname as.SingleCellExperiment
+#' @name as.SingleCellExperiment
+#' @usage as.SingleCellExperiment(x, ...)
+#' @export
+NULL
+
 #' @rdname plotPCElbow
 #' @name plotPCElbow
 #' @usage plotPCElbow(object, ...)

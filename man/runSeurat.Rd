@@ -4,7 +4,7 @@
 \alias{runSeurat}
 \alias{runSeurat,Seurat-method}
 \alias{runSeurat,SingleCellExperiment-method}
-\title{Run Seurat}
+\title{Run Seurat analysis}
 \usage{
 runSeurat(object, ...)
 
@@ -65,10 +65,10 @@ Disable parallelization with future by setting to \code{NULL}.}
 \code{Seurat}.
 }
 \description{
-Run Seurat
+Run Seurat analysis
 }
 \note{
-Updated 2022-05-10.
+Updated 2022-05-11.
 }
 \seealso{
 \itemize{

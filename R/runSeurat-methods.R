@@ -1,13 +1,7 @@
-## FIXME Need to rework reticulate handling here.
-## FIXME Need to think about NA gene symbol handling in call
-##       to convertGenesToSymbols.
-
-
-
-#' Run Seurat
+#' Run Seurat analysis
 #'
 #' @name runSeurat
-#' @note Updated 2022-05-10.
+#' @note Updated 2022-05-11.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
