@@ -25,13 +25,13 @@ NULL
 
 
 ## Updated 2022-05-11.
-`coerce,Seurat,SCE` <-  # nolint
+`coerce,Seurat,SCE` <- # nolint
     function(from) {
         as.SingleCellExperiment(from)
     }
 
 ## Updated 2022-05-11.
-`coerce,Seurat,RSE` <-  # nolint
+`coerce,Seurat,RSE` <- # nolint
     function(from) {
         to <- from
         to <- as(to, "SingleCellExperiment")
@@ -40,7 +40,7 @@ NULL
     }
 
 ## Updated 2022-05-11.
-`coerce,Seurat,SE` <-  # nolint
+`coerce,Seurat,SE` <- # nolint
     function(from) {
         to <- from
         to <- as(to, "RangedSummarizedExperiment")
@@ -49,7 +49,7 @@ NULL
     }
 
 ## Updated 2022-05-11.
-`coerce,SCE,Seurat` <-  # nolint
+`coerce,SCE,Seurat` <- # nolint
     function(from) {
         as.Seurat(from)
     }

@@ -6,37 +6,37 @@
 #' @inheritParams AcidRoxygen::params
 #'
 #' @param regressCellCycle `character(1)`.
-#'   - `"s-g2m-diff"`: Calculate the difference between S and G2/M phases and
-#'     use that to regress. See `CC.Difference` metric in Seurat vignette.
-#'   - `"yes"`: Regress out any effects of both S and G2/M phase variable.
-#'     Refer to `"S.Score"` and `"G2M.Score"` metrics in Seurat vignette.
-#'   - `"no"`: Don't calculate cell-cycle scoring and don't regress.
+#' - `"s-g2m-diff"`: Calculate the difference between S and G2/M phases and
+#' use that to regress. See `CC.Difference` metric in Seurat vignette.
+#' - `"yes"`: Regress out any effects of both S and G2/M phase variable.
+#' Refer to `"S.Score"` and `"G2M.Score"` metrics in Seurat vignette.
+#' - `"no"`: Don't calculate cell-cycle scoring and don't regress.
 #'
-#'   Refer to the Seurat cell-cycle regression vignette for details.
+#' Refer to the Seurat cell-cycle regression vignette for details.
 #'
 #' @param varsToRegress `character` or `NULL`.
-#'   Unwanted sources of variance to regress. Note that when `regressCellCycle`
-#'   is not `"no"`, then the corresponding cell-cycle variables are added
-#'   automatically. Passes to [Seurat::ScaleData] internally.
+#' Unwanted sources of variance to regress. Note that when `regressCellCycle`
+#' is not `"no"`, then the corresponding cell-cycle variables are added
+#' automatically. Passes to [Seurat::ScaleData] internally.
 #'
 #' @param dims `"auto"` or `integer`.
-#'   Dimensions of reduction to use as input for shared nearest neighbor (SNN)
-#'   graph construction. When set to "auto" (default), the elbow point is
-#'   calculated internally. See [plotPCElbow()] for details. Passes to
-#'   [Seurat::FindNeighbors()] and [Seurat::RunUMAP()] internally.
+#' Dimensions of reduction to use as input for shared nearest neighbor (SNN)
+#' graph construction. When set to "auto" (default), the elbow point is
+#' calculated internally. See [plotPCElbow()] for details. Passes to
+#' [Seurat::FindNeighbors()] and [Seurat::RunUMAP()] internally.
 #'
 #' @param resolution `numeric`.
-#'   Resolutions to calculate for clustering.
-#'   Passes to [Seurat::FindClusters()] internally.
+#' Resolutions to calculate for clustering.
+#' Passes to [Seurat::FindClusters()] internally.
 #'
-#'   Currently supported:
-#'   - `"uwot"`, changed to default in Seurat 3.
-#'     Note that this sets `metric = "cosine"` automatically.
-#'   - `"umap-learn"`, which requires reticulate.
-#'     Note that this sets `metric = "correlation"` automatically.
+#' Currently supported:
+#' - `"uwot"`, changed to default in Seurat 3.
+#' Note that this sets `metric = "cosine"` automatically.
+#' - `"umap-learn"`, which requires reticulate.
+#' Note that this sets `metric = "correlation"` automatically.
 #'
 #' @param workers `"auto"`, `integer(1)`, or `NULL`.
-#'   Disable parallelization with future by setting to `NULL`.
+#' Disable parallelization with future by setting to `NULL`.
 #'
 #' @return `Seurat`.
 #'
@@ -44,22 +44,20 @@
 #' - https://github.com/satijalab/seurat/wiki
 #' - https://satijalab.org/seurat/essential_commands.html
 #' - https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
-#'   https://satijalab.org/seurat/v3.0/future_vignette.html
+#' https://satijalab.org/seurat/v3.0/future_vignette.html
 #' - https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
 NULL
 
 
 
 ## Updated 2022-05-10.
-`runSeurat,Seurat` <-  # nolint
-    function(
-        object,
-        regressCellCycle = c("s-g2m-diff", "yes", "no"),
-        varsToRegress = c("nCount_RNA", "mitoRatio"),
-        dims = "auto",
-        resolution = seq(from = 0.2, to = 1.2, by = 0.2),
-        workers = "auto"
-    ) {
+`runSeurat,Seurat` <- # nolint
+    function(object,
+             regressCellCycle = c("s-g2m-diff", "yes", "no"),
+             varsToRegress = c("nCount_RNA", "mitoRatio"),
+             dims = "auto",
+             resolution = seq(from = 0.2, to = 1.2, by = 0.2),
+             workers = "auto") {
         assert(
             requireNamespace("future", quietly = TRUE),
             requireNamespace("Seurat", quietly = TRUE),
@@ -74,7 +72,7 @@ NULL
         ## Multiprocess is currently unstable in RStudio and disabled.
         if (
             isTRUE(future::supportsMulticore()) &&
-            !is.null(workers)
+                !is.null(workers)
         ) {
             if (identical(workers, "auto")) {
                 workers <- max(getOption(x = "mc.cores", default = 1L), 1L)
@@ -137,7 +135,7 @@ NULL
         ## Update the variables to regress, including cell cycle.
         if (identical(regressCellCycle, "s-g2m-diff")) {
             ## Note that Seurat uses non-standard '$' and '[[' methods.
-            object$CC.Difference <- object$S.Score - object$G2M.Score  # nolint
+            object$CC.Difference <- object$S.Score - object$G2M.Score # nolint
             varsToRegress <- c("CC.Difference", varsToRegress)
         } else if (identical(regressCellCycle, "yes")) {
             varsToRegress <- c("S.Score", "G2M.Score", varsToRegress)
@@ -210,7 +208,7 @@ NULL
 
 
 ## Updated 2020-06-26.
-`runSeurat,SCE` <-  # nolint
+`runSeurat,SCE` <- # nolint
     function(object, ...) {
         object <- as(object, "SingleCellExperiment")
         object <- convertGenesToSymbols(object)

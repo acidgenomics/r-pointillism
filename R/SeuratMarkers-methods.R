@@ -4,19 +4,22 @@
 #' marker analysis and add corresponding gene annotations.
 #'
 #' @name SeuratMarkers
-#' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
-#'   in the `gene` column.
 #' @note Updated 2022-05-11.
+#'
+#' @details
+#' For [Seurat::FindAllMarkers()] return, rownames are correctly returned
+#' in the `gene` column.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
 #' @param object
-#'   Unmodified Seurat marker return `data.frame`.
-#'   - `SeuratMarkers()`: [Seurat::FindMarkers()].
-#'   - `SeuratMarkersPerCluster()`: [Seurat::FindAllMarkers()].
+#' Unmodified Seurat marker return `data.frame`.
+#' - `SeuratMarkers()`: [Seurat::FindMarkers()].
+#' - `SeuratMarkersPerCluster()`: [Seurat::FindAllMarkers()].
+#'
 #' @param ranges `GenomicRanges`.
-#'   Gene annotations. Names must correspond to the rownames. The function will
-#'   automatically subset the ranges and arrange them alphabetically.
+#' Gene annotations. Names must correspond to the rownames. The function will
+#' automatically subset the ranges and arrange them alphabetically.
 #'
 #' @return `SeuratMarkers`.
 #'
@@ -49,12 +52,10 @@ NULL
 
 
 ## Updated 2021-03-03.
-`SeuratMarkers,data.frame` <-  # nolint
-    function(
-        object,
-        ranges,
-        alphaThreshold = 0.05
-    ) {
+`SeuratMarkers,data.frame` <- # nolint
+    function(object,
+             ranges,
+             alphaThreshold = 0.05) {
         assert(
             hasRows(object),
             hasRownames(object),
@@ -165,7 +166,7 @@ NULL
 
 
 ## Updated 2019-08-06.
-`SeuratMarkersPerCluster,data.frame` <-  # nolint
+`SeuratMarkersPerCluster,data.frame` <- # nolint
     `SeuratMarkers,data.frame`
 
 

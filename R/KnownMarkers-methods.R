@@ -3,12 +3,15 @@
 #' @note Updated 2022-05-11.
 #'
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
+#'
 #' @param known `CellTypeMarkers`.
-#'   Grouped by `cellType` column. Known markers `data.frame` imported by
-#'   `readCellTypeMarkers` or pulled from internal cell cycle markers data.
+#' Grouped by `cellType` column. Known markers `data.frame` imported by
+#' `readCellTypeMarkers` or pulled from internal cell cycle markers data.
+#'
 #' @param promiscuousThreshold `integer(1)`.
-#'   Minimum number of clusters required to consider a gene marker promiscuous.
-#'   Set to `0` to disable promiscuous marker filtering.
+#' Minimum number of clusters required to consider a gene marker promiscuous.
+#' Set to `0` to disable promiscuous marker filtering.
+#'
 #' @param ... Additional arguments.
 #'
 #' @return `KnownMarkers`.
@@ -27,12 +30,10 @@ NULL
 
 
 ## Updated 2019-09-01.
-`KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <-  # nolint
-    function(
-        markers,
-        known,
-        promiscuousThreshold = 0L
-    ) {
+`KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <- # nolint
+    function(markers,
+             known,
+             promiscuousThreshold = 0L) {
         validObject(markers)
         validObject(known)
         assert(

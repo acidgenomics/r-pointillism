@@ -5,20 +5,20 @@
 ## @seealso
 ## - https://cole-trapnell-lab.github.io/monocle3/monocle3_docs/
 ## - https://github.com/cole-trapnell-lab/monocle3/blob/master/examples/
-##       c_elegans_L2.R
+## c_elegans_L2.R
 ## - https://github.com/cole-trapnell-lab/monocle3/blob/master/examples/
-##       c_elegans_embryo.R
+## c_elegans_embryo.R
 ## - https://github.com/cole-trapnell-lab/monocle3/issues/246
 
 suppressPackageStartupMessages({
-    library(usethis)      # 2.1.5
-    library(magrittr)     # 2.0.2
-    library(lobstr)       # 1.1.1
-    library(reticulate)   # 1.24
-    library(goalie)       # 0.6.0.9000
-    library(basejump)     # 0.15.0.9000
-    library(monocle3)     # 1.0.0
-    library(pointillism)  # 0.6.0.9000
+    library(usethis) # 2.1.5
+    library(magrittr) # 2.0.2
+    library(lobstr) # 1.1.1
+    library(reticulate) # 1.24
+    library(goalie) # 0.6.0.9000
+    library(basejump) # 0.15.0.9000
+    library(monocle3) # 1.0.0
+    library(pointillism) # 0.6.0.9000
 })
 
 reticulate::use_condaenv(
@@ -96,7 +96,7 @@ cds <- cluster_cells(
     louvain_iter = 1L,
     partition_qval = 0.05,
     weight = FALSE,
-    resolution = c(10L ^ seq(from = -6L, to = -1L)),
+    resolution = c(10L^seq(from = -6L, to = -1L)),
     verbose = TRUE
 )
 
@@ -113,5 +113,5 @@ cds <- learn_graph(
 )
 
 stopifnot(obj_size(cds) < limit)
-cell_data_set <- cds  # nolint
+cell_data_set <- cds # nolint
 use_data(cell_data_set, compress = "xz", overwrite = TRUE)
