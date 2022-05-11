@@ -42,7 +42,7 @@
 #' invisible(capture.output(suppressWarnings({
 #'     markers <- Seurat::FindAllMarkers(object)
 #' })))
-#' x <- pointillism::SeuratMarkersPerCluster(object = markers, ranges = ranges)
+#' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
 NULL
 
