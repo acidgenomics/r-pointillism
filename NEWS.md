@@ -11,6 +11,7 @@
 
 - Slotting `utils::sessionInfo` instead of `sessioninfo::session_info`, where
   applicable.
+- Removed dependency on edgeR, and removed dplyr from suggested packages.
 
 # pointillism 0.5.0 (2021-03-03)
 
