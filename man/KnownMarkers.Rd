@@ -40,6 +40,6 @@ data(SeuratMarkersPerCluster)
 ## SeuratMarkersPerCluster ====
 markers <- SeuratMarkersPerCluster
 known <- cellTypeMarkersList[["homoSapiens"]]
-x <- KnownMarkers(markers = markers, known = known)
+x <- pointillism::KnownMarkers(markers = markers, known = known)
 summary(x)
 }

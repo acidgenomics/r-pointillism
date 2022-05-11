@@ -28,13 +28,13 @@ Number of genes per cluster.}
 Top markers
 }
 \note{
-Updated 2021-03-03.
+Updated 2022-05-11.
 }
 \examples{
-data(seuratAllMarkers)
+data(SeuratMarkersPerCluster)
 
 ## SeuratMarkersPerCluster ====
-object <- seuratAllMarkers
+object <- SeuratMarkersPerCluster
 x <- topMarkers(
     object = object,
     direction = "up",

@@ -1,5 +1,5 @@
 #+TITLE: pointillism
 #+STARTUP: content
 * Development
-** TODO Can we take out suggests?
-    e.g. dplyr, future, reticulate, splatter
+** TODO Work on adding coverage for all R Markdown templates.
+** TODO Can we take out dependence on dplyr in our markdown template?

@@ -1,6 +1,6 @@
 #' @name topMarkers
 #' @inherit AcidGenerics::topMarkers
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param direction `character(1)`.
@@ -11,10 +11,10 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seuratAllMarkers)
+#' data(SeuratMarkersPerCluster)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seuratAllMarkers
+#' object <- SeuratMarkersPerCluster
 #' x <- topMarkers(
 #'     object = object,
 #'     direction = "up",

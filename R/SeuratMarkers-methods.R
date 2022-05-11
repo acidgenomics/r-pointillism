@@ -6,7 +6,7 @@
 #' @name SeuratMarkers
 #' @note For [Seurat::FindAllMarkers()] return, rownames are correctly returned
 #'   in the `gene` column.
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -21,7 +21,7 @@
 #' @return `SeuratMarkers`.
 #'
 #' @examples
-#' data(Seurat, package = "AcidTest")
+#' data(Seurat)
 #'
 #' ## Seurat ====
 #' object <- Seurat
@@ -42,7 +42,7 @@
 #' invisible(capture.output(suppressWarnings({
 #'     markers <- Seurat::FindAllMarkers(object)
 #' })))
-#' x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
+#' x <- pointillism::SeuratMarkersPerCluster(object = markers, ranges = ranges)
 #' summary(x)
 NULL
 
