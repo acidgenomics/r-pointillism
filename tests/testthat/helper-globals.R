@@ -33,3 +33,7 @@ objects <- list(
     "SingleCellExperiment" = sce,
     "Seurat" = seurat
 )
+
+## nolint start
+CellTypeMarkers <- AcidSingleCell::CellTypeMarkers
+## nolint end

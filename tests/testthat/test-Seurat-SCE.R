@@ -13,8 +13,8 @@ test_that("assay", {
 
 test_that("assayNames", {
     expect_identical(
-        assayNames(object),
-        c("counts", "logcounts")
+        object = assayNames(object),
+        expected = c("counts", "logcounts")
     )
 })
 
@@ -76,7 +76,7 @@ test_that("metadata", {
 
 test_that("metrics", {
     x <- metrics(object)
-    expect_is(x, "tbl_df")
+    expect_is(x, "DataFrame")
 })
 
 test_that("reducedDims", {
@@ -101,8 +101,8 @@ test_that("sampleData", {
     expect_identical(
         object = sampleData(object),
         expected = DataFrame(
-            sampleName = factor("unknown"),
-            interestingGroups = factor("unknown"),
+            "sampleName" = factor("unknown"),
+            "interestingGroups" = factor("unknown"),
             row.names = "unknown"
         )
     )
