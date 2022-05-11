@@ -1,3 +1,8 @@
+## FIXME Need to address `as.SingleCellExperiment` and `as.Seurat` S3
+## generic collision here in package...
+
+
+
 ## S4 classes ==================================================================
 
 ## Disabled until monocle3 is on Bioconductor.
