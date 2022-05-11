@@ -1,6 +1,6 @@
 #' @name KnownMarkers
 #' @inherit AcidGenerics::KnownMarkers description title
-#' @note Updated 2022-03-04.
+#' @note Updated 2022-05-11.
 #'
 #' @param markers `SeuratMarkers` or `SeuratMarkersPerCluster`.
 #' @param known `CellTypeMarkers`.
@@ -15,10 +15,10 @@
 #'
 #' @examples
 #' data(cellTypeMarkersList, package = "AcidSingleCell")
-#' data(seuratAllMarkers)
+#' data(SeuratMarkersPerCluster)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' markers <- seuratAllMarkers
+#' markers <- SeuratMarkersPerCluster
 #' known <- cellTypeMarkersList[["homoSapiens"]]
 #' x <- KnownMarkers(markers = markers, known = known)
 #' summary(x)

@@ -31,14 +31,14 @@ in the \code{geneId} column. We must avoid any matching operations based on the
 gene names, since these change often and can mismatch easily.
 }
 \note{
-Updated 2022-03-04.
+Updated 2022-05-11.
 }
 \examples{
 data(cellTypeMarkersList, package = "AcidSingleCell")
-data(seuratAllMarkers)
+data(SeuratMarkersPerCluster)
 
 ## SeuratMarkersPerCluster ====
-markers <- seuratAllMarkers
+markers <- SeuratMarkersPerCluster
 known <- cellTypeMarkersList[["homoSapiens"]]
 x <- KnownMarkers(markers = markers, known = known)
 summary(x)

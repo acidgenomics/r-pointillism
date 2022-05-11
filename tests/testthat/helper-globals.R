@@ -19,12 +19,6 @@ data(
 SingleCellExperiment <- as(Seurat, "SingleCellExperiment")
 genes <- head(rownames(Seurat))
 
-## FIXME Rework this...take out.
-objects <- list(
-    "SingleCellExperiment" = SingleCellExperiment,
-    "Seurat" = Seurat
-)
-
 ## nolint start
 CellTypeMarkers <- AcidSingleCell::CellTypeMarkers
 ## nolint end

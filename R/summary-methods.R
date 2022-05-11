@@ -1,15 +1,15 @@
 #' @name summary
 #' @inherit base::summary description return title
-#' @note Updated 2020-10-12.
+#' @note Updated 2022-05-11.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(seuratAllMarkers)
+#' data(SeuratMarkersPerCluster)
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- seuratAllMarkers
+#' object <- SeuratMarkersPerCluster
 #' class(object)
 #' summary(object)
 NULL

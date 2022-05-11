@@ -1,6 +1,6 @@
 #' @name plotTopMarkers
 #' @inherit AcidGenerics::plotTopMarkers
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @details
 #' The number of markers to plot is determined by the output of the
@@ -13,12 +13,11 @@
 #' @param ... Passthrough arguments to `plotMarker()`.
 #'
 #' @examples
-#' data(Seurat, package = "AcidTest")
-#' data(seuratAllMarkers)
+#' data(Seurat, SeuratMarkersPerCluster)
 #'
 #' ## Seurat, SeuratMarkersPerCluster ====
 #' object <- Seurat
-#' markers <- seuratAllMarkers
+#' markers <- SeuratMarkersPerCluster
 #' plotTopMarkers(
 #'     object = object,
 #'     markers = markers,

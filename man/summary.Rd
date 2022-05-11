@@ -38,13 +38,13 @@ The form of the value returned by \code{summary} depends on the
   \code{\link[base]{class}} of the first argument.
 }
 \note{
-Updated 2020-10-12.
+Updated 2022-05-11.
 }
 \examples{
-data(seuratAllMarkers)
+data(SeuratMarkersPerCluster)
 
 ## SeuratMarkersPerCluster ====
-object <- seuratAllMarkers
+object <- SeuratMarkersPerCluster
 class(object)
 summary(object)
 }
