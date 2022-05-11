@@ -46,11 +46,8 @@ the filtered cells into a new \code{Seurat} class object. Use
 }
 
 \examples{
-data(
-    Seurat,
-    SingleCellExperiment_Seurat,
-    package = "AcidTest"
-)
+data(Seurat)
+data(SingleCellExperiment_Seurat, package = "AcidTest")
 
 ## SingleCellExperiment to Seurat ====
 from <- SingleCellExperiment_Seurat

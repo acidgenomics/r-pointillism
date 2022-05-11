@@ -18,11 +18,8 @@
 #' - `Seurat::as.SingleCellExperiment()`.
 #'
 #' @examples
-#' data(
-#'     Seurat,
-#'     SingleCellExperiment_Seurat,
-#'     package = "AcidTest"
-#' )
+#' data(Seurat)
+#' data(SingleCellExperiment_Seurat, package = "AcidTest")
 #'
 #' ## SingleCellExperiment to Seurat ====
 #' from <- SingleCellExperiment_Seurat

@@ -35,7 +35,7 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 Updated 2020-01-30.
 }
 \examples{
-data(Seurat, package = "AcidTest")
+data(Seurat)
 
 ## Seurat ====
 object <- Seurat

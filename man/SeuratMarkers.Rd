@@ -43,10 +43,10 @@ marker analysis and add corresponding gene annotations.
 For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
 in the \code{gene} column.
 
-Updated 2021-03-03.
+Updated 2022-05-11.
 }
 \examples{
-data(Seurat, package = "AcidTest")
+data(Seurat)
 
 ## Seurat ====
 object <- Seurat
@@ -67,6 +67,6 @@ summary(x)
 invisible(capture.output(suppressWarnings({
     markers <- Seurat::FindAllMarkers(object)
 })))
-x <- SeuratMarkersPerCluster(object = markers, ranges = ranges)
+x <- pointillism::SeuratMarkersPerCluster(object = markers, ranges = ranges)
 summary(x)
 }
