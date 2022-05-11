@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-10.
+## Updated 2022-05-11.
 params:
   title: "Seurat clustering"
   seurat_file: !r file.path("rds", Sys.Date(), "sce_filtered.rds")
@@ -13,7 +13,7 @@ params:
   dark: FALSE
   data_dir: !r file.path("rds", Sys.Date())
 
-title: "`r params$title`"
+title: "`r params[["title"]]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib
@@ -22,7 +22,6 @@ bibliography: bibliography.bib
 ```{r setup, cache=FALSE, message=FALSE}
 suppressPackageStartupMessages({
     library(basejump)
-    library(dplyr)
     library(Seurat)
     library(pointillism)
 })
@@ -31,13 +30,13 @@ source("_setup.R")
 ## knitr arguments for `rmarkdown::render()` looping.
 ## > opts_chunk$set(
 ## >     cache.path = paste(
-## >         params$seurat_name,
+## >         params[["seurat_name"]],
 ## >         "clustering",
 ## >         "cache/",
 ## >         sep = "_"
 ## >     ),
 ## >     fig.path = paste(
-## >         params$seurat_name,
+## >         params[["seurat_name"]],
 ## >         "clustering",
 ## >         "files/",
 ## >         sep = "_"
@@ -66,7 +65,7 @@ To identify clusters, the following steps will be performed:
 # Load Seurat object
 
 ```{r load-object}
-file <- params$seurat_file
+file <- params[["seurat_file"]]
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
@@ -81,7 +80,6 @@ print(object)
 ```{r features}
 organism <- organism(object)
 stopifnot(is.character(organism))
-
 ## Quality control features to plot.
 features <- c(
     "nCount_RNA",
@@ -89,9 +87,8 @@ features <- c(
     "S.Score",
     "G2M.Score"
 )
-
 ## Vector to use for dimensional reduction plot looping.
-reduced_dim_groups <- unique(c(
+reducedDimGroups <- unique(c(
     "ident",
     "sampleName",
     "Phase",
@@ -126,58 +123,47 @@ Your single-cell dataset likely contains "uninteresting" sources of variation. T
 First, we assign each cell a score, based on its expression of G2/M and S phase markers. These marker sets should be anticorrelated in their expression levels, and cells expressing neither are likely not cycling and in G1 phase. We assign scores in the `CellCycleScoring()` function, which stores S and G2/M scores, along with the predicted classification of each cell in either G2M, S or G1 phase.
 
 ```{r cell-cycle-markers}
-data(cellCycleMarkersList, package = "pointillism")
-cell_cycle_markers <- cellCycleMarkersList[[camelCase(organism)]]
-stopifnot(is(cell_cycle_markers, "CellCycleMarkers"))
-
-## FIXME Need to take out magrittr pipe here.
-markdownHeader("S phase markers", level = 3)
-s_genes <- cell_cycle_markers %>%                                        # FIXME
-    as_tibble() %>%                                                      # FIXME
-    filter(phase == "S") %>%                                             # FIXME
-    pull("geneName") %>%                                                 # FIXME
-    sort()
-print(s_genes)
-
-## FIXME Need to take out magrittr pipe here.
-markdownHeader("G2/M phase markers", level = 3)
-g2m_genes <- cell_cycle_markers %>%                                      # FIXME
-    as_tibble() %>%                                                      # FIXME
-    filter(phase == "G2/M") %>%                                          # FIXME
-    pull("geneName") %>%                                                 # FIXME
-    sort()
-print(g2m_genes)
-
-cell_cycle_genes <- sort(unique(c(s_genes, g2m_genes)))
+data(cellCycleMarkersList, package = "AcidSingleCell")
+cellCycleMarkers <- cellCycleMarkersList[[camelCase(organism)]]
+stopifnot(is(cellCycleMarkers, "CellCycleMarkers"))
+markdownHeader("S phase markers", level = 3L)
+sGenes <- as.character(cellCycleMarkers[["s"]][["geneName"]])
+stopifnot(!any(duplicated(sGenes)))
+print(sGenes)
+markdownHeader("G2/M phase markers", level = 3L)
+g2mGenes <- as.character(cellCycleMarkers[["g2m"]][["geneName"]])
+stopifnot(!any(duplicated(g2mGenes)))
+print(g2mGenes)
 ```
 
 ```{r cell-cycle-scoring}
 object <- CellCycleScoring(
     object = object,
-    g2m.features = g2m_genes,
-    s.features = s_genes,
+    g2m.features = g2mGenes,
+    s.features = sGenes,
     set.ident = TRUE
 )
 assignAndSaveData(
-    name = paste(params$seurat_name, "preregress", sep = "_"),
+    name = paste(params[["seurat_name"]], "preregress", sep = "_"),
     object = object,
-    dir = params$data_dir
+    dir = params[["data_dir"]]
 )
 ```
 
 Here we are checking to see if the cells are grouping by cell cycle. If we don't see clear grouping of the cells into `G1`, `G2M`, and `S` clusters on the PCA plot, then it is recommended that we don't regress out cell-cycle variation. When this is the case, remove `S.Score` and `G2M.Score` from the variables to regress (`vars_to_regress`) in the R Markdown YAML parameters.
 
 ```{r cell-cycle-pca-preregress}
+cellCycleGenes <- sort(unique(c(sGenes, g2mGenes)))
 object <- RunPCA(
     object = object,
-    features = cell_cycle_genes,
+    features = cellCycleGenes,
     verbose = FALSE
 )
 plotPCA(
     object = object,
     interestingGroups = "Phase",
     label = FALSE,
-    dark = params$dark
+    dark = params[["dark"]]
 )
 ```
 
@@ -190,10 +176,9 @@ We generally recommend minimizing the effects of variable read count depth (`nUM
 When regressing out the effects of cell-cycle variation, include `S.Score` and `G2M.Score` in the `vars.to.regress` argument. Cell-cycle regression is generally recommended but should be avoided for samples containing cells undergoing differentiation.
 
 ```{r scale-data, results="hide"}
-print(params$vars_to_regress)
 object <- ScaleData(
     object = object,
-    vars.to.regress = params$vars_to_regress,
+    vars.to.regress = params[["vars_to_regress"]],
     verbose = FALSE
 )
 ```
@@ -203,14 +188,14 @@ Now that regression has been applied, let's recheck to see if the cells are no l
 ```{r cell-cycle-pca-postregress}
 object <- RunPCA(
     object = object,
-    features = cell_cycle_genes,
+    features = cellCycleGenes,
     verbose = FALSE
 )
 plotPCA(
     object = object,
     interestingGroups = "Phase",
     label = FALSE,
-    dark = params$dark
+    dark = params[["dark"]]
 )
 ```
 
@@ -229,7 +214,7 @@ In particular, `DimHeatmap()` allows for easy exploration of the primary sources
 ```{r dim-heatmap}
 invisible(mapply(
     FUN = DimHeatmap,
-    dims = 1:params$pc_compute,
+    dims = seq(from = 1L, to = params[["pc_compute"]], by = 1L),
     MoreArgs = list(object = object),
     SIMPLIFY = FALSE
 ))
@@ -253,7 +238,7 @@ We're using a heuristic approach here, by calculating where the principal compon
 This methodology is also commonly used for PC covariate analysis on bulk RNA-seq samples.
 
 ```{r dims}
-dims <- params$dims
+dims <- params[["dims"]]
 if (!is.numeric(dims)) {
     p <- plotPCElbow(object)
     print(p)
@@ -275,13 +260,13 @@ To cluster the cells, Seurat next applies modularity optimization techniques suc
 ```{r clustering}
 ## Note that `resolution` argument supports multiple calculations.
 object <- FindNeighbors(
-    object,  # FIXME `object = `?
+    object = object,
     dims = dims,
     verbose = FALSE
 )
 object <- FindClusters(
-    object,  # FIXME `object = `?
-    resolution = params$resolution_calc,
+    object = object,
+    resolution = params[["resolution_calc"]],
     verbose = FALSE
 )
 ```
@@ -306,20 +291,20 @@ object <- RunUMAP(object, dims = dims)
 
 ```{r plot-umap, results="asis"}
 invisible(lapply(
-    X = reduced_dim_groups,
+    X = reducedDimGroups,
     FUN = function(group) {
-        markdownHeader(group, level = 3, asis = TRUE, tabset = TRUE)
+        markdownHeader(group, level = 3L, asis = TRUE, tabset = TRUE)
         lapply(
-            X = params$resolution_calc,
+            X = params[["resolution_calc"]],
             FUN = function(res) {
-                res_col <- paste0("RNA_snn_res.", res)
-                stopifnot(res_col %in% colnames(object[[]]))
-                markdownHeader(res_col, level = 4, asis = TRUE, tabset = TRUE)
-                Idents(object) <- res_col
+                resCol <- paste0("RNA_snn_res.", res)
+                stopifnot(resCol %in% colnames(object[[]]))
+                markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
+                Idents(object) <- resCol
                 show(plotUMAP(
                     object = object,
                     interestingGroups = group,
-                    dark = params$dark
+                    dark = params[["dark"]]
                 ))
             }
         )
@@ -337,20 +322,20 @@ object <- RunTSNE(object, dims = dims)
 
 ```{r plot-tsne, results="asis"}
 invisible(lapply(
-    X = reduced_dim_groups,
+    X = reducedDimGroups,
     FUN = function(group) {
-        markdownHeader(group, level = 3, asis = TRUE, tabset = TRUE)
+        markdownHeader(group, level = 3L, asis = TRUE, tabset = TRUE)
         lapply(
-            X = params$resolution_calc,
+            X = params[["resolution_calc"]],
             FUN = function(res) {
-                res_col <- paste0("RNA_snn_res.", res)
-                stopifnot(res_col %in% colnames(object[[]]))
-                markdownHeader(res_col, level = 4, asis = TRUE, tabset = TRUE)
-                Idents(object) <- res_col
+                resCol <- paste0("RNA_snn_res.", res)
+                stopifnot(resCol %in% colnames(object[[]]))
+                markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
+                Idents(object) <- resCol
                 show(plotTSNE(
                     object = object,
                     interestingGroups = group,
-                    dark = params$dark
+                    dark = params[["dark"]]
                 ))
             }
         )
@@ -363,10 +348,10 @@ invisible(lapply(
 Pick the resolution to use, if multiple are stashed.
 
 ```{r resolution-use}
-if (!is.null(params$resolution_use)) {
-    res_col <- paste0("RNA_snn_res.", params$resolution_use)
-    print(res_col)
-    Idents(object) <- res_col
+if (!is.null(params[["resolution_use"]])) {
+    resCol <- paste0("RNA_snn_res.", params[["resolution_use"]])
+    print(resCol)
+    Idents(object) <- resCol
 }
 ```
 
@@ -382,7 +367,7 @@ plotFeature(
     features = features,
     label = FALSE,
     legend = FALSE,
-    dark = params$dark
+    dark = params[["dark"]]
 )
 ```
 
@@ -390,17 +375,17 @@ Let's plot the feature specificity of the top principal components.
 
 ```{r plot-feature-pcs}
 ## Limit to 6 PCs.
-feature_pcs <- paste0("PC_", head(dims, n = 6L))
+featurePcs <- paste0("PC_", head(dims, n = 6L))
 ```
 
 ```{r plot-feature-pcs-umap, include=has_umap, eval=has_umap}
 plotFeature(
     object = object,
     reduction = "UMAP",
-    features = feature_pcs,
+    features = featurePcs,
     label = FALSE,
     legend = FALSE,
-    dark = params$dark
+    dark = params[["dark"]]
 )
 ```
 
@@ -408,9 +393,9 @@ plotFeature(
 
 ```{r save}
 assignAndSaveData(
-    name = params$seurat_name,
+    name = params[["seurat_name"]],
     object = object,
-    dir = params$data_dir
+    dir = params[["data_dir"]]
 )
 ```
 
