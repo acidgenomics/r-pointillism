@@ -1,4 +1,10 @@
-context("R Markdown")
+## FIXME Need to ensure all markdown templates defined in package are covered.
+
+
+
+context("R Markdown templates")
+
+render <- rmarkdown::render
 
 tmpdir <- file.path(tempdir(), "rmarkdown-render")
 unlink(tmpdir, recursive = TRUE)
@@ -20,10 +26,7 @@ test_that("Seurat per cluster analysis", {
         fileext = ".Rmd"
     )
     file.copy(from = skeleton, to = input, overwrite = TRUE)
-    ## FIXME This is hanging at the end, need to figure out why.
-    ## FIXME Consider changing output format back to HTML.
-    ## FIXME pandoc is going crazy on this example, may be too memory intensive...
-    out <- rmarkdown::render(
+    out <- render(
         input = input,
         output_format = "md_document",
         clean = TRUE,
