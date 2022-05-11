@@ -169,10 +169,10 @@ setReplaceMethod(
 
 
 
-## Upated 2021-03-03.
+## Upated 2022-05-11.
 `counts,Seurat` <-  # nolint
     function(object, assay = NULL) {
-        object <- as.SingleCellExperiment(object, assay = assay)
+        object <- Seurat::as.SingleCellExperiment(x = object, assay = assay)
         counts(object)
     }
 
@@ -398,15 +398,14 @@ setMethod(
 
 
 
-## Updated 2021-03-03.
+## Updated 2022-05-11.
 `metadata,Seurat` <-  # nolint
     function(x, ...) {
         stash <- .getSeuratStash(x, "metadata")
         if (!is.null(stash)) {
             return(stash)
         }
-        ## NOTE Do not use our `as()` coercion method here.
-        x <- as.SingleCellExperiment(x)
+        x <- Seurat::as.SingleCellExperiment(x)
         metadata(x, ...)
     }
 
@@ -872,11 +871,10 @@ setMethod(
 
 
 
-## Updated 2021-03-03.
+## Updated 2022-05-11.
 `rowRanges,Seurat` <-  # nolint
     function(x) {
-        ## NOTE Do not use our `as()` coercion method here.
-        sce <- as.SingleCellExperiment(x)
+        sce <- Seurat::as.SingleCellExperiment(x)
         gr <- rowRanges(sce)
         assert(
             is(gr, "GenomicRangesList"),

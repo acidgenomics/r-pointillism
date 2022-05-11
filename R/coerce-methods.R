@@ -1,5 +1,7 @@
+## FIXME Need to define this as `as.SingleCellExperiment` instead.
 ## FIXME Need to think about NA gene symbol handling in call
 ##       to convertGenesToSymbols.
+## FIXME Also need to use as.Seurat here...
 
 
 
@@ -8,7 +10,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2021-03-03.
+#' @note Updated 2022-05-11.
 #'
 #' @seealso
 #' - `Seurat::CreateSeuratObject()`.
@@ -80,7 +82,7 @@ NULL
 
 
 
-## Updated 2021-03-03.
+## Updated 2022-05-11.
 `coerce,Seurat,SCE` <-  # nolint
     function(from) {
         validObject(from)
@@ -97,7 +99,7 @@ NULL
                 unname(rownames(from@assays[[assay]]@data))
         }
         ## Using the Seurat S3 coercion method here.
-        to <- as.SingleCellExperiment(x = from, assay = NULL)
+        to <- Seurat::as.SingleCellExperiment(x = from, assay = NULL)
         ## Harden against invalid ident mapping, which can happen when user
         ## reassigns via `Idents<-`.
         ##
@@ -232,12 +234,16 @@ setAs(
 
 
 
-## Updated 2019-07-31.
+#' Create the Seurat object
+#'
+#' @note Updated 2022-05-11.
+#' @noRd
+#'
+#' @details
+#' Note that `Seurat::as.Seurat()` method requires `logcounts` to be defined
+#' in `assays()`, so we're using `CreateSeuratObject()` here instead.
 `coerce,SCE,Seurat` <-  # nolint
     function(from) {
-        ## Create the Seurat object. Note that `as.Seurat()` method requires
-        ## `logcounts` to be defined in `assays()`, so we're using
-        ## `CreateSeuratObject()` here instead.
         to <- CreateSeuratObject(
             counts = counts(from),
             project = "pointillism",
@@ -258,12 +264,11 @@ setAs(
         metadata[["sessionInfo"]] <- sessionInfo()
         ## Seurat v3 still recommends using `misc` slot.
         misc <- list(
-            rowRanges = rowRanges,
-            metadata = metadata
+            "rowRanges" = rowRanges,
+            "metadata" = metadata
         )
         misc <- Filter(Negate(is.null), misc)
         slot(to, name = "misc") <- misc
-        ## Return.
         to
     }
 

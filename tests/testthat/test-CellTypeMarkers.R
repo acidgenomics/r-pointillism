@@ -3,7 +3,7 @@ context("CellTypeMarkers")
 test_that("CellTypeMarkers", {
     file <- system.file(
         "extdata/markers/cell-type/homo-sapiens.csv",
-        package = "pointillism"
+        package = "AcidSingleCell"
     )
     markers <- as(import(file), "DataFrame")
     colnames(markers) <- camelCase(colnames(markers), strict = TRUE)

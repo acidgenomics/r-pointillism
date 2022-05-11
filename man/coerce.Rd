@@ -11,7 +11,7 @@
 Force an object to belong to a class
 }
 \note{
-Updated 2021-03-03.
+Updated 2022-05-11.
 }
 \section{\code{Seurat} to \code{SingleCellExperiment}}{
 
