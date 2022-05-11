@@ -102,11 +102,11 @@ NULL
         if (!identical(regressCellCycle, "no")) {
             env <- new.env()
             data(
-                "cell_cycle_markers_list",
-                package = "pointillism",
+                "cellCycleMarkersList",
+                package = "AcidSingleCell",
                 envir = env
             )
-            ccm <- env[["cell_cycle_markers_list"]]
+            ccm <- env[["cellCycleMarkersList"]]
             organism <- camelCase(organism(object), strict = TRUE)
             if (!isSubset(organism, names(ccm))) {
                 abort(sprintf(
