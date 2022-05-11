@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.6.0.9000
-Date: 2022-03-10
+Version: 0.6.0
+Date: 2022-03-11
 Authors@R: c(
     person(
         given = "Michael",
@@ -32,17 +32,25 @@ LazyData: false
 Depends:
     R (>= 4.2)
 Imports:
+    AcidBase,
     AcidCLI,
+    AcidExperiment,
     AcidGenerics,
+    AcidGenomes,
+    AcidMarkdown,
     AcidPlots,
+    AcidPlyr,
     AcidSingleCell,
     BiocParallel,
+    IRanges,
     S4Vectors,
     Seurat,
     SingleCellExperiment,
+    SummarizedExperiment,
     ggplot2,
     goalie,
     methods,
+    stats,
     utils
 Suggests:
     AcidTest,

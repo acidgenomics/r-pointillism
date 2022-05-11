@@ -3,7 +3,10 @@
 ## Disabled until monocle3 is on Bioconductor.
 ## > #' @importClassesFrom monocle3 cell_data_set
 
+#' @importClassesFrom AcidGenomes Gene2Symbol
 #' @importClassesFrom AcidSingleCell KnownMarkers
+#' @importClassesFrom IRanges CompressedSplitDFrameList
+#' @importClassesFrom S4Vectors DFrame
 #' @importClassesFrom Seurat Seurat
 #' @importClassesFrom SingleCellExperiment SingleCellExperiment
 NULL
@@ -12,48 +15,70 @@ NULL
 
 ## S4 generics and methods =====================================================
 
-#' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
+#' @importFrom AcidExperiment sampleNames
+#' @importFrom AcidGenerics Gene2Symbol KnownMarkers camelCase
+#'   cellCountsPerCluster cellTypesPerCluster clusters convertGenesToSymbols cpm
+#'   diffExp diffExpPerCluster findMarkers geometricMean interestingGroups
+#'   interestingGroups<- leftJoin makeLabel makeNames mapGenesToIDs
+#'   mapGenesToRownames mapGenesToSymbols melt metrics mutateIf
 #'   plotCellCountsPerCluster plotCellTypesPerCluster plotCounts plotDots
-#'   plotFeature plotKnownMarkers plotMarker plotPCA plotReducedDim
-#'   plotStackedBarPlot plotTSNE plotUMAP plotViolin pretty_breaks sym syms
-#'   wrap_plots
-#' @importFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster clusters
-#'   cpm diffExp diffExpPerCluster findMarkers normalize
-#' @importFrom BiocParallel bpparam bpprogressbar bpprogressbar<-
-#' @importFrom S4Vectors summary
-#' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
-#'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
-#' @importFrom basejump DataFrame Gene2Symbol SingleCellExperiment
-#'   SplitDataFrameList as.data.frame as.matrix assay assay<- assayNames assays
-#'   assays<- camelCase capture.output cbind coerce colData colData<-
-#'   complete.cases convertGenesToSymbols counts counts<- data decode dl do.call
-#'   geometricMean h1 h2 head import interestingGroups interestingGroups<-
-#'   lapply leftJoin logcounts logcounts<- makeGene2SymbolFromEnsembl makeLabel
-#'   makeNames mapGenesToIDs mapGenesToRownames mapGenesToSymbols markdownHeader
-#'   matchInterestingGroups mcols mcols<- median melt metadata metadata<-
-#'   metrics model.matrix mutateIf normcounts normcounts<- organism organism<-
-#'   na.omit  printString reducedDim reducedDim<-
-#'   reducedDimNames reducedDimNames<- reducedDims relevel rowData rowData<-
-#'   rowMeans rowRanges rowRanges<- rowSums sampleData sampleData<- sampleNames
-#'   sapply separator session_info showSlotInfo sizeFactors sizeFactors<-
-#'   snakeCase split t table tail uniteInterestingGroups
-#'   unsplit
+#'   plotFeature plotKnownMarkers plotMarker plotPCElbow plotReducedDim
+#'   plotStackedBarPlot plotTSNE plotTopMarkers plotUMAP plotViolin sampleData
+#'   sampleData<- snakeCase topMarkers uniteInterestingGroups
+#' @importFrom BiocGenerics as.data.frame cbind counts counts<- do.call lapply
+#'   normalize organism organism<- plotPCA rowMeans rowSums sapply sizeFactors
+#'   sizeFactors<- t table unsplit
+#' @importFrom BiocParallel bpprogressbar bpprogressbar<-
+#' @importFrom S4Vectors as.matrix complete.cases decode head mcols mcols<-
+#'   metadata metadata<- na.omit split summary tail
+#' @importFrom SingleCellExperiment logcounts logcounts<- normcounts
+#'   normcounts<- reducedDim reducedDim<- reducedDimNames reducedDimNames<-
+#'   reducedDims
+#' @importFrom SummarizedExperiment assay assay<- assayNames assays assays<-
+#'   colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom methods coerce show
+#' @importFrom pipette import
+#'
+#' @importMethodsFrom AcidBase geometricMean
+#' @importMethodsFrom AcidExperiment convertGenesToSymbols interestingGroups
+#'   interestingGroups<- mapGenesToIDs mapGenesToRownames mapGenesToSymbols
+#'   metrics sampleData sampleData<- sampleNames uniteInterestingGroups
+#' @importMethodsFrom AcidPlots plotCellCountsPerCluster plotCellTypesPerCluster
+#'   plotCounts plotDots plotFeature plotKnownMarkers plotMarker plotPCA
+#'   plotReducedDim plotStackedBarPlot plotTSNE plotUMAP plotViolin
+#' @importMethodsFrom AcidPlyr leftJoin melt mutateIf
+#' @importMethodsFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster
+#'   clusters cpm diffExp diffExpPerCluster findMarkers geometricMean normalize
+#' @importMethodsFrom pipette import
+#' @importMethodsFrom syntactic camelCase makeLabel makeNames snakeCase
 NULL
 
 
 
 ## S3 generics =================================================================
 
+#' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
+#'   NormalizeData Stdev VariableFeatures as.SingleCellExperiment as.Seurat
 #' @importFrom edgeR calcNormFactors estimateDisp glmFit
+#' @importFrom stats median model.matrix relevel
 NULL
 
 
 
 ## Standard functions ==========================================================
 
+#' @importFrom AcidBase printString showSlotInfo
 #' @importFrom AcidCLI abort alert alertInfo alertSuccess alertWarning dl h1 h2
-#'   toInlineString ul verbatim
+#'   separator toInlineString ul verbatim
+#' @importFrom AcidExperiment matchInterestingGroups
+#' @importFrom AcidGenomes makeGene2SymbolFromEnsembl
+#' @importFrom AcidMarkdown markdownHeader
+#' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
+#'   pretty_breaks sym syms wrap_plots
+#' @importFrom BiocParallel bpparam
+#' @importFrom IRanges SplitDataFrameList
+#' @importFrom S4Vectors DataFrame
+#' @importFrom SingleCellExperiment SingleCellExperiment
 #' @importFrom edgeR DGEList glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
@@ -68,5 +93,5 @@ NULL
 #'   isPositive isScalar isScalarNumeric isString isSubset validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #'   setReplaceMethod setValidity slot slot<- validObject .hasSlot
-#' @importFrom utils packageName packageVersion
+#' @importFrom utils capture.output data packageName packageVersion sessionInfo
 NULL

@@ -14,9 +14,6 @@ runSeurat(object, ...)
   varsToRegress = c("nCount_RNA", "mitoRatio"),
   dims = "auto",
   resolution = seq(from = 0.2, to = 1.2, by = 0.2),
-  tsneMethod = "Rtsne",
-  umapMethod = "uwot",
-  virtualenv = "r-reticulate",
   workers = "auto"
 )
 
@@ -51,14 +48,7 @@ calculated internally. See \code{\link[=plotPCElbow]{plotPCElbow()}} for details
 
 \item{resolution}{\code{numeric}.
 Resolutions to calculate for clustering.
-Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.}
-
-\item{tsneMethod}{\code{character(1)}.
-t-SNE algorithm passed to \code{\link[Seurat:RunTSNE]{Seurat::RunTSNE()}}.
-Using the current default in Seurat.}
-
-\item{umapMethod}{\code{character(1)}.
-UMAP algorithm passed to \code{\link[Seurat:RunUMAP]{Seurat::RunUMAP()}}.
+Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.
 
 Currently supported:
 \itemize{
@@ -67,11 +57,6 @@ Note that this sets \code{metric = "cosine"} automatically.
 \item \code{"umap-learn"}, which requires reticulate.
 Note that this sets \code{metric = "correlation"} automatically.
 }}
-
-\item{virtualenv}{\code{character(1)}.
-Python virtual environment name.
-Only evaluated when \code{umapMethod = "umap-learn"}.
-See reticulate section for details.}
 
 \item{workers}{\code{"auto"}, \code{integer(1)}, or \code{NULL}.
 Disable parallelization with future by setting to \code{NULL}.}
@@ -83,22 +68,8 @@ Disable parallelization with future by setting to \code{NULL}.}
 Run Seurat
 }
 \note{
-Updated 2020-06-26.
+Updated 2022-05-10.
 }
-\section{reticulate}{
-
-
-A Python virtual environment (e.g. "r-reticulate") with umap-learn installed
-is required when \code{umapMethod} is set to "umap-learn" (default).
-
-The reticulate package supports conda or virtual environments managed by
-venv/virtualenv. I've had better luck with using using virtual environments
-rather than attempting to use conda with this package.
-
-Check \code{Sys.getenv("WORKON_HOME")} path, which is the current approach used
-in \code{Rprofile.site}.
-}
-
 \seealso{
 \itemize{
 \item https://github.com/satijalab/seurat/wiki

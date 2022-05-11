@@ -14,5 +14,5 @@ Class containing essential elements for marker per cluster analysis.
 Results are split per \code{cluster} and arranged by adjusted \emph{P} value (\code{padj}).
 }
 \note{
-Updated 2021-03-03.
+Updated 2022-05-11.
 }

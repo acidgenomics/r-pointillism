@@ -1,6 +1,5 @@
 #' @rdname KnownMarkers
 #' @name KnownMarkers
-#' @importFrom AcidGenerics KnownMarkers
 #' @usage KnownMarkers(object, ...)
 #' @export
 NULL
@@ -25,14 +24,12 @@ setGeneric(
 
 #' @rdname plotPCElbow
 #' @name plotPCElbow
-#' @importFrom AcidGenerics plotPCElbow
 #' @usage plotPCElbow(object, ...)
 #' @export
 NULL
 
 #' @rdname plotTopMarkers
 #' @name plotTopMarkers
-#' @importFrom AcidGenerics plotTopMarkers
 #' @usage plotTopMarkers(object, markers, ...)
 #' @export
 NULL
@@ -54,7 +51,6 @@ NULL
 
 #' @rdname topMarkers
 #' @name topMarkers
-#' @importFrom AcidGenerics topMarkers
 #' @usage topMarkers(object, ...)
 #' @export
 NULL
