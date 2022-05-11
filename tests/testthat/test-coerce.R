@@ -1,7 +1,7 @@
 context("coerce")
 
 test_that("Seurat to SingleCellExperiment", {
-    object <- Seurat
+    object <- objs[["Seurat"]]
     x <- as(object, "SingleCellExperiment")
     expect_s4_class(x, "SingleCellExperiment")
     expect_identical(
@@ -50,7 +50,7 @@ test_that("Seurat to SingleCellExperiment", {
 })
 
 test_that("SingleCellExperiment to Seurat", {
-    object <- SingleCellExperiment
+    object <- objs[["SingleCellExperiment"]]
     x <- as(object, "Seurat")
     expect_is(x, "Seurat")
     ## Check slotted count integrity.
@@ -60,7 +60,7 @@ test_that("SingleCellExperiment to Seurat", {
 })
 
 test_that("SCE-Seurat interconversion with subsetting", {
-    a <- SingleCellExperiment
+    a <- objs[["SingleCellExperiment"]]
     colDataNames <- colnames(colData(a))
     ## Coerce to Seurat.
     b <- as(a, "Seurat")

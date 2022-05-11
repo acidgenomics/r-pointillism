@@ -1,7 +1,7 @@
 context("CellTypeMarkers")
 
 test_that("CellTypeMarkers", {
-    gene2symbol <- Gene2Symbol(Seurat)
+    gene2symbol <- Gene2Symbol(objs[["Seurat"]])
     file <- system.file(
         "extdata/markers/cell-type/homo-sapiens.csv",
         package = "AcidSingleCell"
