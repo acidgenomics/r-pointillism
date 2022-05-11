@@ -16,12 +16,19 @@ data(
     envir = environment()
 )
 
-sce <- as(Seurat, "SingleCellExperiment")
-genes <- head(rownames(Seurat))
-seurat <- Seurat
-rm(Seurat)
-smpc <- SeuratMarkersPerCluster
-rm(SeuratMarkersPerCluster)
+objs <- list()
+objs[["KnownMarkers"]] <- KnownMarkers
+objs[["Seurat"]] <- Seurat
+objs[["SeuratMarkersPerCluster"]] <- SeuratMarkersPerCluster
+objs[["SingleCellExperiment"]] <-
+    as(objs[["Seurat"]], "SingleCellExperiment")
+objs[["genes"]] <- head(rownames(objs[["Seurat"]]))
+
+rm(
+    KnownMarkers,
+    Seurat,
+    SeuratMarkersPerCluster
+)
 
 ## nolint start
 CellTypeMarkers <- AcidSingleCell::CellTypeMarkers

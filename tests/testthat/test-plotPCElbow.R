@@ -1,8 +1,8 @@
 context("plotPCElbow")
 
 objects <- list(
-    "Seurat" = Seurat
-    ## > "cell_data_set" = cell_data_set
+    "Seurat" = objs[["Seurat"]]
+    ## > "cell_data_set" = objs[["cell_data_set"]]
 )
 elbows <- list(
     "Seurat" = 10L

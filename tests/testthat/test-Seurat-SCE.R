@@ -1,6 +1,6 @@
 context("Seurat as SingleCellExperiment")
 
-object <- Seurat
+object <- objs[["Seurat"]]
 
 test_that("Gene2Symbol", {
     x <- Gene2Symbol(object)
