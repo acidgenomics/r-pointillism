@@ -55,7 +55,6 @@ Imports:
 Suggests:
     AcidTest,
     basejump,
-    dplyr,
     future,
     rmarkdown,
     testthat

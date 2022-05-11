@@ -1,5 +1,5 @@
-## FIXME Need to cover "seurat-clustering"
-## FIXME Need to cover "seurat-markers"
+## NOTE Need to cover "seurat-clustering"
+## NOTE Need to cover "seurat-markers"
 
 
 
