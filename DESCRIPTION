@@ -41,6 +41,7 @@ Imports:
     AcidPlots,
     AcidPlyr,
     AcidSingleCell,
+    BiocGenerics,
     BiocParallel,
     IRanges,
     S4Vectors,
@@ -50,7 +51,9 @@ Imports:
     ggplot2,
     goalie,
     methods,
+    pipette,
     stats,
+    syntactic,
     utils
 Suggests:
     AcidTest,

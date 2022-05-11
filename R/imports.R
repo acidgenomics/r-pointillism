@@ -59,7 +59,6 @@ NULL
 
 #' @importFrom Seurat CreateSeuratObject DefaultAssay GetAssayData Idents
 #'   NormalizeData Stdev VariableFeatures
-#' @importFrom edgeR calcNormFactors estimateDisp glmFit
 #' @importFrom stats median model.matrix relevel
 NULL
 
@@ -79,7 +78,6 @@ NULL
 #' @importFrom IRanges SplitDataFrameList
 #' @importFrom S4Vectors DataFrame
 #' @importFrom SingleCellExperiment SingleCellExperiment
-#' @importFrom edgeR DGEList glmLRT
 #' @importFrom ggplot2 aes element_rect expand_limits facet_grid facet_wrap
 #'   geom_bar geom_hline geom_jitter geom_line geom_point geom_text geom_violin
 #'   geom_vline ggplot guide_colorbar guides labs scale_color_gradient

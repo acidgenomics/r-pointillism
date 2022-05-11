@@ -1,9 +1,3 @@
-## Fix for edgeR partial match warning.
-options(
-    "warnPartialMatchAttr" = FALSE,
-    "warnPartialMatchDollar" = FALSE
-)
-
 tmpenv <- new.env()
 data(
     ## > cell_data_set,
