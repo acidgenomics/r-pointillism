@@ -31,7 +31,7 @@ test_that("Seurat per cluster analysis", {
             "seurat_file" = system.file(
                 "data",
                 "Seurat.rda",
-                package = "AcidTest",
+                package = "pointillism",
                 mustWork = TRUE
             )
         ),
