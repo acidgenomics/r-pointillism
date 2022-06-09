@@ -50,10 +50,10 @@ test_that("Seurat to SingleCellExperiment", {
 test_that("SingleCellExperiment to Seurat", {
     object <- objs[["SingleCellExperiment"]]
     x <- as(object, "Seurat")
-    expect_is(x, "Seurat")
+    expect_s4_class(x, "Seurat")
     ## Check slotted count integrity.
     counts <- counts(x)
-    expect_is(counts, "dgCMatrix")
+    expect_s4_class(counts, "dgCMatrix")
     expect_identical(dim(counts), dim(object))
 })
 
