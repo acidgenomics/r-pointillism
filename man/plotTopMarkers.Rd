@@ -60,14 +60,14 @@ simply reassign first using that function. If necessary, we can add support
 for the number of genes to plot here in a future update.
 }
 \note{
-Updated 2022-05-11.
+Updated 2022-06-09.
 }
 \examples{
-data(seurat, smpc)
+data(Seurat, SeuratMarkersPerCluster, package = "AcidTest")
 
 ## Seurat, SeuratMarkersPerCluster ====
-object <- seurat
-markers <- smpc
+object <- Seurat
+markers <- SeuratMarkersPerCluster
 plotTopMarkers(
     object = object,
     markers = markers,

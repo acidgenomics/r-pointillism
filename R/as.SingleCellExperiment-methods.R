@@ -1,6 +1,6 @@
 #' @name as.SingleCellExperiment
 #' @inherit AcidGenerics::as.SingleCellExperiment
-#' @note Updated 2022-05-11.
+#' @note Updated 2022-06-09.
 #'
 #' @details
 #' S4 coercion support for creating a `SingleCellExperiment` from a `Seurat`
@@ -18,10 +18,10 @@
 #' - `Seurat::as.SingleCellExperiment()`.
 #'
 #' @examples
-#' data(seurat)
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat to SingleCellExperiment ====
-#' from <- seurat
+#' from <- Seurat
 #' to <- as.SingleCellExperiment(from)
 #' class(to)
 #' print(to)

@@ -3,11 +3,10 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2022-05-11.
+#' @note Updated 2022-06-09.
 #'
 #' @examples
-#' data(seurat)
-#' data(SingleCellExperiment_Seurat, package = "AcidTest")
+#' data(Seurat, SingleCellExperiment_Seurat, package = "AcidTest")
 #'
 #' ## SingleCellExperiment to Seurat ====
 #' from <- SingleCellExperiment_Seurat
@@ -16,7 +15,7 @@
 #' print(to)
 #'
 #' ## Seurat to SingleCellExperiment ====
-#' from <- seurat
+#' from <- Seurat
 #' to <- as(from, "SingleCellExperiment")
 #' class(to)
 #' print(to)

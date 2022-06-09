@@ -1,6 +1,6 @@
 #' @name topMarkers
 #' @inherit AcidGenerics::topMarkers
-#' @note Updated 2022-05-11.
+#' @note Updated 2022-06-09.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -12,10 +12,10 @@
 #' Number of genes per cluster.
 #'
 #' @examples
-#' data(smpc)
+#' data(SeuratMarkersPerCluster, package = "AcidTest")
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- smpc
+#' object <- SeuratMarkersPerCluster
 #' x <- topMarkers(
 #'     object = object,
 #'     direction = "up",

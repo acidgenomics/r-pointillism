@@ -3,6 +3,8 @@
 ## Minor changes
 
 - Updated lintr checks and testthat unit tests.
+- Migrated example `Seurat` and `SeuratMarkersPerCluster` objects back to
+  AcidTest package.
 
 # pointillism 0.6.0 (2022-05-11)
 
