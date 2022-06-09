@@ -2,7 +2,7 @@ object <- objs[["Seurat"]]
 
 test_that("Gene2Symbol", {
     x <- Gene2Symbol(object)
-    expect_is(x, "Gene2Symbol")
+    expect_s4_class(x, "Gene2Symbol")
 })
 
 test_that("assay", {
@@ -34,7 +34,7 @@ test_that("colData<-", {
 })
 
 test_that("colnames", {
-    expect_is(colnames(object), "character")
+    expect_type(colnames(object), "character")
 })
 
 test_that("counts", {
@@ -63,7 +63,7 @@ test_that("interestingGroups<-", {
 })
 
 test_that("metadata", {
-    expect_is(metadata(object), "list")
+    expect_type(metadata(object), "list")
     ## Assignment method.
     metadata(object)[["testthat"]] <- "XXX"
     expect_identical(
@@ -74,7 +74,7 @@ test_that("metadata", {
 
 test_that("metrics", {
     x <- metrics(object)
-    expect_is(x, "DataFrame")
+    expect_s4_class(x, "DataFrame")
 })
 
 test_that("reducedDims", {
