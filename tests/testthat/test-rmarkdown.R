@@ -4,8 +4,8 @@
 render <- rmarkdown::render
 seuratFile <- system.file(
     "data",
-    "seurat.rda",
-    package = "pointillism",
+    "Seurat.rda",
+    package = "AcidTest",
     mustWork = TRUE
 )
 tmpdir <- AcidBase::tempdir2()
