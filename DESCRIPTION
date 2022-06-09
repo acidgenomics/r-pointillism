@@ -2,7 +2,7 @@ Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
 Version: 0.6.1
-Date: 2022-06-08
+Date: 2022-06-09
 Authors@R: c(
     person(
         given = "Michael",
