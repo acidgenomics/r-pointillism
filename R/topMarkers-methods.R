@@ -71,7 +71,7 @@ NULL
     }
 
 args <- "direction"
-formals(`topMarkers,SeuratMarkersPerCluster`)[args] <-
+formals(`topMarkers,SeuratMarkersPerCluster`)[args] <- # nolint
     .formalsList[args]
 rm(args)
 

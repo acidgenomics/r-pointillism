@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-17.
+## Updated 2022-06-09.
 params:
   title: "Per cluster analysis"
 
@@ -13,6 +13,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
+## nolint start
 suppressPackageStartupMessages({
     library(goalie)
     library(basejump)
@@ -21,6 +22,7 @@ suppressPackageStartupMessages({
 })
 prepareTemplate()
 source("_setup.R")
+## nolint end
 ```
 
 ```{r header, child="_header.Rmd"}

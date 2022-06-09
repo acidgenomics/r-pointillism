@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-11.
+## Updated 2022-06-09.
 params:
   title: "Seurat clustering"
   seurat_file: !r file.path("rds", Sys.Date(), "sce_filtered.rds")
@@ -20,6 +20,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, cache=FALSE, message=FALSE}
+## nolint start
 suppressPackageStartupMessages({
     library(basejump)
     library(Seurat)
@@ -42,6 +43,7 @@ source("_setup.R")
 ## >         sep = "_"
 ## >     )
 ## > )
+## nolint end
 ```
 
 ```{r header, child="_header.Rmd"}
@@ -128,11 +130,11 @@ cellCycleMarkers <- cellCycleMarkersList[[camelCase(organism)]]
 stopifnot(is(cellCycleMarkers, "CellCycleMarkers"))
 markdownHeader("S phase markers", level = 3L)
 sGenes <- as.character(cellCycleMarkers[["s"]][["geneName"]])
-stopifnot(!any(duplicated(sGenes)))
+stopifnot(anyDuplicated(sGenes) == 0L)
 print(sGenes)
 markdownHeader("G2/M phase markers", level = 3L)
 g2mGenes <- as.character(cellCycleMarkers[["g2m"]][["geneName"]])
-stopifnot(!any(duplicated(g2mGenes)))
+stopifnot(anyDuplicated(g2mGenes) == 0L)
 print(g2mGenes)
 ```
 
@@ -212,11 +214,10 @@ object <- RunPCA(object, verbose = TRUE)
 In particular, `DimHeatmap()` allows for easy exploration of the primary sources of heterogeneity in a dataset, and can be useful when trying to decide which PCs to include for further downstream analyses. Both cells and genes are ordered according to their PCA scores.
 
 ```{r dim-heatmap}
-invisible(mapply(
-    FUN = DimHeatmap,
+invisible(Map(
+    f = DimHeatmap,
     dims = seq(from = 1L, to = params[["pc_compute"]], by = 1L),
-    MoreArgs = list(object = object),
-    SIMPLIFY = FALSE
+    MoreArgs = list("object" = object)
 ))
 ```
 

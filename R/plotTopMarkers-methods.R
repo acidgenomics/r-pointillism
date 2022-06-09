@@ -92,7 +92,7 @@ NULL
     }
 
 args <- c("direction", "reduction", "BPPARAM")
-formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[args] <-
+formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[args] <- # nolint
     .formalsList[args]
 rm(args)
 
