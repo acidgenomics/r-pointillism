@@ -4,7 +4,7 @@
 #' marker analysis and add corresponding gene annotations.
 #'
 #' @name SeuratMarkers
-#' @note Updated 2022-05-11.
+#' @note Updated 2022-06-09.
 #'
 #' @details
 #' For [Seurat::FindAllMarkers()] return, rownames are correctly returned
@@ -24,10 +24,10 @@
 #' @return `SeuratMarkers`.
 #'
 #' @examples
-#' data(seurat)
+#' data(Seurat, package = "AcidTest")
 #'
 #' ## Seurat ====
-#' object <- seurat
+#' object <- Seurat
 #' ranges <- rowRanges(object)
 #'
 #' ## `FindMarkers()` return.

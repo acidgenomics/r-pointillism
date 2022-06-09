@@ -31,13 +31,13 @@ including the \code{object@scale.data} matrix, and will keep track of stashed
 from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 }
 \note{
-Updated 2022-05-11.
+Updated 2022-06-09.
 }
 \examples{
-data(seurat)
+data(Seurat, package = "AcidTest")
 
 ## Seurat to SingleCellExperiment ====
-from <- seurat
+from <- Seurat
 to <- as.SingleCellExperiment(from)
 class(to)
 print(to)

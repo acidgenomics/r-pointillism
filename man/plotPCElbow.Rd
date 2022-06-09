@@ -32,13 +32,13 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \note{
-Updated 2020-01-30.
+Updated 2022-06-09.
 }
 \examples{
-data(seurat)
+data(Seurat, package = "AcidTest")
 
 ## Seurat ====
-object <- seurat
+object <- Seurat
 plotPCElbow(object)
 }
 \seealso{

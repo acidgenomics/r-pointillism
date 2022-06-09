@@ -1,15 +1,15 @@
 #' @name summary
 #' @inherit base::summary description return title
-#' @note Updated 2022-05-11.
+#' @note Updated 2022-06-09.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(smpc)
+#' data(SeuratMarkersPerCluster, package = "AcidTest")
 #'
 #' ## SeuratMarkersPerCluster ====
-#' object <- smpc
+#' object <- SeuratMarkersPerCluster
 #' class(object)
 #' summary(object)
 NULL

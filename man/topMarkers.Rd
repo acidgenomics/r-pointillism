@@ -28,13 +28,13 @@ Number of genes per cluster.}
 Top markers
 }
 \note{
-Updated 2022-05-11.
+Updated 2022-06-09.
 }
 \examples{
-data(smpc)
+data(SeuratMarkersPerCluster, package = "AcidTest")
 
 ## SeuratMarkersPerCluster ====
-object <- smpc
+object <- SeuratMarkersPerCluster
 x <- topMarkers(
     object = object,
     direction = "up",

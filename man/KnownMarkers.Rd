@@ -31,14 +31,14 @@ must avoid any matching operations based on the gene names, since these
 change often and can mismatch easily.
 }
 \note{
-Updated 2022-05-11.
+Updated 2022-06-09.
 }
 \examples{
 data(cellTypeMarkersList, package = "AcidSingleCell")
-data(smpc)
+data(SeuratMarkersPerCluster, package = "AcidTest")
 
 ## SeuratMarkersPerCluster ====
-markers <- smpc
+markers <- SeuratMarkersPerCluster
 known <- cellTypeMarkersList[["homoSapiens"]]
 x <- KnownMarkers(markers = markers, known = known)
 summary(x)
