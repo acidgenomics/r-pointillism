@@ -28,9 +28,7 @@ URL:
 BugReports: https://github.com/acidgenomics/r-pointillism/issues/
 License: AGPL-3
 Encoding: UTF-8
-LazyData: false
-Depends:
-    R (>= 4.2)
+Depends: R (>= 4.2)
 Imports:
     AcidBase,
     AcidCLI,
