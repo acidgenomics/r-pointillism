@@ -1,5 +1,3 @@
-context("CellTypeMarkers")
-
 test_that("CellTypeMarkers", {
     gene2symbol <- Gene2Symbol(objs[["Seurat"]])
     file <- system.file(

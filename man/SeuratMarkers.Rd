@@ -39,10 +39,11 @@ defined in the object.}
 This generator function is designed to take the original return from a Seurat
 marker analysis and add corresponding gene annotations.
 }
-\note{
+\details{
 For \code{\link[Seurat:FindAllMarkers]{Seurat::FindAllMarkers()}} return, rownames are correctly returned
 in the \code{gene} column.
-
+}
+\note{
 Updated 2022-05-11.
 }
 \examples{

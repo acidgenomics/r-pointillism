@@ -1,5 +1,3 @@
-context("topMarkers")
-
 test_that("Default", {
     object <- objs[["SeuratMarkersPerCluster"]]
     object <- topMarkers(object, direction = "up", n = 2L)

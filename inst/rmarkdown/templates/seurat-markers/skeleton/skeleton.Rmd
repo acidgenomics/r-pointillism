@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-11.
+## Updated 2022-05-17.
 params:
   title: "Seurat markers"
   ## Seurat
@@ -13,7 +13,7 @@ params:
   data_dir: !r file.path("rds", Sys.Date())
   results_dir: !r file.path("results", Sys.Date(), "markers")
 
-title: "`r params[["title"]]`"
+title: "`r params[['title']]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib

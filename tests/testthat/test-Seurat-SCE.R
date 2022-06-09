@@ -1,5 +1,3 @@
-context("Seurat as SingleCellExperiment")
-
 object <- objs[["Seurat"]]
 
 test_that("Gene2Symbol", {
@@ -82,7 +80,7 @@ test_that("metrics", {
 test_that("reducedDims", {
     x <- reducedDims(object)
     expect_s4_class(x, "SimpleList")
-    expect_identical(names(x), c("PCA", "TSNE", "UMAP"))
+    expect_named(x, c("PCA", "TSNE", "UMAP"))
 })
 
 test_that("rowData", {

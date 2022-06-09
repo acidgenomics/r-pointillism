@@ -13,7 +13,7 @@ params:
   dark: FALSE
   data_dir: !r file.path("rds", Sys.Date())
 
-title: "`r params[["title"]]`"
+title: "`r params[['title']]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib

@@ -1,5 +1,3 @@
-context("plotTopMarkers")
-
 test_that("Seurat", {
     object <- objs[["Seurat"]]
     markers <- objs[["SeuratMarkersPerCluster"]]
