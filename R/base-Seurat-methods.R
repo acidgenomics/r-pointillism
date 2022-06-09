@@ -151,7 +151,7 @@ setMethod(
 `colData<-,Seurat,DataFrame` <- # nolint
     function(x, value) {
         value <- as.data.frame(value)
-        slot(x, "meta.data", check = TRUE) <- value
+        slot(x, "meta.data", check = TRUE) <- value # nolint
         validObject(x)
         x
     }

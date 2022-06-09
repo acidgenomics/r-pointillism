@@ -1,5 +1,3 @@
-context("plotPCElbow")
-
 objects <- list(
     "Seurat" = objs[["Seurat"]]
     ## > "cell_data_set" = objs[["cell_data_set"]]
@@ -10,16 +8,15 @@ elbows <- list(
 )
 
 test_that("plotPCElbow", {
-    mapply(
+    Map(
         object = objects,
         elbow = elbows,
-        FUN = function(object, elbow) {
+        f = function(object, elbow) {
             x <- plotPCElbow(object)
             expect_identical(
                 object = attr(x, "elbow"),
                 expected = elbow
             )
-        },
-        SIMPLIFY = FALSE
+        }
     )
 })

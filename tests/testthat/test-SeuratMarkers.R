@@ -1,5 +1,3 @@
-context("SeuratMarkers")
-
 object <- objs[["Seurat"]]
 ranges <- rowRanges(object)
 
@@ -16,8 +14,6 @@ test_that("SeuratMarkers", {
 })
 
 
-
-context("SeuratMarkersPerCluster")
 
 test_that("SeuratMarkersPerCluster", {
     ## Suppressing expected warning: "cannot compute exact p-value with ties".

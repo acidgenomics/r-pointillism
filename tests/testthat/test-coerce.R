@@ -1,5 +1,3 @@
-context("coerce")
-
 test_that("Seurat to SingleCellExperiment", {
     object <- objs[["Seurat"]]
     x <- as(object, "SingleCellExperiment")
@@ -40,8 +38,8 @@ test_that("Seurat to SingleCellExperiment", {
             "seqCoordSystem"
         )
     )
-    expect_identical(
-        object = names(metadata(x)),
+    expect_named(
+        object = metadata(x),
         expected = c(
             "scaleData",
             "variableFeatures"

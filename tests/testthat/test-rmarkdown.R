@@ -1,22 +1,14 @@
 ## NOTE Need to cover "seurat-clustering"
 ## NOTE Need to cover "seurat-markers"
 
-
-
-context("R Markdown templates")
-
 render <- rmarkdown::render
-
 seuratFile <- system.file(
     "data",
     "seurat.rda",
     package = "pointillism",
     mustWork = TRUE
 )
-
-tmpdir <- file.path(tempdir(), "rmarkdown-render")
-unlink(tmpdir, recursive = TRUE)
-dir.create(tmpdir, recursive = TRUE)
+tmpdir <- AcidBase::tempdir2()
 
 test_that("Seurat per cluster analysis", {
     skeleton <- system.file(
@@ -44,4 +36,4 @@ test_that("Seurat per cluster analysis", {
     expect_true(file.exists(out))
 })
 
-unlink(tmpdir, recursive = TRUE)
+AcidBase::unlink2(tmpdir)
