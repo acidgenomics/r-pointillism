@@ -1,5 +1,4 @@
 tmpenv <- new.env()
-data(seurat, smpc, envir = tmpenv)
 data(
     KnownMarkers,
     Seurat,
