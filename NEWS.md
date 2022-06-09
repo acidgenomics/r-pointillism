@@ -1,3 +1,9 @@
+# pointillism 0.6.1 (2022-06-09)
+
+## Minor changes
+
+- Updated lintr checks and testthat unit tests.
+
 # pointillism 0.6.0 (2022-05-11)
 
 ## Major changes
