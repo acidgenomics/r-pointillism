@@ -23,12 +23,11 @@ Coerce object to \code{SingleCellExperiment}
 }
 \details{
 S4 coercion support for creating a \code{SingleCellExperiment} from a \code{Seurat}
-class object. The \href{https://satijalab.org/Seurat/faq}{Seurat FAQ page}
-explains the \code{Seurat} S4 class structure in detail. Internally, this method
-improves the basic \code{Seurat::as.SingleCellExperiment} S3 coercion method,
-including the \code{object@scale.data} matrix, and will keep track of stashed
-\code{rowRanges} and \code{metadata} if the \code{Seurat} object was originally created
-from a \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
+class object. Internally, this method improves the basic
+\code{Seurat::as.SingleCellExperiment} S3 coercion method, including the
+\code{object@scale.data} matrix, and will keep track of stashed \code{rowRanges} and
+\code{metadata} if the \code{Seurat} object was originally created from a
+\code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 }
 \note{
 Updated 2022-06-09.
