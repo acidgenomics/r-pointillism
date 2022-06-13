@@ -208,7 +208,7 @@ Initial support for monocle3 `cell_data_set` class.
 - Removed `setOldClass` definitions for `session_info` and `package_version`.
 - Renamed `as-methods.R` to `coerce-methods.R`, matching bsaejump conventions.
 - `cellCountsPerCluster`: Improved internal `interestingGroups` handling.
-- Reworked reexport method for S4 generics imported from [bioverbs][] package.
+- Reworked reexport method for S4 generics imported from bioverbs package.
 
 # pointillism 0.2.5 (2019-04-01)
 
@@ -240,7 +240,7 @@ Initial support for monocle3 `cell_data_set` class.
 
 ## Major changes
 
-- Migrated S4 generics to [bioverbs][] package.
+- Migrated S4 generics to bioverbs package.
 - Finish migrating assert checks to [goalie][] package.
 
 ## Minor changes
@@ -368,11 +368,9 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 
 - Initial release.
 
-[AcidPlots]: https://AcidPlots.acidgenomics.com/
-[Acid Genomics]: https://acidgenomics.com/
-[basejump]: https://basejump.acidgenomics.com/
-[bioverbs]: https://bioverbs.acidgenomics.com/
+[acidplots]: https://r.acidgenomics.com/packages/acidplots/
+[acid genomics]: https://acidgenomics.com/
+[basejump]: https://r.acidgenomics.com/packages/basejump/
 [ggplot2]: https://ggplot2.tidyverse.org/
-[goalie]: https://goalie.acidgenomics.com/
-[minimalism]: https://minimalism.acidgenomics.com/
-[Seurat]: https://satijalab.org/seurat/
+[goalie]: https://r.acidgenomics.com/packages/goalie/
+[seurat]: https://satijalab.org/seurat/

@@ -4,12 +4,11 @@
 #'
 #' @details
 #' S4 coercion support for creating a `SingleCellExperiment` from a `Seurat`
-#' class object. The [Seurat FAQ page](https://satijalab.org/Seurat/faq)
-#' explains the `Seurat` S4 class structure in detail. Internally, this method
-#' improves the basic `Seurat::as.SingleCellExperiment` S3 coercion method,
-#' including the `object@scale.data` matrix, and will keep track of stashed
-#' `rowRanges` and `metadata` if the `Seurat` object was originally created
-#' from a `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
+#' class object. Internally, this method improves the basic
+#' `Seurat::as.SingleCellExperiment` S3 coercion method, including the
+#' `object@scale.data` matrix, and will keep track of stashed `rowRanges` and
+#' `metadata` if the `Seurat` object was originally created from a
+#' `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.

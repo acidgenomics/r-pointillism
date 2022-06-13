@@ -22,7 +22,7 @@ install.packages(
 
 ## Supported data classes
 
-[pointillism][] currently supports these S4 single-cell container classes:
+pointillism currently supports these S4 single-cell container classes:
 
 - [SingleCellExperiment][]
 - [Seurat][]
@@ -60,7 +60,6 @@ The papers and software cited in our workflows are available as a [shared librar
 [michael steinbaugh]: https://mike.steinbaugh.com/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
-[pointillism]: https://pointillism.acidgenomics.com/
 [r]: https://www.r-project.org/
 [seurat]: https://satijalab.org/seurat/
 [singlecellexperiment]: https://bioconductor.org/packages/SingleCellExperiment/
