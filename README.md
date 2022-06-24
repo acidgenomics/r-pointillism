@@ -20,6 +20,19 @@ install.packages(
 )
 ```
 
+### [Docker][] method
+
+```sh
+image='acidgenomics/r-packages:pointillism'
+workdir='/mnt/work'
+docker pull "$image"
+docker run -it \
+    --volume="${PWD}:${workdir}" \
+    --workdir="$workdir" \
+    "$image" \
+    R
+```
+
 ## Supported data classes
 
 [pointillism][] currently supports these S4 single-cell container classes:
@@ -57,6 +70,7 @@ The papers and software cited in our workflows are available as a [shared librar
 [bioconductor]: https://bioconductor.org/
 [conda]: https://conda.io/
 [cran]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
+[docker]: https://www.docker.com/
 [michael steinbaugh]: https://mike.steinbaugh.com/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
