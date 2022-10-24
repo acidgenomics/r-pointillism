@@ -3,47 +3,15 @@ authors:
     href: https://steinbaugh.com/
   Acid Genomics:
     href: https://acidgenomics.com/
-
 navbar:
   components:
-     acid:
-       icon: "fas fa-vial fa-lg"
-       href: https://acidgenomics.com/
+    acid:
+      icon: 'fas fa-vial fa-lg'
+      href: https://acidgenomics.com/
   structure:
     right: [acid, github]
-
 news:
   - one_page: false
-
-reference:
-  - title: S4 classes
-    contents:
-      - ends_with("-class")
-      - ends_with("Markers")
-      - coerce
-      - summary
-  - title: Counts
-    contents:
-      - cpm
-  - title: Clustering
-    contents:
-      - cellCountsPerCluster
-      - cellTypesPerCluster
-      - clusters
-      - normalize
-  - title: Differential expression
-    contents:
-      - SeuratMarkers
-      - starts_with("diffExp")
-      - findMarkers
-      - topMarkers
-  - title: Plots
-    contents:
-      - starts_with("plot")
-  - title: Wrappers
-    contents:
-      - starts_with("run")
-  - title: Data
-    contents:
-      - starts_with("cell_")
-      - starts_with("seurat_")
+template:
+  bootstrap: 5
+url: https://r.acidgenomics.com/packages/pointillism
