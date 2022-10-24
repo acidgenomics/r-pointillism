@@ -2,7 +2,7 @@
 
 ## pointillism 0.6.2 (2022-10-24)
 
-Minor changes
+Minor changes:
 
 - Hardened dependency version checks.
 - Updated roxygen2 documentation.
