@@ -21,7 +21,6 @@ reference:
       - ends_with("-class")
       - ends_with("Markers")
       - coerce
-      - show
       - summary
   - title: Counts
     contents:
