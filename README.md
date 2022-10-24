@@ -30,34 +30,37 @@ pointillism currently supports these S4 single-cell container classes:
 
 ## Markers
 
-Cell-cycle and cell-type markers are stored internally inside the package. Refer to `inst/extdata/` for the source CSV files.
+Cell-cycle and cell-type markers are stored internally inside the package.
+Refer to `inst/extdata/` for the source CSV files.
 
 ## Troubleshooting
 
 ### Maximal number of DLLs reached
 
-```
-Error: package or namespace load failed for 'pointillism' in dyn.load(file, DLLpath = DLLpath, ...):
+```txt
+Error: package or namespace load failed for 'pointillism'
+in dyn.load(file, DLLpath = DLLpath, ...):
   maximal number of DLLs reached...
 ```
 
-Depending on your operating system, you may encounter this error about hitting the DLL limit in [R][]. This issue is becoming more common as RNA-seq analysis packages grow increasingly complex. Luckily, we can configure [R][] to increase the DLL limit. Append this line to your `~/.Renviron` file:
+Depending on your operating system, you may encounter this error about hitting
+the DLL limit in [R][]. This issue is becoming more common as RNA-seq analysis
+packages grow increasingly complex. Luckily, we can configure [R][] to increase
+the DLL limit. Append this line to your `~/.Renviron` file:
 
-```
+```sh
 R_MAX_NUM_DLLS=150
 ```
 
-For more information on this issue, consult `help("dyn.load")` in the [R][] documentation. The number of loaded DLLs in an [R][] session can be obtained with `getLoadedDLLs()`.
+For more information on this issue, consult `help("dyn.load")` in the [R][]
+documentation. The number of loaded DLLs in an [R][] session can be obtained
+with `getLoadedDLLs()`.
 
 ## References
 
-The papers and software cited in our workflows are available as a [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
+The papers and software cited in our workflows are available as a
+[shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[biocmanager]: https://cran.r-project.org/package=BiocManager
-[bioconductor]: https://bioconductor.org/
-[conda]: https://conda.io/
-[cran]: https://cran.r-project.org/  "The Comprehensive R Archive Network"
-[michael steinbaugh]: https://mike.steinbaugh.com/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
 [r]: https://www.r-project.org/

@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.6.1
-Date: 2022-06-09
+Version: 0.6.2
+Date: 2022-10-24
 Authors@R: c(
     person(
         given = "Michael",
@@ -30,36 +30,36 @@ License: AGPL-3
 Encoding: UTF-8
 Depends: R (>= 4.2)
 Imports:
-    AcidBase,
-    AcidCLI,
-    AcidExperiment,
-    AcidGenerics,
-    AcidGenomes,
-    AcidMarkdown,
-    AcidPlots,
-    AcidPlyr,
-    AcidSingleCell,
-    BiocGenerics,
-    BiocParallel,
-    IRanges,
-    S4Vectors,
-    Seurat,
-    SingleCellExperiment,
-    SummarizedExperiment,
-    ggplot2,
-    goalie,
+    AcidBase (>= 0.6.8),
+    AcidCLI (>= 0.2.4),
+    AcidExperiment (>= 0.4.4),
+    AcidGenerics (>= 0.6.4),
+    AcidGenomes (>= 0.4.4),
+    AcidMarkdown (>= 0.2.4),
+    AcidPlots (>= 0.5.2),
+    AcidPlyr (>= 0.3.2),
+    AcidSingleCell (>= 0.3.3),
+    BiocGenerics (>= 0.42.0),
+    BiocParallel (>= 1.30.4),
+    IRanges (>= 2.30.1),
+    S4Vectors (>= 0.34.0),
+    Seurat (>= 4.2.0),
+    SingleCellExperiment (>= 1.18.1),
+    SummarizedExperiment (>= 1.26.1),
+    ggplot2 (>= 3.3.6),
+    goalie (>= 0.6.6),
     methods,
-    pipette,
+    pipette (>= 0.10.0),
     stats,
-    syntactic,
+    syntactic (>= 0.6.3),
     utils
 Suggests:
-    AcidTest,
-    basejump,
-    future,
-    rmarkdown,
+    AcidTest (>= 0.7.0),
+    basejump (>= 0.16.1),
+    future (>= 1.28.0),
+    rmarkdown (>= 2.17),
     testthat (>= 3.0.0)
 Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1

@@ -1,114 +1,124 @@
-# pointillism 0.6.1 (2022-06-09)
+# Release notes
 
-## Minor changes
+## pointillism 0.6.2 (2022-10-24)
+
+Minor changes
+
+- Hardened dependency version checks.
+- Updated roxygen2 documentation.
+- Updated markdown files to pass lintr checks.
+
+## pointillism 0.6.1 (2022-06-09)
+
+Minor changes:
 
 - Updated lintr checks and testthat unit tests.
 - Migrated example `Seurat` and `SeuratMarkersPerCluster` objects back to
   AcidTest package.
 
-# pointillism 0.6.0 (2022-05-11)
+## pointillism 0.6.0 (2022-05-11)
 
-## Major changes
+Major changes:
 
 - Now requiring R 4.2 / Bioconductor 3.15.
 - Split out basejump dependencies into individual packages.
 - `runSeurat`: Simplified processing of TSNE and UMAP.
 - Updated unit tests and working examples.
 
-## Minor changes
+Minor changes:
 
 - Slotting `utils::sessionInfo` instead of `sessioninfo::session_info`, where
   applicable.
 - Removed dependency on edgeR, and removed dplyr from suggested packages.
 
-# pointillism 0.5.0 (2021-03-03)
+## pointillism 0.5.0 (2021-03-03)
 
-## Major changes
+Major changes:
 
 - Simplified NAMESPACE, incorporating changes in basejump v0.14 release series.
 - Hardened `Seurat` to `SingleCellExperiment` interconversion methods and
   unit tests.
 - `plotStackedBarPlot`: Removed internal dplyr dependency.
 
-# pointillism 0.4.14 (2020-10-12)
+## pointillism 0.4.14 (2020-10-12)
 
-## Minor changes
+Minor changes:
 
 - Renamed `alpha` argument to `alphaThreshold`, matching naming conventions
   used in other Acid Genomics packages. Applies to marker class objects.
 - Updated dependencies to support naming changes in Acid Genomics packages.
 
-# pointillism 0.4.13 (2020-08-04)
+## pointillism 0.4.13 (2020-08-04)
 
-## Minor changes
+Minor changes:
 
 - Removed patrick dependency for unit tests.
 - Updated other package dependency versions.
 - Wrapped suppression calls with `{` where necessary.
 
-# pointillism 0.4.12 (2020-07-23)
+## pointillism 0.4.12 (2020-07-23)
 
-## Minor changes
+Minor changes:
 
 - Maintenance release, updating R dependency to 4.0.
 
-# pointillism 0.4.11 (2020-06-27)
+## pointillism 0.4.11 (2020-06-27)
 
-## Major changes
+Major changes:
 
 - `runSeurat`: Changed `umapMethod` default from "umap-learn" to "uwot". I'm
   having trouble getting the latest version of umap-learn (0.4.4) to play
   nicely with Seurat (3.1.5) via reticulate (1.16). Note that additional
   internal arguments are now passed to `Seurat::RunUMAP` when necessary.
 
-# pointillism 0.4.10 (2020-06-11)
+## pointillism 0.4.10 (2020-06-11)
 
-## New functions
+New functions:
 
 - `plotStackedBarPlot`: Added support for quickly generating stacked bar plots
   of cluster frequencies.
 
-## Minor changes
+Minor changes:
 
 - Dependency updates.
 
-# pointillism 0.4.9 (2020-02-21)
+## pointillism 0.4.9 (2020-02-21)
 
-## Minor changes
+Minor changes:
 
 - `runZinbwave`: Updated internal zinbwave code to be compatible with
   Bioconductor 3.11 release.
 - Updated test data.
 
-# pointillism 0.4.8 (2020-02-20)
+## pointillism 0.4.8 (2020-02-20)
 
-## Major changes
+Major changes:
 
 - `plotReducedDim`, `plotMarker`: Changed title handling support. Switched from
   using `title` argument in favor of `labels`, which better matches the
   conventions now used in AcidPlots.
 
-## Minor changes
+Minor changes:
 
 - Seurat methods now show resolution parameter used to map idents, where
   applicable. Currently this applies to `plotReducedDim` family of functions.
 
-# pointillism 0.4.7 (2020-01-30)
+## pointillism 0.4.7 (2020-01-30)
 
-## Minor changes
+Minor changes:
 
 - Now using cli package for messages.
 - Updated basejump dependencies.
 
-# pointillism 0.4.6 (2020-01-20)
+## pointillism 0.4.6 (2020-01-20)
 
-## Minor changes
+Minor changes:
 
 - Reworked NAMESPACE to support migration of bioverbs package to AcidGenerics.
 
-# pointillism 0.4.5 (2020-01-03)
+## pointillism 0.4.5 (2020-01-03)
 
-## Major changes
+Major changes:
 
 - `normalize`: reworked internal code to reflect changes in scater package.
   Instead of calling `normalizeSCE` or `normalize` internally, `normalizeCounts`
@@ -117,35 +127,35 @@
 - Deprecated `plotDot` in favor of `plotDots` (note plural spelling change).
   This reads better and improves consistency with conventions used in scater.
 
-## Minor changes
+Minor changes:
 
 - Removed user-defined option to reduce verbosity, where applicable. If these
   functions are too noisy, we'll tone it down in the future.
 
-# pointillism 0.4.4 (2019-10-30)
+## pointillism 0.4.4 (2019-10-30)
 
 Bioconductor 3.10 compatibility fixes.
 
-# pointillism 0.4.3 (2019-10-26)
+## pointillism 0.4.3 (2019-10-26)
 
-## Minor changes
+Minor changes:
 
 - Bug fix for legacy Seurat objects created via pointillism with named rownames
   containing gene identifiers mapped to the gene symbols. Now the coercion
   method for `Seurat` to `SingleCellExperiment` checks for this and sanitizes
   the names automatically so the resulting `SingleCellExperiment` is valid.
 
-# pointillism 0.4.2 (2019-09-04)
+## pointillism 0.4.2 (2019-09-04)
 
-## Major changes
+Major changes:
 
 - Reworked internal code to remove dplyr, magrittr, rlang, tibble, and tidyr
   dependencies. Consistently using base R and Bioconductor S4 methods internally
   instead, working primarily with `DataFrame` instead of `tbl_df`.
 
-# pointillism 0.4.1 (2019-08-12)
+## pointillism 0.4.1 (2019-08-12)
 
-## Minor changes
+Minor changes:
 
 - Bug fix for gene symbols being sanitized by `as.data.frame` or `as_tibble`
   coercion inconsitently across R versions. Switched to using `as` coercion
@@ -154,11 +164,11 @@ Bioconductor 3.10 compatibility fixes.
   quotes, which is now the convention across basejump.
 - Lintr check fixes.
 
-# pointillism 0.4.0 (2019-08-07)
+## pointillism 0.4.0 (2019-08-07)
 
 Initial support for monocle3 `cell_data_set` class.
 
-## Major changes
+Major changes:
 
 - Reworked internal S4 function names.
 - Updated internal example data.
@@ -166,24 +176,24 @@ Initial support for monocle3 `cell_data_set` class.
   package internally at `inst/extdata/markers/`.
 - Working on preliminary support for monocle3 `cell_data_set`.
 
-# pointillism 0.3.2 (2019-04-25)
+## pointillism 0.3.2 (2019-04-25)
 
-## Minor changes
+Minor changes:
 
 - S4 generic reexport documentation fixes.
 
-# pointillism 0.3.1 (2019-04-23)
+## pointillism 0.3.1 (2019-04-23)
 
-## Minor changes
+Minor changes:
 
 - Switch to importing ggplot2 code from new [AcidPlots][] package. Recommended
   default ggplot2 themes are now named `acid_theme_light` and `acid_theme_dark`.
 - Consolidated S4 class and generator function documentation into single Rd
   files, where applicable.
 
-# pointillism 0.3.0 (2019-04-16)
+## pointillism 0.3.0 (2019-04-16)
 
-## Major changes
+Major changes:
 
 - Updated S4 methods to support [Seurat][] v3 release. Also updated imports
   from Seurat to reflect v3 change: `GetAssayData`, `Stdev`, `VariableFeatures`.
@@ -196,7 +206,7 @@ Initial support for monocle3 `cell_data_set` class.
   `seurat_known_markers`.
 - Overhauled R Markdown templates.
 
-## Minor changes
+Minor changes:
 
 - Added preliminary `plotCellTypesPerCluster` method support. Need to test this
   out on larger datasets with many samples per cluster.
@@ -210,9 +220,9 @@ Initial support for monocle3 `cell_data_set` class.
 - `cellCountsPerCluster`: Improved internal `interestingGroups` handling.
 - Reworked reexport method for S4 generics imported from bioverbs package.
 
-# pointillism 0.2.5 (2019-04-01)
+## pointillism 0.2.5 (2019-04-01)
 
-## Major changes
+Major changes:
 
 - Migrated code to [Acid Genomics][].
 - Made `runZinbwave` defunct. No longer recommending zinbwave calculations for
@@ -220,45 +230,45 @@ Initial support for monocle3 `cell_data_set` class.
 - ggplot2 themes `theme_paperwhite` and `theme_midnight` are now imported from
   minimalism package instead of basejump.
 
-# pointillism 0.2.4 (2019-01-24)
+## pointillism 0.2.4 (2019-01-24)
 
-## Minor changes
+Minor changes:
 
 - `SeuratMarkersPerCluster` to `tbl_df` coerce needed a `decode` call to
   properly handling gene-to-symbol mappings with run-length encoding (`Rle`).
 
-# pointillism 0.2.3 (2019-01-08)
+## pointillism 0.2.3 (2019-01-08)
 
-## Minor changes
+Minor changes:
 
 - Comment out lines to pass lintr checks.
 - Split out imports into a separate `imports.R` file.
 - Added `nullOK` flag in assert checks, where applicable. See `isGGScale`, for
   example.
 
-# pointillism 0.2.2 (2018-12-22)
+## pointillism 0.2.2 (2018-12-22)
 
-## Major changes
+Major changes:
 
 - Migrated S4 generics to bioverbs package.
 - Finish migrating assert checks to [goalie][] package.
 
-## Minor changes
+Minor changes:
 
 - Moved S4 validity checks into `setClass` call, rather than using a separate
   `setValidity` call. Refer to `AllClasses.R` for details.
 - Removed `makeCellTypeMarkersFromGoogle` utility function.
 
-# pointillism 0.2.1 (2018-12-01)
+## pointillism 0.2.1 (2018-12-01)
 
-## Major changes
+Major changes:
 
 - Reworked internal code to use [goalie][] package for assert checks.
 - `SeuratMarkersPerCluster`: Simplified S4 validity checks.
 - Improved `show` methods for S4 classes: `CellCycleMarkers`, `CellTypeMarkers`.
 - Added `summary` method support for `SeuratMarkers`, `SeuratMarkersPerCluster`.
 
-## Minor changes
+Minor changes:
 
 - Miscellaneous documentation improvements and fixes.
 - Reworked internal code shared between `CellCycleMarkers` and
@@ -267,9 +277,9 @@ Initial support for monocle3 `cell_data_set` class.
   internal function. Refer to `SeuratMarkers.R` for details.
 - Added AppVeyor CI support.
 
-# pointillism 0.2.0 (2018-11-15)
+## pointillism 0.2.0 (2018-11-15)
 
-## New functions
+New functions:
 
 - `CellCycleMarkers`, `CellTypeMarkers`, and `KnownMarkers` generator functions.
 - `cellTypesPerCluster` S4 generic.
@@ -281,7 +291,7 @@ Initial support for monocle3 `cell_data_set` class.
 - `SeuratMarkers`: New function for returning sanitized Seurat marker output.
 - `SeuratMarkersPerCluster`: Returns an S4 class split by cluster.
 
-## Major changes
+Major changes:
 
 - Improved S4 coercion methods. Added support for `CellCycleMarkers` to
   `tbl_df`, `CellTypeMarkers` to `tbl_df`, and `SeuratMarkersPerCluster` to
@@ -293,7 +303,7 @@ Initial support for monocle3 `cell_data_set` class.
   `plotUMAP`.
 - `runZinbwave`: Improved internal code and weight handling.
 
-## Minor changes
+Minor changes:
 
 - Reworked validity checks for S4 classes.
 - Reworked internal assert checks. Refer to `.assertIsBPPARAM`, for example.
@@ -305,20 +315,20 @@ Initial support for monocle3 `cell_data_set` class.
 - Reworked and improved Seurat-to-SingleCell interconversion support. Refer
   to `seurat-SingleCellExperiment-methods` for details.
 
-## Deprecations
+Deprecations:
 
 These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
 `plotKnownMarkersDetected`, `readCellTypeMarkers`, `sanitizeMarkers`.
 
-# pointilism 0.1.3 (2018-09-19)
+## pointilism 0.1.3 (2018-09-19)
 
-## Major changes
+Major changes:
 
 - `as(seurat, "SingleCellExperiment")` now returns `scaleData` in assays, along
   with `varGenes` in `metadata` and ensures that `colData` and `rowRanges`
   are sanitized into camel case using the `camel` function internally.
 
-## Minor changes
+Minor changes:
 
 - Removed `convertGenesToSymbols` support for `seurat` class. Coerce genes
   to symbols manually prior to `seurat` coercion from `SingleCellExperiment`.
@@ -333,16 +343,16 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
   `seurat` class.
 - Updated example data script and resaved.
 
-# pointillism 0.1.2 (2018-08-22)
+## pointillism 0.1.2 (2018-08-22)
 
-## New functions
+New functions:
 
 - `clusterID`: S4 generic that returns the cell cluster identity mappings as a
   `factor` for all cells.
 - `findMarkers`: Utility function that wraps `diffExp` to identify cluster-
   specific genes across all clusters.
 
-## Minor changes
+Minor changes:
 
 - Converted `runZinbwave` to an S4 method that works on
   `SingleCellExperiment`. For `seurat` objects, coerce to `SingleCellExperiment`
@@ -352,25 +362,24 @@ These functions have been deprecated: `knownMarkers`, `knownMarkersDetected`,
   default. Removed `grid` and `aspectRatio` arguments to simplify [ggplot2][]
   code handling.
 
-# pointillism 0.1.1 (2018-08-20)
+## pointillism 0.1.1 (2018-08-20)
 
-## New functions
+New functions:
 
 - Now exporting `runZinbwave` and `hasZinbwave`, which were previously internal
   functions called by `diffExp`.
 
-## Minor changes
+Minor changes:
 
 - Improved internal handling of `assays` for objects that have zinbwave
   calculations applied. Now it doesn't attempt to keep only the `counts` assay.
 
-# pointillism 0.1.0 (2018-08-10)
+## pointillism 0.1.0 (2018-08-10)
 
 - Initial release.
 
 [acidplots]: https://r.acidgenomics.com/packages/acidplots/
 [acid genomics]: https://acidgenomics.com/
-[basejump]: https://r.acidgenomics.com/packages/basejump/
 [ggplot2]: https://ggplot2.tidyverse.org/
 [goalie]: https://r.acidgenomics.com/packages/goalie/
 [seurat]: https://satijalab.org/seurat/

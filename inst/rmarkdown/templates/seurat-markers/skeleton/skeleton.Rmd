@@ -1,5 +1,5 @@
 ---
-## Updated 2022-06-09.
+## Updated 2022-10-24.
 params:
   title: "Seurat markers"
   ## Seurat
@@ -22,6 +22,7 @@ bibliography: bibliography.bib
 ```{r setup, cache=FALSE, message=FALSE}
 ## nolint start
 suppressPackageStartupMessages({
+    library(goalie)
     library(basejump)
     library(Seurat)
     library(pointillism)
@@ -42,7 +43,7 @@ file <- params[["seurat_file"]]
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
-stopifnot(
+assert(
     is(object, "Seurat"),
     is.character(name)
 )
@@ -50,15 +51,15 @@ invisible(validObject(object))
 file <- params[["all_markers_file"]]
 markers <- import(file)
 rm(file)
-stopifnot(is(markers, "SeuratMarkersPerCluster"))
+assert(is(markers, "SeuratMarkersPerCluster"))
 invisible(validObject(markers))
 file <- params[["known_markers_file"]]
 knownMarkers <- import(file)
 rm(file)
-stopifnot(is(knownMarkers, "KnownMarkers"))
+assert(is(knownMarkers, "KnownMarkers"))
 invisible(validObject(knownMarkers))
 ## Check that object has organism and gene-to-symbol mappings defined.
-stopifnot(
+assert(
     is.character(organism(object)),
     is(Gene2Symbol(object), "Gene2Symbol")
 )

@@ -1,5 +1,5 @@
 ---
-## Updated 2022-06-09.
+## Updated 2022-10-24.
 params:
   title: "Seurat clustering"
   seurat_file: !r file.path("rds", Sys.Date(), "sce_filtered.rds")
@@ -22,6 +22,7 @@ bibliography: bibliography.bib
 ```{r setup, cache=FALSE, message=FALSE}
 ## nolint start
 suppressPackageStartupMessages({
+    library(goalie)
     library(basejump)
     library(Seurat)
     library(pointillism)
@@ -56,10 +57,13 @@ This workflow is adapted from the following sources:
 
 To identify clusters, the following steps will be performed:
 
-1. Normalization and transformation of the raw gene counts per cell to account for differences in sequencing depth.
+1. Normalization and transformation of the raw gene counts per cell to account
+   for differences in sequencing depth.
 2. Identification of high variance genes.
-3. Regression of sources of unwanted variation (e.g. number of UMIs per cell, mitochondrial transcript abundance, cell cycle phase).
-4. Identification of the primary sources of heterogeneity using principal component (PC) analysis and heatmaps.
+3. Regression of sources of unwanted variation (e.g. number of UMIs per cell,
+   mitochondrial transcript abundance, cell cycle phase).
+4. Identification of the primary sources of heterogeneity using principal
+   component (PC) analysis and heatmaps.
 5. Clustering cells based on significant PCs (metagenes).
 
 * * *
@@ -71,7 +75,7 @@ file <- params[["seurat_file"]]
 object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
-stopifnot(
+assert(
     is(object, "Seurat"),
     is.character(name)
 )
@@ -81,7 +85,7 @@ print(object)
 
 ```{r features}
 organism <- organism(object)
-stopifnot(is.character(organism))
+assert(is.character(organism))
 ## Quality control features to plot.
 features <- c(
     "nCount_RNA",
@@ -127,14 +131,14 @@ First, we assign each cell a score, based on its expression of G2/M and S phase 
 ```{r cell-cycle-markers}
 data(cellCycleMarkersList, package = "AcidSingleCell")
 cellCycleMarkers <- cellCycleMarkersList[[camelCase(organism)]]
-stopifnot(is(cellCycleMarkers, "CellCycleMarkers"))
+assert(is(cellCycleMarkers, "CellCycleMarkers"))
 markdownHeader("S phase markers", level = 3L)
 sGenes <- as.character(cellCycleMarkers[["s"]][["geneName"]])
-stopifnot(anyDuplicated(sGenes) == 0L)
+assert(hasNoDuplicates(sGenes))
 print(sGenes)
 markdownHeader("G2/M phase markers", level = 3L)
 g2mGenes <- as.character(cellCycleMarkers[["g2m"]][["geneName"]])
-stopifnot(anyDuplicated(g2mGenes) == 0L)
+assert(hasNoDuplicates(g2mGenes))
 print(g2mGenes)
 ```
 
@@ -299,7 +303,7 @@ invisible(lapply(
             X = params[["resolution_calc"]],
             FUN = function(res) {
                 resCol <- paste0("RNA_snn_res.", res)
-                stopifnot(resCol %in% colnames(object[[]]))
+                assert(isSubset(resCol, colnames(object[[]])))
                 markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
                 Idents(object) <- resCol
                 show(plotUMAP(
@@ -330,7 +334,7 @@ invisible(lapply(
             X = params[["resolution_calc"]],
             FUN = function(res) {
                 resCol <- paste0("RNA_snn_res.", res)
-                stopifnot(resCol %in% colnames(object[[]]))
+                assert(isSubset(resCol, colnames(object[[]])))
                 markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
                 Idents(object) <- resCol
                 show(plotTSNE(
