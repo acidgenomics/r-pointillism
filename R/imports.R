@@ -26,9 +26,10 @@ NULL
 #' plotStackedBarPlot plotTSNE plotTopMarkers plotUMAP plotViolin sampleData
 #' sampleData<- snakeCase topMarkers uniteInterestingGroups
 #' @importFrom BiocGenerics as.data.frame cbind counts counts<- do.call lapply
-#' normalize organism organism<- plotPCA rowMeans rowSums sapply sizeFactors
-#' sizeFactors<- sort t table unique unsplit
+#' normalize organism organism<- plotPCA sapply sizeFactors sizeFactors<- sort t
+#' table unique unsplit
 #' @importFrom BiocParallel bpprogressbar bpprogressbar<-
+#' @importFrom Matrix rowMeans rowSums
 #' @importFrom S4Vectors as.matrix complete.cases decode head mcols mcols<-
 #' metadata metadata<- na.omit split summary tail
 #' @importFrom SingleCellExperiment logcounts logcounts<- normcounts

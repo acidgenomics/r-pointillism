@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.6.2
-Date: 2022-10-24
+Version: 0.6.3.9000
+Date: 2023-04-26
 Authors@R: c(
     person(
         given = "Michael",
@@ -42,6 +42,7 @@ Imports:
     BiocGenerics (>= 0.42.0),
     BiocParallel (>= 1.30.4),
     IRanges (>= 2.30.1),
+    Matrix (>= 1.5.4),
     S4Vectors (>= 0.34.0),
     Seurat (>= 4.2.0),
     SingleCellExperiment (>= 1.18.1),
@@ -62,4 +63,4 @@ Suggests:
 Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
