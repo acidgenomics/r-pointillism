@@ -1,5 +1,7 @@
 # pointillism
 
+![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+
 [R][] package for for single-cell RNA-seq clustering analysis.
 
 ## Installation
