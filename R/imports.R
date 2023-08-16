@@ -60,7 +60,7 @@ NULL
 
 #' @importFrom Seurat CreateSeuratObject DefaultAssay Idents NormalizeData Stdev
 #' VariableFeatures
-#' @importFrom SeuratObject LayerData
+#' @importFrom SeuratObject LayerData Layers
 #' @importFrom stats median model.matrix relevel
 NULL
 
