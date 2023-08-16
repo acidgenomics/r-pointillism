@@ -1,3 +1,8 @@
+## FIXME Rework to use `LayerData` instead of `GetAssayData`.
+## FIXME Also seeing a deprecation warning about slot using of `GetAssayData`.
+
+
+
 #' Extend base S4 methods for `Seurat` class
 #'
 #' Provide limited `SingleCellExperiment`-like method support.
