@@ -45,6 +45,7 @@ Imports:
     Matrix (>= 1.6.1),
     S4Vectors (>= 0.38.0),
     Seurat (>= 4.9.9),
+    SeuratObject (>= 4.9.9),
     SingleCellExperiment (>= 1.22.0),
     SummarizedExperiment (>= 1.30.0),
     ggplot2 (>= 3.4.3),

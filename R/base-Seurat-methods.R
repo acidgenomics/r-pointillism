@@ -9,7 +9,7 @@
 #' @inheritParams AcidRoxygen::params
 #'
 #' @seealso
-#' - `Seurat::GetAssayData()`.
+#' - `SeuratObject::LayerData()`.
 #'
 #' @return Varies, depending on the generic.
 NULL

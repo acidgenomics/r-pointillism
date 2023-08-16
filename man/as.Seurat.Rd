@@ -25,7 +25,7 @@ Note that \code{Seurat::as.Seurat()} method requires \code{logcounts} to be defi
 in \code{assays()}, so we're using \code{CreateSeuratObject()} here instead.
 }
 \note{
-Updated 2022-05-11.
+Updated 2023-08-16.
 }
 \examples{
 data(SingleCellExperiment_Seurat, package = "AcidTest")
