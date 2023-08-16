@@ -182,7 +182,7 @@ Updated 2023-08-16.
 }
 \seealso{
 \itemize{
-\item \code{Seurat::GetAssayData()}.
+\item \code{SeuratObject::LayerData()}.
 }
 }
 \keyword{internal}
