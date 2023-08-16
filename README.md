@@ -1,5 +1,7 @@
 # pointillism
 
+![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+
 [R][] package for for single-cell RNA-seq clustering analysis.
 
 ## Installation
@@ -18,19 +20,6 @@ install.packages(
     ),
     dependencies = TRUE
 )
-```
-
-### [Docker][] method
-
-```sh
-image='acidgenomics/r-packages:pointillism'
-workdir='/mnt/work'
-docker pull "$image"
-docker run -it \
-    --volume="${PWD}:${workdir}" \
-    --workdir="$workdir" \
-    "$image" \
-    R
 ```
 
 ## Supported data classes
@@ -74,7 +63,6 @@ with `getLoadedDLLs()`.
 The papers and software cited in our workflows are available as a
 [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
-[docker]: https://www.docker.com/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
 [r]: https://www.r-project.org/
