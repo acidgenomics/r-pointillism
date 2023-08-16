@@ -32,7 +32,7 @@ NULL
 
 
 
-## Updated 2019-09-03.
+## Updated 2023-08-16.
 .plotPCElbow <-
     function(pctStdDev,
              minPct = 0.01,
@@ -67,7 +67,7 @@ NULL
         ) +
             geom_hline(
                 color = "orange",
-                size = 1L,
+                linewidth = 1L,
                 yintercept = minPct
             ) +
             geom_line() +
@@ -89,7 +89,7 @@ NULL
         ) +
             geom_hline(
                 color = "orange",
-                size = 1L,
+                linewidth = 1L,
                 yintercept = maxCumPct
             ) +
             geom_line() +
