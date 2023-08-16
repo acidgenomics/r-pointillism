@@ -1,6 +1,6 @@
 #' @name plotPCElbow
 #' @inherit AcidGenerics::plotPCElbow
-#' @note Updated 2022-06-09.
+#' @note Updated 2023-08-16.
 #'
 #' @details
 #' Automatically return the smallest number of PCs that match the `minSD`,
@@ -61,8 +61,8 @@ NULL
         ggpct <- ggplot(
             data = as.data.frame(data),
             mapping = aes(
-                x = !!sym("pc"),
-                y = !!sym("pct")
+                x = .data[["pc"]],
+                y = .data[["pct"]]
             )
         ) +
             geom_hline(
@@ -83,8 +83,8 @@ NULL
         ggcumsum <- ggplot(
             data = as.data.frame(data),
             mapping = aes(
-                x = !!sym("pc"),
-                y = !!sym("cumsum")
+                x = .data[["pc"]],
+                y = .data[["cumsum"]]
             )
         ) +
             geom_hline(
