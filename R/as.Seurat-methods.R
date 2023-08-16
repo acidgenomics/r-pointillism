@@ -1,6 +1,6 @@
 #' @name as.Seurat
 #' @inherit AcidGenerics::as.Seurat
-#' @note Updated 2022-05-11.
+#' @note Updated 2023-08-16.
 #'
 #' @details
 #' Note that `Seurat::as.Seurat()` method requires `logcounts` to be defined
@@ -27,7 +27,7 @@ NULL
 
 #' Coerce SCE to Seurat
 #'
-#' @note Updated 2022-05-11.
+#' @note Updated 2023-08-16.
 #' @noRd
 #'
 #' @details
@@ -46,8 +46,15 @@ NULL
             names.delim = "_",
             meta.data = as.data.frame(colData(from))
         )
-        ## Check that the dimensions match exactly.
-        assert(identical(x = dim(from), y = dim(to)))
+        ## Check that the dimensions match exactly. Note that Seurat 5 dim
+        ## method currently returns `numeric` instead of `integer`.
+        assert(
+            identical(
+                x = dim(from),
+                y = as.integer(dim(to))
+            ),
+            msg = "Dimension mismatch"
+        )
         ## Stash rowRanges.
         rowRanges <- rowRanges(from)
         ## Stash metadata.
