@@ -73,8 +73,8 @@ NULL
 #' @importFrom AcidExperiment matchInterestingGroups
 #' @importFrom AcidGenomes makeGene2SymbolFromEnsembl
 #' @importFrom AcidMarkdown markdownHeader
-#' @importFrom AcidPlots !! acid_theme_dark acid_theme_light matchLabels percent
-#' pretty_breaks sym syms wrap_plots
+#' @importFrom AcidPlots .data acid_theme_dark acid_theme_light matchLabels
+#' percent pretty_breaks wrap_plots
 #' @importFrom BiocParallel bpparam
 #' @importFrom IRanges SplitDataFrameList
 #' @importFrom S4Vectors DataFrame

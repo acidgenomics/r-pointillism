@@ -32,7 +32,7 @@ Automatically return the smallest number of PCs that match the \code{minSD},
 \code{minPct}, and \code{maxCumPct} cutoffs.
 }
 \note{
-Updated 2022-06-09.
+Updated 2023-08-16.
 }
 \examples{
 data(Seurat, package = "AcidTest")
