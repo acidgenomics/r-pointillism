@@ -11,7 +11,7 @@
 Force an object to belong to a class
 }
 \note{
-Updated 2022-06-09.
+Updated 2023-08-16.
 }
 \examples{
 data(Seurat, SingleCellExperiment_Seurat, package = "AcidTest")
