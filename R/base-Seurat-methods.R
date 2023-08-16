@@ -128,13 +128,14 @@ setMethod(
 
 
 
-## Updated 2021-03-03.
+## Updated 2023-08-16.
 `colData,Seurat` <- # nolint
-    function(x, ...) {
-        colData(
-            x = as(x, "SingleCellExperiment"),
-            ...
-        )
+    function(x) {
+        assert(validObject(x))
+        x <- slot(object = x, name = "meta.data")
+        assert(is.data.frame(x))
+        x <- as(x, "DFrame")
+        x
     }
 
 #' @rdname base-Seurat
@@ -147,12 +148,12 @@ setMethod(
 
 
 
-## Updated 2021-10-13..
+## Updated 2023-08-16.
 `colData<-,Seurat,DFrame` <- # nolint
     function(x, value) {
         value <- as.data.frame(value)
-        slot(x, "meta.data", check = TRUE) <- value # nolint
-        validObject(x)
+        slot(x, name = "meta.data", check = TRUE) <- value # nolint
+        assert(validObject(x))
         x
     }
 

@@ -64,7 +64,7 @@
 
 \S4method{clusters}{Seurat}(object)
 
-\S4method{colData}{Seurat}(x, ...)
+\S4method{colData}{Seurat}(x)
 
 \S4method{colData}{Seurat,DFrame}(x) <- value
 
