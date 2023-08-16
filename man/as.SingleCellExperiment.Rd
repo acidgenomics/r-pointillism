@@ -30,7 +30,7 @@ class object. Internally, this method improves the basic
 \code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
 }
 \note{
-Updated 2022-06-09.
+Updated 2023-08-16.
 }
 \examples{
 data(Seurat, package = "AcidTest")
