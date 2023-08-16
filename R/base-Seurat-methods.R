@@ -186,7 +186,7 @@ setMethod(
 
 
 
-## Updated 2020-01-30.
+## Updated 2023-08-16.
 `cpm,Seurat` <- # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated CPM (not typical).
@@ -314,7 +314,7 @@ setReplaceMethod(
 
 
 
-## Updated 2020-01-30.
+## Updated 2023-08-16.
 `logcounts,Seurat` <- # nolint
     function(object, assay = NULL) {
         norm <- .seuratNormalizationMethod(object, assay = assay)
@@ -325,7 +325,7 @@ setReplaceMethod(
                 verbose = TRUE
             )
         }
-        GetAssayData(object = object, assay = assay, slot = "data")
+        LayerData(object = object, layer = "data", assay = assay)
     }
 
 #' @rdname base-Seurat
@@ -482,7 +482,7 @@ setMethod(
 
 
 
-## Updated 2020-01-30.
+## Updated 2023-08-16.
 `normcounts,Seurat` <- # nolint
     function(object, assay = NULL) {
         ## Check for pre-calculated relative counts (not typical).
@@ -496,7 +496,7 @@ setMethod(
                 verbose = TRUE
             )
         }
-        GetAssayData(object = object, assay = assay, slot = "data")
+        LayerData(object = object, layer = "data", assay = assay)
     }
 
 #' @rdname base-Seurat
