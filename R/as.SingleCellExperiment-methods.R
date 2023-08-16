@@ -28,6 +28,9 @@ NULL
 
 
 
+## FIXME Seems like as.SummarizedExperiment method in Seurat 5 is dropping
+## scale.data.
+
 ## Updated 2023-08-16.
 `as.SingleCellExperiment,Seurat` <- # nolint
     function(x) {
@@ -45,6 +48,8 @@ NULL
         }
         rowRanges(to) <- rowRanges(from)
         metadata(to) <- metadata(from)
+        ## FIXME scale.data is no longer defined in Seurat 5?
+        ## FIXME Only do this conditionally if defined.
         metadata(to)[["scaleData"]] <- LayerData(from, layer = "scale.data")
         metadata(to)[["variableFeatures"]] <- VariableFeatures(from)
         validObject(to)
