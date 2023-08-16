@@ -44,7 +44,7 @@ Imports:
     IRanges (>= 2.34.0),
     Matrix (>= 1.6.1),
     S4Vectors (>= 0.38.0),
-    Seurat (>= 4.3.0.1),
+    Seurat (>= 4.9.9),
     SingleCellExperiment (>= 1.22.0),
     SummarizedExperiment (>= 1.30.0),
     ggplot2 (>= 3.4.3),
