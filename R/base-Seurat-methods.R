@@ -4,7 +4,7 @@
 #'
 #' @name base-Seurat
 #' @keywords internal
-#' @note Updated 2021-09-13.
+#' @note Updated 2023-08-16.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -148,7 +148,7 @@ setMethod(
 
 
 ## Updated 2021-10-13..
-`colData<-,Seurat,DataFrame` <- # nolint
+`colData<-,Seurat,DFrame` <- # nolint
     function(x, value) {
         value <- as.data.frame(value)
         slot(x, "meta.data", check = TRUE) <- value # nolint
@@ -162,9 +162,9 @@ setReplaceMethod(
     f = "colData",
     signature = signature(
         x = "Seurat",
-        value = "DataFrame"
+        value = "DFrame"
     ),
-    definition = `colData<-,Seurat,DataFrame`
+    definition = `colData<-,Seurat,DFrame`
 )
 
 
@@ -966,13 +966,13 @@ setMethod(
 
 
 
-## Updated 2021-10-13.
-`sampleData<-,Seurat,DataFrame` <- # nolint
+## Updated 2023-08-16.
+`sampleData<-,Seurat,DFrame` <- # nolint
     getMethod(
         f = "sampleData<-",
         signature = signature(
             object = "SingleCellExperiment",
-            value = "DataFrame"
+            value = "DFrame"
         ),
         where = asNamespace("AcidSingleCell")
     )
@@ -983,9 +983,9 @@ setReplaceMethod(
     f = "sampleData",
     signature = signature(
         object = "Seurat",
-        value = "DataFrame"
+        value = "DFrame"
     ),
-    definition = `sampleData<-,Seurat,DataFrame`
+    definition = `sampleData<-,Seurat,DFrame`
 )
 
 
