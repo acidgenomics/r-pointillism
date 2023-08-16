@@ -3,7 +3,7 @@
 #' @name coerce
 #' @importFrom methods coerce
 #' @exportMethod coerce
-#' @note Updated 2022-06-09.
+#' @note Updated 2023-08-16.
 #'
 #' @examples
 #' data(Seurat, SingleCellExperiment_Seurat, package = "AcidTest")
