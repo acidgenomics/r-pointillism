@@ -56,13 +56,14 @@ test_that("SingleCellExperiment to Seurat", {
     expect_identical(dim(counts), dim(object))
 })
 
+## NOTE This is currently dropping `scale.data` layer, consider reworking.
+
 test_that("SCE-Seurat interconversion with subsetting", {
     a <- objs[["SingleCellExperiment"]]
     colDataNames <- colnames(colData(a))
     ## Coerce to Seurat.
     b <- as(a, "Seurat")
     expect_s4_class(b, "Seurat")
-    ## FIXME This check is failing with Seurat 5.
     expect_identical(
         object = colnames(colData(b)),
         expected = colDataNames

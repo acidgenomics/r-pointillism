@@ -128,8 +128,6 @@ setMethod(
 
 
 
-## FIXME Assert that colnames are identical.
-
 ## Updated 2023-08-16.
 `colData,Seurat` <- # nolint
     function(x) {
@@ -149,8 +147,6 @@ setMethod(
 )
 
 
-
-## FIXME Assert that colnames are identical.
 
 ## Updated 2023-08-16.
 `colData<-,Seurat,DFrame` <- # nolint
