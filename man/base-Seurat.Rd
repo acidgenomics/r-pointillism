@@ -9,7 +9,7 @@
 \alias{cellCountsPerCluster,Seurat-method}
 \alias{clusters,Seurat-method}
 \alias{colData,Seurat-method}
-\alias{colData<-,Seurat,DataFrame-method}
+\alias{colData<-,Seurat,DFrame-method}
 \alias{counts,Seurat-method}
 \alias{cpm,Seurat-method}
 \alias{diffExp,Seurat-method}
@@ -48,7 +48,7 @@
 \alias{rowRanges,Seurat-method}
 \alias{rowRanges<-,Seurat,ANY-method}
 \alias{sampleData,Seurat-method}
-\alias{sampleData<-,Seurat,DataFrame-method}
+\alias{sampleData<-,Seurat,DFrame-method}
 \alias{sampleNames,Seurat-method}
 \title{Extend base S4 methods for \code{Seurat} class}
 \usage{
@@ -66,7 +66,7 @@
 
 \S4method{colData}{Seurat}(x, ...)
 
-\S4method{colData}{Seurat,DataFrame}(x) <- value
+\S4method{colData}{Seurat,DFrame}(x) <- value
 
 \S4method{counts}{Seurat}(object, assay = NULL)
 
@@ -144,7 +144,7 @@
 
 \S4method{sampleData}{Seurat}(object, ...)
 
-\S4method{sampleData}{Seurat,DataFrame}(object) <- value
+\S4method{sampleData}{Seurat,DFrame}(object) <- value
 
 \S4method{sampleNames}{Seurat}(object)
 }
@@ -178,7 +178,7 @@ Varies, depending on the generic.
 Provide limited \code{SingleCellExperiment}-like method support.
 }
 \note{
-Updated 2021-09-13.
+Updated 2023-08-16.
 }
 \seealso{
 \itemize{
