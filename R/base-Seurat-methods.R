@@ -204,7 +204,7 @@ setMethod(
                 verbose = TRUE
             )
         }
-        GetAssayData(object = object, slot = "data", assay = assay)
+        LayerData(object = object, layer = "data", assay = assay)
     }
 
 #' @rdname base-Seurat
