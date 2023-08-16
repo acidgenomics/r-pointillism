@@ -1,5 +1,12 @@
 # Release notes
 
+## pointillism 0.7.0 (2023-08-16)
+
+Major changes:
+
+- Now requiring R 4.3 / Bioconductor 3.17.
+- Added initial support for pending Seurat 5 release.
+
 ## pointillism 0.6.2 (2022-10-24)
 
 Minor changes:

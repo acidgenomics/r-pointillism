@@ -132,10 +132,13 @@ setMethod(
 `colData,Seurat` <- # nolint
     function(x) {
         assert(validObject(x))
-        x <- slot(object = x, name = "meta.data")
-        assert(is.data.frame(x))
-        x <- as(x, "DFrame")
-        x
+        df <- slot(object = x, name = "meta.data")
+        assert(
+            is.data.frame(df),
+            identical(colnames(x), rownames(df))
+        )
+        df <- as(df, "DFrame")
+        df
     }
 
 #' @rdname base-Seurat
