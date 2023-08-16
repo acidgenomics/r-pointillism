@@ -169,11 +169,10 @@ setReplaceMethod(
 
 
 
-## Upated 2022-05-11.
+## Upated 2023-08-16.
 `counts,Seurat` <- # nolint
     function(object, assay = NULL) {
-        object <- Seurat::as.SingleCellExperiment(x = object, assay = assay)
-        counts(object)
+        LayerData(object, layer = "counts", assay = assay)
     }
 
 #' @rdname base-Seurat
