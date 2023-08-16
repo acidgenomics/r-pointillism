@@ -51,8 +51,6 @@ test_that("SingleCellExperiment to Seurat", {
     object <- objs[["SingleCellExperiment"]]
     x <- as(object, "Seurat")
     expect_s4_class(x, "Seurat")
-    ## Check slotted count integrity.
-    ## FIXME This step is now failing.
     counts <- counts(x)
     expect_s4_class(counts, "dgCMatrix")
     expect_identical(dim(counts), dim(object))
