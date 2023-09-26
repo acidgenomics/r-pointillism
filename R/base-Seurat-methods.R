@@ -17,9 +17,9 @@ NULL
 
 
 ## Updated 2019-08-02.
-`Gene2Symbol,Seurat` <- # nolint
+`GeneToSymbol,Seurat` <- # nolint
     function(object, ...) {
-        Gene2Symbol(
+        GeneToSymbol(
             object = as(object, "SummarizedExperiment"),
             ...
         )
@@ -28,9 +28,9 @@ NULL
 #' @rdname base-Seurat
 #' @export
 setMethod(
-    f = "Gene2Symbol",
+    f = "GeneToSymbol",
     signature = signature(object = "Seurat"),
-    definition = `Gene2Symbol,Seurat`
+    definition = `GeneToSymbol,Seurat`
 )
 
 
@@ -882,6 +882,7 @@ setMethod(
         assert(
             is(gr, "GenomicRangesList"),
             all(
+                ## FIXME Can we replace with `lengths` here?
                 vapply(
                     X = gr,
                     FUN = length,

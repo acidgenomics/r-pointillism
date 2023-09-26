@@ -2,7 +2,7 @@
 % Please edit documentation in R/base-Seurat-methods.R
 \name{base-Seurat}
 \alias{base-Seurat}
-\alias{Gene2Symbol,Seurat-method}
+\alias{GeneToSymbol,Seurat-method}
 \alias{assay,Seurat,ANY-method}
 \alias{assayNames,Seurat-method}
 \alias{assays,Seurat-method}
@@ -52,7 +52,7 @@
 \alias{sampleNames,Seurat-method}
 \title{Extend base S4 methods for \code{Seurat} class}
 \usage{
-\S4method{Gene2Symbol}{Seurat}(object, ...)
+\S4method{GeneToSymbol}{Seurat}(object, ...)
 
 \S4method{assay}{Seurat,ANY}(x, i, withDimnames = TRUE, ...)
 

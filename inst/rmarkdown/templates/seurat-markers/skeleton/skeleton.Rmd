@@ -61,7 +61,7 @@ invisible(validObject(knownMarkers))
 ## Check that object has organism and gene-to-symbol mappings defined.
 assert(
     is.character(organism(object)),
-    is(Gene2Symbol(object), "Gene2Symbol")
+    is(GeneToSymbol(object), "GeneToSymbol")
 )
 print(object)
 ```

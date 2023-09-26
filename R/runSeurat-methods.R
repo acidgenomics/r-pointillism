@@ -1,7 +1,7 @@
 #' Run Seurat analysis
 #'
 #' @name runSeurat
-#' @note Updated 2022-05-11.
+#' @note Updated 2023-09-21.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -50,7 +50,7 @@ NULL
 
 
 
-## Updated 2022-05-10.
+## Updated 2023-09-21.
 `runSeurat,Seurat` <- # nolint
     function(object,
              regressCellCycle = c("s-g2m-diff", "yes", "no"),
@@ -59,8 +59,7 @@ NULL
              resolution = seq(from = 0.2, to = 1.2, by = 0.2),
              workers = "auto") {
         assert(
-            requireNamespace("future", quietly = TRUE),
-            requireNamespace("Seurat", quietly = TRUE),
+            requireNamespaces(c("Seurat", "future")),
             isCharacter(varsToRegress, nullOK = TRUE),
             identical(dims, "auto") || is.numeric(dims),
             is.numeric(resolution),
