@@ -68,7 +68,7 @@ Disable parallelization with future by setting to \code{NULL}.}
 Run Seurat analysis
 }
 \note{
-Updated 2022-05-11.
+Updated 2023-09-21.
 }
 \seealso{
 \itemize{

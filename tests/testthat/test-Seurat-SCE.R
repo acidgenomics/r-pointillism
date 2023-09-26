@@ -1,8 +1,8 @@
 object <- objs[["Seurat"]]
 
-test_that("Gene2Symbol", {
-    x <- Gene2Symbol(object)
-    expect_s4_class(x, "Gene2Symbol")
+test_that("GeneToSymbol", {
+    x <- GeneToSymbol(object)
+    expect_s4_class(x, "GeneToSymbol")
 })
 
 test_that("assay", {

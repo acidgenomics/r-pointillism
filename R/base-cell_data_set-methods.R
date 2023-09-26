@@ -12,7 +12,7 @@
 
 
 ## > ## Updated 2019-08-02.
-## > `Gene2Symbol,cell_data_set` <-  # nolint
+## > `GeneToSymbol,cell_data_set` <-  # nolint
 ## >     function(object, ...) {
 ## >         assert(isSubset("gene_short_name", colnames(rowData(object))))
 ## >         df <- DataFrame(
@@ -20,15 +20,15 @@
 ## >             "geneName" = rowData(object)[["gene_short_name"]],
 ## >             row.names = rownames(object)
 ## >         )
-## >         Gene2Symbol(object = df, ...)
+## >         GeneToSymbol(object = df, ...)
 ## >     }
 ## >
 ## > #' @rdname base-cell_data_set
 ## > #' @export
 ## > setMethod(
-## >     f = "Gene2Symbol",
+## >     f = "GeneToSymbol",
 ## >     signature = signature(object = "cell_data_set"),
-## >     definition = `Gene2Symbol,cell_data_set`
+## >     definition = `GeneToSymbol,cell_data_set`
 ## > )
 
 
