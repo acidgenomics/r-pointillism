@@ -67,8 +67,8 @@ NULL
 
 ## S3 generics =================================================================
 
-#' @importFrom Seurat CreateSeuratObject DefaultAssay Idents NormalizeData Stdev
-#' VariableFeatures
+#' @importFrom Seurat CreateSeuratObject DefaultAssay Idents NormalizeData
+#' ScaleData Stdev VariableFeatures
 #' @importFrom SeuratObject LayerData Layers
 #' @importFrom stats median model.matrix relevel
 NULL

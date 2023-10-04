@@ -12,7 +12,7 @@ test_that("Seurat to SingleCellExperiment", {
     )
     expect_identical(
         object = colnames(reducedDim(x, type = "UMAP")),
-        expected = c("UMAP_1", "UMAP_2")
+        expected = c("umap_1", "umap_2")
     )
     expect_identical(
         object = colnames(colData(x)),
@@ -31,10 +31,10 @@ test_that("Seurat to SingleCellExperiment", {
         object = colnames(mcols(rowRanges(x))),
         expected = c(
             "broadClass",
-            "entrezId",
             "geneBiotype",
             "geneId",
             "geneName",
+            "ncbiGeneId",
             "seqCoordSystem"
         )
     )
@@ -56,8 +56,6 @@ test_that("SingleCellExperiment to Seurat", {
     expect_identical(dim(counts), dim(object))
 })
 
-## NOTE This is currently dropping `scale.data` layer, consider reworking.
-
 test_that("SCE-Seurat interconversion with subsetting", {
     a <- objs[["SingleCellExperiment"]]
     colDataNames <- colnames(colData(a))
@@ -68,7 +66,9 @@ test_that("SCE-Seurat interconversion with subsetting", {
         object = colnames(colData(b)),
         expected = colDataNames
     )
-    ## Coerce back to SingleCellExperiment.
+    ## These steps are now performed automatically, if necessary:
+    ## > b <- NormalizeData(b)
+    ## > b <- ScaleData(b)
     c <- as(b, "SingleCellExperiment")
     expect_s4_class(c, "SingleCellExperiment")
     expect_identical(

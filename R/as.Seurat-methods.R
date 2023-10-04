@@ -1,6 +1,6 @@
 #' @name as.Seurat
 #' @inherit AcidGenerics::as.Seurat
-#' @note Updated 2023-08-16.
+#' @note Updated 2023-10-10.
 #'
 #' @details
 #' Note that `Seurat::as.Seurat()` method requires `logcounts` to be defined
