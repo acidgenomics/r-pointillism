@@ -882,7 +882,6 @@ setMethod(
         assert(
             is(gr, "GenomicRangesList"),
             all(
-                ## FIXME Can we replace with `lengths` here?
                 vapply(
                     X = gr,
                     FUN = length,
