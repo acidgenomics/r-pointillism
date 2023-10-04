@@ -66,3 +66,4 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+biocViews: SingleCell
