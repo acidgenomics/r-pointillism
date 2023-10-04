@@ -1,6 +1,6 @@
 #' @name as.SingleCellExperiment
 #' @inherit AcidGenerics::as.SingleCellExperiment
-#' @note Updated 2023-08-16.
+#' @note Updated 2023-10-04.
 #'
 #' @details
 #' S4 coercion support for creating a `SingleCellExperiment` from a `Seurat`
@@ -28,11 +28,22 @@ NULL
 
 
 
-## Updated 2023-08-16.
+## Updated 2023-10-04.
 `as.SingleCellExperiment,Seurat` <- # nolint
     function(x) {
         from <- x
-        validObject(from)
+        layers <- Layers(from)
+        assert(
+            validObject(from),
+            isSubset("counts", layers),
+            identical(DefaultAssay(from), "RNA")
+        )
+        if (!isSubset("data", layers)) {
+            from <- NormalizeData(from)
+        }
+        if (!isSubset("scale.data", layers)) {
+            from <- ScaleData(from)
+        }
         to <- Seurat::as.SingleCellExperiment(x = from, assay = NULL)
         if (isSubset("ident", colnames(colData(to)))) {
             idents <- Idents(from)
