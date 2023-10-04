@@ -39,10 +39,14 @@ NULL
             identical(DefaultAssay(from), "RNA")
         )
         if (!isSubset("data", layers)) {
-            from <- NormalizeData(from)
+            quietly({
+                from <- NormalizeData(from)
+            })
         }
         if (!isSubset("scale.data", layers)) {
-            from <- ScaleData(from)
+            quietly({
+                from <- ScaleData(from)
+            })
         }
         to <- Seurat::as.SingleCellExperiment(x = from, assay = NULL)
         if (isSubset("ident", colnames(colData(to)))) {
