@@ -165,7 +165,7 @@ object <- RunPCA(
     features = cellCycleGenes,
     verbose = FALSE
 )
-plotPCA(
+plotPca(
     object = object,
     interestingGroups = "Phase",
     label = FALSE,
@@ -197,7 +197,7 @@ object <- RunPCA(
     features = cellCycleGenes,
     verbose = FALSE
 )
-plotPCA(
+plotPca(
     object = object,
     interestingGroups = "Phase",
     label = FALSE,
@@ -227,7 +227,7 @@ invisible(Map(
 
 # Determine statistically significant principal components
 
-To overcome the extensive technical noise in any single gene for scRNA-seq data, [Seurat][] clusters cells based on their PCA scores, with each PC essentially representing a "metagene" that combines information across a correlated gene set. Determining how many PCs to include downstream is therefore an important step. To accomplish this, we plot the standard deviation of each PC as an elbow plot with our `plotPCElbow()` function.
+To overcome the extensive technical noise in any single gene for scRNA-seq data, [Seurat][] clusters cells based on their PCA scores, with each PC essentially representing a "metagene" that combines information across a correlated gene set. Determining how many PCs to include downstream is therefore an important step. To accomplish this, we plot the standard deviation of each PC as an elbow plot with our `plotPcElbow()` function.
 
 PC selection — identifying the true dimensionality of a dataset — is an important step for [Seurat][], but can be challenging/uncertain. We therefore suggest these three approaches to consider:
 
@@ -245,7 +245,7 @@ This methodology is also commonly used for PC covariate analysis on bulk RNA-seq
 ```{r dims}
 dims <- params[["dims"]]
 if (!is.numeric(dims)) {
-    p <- plotPCElbow(object)
+    p <- plotPcElbow(object)
     print(p)
     elbow <- attr(p, "elbow")
     dims <- seq_len(elbow)
@@ -306,7 +306,7 @@ invisible(lapply(
                 assert(isSubset(resCol, colnames(object[[]])))
                 markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
                 Idents(object) <- resCol
-                show(plotUMAP(
+                show(plotUmap(
                     object = object,
                     interestingGroups = group,
                     dark = params[["dark"]]
@@ -337,7 +337,7 @@ invisible(lapply(
                 assert(isSubset(resCol, colnames(object[[]])))
                 markdownHeader(resCol, level = 4L, asis = TRUE, tabset = TRUE)
                 Idents(object) <- resCol
-                show(plotTSNE(
+                show(plotTsne(
                     object = object,
                     interestingGroups = group,
                     dark = params[["dark"]]

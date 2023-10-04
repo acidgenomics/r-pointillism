@@ -33,7 +33,7 @@
         assert(
             is(object, "Seurat"),
             isString(name),
-            isString(assay, nullOK = TRUE)
+            isString(assay, nullOk = TRUE)
         )
         if (is.null(assay)) {
             assay <- DefaultAssay(object)

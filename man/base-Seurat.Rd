@@ -18,7 +18,7 @@
 \alias{interestingGroups,Seurat-method}
 \alias{interestingGroups<-,Seurat,character-method}
 \alias{logcounts,Seurat-method}
-\alias{mapGenesToIDs,Seurat-method}
+\alias{mapGenesToIds,Seurat-method}
 \alias{mapGenesToRownames,Seurat-method}
 \alias{mapGenesToSymbols,Seurat-method}
 \alias{metadata,Seurat-method}
@@ -35,12 +35,12 @@
 \alias{plotFeature,Seurat-method}
 \alias{plotKnownMarkers,Seurat,KnownMarkers-method}
 \alias{plotMarker,Seurat-method}
-\alias{plotPCA,Seurat-method}
+\alias{plotPca,Seurat-method}
 \alias{plotReducedDim,Seurat-method}
 \alias{plotStackedBarPlot,Seurat-method}
-\alias{plotTSNE,Seurat-method}
+\alias{plotTsne,Seurat-method}
 \alias{plotViolin,Seurat-method}
-\alias{plotUMAP,Seurat-method}
+\alias{plotUmap,Seurat-method}
 \alias{reducedDim,Seurat,ANY-method}
 \alias{reducedDimNames,Seurat-method}
 \alias{reducedDims,Seurat-method}
@@ -84,7 +84,7 @@
 
 \S4method{logcounts}{Seurat}(object, assay = NULL)
 
-\S4method{mapGenesToIDs}{Seurat}(object, genes, strict = TRUE)
+\S4method{mapGenesToIds}{Seurat}(object, genes, strict = TRUE)
 
 \S4method{mapGenesToRownames}{Seurat}(object, genes, strict = TRUE)
 
@@ -118,17 +118,17 @@
 
 \S4method{plotMarker}{Seurat}(object, ...)
 
-\S4method{plotPCA}{Seurat}(object, ...)
+\S4method{plotPca}{Seurat}(object, ...)
 
 \S4method{plotReducedDim}{Seurat}(object, ...)
 
 \S4method{plotStackedBarPlot}{Seurat}(object, ...)
 
-\S4method{plotTSNE}{Seurat}(object, ...)
+\S4method{plotTsne}{Seurat}(object, ...)
 
 \S4method{plotViolin}{Seurat}(object, ...)
 
-\S4method{plotUMAP}{Seurat}(object, ...)
+\S4method{plotUmap}{Seurat}(object, ...)
 
 \S4method{reducedDim}{Seurat,ANY}(x, type = 1L, withDimnames = TRUE)
 

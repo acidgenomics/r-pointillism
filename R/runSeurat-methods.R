@@ -22,7 +22,7 @@
 #' @param dims `"auto"` or `integer`.
 #' Dimensions of reduction to use as input for shared nearest neighbor (SNN)
 #' graph construction. When set to "auto" (default), the elbow point is
-#' calculated internally. See [plotPCElbow()] for details. Passes to
+#' calculated internally. See [plotPcElbow()] for details. Passes to
 #' [Seurat::FindNeighbors()] and [Seurat::RunUMAP()] internally.
 #'
 #' @param resolution `numeric`.
@@ -60,10 +60,10 @@ NULL
              workers = "auto") {
         assert(
             requireNamespaces(c("Seurat", "future")),
-            isCharacter(varsToRegress, nullOK = TRUE),
+            isCharacter(varsToRegress, nullOk = TRUE),
             identical(dims, "auto") || is.numeric(dims),
             is.numeric(resolution),
-            identical(workers, "auto") || isInt(workers, nullOK = TRUE)
+            identical(workers, "auto") || isInt(workers, nullOk = TRUE)
         )
         regressCellCycle <- match.arg(regressCellCycle)
         ## Parallelization (via future) ----------------------------------------
@@ -163,7 +163,7 @@ NULL
         object <- Seurat::RunPCA(object)
         if (identical(dims, "auto")) {
             alert(sprintf("{.fun %s}", "plotElbow"))
-            p <- plotPCElbow(object)
+            p <- plotPcElbow(object)
             elbow <- attr(p, "elbow")
             dims <- seq(from = 1L, to = elbow, by = 1L)
         }
