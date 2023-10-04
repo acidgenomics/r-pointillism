@@ -48,7 +48,8 @@ NULL
 #' colData colData<- rowData rowData<- rowRanges rowRanges<-
 #' @importFrom methods coerce show
 #' @importFrom pipette import
-#'
+NULL
+
 #' @importMethodsFrom AcidBase geometricMean
 #' @importMethodsFrom AcidExperiment convertGenesToSymbols interestingGroups
 #' interestingGroups<- mapGenesToIds mapGenesToRownames mapGenesToSymbols
@@ -99,8 +100,8 @@ NULL
 #' areSetEqual assert bapply false isAlpha isInt hasColnames hasLength
 #' hasNames hasRownames hasRows hasValidDimnames hasValidNames isGgscale isAny
 #' isCharacter isFlag isHeaderLevel isIntegerish isNonNegative isNumber
-#' isPositive isScalar isScalarNumeric isString isSubset requireNamespaces
-#' validate
+#' isPositive isScalar isScalarNumeric isString isSubset quietly
+#' requireNamespaces validate
 #' @importFrom methods as getMethod is new setAs setClass setMethod
 #' setReplaceMethod setValidity slot slot<- validObject .hasSlot
 #' @importFrom utils capture.output data packageName packageVersion sessionInfo
