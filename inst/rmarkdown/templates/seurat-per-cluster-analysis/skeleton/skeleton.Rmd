@@ -59,7 +59,7 @@ invisible(lapply(
     X = groups,
     FUN = function(group) {
         markdownHeader(group, level = 2L, asis = TRUE)
-        show(plotUMAP(object, interestingGroups = group))
+        show(plotUmap(object, interestingGroups = group))
     }
 ))
 rm(groups)
@@ -76,7 +76,7 @@ invisible(lapply(
         markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
         invisible(lapply(groups, function(group) {
             markdownHeader(group, level = 3L, asis = TRUE)
-            show(plotUMAP(subset, interestingGroups = group))
+            show(plotUmap(subset, interestingGroups = group))
         }))
     }
 ))

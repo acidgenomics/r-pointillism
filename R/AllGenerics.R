@@ -34,9 +34,9 @@ NULL
 #' @export
 NULL
 
-#' @rdname plotPCElbow
-#' @name plotPCElbow
-#' @usage plotPCElbow(object, ...)
+#' @rdname plotPcElbow
+#' @name plotPcElbow
+#' @usage plotPcElbow(object, ...)
 #' @export
 NULL
 

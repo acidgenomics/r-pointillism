@@ -1,5 +1,5 @@
-#' @name plotPCElbow
-#' @inherit AcidGenerics::plotPCElbow
+#' @name plotPcElbow
+#' @inherit AcidGenerics::plotPcElbow
 #' @note Updated 2023-08-16.
 #'
 #' @details
@@ -27,13 +27,13 @@
 #'
 #' ## Seurat ====
 #' object <- Seurat
-#' plotPCElbow(object)
+#' plotPcElbow(object)
 NULL
 
 
 
 ## Updated 2023-08-16.
-.plotPCElbow <-
+.plotPcElbow <-
     function(pctStdDev,
              minPct = 0.01,
              maxCumPct = 0.9) {
@@ -114,12 +114,12 @@ NULL
 
 
 ## Updated 2019-08-02.
-`plotPCElbow,Seurat` <- # nolint
+`plotPcElbow,Seurat` <- # nolint
     function(object, minPct, maxCumPct) {
         stdDev <- Stdev(object = object, reduction = "pca")
         assert(is.numeric(stdDev))
         pctStdDev <- stdDev^2L / sum(stdDev^2L)
-        .plotPCElbow(
+        .plotPcElbow(
             pctStdDev = pctStdDev,
             minPct = minPct,
             maxCumPct = maxCumPct
@@ -127,17 +127,17 @@ NULL
     }
 
 args <- c("minPct", "maxCumPct")
-formals(`plotPCElbow,Seurat`)[args] <- # nolint
-    formals(.plotPCElbow)[args]
+formals(`plotPcElbow,Seurat`)[args] <- # nolint
+    formals(.plotPcElbow)[args]
 rm(args)
 
 
 
 ## > ## Updated 2019-08-02.
-## > `plotPCElbow,cell_data_set` <-  # nolint
+## > `plotPcElbow,cell_data_set` <-  # nolint
 ## >     function(object, minPct, maxCumPct) {
 ## >         pctStdDev <- slot(object, "preprocess_aux")[["prop_var_expl"]]
-## >         .plotPCElbow(
+## >         .plotPcElbow(
 ## >             pctStdDev = pctStdDev,
 ## >             minPct = minPct,
 ## >             maxCumPct = maxCumPct
@@ -145,22 +145,22 @@ rm(args)
 ## >     }
 ## >
 ## > args <- c("minPct", "maxCumPct")
-## > formals(`plotPCElbow,cell_data_set`)[args] <- formals(.plotPCElbow)[args]
+## > formals(`plotPcElbow,cell_data_set`)[args] <- formals(.plotPcElbow)[args]
 
 
 
-#' @rdname plotPCElbow
+#' @rdname plotPcElbow
 #' @export
 setMethod(
-    f = "plotPCElbow",
+    f = "plotPcElbow",
     signature = signature(object = "Seurat"),
-    definition = `plotPCElbow,Seurat`
+    definition = `plotPcElbow,Seurat`
 )
 
-## > #' @rdname plotPCElbow
+## > #' @rdname plotPcElbow
 ## > #' @export
 ## > setMethod(
-## >     f = "plotPCElbow",
+## >     f = "plotPcElbow",
 ## >     signature = signature(object = "cell_data_set"),
-## >     definition = `plotPCElbow,cell_data_set`
+## >     definition = `plotPcElbow,cell_data_set`
 ## > )

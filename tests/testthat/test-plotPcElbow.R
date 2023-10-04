@@ -7,12 +7,12 @@ elbows <- list(
     ## > "cell_data_set" = 16L
 )
 
-test_that("plotPCElbow", {
+test_that("plotPcElbow", {
     Map(
         object = objects,
         elbow = elbows,
         f = function(object, elbow) {
-            x <- plotPCElbow(object)
+            x <- plotPcElbow(object)
             expect_identical(
                 object = attr(x, "elbow"),
                 expected = elbow

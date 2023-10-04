@@ -342,9 +342,9 @@ setMethod(
 
 
 ## Updated 2021-03-03.
-`mapGenesToIDs,Seurat` <- # nolint
+`mapGenesToIds,Seurat` <- # nolint
     function(object, genes, strict = TRUE) {
-        mapGenesToIDs(
+        mapGenesToIds(
             object = as(object, "SingleCellExperiment"),
             genes = genes,
             strict = strict
@@ -354,9 +354,9 @@ setMethod(
 #' @rdname base-Seurat
 #' @export
 setMethod(
-    f = "mapGenesToIDs",
+    f = "mapGenesToIds",
     signature = signature(object = "Seurat"),
-    definition = `mapGenesToIDs,Seurat`
+    definition = `mapGenesToIds,Seurat`
 )
 
 
@@ -686,10 +686,10 @@ setMethod(
 
 
 
-## Updated 2021-09-13.
-`plotPCA,Seurat` <- # nolint
+## Updated 2023-10-04.
+`plotPca,Seurat` <- # nolint
     function(object, ...) {
-        plotPCA(
+        plotPca(
             object = as(object, "SingleCellExperiment"),
             ...
         )
@@ -698,9 +698,9 @@ setMethod(
 #' @rdname base-Seurat
 #' @export
 setMethod(
-    f = "plotPCA",
+    f = "plotPca",
     signature = signature(object = "Seurat"),
-    definition = `plotPCA,Seurat`
+    definition = `plotPca,Seurat`
 )
 
 
@@ -744,9 +744,9 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotTSNE,Seurat` <- # nolint
+`plotTsne,Seurat` <- # nolint
     function(object, ...) {
-        plotTSNE(
+        plotTsne(
             object = as(object, "SingleCellExperiment"),
             ...
         )
@@ -755,9 +755,9 @@ setMethod(
 #' @rdname base-Seurat
 #' @export
 setMethod(
-    f = "plotTSNE",
+    f = "plotTsne",
     signature = signature(object = "Seurat"),
-    definition = `plotTSNE,Seurat`
+    definition = `plotTsne,Seurat`
 )
 
 
@@ -782,9 +782,9 @@ setMethod(
 
 
 ## Updated 2021-09-13.
-`plotUMAP,Seurat` <- # nolint
+`plotUmap,Seurat` <- # nolint
     function(object, ...) {
-        plotUMAP(
+        plotUmap(
             object = as(object, "SingleCellExperiment"),
             ...
         )
@@ -793,9 +793,9 @@ setMethod(
 #' @rdname base-Seurat
 #' @export
 setMethod(
-    f = "plotUMAP",
+    f = "plotUmap",
     signature = signature(object = "Seurat"),
-    definition = `plotUMAP,Seurat`
+    definition = `plotUmap,Seurat`
 )
 
 

@@ -43,7 +43,7 @@ automatically. Passes to \link[Seurat:ScaleData]{Seurat::ScaleData} internally.}
 \item{dims}{\code{"auto"} or \code{integer}.
 Dimensions of reduction to use as input for shared nearest neighbor (SNN)
 graph construction. When set to "auto" (default), the elbow point is
-calculated internally. See \code{\link[=plotPCElbow]{plotPCElbow()}} for details. Passes to
+calculated internally. See \code{\link[=plotPcElbow]{plotPcElbow()}} for details. Passes to
 \code{\link[Seurat:FindNeighbors]{Seurat::FindNeighbors()}} and \code{\link[Seurat:RunUMAP]{Seurat::RunUMAP()}} internally.}
 
 \item{resolution}{\code{numeric}.

@@ -29,14 +29,14 @@ NULL
 #' as.SingleCellExperiment camelCase cellCountsPerCluster cellTypesPerCluster
 #' clusters convertGenesToSymbols cpm diffExp diffExpPerCluster findMarkers
 #' geometricMean interestingGroups interestingGroups<- leftJoin makeLabel
-#' makeNames mapGenesToIDs mapGenesToRownames mapGenesToSymbols melt metrics
+#' makeNames mapGenesToIds mapGenesToRownames mapGenesToSymbols melt metrics
 #' mutateIf plotCellCountsPerCluster plotCellTypesPerCluster plotCounts
-#' plotDots plotFeature plotKnownMarkers plotMarker plotPCElbow plotReducedDim
-#' plotStackedBarPlot plotTSNE plotTopMarkers plotUMAP plotViolin sampleData
-#' sampleData<- snakeCase topMarkers uniteInterestingGroups
+#' plotDots plotFeature plotKnownMarkers plotMarker plotPcElbow plotPca
+#' plotReducedDim plotStackedBarPlot plotTsne plotTopMarkers plotUmap plotViolin
+#' sampleData sampleData<- snakeCase topMarkers uniteInterestingGroups
 #' @importFrom BiocGenerics as.data.frame cbind counts counts<- do.call lapply
-#' normalize organism organism<- plotPCA sapply sizeFactors sizeFactors<- sort t
-#' table unique unsplit
+#' normalize organism organism<- sapply sizeFactors sizeFactors<- sort t table
+#' unique unsplit
 #' @importFrom BiocParallel bpprogressbar bpprogressbar<-
 #' @importFrom Matrix rowMeans rowSums
 #' @importFrom S4Vectors as.matrix complete.cases decode head mcols mcols<-
@@ -51,11 +51,11 @@ NULL
 #'
 #' @importMethodsFrom AcidBase geometricMean
 #' @importMethodsFrom AcidExperiment convertGenesToSymbols interestingGroups
-#' interestingGroups<- mapGenesToIDs mapGenesToRownames mapGenesToSymbols
+#' interestingGroups<- mapGenesToIds mapGenesToRownames mapGenesToSymbols
 #' metrics sampleData sampleData<- sampleNames uniteInterestingGroups
 #' @importMethodsFrom AcidPlots plotCellCountsPerCluster plotCellTypesPerCluster
-#' plotCounts plotDots plotFeature plotKnownMarkers plotMarker plotPCA
-#' plotReducedDim plotStackedBarPlot plotTSNE plotUMAP plotViolin
+#' plotCounts plotDots plotFeature plotKnownMarkers plotMarker plotPca
+#' plotReducedDim plotStackedBarPlot plotTsne plotUmap plotViolin
 #' @importMethodsFrom AcidPlyr leftJoin melt mutateIf
 #' @importMethodsFrom AcidSingleCell cellCountsPerCluster cellTypesPerCluster
 #' clusters cpm diffExp diffExpPerCluster findMarkers geometricMean normalize
@@ -97,7 +97,7 @@ NULL
 #' @importFrom goalie allAreInLeftOpenRange allAreMatchingRegex
 #' allAreNonNegative allArePositive areDisjointSets areIntersectingSets
 #' areSetEqual assert bapply false isAlpha isInt hasColnames hasLength
-#' hasNames hasRownames hasRows hasValidDimnames hasValidNames isGGScale isAny
+#' hasNames hasRownames hasRows hasValidDimnames hasValidNames isGgscale isAny
 #' isCharacter isFlag isHeaderLevel isIntegerish isNonNegative isNumber
 #' isPositive isScalar isScalarNumeric isString isSubset requireNamespaces
 #' validate
