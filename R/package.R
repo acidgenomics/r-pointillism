@@ -82,7 +82,6 @@ NULL
 #' @importFrom AcidCLI abort alert alertInfo alertSuccess alertWarning dl h1 h2
 #' separator toInlineString ul verbatim
 #' @importFrom AcidExperiment matchInterestingGroups
-#' @importFrom AcidGenomes makeGeneToSymbolFromEnsembl
 #' @importFrom AcidMarkdown markdownHeader
 #' @importFrom AcidPlots .data acid_theme_dark acid_theme_light matchLabels
 #' percent pretty_breaks wrap_plots
