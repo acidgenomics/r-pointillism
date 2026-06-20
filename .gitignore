@@ -1,5 +1,1 @@
-.RData
-.Rcheck
-.Rhistory
-.Rproj.user
-docs/
+# This file intentionally minimal — see ~/.config/git/ignore for global patterns.
