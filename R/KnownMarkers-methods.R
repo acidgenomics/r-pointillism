@@ -28,12 +28,9 @@
 NULL
 
 
-
 ## Updated 2019-09-01.
 `KnownMarkers,SeuratMarkersPerCluster,CellTypeMarkers` <- # nolint
-    function(markers,
-             known,
-             promiscuousThreshold = 0L) {
+    function(markers, known, promiscuousThreshold = 0L) {
         validObject(markers)
         validObject(known)
         assert(
@@ -49,6 +46,7 @@ NULL
         markers[["geneId"]] <- as.character(mcols(ranges)[["geneId"]])
         markers[["geneName"]] <- as.character(mcols(ranges)[["geneName"]])
         known <- unlist(known, recursive = FALSE, use.names = FALSE)
+        known[["geneId"]] <- as.character(known[["geneId"]])
         known[["geneName"]] <- NULL
         ## Determine where the known markers are located in the markers data.
         ## Here we have slotted the gene IDs inside a "ranges" column.
@@ -66,11 +64,10 @@ NULL
         }
         metadata(x) <- append(
             x = .prototypeMetadata,
-            values = list("alphaThreshold" = alphaThreshold)
+            values = list(alphaThreshold = alphaThreshold)
         )
         new(Class = "KnownMarkers", x)
     }
-
 
 
 #' @rdname KnownMarkers

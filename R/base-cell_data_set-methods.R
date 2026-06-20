@@ -9,8 +9,6 @@
 ## > #' @return Varies, depending on the generic.
 ## > NULL
 
-
-
 ## > ## Updated 2019-08-02.
 ## > `GeneToSymbol,cell_data_set` <-  # nolint
 ## >     function(object, ...) {
@@ -30,8 +28,6 @@
 ## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `GeneToSymbol,cell_data_set`
 ## > )
-
-
 
 ## > ## Note that monocle3 currently defines the generic using "x" instead of
 ## > ## "object", and requires "reduction_method" in definition.
@@ -65,8 +61,6 @@
 ## >     definition = `clusters,cell_data_set`
 ## > )
 
-
-
 ## > ## Updated 2020-01-30.
 ## > `logcounts,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -84,8 +78,6 @@
 ## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `logcounts,cell_data_set`
 ## > )
-
-
 
 ## > ## This method will automatically add "ident" and strip "cell" column.
 ## > ## Updated 2019-08-06.
@@ -123,8 +115,6 @@
 ## >     definition = `metrics,cell_data_set`
 ## > )
 
-
-
 ## > ## Updated 2020-01-30.
 ## > `normalize,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -149,8 +139,6 @@
 ## >     definition = `normalize,cell_data_set`
 ## > )
 
-
-
 ## > ## Updated 2020-01-30.
 ## > `normcounts,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -169,8 +157,6 @@
 ## >     definition = `normcounts,cell_data_set`
 ## > )
 
-
-
 ## > ## Updated 2019-08-06.
 ## > `sizeFactors,cell_data_set` <-  # nolint
 ## >     function(object) {
@@ -184,8 +170,6 @@
 ## >     signature = signature(object = "cell_data_set"),
 ## >     definition = `sizeFactors,cell_data_set`
 ## > )
-
-
 
 ## > ## Updated 2019-08-06.
 ## > `sizeFactors<-,cell_data_set,ANY` <-  # nolint

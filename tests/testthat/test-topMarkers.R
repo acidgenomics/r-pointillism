@@ -7,15 +7,15 @@ test_that("Default", {
     expect_identical(
         object = object,
         expected = list(
-            "avgLog2Fc" = "numeric",
-            "cluster" = "factor",
-            "geneId" = "factor",
-            "geneName" = "factor",
-            "name" = "factor",
-            "padj" = "numeric",
-            "pct1" = "numeric",
-            "pct2" = "numeric",
-            "pvalue" = "numeric"
+            avgLog2Fc = "numeric",
+            cluster = "factor",
+            geneId = "factor",
+            geneName = "factor",
+            name = "factor",
+            padj = "numeric",
+            pct1 = "numeric",
+            pct2 = "numeric",
+            pvalue = "numeric"
         )
     )
 })

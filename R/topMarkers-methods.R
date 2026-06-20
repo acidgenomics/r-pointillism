@@ -25,13 +25,10 @@
 NULL
 
 
-
 ## Note that the validity method checks for sorting by adjusted P value.
 ## Updated 2021-03-03.
 `topMarkers,SeuratMarkersPerCluster` <- # nolint
-    function(object,
-             direction,
-             n = 10L) {
+    function(object, direction, n = 10L) {
         validObject(object)
         lfcCol <- "avgLog2Fc"
         assert(
@@ -41,9 +38,9 @@ NULL
         direction <- match.arg(direction)
         alertInfo(switch(
             EXPR = direction,
-            "both" = "Including both up- and down-regulated markers.",
-            "down" = "Including downregulated markers.",
-            "up" = "Including upregulated markers."
+            both = "Including both up- and down-regulated markers.",
+            down = "Including downregulated markers.",
+            up = "Including upregulated markers."
         ))
         x <- object
         x <- SplitDataFrameList(lapply(
@@ -74,7 +71,6 @@ args <- "direction"
 formals(`topMarkers,SeuratMarkersPerCluster`)[args] <- # nolint
     .formalsList[args]
 rm(args)
-
 
 
 #' @rdname topMarkers

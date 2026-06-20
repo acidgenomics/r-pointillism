@@ -1,10 +1,10 @@
 objects <- list(
-    "Seurat" = objs[["Seurat"]]
-    ## > "cell_data_set" = objs[["cell_data_set"]]
+    Seurat = objs[["Seurat"]]
+    ## > cell_data_set = objs[["cell_data_set"]]
 )
 elbows <- list(
-    "Seurat" = 10L
-    ## > "cell_data_set" = 16L
+    Seurat = 10L
+    ## > cell_data_set = 16L
 )
 
 test_that("plotPcElbow", {
