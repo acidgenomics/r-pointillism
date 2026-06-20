@@ -1,8 +1,8 @@
 Package: pointillism
 Title: Single-cell RNA-seq toolkit
 Description: Toolkit for single-cell RNA-seq clustering analysis.
-Version: 0.7.0
-Date: 2023-10-04
+Version: 0.8.0
+Date: 2026-06-19
 Authors@R: c(
     person(
         given = "Michael",
@@ -26,7 +26,7 @@ URL:
     https://r.acidgenomics.com/packages/pointillism/,
     https://github.com/acidgenomics/r-pointillism/
 BugReports: https://github.com/acidgenomics/r-pointillism/issues/
-License: AGPL-3
+License: Apache License (>= 2)
 Encoding: UTF-8
 Depends: R (>= 4.3)
 Imports:
@@ -65,5 +65,5 @@ Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+Config/roxygen2/version: 8.0.0
 biocViews: SingleCell

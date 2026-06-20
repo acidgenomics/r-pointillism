@@ -26,7 +26,6 @@
 }
 
 
-
 ## Updated 2020-02-21.
 .seuratCommand <-
     function(object, name, assay = NULL) {
@@ -47,7 +46,6 @@
     }
 
 
-
 ## Updated 2020-02-21.
 .seuratCommandParam <-
     function(object, name, param, assay = NULL) {
@@ -55,7 +53,6 @@
         assert(.hasSlot(cmd, "params"))
         cmd@params[[param]]
     }
-
 
 
 ## Updated 2020-02-21.
@@ -71,7 +68,6 @@
 }
 
 
-
 ## Updated 2020-02-21.
 .seuratScaleFactor <- function(object, assay = NULL) {
     x <- .seuratCommandParam(
@@ -83,7 +79,6 @@
     assert(isNumber(x))
     x
 }
-
 
 
 #' Determine which cluster resolution maps to active cell idents
@@ -98,7 +93,7 @@
 #' - `Seurat::Idents()`
 #' - `Seurat:::Idents.Seurat`
 .seuratWhichIdents <- function(object) {
-    data <- slot(object, name = "meta.data")
+    data <- slot(object, name = "meta.data") # nolint
     idents <- Idents(object)
     assert(
         is.data.frame(data),
@@ -113,7 +108,7 @@
             "object@meta.data"
         )
     )
-    data <- data[, keep, drop = FALSE]
+    data <- data[, keep, drop = FALSE] # nolint
     ## Now check against cluster idents currently returned by `Idents()`, which
     ## are internally stashed in `object@active.ident`.
     keep <- bapply(
@@ -135,10 +130,11 @@
         any(keep),
         msg = sprintf(
             "Failed to match '%s' in '%s'.",
-            "Idents()", "object@meta.data"
+            "Idents()",
+            "object@meta.data"
         )
     )
-    col <- names(keep)[keep]
+    col <- names(keep)[keep] # nolint
     ## Inform the user about multiple identical resolutions, which can happen
     ## with low complexity samples.
     if (!isString(col)) {
@@ -146,7 +142,7 @@
             "Multiple resolutions matched: %s",
             toInlineString(col, n = 5L)
         ))
-        col <- col[[1L]]
+        col <- col[[1L]] # nolint
     }
     col
 }

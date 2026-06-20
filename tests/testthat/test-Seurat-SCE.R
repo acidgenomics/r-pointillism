@@ -47,13 +47,13 @@ test_that("interestingGroups", {
 
 test_that("interestingGroups<-", {
     expect_silent(
-        interestingGroups(object) <- "sampleName"
+        interestingGroups(object) <- "sampleName" # nolint
     )
     expect_error(
-        interestingGroups(object) <- "orig.ident"
+        interestingGroups(object) <- "orig.ident" # nolint
     )
     expect_error(
-        interestingGroups(object) <- "XXX"
+        interestingGroups(object) <- "XXX" # nolint
     )
     interestingGroups(object) <- "sampleName"
     expect_identical(
@@ -99,8 +99,8 @@ test_that("sampleData", {
     expect_identical(
         object = sampleData(object),
         expected = DataFrame(
-            "sampleName" = factor("unknown"),
-            "interestingGroups" = factor("unknown"),
+            sampleName = factor("unknown"),
+            interestingGroups = factor("unknown"),
             row.names = "unknown"
         )
     )

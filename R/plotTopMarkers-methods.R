@@ -26,16 +26,17 @@
 NULL
 
 
-
 ## Updated 2021-03-03.
 `plotTopMarkers,Seurat,SeuratMarkersPerCluster` <- # nolint
-    function(object,
-             markers,
-             direction,
-             reduction,
-             n = 1L,
-             headerLevel = 2L,
-             ...) {
+    function(
+        object,
+        markers,
+        direction,
+        reduction,
+        n = 1L,
+        headerLevel = 2L,
+        ...
+    ) {
         ## Passthrough: n, direction, coding
         validObject(object)
         validObject(markers)
@@ -51,7 +52,7 @@ NULL
         )
         assert(is.factor(markers[["cluster"]]))
         clusters <- levels(markers[["cluster"]])
-        list <- lapply(
+        plotList <- lapply(
             X = clusters,
             FUN = function(cluster) {
                 genes <- markers[
@@ -62,7 +63,8 @@ NULL
                 genes <- as.character(genes)
                 if (!hasLength(genes)) {
                     alertWarning(sprintf(
-                        "No genes for cluster %s.", cluster
+                        "No genes for cluster %s.",
+                        cluster
                     ))
                     return(invisible(NULL))
                 } else if (length(genes) > 10L) {
@@ -88,14 +90,13 @@ NULL
                 })
             }
         )
-        invisible(list)
+        invisible(plotList)
     }
 
 args <- c("direction", "reduction", "BPPARAM")
 formals(`plotTopMarkers,Seurat,SeuratMarkersPerCluster`)[args] <- # nolint
     .formalsList[args]
 rm(args)
-
 
 
 #' @rdname plotTopMarkers

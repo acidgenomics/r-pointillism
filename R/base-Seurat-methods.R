@@ -15,7 +15,6 @@
 NULL
 
 
-
 ## Updated 2019-08-02.
 `GeneToSymbol,Seurat` <- # nolint
     function(object, ...) {
@@ -32,7 +31,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `GeneToSymbol,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -53,7 +51,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `assayNames,Seurat` <- # nolint
     function(x, ...) {
@@ -70,7 +67,6 @@ setMethod(
     signature = signature(x = "Seurat"),
     definition = `assayNames,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -91,7 +87,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `cellCountsPerCluster,Seurat` <- # nolint
     function(object, ...) {
@@ -110,7 +105,6 @@ setMethod(
 )
 
 
-
 ## Updated 2019-08-02.
 `clusters,Seurat` <- # nolint
     function(object) {
@@ -127,17 +121,16 @@ setMethod(
 )
 
 
-
 ## Updated 2023-08-16.
 `colData,Seurat` <- # nolint
     function(x) {
         assert(validObject(x))
-        df <- slot(object = x, name = "meta.data")
+        df <- slot(object = x, name = "meta.data") # nolint
         assert(
             is.data.frame(df),
             identical(colnames(x), rownames(df))
         )
-        df <- as(df, "DFrame")
+        df <- as(df, "DFrame") # nolint
         df
     }
 
@@ -148,7 +141,6 @@ setMethod(
     signature = signature(x = "Seurat"),
     definition = `colData,Seurat`
 )
-
 
 
 ## Updated 2023-08-16.
@@ -172,7 +164,6 @@ setReplaceMethod(
 )
 
 
-
 ## Upated 2023-08-16.
 `counts,Seurat` <- # nolint
     function(object, assay = NULL) {
@@ -186,7 +177,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `counts,Seurat`
 )
-
 
 
 ## Updated 2023-08-16.
@@ -219,7 +209,6 @@ setMethod(
 )
 
 
-
 ## Updated 2020-02-21.
 `diffExp,Seurat` <- # nolint
     function(object, ...) {
@@ -233,7 +222,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `diffExp,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -254,7 +242,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `findMarkers,Seurat` <- # nolint
     function(object, ...) {
@@ -273,7 +260,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `interestingGroups,Seurat` <- # nolint
     function(object, ...) {
@@ -290,7 +276,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `interestingGroups,Seurat`
 )
-
 
 
 ## Updated 2021-03-02.
@@ -316,11 +301,10 @@ setReplaceMethod(
 )
 
 
-
 ## Updated 2023-08-16.
 `logcounts,Seurat` <- # nolint
     function(object, assay = NULL) {
-        norm <- .seuratNormalizationMethod(object, assay = assay)
+        norm <- .seuratNormalizationMethod(object, assay = assay) # nolint
         if (norm != "LogNormalize") {
             object <- NormalizeData(
                 object = object,
@@ -338,7 +322,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `logcounts,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -360,7 +343,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `mapGenesToRownames,Seurat` <- # nolint
     function(object, genes, strict = TRUE) {
@@ -378,7 +360,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `mapGenesToRownames,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -400,7 +381,6 @@ setMethod(
 )
 
 
-
 ## Updated 2022-05-11.
 `metadata,Seurat` <- # nolint
     function(x, ...) {
@@ -419,7 +399,6 @@ setMethod(
     signature = signature(x = "Seurat"),
     definition = `metadata,Seurat`
 )
-
 
 
 ## Updated 2019-08-05.
@@ -445,7 +424,6 @@ setReplaceMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `metrics,Seurat` <- # nolint
     function(object, ...) {
@@ -464,13 +442,13 @@ setMethod(
 )
 
 
-
 ## Updated 2020-01-30.
 `normalize,Seurat` <- # nolint
     function(object) {
         alert(sprintf(
             "Normalizing with {.pkg %s}::{.fun %s}.",
-            "Seurat", "NormalizeData"
+            "Seurat",
+            "NormalizeData"
         ))
         NormalizeData(object = object, verbose = TRUE)
     }
@@ -482,7 +460,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `normalize,Seurat`
 )
-
 
 
 ## Updated 2023-08-16.
@@ -511,7 +488,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `organism,Seurat` <- # nolint
     function(object) {
@@ -525,7 +501,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `organism,Seurat`
 )
-
 
 
 ## Updated 2019-08-06.
@@ -544,7 +519,6 @@ setReplaceMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotCellCountsPerCluster,Seurat` <- # nolint
     function(object, ...) {
@@ -561,7 +535,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotCellCountsPerCluster,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -586,7 +559,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotCounts,Seurat` <- # nolint
     function(object, ...) {
@@ -603,7 +575,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotCounts,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -624,7 +595,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotFeature,Seurat` <- # nolint
     function(object, ...) {
@@ -641,7 +611,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotFeature,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -666,7 +635,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotMarker,Seurat` <- # nolint
     function(object, ...) {
@@ -683,7 +651,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotMarker,Seurat`
 )
-
 
 
 ## Updated 2023-10-04.
@@ -704,13 +671,12 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-02.
 `plotReducedDim,Seurat` <- # nolint
     function(object, ...) {
         validObject(object)
         idents <- .seuratWhichIdents(object)
-        dl(c("idents" = idents))
+        dl(c(idents = idents))
         plotReducedDim(object = as(object, "SingleCellExperiment"), ...)
     }
 
@@ -721,7 +687,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotReducedDim,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -742,7 +707,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotTsne,Seurat` <- # nolint
     function(object, ...) {
@@ -759,7 +723,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotTsne,Seurat`
 )
-
 
 
 ## Updated 2021-09-13.
@@ -780,7 +743,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-09-13.
 `plotUmap,Seurat` <- # nolint
     function(object, ...) {
@@ -797,7 +759,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotUmap,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -819,7 +780,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `reducedDimNames,Seurat` <- # nolint
     function(x) {
@@ -833,7 +793,6 @@ setMethod(
     signature = signature(x = "Seurat"),
     definition = `reducedDimNames,Seurat`
 )
-
 
 
 ## Updated 2021-03-03.
@@ -854,7 +813,6 @@ setMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `rowData,Seurat` <- # nolint
     function(x, ...) {
@@ -873,7 +831,6 @@ setMethod(
 )
 
 
-
 ## Updated 2022-05-11.
 `rowRanges,Seurat` <- # nolint
     function(x) {
@@ -881,13 +838,7 @@ setMethod(
         gr <- rowRanges(sce)
         assert(
             is(gr, "GenomicRangesList"),
-            all(
-                vapply(
-                    X = gr,
-                    FUN = length,
-                    FUN.VALUE = integer(1L)
-                ) == 0L
-            )
+            all(lengths(gr) == 0L)
         )
         ## Attempt to use stashed rowRanges, if defined.
         ## Otherwise, return the empty placeholder.
@@ -907,8 +858,7 @@ setMethod(
         stash <- stash[names(gr)]
         mcols1 <- mcols(stash)
         mcols2 <- mcols(gr)
-        mcols2 <- mcols2[
-            ,
+        mcols2 <- mcols2[,
             setdiff(colnames(mcols2), colnames(mcols1)),
             drop = FALSE
         ]
@@ -926,7 +876,6 @@ setMethod(
     signature = signature(x = "Seurat"),
     definition = `rowRanges,Seurat`
 )
-
 
 
 ## Updated 2019-08-05.
@@ -949,7 +898,6 @@ setReplaceMethod(
 )
 
 
-
 ## Updated 2021-03-03.
 `sampleData,Seurat` <- # nolint
     function(object, ...) {
@@ -966,7 +914,6 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `sampleData,Seurat`
 )
-
 
 
 ## Updated 2023-08-16.
@@ -990,7 +937,6 @@ setReplaceMethod(
     ),
     definition = `sampleData<-,Seurat,DFrame`
 )
-
 
 
 ## Updated 2021-03-03.

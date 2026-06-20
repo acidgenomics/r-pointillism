@@ -49,15 +49,16 @@
 NULL
 
 
-
 ## Updated 2023-09-21.
 `runSeurat,Seurat` <- # nolint
-    function(object,
-             regressCellCycle = c("s-g2m-diff", "yes", "no"),
-             varsToRegress = c("nCount_RNA", "mitoRatio"),
-             dims = "auto",
-             resolution = seq(from = 0.2, to = 1.2, by = 0.2),
-             workers = "auto") {
+    function(
+        object,
+        regressCellCycle = c("s-g2m-diff", "yes", "no"),
+        varsToRegress = c("nCount_RNA", "mitoRatio"),
+        dims = "auto",
+        resolution = seq(from = 0.2, to = 1.2, by = 0.2),
+        workers = "auto"
+    ) {
         assert(
             requireNamespaces(c("Seurat", "future")),
             isCharacter(varsToRegress, nullOk = TRUE),
@@ -78,20 +79,23 @@ NULL
             }
             assert(isInt(workers))
             alert(sprintf(
-                "Enabling {.pkg %s} multiprocess with %d workers.",
-                "future", workers
+                "Enabling {.pkg %s} multicore with %d workers.",
+                "future",
+                workers
             ))
-            future::plan("multiprocess", workers = workers)
+            future::plan("multicore", workers = workers)
         }
         ## Pre-processing ------------------------------------------------------
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "NormalizeData"
+            "Seurat",
+            "NormalizeData"
         ))
         object <- Seurat::NormalizeData(object)
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "FindVariableFeatures"
+            "Seurat",
+            "FindVariableFeatures"
         ))
         object <- Seurat::FindVariableFeatures(object)
         ## Cell-cycle regression -----------------------------------------------
@@ -123,7 +127,8 @@ NULL
             sGenes <- as.character(ccm[["s"]][["geneName"]])
             alert(sprintf(
                 "{.pkg %s}::{.fun %s}",
-                "Seurat", "CellCycleScoring"
+                "Seurat",
+                "CellCycleScoring"
             ))
             object <- Seurat::CellCycleScoring(
                 object = object,
@@ -142,9 +147,10 @@ NULL
         ## Scaling and projection ----------------------------------------------
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "ScaleData"
+            "Seurat",
+            "ScaleData"
         ))
-        dl(c("varsToRegress" = toInlineString(varsToRegress)))
+        dl(c(varsToRegress = toInlineString(varsToRegress)))
         ## Scaling all features is very slow for large datasets.
         ## Current default in Seurat scales variable features only.
         ## All features:
@@ -158,7 +164,8 @@ NULL
         )
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "RunPCA"
+            "Seurat",
+            "RunPCA"
         ))
         object <- Seurat::RunPCA(object)
         if (identical(dims, "auto")) {
@@ -170,20 +177,23 @@ NULL
         ## Clustering ----------------------------------------------------------
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "FindNeighbors"
+            "Seurat",
+            "FindNeighbors"
         ))
         alertInfo(sprintf("Using %d dims,", length(dims)))
         object <- Seurat::FindNeighbors(object, dims = dims)
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "FindClusters"
+            "Seurat",
+            "FindClusters"
         ))
-        dl(c("resolution" = as.character(resolution)))
+        dl(c(resolution = as.character(resolution)))
         object <- Seurat::FindClusters(object, resolution = resolution)
         ## tSNE / UMAP ---------------------------------------------------------
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "RunTSNE"
+            "Seurat",
+            "RunTSNE"
         ))
         object <- Seurat::RunTSNE(
             object = object,
@@ -191,7 +201,8 @@ NULL
         )
         alert(sprintf(
             "{.pkg %s}::{.fun %s}",
-            "Seurat", "RunUMAP"
+            "Seurat",
+            "RunUMAP"
         ))
         alertInfo(paste("Using", length(dims), "dims."))
         object <- Seurat::RunUMAP(
@@ -205,7 +216,6 @@ NULL
     }
 
 
-
 ## Updated 2020-06-26.
 `runSeurat,SCE` <- # nolint
     function(object, ...) {
@@ -214,7 +224,6 @@ NULL
         object <- as(object, "Seurat")
         runSeurat(object, ...)
     }
-
 
 
 #' @rdname runSeurat

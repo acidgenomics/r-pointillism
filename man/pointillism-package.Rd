@@ -20,6 +20,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com} (\href{https://orcid.org/0000-0002-2403-2221}{ORCID})
 
+Authors:
+\itemize{
+  \item Michael Steinbaugh \email{mike@steinbaugh.com} (\href{https://orcid.org/0000-0002-2403-2221}{ORCID})
+}
+
 Other contributors:
 \itemize{
   \item Acid Genomics [copyright holder, funder]
