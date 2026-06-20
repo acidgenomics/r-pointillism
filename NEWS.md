@@ -1,5 +1,23 @@
 # Release notes
 
+## pointillism 0.8.0 (2026-06-19)
+
+Major changes:
+
+- Verified support for Seurat 5 / SeuratObject 5 (layer-based assay API).
+  The package now builds and tests cleanly against Seurat 5.5.0.
+
+License changes:
+
+- Relicensed from AGPL-3 to Apache 2.0.
+
+Minor changes:
+
+- `runSeurat`: replaced the defunct future "multiprocess" backend with
+  "multicore", fixing a hard error under future (>= 1.32).
+- Modernized package tooling: added `air.toml`, refreshed `.lintr` to the
+  current linter set, and migrated to `Config/roxygen2/version`.
+
 ## pointillism 0.7.0 (2023-10-04)
 
 Major changes:

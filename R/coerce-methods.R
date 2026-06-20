@@ -22,7 +22,6 @@
 NULL
 
 
-
 ## Updated 2022-05-11.
 `coerce,Seurat,SCE` <- # nolint
     function(from) {
@@ -52,7 +51,6 @@ NULL
     function(from) {
         as.Seurat(from)
     }
-
 
 
 #' @rdname coerce

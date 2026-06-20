@@ -27,7 +27,6 @@
 NULL
 
 
-
 ## Updated 2023-10-04.
 `as.SingleCellExperiment,Seurat` <- # nolint
     function(x) {
@@ -68,7 +67,6 @@ NULL
         validObject(to)
         to
     }
-
 
 
 #' @rdname as.SingleCellExperiment

@@ -7,7 +7,7 @@ NULL
 #' @rdname SeuratMarkers
 #' @export
 setGeneric(
-    name = "SeuratMarkers",
+    name = "SeuratMarkers", # nolint
     def = function(object, ...) {
         standardGeneric("SeuratMarkers")
     }
@@ -16,7 +16,7 @@ setGeneric(
 #' @rdname SeuratMarkers
 #' @export
 setGeneric(
-    name = "SeuratMarkersPerCluster",
+    name = "SeuratMarkersPerCluster", # nolint
     def = function(object, ...) {
         standardGeneric("SeuratMarkersPerCluster")
     }

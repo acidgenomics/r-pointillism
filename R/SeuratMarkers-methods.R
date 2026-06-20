@@ -50,12 +50,9 @@
 NULL
 
 
-
 ## Updated 2021-03-03.
 `SeuratMarkers,data.frame` <- # nolint
-    function(object,
-             ranges,
-             alphaThreshold = 0.05) {
+    function(object, ranges, alphaThreshold = 0.05) {
         assert(
             hasRows(object),
             hasRownames(object),
@@ -74,7 +71,10 @@ NULL
                     "Renaming legacy {.var %s} column to {.var %s}",
                     "(changed in {.pkg %s} v%s)."
                 ),
-                "avg_diff", "avg_log2FC", "Seurat", "2.1"
+                "avg_diff",
+                "avg_log2FC",
+                "Seurat",
+                "2.1"
             ))
             colnames(x)[colnames(x) == "avg_diff"] <- "avg_log2FC"
         }
@@ -84,7 +84,10 @@ NULL
                     "Renaming legacy {.var %s} column to {.var %s}",
                     "(changed in {.pkg %s} v%s)."
                 ),
-                "avg_logFC", "avg_log2FC", "Seurat", "4.0"
+                "avg_logFC",
+                "avg_log2FC",
+                "Seurat",
+                "4.0"
             ))
             colnames(x)[colnames(x) == "avg_logFC"] <- "avg_log2FC"
         }
@@ -109,11 +112,11 @@ NULL
         ## to map to the rownames, which can be altered by `make.names`.
         switch(
             EXPR = fun,
-            "FindMarkers" = {
+            FindMarkers = {
                 perCluster <- FALSE
                 x[["name"]] <- rownames(x)
             },
-            "FindAllMarkers" = {
+            FindAllMarkers = {
                 perCluster <- TRUE
                 colnames(x)[colnames(x) == "gene"] <- "name"
             }
@@ -149,8 +152,8 @@ NULL
         metadata(x) <- append(
             x = .prototypeMetadata,
             values = list(
-                "alphaThreshold" = alphaThreshold,
-                "sessionInfo" = sessionInfo()
+                alphaThreshold = alphaThreshold,
+                sessionInfo = sessionInfo()
             )
         )
         if (isTRUE(perCluster)) {
@@ -164,11 +167,9 @@ NULL
     }
 
 
-
 ## Updated 2019-08-06.
 `SeuratMarkersPerCluster,data.frame` <- # nolint
     `SeuratMarkers,data.frame`
-
 
 
 #' @rdname SeuratMarkers
@@ -178,7 +179,6 @@ setMethod(
     signature = signature(object = "data.frame"),
     definition = `SeuratMarkers,data.frame`
 )
-
 
 
 #' @rdname SeuratMarkers

@@ -35,7 +35,6 @@ setValidity(
 )
 
 
-
 #' Seurat markers per cluster
 #'
 #' Class containing essential elements for marker per cluster analysis.
@@ -54,7 +53,7 @@ setValidity(
     Class = "SeuratMarkersPerCluster",
     method = function(object) {
         validate(
-            all(grepl("^cluster", names(object))),
+            all(startsWith(names(object), "cluster")),
             identical(
                 x = sort(colnames(object)[[1L]]),
                 y = c(
