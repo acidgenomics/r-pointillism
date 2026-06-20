@@ -31,12 +31,9 @@
 NULL
 
 
-
 ## Updated 2023-08-16.
 .plotPcElbow <-
-    function(pctStdDev,
-             minPct = 0.01,
-             maxCumPct = 0.9) {
+    function(pctStdDev, minPct = 0.01, maxCumPct = 0.9) {
         assert(
             is.numeric(pctStdDev),
             isNumber(minPct),
@@ -46,20 +43,20 @@ NULL
                 upper = 1L
             )
         )
-        cumsum <- cumsum(pctStdDev)
+        cumsum <- cumsum(pctStdDev) # nolint
         xLab <- "PCA component"
-        data <- DataFrame(
+        dat <- DataFrame(
             pc = seq_along(pctStdDev),
             pct = pctStdDev,
             cumsum = cumsum
         )
-        minPctCutoff <- max(data[data[["pct"]] >= minPct, "pc"])
-        maxCumPctCutoff <- max(data[data[["cumsum"]] <= maxCumPct, "pc"])
+        minPctCutoff <- max(dat[dat[["pct"]] >= minPct, "pc"])
+        maxCumPctCutoff <- max(dat[dat[["cumsum"]] <= maxCumPct, "pc"])
         ## Pick the smallest value of the cutoffs.
         cutoff <- min(minPctCutoff, maxCumPctCutoff)
         ## Percent standard deviation.
         ggpct <- ggplot(
-            data = as.data.frame(data),
+            data = as.data.frame(dat),
             mapping = aes(
                 x = .data[["pc"]],
                 y = .data[["pct"]]
@@ -81,7 +78,7 @@ NULL
             scale_y_continuous(labels = percent)
         ## Cumulative percent standard deviation.
         ggcumsum <- ggplot(
-            data = as.data.frame(data),
+            data = as.data.frame(dat),
             mapping = aes(
                 x = .data[["pc"]],
                 y = .data[["cumsum"]]
@@ -112,7 +109,6 @@ NULL
     }
 
 
-
 ## Updated 2019-08-02.
 `plotPcElbow,Seurat` <- # nolint
     function(object, minPct, maxCumPct) {
@@ -132,7 +128,6 @@ formals(`plotPcElbow,Seurat`)[args] <- # nolint
 rm(args)
 
 
-
 ## > ## Updated 2019-08-02.
 ## > `plotPcElbow,cell_data_set` <-  # nolint
 ## >     function(object, minPct, maxCumPct) {
@@ -146,8 +141,6 @@ rm(args)
 ## >
 ## > args <- c("minPct", "maxCumPct")
 ## > formals(`plotPcElbow,cell_data_set`)[args] <- formals(.plotPcElbow)[args]
-
-
 
 #' @rdname plotPcElbow
 #' @export

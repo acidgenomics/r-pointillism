@@ -24,7 +24,6 @@
 NULL
 
 
-
 #' Coerce SCE to Seurat
 #'
 #' @note Updated 2023-10-04.
@@ -63,14 +62,13 @@ NULL
         metadata[["sessionInfo"]] <- sessionInfo()
         ## Seurat v3 still recommends using `misc` slot.
         misc <- list(
-            "rowRanges" = rowRanges,
-            "metadata" = metadata
+            rowRanges = rowRanges,
+            metadata = metadata
         )
         misc <- Filter(Negate(is.null), misc)
         slot(to, name = "misc") <- misc
         to
     }
-
 
 
 #' @rdname as.Seurat

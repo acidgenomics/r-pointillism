@@ -72,7 +72,7 @@ groups <- unique(c("sampleName", interestingGroups))
 invisible(lapply(
     X = idents,
     FUN = function(ident) {
-        subset <- subset(object, idents = ident)
+        subset <- subset(object, idents = ident) # nolint
         markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
         invisible(lapply(groups, function(group) {
             markdownHeader(group, level = 3L, asis = TRUE)

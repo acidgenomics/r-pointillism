@@ -13,12 +13,12 @@
         isTRUE(n > 1L)
     )
     cols <- c("cellType", "geneId")
-    df <- x[, cols, drop = FALSE]
+    df <- x[, cols, drop = FALSE] # nolint
     ## Generate the grouping factor necessary to perform split.
     f <- .group(df)
-    split <- split(df, f = f)
+    split <- split(df, f = f) # nolint
     n <- vapply(X = split, FUN = nrow, FUN.VALUE = integer(1L))
-    which <- which(n >= n)
+    which <- which(n >= n) # nolint
     genes <- split[, "geneId"][which]
     genes <- unlist(genes, use.names = FALSE)
     genes <- sort(unique(genes))
@@ -32,7 +32,6 @@
     }
     x
 }
-
 
 
 #' Generate a grouping factor

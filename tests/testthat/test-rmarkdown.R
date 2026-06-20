@@ -30,7 +30,7 @@ test_that("Seurat per cluster analysis", {
         input = input,
         output_format = "md_document",
         clean = TRUE,
-        params = list("seurat_file" = seuratFile),
+        params = list(seurat_file = seuratFile),
         quiet = TRUE
     )
     expect_true(file.exists(out))

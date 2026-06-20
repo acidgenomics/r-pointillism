@@ -14,7 +14,6 @@ test_that("SeuratMarkers", {
 })
 
 
-
 test_that("SeuratMarkersPerCluster", {
     ## Suppressing expected warning: "cannot compute exact p-value with ties".
     suppressWarnings({
