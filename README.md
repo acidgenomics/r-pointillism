@@ -1,8 +1,8 @@
 # pointillism
 
-![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-pointillism/README.html) ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 
-[R][] package for for single-cell RNA-seq clustering analysis.
+[R][] package for single-cell RNA-seq clustering analysis.
 
 ## Installation
 
@@ -20,6 +20,18 @@ install.packages(
     ),
     dependencies = TRUE
 )
+```
+
+### [Conda][] method
+
+Configure [Conda][] to use the [Bioconda][] channels.
+
+```sh
+# Don't install recipe into base environment.
+name='r-pointillism'
+conda create --name="$name" "$name"
+conda activate "$name"
+R
 ```
 
 ## Supported data classes
@@ -63,8 +75,14 @@ with `getLoadedDLLs()`.
 The papers and software cited in our workflows are available as a
 [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
+[bioconda]: https://bioconda.github.io/
+[conda]: https://docs.conda.io/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
 [r]: https://www.r-project.org/
 [seurat]: https://satijalab.org/seurat/
 [singlecellexperiment]: https://bioconductor.org/packages/SingleCellExperiment/
+
+## License
+
+Apache-2.0 — Copyright 2018 Acid Genomics LLC — see [LICENSE.md](LICENSE.md).
