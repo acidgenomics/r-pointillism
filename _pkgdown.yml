@@ -11,7 +11,7 @@ navbar:
   structure:
     right: [acid, github]
 news:
-  - one_page: false
+  one_page: false
 template:
   bootstrap: 5
-url: https://r.acidgenomics.com/packages/pointillism
+url: https://r.acidgenomics.com/pointillism
