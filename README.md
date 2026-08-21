@@ -2,7 +2,8 @@
 
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-pointillism/README.html) ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 
-[R][] package for single-cell RNA-seq clustering analysis.
+[R][] package for single-cell RNA-seq clustering analysis. Supports
+[Seurat][] and [SingleCellExperiment][] objects.
 
 ## Installation
 
@@ -34,18 +35,28 @@ conda activate "$name"
 R
 ```
 
-## Supported data classes
+## Working with AnnData / H5AD files
 
-pointillism currently supports these S4 single-cell container classes:
+pointillism does not read H5AD files directly. Use [anndataR][] to read the
+file into a [SingleCellExperiment][] or [Seurat][] object, then pass that
+object to pointillism as usual:
 
-- [SingleCellExperiment][]
-- [Seurat][]
-- [monocle3][] `cell_data_set`
+```r
+object <- anndataR::read_h5ad(
+    path = "object.h5ad",
+    as = "SingleCellExperiment"
+)
+```
 
-## Markers
+## Migrating from monocle3
 
-Cell-cycle and cell-type markers are stored internally inside the package.
-Refer to `inst/extdata/` for the source CSV files.
+pointillism no longer supports the [monocle3][] `cell_data_set` class
+directly. `cell_data_set` is an S4 subclass of [SingleCellExperiment][], so
+coerce it before use:
+
+```r
+object <- as(cellDataSet, "SingleCellExperiment")
+```
 
 ## Troubleshooting
 
@@ -75,6 +86,7 @@ with `getLoadedDLLs()`.
 The papers and software cited in our workflows are available as a
 [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
+[anndatar]: https://bioconductor.org/packages/anndataR/
 [bioconda]: https://bioconda.github.io/
 [conda]: https://docs.conda.io/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/

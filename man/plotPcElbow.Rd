@@ -44,6 +44,5 @@ plotPcElbow(object)
 \seealso{
 \itemize{
 \item \code{Seurat::PCElbowPlot()}.
-\item \code{monocle3::plot_pc_variance_explained()}.
 }
 }

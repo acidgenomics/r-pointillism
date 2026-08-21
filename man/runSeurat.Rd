@@ -48,15 +48,7 @@ calculated internally. See \code{\link[=plotPcElbow]{plotPcElbow()}} for details
 
 \item{resolution}{\code{numeric}.
 Resolutions to calculate for clustering.
-Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.
-
-Currently supported:
-\itemize{
-\item \code{"uwot"}, changed to default in Seurat 3.
-Note that this sets \code{metric = "cosine"} automatically.
-\item \code{"umap-learn"}, which requires reticulate.
-Note that this sets \code{metric = "correlation"} automatically.
-}}
+Passes to \code{\link[Seurat:FindClusters]{Seurat::FindClusters()}} internally.}
 
 \item{workers}{\code{"auto"}, \code{integer(1)}, or \code{NULL}.
 Disable parallelization with future by setting to \code{NULL}.}
@@ -73,9 +65,9 @@ Updated 2023-09-21.
 \seealso{
 \itemize{
 \item https://github.com/satijalab/seurat/wiki
-\item https://satijalab.org/seurat/essential_commands.html
-\item https://satijalab.org/seurat/v3.1/cell_cycle_vignette.html
-https://satijalab.org/seurat/v3.0/future_vignette.html
-\item https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+\item https://satijalab.org/seurat/articles/essential_commands.html
+\item https://satijalab.org/seurat/articles/cell_cycle_vignette.html
+\item https://satijalab.org/seurat/articles/future_vignette.html
+\item https://satijalab.org/seurat/articles/pbmc3k_tutorial.html
 }
 }
