@@ -8,7 +8,7 @@
 #' `Seurat::as.SingleCellExperiment` S3 coercion method, including the
 #' `object@scale.data` matrix, and will keep track of stashed `rowRanges` and
 #' `metadata` if the `Seurat` object was originally created from a
-#' `SingleCellExperiment` (i.e. from the bcbioSingleCell package).
+#' `SingleCellExperiment`.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.

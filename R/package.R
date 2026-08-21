@@ -1,15 +1,12 @@
 #' pointillism
 #'
-#' R package for for single-cell RNA-seq clustering analysis.
+#' R package for single-cell RNA-seq clustering analysis.
 #'
 #' @keywords internal
 "_PACKAGE"
 
 
 ## S4 classes ==================================================================
-
-## Disabled until monocle3 is on Bioconductor.
-## > #' @importClassesFrom monocle3 cell_data_set
 
 #' @importClassesFrom AcidGenomes GeneToSymbol
 #' @importClassesFrom AcidSingleCell KnownMarkers

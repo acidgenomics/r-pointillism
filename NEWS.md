@@ -1,5 +1,30 @@
 # Release notes
 
+## pointillism 0.9.0 (2026-08-21)
+
+Major changes:
+
+- Removed all monocle3 `cell_data_set` support. The package now supports only
+  `Seurat` and `SingleCellExperiment`. See the README for a coercion snippet
+  covering existing `cell_data_set` objects.
+- Added a README section on reading H5AD files via `anndataR::read_h5ad()`
+  into a `SingleCellExperiment` or `Seurat` object for use with pointillism.
+  Added `anndataR` to Suggests.
+
+Minor changes:
+
+- `runSeurat`: fixed the GitHub issue URL, which pointed at the old
+  `acidgenomics/pointillism` repository instead of `acidgenomics/r-pointillism`.
+- `runSeurat`: removed documentation for a removed `umapMethod` argument, and
+  replaced four dead `satijalab.org/seurat/v3.x/` links.
+- `as.SingleCellExperiment`: dropped a stale reference to the retired
+  bcbioSingleCell package.
+- Removed the undeclared `dplyr` dependency from the
+  `seurat-per-cluster-analysis` R Markdown template, replacing the manual
+  tally with the existing `cellCountsPerCluster()` method.
+- Fixed two undefined-variable bugs in the `seurat-clustering` R Markdown
+  template (`seurat_name`, `has_umap`) that prevented it from rendering.
+
 ## pointillism 0.8.0 (2026-06-19)
 
 Major changes:

@@ -2,4 +2,31 @@
 #+STARTUP: content
 * Development
 ** TODO Work on adding coverage for all R Markdown templates.
-** TODO Can we take out dependence on dplyr in our markdown template?
+   Full coverage of "seurat-clustering" and "seurat-markers" needs child
+   fixtures the repo does not ship: _setup.R, _header.Rmd, _footer.Rmd, and
+   bibliography.bib. "seurat-markers" also needs pre-built Seurat,
+   SeuratMarkersPerCluster, and KnownMarkers objects on disk.
+
+* Bioconda
+  PR #66529 ("Add r-pointillism 0.8.0") fails Linux CI because 5 upstream
+  deps only have r44 builds against a channel now pinned to r45. Bump each
+  build number to trigger an r45 rebuild, in tier order. Wait for each tier
+  to merge and build before moving to the next.
+  https://github.com/bioconda/bioconda-recipes/pull/66529
+** TODO Bump build number on r-acidexperiment recipe (tier 4).
+   https://github.com/bioconda/bioconda-recipes/blob/master/recipes/r-acidexperiment/meta.yaml
+** TODO Bump build number on r-acidgenomes recipe (tier 4).
+   https://github.com/bioconda/bioconda-recipes/blob/master/recipes/r-acidgenomes/meta.yaml
+** TODO Bump build number on r-acidsinglecell recipe (tier 5).
+   Wait for acidexperiment and acidgenomes to merge and build first.
+   https://github.com/bioconda/bioconda-recipes/blob/master/recipes/r-acidsinglecell/meta.yaml
+** TODO Bump build number on r-basejump recipe (tier 5).
+   Wait for acidexperiment and acidgenomes to merge and build first.
+   https://github.com/bioconda/bioconda-recipes/blob/master/recipes/r-basejump/meta.yaml
+** TODO Bump build number on r-acidplots recipe (tier 6).
+   Wait for acidsinglecell and basejump to merge and build first.
+   https://github.com/bioconda/bioconda-recipes/blob/master/recipes/r-acidplots/meta.yaml
+** TODO Re-check Linux CI on PR #66529 once all 5 deps have r45 builds.
+   Update the recipe to pointillism 0.9.0 first (see meta.yaml draft from the
+   monocle3 cleanup). Label "please review & merge" once CI is green.
+   https://github.com/bioconda/bioconda-recipes/pull/66529

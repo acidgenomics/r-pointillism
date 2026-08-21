@@ -17,7 +17,6 @@ bibliography: bibliography.bib
 suppressPackageStartupMessages({
     library(goalie)
     library(basejump)
-    library(dplyr)
     library(pointillism)
 })
 prepareTemplate()
@@ -89,33 +88,7 @@ rm(groups)
 invisible(lapply(idents, function(ident) {
     markdownHeader(ident, level = 2L, asis = TRUE, tabset = TRUE)
     subset <- subset(object, idents = ident)
-    master <- subset[[]]
-    assert(is.data.frame(master))
-    master <- as(master, "DataFrame")
-    master[["ident"]] <- Idents(subset)
-    if (!isSubset("sampleName", colnames(master))) {
-        master[["sampleName"]] <- as.factor("unknown")
-    }
-    master <- uniteInterestingGroups(
-        object = master,
-        interestingGroups = interestingGroups
-    )
-    sampleStats <-
-        master |>
-        as_tibble() |>
-        arrange(sampleName) |>
-        group_by(sampleName) |>
-        summarize(count = n()) |>
-        mutate(pct = signif(x = count / sum(count), digits = 2L))
-    show(sampleStats)
-    intgroupStats <-
-        master |>
-        as_tibble() |>
-        arrange(interestingGroups) |>
-        group_by(interestingGroups) |>
-        summarize(count = n()) |>
-        mutate(pct = signif(x = count / sum(count), digits = 2L))
-    show(intgroupStats)
+    show(cellCountsPerCluster(subset))
 }))
 ```
 

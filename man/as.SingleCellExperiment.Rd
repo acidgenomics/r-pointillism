@@ -27,7 +27,7 @@ class object. Internally, this method improves the basic
 \code{Seurat::as.SingleCellExperiment} S3 coercion method, including the
 \code{object@scale.data} matrix, and will keep track of stashed \code{rowRanges} and
 \code{metadata} if the \code{Seurat} object was originally created from a
-\code{SingleCellExperiment} (i.e. from the bcbioSingleCell package).
+\code{SingleCellExperiment}.
 }
 \note{
 Updated 2023-10-04.

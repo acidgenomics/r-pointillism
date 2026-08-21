@@ -1,8 +1,9 @@
 # pointillism
 
-![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-pointillism/README.html) ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 
-[R][] package for for single-cell RNA-seq clustering analysis.
+[R][] package for single-cell RNA-seq clustering analysis. Supports
+[Seurat][] and [SingleCellExperiment][] objects.
 
 ## Installation
 
@@ -22,18 +23,40 @@ install.packages(
 )
 ```
 
-## Supported data classes
+### [Conda][] method
 
-pointillism currently supports these S4 single-cell container classes:
+Configure [Conda][] to use the [Bioconda][] channels.
 
-- [SingleCellExperiment][]
-- [Seurat][]
-- [monocle3][] `cell_data_set`
+```sh
+# Don't install recipe into base environment.
+name='r-pointillism'
+conda create --name="$name" "$name"
+conda activate "$name"
+R
+```
 
-## Markers
+## Working with AnnData / H5AD files
 
-Cell-cycle and cell-type markers are stored internally inside the package.
-Refer to `inst/extdata/` for the source CSV files.
+pointillism does not read H5AD files directly. Use [anndataR][] to read the
+file into a [SingleCellExperiment][] or [Seurat][] object, then pass that
+object to pointillism as usual:
+
+```r
+object <- anndataR::read_h5ad(
+    path = "object.h5ad",
+    as = "SingleCellExperiment"
+)
+```
+
+## Migrating from monocle3
+
+pointillism no longer supports the [monocle3][] `cell_data_set` class
+directly. `cell_data_set` is an S4 subclass of [SingleCellExperiment][], so
+coerce it before use:
+
+```r
+object <- as(cellDataSet, "SingleCellExperiment")
+```
 
 ## Troubleshooting
 
@@ -63,8 +86,15 @@ with `getLoadedDLLs()`.
 The papers and software cited in our workflows are available as a
 [shared library](https://paperpile.com/shared/5PLRi1) on [Paperpile][].
 
+[anndatar]: https://bioconductor.org/packages/anndataR/
+[bioconda]: https://bioconda.github.io/
+[conda]: https://docs.conda.io/
 [monocle3]: https://cole-trapnell-lab.github.io/monocle3/
 [paperpile]: https://paperpile.com/
 [r]: https://www.r-project.org/
 [seurat]: https://satijalab.org/seurat/
 [singlecellexperiment]: https://bioconductor.org/packages/SingleCellExperiment/
+
+## License
+
+Apache-2.0, Copyright 2018 Acid Genomics LLC. See [LICENSE.md](LICENSE.md).

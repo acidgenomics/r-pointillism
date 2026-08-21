@@ -20,7 +20,6 @@
 #'
 #' @seealso
 #' - `Seurat::PCElbowPlot()`.
-#' - `monocle3::plot_pc_variance_explained()`.
 #'
 #' @examples
 #' data(Seurat, package = "AcidTest")
@@ -127,21 +126,6 @@ formals(`plotPcElbow,Seurat`)[args] <- # nolint
     formals(.plotPcElbow)[args]
 rm(args)
 
-
-## > ## Updated 2019-08-02.
-## > `plotPcElbow,cell_data_set` <-  # nolint
-## >     function(object, minPct, maxCumPct) {
-## >         pctStdDev <- slot(object, "preprocess_aux")[["prop_var_expl"]]
-## >         .plotPcElbow(
-## >             pctStdDev = pctStdDev,
-## >             minPct = minPct,
-## >             maxCumPct = maxCumPct
-## >         )
-## >     }
-## >
-## > args <- c("minPct", "maxCumPct")
-## > formals(`plotPcElbow,cell_data_set`)[args] <- formals(.plotPcElbow)[args]
-
 #' @rdname plotPcElbow
 #' @export
 setMethod(
@@ -149,11 +133,3 @@ setMethod(
     signature = signature(object = "Seurat"),
     definition = `plotPcElbow,Seurat`
 )
-
-## > #' @rdname plotPcElbow
-## > #' @export
-## > setMethod(
-## >     f = "plotPcElbow",
-## >     signature = signature(object = "cell_data_set"),
-## >     definition = `plotPcElbow,cell_data_set`
-## > )

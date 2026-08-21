@@ -6,7 +6,7 @@
 \alias{pointillism-package}
 \title{pointillism}
 \description{
-R package for for single-cell RNA-seq clustering analysis.
+R package for single-cell RNA-seq clustering analysis.
 }
 \seealso{
 Useful links:
