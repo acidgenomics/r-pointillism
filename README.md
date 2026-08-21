@@ -97,4 +97,4 @@ The papers and software cited in our workflows are available as a
 
 ## License
 
-Apache-2.0, Copyright 2018 Acid Genomics LLC. See [LICENSE.md](LICENSE.md).
+Apache-2.0 — Copyright 2018 Acid Genomics LLC — see [LICENSE.md](LICENSE.md).

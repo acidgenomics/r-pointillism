@@ -11,7 +11,7 @@ R package for single-cell RNA-seq clustering analysis.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://r.acidgenomics.com/packages/pointillism/}
+  \item \url{https://r.acidgenomics.com/pointillism/}
   \item \url{https://github.com/acidgenomics/r-pointillism/}
   \item Report bugs at \url{https://github.com/acidgenomics/r-pointillism/issues/}
 }

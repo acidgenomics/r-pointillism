@@ -429,8 +429,8 @@ Minor changes:
 
 - Initial release.
 
-[acidplots]: https://r.acidgenomics.com/packages/acidplots/
+[acidplots]: https://r.acidgenomics.com/acidplots/
 [acid genomics]: https://acidgenomics.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
-[goalie]: https://r.acidgenomics.com/packages/goalie/
+[goalie]: https://r.acidgenomics.com/goalie/
 [seurat]: https://satijalab.org/seurat/
