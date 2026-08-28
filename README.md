@@ -1,6 +1,6 @@
 # pointillism
 
-[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-pointillism/README.html) ![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-pointillism/README.html) ![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
 
 [R][] package for single-cell RNA-seq clustering analysis. Supports
 [Seurat][] and [SingleCellExperiment][] objects.
